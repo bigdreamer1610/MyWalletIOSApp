@@ -1,0 +1,681 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8ACA6248251A07980031E6DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACA6247251A07980031E6DF /* AppDelegate.swift */; };
+		8ACA624A251A07980031E6DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACA6249251A07980031E6DF /* SceneDelegate.swift */; };
+		8ACA624C251A07980031E6DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACA624B251A07980031E6DF /* ViewController.swift */; };
+		8ACA624F251A07980031E6DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ACA624D251A07980031E6DF /* Main.storyboard */; };
+		8ACA6251251A079B0031E6DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ACA6250251A079B0031E6DF /* Assets.xcassets */; };
+		8ACA6254251A079B0031E6DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ACA6252251A079B0031E6DF /* LaunchScreen.storyboard */; };
+		8ACA625F251A079C0031E6DF /* MyWalletProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACA625E251A079C0031E6DF /* MyWalletProjectTests.swift */; };
+		8ACA626A251A079C0031E6DF /* MyWalletProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACA6269251A079C0031E6DF /* MyWalletProjectUITests.swift */; };
+		8ACA6278251A08980031E6DF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8ACA6277251A08970031E6DF /* GoogleService-Info.plist */; };
+		AC048E2604F8BFFFBECA11F0 /* Pods_MyWalletProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1BE2AE340B9107ED17B8534 /* Pods_MyWalletProject.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8ACA625B251A079C0031E6DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8ACA623C251A07980031E6DF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8ACA6243251A07980031E6DF;
+			remoteInfo = MyWalletProject;
+		};
+		8ACA6266251A079C0031E6DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8ACA623C251A07980031E6DF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8ACA6243251A07980031E6DF;
+			remoteInfo = MyWalletProject;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		02F6EC051F80467C05ACF530 /* Pods-MyWalletProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWalletProject.release.xcconfig"; path = "Target Support Files/Pods-MyWalletProject/Pods-MyWalletProject.release.xcconfig"; sourceTree = "<group>"; };
+		7217ED81FA2304CDEDF74146 /* Pods-MyWalletProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWalletProject.debug.xcconfig"; path = "Target Support Files/Pods-MyWalletProject/Pods-MyWalletProject.debug.xcconfig"; sourceTree = "<group>"; };
+		8ACA6244251A07980031E6DF /* MyWalletProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWalletProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8ACA6247251A07980031E6DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8ACA6249251A07980031E6DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		8ACA624B251A07980031E6DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8ACA624E251A07980031E6DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8ACA6250251A079B0031E6DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8ACA6253251A079B0031E6DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8ACA6255251A079B0031E6DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8ACA625A251A079C0031E6DF /* MyWalletProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyWalletProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8ACA625E251A079C0031E6DF /* MyWalletProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletProjectTests.swift; sourceTree = "<group>"; };
+		8ACA6260251A079C0031E6DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8ACA6265251A079C0031E6DF /* MyWalletProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyWalletProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8ACA6269251A079C0031E6DF /* MyWalletProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletProjectUITests.swift; sourceTree = "<group>"; };
+		8ACA626B251A079C0031E6DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8ACA6277251A08970031E6DF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F1BE2AE340B9107ED17B8534 /* Pods_MyWalletProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyWalletProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8ACA6241251A07980031E6DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC048E2604F8BFFFBECA11F0 /* Pods_MyWalletProject.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8ACA6257251A079C0031E6DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8ACA6262251A079C0031E6DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8ACA623B251A07980031E6DF = {
+			isa = PBXGroup;
+			children = (
+				8ACA6246251A07980031E6DF /* MyWalletProject */,
+				8ACA625D251A079C0031E6DF /* MyWalletProjectTests */,
+				8ACA6268251A079C0031E6DF /* MyWalletProjectUITests */,
+				8ACA6245251A07980031E6DF /* Products */,
+				AD3566BB176EBDB6102CF593 /* Pods */,
+				F3FF6B4E86E3A96527CC41F4 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8ACA6245251A07980031E6DF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8ACA6244251A07980031E6DF /* MyWalletProject.app */,
+				8ACA625A251A079C0031E6DF /* MyWalletProjectTests.xctest */,
+				8ACA6265251A079C0031E6DF /* MyWalletProjectUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8ACA6246251A07980031E6DF /* MyWalletProject */ = {
+			isa = PBXGroup;
+			children = (
+				8ACA6247251A07980031E6DF /* AppDelegate.swift */,
+				8ACA6249251A07980031E6DF /* SceneDelegate.swift */,
+				8ACA624B251A07980031E6DF /* ViewController.swift */,
+				8ACA624D251A07980031E6DF /* Main.storyboard */,
+				8ACA6250251A079B0031E6DF /* Assets.xcassets */,
+				8ACA6252251A079B0031E6DF /* LaunchScreen.storyboard */,
+				8ACA6255251A079B0031E6DF /* Info.plist */,
+				8ACA6277251A08970031E6DF /* GoogleService-Info.plist */,
+			);
+			path = MyWalletProject;
+			sourceTree = "<group>";
+		};
+		8ACA625D251A079C0031E6DF /* MyWalletProjectTests */ = {
+			isa = PBXGroup;
+			children = (
+				8ACA625E251A079C0031E6DF /* MyWalletProjectTests.swift */,
+				8ACA6260251A079C0031E6DF /* Info.plist */,
+			);
+			path = MyWalletProjectTests;
+			sourceTree = "<group>";
+		};
+		8ACA6268251A079C0031E6DF /* MyWalletProjectUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8ACA6269251A079C0031E6DF /* MyWalletProjectUITests.swift */,
+				8ACA626B251A079C0031E6DF /* Info.plist */,
+			);
+			path = MyWalletProjectUITests;
+			sourceTree = "<group>";
+		};
+		AD3566BB176EBDB6102CF593 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7217ED81FA2304CDEDF74146 /* Pods-MyWalletProject.debug.xcconfig */,
+				02F6EC051F80467C05ACF530 /* Pods-MyWalletProject.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		F3FF6B4E86E3A96527CC41F4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F1BE2AE340B9107ED17B8534 /* Pods_MyWalletProject.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8ACA6243251A07980031E6DF /* MyWalletProject */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8ACA626E251A079C0031E6DF /* Build configuration list for PBXNativeTarget "MyWalletProject" */;
+			buildPhases = (
+				C6572359905A7B2F721A04C2 /* [CP] Check Pods Manifest.lock */,
+				8ACA6240251A07980031E6DF /* Sources */,
+				8ACA6241251A07980031E6DF /* Frameworks */,
+				8ACA6242251A07980031E6DF /* Resources */,
+				024E5794DB9E1DAC8ED9CCB5 /* [CP] Embed Pods Frameworks */,
+				27A56FE391FF74B5AD1BB07B /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MyWalletProject;
+			productName = MyWalletProject;
+			productReference = 8ACA6244251A07980031E6DF /* MyWalletProject.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8ACA6259251A079C0031E6DF /* MyWalletProjectTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8ACA6271251A079C0031E6DF /* Build configuration list for PBXNativeTarget "MyWalletProjectTests" */;
+			buildPhases = (
+				8ACA6256251A079C0031E6DF /* Sources */,
+				8ACA6257251A079C0031E6DF /* Frameworks */,
+				8ACA6258251A079C0031E6DF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8ACA625C251A079C0031E6DF /* PBXTargetDependency */,
+			);
+			name = MyWalletProjectTests;
+			productName = MyWalletProjectTests;
+			productReference = 8ACA625A251A079C0031E6DF /* MyWalletProjectTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8ACA6264251A079C0031E6DF /* MyWalletProjectUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8ACA6274251A079C0031E6DF /* Build configuration list for PBXNativeTarget "MyWalletProjectUITests" */;
+			buildPhases = (
+				8ACA6261251A079C0031E6DF /* Sources */,
+				8ACA6262251A079C0031E6DF /* Frameworks */,
+				8ACA6263251A079C0031E6DF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8ACA6267251A079C0031E6DF /* PBXTargetDependency */,
+			);
+			name = MyWalletProjectUITests;
+			productName = MyWalletProjectUITests;
+			productReference = 8ACA6265251A079C0031E6DF /* MyWalletProjectUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8ACA623C251A07980031E6DF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1160;
+				LastUpgradeCheck = 1160;
+				ORGANIZATIONNAME = "Vuong Vu Bac Son";
+				TargetAttributes = {
+					8ACA6243251A07980031E6DF = {
+						CreatedOnToolsVersion = 11.6;
+					};
+					8ACA6259251A079C0031E6DF = {
+						CreatedOnToolsVersion = 11.6;
+						TestTargetID = 8ACA6243251A07980031E6DF;
+					};
+					8ACA6264251A079C0031E6DF = {
+						CreatedOnToolsVersion = 11.6;
+						TestTargetID = 8ACA6243251A07980031E6DF;
+					};
+				};
+			};
+			buildConfigurationList = 8ACA623F251A07980031E6DF /* Build configuration list for PBXProject "MyWalletProject" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8ACA623B251A07980031E6DF;
+			productRefGroup = 8ACA6245251A07980031E6DF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8ACA6243251A07980031E6DF /* MyWalletProject */,
+				8ACA6259251A079C0031E6DF /* MyWalletProjectTests */,
+				8ACA6264251A079C0031E6DF /* MyWalletProjectUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8ACA6242251A07980031E6DF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8ACA6254251A079B0031E6DF /* LaunchScreen.storyboard in Resources */,
+				8ACA6278251A08980031E6DF /* GoogleService-Info.plist in Resources */,
+				8ACA6251251A079B0031E6DF /* Assets.xcassets in Resources */,
+				8ACA624F251A07980031E6DF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8ACA6258251A079C0031E6DF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8ACA6263251A079C0031E6DF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		024E5794DB9E1DAC8ED9CCB5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyWalletProject/Pods-MyWalletProject-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyWalletProject/Pods-MyWalletProject-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyWalletProject/Pods-MyWalletProject-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		27A56FE391FF74B5AD1BB07B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyWalletProject/Pods-MyWalletProject-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyWalletProject/Pods-MyWalletProject-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyWalletProject/Pods-MyWalletProject-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C6572359905A7B2F721A04C2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MyWalletProject-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8ACA6240251A07980031E6DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8ACA624C251A07980031E6DF /* ViewController.swift in Sources */,
+				8ACA6248251A07980031E6DF /* AppDelegate.swift in Sources */,
+				8ACA624A251A07980031E6DF /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8ACA6256251A079C0031E6DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8ACA625F251A079C0031E6DF /* MyWalletProjectTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8ACA6261251A079C0031E6DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8ACA626A251A079C0031E6DF /* MyWalletProjectUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8ACA625C251A079C0031E6DF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8ACA6243251A07980031E6DF /* MyWalletProject */;
+			targetProxy = 8ACA625B251A079C0031E6DF /* PBXContainerItemProxy */;
+		};
+		8ACA6267251A079C0031E6DF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8ACA6243251A07980031E6DF /* MyWalletProject */;
+			targetProxy = 8ACA6266251A079C0031E6DF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8ACA624D251A07980031E6DF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8ACA624E251A07980031E6DF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8ACA6252251A079B0031E6DF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8ACA6253251A079B0031E6DF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8ACA626C251A079C0031E6DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8ACA626D251A079C0031E6DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8ACA626F251A079C0031E6DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7217ED81FA2304CDEDF74146 /* Pods-MyWalletProject.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MyWalletProject/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = VTI.MyWalletProject;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8ACA6270251A079C0031E6DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 02F6EC051F80467C05ACF530 /* Pods-MyWalletProject.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MyWalletProject/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = VTI.MyWalletProject;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8ACA6272251A079C0031E6DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MyWalletProjectTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = VTI.MyWalletProjectTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyWalletProject.app/MyWalletProject";
+			};
+			name = Debug;
+		};
+		8ACA6273251A079C0031E6DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MyWalletProjectTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = VTI.MyWalletProjectTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyWalletProject.app/MyWalletProject";
+			};
+			name = Release;
+		};
+		8ACA6275251A079C0031E6DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MyWalletProjectUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = VTI.MyWalletProjectUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MyWalletProject;
+			};
+			name = Debug;
+		};
+		8ACA6276251A079C0031E6DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MyWalletProjectUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = VTI.MyWalletProjectUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MyWalletProject;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8ACA623F251A07980031E6DF /* Build configuration list for PBXProject "MyWalletProject" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8ACA626C251A079C0031E6DF /* Debug */,
+				8ACA626D251A079C0031E6DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8ACA626E251A079C0031E6DF /* Build configuration list for PBXNativeTarget "MyWalletProject" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8ACA626F251A079C0031E6DF /* Debug */,
+				8ACA6270251A079C0031E6DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8ACA6271251A079C0031E6DF /* Build configuration list for PBXNativeTarget "MyWalletProjectTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8ACA6272251A079C0031E6DF /* Debug */,
+				8ACA6273251A079C0031E6DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8ACA6274251A079C0031E6DF /* Build configuration list for PBXNativeTarget "MyWalletProjectUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8ACA6275251A079C0031E6DF /* Debug */,
+				8ACA6276251A079C0031E6DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8ACA623C251A07980031E6DF /* Project object */;
+}
