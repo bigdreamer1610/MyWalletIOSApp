@@ -21,6 +21,8 @@
 		8A3BB427251AFE7C008113E9 /* SettingsItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3BB425251AFE7C008113E9 /* SettingsItemViewCell.xib */; };
 		8A3BB429251B204C008113E9 /* UserSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A3BB428251B204C008113E9 /* UserSettings.storyboard */; };
 		8A3BB42D251B21A2008113E9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BB42C251B21A2008113E9 /* SettingsViewController.swift */; };
+		8A3BB42F251B31B4008113E9 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BB42E251B31B4008113E9 /* SettingsPresenter.swift */; };
+		8A3BB431251B326E008113E9 /* SettingsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BB430251B326E008113E9 /* SettingsUseCase.swift */; };
 		8ACA6248251A07980031E6DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACA6247251A07980031E6DF /* AppDelegate.swift */; };
 		8ACA624A251A07980031E6DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACA6249251A07980031E6DF /* SceneDelegate.swift */; };
 		8ACA624C251A07980031E6DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACA624B251A07980031E6DF /* ViewController.swift */; };
@@ -67,6 +69,8 @@
 		8A3BB425251AFE7C008113E9 /* SettingsItemViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsItemViewCell.xib; sourceTree = "<group>"; };
 		8A3BB428251B204C008113E9 /* UserSettings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserSettings.storyboard; sourceTree = "<group>"; };
 		8A3BB42C251B21A2008113E9 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		8A3BB42E251B31B4008113E9 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
+		8A3BB430251B326E008113E9 /* SettingsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUseCase.swift; sourceTree = "<group>"; };
 		8ACA6244251A07980031E6DF /* MyWalletProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWalletProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ACA6247251A07980031E6DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8ACA6249251A07980031E6DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +129,7 @@
 		8A3BB41D251AE6D9008113E9 /* UserSettings */ = {
 			isa = PBXGroup;
 			children = (
+				8A3BB432251B5022008113E9 /* MoneyCurrencies */,
 				8A3BB42B251B20A9008113E9 /* Categories */,
 				8A3BB42A251B20A3008113E9 /* Settings */,
 				8A3BB420251AF91F008113E9 /* UserSettingsViewController.swift */,
@@ -139,6 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				8A3BB42C251B21A2008113E9 /* SettingsViewController.swift */,
+				8A3BB42E251B31B4008113E9 /* SettingsPresenter.swift */,
+				8A3BB430251B326E008113E9 /* SettingsUseCase.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -148,6 +155,13 @@
 			children = (
 			);
 			path = Categories;
+			sourceTree = "<group>";
+		};
+		8A3BB432251B5022008113E9 /* MoneyCurrencies */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MoneyCurrencies;
 			sourceTree = "<group>";
 		};
 		8ACA623B251A07980031E6DF = {
@@ -444,10 +458,12 @@
 				8ACA6248251A07980031E6DF /* AppDelegate.swift in Sources */,
 				8A3BB40B251ADE6E008113E9 /* Transaction.swift in Sources */,
 				8A3BB42D251B21A2008113E9 /* SettingsViewController.swift in Sources */,
+				8A3BB431251B326E008113E9 /* SettingsUseCase.swift in Sources */,
 				8ACA624A251A07980031E6DF /* SceneDelegate.swift in Sources */,
 				8A3BB41C251AE043008113E9 /* ScanBillUseCase.swift in Sources */,
 				8A3BB411251ADEC3008113E9 /* Event.swift in Sources */,
 				8A3BB40F251ADEB3008113E9 /* Account.swift in Sources */,
+				8A3BB42F251B31B4008113E9 /* SettingsPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

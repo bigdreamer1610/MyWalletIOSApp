@@ -57,7 +57,7 @@ class UserSettingsViewController: UIViewController {
 
 extension UserSettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -65,13 +65,18 @@ extension UserSettingsViewController: UITableViewDelegate, UITableViewDataSource
         
         var imageName = ""
         var labelName = ""
-        if indexPath.row == 0 {
+        
+        switch indexPath.row {
+        case 0:
             imageName = "s-settings"
             labelName = "Settings"
-        } else if indexPath.row == 1 {
+        case 1:
             imageName = "s-categories"
             labelName = "Categories"
-        } else {
+        case 2:
+            imageName = "s-currencies"
+            labelName = "Money Currencies"
+        default:
             imageName = "Undefined"
             labelName = "Undefined"
         }
@@ -81,7 +86,20 @@ extension UserSettingsViewController: UITableViewDelegate, UITableViewDataSource
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        <#code#>
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        switch indexPath.row {
+//        case 0:
+//            let settingsController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: "settings")
+//            navigationController?.pushViewController(settingsController, animated: true)
+//        case 1:
+//            let settingsController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: "settings")
+//            navigationController?.pushViewController(settingsController, animated: true)
+//        default:
+//            <#code#>
+//        }
+        if indexPath.row == 0 {
+            let settingsController = UIStoryboard.init(name: "UserSettings", bundle: nil).instantiateViewController(identifier: "settings")
+            navigationController?.pushViewController(settingsController, animated: true)
+        }
+    }
 }
