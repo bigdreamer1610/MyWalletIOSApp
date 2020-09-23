@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dwG-Oo-kXM">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="Pao-c0-bhQ">
+            <objects>
+                <navigationController id="dwG-Oo-kXM" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cIa-K9-3XO">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Zsl-5b-ilH" kind="relationship" relationship="rootViewController" id="St6-wa-lUg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x7d-d5-N2T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2194" y="-692"/>
+        </scene>
+        <!--User Settings View Controller-->
+        <scene sceneID="qwm-wR-yrn">
+            <objects>
+                <viewController id="Zsl-5b-ilH" customClass="UserSettingsViewController" customModule="MyWalletProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="x00-OI-JPX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Up-no-VGt">
+                                <rect key="frame" x="30" y="108" width="354" height="134.5"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="users" translatesAutoresizingMaskIntoConstraints="NO" id="9fk-Ou-Bpr">
+                                        <rect key="frame" x="142" y="10" width="70" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="ThP-IJ-ZRt"/>
+                                            <constraint firstAttribute="width" constant="70" id="yBy-Mk-6oF"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vuong Vu Bac Son" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X22-eY-b4z">
+                                        <rect key="frame" x="88.5" y="96" width="177" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="X22-eY-b4z" firstAttribute="top" secondItem="9fk-Ou-Bpr" secondAttribute="bottom" constant="16" id="QHB-Za-iTp"/>
+                                    <constraint firstItem="X22-eY-b4z" firstAttribute="centerX" secondItem="9Up-no-VGt" secondAttribute="centerX" id="QaG-J2-4er"/>
+                                    <constraint firstItem="X22-eY-b4z" firstAttribute="width" secondItem="9Up-no-VGt" secondAttribute="width" multiplier="0.5" id="Sy7-o4-qO5"/>
+                                    <constraint firstItem="9fk-Ou-Bpr" firstAttribute="centerX" secondItem="9Up-no-VGt" secondAttribute="centerX" id="Yzt-S1-JHx"/>
+                                    <constraint firstItem="9fk-Ou-Bpr" firstAttribute="top" secondItem="9Up-no-VGt" secondAttribute="top" constant="10" id="etx-JI-Kfo"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QdM-O4-n1R">
+                                <rect key="frame" x="30" y="262.5" width="354" height="268.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <inset key="separatorInset" minX="5" minY="0.0" maxX="15" maxY="0.0"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rnE-Jc-eHS">
+                                <rect key="frame" x="30" y="551" width="354" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.29097051740000002" blue="0.16793154539999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="reO-NV-gpf"/>
+                                </constraints>
+                                <state key="normal" title="SIGN OUT">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnSignOutClicked:" destination="Zsl-5b-ilH" eventType="touchUpInside" id="7i9-11-9JY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="QdM-O4-n1R" firstAttribute="leading" secondItem="MNy-nl-CNu" secondAttribute="leading" constant="30" id="3Nu-R0-JLL"/>
+                            <constraint firstItem="9Up-no-VGt" firstAttribute="top" secondItem="MNy-nl-CNu" secondAttribute="top" constant="20" id="ArA-3i-qQV"/>
+                            <constraint firstItem="MNy-nl-CNu" firstAttribute="trailing" secondItem="QdM-O4-n1R" secondAttribute="trailing" constant="30" id="BI1-DF-qQS"/>
+                            <constraint firstItem="rnE-Jc-eHS" firstAttribute="leading" secondItem="MNy-nl-CNu" secondAttribute="leading" constant="30" id="COy-Cy-jRc"/>
+                            <constraint firstItem="QdM-O4-n1R" firstAttribute="top" secondItem="9Up-no-VGt" secondAttribute="bottom" constant="20" id="FjG-YJ-Haa"/>
+                            <constraint firstItem="MNy-nl-CNu" firstAttribute="trailing" secondItem="9Up-no-VGt" secondAttribute="trailing" constant="30" id="NRh-94-iWl"/>
+                            <constraint firstItem="rnE-Jc-eHS" firstAttribute="top" secondItem="QdM-O4-n1R" secondAttribute="bottom" constant="20" id="Tfp-ac-Btn"/>
+                            <constraint firstItem="9Up-no-VGt" firstAttribute="height" secondItem="x00-OI-JPX" secondAttribute="height" multiplier="0.15" id="a1n-ra-hLq"/>
+                            <constraint firstItem="MNy-nl-CNu" firstAttribute="trailing" secondItem="rnE-Jc-eHS" secondAttribute="trailing" constant="30" id="hLB-Us-1xu"/>
+                            <constraint firstItem="QdM-O4-n1R" firstAttribute="height" secondItem="x00-OI-JPX" secondAttribute="height" multiplier="0.3" id="jiD-ad-uvr"/>
+                            <constraint firstItem="9Up-no-VGt" firstAttribute="leading" secondItem="MNy-nl-CNu" secondAttribute="leading" constant="30" id="xhD-1C-khL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="MNy-nl-CNu"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="80L-6H-YAc"/>
+                    <connections>
+                        <outlet property="avaImage" destination="9fk-Ou-Bpr" id="aAs-Xt-Vpo"/>
+                        <outlet property="btnSignOut" destination="rnE-Jc-eHS" id="mZg-La-eMh"/>
+                        <outlet property="lblUsername" destination="X22-eY-b4z" id="6cA-Qb-Pnt"/>
+                        <outlet property="tableView" destination="QdM-O4-n1R" id="ZNh-gs-PmZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DDN-oO-Lb2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1197" y="-692"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="mR6-g5-Pio">
+            <objects>
+                <viewController id="b1J-DV-6G6" customClass="SettingsViewController" customModule="MyWalletProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oJC-ee-Rnp">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Xt6-B2-gOM"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RVY-No-c9b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-174" y="-692"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="users" width="170.5" height="170.5"/>
+    </resources>
+</document>
