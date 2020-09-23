@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A3BB40B251ADE6E008113E9 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BB40A251ADE6E008113E9 /* Transaction.swift */; };
+		8A3BB40D251ADE9E008113E9 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BB40C251ADE9E008113E9 /* Category.swift */; };
+		8A3BB40F251ADEB3008113E9 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BB40E251ADEB3008113E9 /* Account.swift */; };
+		8A3BB411251ADEC3008113E9 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BB410251ADEC3008113E9 /* Event.swift */; };
+		8A3BB413251ADED6008113E9 /* Budget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BB412251ADED6008113E9 /* Budget.swift */; };
+		8A3BB416251ADEFA008113E9 /* ScanBill.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A3BB415251ADEFA008113E9 /* ScanBill.storyboard */; };
+		8A3BB418251ADF9E008113E9 /* ScanBillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BB417251ADF9E008113E9 /* ScanBillViewController.swift */; };
+		8A3BB41A251AE01A008113E9 /* ScanBillPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BB419251AE01A008113E9 /* ScanBillPresenter.swift */; };
+		8A3BB41C251AE043008113E9 /* ScanBillUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BB41B251AE043008113E9 /* ScanBillUseCase.swift */; };
 		8ACA6248251A07980031E6DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACA6247251A07980031E6DF /* AppDelegate.swift */; };
 		8ACA624A251A07980031E6DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACA6249251A07980031E6DF /* SceneDelegate.swift */; };
 		8ACA624C251A07980031E6DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACA624B251A07980031E6DF /* ViewController.swift */; };
@@ -39,6 +48,15 @@
 /* Begin PBXFileReference section */
 		02F6EC051F80467C05ACF530 /* Pods-MyWalletProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWalletProject.release.xcconfig"; path = "Target Support Files/Pods-MyWalletProject/Pods-MyWalletProject.release.xcconfig"; sourceTree = "<group>"; };
 		7217ED81FA2304CDEDF74146 /* Pods-MyWalletProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWalletProject.debug.xcconfig"; path = "Target Support Files/Pods-MyWalletProject/Pods-MyWalletProject.debug.xcconfig"; sourceTree = "<group>"; };
+		8A3BB40A251ADE6E008113E9 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		8A3BB40C251ADE9E008113E9 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		8A3BB40E251ADEB3008113E9 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		8A3BB410251ADEC3008113E9 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		8A3BB412251ADED6008113E9 /* Budget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Budget.swift; sourceTree = "<group>"; };
+		8A3BB415251ADEFA008113E9 /* ScanBill.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ScanBill.storyboard; sourceTree = "<group>"; };
+		8A3BB417251ADF9E008113E9 /* ScanBillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanBillViewController.swift; sourceTree = "<group>"; };
+		8A3BB419251AE01A008113E9 /* ScanBillPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanBillPresenter.swift; sourceTree = "<group>"; };
+		8A3BB41B251AE043008113E9 /* ScanBillUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanBillUseCase.swift; sourceTree = "<group>"; };
 		8ACA6244251A07980031E6DF /* MyWalletProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWalletProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ACA6247251A07980031E6DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8ACA6249251A07980031E6DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +101,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8A3BB414251ADEE6008113E9 /* ScanBill */ = {
+			isa = PBXGroup;
+			children = (
+				8A3BB415251ADEFA008113E9 /* ScanBill.storyboard */,
+				8A3BB417251ADF9E008113E9 /* ScanBillViewController.swift */,
+				8A3BB419251AE01A008113E9 /* ScanBillPresenter.swift */,
+				8A3BB41B251AE043008113E9 /* ScanBillUseCase.swift */,
+			);
+			path = ScanBill;
+			sourceTree = "<group>";
+		};
 		8ACA623B251A07980031E6DF = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +137,8 @@
 		8ACA6246251A07980031E6DF /* MyWalletProject */ = {
 			isa = PBXGroup;
 			children = (
+				8ACA6284251A0C2A0031E6DF /* DataModel */,
+				8A3BB414251ADEE6008113E9 /* ScanBill */,
 				8ACA6247251A07980031E6DF /* AppDelegate.swift */,
 				8ACA6249251A07980031E6DF /* SceneDelegate.swift */,
 				8ACA624B251A07980031E6DF /* ViewController.swift */,
@@ -136,6 +167,18 @@
 				8ACA626B251A079C0031E6DF /* Info.plist */,
 			);
 			path = MyWalletProjectUITests;
+			sourceTree = "<group>";
+		};
+		8ACA6284251A0C2A0031E6DF /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				8A3BB40A251ADE6E008113E9 /* Transaction.swift */,
+				8A3BB40C251ADE9E008113E9 /* Category.swift */,
+				8A3BB40E251ADEB3008113E9 /* Account.swift */,
+				8A3BB410251ADEC3008113E9 /* Event.swift */,
+				8A3BB412251ADED6008113E9 /* Budget.swift */,
+			);
+			path = DataModel;
 			sourceTree = "<group>";
 		};
 		AD3566BB176EBDB6102CF593 /* Pods */ = {
@@ -263,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8ACA6254251A079B0031E6DF /* LaunchScreen.storyboard in Resources */,
+				8A3BB416251ADEFA008113E9 /* ScanBill.storyboard in Resources */,
 				8ACA6278251A08980031E6DF /* GoogleService-Info.plist in Resources */,
 				8ACA6251251A079B0031E6DF /* Assets.xcassets in Resources */,
 				8ACA624F251A07980031E6DF /* Main.storyboard in Resources */,
@@ -349,9 +393,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A3BB41A251AE01A008113E9 /* ScanBillPresenter.swift in Sources */,
 				8ACA624C251A07980031E6DF /* ViewController.swift in Sources */,
+				8A3BB40D251ADE9E008113E9 /* Category.swift in Sources */,
+				8A3BB418251ADF9E008113E9 /* ScanBillViewController.swift in Sources */,
+				8A3BB413251ADED6008113E9 /* Budget.swift in Sources */,
 				8ACA6248251A07980031E6DF /* AppDelegate.swift in Sources */,
+				8A3BB40B251ADE6E008113E9 /* Transaction.swift in Sources */,
 				8ACA624A251A07980031E6DF /* SceneDelegate.swift in Sources */,
+				8A3BB41C251AE043008113E9 /* ScanBillUseCase.swift in Sources */,
+				8A3BB411251ADEC3008113E9 /* Event.swift in Sources */,
+				8A3BB40F251ADEB3008113E9 /* Account.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
