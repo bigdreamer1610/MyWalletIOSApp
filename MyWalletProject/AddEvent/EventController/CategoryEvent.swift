@@ -35,9 +35,6 @@ class CategoryEvent: UIViewController, UICollectionViewDataSource, UICollectionV
     }
     
 
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-//        return CGSize(width: 50, height: 50)
-//    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
          return CGSize(width: 50, height: 50)
     }
@@ -56,18 +53,12 @@ class CategoryEvent: UIViewController, UICollectionViewDataSource, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as! CategoryEventCell
-      //  cell.navigationController?.popViewController(animated: true)
         
         completionHandler?(arrImg[indexPath.row].lowercased())
         self.popView()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "AddEvent" {
-            let cate12 = segue.description as! AddEventController
-            
-        }
-    }
+    
     
     func popView() {
         self.navigationController?.popViewController(animated: true)

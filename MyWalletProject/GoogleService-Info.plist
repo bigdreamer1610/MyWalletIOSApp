@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>866534875550-qdnj4e517o7rop6kdp0jkffvpivtsgcv.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.866534875550-qdnj4e517o7rop6kdp0jkffvpivtsgcv</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBVbEwkMU4R03u0QPO1J6CI4M53_k4Jepo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>866534875550</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>VTI.MyWalletProject</string>
+	<key>PROJECT_ID</key>
+	<string>moneyapp-7bb1a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>moneyapp-7bb1a.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:866534875550:ios:2dd015eac2a54583b1368f</string>
+	<key>DATABASE_URL</key>
+	<string>https://moneyapp-7bb1a.firebaseio.com</string>
+</dict>
+</plist>

@@ -14,4 +14,5 @@ target 'MyWalletProject' do
 	pod 'FBSDKLoginKit'
 	pod 'Charts'
   pod 'FSCalendar'
+  pod 'SwiftDate'
 end
