@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol SettingsViewControllerProtocol {
+    func showAlert(_ message: String, _ state: Bool)
+}
+
 class SettingsViewController: UIViewController {
 
     @IBOutlet weak var avaImage: UIImageView!
@@ -22,6 +26,8 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var btnSave: UIButton!
     @IBOutlet weak var btnCancel: UIButton!
+    
+    var presenter: SettingsPresenter = SettingsPresenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,5 +50,38 @@ class SettingsViewController: UIViewController {
     func configureButton(_ button: UIButton) {
         button.layer.cornerRadius = 10
         button.layer.borderWidth = 1
+    }
+    
+    @IBAction func btnSaveClicked(_ sender: Any) {
+        presenter.viewDelegate = self
+        
+        var user = Account()
+        user.name = txtUsername.text!
+        user.balance = Int(txtBalance.text!) ?? -1
+        user.email = "bacsonvv@gmail.com"
+        user.dateOfBirth = txtDate.text!
+        user.phoneNumber = txtPhoneNumber.text!
+        user.gender = txtGender.text!
+        user.address = txtAddress.text!
+        user.language = txtLanguage.text!
+        
+        presenter.validateInput(user)
+    }
+    
+    @IBAction func btnCancelClicked(_ sender: Any) {
+    }
+}
+
+extension SettingsViewController: SettingsViewControllerProtocol {
+    func showAlert(_ message: String, _ state: Bool) {
+        if !state {
+            let alert = UIAlertController(title: "INVALID TRANSACTION", message: message, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "SUCCESS", message: "Your information has successfully been updated", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }

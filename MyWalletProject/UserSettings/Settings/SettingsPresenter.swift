@@ -10,7 +10,9 @@ import Foundation
 
 class SettingsPresenter {
     
-    func validateInput(_ user: Account) -> (message: String, state: Bool) {
+    var viewDelegate: SettingsViewControllerProtocol?
+    
+    func validateInput(_ user: Account) {
         var message = ""
         var state = false
         
@@ -19,14 +21,72 @@ class SettingsPresenter {
         if user.name! == "" {
             message = "Username can not be blank, please try again!"
             state = false
+        } else {
+            state = true
         }
         
-        // Username field
+        // Balance field
         if user.balance! == -1 {
-            message = "Username can not be blank, please try again!"
+            message = "Balance can not be blank, please try again!"
             state = false
+        } else {
+            state = true
         }
         
-        return (message: message, state: state)
+        // Date of birth field
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        if user.dateOfBirth! == "" {
+            message = "Date of birth can not be blank, please try again!"
+            state = false
+        } else if dateFormatter.date(from: user.dateOfBirth!) == nil {
+            message = "Date of birth does not match with out format, please try again!"
+            state = false
+        } else {
+            state = true
+        }
+        
+        // Phone number field
+        if user.phoneNumber! == "" {
+            message = "Phone number can not be blank, please try again!"
+            state = false
+        } else if !CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: user.phoneNumber!)) {
+            message = "Phone number contains numbers only, please try again!"
+            state = false
+        } else {
+            state = true
+        }
+        
+        // Gender field
+        if user.gender! == "" {
+            message = "Gender can not be blank, please try again!"
+            state = false
+        } else if user.gender! != "Male" && user.gender! != "Female" && user.gender! != "Others" {
+            message = "Gender does not match with our format, please try again!"
+            state = false
+        } else {
+            state = true
+        }
+        
+        // Address field
+        if user.address! == "" {
+            message = "Address can not be blank, please try again!"
+            state = false
+        } else {
+            state = true
+        }
+        
+        // Language field
+        if user.language! == "" {
+            message = "Language can not be blank, please try again!"
+            state = false
+        } else if user.language! != "English" && user.language! != "Vietnamese" {
+            message = "Language does not match with our format, please try again!"
+            state = false
+        } else {
+            state = true
+        }
+        
+        viewDelegate?.showAlert(message, state)
     }
 }
