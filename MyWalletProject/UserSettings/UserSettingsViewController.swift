@@ -98,8 +98,13 @@ extension UserSettingsViewController: UITableViewDelegate, UITableViewDataSource
 //            <#code#>
 //        }
         if indexPath.row == 0 {
-            let settingsController = UIStoryboard.init(name: "UserSettings", bundle: nil).instantiateViewController(identifier: "settings")
+            let settingsController = UIStoryboard.init(name: "UserSettings", bundle: nil).instantiateViewController(identifier: "settingsVC") as! SettingsViewController
             navigationController?.pushViewController(settingsController, animated: true)
+        }
+        if indexPath.row == 2 {
+            let currencyController = UIStoryboard.init(name: "UserSettings", bundle: nil).instantiateViewController(identifier: "currencyVC") as! CurrencyViewController
+            currencyController.presenter.fetchData()
+            navigationController?.pushViewController(currencyController, animated: true)
         }
     }
 }

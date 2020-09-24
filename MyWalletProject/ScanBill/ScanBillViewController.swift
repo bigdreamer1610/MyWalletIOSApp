@@ -85,7 +85,7 @@ class ScanBillViewController: UIViewController {
     
     // MARK: - Process image to presenter to handle
     @IBAction func btnScanClicked(_ sender: Any) {
-        presenter.view = self
+        presenter.viewDelegate = self
         presenter.handleImage(imageInput.image!)
     }
     
@@ -98,7 +98,7 @@ class ScanBillViewController: UIViewController {
         userTransaction.note = txtNote.text
         userTransaction.date = lblDate.text
         
-        presenter.view = self
+        presenter.viewDelegate = self
         presenter.saveTransaction(userTransaction)
     }
     
