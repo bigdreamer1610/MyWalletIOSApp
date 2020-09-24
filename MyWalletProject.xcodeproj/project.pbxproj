@@ -33,6 +33,16 @@
 		8ACA626A251A079C0031E6DF /* MyWalletProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACA6269251A079C0031E6DF /* MyWalletProjectUITests.swift */; };
 		8ACA6278251A08980031E6DF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8ACA6277251A08970031E6DF /* GoogleService-Info.plist */; };
 		AC048E2604F8BFFFBECA11F0 /* Pods_MyWalletProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1BE2AE340B9107ED17B8534 /* Pods_MyWalletProject.framework */; };
+		D270F4B0251B52E700CB274C /* AddEvent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D270F4AF251B52E700CB274C /* AddEvent.storyboard */; };
+		D270F4B3251B53F100CB274C /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D270F4B2251B53F100CB274C /* EventController.swift */; };
+		D270F4B5251B541000CB274C /* AddEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D270F4B4251B541000CB274C /* AddEventController.swift */; };
+		D270F4B7251B542900CB274C /* EventDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D270F4B6251B542900CB274C /* EventDetailController.swift */; };
+		D270F4B9251B545600CB274C /* CategoryEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D270F4B8251B545600CB274C /* CategoryEvent.swift */; };
+		D270F4BD251B54DF00CB274C /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D270F4BB251B54DF00CB274C /* EventCell.swift */; };
+		D270F4BE251B54DF00CB274C /* EventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D270F4BC251B54DF00CB274C /* EventCell.xib */; };
+		D270F4C1251B550E00CB274C /* CategoryEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D270F4BF251B550E00CB274C /* CategoryEventCell.swift */; };
+		D270F4C2251B550E00CB274C /* CategoryEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D270F4C0251B550E00CB274C /* CategoryEventCell.xib */; };
+		D270F4C4251B557D00CB274C /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D270F4C3251B557D00CB274C /* CalendarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +96,16 @@
 		8ACA6269251A079C0031E6DF /* MyWalletProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletProjectUITests.swift; sourceTree = "<group>"; };
 		8ACA626B251A079C0031E6DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8ACA6277251A08970031E6DF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D270F4AF251B52E700CB274C /* AddEvent.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddEvent.storyboard; sourceTree = "<group>"; };
+		D270F4B2251B53F100CB274C /* EventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventController.swift; sourceTree = "<group>"; };
+		D270F4B4251B541000CB274C /* AddEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventController.swift; sourceTree = "<group>"; };
+		D270F4B6251B542900CB274C /* EventDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailController.swift; sourceTree = "<group>"; };
+		D270F4B8251B545600CB274C /* CategoryEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEvent.swift; sourceTree = "<group>"; };
+		D270F4BB251B54DF00CB274C /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		D270F4BC251B54DF00CB274C /* EventCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCell.xib; sourceTree = "<group>"; };
+		D270F4BF251B550E00CB274C /* CategoryEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEventCell.swift; sourceTree = "<group>"; };
+		D270F4C0251B550E00CB274C /* CategoryEventCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryEventCell.xib; sourceTree = "<group>"; };
+		D270F4C3251B557D00CB274C /* CalendarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
 		F1BE2AE340B9107ED17B8534 /* Pods_MyWalletProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyWalletProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -192,8 +212,9 @@
 				8ACA6284251A0C2A0031E6DF /* DataModel */,
 				8A3BB414251ADEE6008113E9 /* ScanBill */,
 				8A3BB41D251AE6D9008113E9 /* UserSettings */,
-				8ACA6249251A07980031E6DF /* SceneDelegate.swift */,
+				D270F4AE251B52A700CB274C /* AddEvent */,
 				8ACA6247251A07980031E6DF /* AppDelegate.swift */,
+				8ACA6249251A07980031E6DF /* SceneDelegate.swift */,
 				8ACA624B251A07980031E6DF /* ViewController.swift */,
 				8ACA624D251A07980031E6DF /* Main.storyboard */,
 				8ACA6250251A079B0031E6DF /* Assets.xcassets */,
@@ -241,6 +262,39 @@
 				02F6EC051F80467C05ACF530 /* Pods-MyWalletProject.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D270F4AE251B52A700CB274C /* AddEvent */ = {
+			isa = PBXGroup;
+			children = (
+				D270F4BA251B547100CB274C /* EventCell */,
+				D270F4B1251B53A500CB274C /* EventController */,
+				D270F4AF251B52E700CB274C /* AddEvent.storyboard */,
+			);
+			path = AddEvent;
+			sourceTree = "<group>";
+		};
+		D270F4B1251B53A500CB274C /* EventController */ = {
+			isa = PBXGroup;
+			children = (
+				D270F4B2251B53F100CB274C /* EventController.swift */,
+				D270F4B4251B541000CB274C /* AddEventController.swift */,
+				D270F4B6251B542900CB274C /* EventDetailController.swift */,
+				D270F4B8251B545600CB274C /* CategoryEvent.swift */,
+				D270F4C3251B557D00CB274C /* CalendarController.swift */,
+			);
+			path = EventController;
+			sourceTree = "<group>";
+		};
+		D270F4BA251B547100CB274C /* EventCell */ = {
+			isa = PBXGroup;
+			children = (
+				D270F4BB251B54DF00CB274C /* EventCell.swift */,
+				D270F4BC251B54DF00CB274C /* EventCell.xib */,
+				D270F4BF251B550E00CB274C /* CategoryEventCell.swift */,
+				D270F4C0251B550E00CB274C /* CategoryEventCell.xib */,
+			);
+			path = EventCell;
 			sourceTree = "<group>";
 		};
 		F3FF6B4E86E3A96527CC41F4 /* Frameworks */ = {
@@ -363,7 +417,10 @@
 				8ACA6278251A08980031E6DF /* GoogleService-Info.plist in Resources */,
 				8ACA6251251A079B0031E6DF /* Assets.xcassets in Resources */,
 				8A3BB429251B204C008113E9 /* UserSettings.storyboard in Resources */,
+				D270F4B0251B52E700CB274C /* AddEvent.storyboard in Resources */,
 				8A3BB427251AFE7C008113E9 /* SettingsItemViewCell.xib in Resources */,
+				D270F4BE251B54DF00CB274C /* EventCell.xib in Resources */,
+				D270F4C2251B550E00CB274C /* CategoryEventCell.xib in Resources */,
 				8ACA624F251A07980031E6DF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -453,17 +510,24 @@
 				8A3BB426251AFE7C008113E9 /* SettingsItemViewCell.swift in Sources */,
 				8A3BB40D251ADE9E008113E9 /* Category.swift in Sources */,
 				8A3BB418251ADF9E008113E9 /* ScanBillViewController.swift in Sources */,
+				D270F4C4251B557D00CB274C /* CalendarController.swift in Sources */,
 				8A3BB421251AF91F008113E9 /* UserSettingsViewController.swift in Sources */,
+				D270F4B9251B545600CB274C /* CategoryEvent.swift in Sources */,
 				8A3BB413251ADED6008113E9 /* Budget.swift in Sources */,
+				D270F4C1251B550E00CB274C /* CategoryEventCell.swift in Sources */,
 				8ACA6248251A07980031E6DF /* AppDelegate.swift in Sources */,
 				8A3BB40B251ADE6E008113E9 /* Transaction.swift in Sources */,
 				8A3BB42D251B21A2008113E9 /* SettingsViewController.swift in Sources */,
 				8A3BB431251B326E008113E9 /* SettingsUseCase.swift in Sources */,
 				8ACA624A251A07980031E6DF /* SceneDelegate.swift in Sources */,
+				D270F4BD251B54DF00CB274C /* EventCell.swift in Sources */,
+				D270F4B5251B541000CB274C /* AddEventController.swift in Sources */,
+				D270F4B7251B542900CB274C /* EventDetailController.swift in Sources */,
 				8A3BB41C251AE043008113E9 /* ScanBillUseCase.swift in Sources */,
 				8A3BB411251ADEC3008113E9 /* Event.swift in Sources */,
 				8A3BB40F251ADEB3008113E9 /* Account.swift in Sources */,
 				8A3BB42F251B31B4008113E9 /* SettingsPresenter.swift in Sources */,
+				D270F4B3251B53F100CB274C /* EventController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
