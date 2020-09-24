@@ -14,6 +14,8 @@ class AddEventController: UIViewController {
     var click = UITapGestureRecognizer()
     var txtDate : String?
     var categoryName = ""
+    var dayThis: Date?
+    var newChild = 0
     
     @IBOutlet weak var imgCalendar: UIImageView!
     @IBOutlet weak var imgCategory: UIImageView!
@@ -47,9 +49,10 @@ class AddEventController: UIViewController {
         super.viewDidLoad()
         ref = Database.database().reference()
         
-        
+        getNewChildTitle()
         setUpView()
-//        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Lưu", style: .done, target: self, action: #selector(leftAction))
+        
+        
        
         
     }
@@ -65,6 +68,7 @@ class AddEventController: UIViewController {
     
     @objc func calendar(_sender: UITapGestureRecognizer ) {
         let calendar = UIStoryboard.init(name: "AddEvent", bundle: nil).instantiateViewController(identifier: "calendarView") as! CalendarController
+        //calendar.dateThis = dayThis
         calendar.completionHandler = {
             print($0)
             self.tvDate.text = $0
@@ -72,17 +76,7 @@ class AddEventController: UIViewController {
         }
         self.navigationController?.pushViewController(calendar, animated: true)
     }
-//    @IBAction func unwindToAddViewController(_ unwindSegue: UIStoryboardSegue) {
-//        if unwindSegue.identifier == "calendarView" {
-//            let scen1 = unwindSegue.source as! CalendarController
-//            print(scen1.dateLich)
-//        } else if unwindSegue.identifier == "calendarView"  {
-//                 let scen2 = unwindSegue.source as! CategoryEvent
-//
-//        }
-//
-//        // Use data from the view controller which initiated the unwind segue
-//    }
+
         
     func setUpView()  {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: .add, style: .done, target: self, action: #selector(leftAction))
@@ -90,7 +84,7 @@ class AddEventController: UIViewController {
                let calendar1 = UITapGestureRecognizer(target: self, action: #selector(self.calendar(_sender:)))
                self.imgCalendar.addGestureRecognizer(calendar1)
                self.imgCalendar.isUserInteractionEnabled = true
-        
+                
         ////bat su kien view
 //        let gesture = UITapGestureRecognizer(target: self, action:  #selector(self.calendar(_sender:)))
 //                vCategory.addGestureRecognizer(gesture)
@@ -107,16 +101,17 @@ class AddEventController: UIViewController {
         
         if tvDate.text! != "" && (edMoney.text != "")  && (edAddEvent.text != "") {
             
+
             let event = ["dateEnd": tvDate.text, "dateStart": setDate(), "goal": edMoney.text, "name": edAddEvent.text] as [String : Any]
-       
-                   self.ref.child("Account").child("userid1").child("event").child(categoryName).setValue(event,withCompletionBlock: {
-                                        error, ref in
-                                        if error == nil {
-                                            
-                                        } else{
-                                            
-                                        }
-                                    })
+                   self.ref.child("Account").child("userid1").child("event").child("\(self.newChild)").updateChildValues(event,withCompletionBlock: { error , ref in
+                       if error == nil {
+                       
+                    self.navigationController?.popViewController(animated: true)
+                       }else{
+                           //handle
+                       }
+                   } )
+            
             
         } else {
             let alert = UIAlertController(title: "error", message: "Moi nhap day du", preferredStyle: UIAlertController.Style.actionSheet)
@@ -127,6 +122,21 @@ class AddEventController: UIViewController {
         
        
        }
+    
+ 
+    func getNewChildTitle(){
+        ref.child("Account").child("userid1").child("event").observeSingleEvent(of: .value) {[weak self] (snapshot) in
+            guard let self = self else {
+                return
+           }
+            if snapshot.childrenCount == 0 {
+                self.newChild = 0
+            } else if snapshot.childrenCount != 0 {
+                self.newChild = Int(snapshot.childrenCount)
+            }
+          
+        }
+    }
     
    
 

@@ -35,7 +35,6 @@
 		8ACA6254251A079B0031E6DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ACA6252251A079B0031E6DF /* LaunchScreen.storyboard */; };
 		8ACA625F251A079C0031E6DF /* MyWalletProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACA625E251A079C0031E6DF /* MyWalletProjectTests.swift */; };
 		8ACA626A251A079C0031E6DF /* MyWalletProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACA6269251A079C0031E6DF /* MyWalletProjectUITests.swift */; };
-		8ACA6278251A08980031E6DF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8ACA6277251A08970031E6DF /* GoogleService-Info.plist */; };
 		AC048E2604F8BFFFBECA11F0 /* Pods_MyWalletProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1BE2AE340B9107ED17B8534 /* Pods_MyWalletProject.framework */; };
 		D270F4B0251B52E700CB274C /* AddEvent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D270F4AF251B52E700CB274C /* AddEvent.storyboard */; };
 		D270F4B3251B53F100CB274C /* EventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D270F4B2251B53F100CB274C /* EventController.swift */; };
@@ -47,6 +46,7 @@
 		D270F4C1251B550E00CB274C /* CategoryEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D270F4BF251B550E00CB274C /* CategoryEventCell.swift */; };
 		D270F4C2251B550E00CB274C /* CategoryEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D270F4C0251B550E00CB274C /* CategoryEventCell.xib */; };
 		D270F4C4251B557D00CB274C /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D270F4C3251B557D00CB274C /* CalendarController.swift */; };
+		D29A104E251C4D15009EF2DC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D29A104D251C4D15009EF2DC /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,7 +103,6 @@
 		8ACA6265251A079C0031E6DF /* MyWalletProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyWalletProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ACA6269251A079C0031E6DF /* MyWalletProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletProjectUITests.swift; sourceTree = "<group>"; };
 		8ACA626B251A079C0031E6DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8ACA6277251A08970031E6DF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D270F4AF251B52E700CB274C /* AddEvent.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddEvent.storyboard; sourceTree = "<group>"; };
 		D270F4B2251B53F100CB274C /* EventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventController.swift; sourceTree = "<group>"; };
 		D270F4B4251B541000CB274C /* AddEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventController.swift; sourceTree = "<group>"; };
@@ -114,6 +113,7 @@
 		D270F4BF251B550E00CB274C /* CategoryEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEventCell.swift; sourceTree = "<group>"; };
 		D270F4C0251B550E00CB274C /* CategoryEventCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryEventCell.xib; sourceTree = "<group>"; };
 		D270F4C3251B557D00CB274C /* CalendarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
+		D29A104D251C4D15009EF2DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F1BE2AE340B9107ED17B8534 /* Pods_MyWalletProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyWalletProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -232,7 +232,7 @@
 				8ACA6250251A079B0031E6DF /* Assets.xcassets */,
 				8ACA6252251A079B0031E6DF /* LaunchScreen.storyboard */,
 				8ACA6255251A079B0031E6DF /* Info.plist */,
-				8ACA6277251A08970031E6DF /* GoogleService-Info.plist */,
+				D29A104D251C4D15009EF2DC /* GoogleService-Info.plist */,
 			);
 			path = MyWalletProject;
 			sourceTree = "<group>";
@@ -426,13 +426,13 @@
 			files = (
 				8ACA6254251A079B0031E6DF /* LaunchScreen.storyboard in Resources */,
 				8A3BB416251ADEFA008113E9 /* ScanBill.storyboard in Resources */,
-				8ACA6278251A08980031E6DF /* GoogleService-Info.plist in Resources */,
 				8ACA6251251A079B0031E6DF /* Assets.xcassets in Resources */,
 				8A3BB429251B204C008113E9 /* UserSettings.storyboard in Resources */,
 				D270F4B0251B52E700CB274C /* AddEvent.storyboard in Resources */,
 				8A3BB427251AFE7C008113E9 /* SettingsItemViewCell.xib in Resources */,
 				D270F4BE251B54DF00CB274C /* EventCell.xib in Resources */,
 				D270F4C2251B550E00CB274C /* CategoryEventCell.xib in Resources */,
+				D29A104E251C4D15009EF2DC /* GoogleService-Info.plist in Resources */,
 				8ACA624F251A07980031E6DF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
