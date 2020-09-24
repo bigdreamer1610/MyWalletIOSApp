@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:CalendarController.swift">
+   </FileRef>
+   <FileRef
       location = "group:MyWalletProject.xcodeproj">
    </FileRef>
    <FileRef

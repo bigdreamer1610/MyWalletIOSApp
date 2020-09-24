@@ -13,4 +13,5 @@ target 'MyWalletProject' do
 	pod 'GoogleSignIn'
 	pod 'FBSDKLoginKit'
 	pod 'Charts'
+  pod 'FSCalendar'
 end
