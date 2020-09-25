@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		72A7190F251DDD43003ED157 /* Report.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72A7190E251DDD43003ED157 /* Report.storyboard */; };
+		72A71915251DDE23003ED157 /* MoneyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A71913251DDE23003ED157 /* MoneyTableViewCell.swift */; };
+		72A71916251DDE23003ED157 /* MoneyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72A71914251DDE23003ED157 /* MoneyTableViewCell.xib */; };
+		72A7191A251DDE87003ED157 /* StackedBarChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A71918251DDE87003ED157 /* StackedBarChartTableViewCell.swift */; };
+		72A7191B251DDE87003ED157 /* StackedBarChartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72A71919251DDE87003ED157 /* StackedBarChartTableViewCell.xib */; };
+		72A7191F251DDEBD003ED157 /* PieChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A7191D251DDEBD003ED157 /* PieChartTableViewCell.swift */; };
+		72A71920251DDEBD003ED157 /* PieChartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72A7191E251DDEBD003ED157 /* PieChartTableViewCell.xib */; };
+		72A71923251DDEEE003ED157 /* PieChartCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A71921251DDEEE003ED157 /* PieChartCollectionViewCell.swift */; };
+		72A71924251DDEEE003ED157 /* PieChartCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72A71922251DDEEE003ED157 /* PieChartCollectionViewCell.xib */; };
+		72A71926251DDF35003ED157 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A71925251DDF35003ED157 /* ReportViewController.swift */; };
 		8A1E077A251C3DB3000DCF07 /* CurrencyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1E0779251C3DB3000DCF07 /* CurrencyPresenter.swift */; };
 		8A1E077C251C4175000DCF07 /* CurrencyUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1E077B251C4175000DCF07 /* CurrencyUseCase.swift */; };
 		8A3BB40B251ADE6E008113E9 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BB40A251ADE6E008113E9 /* Transaction.swift */; };
@@ -69,6 +79,16 @@
 /* Begin PBXFileReference section */
 		02F6EC051F80467C05ACF530 /* Pods-MyWalletProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWalletProject.release.xcconfig"; path = "Target Support Files/Pods-MyWalletProject/Pods-MyWalletProject.release.xcconfig"; sourceTree = "<group>"; };
 		7217ED81FA2304CDEDF74146 /* Pods-MyWalletProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWalletProject.debug.xcconfig"; path = "Target Support Files/Pods-MyWalletProject/Pods-MyWalletProject.debug.xcconfig"; sourceTree = "<group>"; };
+		72A7190E251DDD43003ED157 /* Report.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Report.storyboard; sourceTree = "<group>"; };
+		72A71913251DDE23003ED157 /* MoneyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyTableViewCell.swift; sourceTree = "<group>"; };
+		72A71914251DDE23003ED157 /* MoneyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoneyTableViewCell.xib; sourceTree = "<group>"; };
+		72A71918251DDE87003ED157 /* StackedBarChartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackedBarChartTableViewCell.swift; sourceTree = "<group>"; };
+		72A71919251DDE87003ED157 /* StackedBarChartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StackedBarChartTableViewCell.xib; sourceTree = "<group>"; };
+		72A7191D251DDEBD003ED157 /* PieChartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartTableViewCell.swift; sourceTree = "<group>"; };
+		72A7191E251DDEBD003ED157 /* PieChartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PieChartTableViewCell.xib; sourceTree = "<group>"; };
+		72A71921251DDEEE003ED157 /* PieChartCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartCollectionViewCell.swift; sourceTree = "<group>"; };
+		72A71922251DDEEE003ED157 /* PieChartCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PieChartCollectionViewCell.xib; sourceTree = "<group>"; };
+		72A71925251DDF35003ED157 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		8A1E0779251C3DB3000DCF07 /* CurrencyPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPresenter.swift; sourceTree = "<group>"; };
 		8A1E077B251C4175000DCF07 /* CurrencyUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyUseCase.swift; sourceTree = "<group>"; };
 		8A3BB40A251ADE6E008113E9 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -143,6 +163,63 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		72A7190D251DDD08003ED157 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				72A71911251DDDC8003ED157 /* ViewController */,
+				72A71910251DDDBD003ED157 /* Cell */,
+				72A7190E251DDD43003ED157 /* Report.storyboard */,
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
+		72A71910251DDDBD003ED157 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				72A7191C251DDEA3003ED157 /* PieChart */,
+				72A71917251DDE59003ED157 /* StackedBarChart */,
+				72A71912251DDDF1003ED157 /* Money */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		72A71911251DDDC8003ED157 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				72A71925251DDF35003ED157 /* ReportViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		72A71912251DDDF1003ED157 /* Money */ = {
+			isa = PBXGroup;
+			children = (
+				72A71913251DDE23003ED157 /* MoneyTableViewCell.swift */,
+				72A71914251DDE23003ED157 /* MoneyTableViewCell.xib */,
+			);
+			path = Money;
+			sourceTree = "<group>";
+		};
+		72A71917251DDE59003ED157 /* StackedBarChart */ = {
+			isa = PBXGroup;
+			children = (
+				72A71918251DDE87003ED157 /* StackedBarChartTableViewCell.swift */,
+				72A71919251DDE87003ED157 /* StackedBarChartTableViewCell.xib */,
+			);
+			path = StackedBarChart;
+			sourceTree = "<group>";
+		};
+		72A7191C251DDEA3003ED157 /* PieChart */ = {
+			isa = PBXGroup;
+			children = (
+				72A7191D251DDEBD003ED157 /* PieChartTableViewCell.swift */,
+				72A7191E251DDEBD003ED157 /* PieChartTableViewCell.xib */,
+				72A71921251DDEEE003ED157 /* PieChartCollectionViewCell.swift */,
+				72A71922251DDEEE003ED157 /* PieChartCollectionViewCell.xib */,
+			);
+			path = PieChart;
+			sourceTree = "<group>";
+		};
 		8A3BB414251ADEE6008113E9 /* ScanBill */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,8 +302,9 @@
 				8A3BB414251ADEE6008113E9 /* ScanBill */,
 				8A3BB41D251AE6D9008113E9 /* UserSettings */,
 				D270F4AE251B52A700CB274C /* AddEvent */,
-				8ACA6247251A07980031E6DF /* AppDelegate.swift */,
+				72A7190D251DDD08003ED157 /* Report */,
 				8ACA6249251A07980031E6DF /* SceneDelegate.swift */,
+				8ACA6247251A07980031E6DF /* AppDelegate.swift */,
 				8ACA624B251A07980031E6DF /* ViewController.swift */,
 				8ACA624D251A07980031E6DF /* Main.storyboard */,
 				8ACA6250251A079B0031E6DF /* Assets.xcassets */,
@@ -426,13 +504,18 @@
 			files = (
 				8ACA6254251A079B0031E6DF /* LaunchScreen.storyboard in Resources */,
 				8A3BB416251ADEFA008113E9 /* ScanBill.storyboard in Resources */,
+				72A71916251DDE23003ED157 /* MoneyTableViewCell.xib in Resources */,
+				72A7190F251DDD43003ED157 /* Report.storyboard in Resources */,
 				8ACA6251251A079B0031E6DF /* Assets.xcassets in Resources */,
 				8A3BB429251B204C008113E9 /* UserSettings.storyboard in Resources */,
 				D270F4B0251B52E700CB274C /* AddEvent.storyboard in Resources */,
 				8A3BB427251AFE7C008113E9 /* SettingsItemViewCell.xib in Resources */,
 				D270F4BE251B54DF00CB274C /* EventCell.xib in Resources */,
+				72A71920251DDEBD003ED157 /* PieChartTableViewCell.xib in Resources */,
 				D270F4C2251B550E00CB274C /* CategoryEventCell.xib in Resources */,
 				D29A104E251C4D15009EF2DC /* GoogleService-Info.plist in Resources */,
+				72A71924251DDEEE003ED157 /* PieChartCollectionViewCell.xib in Resources */,
+				72A7191B251DDE87003ED157 /* StackedBarChartTableViewCell.xib in Resources */,
 				8ACA624F251A07980031E6DF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -527,15 +610,20 @@
 				D270F4B9251B545600CB274C /* CategoryEvent.swift in Sources */,
 				8A3BB413251ADED6008113E9 /* Budget.swift in Sources */,
 				D270F4C1251B550E00CB274C /* CategoryEventCell.swift in Sources */,
+				72A71915251DDE23003ED157 /* MoneyTableViewCell.swift in Sources */,
+				72A7191F251DDEBD003ED157 /* PieChartTableViewCell.swift in Sources */,
 				8ACA6248251A07980031E6DF /* AppDelegate.swift in Sources */,
 				8A3BB40B251ADE6E008113E9 /* Transaction.swift in Sources */,
 				8A3BB42D251B21A2008113E9 /* SettingsViewController.swift in Sources */,
 				8A725C4E251C79FD00610758 /* CurrencyModel.swift in Sources */,
+				72A71926251DDF35003ED157 /* ReportViewController.swift in Sources */,
 				8A3BB434251B6069008113E9 /* CurrencyViewController.swift in Sources */,
 				8A3BB431251B326E008113E9 /* SettingsUseCase.swift in Sources */,
 				8ACA624A251A07980031E6DF /* SceneDelegate.swift in Sources */,
 				8A1E077A251C3DB3000DCF07 /* CurrencyPresenter.swift in Sources */,
 				D270F4BD251B54DF00CB274C /* EventCell.swift in Sources */,
+				72A7191A251DDE87003ED157 /* StackedBarChartTableViewCell.swift in Sources */,
+				72A71923251DDEEE003ED157 /* PieChartCollectionViewCell.swift in Sources */,
 				D270F4B5251B541000CB274C /* AddEventController.swift in Sources */,
 				D270F4B7251B542900CB274C /* EventDetailController.swift in Sources */,
 				8A3BB41C251AE043008113E9 /* ScanBillUseCase.swift in Sources */,
