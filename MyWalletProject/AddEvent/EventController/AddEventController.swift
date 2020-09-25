@@ -16,6 +16,7 @@ class AddEventController: UIViewController {
     var categoryName = ""
     var dayThis: Date?
     var newChild = 0
+    var arrayNameEvent = [String]()
     
     @IBOutlet weak var imgCalendar: UIImageView!
     @IBOutlet weak var imgCategory: UIImageView!
@@ -48,12 +49,8 @@ class AddEventController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
-        
         getNewChildTitle()
         setUpView()
-        
-        
-       
         
     }
     
@@ -81,9 +78,11 @@ class AddEventController: UIViewController {
     func setUpView()  {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: .add, style: .done, target: self, action: #selector(leftAction))
         ///
+        
                let calendar1 = UITapGestureRecognizer(target: self, action: #selector(self.calendar(_sender:)))
                self.imgCalendar.addGestureRecognizer(calendar1)
                self.imgCalendar.isUserInteractionEnabled = true
+                
                 
         ////bat su kien view
 //        let gesture = UITapGestureRecognizer(target: self, action:  #selector(self.calendar(_sender:)))
@@ -101,16 +100,22 @@ class AddEventController: UIViewController {
         
         if tvDate.text! != "" && (edMoney.text != "")  && (edAddEvent.text != "") {
             
-
-            let event = ["dateEnd": tvDate.text, "dateStart": setDate(), "goal": edMoney.text, "name": edAddEvent.text] as [String : Any]
-                   self.ref.child("Account").child("userid1").child("event").child("\(self.newChild)").updateChildValues(event,withCompletionBlock: { error , ref in
-                       if error == nil {
-                       
-                    self.navigationController?.popViewController(animated: true)
-                       }else{
-                           //handle
-                       }
-                   } )
+            if  arrayNameEvent.contains(edAddEvent.text!) == false {
+                
+                let event = ["dateEnd": tvDate.text, "dateStart": setDate(), "goal": Int(edMoney.text!), "name": edAddEvent.text, "category": categoryName, "spent": 0] as [String : Any]
+                       self.ref.child("Account").child("userid1").child("event").child("\(self.newChild)").updateChildValues(event,withCompletionBlock: { error , ref in
+                           if error == nil {
+                           
+                        self.navigationController?.popViewController(animated: true)
+                           }else{
+                               //handle
+                           }
+                       } )
+            } else {
+                let alert = UIAlertController(title: "error", message: "Event này đã tồn tại", preferredStyle: UIAlertController.Style.actionSheet)
+                alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+                 self.present(alert, animated: true, completion: nil)
+            }
             
             
         } else {
