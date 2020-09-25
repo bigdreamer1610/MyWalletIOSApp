@@ -27,6 +27,8 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var btnSave: UIButton!
     @IBOutlet weak var btnCancel: UIButton!
     
+    var user = Account()
+    
     var presenter: SettingsPresenter = SettingsPresenter()
     
     override func viewDidLoad() {
@@ -55,10 +57,9 @@ class SettingsViewController: UIViewController {
     @IBAction func btnSaveClicked(_ sender: Any) {
         presenter.viewDelegate = self
         
-        var user = Account()
         user.name = txtUsername.text!
         user.balance = Int(txtBalance.text!) ?? -1
-        user.email = "bacsonvv@gmail.com"
+        user.email = "userid1@gmail.com"
         user.dateOfBirth = txtDate.text!
         user.phoneNumber = txtPhoneNumber.text!
         user.gender = txtGender.text!
@@ -79,6 +80,7 @@ extension SettingsViewController: SettingsViewControllerProtocol {
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         } else {
+            presenter.saveUserInfo(user)
             let alert = UIAlertController(title: "SUCCESS", message: "Your information has successfully been updated", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
