@@ -17,7 +17,7 @@ class ScanBillPresenter {
     var textIndex = 0
     var isMoney = false
 
-    var view: ScanBillViewControllerProtocol?
+    var viewDelegate: ScanBillViewControllerProtocol?
     var useCase: ScanBillUseCase = ScanBillUseCase()
     
     var ocrRequest = VNRecognizeTextRequest(completionHandler: nil)
@@ -28,10 +28,10 @@ class ScanBillPresenter {
     func saveTransaction(_ transation: Transaction) {
         self.transaction = transation
         if self.transaction.date! == "" {
-            self.view?.showAlert(false)
+            self.viewDelegate?.showAlert(false)
         } else {
             self.useCase.saveTransactionToDB(self.transaction)
-            self.view?.showAlert(true)
+            self.viewDelegate?.showAlert(true)
         }
     }
     
@@ -87,7 +87,7 @@ class ScanBillPresenter {
             }
             
             // Push data back to view controller to show on UI
-            self.view?.setupForViews(self.transaction)
+            self.viewDelegate?.setupForViews(self.transaction)
         }
         
         self.ocrRequest.recognitionLevel = .accurate
