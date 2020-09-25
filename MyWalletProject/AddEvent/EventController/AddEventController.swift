@@ -66,10 +66,10 @@ class AddEventController: UIViewController {
     @objc func calendar(_sender: UITapGestureRecognizer ) {
         let calendar = UIStoryboard.init(name: "AddEvent", bundle: nil).instantiateViewController(identifier: "calendarView") as! CalendarController
         //calendar.dateThis = dayThis
+        calendar.state = "event"
         calendar.completionHandler = {
             print($0)
             self.tvDate.text = $0
-            
         }
         self.navigationController?.pushViewController(calendar, animated: true)
     }
