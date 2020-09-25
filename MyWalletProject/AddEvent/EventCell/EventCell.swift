@@ -10,6 +10,14 @@ import UIKit
 
 class EventCell: UITableViewCell {
 
+    @IBOutlet weak var spent: UILabel!
+    @IBOutlet weak var nameEvent: UILabel!
+    @IBOutlet weak var lblMoney: UILabel!
+    @IBOutlet weak var imgCategory: UIImageView!
+    
+    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -19,6 +27,13 @@ class EventCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    
+    func load(event: Event )  {
+        imgCategory.image = UIImage(named: event.category!)
+        nameEvent.text = event.name
+        lblMoney.text = String(event.goal!)
     }
     
 }
