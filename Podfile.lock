@@ -109,6 +109,7 @@ PODS:
   - GTMSessionFetcher/Full (1.4.0):
     - GTMSessionFetcher/Core (= 1.4.0)
   - leveldb-library (1.22)
+  - MonthYearPicker (4.0.2)
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
     - nanopb/encode (= 1.30906.0)
@@ -126,6 +127,7 @@ DEPENDENCIES:
   - Firebase/Database
   - FSCalendar
   - GoogleSignIn
+  - MonthYearPicker (~> 4.0.2)
   - SwiftDate
 
 SPEC REPOS:
@@ -150,6 +152,7 @@ SPEC REPOS:
     - GTMAppAuth
     - GTMSessionFetcher
     - leveldb-library
+    - MonthYearPicker
     - nanopb
     - PromisesObjC
     - SwiftDate
@@ -175,10 +178,11 @@ SPEC CHECKSUMS:
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
+  MonthYearPicker: 91f77106e6806d8c93c69e943ab0795fd420657f
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
   SwiftDate: d117c3eb6beed72e47d3f4d1e3bc63fa1e66d7c3
 
-PODFILE CHECKSUM: a9ba2537c5217ef81ca18c27d6e9372f14496da5
+PODFILE CHECKSUM: ef8a9a4d0e28a2c7da71a1f8f55fd84e796ef10c
 
 COCOAPODS: 1.9.3

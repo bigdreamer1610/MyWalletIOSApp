@@ -9,6 +9,7 @@
 import Foundation
 
 struct Transaction {
+    var id: String? = nil
     var transactionType: String? = nil
     var amount: Int? = nil
     var categoryid: String? = nil
