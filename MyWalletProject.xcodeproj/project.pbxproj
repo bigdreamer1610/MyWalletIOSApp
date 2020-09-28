@@ -53,6 +53,7 @@
 		735874102521789D00B8235D /* TestViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735874032521789C00B8235D /* TestViewCell.swift */; };
 		735874112521789D00B8235D /* BacNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735874042521789C00B8235D /* BacNavigationController.swift */; };
 		73587413252178E900B8235D /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73587412252178E900B8235D /* Constant.swift */; };
+		73587415252180B700B8235D /* DetailTransaction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73587414252180B700B8235D /* DetailTransaction.storyboard */; };
 		8A1E077A251C3DB3000DCF07 /* CurrencyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1E0779251C3DB3000DCF07 /* CurrencyPresenter.swift */; };
 		8A1E077C251C4175000DCF07 /* CurrencyUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1E077B251C4175000DCF07 /* CurrencyUseCase.swift */; };
 		8A3BB40B251ADE6E008113E9 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BB40A251ADE6E008113E9 /* Transaction.swift */; };
@@ -161,6 +162,7 @@
 		735874032521789C00B8235D /* TestViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewCell.swift; sourceTree = "<group>"; };
 		735874042521789C00B8235D /* BacNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BacNavigationController.swift; sourceTree = "<group>"; };
 		73587412252178E900B8235D /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		73587414252180B700B8235D /* DetailTransaction.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailTransaction.storyboard; sourceTree = "<group>"; };
 		8A1E0779251C3DB3000DCF07 /* CurrencyPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPresenter.swift; sourceTree = "<group>"; };
 		8A1E077B251C4175000DCF07 /* CurrencyUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyUseCase.swift; sourceTree = "<group>"; };
 		8A3BB40A251ADE6E008113E9 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 				735873F12521789B00B8235D /* Detail Transaction */,
 				735873FB2521789C00B8235D /* Edit Transaction  */,
 				735874002521789C00B8235D /* test */,
+				73587414252180B700B8235D /* DetailTransaction.storyboard */,
 			);
 			path = AddEditDetailTransaction;
 			sourceTree = "<group>";
@@ -752,6 +755,7 @@
 				72A7191B251DDE87003ED157 /* StackedBarChartTableViewCell.xib in Resources */,
 				7358740E2521789D00B8235D /* TestViewCell.xib in Resources */,
 				735873DF2521770F00B8235D /* BottomMenuCell.xib in Resources */,
+				73587415252180B700B8235D /* DetailTransaction.storyboard in Resources */,
 				735874082521789D00B8235D /* SelectCategoryCell.xib in Resources */,
 				8ACA624F251A07980031E6DF /* Main.storyboard in Resources */,
 				735873C8252176CF00B8235D /* DetailCell.xib in Resources */,

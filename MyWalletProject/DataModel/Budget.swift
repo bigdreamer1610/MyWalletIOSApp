@@ -9,6 +9,7 @@
 import Foundation
 
 struct Budget {
+    var id: Int? = nil
     var amount: Int? = nil
     var categoryid: String? = nil
     var dateStart: String? = nil

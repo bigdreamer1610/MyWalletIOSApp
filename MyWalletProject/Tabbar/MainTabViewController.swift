@@ -40,19 +40,19 @@ class MainTabViewController: UITabBarController {
     
     // Menu Button Touch Action
     @objc func menuButtonAction(sender: UIButton) {
-        let vc = UIStoryboard.init(name: "Thuy", bundle: nil).instantiateViewController(withIdentifier: "BacNavigationController") as! BacNavigationController
+        let vc = UIStoryboard.init(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "BacNavigationController") as! BacNavigationController
         vc.modalPresentationStyle = .fullScreen
         vc.modalTransitionStyle = .coverVertical
         self.present(vc, animated: true)
     }
     
     class func createTabbar() -> MainTabViewController {
-        let tabbar = UIStoryboard(name: "Thuy", bundle: nil).instantiateViewController(withIdentifier: "MainTabViewController") as! MainTabViewController
-        let transaction = UIStoryboard(name: "Thuy", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as! ViewTransactionController
-        let report = UIStoryboard(name: "Thuy", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as! ViewTransactionController
+        let tabbar = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "MainTabViewController") as! MainTabViewController
+        let transaction = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as! ViewTransactionController
+        let report = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as! ViewTransactionController
         let scan = UIViewController()
-        let planning = UIStoryboard(name: "Thuy", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as! ViewTransactionController
-        let account = UIStoryboard(name: "Thuy", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as! ViewTransactionController
+        let planning = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as! ViewTransactionController
+        let account = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as! ViewTransactionController
         
         let homeItem = UITabBarItem(title: "Transactions", image: #imageLiteral(resourceName: "transaction"), tag: 0)
         let home1Item = UITabBarItem(title: "Report", image: #imageLiteral(resourceName: "report"), tag: 1)

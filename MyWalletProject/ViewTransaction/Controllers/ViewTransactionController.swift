@@ -200,10 +200,10 @@ class ViewTransactionController: UIViewController {
                         if let note = value["note"] as? String {
                             transaction.note = note
                         }
-                        if let eventid = value["eventid"] as? Int {
+                        if let eventid = value["eventid"] as? String {
                             transaction.eventid = eventid
                         }
-                        if let budgetid = value["budgetid"] as? Int {
+                        if let budgetid = value["budgetid"] as? String {
                             transaction.budgetid = budgetid
                         }
                         self.allTransactions.append(transaction)
@@ -230,10 +230,10 @@ class ViewTransactionController: UIViewController {
                         if let note = value["note"] as? String {
                             transaction.note = note
                         }
-                        if let eventid = value["eventid"] as? Int {
+                        if let eventid = value["eventid"] as? String {
                             transaction.eventid = eventid
                         }
-                        if let budgetid = value["budgetid"] as? Int {
+                        if let budgetid = value["budgetid"] as? String {
                             transaction.budgetid = budgetid
                         }
                         self.allTransactions.append(transaction)
