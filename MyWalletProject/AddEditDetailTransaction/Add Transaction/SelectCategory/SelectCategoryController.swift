@@ -42,7 +42,6 @@ class SelectCategoryController: UIViewController {
         Defined.ref.child("Category/expense").observe(DataEventType.value) { (snapshot) in
             if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
                 for snap in snapshots {
-                    let id = snap.key
                     if let value = snap.value as? [String: Any]{
                         let id = snap.key
                         let name = value["name"] as! String

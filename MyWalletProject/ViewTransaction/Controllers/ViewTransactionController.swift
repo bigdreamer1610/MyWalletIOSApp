@@ -495,17 +495,17 @@ class ViewTransactionController: UIViewController {
     }
     
     func getBalance(){
-        var a:Int = 0
         Defined.ref.child("Account/userid1/information/balance").observeSingleEvent(of: .value) { (snapshot) in
             if let value = snapshot.value as? Int {
                 self.balance = value
+                Defined.defaults.setValue(value, forKey: Constants.balance)
                 DispatchQueue.main.async {
                     self.balance = value
                     self.lbBalance.text = "\(Defined.formatter.string(from: NSNumber(value: self.balance))!) đ"
                 }
             }
             
-            Defined.defaults.setValue(a, forKey: Constants.balance)
+            
         }
     }
     
