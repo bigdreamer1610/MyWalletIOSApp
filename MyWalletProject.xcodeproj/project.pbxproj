@@ -46,11 +46,6 @@
 		735874092521789D00B8235D /* SelectCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735873F92521789B00B8235D /* SelectCategoryCell.swift */; };
 		7358740A2521789D00B8235D /* SelectCategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735873FA2521789B00B8235D /* SelectCategoryController.swift */; };
 		7358740B2521789D00B8235D /* EditTransactionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735873FC2521789C00B8235D /* EditTransactionController.swift */; };
-		7358740C2521789D00B8235D /* TransactionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 735873FE2521789C00B8235D /* TransactionViewCell.xib */; };
-		7358740D2521789D00B8235D /* TransactionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735873FF2521789C00B8235D /* TransactionViewCell.swift */; };
-		7358740E2521789D00B8235D /* TestViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 735874012521789C00B8235D /* TestViewCell.xib */; };
-		7358740F2521789D00B8235D /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735874022521789C00B8235D /* TestViewController.swift */; };
-		735874102521789D00B8235D /* TestViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735874032521789C00B8235D /* TestViewCell.swift */; };
 		735874112521789D00B8235D /* BacNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735874042521789C00B8235D /* BacNavigationController.swift */; };
 		73587413252178E900B8235D /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73587412252178E900B8235D /* Constant.swift */; };
 		73587415252180B700B8235D /* DetailTransaction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73587414252180B700B8235D /* DetailTransaction.storyboard */; };
@@ -155,11 +150,6 @@
 		735873F92521789B00B8235D /* SelectCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCategoryCell.swift; sourceTree = "<group>"; };
 		735873FA2521789B00B8235D /* SelectCategoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCategoryController.swift; sourceTree = "<group>"; };
 		735873FC2521789C00B8235D /* EditTransactionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTransactionController.swift; sourceTree = "<group>"; };
-		735873FE2521789C00B8235D /* TransactionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransactionViewCell.xib; sourceTree = "<group>"; };
-		735873FF2521789C00B8235D /* TransactionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionViewCell.swift; sourceTree = "<group>"; };
-		735874012521789C00B8235D /* TestViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewCell.xib; sourceTree = "<group>"; };
-		735874022521789C00B8235D /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
-		735874032521789C00B8235D /* TestViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewCell.swift; sourceTree = "<group>"; };
 		735874042521789C00B8235D /* BacNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BacNavigationController.swift; sourceTree = "<group>"; };
 		73587412252178E900B8235D /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		73587414252180B700B8235D /* DetailTransaction.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetailTransaction.storyboard; sourceTree = "<group>"; };
@@ -376,10 +366,8 @@
 				73587412252178E900B8235D /* Constant.swift */,
 				735873F32521789B00B8235D /* Add Transaction */,
 				735874042521789C00B8235D /* BacNavigationController.swift */,
-				735873FD2521789C00B8235D /* Cell */,
 				735873F12521789B00B8235D /* Detail Transaction */,
 				735873FB2521789C00B8235D /* Edit Transaction  */,
-				735874002521789C00B8235D /* test */,
 				73587414252180B700B8235D /* DetailTransaction.storyboard */,
 			);
 			path = AddEditDetailTransaction;
@@ -427,25 +415,6 @@
 				735873FC2521789C00B8235D /* EditTransactionController.swift */,
 			);
 			path = "Edit Transaction ";
-			sourceTree = "<group>";
-		};
-		735873FD2521789C00B8235D /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				735873FE2521789C00B8235D /* TransactionViewCell.xib */,
-				735873FF2521789C00B8235D /* TransactionViewCell.swift */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		735874002521789C00B8235D /* test */ = {
-			isa = PBXGroup;
-			children = (
-				735874012521789C00B8235D /* TestViewCell.xib */,
-				735874022521789C00B8235D /* TestViewController.swift */,
-				735874032521789C00B8235D /* TestViewCell.swift */,
-			);
-			path = test;
 			sourceTree = "<group>";
 		};
 		8A3BB414251ADEE6008113E9 /* ScanBill */ = {
@@ -750,10 +719,8 @@
 				735873D0252176EC00B8235D /* HeaderCategoryCell.xib in Resources */,
 				735873D8252176F900B8235D /* TransactionCell.xib in Resources */,
 				D29A104E251C4D15009EF2DC /* GoogleService-Info.plist in Resources */,
-				7358740C2521789D00B8235D /* TransactionViewCell.xib in Resources */,
 				72A71924251DDEEE003ED157 /* PieChartCollectionViewCell.xib in Resources */,
 				72A7191B251DDE87003ED157 /* StackedBarChartTableViewCell.xib in Resources */,
-				7358740E2521789D00B8235D /* TestViewCell.xib in Resources */,
 				735873DF2521770F00B8235D /* BottomMenuCell.xib in Resources */,
 				73587415252180B700B8235D /* DetailTransaction.storyboard in Resources */,
 				735874082521789D00B8235D /* SelectCategoryCell.xib in Resources */,
@@ -849,7 +816,6 @@
 				8A3BB418251ADF9E008113E9 /* ScanBillViewController.swift in Sources */,
 				D270F4C4251B557D00CB274C /* CalendarController.swift in Sources */,
 				8A3BB421251AF91F008113E9 /* UserSettingsViewController.swift in Sources */,
-				7358740D2521789D00B8235D /* TransactionViewCell.swift in Sources */,
 				D270F4B9251B545600CB274C /* CategoryEvent.swift in Sources */,
 				8A3BB413251ADED6008113E9 /* Budget.swift in Sources */,
 				735873E02521770F00B8235D /* BottomMenuCell.swift in Sources */,
@@ -858,7 +824,6 @@
 				72A7191F251DDEBD003ED157 /* PieChartTableViewCell.swift in Sources */,
 				735873C7252176CF00B8235D /* DetailCell.swift in Sources */,
 				8ACA6248251A07980031E6DF /* AppDelegate.swift in Sources */,
-				735874102521789D00B8235D /* TestViewCell.swift in Sources */,
 				8A3BB40B251ADE6E008113E9 /* Transaction.swift in Sources */,
 				7358740B2521789D00B8235D /* EditTransactionController.swift in Sources */,
 				735873D1252176EC00B8235D /* TransactionDayCell.swift in Sources */,
@@ -878,7 +843,6 @@
 				735874052521789D00B8235D /* DetailTransactionController.swift in Sources */,
 				735873E32521771E00B8235D /* MyDatabase.swift in Sources */,
 				735873EE2521780D00B8235D /* MainTabbar.swift in Sources */,
-				7358740F2521789D00B8235D /* TestViewController.swift in Sources */,
 				735873D3252176EC00B8235D /* HeaderCategoryCell.swift in Sources */,
 				D270F4BD251B54DF00CB274C /* EventCell.swift in Sources */,
 				73587413252178E900B8235D /* Constant.swift in Sources */,
