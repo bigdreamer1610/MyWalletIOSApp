@@ -9,7 +9,7 @@
 import UIKit
 
 class MonthCell: BaseCLCell {
-
+    
     
     @IBOutlet var lbMonth: UILabel!
     var date = Date()
@@ -24,19 +24,15 @@ class MonthCell: BaseCLCell {
         didSet{
             if self.isSelected
             {
-              //self.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-              self.contentView.backgroundColor = UIColor.red
-              //self.tickImageView.isHidden = false
+                self.contentView.backgroundColor = UIColor.red
                 self.lbMonth.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            
-            
+                self.lbMonth.alpha = 1
             }
             else
             {
-              //self.transform = CGAffineTransform.identity
-              self.contentView.backgroundColor = UIColor.gray
-              //self.tickImageView.isHidden = true
+                self.contentView.backgroundColor = UIColor.gray
                 self.lbMonth.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+                self.lbMonth.alpha = 0.5
             }
         }
     }
@@ -53,5 +49,5 @@ class MonthCell: BaseCLCell {
         lbMonth.text = text
         
     }
-
+    
 }

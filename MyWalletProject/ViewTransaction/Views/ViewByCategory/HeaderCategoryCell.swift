@@ -14,12 +14,11 @@ class HeaderCategoryCell: BaseTBCell {
     @IBOutlet var lbNumberOfTransactions: UILabel!
     @IBOutlet var lbCategory: UILabel!
     @IBOutlet var iconImage: UIImageView!
-    private var formatter = NumberFormatter()
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = .white
-        formatter.groupingSeparator = "."
-        formatter.numberStyle = .decimal
+        Defined.formatter.groupingSeparator = "."
+        Defined.formatter.numberStyle = .decimal
         // Initialization code
     }
 
@@ -30,7 +29,7 @@ class HeaderCategoryCell: BaseTBCell {
     }
     
     func setUpData(with data: CategoryHeader){
-        lbTotal.text = "\(formatter.string(from: NSNumber(value: data.amount))!)"
+        lbTotal.text = "\(Defined.formatter.string(from: NSNumber(value: data.amount))!)"
         lbCategory.text = "\(data.categoryName)"
         iconImage.image = UIImage(named: data.icon)
         

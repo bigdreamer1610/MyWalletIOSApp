@@ -11,13 +11,21 @@ import Firebase
 import FirebaseDatabase
 import MonthYearPicker
 
+enum TransactionType: String {
+    case expense = "expense"
+    case income = "income"
+    
+    func getValue() -> String {
+        return self.rawValue
+    }
+}
 
 
 class ViewTransactionController: UIViewController {
     var window: UIWindow?
     var bottomMenuView = UIView()
     var tableView = UITableView()
-    var height: CGFloat = 250
+    var height: CGFloat = 190
     private var dateFormatter = DateFormatter()
     
     //MARK: HEIGHT FOR CELL & HEADER
@@ -29,7 +37,8 @@ class ViewTransactionController: UIViewController {
     let menuCell: CGFloat = 60
     
     var categories = [Category]()
-    var balance = MyDatabase.defaults.integer(forKey: Key.balance)
+    var balance = Defined.defaults.integer(forKey: Constants.balance)
+    //var balance = Defined.defaults.integer(forKey: Constants.balance)
     var dates = [TransactionDate]()
     var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
     var weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thurday","Friday","Saturday"]
@@ -45,18 +54,7 @@ class ViewTransactionController: UIViewController {
         BottomMenu(icon: "today", title: "Jump to today")
     ]
     
-    var testDateModels = [
-        Date("01/01/2020", format: "dd/MM/yyyy", region: .current),
-        Date("01/02/2020", format: "dd/MM/yyyy", region: .current),
-        Date("01/03/2020", format: "dd/MM/yyyy", region: .current),
-        Date("01/04/2020", format: "dd/MM/yyyy", region: .current),
-        Date("01/05/2020", format: "dd/MM/yyyy", region: .current),
-        Date("01/06/2020", format: "dd/MM/yyyy", region: .current),
-        Date("01/07/2020", format: "dd/MM/yyyy", region: .current),
-        Date("01/08/2020", format: "dd/MM/yyyy", region: .current),
-        Date("01/09/2020", format: "dd/MM/yyyy", region: .current),
-        Date("01/10/2020", format: "dd/MM/yyyy", region: .current)
-    ]
+    var monthTitles = [Date]()
     
     //main class
     var transactionHeaders = [TransactionHeader]()
@@ -66,19 +64,19 @@ class ViewTransactionController: UIViewController {
     var opening = 0
     var ending = 0
     var total = 0
-    
     var currentMonth = 8
     var currentYear = 2020
-    
+    var current = Date()
     var today = Date()
+    var minDate: Date!
+    var maxDate: Date!
     let calendar = Calendar.current
     var todayMonth = 9
     var todayYear = 2020
     var mode = UserDefaults.standard.string(forKey: "viewmode")
-    var userid = MyDatabase.defaults.string(forKey: Key.userid)
+    var userid = Defined.defaults.string(forKey: Constants.userid)
     var allTransactions = [Transaction]()
     var finalTransactions = [Transaction]()
-    var previousTransactions = [Transaction]()
     
     
     @IBOutlet var monthCollectionView: UICollectionView!
@@ -91,44 +89,40 @@ class ViewTransactionController: UIViewController {
     @IBOutlet var centerIndicator: UIActivityIndicatorView!
     var refreshControl = UIRefreshControl()
     
+    
     @IBOutlet var centerLabel: UILabel!
     @IBOutlet var centerIcon: UIImageView!
     @IBOutlet var noTransaction: UIStackView!
     
-    @IBOutlet var txtDatePicker: UITextField!
+    @IBOutlet var lbBalance: UILabel!
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        txtDatePicker.tintColor = .clear
-        createDatePicker()
-        createToolBar()
         todayYear = calendar.component(.year, from: today)
         todayMonth = calendar.component(.month, from: today)
         currentMonth = todayMonth
         currentYear = todayYear
-        print("today month: \(todayMonth)")
+        current = today
         centerIcon.isHidden = true
         centerLabel.isHidden = true
         dateFormatter.locale = Locale(identifier: "vi_VN")
         dateFormatter.dateFormat = "dd/MM/yyyy"
         //mode
         setUpMode(transaction: false, category: true)
-        if balance == 0 {
-            MyDatabase.defaults.set(100, forKey: Key.balance)
-        }
         if userid == nil {
             userid = "userid1"
-            MyDatabase.defaults.set(userid, forKey: Key.userid)
+            Defined.defaults.set(userid, forKey: Constants.userid)
         }
         initTableViews()
         getDataCategory()
-        txtDatePicker.text = "\(months[todayMonth - 1]) \(todayYear)"
-        txtDatePicker.setLeftImage(imageName: "dropdownicon")
         //check mode
         if mode == nil {
             UserDefaults.standard.set("transaction", forKey: "viewmode")
             mode = "transaction"
         }
+        minDate = calendar.date(byAdding: .year, value: -2, to: today)
+        maxDate = calendar.date(byAdding: .month, value: 1, to: today)
+        monthTitles = getMonthYearInRange(from: minDate, to: maxDate)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -136,32 +130,24 @@ class ViewTransactionController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
         DispatchQueue.main.async {
             self.getDataTransactions(month: self.currentMonth, year: self.currentYear)
+            self.getBalance()
+            self.jumpToDate(from: self.current)
+            print("current: \(self.current)")
         }
-        let firstIndexPath = IndexPath(item: 8, section: 0)
-        monthCollectionView.selectItem(at: firstIndexPath, animated: true, scrollPosition: .centeredHorizontally)
-        /*
-         getDataTransactions(month: todayMonth, year: todayYear)
-         txtDatePicker.text = "\(months[todayMonth - 1]) \(todayYear)"
-         */
-        
     }
+    
+    
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    
-    
-    //    func getTimeRange(){
-    //        let dateString = "12/02/2020"
-    //        let date0 = dateFormatter.date(from: dateString)
-    //        let date = Date()
-    //        let month = calendar.component(.month, from: date)
-    //        let range = calendar.range(of: .day, in: .month, for: date0!)
-    //        print("Number of day in \(month): \(range?.count)")
-    //    }
-    
+    func jumpToDate(from date: Date){
+        let firstIndexPath = IndexPath(item: getIndexPathOfThisMonthCell(from: date), section: 0)
+        monthCollectionView.selectItem(at: firstIndexPath, animated: true, scrollPosition: .centeredHorizontally)
+    }
+
     //MARK: - Set up view mode
     func setUpMode(transaction: Bool, category: Bool){
         transactionTableView.isHidden = transaction
@@ -195,12 +181,32 @@ class ViewTransactionController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         monthCollectionView.collectionViewLayout = layout
-        
-        
-        
-        
     }
     
+    func getMonthYearInRange(from startDate: Date, to endDate: Date) -> [Date] {
+        let components = calendar.dateComponents(Set([.month]), from: startDate, to: endDate)
+        //var allDates: [String] = []
+        var allDates: [Date] = []
+        let dateRangeFormatter = DateFormatter()
+        dateRangeFormatter.dateFormat = "MMM yyyy"
+        
+        for i in 1...components.month! {
+            guard let date = calendar.date(byAdding: .month, value: i, to: startDate) else {
+                        continue
+                        }
+            allDates.append(date)
+        }
+        return allDates
+    }
+    
+    func getIndexPathOfThisMonthCell(from date: Date) -> Int{
+        for i in 0..<monthTitles.count {
+            if monthTitles[i].dateComponents.month == today.dateComponents.month && monthTitles[i].dateComponents.year == today.dateComponents.year {
+                return i
+            }
+        }
+        return 0
+    }
     func getDataTransactions(month: Int, year: Int){
         allTransactions.removeAll()
         finalTransactions.removeAll()
@@ -215,7 +221,7 @@ class ViewTransactionController: UIViewController {
             centerLabel.isHidden = true
         }
         //get transaction expense
-        MyDatabase.ref.child("Account/userid1/transaction/expense").observeSingleEvent(of: .value) {[weak self] (snapshot) in
+        Defined.ref.child("Account/userid1/transaction/expense").observeSingleEvent(of: .value) {[weak self] (snapshot) in
             guard let `self` = self else {
                 return
             }
@@ -223,7 +229,7 @@ class ViewTransactionController: UIViewController {
                 for snap in snapshots {
                     let id = snap.key
                     if let value = snap.value as? [String: Any]{
-                        let transactionType = "expense"
+                        let transactionType = TransactionType.expense.getValue()
                         let amount = value["amount"] as! Int
                         let categoryid = value["categoryid"] as! String
                         let date = value["date"] as! String
@@ -245,7 +251,7 @@ class ViewTransactionController: UIViewController {
                 self.viewByCategoryTableView.reloadData()
             }
         }
-        MyDatabase.ref.child("Account/userid1/transaction/income").observeSingleEvent(of: .value) {[weak self] (snapshot) in
+        Defined.ref.child("Account/userid1/transaction/\(TransactionType.income.getValue())").observeSingleEvent(of: .value) {[weak self] (snapshot) in
             guard let `self` = self else {
                 return
             }
@@ -253,7 +259,7 @@ class ViewTransactionController: UIViewController {
                 for snap in snapshots {
                     let id = snap.key
                     if let value = snap.value as? [String: Any]{
-                        let transactionType = "income"
+                        let transactionType = TransactionType.income.getValue()
                         let amount = value["amount"] as! Int
                         let categoryid = value["categoryid"] as! String
                         let date = value["date"] as! String
@@ -272,7 +278,6 @@ class ViewTransactionController: UIViewController {
                 }
                 
                 self.getTransactionbyMonth(month: month, year: year)
-                self.transactionTableView.isHidden = false
                 self.loadingView.isHidden = true
                 self.loadDetailCell(month: month, year: year)
                 self.centerIndicator.isHidden = true
@@ -280,17 +285,18 @@ class ViewTransactionController: UIViewController {
                     self.noTransaction.isHidden = false
                     self.centerIcon.isHidden = false
                     self.centerLabel.isHidden = false
-                    self.setUpMode(transaction: false, category: false)
+                    self.setUpMode(transaction: true, category: true)
                 } else {
+                    
                     self.getTransactionSections(list: self.finalTransactions)
                     //view by category
                     self.getCategorySections(list: self.finalTransactions)
-                    self.transactionTableView.reloadData()
                     if self.mode == "transaction" {
                         self.setUpMode(transaction: false, category: true)
                     } else {
                         self.setUpMode(transaction: true, category: false)
                     }
+                    self.transactionTableView.reloadData()
                     self.viewByCategoryTableView.reloadData()
                     self.centerIndicator.stopAnimating()
                 }
@@ -319,7 +325,7 @@ class ViewTransactionController: UIViewController {
             open = 0
         } else {
             for t in getTransactionbyDate(dateArr: previousDates){
-                if t.transactionType == "expense" {
+                if t.transactionType == TransactionType.expense.getValue() {
                     open -= t.amount!
                 } else {
                     open += t.amount!
@@ -331,7 +337,7 @@ class ViewTransactionController: UIViewController {
             end = 0
         } else {
             for t in getTransactionbyDate(dateArr: currentDates){
-                if t.transactionType == "expense" {
+                if t.transactionType == TransactionType.expense.getValue() {
                     end -= t.amount!
                 } else {
                     end += t.amount!
@@ -360,7 +366,7 @@ class ViewTransactionController: UIViewController {
             for b in list {
                 if a.dateString == b.date {
                     //MARK: - Get count for each header amount
-                    if b.transactionType == "expense"{
+                    if b.transactionType == TransactionType.expense.getValue(){
                         amount -= b.amount!
                     } else {
                         amount += b.amount!
@@ -422,7 +428,7 @@ class ViewTransactionController: UIViewController {
                     let type = b.transactionType!
                     let note = b.note ?? ""
                     //MARK: - Get total amount for header
-                    if b.transactionType == "expense"{
+                    if b.transactionType == TransactionType.expense.getValue(){
                         amount -= b.amount!
                     } else {
                         amount += b.amount!
@@ -488,18 +494,19 @@ class ViewTransactionController: UIViewController {
         return checkArray
     }
     
-    func getBalance() -> Int{
+    func getBalance(){
         var a:Int = 0
-        MyDatabase.ref.child("Account/userid2/information/balance").observeSingleEvent(of: .value) { (snapshot) in
+        Defined.ref.child("Account/userid1/information/balance").observeSingleEvent(of: .value) { (snapshot) in
             if let value = snapshot.value as? Int {
                 self.balance = value
-                a = value
-                self.transactionTableView.reloadData()
-                self.viewByCategoryTableView.reloadData()
-                //return value
+                DispatchQueue.main.async {
+                    self.balance = value
+                    self.lbBalance.text = "\(Defined.formatter.string(from: NSNumber(value: self.balance))!) đ"
+                }
             }
+            
+            Defined.defaults.setValue(a, forKey: Constants.balance)
         }
-        return a
     }
     
     //MARK: - Convert String to DateComponents
@@ -536,7 +543,7 @@ class ViewTransactionController: UIViewController {
     //MARK: - Get Category array
     func getDataCategory(){
         var myList = [Category]()
-        MyDatabase.ref.child("Category").child("expense").observeSingleEvent(of: .value) {[weak self] (snapshot) in
+        Defined.ref.child("Category").child("\(TransactionType.expense.getValue())").observeSingleEvent(of: .value) {[weak self] (snapshot) in
             guard let `self` = self else {
                 return
             }
@@ -546,14 +553,14 @@ class ViewTransactionController: UIViewController {
                     if let value = snap.value as? [String: Any]{
                         let name = value["name"] as? String
                         let iconImage = value["iconImage"] as? String
-                        let transactionType = "expense"
+                        let transactionType = TransactionType.expense.getValue()
                         let category = Category(id: id, name: name, transactionType: transactionType, iconImage: iconImage)
                         myList.append(category)
                     }
                 }
             }
         }
-        MyDatabase.ref.child("Category").child("income").observeSingleEvent(of: .value) {[weak self] (snapshot) in
+        Defined.ref.child("Category").child("\(TransactionType.income.getValue())").observeSingleEvent(of: .value) {[weak self] (snapshot) in
             guard let `self` = self else {
                 return
             }
@@ -563,7 +570,7 @@ class ViewTransactionController: UIViewController {
                     if let value = snap.value as? [String: Any]{
                         let name = value["name"] as? String
                         let iconImage = value["iconImage"] as? String
-                        let transactionType = "income"
+                        let transactionType = TransactionType.income.getValue()
                         let category = Category(id: id, name: name, transactionType: transactionType, iconImage: iconImage)
                         myList.append(category)
                     }
@@ -582,7 +589,7 @@ class ViewTransactionController: UIViewController {
         window?.addSubview(bottomMenuView)
         
         let screenSize = UIScreen.main.bounds.size
-        tableView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: height)
+        tableView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: menuCell * CGFloat(transactionBotMenu.count))
         window?.addSubview(tableView)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickTransparentView))
@@ -606,37 +613,6 @@ class ViewTransactionController: UIViewController {
     
     @objc func onClickTransparentView() {
         animateOutScreen()
-    }
-    
-    func createDatePicker(){
-        let picker = MonthYearPickerView(frame: CGRect(origin: CGPoint(x: 0, y: (view.bounds.height - 216) / 2), size: CGSize(width: view.bounds.width, height: 216)))
-        picker.minimumDate = Calendar.current.date(byAdding: .year, value: -2, to: Date())
-        picker.maximumDate = Calendar.current.date(byAdding: .year, value: 2, to: Date())
-        picker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
-        txtDatePicker.inputView = picker
-    }
-    
-    @objc func dateChanged(_ picker: MonthYearPickerView) {
-        let components = calendar.dateComponents([.day, .month, .year, .weekday], from: picker.date)
-        txtDatePicker.text = "\(months[components.month! - 1]) \(components.year!)"
-        currentMonth = components.month!
-        currentYear = components.year!
-        getDataTransactions(month: currentMonth, year: currentYear)
-        transactionTableView.reloadData()
-        viewByCategoryTableView.reloadData()
-    }
-    
-    func createToolBar(){
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(dismissKeyboard))
-        toolbar.setItems([doneButton], animated: true)
-        toolbar.isUserInteractionEnabled = true
-        txtDatePicker.inputAccessoryView = toolbar
-    }
-    
-    @objc func dismissKeyboard(_ picker: MonthYearPickerView){
-        view.endEditing(true)
     }
 }
 
@@ -728,19 +704,19 @@ extension ViewTransactionController : UITableViewDataSource {
                 if mode == "transaction" {
                     mode = "category"
                     viewByCategoryTableView.reloadData()
-                    MyDatabase.defaults.set(mode, forKey: Key.mode)
+                    Defined.defaults.set(mode, forKey: Constants.mode)
                     setUpMode(transaction: true, category: false)
                 } else {
                     transactionTableView.reloadData()
                     mode = "transaction"
-                    MyDatabase.defaults.set(mode, forKey: Key.mode)
+                    Defined.defaults.set(mode, forKey: Constants.mode)
                     setUpMode(transaction: false, category: true)
                 }
                 self.tableView.reloadData()
                 
             } else if indexPath.row == 2 {
                 getDataTransactions(month: todayMonth, year: todayYear)
-                txtDatePicker.text = "\(months[todayMonth - 1]) \(todayYear)"
+                jumpToDate(from: today)
             }
             animateOutScreen()
             tableView.deselectRow(at: indexPath, animated: true)
@@ -856,12 +832,12 @@ extension UITextField{
 
 extension ViewTransactionController : UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return testDateModels.count
+        return monthTitles.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = MonthCell.loadCell(collectionView, path: indexPath) as! MonthCell
-        cell.configure(data: testDateModels[indexPath.row]!)
+        cell.configure(data: monthTitles[indexPath.row])
         return cell
     }
     
@@ -869,13 +845,16 @@ extension ViewTransactionController : UICollectionViewDelegateFlowLayout, UIColl
         return CGSize(width: collectionView.frame.size.width/3, height: collectionView.frame.height)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+    }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let month = testDateModels[indexPath.row]?.dateComponents.month,
-            let year = testDateModels[indexPath.row]?.dateComponents.year{
+        if let month = monthTitles[indexPath.row].dateComponents.month,
+            let year = monthTitles[indexPath.row].dateComponents.year{
             currentMonth = month
             currentYear = year
             getDataTransactions(month: currentMonth, year: currentYear)
-            txtDatePicker.text = "\(months[currentMonth - 1]) \(currentYear)"
+            current = dateFormatter.date(from: "02/\(currentMonth)/\(currentYear)")!
             collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         }
         
@@ -883,3 +862,4 @@ extension ViewTransactionController : UICollectionViewDelegateFlowLayout, UIColl
     
     
 }
+

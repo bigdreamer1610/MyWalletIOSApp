@@ -84,7 +84,7 @@ class DetailTransactionController: UIViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
-            MyDatabase.ref.child("Account/userid1/transaction/\(self.type)/\(self.transactionid)").removeValue { (error, reference) in
+            Defined.ref.child("Account/userid1/transaction/\(self.type)/\(self.transactionid)").removeValue { (error, reference) in
                 if error != nil {
                     print("Error: \(error!)")
                 } else {

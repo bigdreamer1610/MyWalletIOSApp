@@ -14,15 +14,11 @@ class BalanceViewController: UIViewController {
     @IBOutlet var txtAmount: UITextField!
     @IBOutlet var btnCancel: UIBarButtonItem!
     @IBOutlet var btnSave: UIBarButtonItem!
-    var balance = MyDatabase.defaults.integer(forKey: Key.balance)
+    var balance = Defined.defaults.integer(forKey: Constants.balance)
     private var formatter = NumberFormatter()
     override func viewDidLoad() {
         formatter.groupingSeparator = "."
         formatter.numberStyle = .decimal
-        if balance == 0 {
-            balance = 100
-            MyDatabase.defaults.set(balance, forKey: Key.balance)
-        }
         super.viewDidLoad()
         txtAmount.delegate = self
         txtAmount.text = "\(formatter.string(from: NSNumber(value: balance))!)"
@@ -32,9 +28,9 @@ class BalanceViewController: UIViewController {
     @IBAction func clickSave(_ sender: Any) {
         if let balanceStr = txtAmount.text,
             let balancInt = Int(balanceStr){
-            MyDatabase.defaults.set(balancInt, forKey: Key.balance)
+            Defined.defaults.set(balancInt, forKey: Constants.balance)
             balance = balancInt
-            MyDatabase.ref.child("Account/userid1/information").updateChildValues(["balance": balancInt]){ (error,reference) in
+            Defined.ref.child("Account/userid1/information").updateChildValues(["balance": balancInt]){ (error,reference) in
                 
             }
         }

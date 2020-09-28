@@ -10,13 +10,14 @@ import Foundation
 import Firebase
 import FirebaseDatabase
 
-struct MyDatabase {
+class Defined {
     static let defaults = UserDefaults.standard
     static let ref = Database.database().reference()
+    static let formatter = NumberFormatter()
 }
 
-class Key {
+class Constants {
     static let mode = "mode"
-    static let balance = "balances"
+    static let balance = "balance"
     static let userid = "userid"
 }

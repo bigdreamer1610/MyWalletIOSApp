@@ -14,16 +14,15 @@ class TransactionCell: BaseTBCell {
     @IBOutlet var lbNote: UILabel!
     @IBOutlet var lbCategory: UILabel!
     @IBOutlet var iconView: UIImageView!
-    private var formatter = NumberFormatter()
     override func awakeFromNib() {
         super.awakeFromNib()
-        formatter.groupingSeparator = "."
-        formatter.numberStyle = .decimal
+        Defined.formatter.groupingSeparator = "."
+        Defined.formatter.numberStyle = .decimal
         // Initialization code
     }
 
     func setUpData(data: TransactionItem){
-        lbAmount.text = "\(formatter.string(from: NSNumber(value: data.amount))!)"
+        lbAmount.text = "\(Defined.formatter.string(from: NSNumber(value: data.amount))!)"
         lbNote.text = data.note
         lbCategory.text = data.categoryName
         iconView.image = UIImage(named: data.iconImage)
@@ -32,9 +31,6 @@ class TransactionCell: BaseTBCell {
         } else {
             lbAmount.textColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
         }
-//        lbNote.text = data.note!
-//        lbCategory.text = data.category
-//        iconView.image = UIImage(named: data.image)
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
