@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TNp-S5-7HZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xIs-AN-0Qs">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -30,14 +31,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HVO-pU-eEj">
-                                <rect key="frame" x="0.0" y="148" width="414" height="714"/>
+                                <rect key="frame" x="0.0" y="154" width="414" height="708"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BXB-hp-I2X" userLabel="CategoryTableview">
-                                <rect key="frame" x="0.0" y="148" width="414" height="714"/>
+                                <rect key="frame" x="0.0" y="154" width="414" height="708"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Lg-6f-4Kz">
-                                <rect key="frame" x="87" y="411" width="240" height="128"/>
+                                <rect key="frame" x="87" y="389" width="240" height="128"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="YFX-lA-6wC">
                                         <rect key="frame" x="105" y="49" width="30" height="30"/>
@@ -55,7 +56,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="eCd-Ke-4ec">
-                                <rect key="frame" x="134.5" y="411.5" width="145" height="127"/>
+                                <rect key="frame" x="134.5" y="389.5" width="145" height="127"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notransaction" translatesAutoresizingMaskIntoConstraints="NO" id="VHJ-m4-SB9">
                                         <rect key="frame" x="0.0" y="0.0" width="145" height="87"/>
@@ -74,7 +75,7 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NGy-Z6-NcZ">
-                                <rect key="frame" x="0.0" y="88" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0o-Zo-xWX">
                                         <rect key="frame" x="354" y="15" width="30" height="30"/>
@@ -99,6 +100,29 @@
                                     <constraint firstItem="llg-7f-i3m" firstAttribute="centerY" secondItem="NGy-Z6-NcZ" secondAttribute="centerY" id="h2g-u3-LyH"/>
                                 </constraints>
                             </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7cd-Kh-02u">
+                                <rect key="frame" x="0.0" y="104" width="414" height="50"/>
+                                <color key="backgroundColor" red="1" green="0.41087010410000002" blue="0.45685387500000002" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="hmP-0s-FGl"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="XHC-VV-0mV">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="FHr-b3-AQI">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="cj3-WG-JHk">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -106,17 +130,20 @@
                             <constraint firstItem="5Lg-6f-4Kz" firstAttribute="centerY" secondItem="7Mv-ph-GgW" secondAttribute="centerY" id="2NI-J3-vsy"/>
                             <constraint firstItem="7Mv-ph-GgW" firstAttribute="bottom" secondItem="HVO-pU-eEj" secondAttribute="bottom" id="4he-K5-Wzi"/>
                             <constraint firstItem="7Mv-ph-GgW" firstAttribute="trailing" secondItem="HVO-pU-eEj" secondAttribute="trailing" id="6iD-3M-8mO"/>
-                            <constraint firstItem="HVO-pU-eEj" firstAttribute="top" secondItem="NGy-Z6-NcZ" secondAttribute="bottom" id="CBT-MA-wXP"/>
                             <constraint firstItem="7Mv-ph-GgW" firstAttribute="bottom" secondItem="BXB-hp-I2X" secondAttribute="bottom" id="DRZ-i2-8bp"/>
                             <constraint firstItem="eCd-Ke-4ec" firstAttribute="centerY" secondItem="7Mv-ph-GgW" secondAttribute="centerY" id="Lzh-zx-l6T"/>
                             <constraint firstItem="HVO-pU-eEj" firstAttribute="leading" secondItem="7Mv-ph-GgW" secondAttribute="leading" id="NWy-M0-EeF"/>
-                            <constraint firstItem="BXB-hp-I2X" firstAttribute="top" secondItem="NGy-Z6-NcZ" secondAttribute="bottom" id="RQA-dD-zQV"/>
+                            <constraint firstItem="HVO-pU-eEj" firstAttribute="top" secondItem="7cd-Kh-02u" secondAttribute="bottom" id="Sa9-be-Dem"/>
                             <constraint firstItem="7Mv-ph-GgW" firstAttribute="trailing" secondItem="NGy-Z6-NcZ" secondAttribute="trailing" id="XlU-M6-aj8"/>
                             <constraint firstItem="7Mv-ph-GgW" firstAttribute="trailing" secondItem="BXB-hp-I2X" secondAttribute="trailing" id="b9e-bu-YYs"/>
+                            <constraint firstItem="7cd-Kh-02u" firstAttribute="top" secondItem="NGy-Z6-NcZ" secondAttribute="bottom" id="d4w-Ih-CAD"/>
+                            <constraint firstItem="7cd-Kh-02u" firstAttribute="leading" secondItem="7Mv-ph-GgW" secondAttribute="leading" id="dNo-4I-HJS"/>
                             <constraint firstItem="eCd-Ke-4ec" firstAttribute="centerX" secondItem="7Mv-ph-GgW" secondAttribute="centerX" id="kor-vG-4ie"/>
+                            <constraint firstItem="BXB-hp-I2X" firstAttribute="top" secondItem="7cd-Kh-02u" secondAttribute="bottom" id="oAR-6Q-lNL"/>
                             <constraint firstItem="NGy-Z6-NcZ" firstAttribute="top" secondItem="7Mv-ph-GgW" secondAttribute="top" id="rMO-xx-czo"/>
                             <constraint firstItem="BXB-hp-I2X" firstAttribute="leading" secondItem="7Mv-ph-GgW" secondAttribute="leading" id="svh-mj-gpO"/>
                             <constraint firstItem="NGy-Z6-NcZ" firstAttribute="leading" secondItem="7Mv-ph-GgW" secondAttribute="leading" id="wfv-Pg-PuV"/>
+                            <constraint firstItem="7Mv-ph-GgW" firstAttribute="trailing" secondItem="7cd-Kh-02u" secondAttribute="trailing" id="yow-wj-nZx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7Mv-ph-GgW"/>
                     </view>
@@ -134,6 +161,7 @@
                         <outlet property="centerIndicator" destination="YFX-lA-6wC" id="cDx-UW-0iD"/>
                         <outlet property="centerLabel" destination="dvE-vP-zI5" id="zRB-MK-90s"/>
                         <outlet property="loadingView" destination="5Lg-6f-4Kz" id="pSQ-ok-aAI"/>
+                        <outlet property="monthCollectionView" destination="7cd-Kh-02u" id="obh-Qw-IZa"/>
                         <outlet property="noTransaction" destination="eCd-Ke-4ec" id="auF-nb-SMQ"/>
                         <outlet property="transactionTableView" destination="HVO-pU-eEj" id="bqY-3K-fzS"/>
                         <outlet property="txtDatePicker" destination="llg-7f-i3m" id="hyQ-3I-Tnj"/>
@@ -213,10 +241,9 @@
         <!--Navigation Controller-->
         <scene sceneID="7Mj-CZ-SzY">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xIs-AN-0Qs" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="xIs-AN-0Qs" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pKd-c3-FRW">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

@@ -45,6 +45,19 @@ class ViewTransactionController: UIViewController {
         BottomMenu(icon: "today", title: "Jump to today")
     ]
     
+    var testDateModels = [
+        Date("01/01/2020", format: "dd/MM/yyyy", region: .current),
+        Date("01/02/2020", format: "dd/MM/yyyy", region: .current),
+        Date("01/03/2020", format: "dd/MM/yyyy", region: .current),
+        Date("01/04/2020", format: "dd/MM/yyyy", region: .current),
+        Date("01/05/2020", format: "dd/MM/yyyy", region: .current),
+        Date("01/06/2020", format: "dd/MM/yyyy", region: .current),
+        Date("01/07/2020", format: "dd/MM/yyyy", region: .current),
+        Date("01/08/2020", format: "dd/MM/yyyy", region: .current),
+        Date("01/09/2020", format: "dd/MM/yyyy", region: .current),
+        Date("01/10/2020", format: "dd/MM/yyyy", region: .current)
+    ]
+    
     //main class
     var transactionHeaders = [TransactionHeader]()
     var transactionSections = [TransactionSection]()
@@ -68,6 +81,7 @@ class ViewTransactionController: UIViewController {
     var previousTransactions = [Transaction]()
     
     
+    @IBOutlet var monthCollectionView: UICollectionView!
     @IBOutlet var btnShowMore: UIButton!
     @IBOutlet var btnMore: UIBarButtonItem!
     @IBOutlet var transactionTableView: UITableView!
@@ -123,6 +137,12 @@ class ViewTransactionController: UIViewController {
         DispatchQueue.main.async {
             self.getDataTransactions(month: self.currentMonth, year: self.currentYear)
         }
+        let firstIndexPath = IndexPath(item: 8, section: 0)
+        monthCollectionView.selectItem(at: firstIndexPath, animated: true, scrollPosition: .centeredHorizontally)
+        /*
+         getDataTransactions(month: todayMonth, year: todayYear)
+         txtDatePicker.text = "\(months[todayMonth - 1]) \(todayYear)"
+         */
         
     }
     
@@ -161,12 +181,23 @@ class ViewTransactionController: UIViewController {
         tableView.separatorStyle = .none
         tableView.isScrollEnabled  = false
         
+        MonthCell.registerCellByNib(monthCollectionView)
+        
         transactionTableView.dataSource = self
         transactionTableView.delegate = self
         viewByCategoryTableView.dataSource = self
         viewByCategoryTableView.delegate = self
         tableView.dataSource = self
         tableView.delegate = self
+        monthCollectionView.dataSource = self
+        monthCollectionView.delegate = self
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        monthCollectionView.collectionViewLayout = layout
+        
+        
+        
         
     }
     
@@ -823,3 +854,32 @@ extension UITextField{
     }
 }
 
+extension ViewTransactionController : UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return testDateModels.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = MonthCell.loadCell(collectionView, path: indexPath) as! MonthCell
+        cell.configure(data: testDateModels[indexPath.row]!)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.size.width/3, height: collectionView.frame.height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let month = testDateModels[indexPath.row]?.dateComponents.month,
+            let year = testDateModels[indexPath.row]?.dateComponents.year{
+            currentMonth = month
+            currentYear = year
+            getDataTransactions(month: currentMonth, year: currentYear)
+            txtDatePicker.text = "\(months[currentMonth - 1]) \(currentYear)"
+            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+        }
+        
+    }
+    
+    
+}
