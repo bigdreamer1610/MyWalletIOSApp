@@ -13,6 +13,8 @@ target 'MyWalletProject' do
 	pod 'GoogleSignIn'
 	pod 'FBSDKLoginKit'
 	pod 'Charts'
+	
   pod 'FSCalendar'
   pod 'SwiftDate'
+  pod 'MonthYearPicker', '~> 4.0.2'
 end

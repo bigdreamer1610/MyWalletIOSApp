@@ -11,8 +11,19 @@ import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    var window: UIWindow?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        //navigationController.navigationBar.isHidden = true
+        window?.makeKeyAndVisible()
+        
+        let tabbar = MainTabViewController.createTabbar()
+        let navigationController = UINavigationController(rootViewController: tabbar)
+        //navigationController.navigationBar.isHidden = true
+        window?.rootViewController = navigationController
         return true
     }
 
