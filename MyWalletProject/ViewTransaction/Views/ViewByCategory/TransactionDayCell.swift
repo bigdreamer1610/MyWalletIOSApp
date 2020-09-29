@@ -15,11 +15,10 @@ class TransactionDayCell: BaseTBCell {
     @IBOutlet var lbAmount: UILabel!
     @IBOutlet var lbDate: UILabel!
     @IBOutlet var lbDay: UILabel!
-    private var formatter = NumberFormatter()
     override func awakeFromNib() {
         super.awakeFromNib()
-        formatter.groupingSeparator = "."
-        formatter.numberStyle = .decimal
+        Defined.formatter.groupingSeparator = "."
+        Defined.formatter.numberStyle = .decimal
         // Initialization code
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -30,7 +29,7 @@ class TransactionDayCell: BaseTBCell {
 
     func setUpData(with data: CategoryItem){
         lbNote.text = data.note
-        lbAmount.text = "\(formatter.string(from: NSNumber(value: data.amount))!)"
+        lbAmount.text = "\(Defined.formatter.string(from: NSNumber(value: data.amount))!)"
         lbDay.text = "\(data.dateModel.date)"
         lbDate.text = "\(data.dateModel.month) \(data.dateModel.year), \(data.dateModel.weekDay)"
         if data.type == "expense"{

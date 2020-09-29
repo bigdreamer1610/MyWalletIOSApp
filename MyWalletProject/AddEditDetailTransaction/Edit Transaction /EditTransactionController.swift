@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import Firebase
 
 class EditTransactionController: UIViewController, UITextFieldDelegate {
     
@@ -26,6 +28,7 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
     @IBOutlet var txtNote: UITextField!
     @IBOutlet weak var txtDate: UITextField!
     
+    @IBOutlet var tfEvent: UITextField!
     @IBOutlet var txtCategory: UITextField!
     @IBOutlet var txtAmount: UITextField!
     let datePicker = UIDatePicker()
@@ -33,7 +36,14 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         configure()
         ShowDatePicker()
+        customizeLayout()
         txtAmount.delegate = self
+    }
+    
+    func customizeLayout(){
+        txtCategory.setRightImage(imageName: "arrowright")
+        tfEvent.setRightImage(imageName: "arrowright")
+        txtDate.setRightImage(imageName: "arrowright")
     }
     
     
@@ -61,6 +71,27 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func clickSave(_ sender: Any) {
+        if let strAmount = txtAmount.text,
+            let intAmount = Int(strAmount){
+            amount = intAmount
+        }
+        let update = [
+            "note":txtNote.text! ,
+            "date":txtDate.text!,
+            "categoryid": txtCategory.text!,
+            "amount": amount
+            ] as [String : Any]
+        Defined.ref.child("Account/userid1/transaction/\(self.type)/\(self.transactionId)").updateChildValues(update) { (error, reference) in
+            if error != nil {
+                print("Error: \(error!)")
+            } else {
+                print(reference)
+                print("Remove successfully")
+                self.navigationController?.popToRootViewController(animated: true)
+            
+            }
+        }
+        
     }
     
     func ShowDatePicker(){

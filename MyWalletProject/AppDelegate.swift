@@ -15,15 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        
         window = UIWindow(frame: UIScreen.main.bounds)
-        //navigationController.navigationBar.isHidden = true
         window?.makeKeyAndVisible()
-        
         let tabbar = MainTabViewController.createTabbar()
         let navigationController = UINavigationController(rootViewController: tabbar)
-        //navigationController.navigationBar.isHidden = true
+        navigationController.isNavigationBarHidden = true
         window?.rootViewController = navigationController
+        
+//        window = UIWindow(frame: UIScreen.main.bounds)
+//        window?.makeKeyAndVisible()
+//        let vc = RouterType.viewTransaction.getVc()
+//        let navigationController = UINavigationController(rootViewController: vc)
+//        navigationController.isNavigationBarHidden = true
+//        window?.rootViewController = navigationController
         return true
     }
 

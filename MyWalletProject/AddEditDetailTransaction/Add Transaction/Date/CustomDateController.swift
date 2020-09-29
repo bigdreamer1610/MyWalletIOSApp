@@ -33,14 +33,13 @@ class CustomDateController: UIViewController {
         calendar.delegate = self
         calendar.dataSource = self
         
-        
     }
     
 }
 extension CustomDateController: FSCalendarDelegate, FSCalendarDataSource{
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         var dates = formatter.dateFormat = "dd/MM/yyyy"
-        let vc = UIStoryboard.init(name: "Thuy", bundle: nil).instantiateViewController(withIdentifier: "add") as? AddTransactionController
+        let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "add") as? AddTransactionController
         delegate?.setDate(date: formatter.string(from: date))
         self.navigationController?.popViewController(animated: true)
     }
