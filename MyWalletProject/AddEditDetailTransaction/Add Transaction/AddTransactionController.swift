@@ -21,6 +21,7 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var iconEvent: UIImageView!
     @IBOutlet weak var viewShowMore: UIView!
     
+    @IBOutlet var btnAddMore: UIButton!
     @IBOutlet var btnCancel: UIBarButtonItem!
     @IBOutlet var btnSave: UIBarButtonItem!
     var nameCategory: String = ""
@@ -32,7 +33,8 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
     var thisDate = Date()
     private let dateFormatter = DateFormatter()
     override func viewDidLoad() {
-        viewShowMore.alpha = 0
+        customizeLayout()
+        viewShowMore.isHidden = true
         super.viewDidLoad()
         dateFormatter.locale = Locale(identifier: "vi_VN")
         dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -45,7 +47,20 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
         tfCategory.delegate = self
         tfNote.delegate = self
         btnSave.isEnabled = false
+        customizeLayout()
         
+        
+    }
+    
+    func customizeLayout(){
+        btnAddMore.layer.borderWidth = 1
+        btnAddMore.layer.borderColor = #colorLiteral(red: 0.3929189782, green: 0.4198221317, blue: 0.8705882353, alpha: 1)
+        btnAddMore.layer.cornerRadius = 6
+        
+        tfCategory.setRightImage(imageName: "arrowright")
+        tfDate.setRightImage(imageName: "arrowright")
+        
+        tfEvent.setRightImage(imageName: "arrowright")
     }
     
     func addEvent()  {
@@ -98,7 +113,7 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
             "amount" :amount,
             "categoryid": id,
             "event":tfEvent.text!]
-        MyDatabase.ref.child("Account/userid1/transaction/\(type)").childByAutoId().setValue(writeData)
+        Defined.ref.child("Account/userid1/transaction/\(type)").childByAutoId().setValue(writeData)
         let alert = UIAlertController(title: "Notification", message: "Add a new transaction successfully", preferredStyle: .alert)
         //alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
@@ -108,7 +123,9 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func btnAddMoreDetails(_ sender: Any) {
-        viewShowMore.alpha = 1
+        
+        viewShowMore.isHidden = false
+        btnAddMore.isHidden = true
     }
     
     @IBAction func btnDeleteMoreDetails(_ sender: Any) {

@@ -73,26 +73,26 @@ class AddEventController: UIViewController {
         }
         self.navigationController?.pushViewController(calendar, animated: true)
     }
-
-        
+    
+    
     func setUpView()  {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: .add, style: .done, target: self, action: #selector(leftAction))
         ///
         
-               let calendar1 = UITapGestureRecognizer(target: self, action: #selector(self.calendar(_sender:)))
-               self.imgCalendar.addGestureRecognizer(calendar1)
-               self.imgCalendar.isUserInteractionEnabled = true
-                
-                
+        let calendar1 = UITapGestureRecognizer(target: self, action: #selector(self.calendar(_sender:)))
+        self.imgCalendar.addGestureRecognizer(calendar1)
+        self.imgCalendar.isUserInteractionEnabled = true
+        
+        
         ////bat su kien view
-//        let gesture = UITapGestureRecognizer(target: self, action:  #selector(self.calendar(_sender:)))
-//                vCategory.addGestureRecognizer(gesture)
-      
-        
-               let vc = UIStoryboard.init(name: "AddEvent", bundle: nil).instantiateViewController(identifier: "calendarView") as! CalendarController
+        //        let gesture = UITapGestureRecognizer(target: self, action:  #selector(self.calendar(_sender:)))
+        //                vCategory.addGestureRecognizer(gesture)
         
         
-       
+        let vc = UIStoryboard.init(name: "AddEvent", bundle: nil).instantiateViewController(identifier: "calendarView") as! CalendarController
+        
+        
+        
         
         
     }
@@ -103,46 +103,46 @@ class AddEventController: UIViewController {
             if  arrayNameEvent.contains(edAddEvent.text!) == false {
                 
                 let event = ["dateEnd": tvDate.text, "dateStart": setDate(), "goal": Int(edMoney.text!), "name": edAddEvent.text, "category": categoryName, "spent": 0] as [String : Any]
-                       self.ref.child("Account").child("userid1").child("event").child("\(self.newChild)").updateChildValues(event,withCompletionBlock: { error , ref in
-                           if error == nil {
-                           
+                self.ref.child("Account").child("userid1").child("event").child("\(self.newChild)").updateChildValues(event,withCompletionBlock: { error , ref in
+                    if error == nil {
+                        
                         self.navigationController?.popViewController(animated: true)
-                           }else{
-                               //handle
-                           }
-                       } )
+                    }else{
+                        //handle
+                    }
+                } )
             } else {
                 let alert = UIAlertController(title: "error", message: "Event này đã tồn tại", preferredStyle: UIAlertController.Style.actionSheet)
                 alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
-                 self.present(alert, animated: true, completion: nil)
+                self.present(alert, animated: true, completion: nil)
             }
             
             
         } else {
             let alert = UIAlertController(title: "error", message: "Moi nhap day du", preferredStyle: UIAlertController.Style.actionSheet)
-                       alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
-                        self.present(alert, animated: true, completion: nil)
+            alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             
-            }
+        }
         
-       
-       }
+        
+    }
     
- 
+    
     func getNewChildTitle(){
         ref.child("Account").child("userid1").child("event").observeSingleEvent(of: .value) {[weak self] (snapshot) in
             guard let self = self else {
                 return
-           }
+            }
             if snapshot.childrenCount == 0 {
                 self.newChild = 0
             } else if snapshot.childrenCount != 0 {
                 self.newChild = Int(snapshot.childrenCount)
             }
-          
+            
         }
     }
     
-   
-
+    
+    
 }

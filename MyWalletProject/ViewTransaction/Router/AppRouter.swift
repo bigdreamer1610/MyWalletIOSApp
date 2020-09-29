@@ -27,21 +27,21 @@ class AppRouter {
         }
     }
     
-    class func setRootView(){
-        DispatchQueue.main.async {
-            if let window = UIApplication.shared.keyWindow {
-                window.rootViewController = nil
-                let navigationController = UINavigationController(rootViewController: RouterType.viewTransaction.getVc())
-                navigationController.isNavigationBarHidden = true
-                window.rootViewController = navigationController
-                let options: UIView.AnimationOptions = .transitionCrossDissolve
-                UIView.transition(with: window, duration: 0.3, options: options, animations: {}) { (completed) in
-                    
-                }
-                window.makeKeyAndVisible()
-            }
-        }
-    }
+//    class func setRootView(){
+//        DispatchQueue.main.async {
+//            if let window = UIApplication.shared.keyWindow {
+//                window.rootViewController = nil
+//                let navigationController = UINavigationController(rootViewController: RouterType.viewTransaction.getVc())
+//                navigationController.isNavigationBarHidden = true
+//                window.rootViewController = navigationController
+//                let options: UIView.AnimationOptions = .transitionCrossDissolve
+//                UIView.transition(with: window, duration: 0.3, options: options, animations: {}) { (completed) in
+//
+//                }
+//                window.makeKeyAndVisible()
+//            }
+//        }
+//    }
 }
 extension RouterType{
     func getVc() -> UIViewController {

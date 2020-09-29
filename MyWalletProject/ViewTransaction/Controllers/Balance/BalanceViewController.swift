@@ -38,8 +38,8 @@ class BalanceViewController: UIViewController {
         self.modalPresentationStyle = .fullScreen
     }
     @IBAction func clickCancel(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-        self.modalPresentationStyle = .fullScreen
+        let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as? ViewTransactionController
+        AppRouter.routerTo(from: vc!, options: .curveEaseOut, duration: 0.3, isNaviHidden: true)
         
     }
 }

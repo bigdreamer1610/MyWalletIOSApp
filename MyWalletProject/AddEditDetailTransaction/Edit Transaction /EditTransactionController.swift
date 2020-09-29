@@ -28,6 +28,7 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
     @IBOutlet var txtNote: UITextField!
     @IBOutlet weak var txtDate: UITextField!
     
+    @IBOutlet var tfEvent: UITextField!
     @IBOutlet var txtCategory: UITextField!
     @IBOutlet var txtAmount: UITextField!
     let datePicker = UIDatePicker()
@@ -35,7 +36,14 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         configure()
         ShowDatePicker()
+        customizeLayout()
         txtAmount.delegate = self
+    }
+    
+    func customizeLayout(){
+        txtCategory.setRightImage(imageName: "arrowright")
+        tfEvent.setRightImage(imageName: "arrowright")
+        txtDate.setRightImage(imageName: "arrowright")
     }
     
     
@@ -73,7 +81,7 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
             "categoryid": txtCategory.text!,
             "amount": amount
             ] as [String : Any]
-        MyDatabase.ref.child("Account/userid1/transaction/\(self.type)/\(self.transactionId)").updateChildValues(update) { (error, reference) in
+        Defined.ref.child("Account/userid1/transaction/\(self.type)/\(self.transactionId)").updateChildValues(update) { (error, reference) in
             if error != nil {
                 print("Error: \(error!)")
             } else {
