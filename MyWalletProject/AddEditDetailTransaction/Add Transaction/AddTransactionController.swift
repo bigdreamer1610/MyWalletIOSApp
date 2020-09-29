@@ -17,6 +17,9 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var tfAmount: UITextField!
     @IBOutlet weak var tfCategory: UITextField!
     @IBOutlet weak var iconImage: UIImageView!
+    @IBOutlet weak var tfEvent: UITextField!
+    @IBOutlet weak var iconEvent: UIImageView!
+    @IBOutlet weak var viewShowMore: UIView!
     
     @IBOutlet var btnCancel: UIBarButtonItem!
     @IBOutlet var btnSave: UIBarButtonItem!
@@ -29,6 +32,7 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
     var thisDate = Date()
     private let dateFormatter = DateFormatter()
     override func viewDidLoad() {
+        viewShowMore.alpha = 0
         super.viewDidLoad()
         dateFormatter.locale = Locale(identifier: "vi_VN")
         dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -47,16 +51,17 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
     func addEvent()  {
         tfCategory.addTarget(self, action: #selector(myEvent), for: .touchDown)
         tfDate.addTarget(self, action: #selector(myDate), for: .touchDown)
+        tfEvent.addTarget(self, action: #selector(myEven), for: .touchDown)
     }
     
     @objc func myEvent(textField: UITextField) {
-        let vc = UIStoryboard.init(name: "Bac", bundle: nil).instantiateViewController(withIdentifier: "selectCategory") as? SelectCategoryController
+        let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "selectCategory") as? SelectCategoryController
         vc?.delegate = self
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     @objc func myDate(textField: UITextField) {
-        let vc = UIStoryboard.init(name: "Bac", bundle: nil).instantiateViewController(withIdentifier: "customDate") as? CustomDateController
+        let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "customDate") as? CustomDateController
         if tfDate.text != "" {
             thisDate = dateFormatter.date(from: tfDate.text!)!
         }
@@ -65,6 +70,11 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
         self.navigationController?.pushViewController(vc!, animated: true)
         
     }
+    @objc func myEven(textField:UITextField){
+           let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "selectEvent") as? SelectEventController
+           vc?.delegate = self
+           self.navigationController?.pushViewController(vc!, animated: true)
+       }
     
     
     @IBAction func clickCancel(_ sender: Any) {
@@ -86,14 +96,24 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
             "date": tfDate.text!,
             "note": tfNote.text!,
             "amount" :amount,
-            "categoryid": id]
-        Defined.ref.child("Account/userid1/transaction/\(type)").childByAutoId().setValue(writeData)
+            "categoryid": id,
+            "event":tfEvent.text!]
+        MyDatabase.ref.child("Account/userid1/transaction/\(type)").childByAutoId().setValue(writeData)
         let alert = UIAlertController(title: "Notification", message: "Add a new transaction successfully", preferredStyle: .alert)
         //alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
             self.dismiss(animated: true, completion: nil)
         }))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func btnAddMoreDetails(_ sender: Any) {
+        viewShowMore.alpha = 1
+    }
+    
+    @IBAction func btnDeleteMoreDetails(_ sender: Any) {
+        tfEvent.text = ""
+        iconEvent.image = UIImage(named: "others")
     }
     //TODO: - Fix only enable button all textfields except tfNote is not empty
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -113,8 +133,11 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
     }
 }
 
-extension AddTransactionController: SelectCategory, SelectDate{
-    
+extension AddTransactionController: SelectCategory, SelectDate, SelectEvent{
+    func setEvent(nameEvent: String) {
+        tfEvent.text = nameEvent
+        iconEvent.image = UIImage(named: nameEvent)
+    }
     func setDate(date: String) {
         tfDate.text = date
     }

@@ -12,5 +12,13 @@ class Constant{
     static let categoryid = "categoryid"
     static let date = "date"
     static let note = "note"
-    static let cancelTitle = ""
+    static let detailsTransaction = "DetailTransaction"
+    
+    // Event
+    static let categoryIdEvent = "categoryid"
+    static let nameEvent = "name"
+    static let dateEndEvent = "dateEnd"
+    static let dateStartEvent = "dateStart"
+    static let goalEvent = "goal"
+    static let spentEvent = "spent"
 }
