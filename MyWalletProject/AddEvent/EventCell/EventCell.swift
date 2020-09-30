@@ -31,7 +31,7 @@ class EventCell: UITableViewCell {
     
     
     func load(event: Event )  {
-        imgCategory.image = UIImage(named: event.category!)
+        imgCategory.image = UIImage(named: event.categoryid!)
         nameEvent.text = event.name
         lblMoney.text = String(event.goal!)
     }

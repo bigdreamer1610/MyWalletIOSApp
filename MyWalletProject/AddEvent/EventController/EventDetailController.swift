@@ -11,19 +11,25 @@ import UIKit
 class EventDetailController: UIViewController {
 
     @IBOutlet weak var btmarkCompleted: UIButton!
-    
     @IBOutlet weak var btTransaction: UIButton!
-    
-    
     @IBOutlet weak var btDeleteEvent: UIButton!
     
+    @IBOutlet weak var imgCategoryDetail: UIImageView!
+    @IBOutlet weak var imgCalendar: UIImageView!
+    
+    @IBOutlet weak var nameEvent: UITextField!
+    @IBOutlet weak var tfDate: UITextField!
+    var event = Event()
+    var eventName = ""
+    var eventDate = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setUpButton()
-
-        // Do any additional setup after loading the view.
+        loadDetail(event: event)
+        
+        
     }
     
     
@@ -42,18 +48,13 @@ class EventDetailController: UIViewController {
         btmarkCompleted.layer.borderColor = UIColor.blue.cgColor
         btmarkCompleted.layer.borderWidth = 2
         btmarkCompleted.layer.cornerRadius = 15
-        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func loadDetail(event: Event) {
+        nameEvent.text = event.name!
+        tfDate.text = event.dateEnd!
+        imgCategoryDetail.image = UIImage(named: event.categoryid!)
     }
-    */
-
+    
+    
 }
