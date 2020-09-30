@@ -27,7 +27,7 @@
 		<key>FSCalendar.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>23</integer>
+			<integer>22</integer>
 		</dict>
 		<key>Firebase.xcscheme</key>
 		<dict>
@@ -102,7 +102,7 @@
 		<key>MonthYearPicker.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>24</integer>
+			<integer>23</integer>
 		</dict>
 		<key>Pods-MyWalletProject.xcscheme</key>
 		<dict>
@@ -117,7 +117,7 @@
 		<key>SwiftDate.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>25</integer>
+			<integer>24</integer>
 		</dict>
 		<key>leveldb-library.xcscheme</key>
 		<dict>
