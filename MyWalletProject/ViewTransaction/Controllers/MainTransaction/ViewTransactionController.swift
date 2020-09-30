@@ -127,7 +127,6 @@ class ViewTransactionController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: true)
         DispatchQueue.main.async {
             self.getDataTransactions(month: self.currentMonth, year: self.currentYear)
             self.getBalance()
@@ -141,12 +140,12 @@ class ViewTransactionController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
     func jumpToDate(from date: Date){
         let firstIndexPath = IndexPath(item: getIndexPathOfThisMonthCell(from: date), section: 0)
-        monthCollectionView.selectItem(at: firstIndexPath, animated: false, scrollPosition: .centeredHorizontally)
+        print("this date: \(date)")
+        monthCollectionView.selectItem(at: firstIndexPath, animated: true, scrollPosition: .centeredHorizontally)
     }
 
     //MARK: - Set up view mode
@@ -815,19 +814,6 @@ extension ViewTransactionController : UITableViewDelegate {
 
 
 }
-
-//extension UITextField{
-//
-//    func setRightImage(imageName:String) {
-//
-//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
-//        imageView.image = UIImage(named: imageName)
-//        imageView.contentMode = .scaleToFill
-//        self.rightView = imageView;
-//        self.rightViewMode = .always
-//    }
-//}
-
 extension UITextField {
     func setRightImage(imageName: String) {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
