@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7bK-O2-twj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -112,14 +112,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SRh-s9-oki">
-                                <rect key="frame" x="0.0" y="148" width="414" height="714"/>
+                                <rect key="frame" x="0.0" y="104" width="414" height="758"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cEU-L0-wc6" userLabel="CategoryTableview">
-                                <rect key="frame" x="0.0" y="148" width="414" height="714"/>
+                                <rect key="frame" x="0.0" y="104" width="414" height="758"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5HR-lo-qWB">
-                                <rect key="frame" x="87" y="411" width="240" height="128"/>
+                                <rect key="frame" x="87" y="389" width="240" height="128"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="cK8-Hx-Sr8">
                                         <rect key="frame" x="105" y="49" width="30" height="30"/>
@@ -137,7 +137,7 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="akX-tp-TDh">
-                                <rect key="frame" x="134.5" y="411.5" width="145" height="127"/>
+                                <rect key="frame" x="134.5" y="389.5" width="145" height="127"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notransaction" translatesAutoresizingMaskIntoConstraints="NO" id="wEA-78-naK">
                                         <rect key="frame" x="0.0" y="0.0" width="145" height="87"/>
@@ -156,7 +156,7 @@
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3hQ-T3-xu6">
-                                <rect key="frame" x="0.0" y="88" width="414" height="60"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="POE-0Y-Vet">
                                         <rect key="frame" x="379" y="15" width="30" height="30"/>
@@ -226,28 +226,9 @@
             </objects>
             <point key="canvasLocation" x="1297" y="138"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Abv-qy-X6X">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7bK-O2-twj" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KTV-MZ-sro">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="LzF-dC-f2W" kind="relationship" relationship="rootViewController" id="lTR-0n-6Qe"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="I4G-9b-Wi5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="377" y="139"/>
-        </scene>
         <!--Detail Transaction Controller-->
         <scene sceneID="kLv-bM-gtu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zyL-YQ-VmG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="detail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="egE-Q9-y9Y" customClass="DetailTransactionController" customModule="MyWalletProject" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="foy-Dd-I4d">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -390,13 +371,13 @@
                         <outlet property="lblEvent" destination="vce-SO-3gi" id="Ytc-yF-4qI"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zyL-YQ-VmG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3946.376811594203" y="138.61607142857142"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="F5O-1y-Fly">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uWa-3H-Yfz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZL7-aE-JXu" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vb2-LN-E8e">
@@ -408,13 +389,13 @@
                         <segue destination="egE-Q9-y9Y" kind="relationship" relationship="rootViewController" id="mGn-bE-NKU"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uWa-3H-Yfz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3034.7826086956525" y="138.61607142857142"/>
         </scene>
         <!--Edit Transaction-->
         <scene sceneID="bUG-SK-Rf6">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="W00-1B-DuQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="edit" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iZX-5p-SE6" customClass="EditTransactionController" customModule="MyWalletProject" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tFo-pQ-a3c">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -666,13 +647,13 @@
                         <outlet property="txtNote" destination="az8-98-Grr" id="Mzu-GE-YGM"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W00-1B-DuQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5942" y="139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="fm2-Bt-DJX">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6Ip-Up-vWf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LhE-eN-VQp" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="MOC-4g-617">
@@ -684,6 +665,7 @@
                         <segue destination="iZX-5p-SE6" kind="relationship" relationship="rootViewController" id="EAm-3f-h0Y"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Ip-Up-vWf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5032" y="139"/>
         </scene>

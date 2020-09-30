@@ -119,7 +119,6 @@
 		8A3BB434251B6069008113E9 /* CurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BB433251B6069008113E9 /* CurrencyViewController.swift */; };
 		8A725C4E251C79FD00610758 /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A725C4D251C79FD00610758 /* CurrencyModel.swift */; };
 		8ACA6248251A07980031E6DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACA6247251A07980031E6DF /* AppDelegate.swift */; };
-		8ACA624A251A07980031E6DF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACA6249251A07980031E6DF /* SceneDelegate.swift */; };
 		8ACA624C251A07980031E6DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACA624B251A07980031E6DF /* ViewController.swift */; };
 		8ACA624F251A07980031E6DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ACA624D251A07980031E6DF /* Main.storyboard */; };
 		8ACA6251251A079B0031E6DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8ACA6250251A079B0031E6DF /* Assets.xcassets */; };
@@ -275,7 +274,6 @@
 		8A725C4D251C79FD00610758 /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
 		8ACA6244251A07980031E6DF /* MyWalletProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWalletProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ACA6247251A07980031E6DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8ACA6249251A07980031E6DF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8ACA624B251A07980031E6DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8ACA624E251A07980031E6DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8ACA6250251A079B0031E6DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -814,7 +812,6 @@
 				8A3BB41D251AE6D9008113E9 /* UserSettings */,
 				D270F4AE251B52A700CB274C /* AddEvent */,
 				72A7190D251DDD08003ED157 /* Report */,
-				8ACA6249251A07980031E6DF /* SceneDelegate.swift */,
 				8ACA6247251A07980031E6DF /* AppDelegate.swift */,
 				8ACA624B251A07980031E6DF /* ViewController.swift */,
 				8ACA624D251A07980031E6DF /* Main.storyboard */,
@@ -1192,7 +1189,6 @@
 				8A3BB431251B326E008113E9 /* SettingsUseCase.swift in Sources */,
 				7338862D25231F68002F126B /* EditTransactionController.swift in Sources */,
 				56B8A81B25248CAE00B8E8F0 /* CalendarViewController.swift in Sources */,
-				8ACA624A251A07980031E6DF /* SceneDelegate.swift in Sources */,
 				72873D8F25249B2700313629 /* DayDetail.swift in Sources */,
 				7338862625231F68002F126B /* CustomDateController.swift in Sources */,
 				8A1E077A251C3DB3000DCF07 /* CurrencyPresenter.swift in Sources */,
@@ -1404,6 +1400,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MyWalletProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1423,6 +1420,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MyWalletProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
