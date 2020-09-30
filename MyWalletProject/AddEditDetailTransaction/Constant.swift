@@ -37,4 +37,5 @@ class Constant{
     let addressBlank = "Address can not be blank, please try again!"
     let languageBlank = "Language can not be blank, please try again!"
     let languageNotMatchFormat = "Language does not match with our format, please try again!"
+    
 }
