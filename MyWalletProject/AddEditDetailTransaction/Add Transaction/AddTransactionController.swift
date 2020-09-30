@@ -93,7 +93,8 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func clickCancel(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        let vc = UIStoryboard.init(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as? ViewTransactionController
+        AppRouter.routerTo(from: vc!, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
         
     }
     @IBAction func btnSave(_ sender: Any) {
@@ -115,11 +116,10 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
             "event":tfEvent.text!]
         Defined.ref.child("Account/userid1/transaction/\(type)").childByAutoId().setValue(writeData)
         let alert = UIAlertController(title: "Notification", message: "Add a new transaction successfully", preferredStyle: .alert)
-        //alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-            self.dismiss(animated: true, completion: nil)
+            let vc = UIStoryboard.init(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as? ViewTransactionController
+            AppRouter.routerTo(from: vc!, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
         }))
-        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func btnAddMoreDetails(_ sender: Any) {
@@ -151,10 +151,6 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
 }
 
 extension AddTransactionController: SelectCategory, SelectDate{
-//    func setEvent(nameEvent: String) {
-//        tfEvent.text = nameEvent
-//        iconEvent.image = UIImage(named: nameEvent)
-//    }
     func setDate(date: String) {
         tfDate.text = date
     }

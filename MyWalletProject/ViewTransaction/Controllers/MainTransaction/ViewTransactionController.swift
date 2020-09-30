@@ -816,15 +816,25 @@ extension ViewTransactionController : UITableViewDelegate {
 
 }
 
-extension UITextField{
+//extension UITextField{
+//
+//    func setRightImage(imageName:String) {
+//
+//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+//        imageView.image = UIImage(named: imageName)
+//        imageView.contentMode = .scaleToFill
+//        self.rightView = imageView;
+//        self.rightViewMode = .always
+//    }
+//}
 
-    func setRightImage(imageName:String) {
-
+extension UITextField {
+    func setRightImage(imageName: String) {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
-        imageView.image = UIImage(named: imageName)
-        imageView.contentMode = .scaleToFill
-        self.rightView = imageView;
-        self.rightViewMode = .always
+                imageView.image = UIImage(named: imageName)
+                imageView.contentMode = .scaleToFill
+                self.rightView = imageView;
+                self.rightViewMode = .always
     }
 }
 

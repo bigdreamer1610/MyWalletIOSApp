@@ -8,12 +8,20 @@
 
 import UIKit
 
+protocol CustomCollectionCellDelegate:class {
+    func collectionView(collectioncell:PieChartCollectionViewCell?, didTappedInTableview TableCell:PieChartTableViewCell)
+    
+}
 
-class PieChartTableViewCell: UITableViewCell {
+class PieChartTableViewCell: BaseTBCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    let cellID = "PieChartCollectionViewCell"
+       var date = "" {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    weak var delegate: CustomCollectionCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,9 +29,10 @@ class PieChartTableViewCell: UITableViewCell {
     }
     
     func setupCollection() {
-        collectionView.register(UINib(nibName: cellID, bundle: nil), forCellWithReuseIdentifier: cellID)
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        
+        PieChartCollectionViewCell.registerCellByNib(collectionView)
+        self.collectionView.delegate = self
+        self.collectionView.dataSource = self
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -38,7 +47,9 @@ extension PieChartTableViewCell: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! PieChartCollectionViewCell
+        let cell = PieChartCollectionViewCell.loadCell(collectionView, path: indexPath) as! PieChartCollectionViewCell
+        cell.date = date
+       
         if indexPath.row == 0 {
             cell.state = 1
             cell.lblTypeOfMoney.text = "Khoản thu"
@@ -48,6 +59,11 @@ extension PieChartTableViewCell: UICollectionViewDataSource, UICollectionViewDel
             cell.lblMoney.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
         }
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("This is pie chart")
+        let cell = PieChartCollectionViewCell.loadCell(collectionView, path: indexPath) as! PieChartCollectionViewCell
+        self.delegate?.collectionView(collectioncell: cell, didTappedInTableview: self)
     }
 }
 
