@@ -552,10 +552,10 @@
 			isa = PBXGroup;
 			children = (
 				8AB19A0C2524400D0074C8F0 /* Helpers */,
+				8ACA6284251A0C2A0031E6DF /* DataModel */,
 				7338860225231F67002F126B /* AddEditDetailTransaction */,
 				73E0B15A2521E0ED0097D41F /* ViewTransaction */,
 				735873EB252177FA00B8235D /* Tabbar */,
-				8ACA6284251A0C2A0031E6DF /* DataModel */,
 				8A3BB414251ADEE6008113E9 /* ScanBill */,
 				8A3BB41D251AE6D9008113E9 /* UserSettings */,
 				D270F4AE251B52A700CB274C /* AddEvent */,
