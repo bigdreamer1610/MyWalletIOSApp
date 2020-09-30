@@ -66,7 +66,7 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
     func addEvent()  {
         tfCategory.addTarget(self, action: #selector(myEvent), for: .touchDown)
         tfDate.addTarget(self, action: #selector(myDate), for: .touchDown)
-        tfEvent.addTarget(self, action: #selector(myEven), for: .touchDown)
+//        tfEvent.addTarget(self, action: #selector(myEven), for: .touchDown)
     }
     
     @objc func myEvent(textField: UITextField) {
@@ -85,11 +85,11 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
         self.navigationController?.pushViewController(vc!, animated: true)
         
     }
-    @objc func myEven(textField:UITextField){
-           let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "selectEvent") as? SelectEventController
-           vc?.delegate = self
-           self.navigationController?.pushViewController(vc!, animated: true)
-       }
+//    @objc func myEven(textField:UITextField){
+//           let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "selectEvent") as? SelectEventController
+//           vc?.delegate = self
+//           self.navigationController?.pushViewController(vc!, animated: true)
+//       }
     
     
     @IBAction func clickCancel(_ sender: Any) {
@@ -150,11 +150,11 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
     }
 }
 
-extension AddTransactionController: SelectCategory, SelectDate, SelectEvent{
-    func setEvent(nameEvent: String) {
-        tfEvent.text = nameEvent
-        iconEvent.image = UIImage(named: nameEvent)
-    }
+extension AddTransactionController: SelectCategory, SelectDate{
+//    func setEvent(nameEvent: String) {
+//        tfEvent.text = nameEvent
+//        iconEvent.image = UIImage(named: nameEvent)
+//    }
     func setDate(date: String) {
         tfDate.text = date
     }

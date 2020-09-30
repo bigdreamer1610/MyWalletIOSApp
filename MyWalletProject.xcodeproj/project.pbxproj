@@ -27,11 +27,6 @@
 		7338862925231F68002F126B /* SelectCategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7338861425231F67002F126B /* SelectCategoryController.swift */; };
 		7338862D25231F68002F126B /* EditTransactionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7338861A25231F67002F126B /* EditTransactionController.swift */; };
 		7338862E25231F68002F126B /* DetailTransactionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7338861C25231F67002F126B /* DetailTransactionController.swift */; };
-		7338863625232521002F126B /* SelectEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7338863025232521002F126B /* SelectEventController.swift */; };
-		7338863725232521002F126B /* SelectEventUserCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7338863125232521002F126B /* SelectEventUserCase.swift */; };
-		7338863825232521002F126B /* SelectEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7338863325232521002F126B /* SelectEventCell.xib */; };
-		7338863925232521002F126B /* SelectEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7338863425232521002F126B /* SelectEventCell.swift */; };
-		7338863A25232521002F126B /* SelectEventUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7338863525232521002F126B /* SelectEventUseCase.swift */; };
 		735873EE2521780D00B8235D /* MainTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735873EC2521780D00B8235D /* MainTabbar.swift */; };
 		735873EF2521780D00B8235D /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735873ED2521780D00B8235D /* MainTabViewController.swift */; };
 		73E0B1772521E0EE0097D41F /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E0B15B2521E0ED0097D41F /* TransactionModel.swift */; };
@@ -129,7 +124,7 @@
 		72A71921251DDEEE003ED157 /* PieChartCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartCollectionViewCell.swift; sourceTree = "<group>"; };
 		72A71922251DDEEE003ED157 /* PieChartCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PieChartCollectionViewCell.xib; sourceTree = "<group>"; };
 		72A71925251DDF35003ED157 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
-		7338860325231F67002F126B /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		7338860325231F67002F126B /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constant.swift; path = ../AddEditDetailTransaction/Constant.swift; sourceTree = "<group>"; };
 		7338860425231F67002F126B /* BacNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BacNavigationController.swift; sourceTree = "<group>"; };
 		7338860525231F67002F126B /* DetailTransaction.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DetailTransaction.storyboard; sourceTree = "<group>"; };
 		7338860725231F67002F126B /* AddTransactionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTransactionController.swift; sourceTree = "<group>"; };
@@ -139,11 +134,6 @@
 		7338861425231F67002F126B /* SelectCategoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCategoryController.swift; sourceTree = "<group>"; };
 		7338861A25231F67002F126B /* EditTransactionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTransactionController.swift; sourceTree = "<group>"; };
 		7338861C25231F67002F126B /* DetailTransactionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTransactionController.swift; sourceTree = "<group>"; };
-		7338863025232521002F126B /* SelectEventController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectEventController.swift; sourceTree = "<group>"; };
-		7338863125232521002F126B /* SelectEventUserCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectEventUserCase.swift; sourceTree = "<group>"; };
-		7338863325232521002F126B /* SelectEventCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectEventCell.xib; sourceTree = "<group>"; };
-		7338863425232521002F126B /* SelectEventCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectEventCell.swift; sourceTree = "<group>"; };
-		7338863525232521002F126B /* SelectEventUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectEventUseCase.swift; sourceTree = "<group>"; };
 		735873EC2521780D00B8235D /* MainTabbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabbar.swift; sourceTree = "<group>"; };
 		735873ED2521780D00B8235D /* MainTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
 		73E0B15B2521E0ED0097D41F /* TransactionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
@@ -303,7 +293,6 @@
 		7338860225231F67002F126B /* AddEditDetailTransaction */ = {
 			isa = PBXGroup;
 			children = (
-				7338860325231F67002F126B /* Constant.swift */,
 				7338860425231F67002F126B /* BacNavigationController.swift */,
 				7338860525231F67002F126B /* DetailTransaction.storyboard */,
 				7338860625231F67002F126B /* Add Transaction */,
@@ -316,7 +305,6 @@
 		7338860625231F67002F126B /* Add Transaction */ = {
 			isa = PBXGroup;
 			children = (
-				7338862F25232521002F126B /* Select Event */,
 				7338860725231F67002F126B /* AddTransactionController.swift */,
 				7338860F25231F67002F126B /* Date */,
 				7338861125231F67002F126B /* SelectCategory */,
@@ -356,27 +344,6 @@
 				7338861C25231F67002F126B /* DetailTransactionController.swift */,
 			);
 			path = "Detail Transaction";
-			sourceTree = "<group>";
-		};
-		7338862F25232521002F126B /* Select Event */ = {
-			isa = PBXGroup;
-			children = (
-				7338863025232521002F126B /* SelectEventController.swift */,
-				7338863125232521002F126B /* SelectEventUserCase.swift */,
-				7338863225232521002F126B /* Event Cell */,
-				7338863525232521002F126B /* SelectEventUseCase.swift */,
-			);
-			name = "Select Event";
-			path = "../../../../../../../Downloads/MyWalletProject/MyWalletProject/AddEditDetailTransaction/Add Transaction/Select Event";
-			sourceTree = "<group>";
-		};
-		7338863225232521002F126B /* Event Cell */ = {
-			isa = PBXGroup;
-			children = (
-				7338863325232521002F126B /* SelectEventCell.xib */,
-				7338863425232521002F126B /* SelectEventCell.swift */,
-			);
-			path = "Event Cell";
 			sourceTree = "<group>";
 		};
 		7338863B25232A77002F126B /* Models */ = {
@@ -551,6 +518,14 @@
 			path = MoneyCurrencies;
 			sourceTree = "<group>";
 		};
+		8AB19A0C2524400D0074C8F0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				7338860325231F67002F126B /* Constant.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		8ACA623B251A07980031E6DF = {
 			isa = PBXGroup;
 			children = (
@@ -576,6 +551,7 @@
 		8ACA6246251A07980031E6DF /* MyWalletProject */ = {
 			isa = PBXGroup;
 			children = (
+				8AB19A0C2524400D0074C8F0 /* Helpers */,
 				7338860225231F67002F126B /* AddEditDetailTransaction */,
 				73E0B15A2521E0ED0097D41F /* ViewTransaction */,
 				735873EB252177FA00B8235D /* Tabbar */,
@@ -793,7 +769,6 @@
 				73E0B1862521E0EE0097D41F /* HeaderCategoryCell.xib in Resources */,
 				8A3BB427251AFE7C008113E9 /* SettingsItemViewCell.xib in Resources */,
 				D270F4BE251B54DF00CB274C /* EventCell.xib in Resources */,
-				7338863825232521002F126B /* SelectEventCell.xib in Resources */,
 				72A71920251DDEBD003ED157 /* PieChartTableViewCell.xib in Resources */,
 				D270F4C2251B550E00CB274C /* CategoryEventCell.xib in Resources */,
 				73E0B1822521E0EE0097D41F /* DetailCell.xib in Resources */,
@@ -905,7 +880,6 @@
 				D270F4C4251B557D00CB274C /* CalendarController.swift in Sources */,
 				8A3BB421251AF91F008113E9 /* UserSettingsViewController.swift in Sources */,
 				D270F4B9251B545600CB274C /* CategoryEvent.swift in Sources */,
-				7338863725232521002F126B /* SelectEventUserCase.swift in Sources */,
 				8A3BB413251ADED6008113E9 /* Budget.swift in Sources */,
 				D270F4C1251B550E00CB274C /* CategoryEventCell.swift in Sources */,
 				73E0B17C2521E0EE0097D41F /* FirstNavigationController.swift in Sources */,
@@ -918,7 +892,6 @@
 				7338861E25231F68002F126B /* BacNavigationController.swift in Sources */,
 				73E0B18B2521E0EE0097D41F /* MonthCell.swift in Sources */,
 				8A3BB42D251B21A2008113E9 /* SettingsViewController.swift in Sources */,
-				7338863925232521002F126B /* SelectEventCell.swift in Sources */,
 				73E0B1812521E0EE0097D41F /* DetailCell.swift in Sources */,
 				7338862925231F68002F126B /* SelectCategoryController.swift in Sources */,
 				73E0B1A9252206200097D41F /* AppRouter.swift in Sources */,
@@ -936,14 +909,12 @@
 				73E0B17A2521E0EE0097D41F /* BalanceViewController.swift in Sources */,
 				73E0B18C2521E0EE0097D41F /* BaseCLCell.swift in Sources */,
 				73E0B1792521E0EE0097D41F /* Defined.swift in Sources */,
-				7338863A25232521002F126B /* SelectEventUseCase.swift in Sources */,
 				735873EE2521780D00B8235D /* MainTabbar.swift in Sources */,
 				D270F4BD251B54DF00CB274C /* EventCell.swift in Sources */,
 				72A7191A251DDE87003ED157 /* StackedBarChartTableViewCell.swift in Sources */,
 				72A71923251DDEEE003ED157 /* PieChartCollectionViewCell.swift in Sources */,
 				735873EF2521780D00B8235D /* MainTabViewController.swift in Sources */,
 				73E0B17E2521E0EE0097D41F /* TransactionCell.swift in Sources */,
-				7338863625232521002F126B /* SelectEventController.swift in Sources */,
 				7338862E25231F68002F126B /* DetailTransactionController.swift in Sources */,
 				D270F4B5251B541000CB274C /* AddEventController.swift in Sources */,
 				D270F4B7251B542900CB274C /* EventDetailController.swift in Sources */,

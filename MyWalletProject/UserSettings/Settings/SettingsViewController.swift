@@ -24,8 +24,12 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var txtAddress: UITextField!
     @IBOutlet weak var txtLanguage: UITextField!
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     @IBOutlet weak var btnSave: UIButton!
     @IBOutlet weak var btnCancel: UIButton!
+    
+    
     
     var user = Account()
     
@@ -37,6 +41,15 @@ class SettingsViewController: UIViewController {
         makeRoundedImage()
         configureButton(btnSave)
         configureButton(btnCancel)
+        
+        scrollViewDidScroll(scrollView: scrollView)
+    }
+    
+    // MARK: - Disable horizontal scroll
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if scrollView.contentOffset.x>0 {
+            scrollView.contentOffset.x = 0
+        }
     }
     
     // MARK: - Rounded user's avatar
