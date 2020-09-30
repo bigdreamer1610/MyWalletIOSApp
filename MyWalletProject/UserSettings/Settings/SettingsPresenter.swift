@@ -8,6 +8,17 @@
 
 import Foundation
 
+enum Gender: String {
+    case male = "Male"
+    case female = "Female"
+    case others = "Others"
+}
+
+enum Language: String {
+    case vietnamese = "Vietnamese"
+    case english = "English"
+}
+
 class SettingsPresenter {
     
     var viewDelegate: SettingsViewControllerProtocol?
@@ -17,45 +28,46 @@ class SettingsPresenter {
         var message = ""
         var state = false
         
+        let constant = Constant()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
+        dateFormatter.dateFormat = constant.dateFormat
         
         // MARK: - Handle invalid cases
         // Username field
-        if user.name! == "" {
-            message = "Username can not be blank, please try again!"
+        if let name = user.name, name == "" {
+            message = constant.usernameBlank
         }
         // Balance field
-        else if user.balance! == -1 {
-            message = "Balance can not be blank, please try again!"
+        else if let balance =  user.balance, balance == -1 {
+            message = constant.balanceBlank
         }
         // Date of birth field
-        else if user.dateOfBirth! == "" {
-            message = "Date of birth can not be blank, please try again!"
-        } else if dateFormatter.date(from: user.dateOfBirth!) == nil {
-            message = "Date of birth does not match with out format, please try again!"
+        else if let dob = user.dateOfBirth, dob == "" {
+            message = constant.dobBlank
+        } else if let dob = user.dateOfBirth, dateFormatter.date(from: dob) == nil {
+            message = constant.dobNotMatchFormat
         }
         // Phone number field
-        else if user.phoneNumber! == "" {
-            message = "Phone number can not be blank, please try again!"
-        } else if !CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: user.phoneNumber!)) {
-            message = "Phone number contains numbers only, please try again!"
+        else if let phone = user.phoneNumber, phone == "" {
+            message = constant.phoneNumberBlank
+        } else if let phone = user.phoneNumber, !CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: phone)) {
+            message = constant.phoneNumberContainNumber
         }
         // Gender field
-        else if user.gender! == "" {
-            message = "Gender can not be blank, please try again!"
-        } else if user.gender! != "Male" && user.gender! != "Female" && user.gender! != "Others" {
-            message = "Gender does not match with our format, please try again!"
+        else if let gender = user.gender, gender == "" {
+            message = constant.genderBlank
+        } else if let gender = user.gender, gender != Gender.male.rawValue, gender != Gender.female.rawValue, gender != Gender.others.rawValue {
+            message = constant.genderNotMatchFormat
         }
         // Address field
-        else if user.address! == "" {
-            message = "Address can not be blank, please try again!"
+        else if let address = user.address, address == "" {
+            message = constant.addressBlank
         }
         // Language field
-        else if user.language! == "" {
-            message = "Language can not be blank, please try again!"
-        } else if user.language! != "English" && user.language! != "Vietnamese" {
-            message = "Language does not match with our format, please try again!"
+        else if let language = user.language, language == "" {
+            message = constant.languageBlank
+        } else if let language = user.language, language != Language.english.rawValue, language != Language.vietnamese.rawValue {
+            message = constant.languageNotMatchFormat
         }
         else {
             // Input passes all validation

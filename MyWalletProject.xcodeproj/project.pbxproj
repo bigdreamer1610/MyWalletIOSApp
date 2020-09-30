@@ -129,7 +129,7 @@
 		72A71921251DDEEE003ED157 /* PieChartCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartCollectionViewCell.swift; sourceTree = "<group>"; };
 		72A71922251DDEEE003ED157 /* PieChartCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PieChartCollectionViewCell.xib; sourceTree = "<group>"; };
 		72A71925251DDF35003ED157 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
-		7338860325231F67002F126B /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		7338860325231F67002F126B /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constant.swift; path = ../AddEditDetailTransaction/Constant.swift; sourceTree = "<group>"; };
 		7338860425231F67002F126B /* BacNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BacNavigationController.swift; sourceTree = "<group>"; };
 		7338860525231F67002F126B /* DetailTransaction.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DetailTransaction.storyboard; sourceTree = "<group>"; };
 		7338860725231F67002F126B /* AddTransactionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTransactionController.swift; sourceTree = "<group>"; };
@@ -303,7 +303,6 @@
 		7338860225231F67002F126B /* AddEditDetailTransaction */ = {
 			isa = PBXGroup;
 			children = (
-				7338860325231F67002F126B /* Constant.swift */,
 				7338860425231F67002F126B /* BacNavigationController.swift */,
 				7338860525231F67002F126B /* DetailTransaction.storyboard */,
 				7338860625231F67002F126B /* Add Transaction */,
@@ -550,6 +549,14 @@
 			path = MoneyCurrencies;
 			sourceTree = "<group>";
 		};
+		8AB19A0C2524400D0074C8F0 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				7338860325231F67002F126B /* Constant.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		8ACA623B251A07980031E6DF = {
 			isa = PBXGroup;
 			children = (
@@ -575,6 +582,7 @@
 		8ACA6246251A07980031E6DF /* MyWalletProject */ = {
 			isa = PBXGroup;
 			children = (
+				8AB19A0C2524400D0074C8F0 /* Helpers */,
 				7338860225231F67002F126B /* AddEditDetailTransaction */,
 				73E0B15A2521E0ED0097D41F /* ViewTransaction */,
 				735873EB252177FA00B8235D /* Tabbar */,

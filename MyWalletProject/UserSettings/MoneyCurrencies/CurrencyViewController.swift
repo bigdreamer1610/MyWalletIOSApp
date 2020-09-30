@@ -33,18 +33,30 @@ class CurrencyViewController: UIViewController {
         
         setupTextFieldDelegate()
         configureButton(btnChangeCurrency)
+        disabledEdittingTextField()
     }
     
     func setupTextFieldDelegate() {
         txtVND.delegate = self
-        txtUSD.delegate = self
-        txtEUR.delegate = self
-        txtJPY.delegate = self
-        txtKRW.delegate = self
-        txtCNY.delegate = self
-        txtSGD.delegate = self
-        txtAUD.delegate = self
-        txtCAD.delegate = self
+    }
+    
+    func disabledEdittingTextField() {
+        txtUSD.isEnabled = false
+        txtUSD.isUserInteractionEnabled = false
+        txtEUR.isEnabled = false
+        txtEUR.isUserInteractionEnabled = false
+        txtJPY.isEnabled = false
+        txtJPY.isUserInteractionEnabled = false
+        txtKRW.isEnabled = false
+        txtKRW.isUserInteractionEnabled = false
+        txtCNY.isEnabled = false
+        txtCNY.isUserInteractionEnabled = false
+        txtSGD.isEnabled = false
+        txtSGD.isUserInteractionEnabled = false
+        txtAUD.isEnabled = false
+        txtAUD.isUserInteractionEnabled = false
+        txtCAD.isEnabled = false
+        txtCAD.isUserInteractionEnabled = false
     }
     
     // MARK: - Make rounded buttons
@@ -75,7 +87,6 @@ extension CurrencyViewController: UITextFieldDelegate {
         return string == numberFiltered
     }
 }
-
 
 extension CurrencyViewController: CurrencyViewControllerProtocol {
     func setupForView(resultModel: ResultData) {
