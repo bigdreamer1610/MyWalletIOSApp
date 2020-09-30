@@ -113,7 +113,7 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
             "note": tfNote.text!,
             "amount" :amount,
             "categoryid": id,
-            "event":tfEvent.text!]
+            "eventid":tfEvent.text!]
         Defined.ref.child("Account/userid1/transaction/\(type)").childByAutoId().setValue(writeData)
         let alert = UIAlertController(title: "Notification", message: "Add a new transaction successfully", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
