@@ -10,7 +10,7 @@ import UIKit
 import Charts
 import FirebaseDatabase
 
-class PieChartCollectionViewCell: UICollectionViewCell, ChartViewDelegate {
+class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
     
     @IBOutlet weak var lblTypeOfMoney: UILabel!
     @IBOutlet weak var lblMoney: UILabel!
@@ -22,8 +22,9 @@ class PieChartCollectionViewCell: UICollectionViewCell, ChartViewDelegate {
     var state = 0
     var entries = [ChartDataEntry]()
     var sumByCategory = [(category: String, amount: Int)]()
+    private var formatter = NumberFormatter()
     
-    var date = "09/2020" {
+    var date = "" {
         didSet {
             getData()
             setChart()
@@ -32,15 +33,11 @@ class PieChartCollectionViewCell: UICollectionViewCell, ChartViewDelegate {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        chartView.delegate = self
         ref = Database.database().reference()
-        
-        chartView.legend.enabled = false
-        chartView.setExtraOffsets(left: -20, top: 10, right: -20, bottom: -30)
+        formatter.groupingSeparator = ","
+        formatter.numberStyle = .decimal
         
         setChart()
-        getData()
     }
     var incomeArray: [Transaction] = [] {
         didSet {
@@ -54,6 +51,7 @@ class PieChartCollectionViewCell: UICollectionViewCell, ChartViewDelegate {
             setChart()
         }
     }
+
     
     func getData()  {
         expenseArray.removeAll()
@@ -69,11 +67,15 @@ class PieChartCollectionViewCell: UICollectionViewCell, ChartViewDelegate {
                 let amount = dict["amount"] as! Int
                 let date = dict["date"] as! String
                 let categoryid = dict["categoryid"] as! String
+                let tempDate = date.split(separator: "/")
                 
-                let ex = Transaction(amount: amount, categoryid: categoryid, date: date)
-                self.sumExpense += amount
-
-                self.expenseArray.append(ex)
+                let checkDate = tempDate[1] + "/" + tempDate[2]
+                
+                if self.date == checkDate {
+                    let ex = Transaction(amount: amount, categoryid: categoryid, date: date)
+                    self.sumExpense += amount
+                    self.expenseArray.append(ex)
+                }
             }
         }
         
@@ -86,14 +88,17 @@ class PieChartCollectionViewCell: UICollectionViewCell, ChartViewDelegate {
                 let amount = dict["amount"] as! Int
                 let date = dict["date"] as! String
                 let categoryid = dict["categoryid"] as! String
+                let tempDate = date.split(separator: "/")
                 
-                let ex = Transaction(amount: amount, categoryid: categoryid, date: date)
-                self.sumIncome += amount
-
-                self.incomeArray.append(ex)
+                let checkDate = tempDate[1] + "/" + tempDate[2]
+                
+                if self.date == checkDate {
+                    let ex = Transaction(amount: amount, categoryid: categoryid, date: date)
+                    self.sumIncome += amount
+                    self.incomeArray.append(ex)
+                }
             }
         }
-        
     }
     
     func dataForPieChart(dataArray: [Transaction]) {
@@ -119,6 +124,22 @@ class PieChartCollectionViewCell: UICollectionViewCell, ChartViewDelegate {
     
     func setChart(){
         entries.removeAll()
+        
+        chartView.delegate = self
+        
+        chartView.rotationEnabled = false
+        chartView.transparentCircleRadiusPercent = 0
+        chartView.drawEntryLabelsEnabled = false
+        
+        let l = chartView.legend
+        l.horizontalAlignment = .left
+        l.verticalAlignment = .bottom
+        l.orientation = .vertical
+        l.formToTextSpace = 4
+//        l.yOffset = 20
+//        l.xOffset = 10
+        l.xEntrySpace = 6
+        
         chartView.frame = CGRect(x: 0,
                                  y: 0,
                                  width: self.containerView.frame.size.width,
@@ -128,7 +149,8 @@ class PieChartCollectionViewCell: UICollectionViewCell, ChartViewDelegate {
         
         if state == 1 {
             dataForPieChart(dataArray: incomeArray)
-            lblMoney.text = "\(sumIncome)"
+
+            lblMoney.text = "\(formatter.string(from: NSNumber(value: sumIncome))!)"
             for index in 0 ..< sumByCategory.count {
                 entries.append(PieChartDataEntry(value: Double(sumByCategory[index].amount), label: sumByCategory[index].category))
             }
@@ -136,7 +158,8 @@ class PieChartCollectionViewCell: UICollectionViewCell, ChartViewDelegate {
             
         else {
             dataForPieChart(dataArray: expenseArray)
-            lblMoney.text = "\(sumExpense)"
+
+            lblMoney.text = "\(formatter.string(from: NSNumber(value: sumExpense))!)"
             for index in 0 ..< sumByCategory.count {
                 entries.append(PieChartDataEntry(value: Double(sumByCategory[index].amount), label: sumByCategory[index].category))
             }
@@ -151,18 +174,20 @@ class PieChartCollectionViewCell: UICollectionViewCell, ChartViewDelegate {
             + ChartColorTemplates.colorful()
             + ChartColorTemplates.liberty()
             + ChartColorTemplates.pastel()
-            + [UIColor(red: 51/255, green: 181/255, blue: 229/255, alpha: 1)]
+            + [UIColor(red: 51/255, green: 181/255, blue: 22/255, alpha: 1)]
         
         set.valueLinePart1OffsetPercentage = 0.8
         set.valueLinePart1Length = 0.2
         set.valueLinePart2Length = 0.4
-        set.yValuePosition = .outsideSlice
+        set.xValuePosition = .insideSlice
         
         let data = PieChartData(dataSet: set)
         data.setValueFont(.systemFont(ofSize: 11, weight: .light))
-        data.setValueTextColor(.white)
+        data.setValueTextColor(.black)
         set.drawValuesEnabled = false
+        
         chartView.data = data
         chartView.highlightValues(nil)
     }
 }
+

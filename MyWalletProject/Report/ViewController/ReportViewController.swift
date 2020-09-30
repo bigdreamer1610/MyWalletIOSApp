@@ -9,175 +9,103 @@
 import Charts
 import UIKit
 import FirebaseDatabase
+import MonthYearPicker
+
+protocol ReceiveData: class {
+    func receiveData(income: Int, expense: Int)
+}
 
 class ReportViewController: UIViewController {
-    
-    @IBOutlet weak var btnCalendar: UIButton!
+
+    @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var txtDatePicker: UITextField!
     
-    @IBOutlet weak var lblPreviousMonth: UILabel!
-    @IBOutlet weak var lblCurrentMonth: UILabel!
-    @IBOutlet weak var lblFuture: UILabel!
-    
-    let dateCollectionID = "DateCollectionViewCell"
-    let moneyID = "MoneyTableViewCell"
-    let stackedBarChartID = "StackedBarChartTableViewCell"
-    let pieChartID = "PieChartTableViewCell"
-    var currentMonth = ""
-    var calendar = ""
-    var month = ""
-    var previousMonth = ""
     var ref: DatabaseReference!
     
-    var timeForView: [String] = [] {
-        didSet {
-            
-        }
-    }
-    
-    var timeForData: [String] = [] {
-        didSet {
-            
-        }
-    }
+    private var dateFormatter = DateFormatter()
+    var today = Date()
+    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+    let calendar = Calendar.current
+    var currentMonth = 9
+    var currentYear = 2020
+    var income = 0
+    var expense = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationController?.isNavigationBarHidden = true
         ref = Database.database().reference()
         setupTableView()
-        
-        self.currentMonth = setDate()
-        
-        initTime()
-        initTimeLabel()
-        
-        setupLabel()
+        setupTxtDate()
+        showDatePicker()
+        createDatePicker()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        super.viewWillAppear(animated)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        super.viewWillDisappear(animated)
     }
     
-    func initTimeLabel() {
-        lblCurrentMonth.textColor = .black
-        btnCalendar.setTitle(currentMonth, for: .normal)
-    }
-    
-    func setupLabel() {
-        lblPreviousMonth.text = "Tháng trước"
-        let previousGesture = UITapGestureRecognizer(target: self, action:  #selector(previousClicked))
-        lblPreviousMonth.isUserInteractionEnabled = true
-        lblPreviousMonth.addGestureRecognizer(previousGesture)
-        
-        lblCurrentMonth.text = "Tháng này"
-        let currentGesture = UITapGestureRecognizer(target: self, action:  #selector(currentClicked))
-        lblCurrentMonth.isUserInteractionEnabled = true
-        lblCurrentMonth.addGestureRecognizer(currentGesture)
-        
-        lblFuture.text = "Tương lai"
-        let futureGesture = UITapGestureRecognizer(target: self, action:  #selector(futureClicked))
-        lblFuture.isUserInteractionEnabled = true
-        lblFuture.addGestureRecognizer(futureGesture)
-    }
-    
-    @objc func previousClicked(sender : UITapGestureRecognizer) {
-        btnCalendar.setTitle(timeForData[0], for: .normal)
-        lblPreviousMonth.textColor = .black
-        lblCurrentMonth.textColor = UIColor.gray.withAlphaComponent(0.6)
-        lblFuture.textColor = UIColor.gray.withAlphaComponent(0.6)
-        tableView.reloadData()
-    }
-    @objc func currentClicked(sender : UITapGestureRecognizer) {
-        btnCalendar.setTitle(timeForData[1], for: .normal)
-        lblCurrentMonth.textColor = .black
-        lblPreviousMonth.textColor = UIColor.gray.withAlphaComponent(0.6)
-        lblFuture.textColor = UIColor.gray.withAlphaComponent(0.6)
-        tableView.reloadData()
-    }
-    
-    @objc func futureClicked(sender : UITapGestureRecognizer) {
-        btnCalendar.setTitle(timeForData[2], for: .normal)
-        lblFuture.textColor = .black
-        lblCurrentMonth.textColor = UIColor.gray.withAlphaComponent(0.6)
-        lblPreviousMonth.textColor = UIColor.gray.withAlphaComponent(0.6)
-        tableView.reloadData()
-    }
-    
-    func initTime() {
-        currentMonth = setDate()
-        timeForData.append(splitData(currentMonth, "next"))
-        timeForData.append(currentMonth)
-        timeForData.append(splitData(currentMonth, "previous"))
-        timeForData.reverse()
-    }
-    
-    func splitData(_ monthYear: String, _ state: String) ->  String {
-        let dateData : [String] = monthYear.components(separatedBy: "/")
-        var tempMonth = Int(dateData[0]) ?? 0
-        var tempYear = Int(dateData[1]) ?? 0
-        
-        var result = ""
-        
-        if state == "next" {
-            if tempMonth == 12 {
-                tempYear += 1
-                tempMonth = 1
-            } else {
-                tempMonth += 1
-            }
-            
-            if tempMonth < 10 {
-                result = "0\(tempMonth)/\(tempYear)"
-            } else {
-                result = "\(tempMonth)/\(tempYear)"
-            }
+    func setupTxtDate() {
+        txtDatePicker.tintColor = .clear
+        currentYear = calendar.component(.year, from: today)
+        currentMonth = calendar.component(.month, from: today)
+        dateFormatter.locale = Locale(identifier: "vi_VN")
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        lblDate.text = "\(months[currentMonth - 1]) \(currentYear)"
+        if currentMonth < 10 {
+             txtDatePicker.text = "0\(currentMonth)/\(currentYear)"
         } else {
-            if tempMonth == 1 {
-                tempYear -= 1
-                tempMonth = 12
-            } else {
-                tempMonth -= 1
-            }
-            
-            if tempMonth < 10 {
-                result = "0\(tempMonth)/\(tempYear)"
-            } else {
-                result = "\(tempMonth)/\(tempYear)"
-            }
+            txtDatePicker.text = "\(currentMonth)/\(currentYear)"
         }
-        
-        return result
+        txtDatePicker.setRightImage(imageName: "down")
     }
     
-    func setDate() -> String {
-        let date = Date()
-        let format = DateFormatter()
-        format.dateFormat = "MM/yyyy"
-        let formatDate = format.string(from: date)
-        return formatDate
+    func showDatePicker() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneDatePicker))
+        toolbar.setItems([doneButton], animated: true)
+        toolbar.isUserInteractionEnabled = true
+        txtDatePicker.inputAccessoryView = toolbar
+    }
+
+    @objc func doneDatePicker(){
+        self.view.endEditing(true)
+        
     }
     
-    @IBAction func calendar(_ sender: Any) {
-        let calendar = UIStoryboard.init(name: "AddEvent", bundle: nil).instantiateViewController(identifier: "calendarView") as! CalendarController
-        
-        lblFuture.textColor = UIColor.gray.withAlphaComponent(0.6)
-        lblCurrentMonth.textColor = UIColor.gray.withAlphaComponent(0.6)
-        lblPreviousMonth.textColor = UIColor.gray.withAlphaComponent(0.6)
-        calendar.completionHandler = {
-            self.btnCalendar.setTitle($0, for: .normal)
-            self.tableView.reloadData()
-        }
-        self.navigationController?.pushViewController(calendar, animated: true)
+    func createDatePicker(){
+        let picker = MonthYearPickerView(frame: CGRect(origin: CGPoint(x: 0, y: (view.bounds.height - 216) / 2), size: CGSize(width: view.bounds.width, height: 216)))
+        picker.minimumDate = Calendar.current.date(byAdding: .year, value: -2, to: Date())
+        picker.maximumDate = Calendar.current.date(byAdding: .year, value: 2, to: Date())
+        picker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
+        txtDatePicker.inputView = picker
+    }
+    
+    @objc func dateChanged(_ picker: MonthYearPickerView) {
+        let components = calendar.dateComponents([.day, .month, .year, .weekday], from: picker.date)
+        lblDate.text = "\(months[components.month! - 1]) \(components.year!)"
+        if components.month! < 10 {
+                    txtDatePicker.text = "0\(components.month!)/\(components.year!)"
+               } else {
+                   txtDatePicker.text = "\(components.month!)/\(components.year!)"
+               }
+        tableView.reloadData()
     }
     
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.allowsSelection = false
-        
-        tableView.register(UINib(nibName: "MoneyTableViewCell", bundle: nil), forCellReuseIdentifier: moneyID)
-        tableView.register(UINib(nibName: "StackedBarChartTableViewCell", bundle: nil), forCellReuseIdentifier: stackedBarChartID)
-        tableView.register(UINib(nibName: "PieChartTableViewCell", bundle: nil), forCellReuseIdentifier: pieChartID)
+         MoneyTableViewCell.registerCellByNib(tableView)
+         StackedBarChartTableViewCell.registerCellByNib(tableView)
+         PieChartTableViewCell.registerCellByNib(tableView)
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 600
@@ -195,20 +123,57 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: moneyID, for: indexPath) as! MoneyTableViewCell
+            let cell = MoneyTableViewCell.loadCell(tableView)  as! MoneyTableViewCell
+            cell.selectionStyle = .none
             return cell
         } else if indexPath.section == 1  {
-            let cell = tableView.dequeueReusableCell(withIdentifier: stackedBarChartID, for: indexPath) as! StackedBarChartTableViewCell
-            cell.date = btnCalendar.titleLabel!.text ?? "error"
+            let cell = StackedBarChartTableViewCell.loadCell(tableView)  as! StackedBarChartTableViewCell
+            cell.selectionStyle = UITableViewCell.SelectionStyle.none
+            cell.date = txtDatePicker.text ?? "Error"
+            cell.reportView = self
             return cell
         } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: pieChartID, for: indexPath) as! PieChartTableViewCell
-            
+            let cell = PieChartTableViewCell.loadCell(tableView)  as! PieChartTableViewCell
+            cell.delegate = self
+            cell.date = txtDatePicker.text ?? "Error"
             return cell
         }
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 {
+            let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailSBC") as! DetailStackedBarChartVC
+            
+            vc.expense = self.expense
+            vc.income = self.income
+            
+            navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }
 
+extension UITextField{
+    
+    func setRightImage(imageName:String) {
+        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 00, width: 8, height: 8))
+        imageView.image = UIImage(named: imageName)
+        self.rightView = imageView
+        self.rightViewMode = .always
+    }
+}
+extension ReportViewController: CustomCollectionCellDelegate {
+    func collectionView(collectioncell: PieChartCollectionViewCell?, didTappedInTableview TableCell: PieChartTableViewCell) {
+            let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailPC") as! DetailPieChartVC
+            navigationController?.pushViewController(vc, animated: true)
+        
+    }
+}
+
+extension ReportViewController: ReceiveData {
+    func receiveData(income: Int, expense: Int) {
+        self.income = income
+        self.expense = expense
+    }
+}
 
