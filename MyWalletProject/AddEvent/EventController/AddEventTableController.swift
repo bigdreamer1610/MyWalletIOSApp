@@ -68,7 +68,7 @@ class AddEventTableController: UITableViewController,UITextFieldDelegate {
             let vc = UIStoryboard.init(name: "AddEvent", bundle: nil).instantiateViewController(identifier: "calendarView") as! CalendarController
             vc .completionHandler = {
                 print($0)
-                self.event.dateEnd = $0
+                self.event.date = $0
                 self.tfDate.text = $0
             }
             navigationController?.pushViewController(vc, animated: true)
@@ -84,9 +84,9 @@ class AddEventTableController: UITableViewController,UITextFieldDelegate {
     func setUpView()  {
         if event.name != nil {
                            tfNameEvent.text = event.name!
-                           tfMoney.text = String(event.goal!)
-                           tfDate.text = event.dateEnd!
-                           imgCategory.image = UIImage(named: event.categoryid!)
+                           tfMoney.text = String(event.spent!)
+                           tfDate.text = event.date!
+                           imgCategory.image = UIImage(named: event.eventImage!)
                 } else {
                     print("d km")
                 }

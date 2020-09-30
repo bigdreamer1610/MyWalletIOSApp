@@ -52,8 +52,8 @@ class EventDetailController: UIViewController {
     
     func loadDetail(event: Event) {
         nameEvent.text = event.name!
-        tfDate.text = event.dateEnd!
-        imgCategoryDetail.image = UIImage(named: event.categoryid!)
+        tfDate.text = event.date!
+        imgCategoryDetail.image = UIImage(named: event.eventImage!)
     }
     
     
