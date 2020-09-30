@@ -9,6 +9,7 @@
 import Foundation
 
 struct Event {
+    var id: Int? = nil
     var name: String? = nil
     var goal: Int? = nil
     var dateStart: String? = nil

@@ -9,6 +9,8 @@
 import Foundation
 
 struct Category {
+    var id: String? = nil
     var name: String? = nil
+    var transactionType: String? = nil
     var iconImage: String? = nil
 }
