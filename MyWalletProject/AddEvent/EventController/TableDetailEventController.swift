@@ -64,9 +64,9 @@ class TableDetailEventController: UITableViewController {
         viewImg.layer.cornerRadius = viewImg.frame.height / 2
         viewImg.layer.cornerRadius = viewImg.frame.width / 2
         lbNameEvent.text = event.name
-        imgCategory.image = UIImage(named: event.categoryid!)
-        lbMoney.text = String(event.goal!)
-        lbCalendar.text = event.dateEnd
+        imgCategory.image = UIImage(named: event.eventImage!)
+        lbMoney.text = String(event.spent!)
+        lbCalendar.text = event.date
     }
 }
 
