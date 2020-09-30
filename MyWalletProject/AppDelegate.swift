@@ -8,6 +8,9 @@
 
 import UIKit
 import Firebase
+import GoogleSignIn
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,7 +31,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        let navigationController = UINavigationController(rootViewController: vc)
 //        navigationController.isNavigationBarHidden = true
 //        window?.rootViewController = navigationController
+        
+        // google
+        GIDSignIn.sharedInstance().clientID = "530496501963-pkmcpemkjme33b511eof2i60mkcsmuus.apps.googleusercontent.com"
+        
+        // facebook
+        FBSDKCoreKit.ApplicationDelegate.shared.application( application,
+                                                didFinishLaunchingWithOptions: launchOptions)
         return true
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        let handlerGoogle = GIDSignIn.sharedInstance().handle(url)
+        let handledFB = FBSDKCoreKit.ApplicationDelegate.shared.application(
+        app,
+        open: url,
+        sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String, annotation: options[UIApplication.OpenURLOptionsKey.annotation] )
+        
+        return handlerGoogle || handledFB
+    }
+    
+    
+
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        guard let url = URLContexts.first?.url else { return }
+        ApplicationDelegate.shared.application( UIApplication.shared,
+                                                open: url,
+                                                sourceApplication: nil,
+                                                annotation: [UIApplication.OpenURLOptionsKey.annotation])
+        
     }
 
     // MARK: UISceneSession Lifecycle
