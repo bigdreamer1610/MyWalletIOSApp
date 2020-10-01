@@ -10,7 +10,10 @@ import Foundation
 import UIKit
 
 enum RouterType {
-    case detailTransactionController(item: TransactionItem, header: TransactionHeader)
+    case transactionDetail(item: TransactionItem, header: TransactionHeader)
+    case categoryDetail(item: CategoryItem, header: CategoryHeader)
+    case balance
+    
     //case viewTransaction
 }
 
@@ -46,10 +49,18 @@ class AppRouter {
 extension RouterType{
     func getVc() -> UIViewController {
         switch self {
-        case .detailTransactionController(let item, let header):
+        case .transactionDetail(let item, let header):
             let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "detail") as! DetailTransactionController
             vc.setUpDataTransactionView(item: item, header: header)
             return vc
+        case .categoryDetail(let item, let header):
+            let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "detail") as! DetailTransactionController
+            vc.setUpDataCategoryView(item: item, header: header)
+            return vc
+        case .balance:
+            let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "BalanceViewController") as! BalanceViewController
+            return vc
+            
 //        default:
 //            let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as! ViewTransactionViewController
 //            let presenter = ViewTransactionPresenter(delegate: vc, viewTransUseCase: ViewTransactionUseCase())
