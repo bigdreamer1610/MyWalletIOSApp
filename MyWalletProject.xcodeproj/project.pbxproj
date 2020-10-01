@@ -25,11 +25,14 @@
 		56B8A80E25248AAC00B8E8F0 /* CateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B8A80C25248AAC00B8E8F0 /* CateCell.swift */; };
 		56B8A80F25248AAC00B8E8F0 /* CateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56B8A80D25248AAC00B8E8F0 /* CateCell.xib */; };
 		56B8A81125248C2500B8E8F0 /* BudgetListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B8A81025248C2500B8E8F0 /* BudgetListViewController.swift */; };
-		56B8A81325248C3E00B8E8F0 /* BudgetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B8A81225248C3E00B8E8F0 /* BudgetDetailViewController.swift */; };
 		56B8A81525248C5A00B8E8F0 /* BudgetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B8A81425248C5A00B8E8F0 /* BudgetController.swift */; };
 		56B8A81725248C7200B8E8F0 /* SelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B8A81625248C7200B8E8F0 /* SelectCategoryViewController.swift */; };
 		56B8A81925248C9400B8E8F0 /* TimeRangerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B8A81825248C9400B8E8F0 /* TimeRangerViewController.swift */; };
 		56B8A81B25248CAE00B8E8F0 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B8A81A25248CAE00B8E8F0 /* CalendarViewController.swift */; };
+		56B8A8292525C4B400B8E8F0 /* DetailBudgetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B8A8272525C4B400B8E8F0 /* DetailBudgetCell.swift */; };
+		56B8A82A2525C4B400B8E8F0 /* DetailBudgetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56B8A8282525C4B400B8E8F0 /* DetailBudgetCell.xib */; };
+		56B8A82C2525C5CA00B8E8F0 /* BudgetDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B8A82B2525C5CA00B8E8F0 /* BudgetDetailController.swift */; };
+		56B8A8312525D32600B8E8F0 /* BudgetDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B8A8302525D32600B8E8F0 /* BudgetDetailPresenter.swift */; };
 		72873D7A25249A2900313629 /* DetailStackedBarChartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72873D7925249A2900313629 /* DetailStackedBarChartVC.swift */; };
 		72873D7C25249A3F00313629 /* DetailPieChartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72873D7B25249A3F00313629 /* DetailPieChartVC.swift */; };
 		72873D7E25249A5100313629 /* DayDetailSBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72873D7D25249A5100313629 /* DayDetailSBC.swift */; };
@@ -178,11 +181,14 @@
 		56B8A80C25248AAC00B8E8F0 /* CateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CateCell.swift; sourceTree = "<group>"; };
 		56B8A80D25248AAC00B8E8F0 /* CateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CateCell.xib; sourceTree = "<group>"; };
 		56B8A81025248C2500B8E8F0 /* BudgetListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetListViewController.swift; sourceTree = "<group>"; };
-		56B8A81225248C3E00B8E8F0 /* BudgetDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetDetailViewController.swift; sourceTree = "<group>"; };
 		56B8A81425248C5A00B8E8F0 /* BudgetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetController.swift; sourceTree = "<group>"; };
 		56B8A81625248C7200B8E8F0 /* SelectCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryViewController.swift; sourceTree = "<group>"; };
 		56B8A81825248C9400B8E8F0 /* TimeRangerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRangerViewController.swift; sourceTree = "<group>"; };
 		56B8A81A25248CAE00B8E8F0 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		56B8A8272525C4B400B8E8F0 /* DetailBudgetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailBudgetCell.swift; sourceTree = "<group>"; };
+		56B8A8282525C4B400B8E8F0 /* DetailBudgetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailBudgetCell.xib; sourceTree = "<group>"; };
+		56B8A82B2525C5CA00B8E8F0 /* BudgetDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetDetailController.swift; sourceTree = "<group>"; };
+		56B8A8302525D32600B8E8F0 /* BudgetDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetDetailPresenter.swift; sourceTree = "<group>"; };
 		7217ED81FA2304CDEDF74146 /* Pods-MyWalletProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWalletProject.debug.xcconfig"; path = "Target Support Files/Pods-MyWalletProject/Pods-MyWalletProject.debug.xcconfig"; sourceTree = "<group>"; };
 		72873D7925249A2900313629 /* DetailStackedBarChartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStackedBarChartVC.swift; sourceTree = "<group>"; };
 		72873D7B25249A3F00313629 /* DetailPieChartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPieChartVC.swift; sourceTree = "<group>"; };
@@ -369,12 +375,9 @@
 			children = (
 				56B8A7F62524889300B8E8F0 /* budget.storyboard */,
 				56B8A7F8252488EF00B8E8F0 /* Cell */,
-				56B8A81025248C2500B8E8F0 /* BudgetListViewController.swift */,
-				56B8A81225248C3E00B8E8F0 /* BudgetDetailViewController.swift */,
-				56B8A81425248C5A00B8E8F0 /* BudgetController.swift */,
-				56B8A81625248C7200B8E8F0 /* SelectCategoryViewController.swift */,
-				56B8A81825248C9400B8E8F0 /* TimeRangerViewController.swift */,
-				56B8A81A25248CAE00B8E8F0 /* CalendarViewController.swift */,
+				56B8A82D2525D2A400B8E8F0 /* Controller */,
+				56B8A82E2525D2B200B8E8F0 /* Presenter */,
+				56B8A82F2525D2C600B8E8F0 /* UseCase */,
 			);
 			path = Budget;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 		56B8A7F8252488EF00B8E8F0 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				56B8A81C2525AC1000B8E8F0 /* CellDetail */,
 				56B8A7F92524890100B8E8F0 /* CellAdd */,
 				56B8A7FC2524896400B8E8F0 /* CategoryCell.swift */,
 				56B8A7FD2524896400B8E8F0 /* CategoryCell.xib */,
@@ -402,6 +406,43 @@
 				56B8A80D25248AAC00B8E8F0 /* CateCell.xib */,
 			);
 			path = CellAdd;
+			sourceTree = "<group>";
+		};
+		56B8A81C2525AC1000B8E8F0 /* CellDetail */ = {
+			isa = PBXGroup;
+			children = (
+				56B8A8272525C4B400B8E8F0 /* DetailBudgetCell.swift */,
+				56B8A8282525C4B400B8E8F0 /* DetailBudgetCell.xib */,
+			);
+			path = CellDetail;
+			sourceTree = "<group>";
+		};
+		56B8A82D2525D2A400B8E8F0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				56B8A81025248C2500B8E8F0 /* BudgetListViewController.swift */,
+				56B8A81425248C5A00B8E8F0 /* BudgetController.swift */,
+				56B8A81625248C7200B8E8F0 /* SelectCategoryViewController.swift */,
+				56B8A81825248C9400B8E8F0 /* TimeRangerViewController.swift */,
+				56B8A81A25248CAE00B8E8F0 /* CalendarViewController.swift */,
+				56B8A82B2525C5CA00B8E8F0 /* BudgetDetailController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		56B8A82E2525D2B200B8E8F0 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				56B8A8302525D32600B8E8F0 /* BudgetDetailPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		56B8A82F2525D2C600B8E8F0 /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UseCase;
 			sourceTree = "<group>";
 		};
 		72873D78252499EB00313629 /* DetailCell */ = {
@@ -1046,6 +1087,7 @@
 				72A7191B251DDE87003ED157 /* StackedBarChartTableViewCell.xib in Resources */,
 				73E0B1842521E0EE0097D41F /* TransactionDayCell.xib in Resources */,
 				73E0B1782521E0EE0097D41F /* ViewTransaction.storyboard in Resources */,
+				56B8A82A2525C4B400B8E8F0 /* DetailBudgetCell.xib in Resources */,
 				7338861F25231F68002F126B /* DetailTransaction.storyboard in Resources */,
 				56B8A8032524898400B8E8F0 /* BudgetCell.xib in Resources */,
 				73E0B17D2521E0EE0097D41F /* TransactionCell.xib in Resources */,
@@ -1136,7 +1178,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				56B8A81525248C5A00B8E8F0 /* BudgetController.swift in Sources */,
-				56B8A81325248C3E00B8E8F0 /* BudgetDetailViewController.swift in Sources */,
 				8A3BB41A251AE01A008113E9 /* ScanBillPresenter.swift in Sources */,
 				56B8A7EC2524841400B8E8F0 /* LoginUseCase.swift in Sources */,
 				8ACA624C251A07980031E6DF /* ViewController.swift in Sources */,
@@ -1165,6 +1206,7 @@
 				72A71915251DDE23003ED157 /* MoneyTableViewCell.swift in Sources */,
 				72873D7A25249A2900313629 /* DetailStackedBarChartVC.swift in Sources */,
 				72A7191F251DDEBD003ED157 /* PieChartTableViewCell.swift in Sources */,
+				56B8A82C2525C5CA00B8E8F0 /* BudgetDetailController.swift in Sources */,
 				7338861D25231F67002F126B /* Constant.swift in Sources */,
 				56B8A7EE2524846400B8E8F0 /* LoginPresenterGG.swift in Sources */,
 				8ACA6248251A07980031E6DF /* AppDelegate.swift in Sources */,
@@ -1178,9 +1220,11 @@
 				73E0B1812521E0EE0097D41F /* DetailCell.swift in Sources */,
 				56B8A7FE2524896400B8E8F0 /* CategoryCell.swift in Sources */,
 				56B8A80E25248AAC00B8E8F0 /* CateCell.swift in Sources */,
+				56B8A8312525D32600B8E8F0 /* BudgetDetailPresenter.swift in Sources */,
 				7338862925231F68002F126B /* SelectCategoryController.swift in Sources */,
 				73E0B1A9252206200097D41F /* AppRouter.swift in Sources */,
 				8A725C4E251C79FD00610758 /* CurrencyModel.swift in Sources */,
+				56B8A8292525C4B400B8E8F0 /* DetailBudgetCell.swift in Sources */,
 				D269928F25247BCA0061EDF6 /* TableDetailEventController.swift in Sources */,
 				72A71926251DDF35003ED157 /* ReportViewController.swift in Sources */,
 				72873D7C25249A3F00313629 /* DetailPieChartVC.swift in Sources */,

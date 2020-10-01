@@ -24,7 +24,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jsK-hJ-cve">
-                        <rect key="frame" x="60" y="5" width="141" height="25"/>
+                        <rect key="frame" x="65" y="5" width="138.5" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="i1n-lH-tQj"/>
                         </constraints>
@@ -33,7 +33,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.000.000.000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YhK-KN-Ocd">
-                        <rect key="frame" x="211" y="5" width="141" height="25"/>
+                        <rect key="frame" x="213.5" y="5" width="138.5" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="ZN8-km-jG4"/>
                         </constraints>
@@ -42,7 +42,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eTA-4u-19U">
-                        <rect key="frame" x="60" y="75" width="292" height="10"/>
+                        <rect key="frame" x="65" y="75" width="287" height="10"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="10" id="LoF-sJ-S85"/>
                         </constraints>
@@ -50,7 +50,7 @@
                         <color key="trackTintColor" red="0.96848052740097046" green="0.92335961073276018" blue="0.82631393689361143" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </progressView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owk-q7-SQQ">
-                        <rect key="frame" x="60" y="40" width="141" height="25"/>
+                        <rect key="frame" x="65" y="40" width="138.5" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="j4J-KN-N6Q"/>
                         </constraints>
@@ -59,7 +59,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gyA-8A-s96">
-                        <rect key="frame" x="211" y="40" width="141" height="25"/>
+                        <rect key="frame" x="213.5" y="40" width="138.5" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="MuM-wA-ZRh"/>
                         </constraints>
@@ -75,9 +75,9 @@
                     <constraint firstAttribute="trailing" secondItem="eTA-4u-19U" secondAttribute="trailing" constant="10" id="5Gw-Gh-SeN"/>
                     <constraint firstItem="gyA-8A-s96" firstAttribute="top" secondItem="YhK-KN-Ocd" secondAttribute="bottom" constant="10" id="A77-dH-WnK"/>
                     <constraint firstItem="jsK-hJ-cve" firstAttribute="width" secondItem="eTA-4u-19U" secondAttribute="width" multiplier="1/2" constant="-5" id="Ddj-qR-ySq"/>
-                    <constraint firstItem="eTA-4u-19U" firstAttribute="leading" secondItem="meW-Nh-ihp" secondAttribute="trailing" constant="10" id="Grr-gh-kJA"/>
+                    <constraint firstItem="eTA-4u-19U" firstAttribute="leading" secondItem="meW-Nh-ihp" secondAttribute="trailing" constant="15" id="Grr-gh-kJA"/>
                     <constraint firstAttribute="trailing" secondItem="gyA-8A-s96" secondAttribute="trailing" constant="10" id="PMU-Qv-cMz"/>
-                    <constraint firstItem="owk-q7-SQQ" firstAttribute="leading" secondItem="meW-Nh-ihp" secondAttribute="trailing" constant="10" id="Pq3-Yw-ntz"/>
+                    <constraint firstItem="owk-q7-SQQ" firstAttribute="leading" secondItem="meW-Nh-ihp" secondAttribute="trailing" constant="15" id="Pq3-Yw-ntz"/>
                     <constraint firstItem="gyA-8A-s96" firstAttribute="width" secondItem="owk-q7-SQQ" secondAttribute="width" id="RX2-tS-Jdg"/>
                     <constraint firstItem="meW-Nh-ihp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="RYp-b6-aYI"/>
                     <constraint firstItem="meW-Nh-ihp" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="XKb-T8-jJz"/>
@@ -85,7 +85,7 @@
                     <constraint firstItem="YhK-KN-Ocd" firstAttribute="height" secondItem="jsK-hJ-cve" secondAttribute="height" id="YvT-Xv-jPo"/>
                     <constraint firstAttribute="trailing" secondItem="YhK-KN-Ocd" secondAttribute="trailing" constant="10" id="blF-cc-ksW"/>
                     <constraint firstItem="owk-q7-SQQ" firstAttribute="width" secondItem="jsK-hJ-cve" secondAttribute="width" id="c8f-x8-NV3"/>
-                    <constraint firstItem="jsK-hJ-cve" firstAttribute="leading" secondItem="meW-Nh-ihp" secondAttribute="trailing" constant="10" id="slc-he-Oir"/>
+                    <constraint firstItem="jsK-hJ-cve" firstAttribute="leading" secondItem="meW-Nh-ihp" secondAttribute="trailing" constant="15" id="slc-he-Oir"/>
                     <constraint firstItem="eTA-4u-19U" firstAttribute="top" secondItem="owk-q7-SQQ" secondAttribute="bottom" constant="10" id="uOQ-CB-KoF"/>
                 </constraints>
             </tableViewCellContentView>
