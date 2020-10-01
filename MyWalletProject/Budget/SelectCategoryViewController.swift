@@ -71,14 +71,15 @@ class SelectCategoryViewController: UIViewController , UITableViewDataSource , U
         
         ref.child("Category").child("expense").observeSingleEvent(of: .value) { (data) in
             for case let child as DataSnapshot in data.children{
+                let categoryId = child.key
                 guard let dict = child.value as? [String:Any] else{
                     print("Error")
                     return
                 }
-                let imgName = dict["iconImage"] as! String
-                let nameCate = dict["name"] as! String
+                let imgName = dict["iconImage"] as? String
+                let nameCate = dict["name"] as? String
                 
-                let cate = Category(name: nameCate, transactionType: "Expense", iconImage: imgName)
+                let cate = Category(id: categoryId, name: nameCate, transactionType: "expense", iconImage: imgName)
                 self.listCateExpense.append(cate)
             }
             self.tblCategory.reloadData()
@@ -91,36 +92,43 @@ class SelectCategoryViewController: UIViewController , UITableViewDataSource , U
         
         ref.child("Category").child("income").observeSingleEvent(of: .value) { (data) in
             for case let child as DataSnapshot in data.children{
+                let categoryId = child.key
                 guard let dict = child.value as? [String:Any] else{
                     print("Error")
                     return
                 }
-                let imgName = dict["iconImage"] as! String
-                let nameCate = dict["name"] as! String
+                let imgName = dict["iconImage"] as? String
+                let nameCate = dict["name"] as? String
                 
-                let cate = Category(name: nameCate, transactionType: "Income" ,iconImage: imgName)
+                let cate = Category(id: categoryId, name: nameCate, transactionType: "income", iconImage: imgName)
                 self.listCateIncome.append(cate)
             }
             self.tblCategory.reloadData()
         }
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        var categoryId = ""
         var categoryName = ""
         var categoryImage = ""
         var transactionType = ""
+        
         if segmentIndex == 0{
-            categoryName = listCateIncome[indexPath.row].name!
-            categoryImage = listCateIncome[indexPath.row].iconImage!
-            transactionType = listCateIncome[indexPath.row].transactionType!
+            categoryId = listCateIncome[indexPath.row].id ?? ""
+            categoryName = listCateIncome[indexPath.row].name ?? ""
+            categoryImage = listCateIncome[indexPath.row].iconImage ?? ""
+            transactionType = listCateIncome[indexPath.row].transactionType ?? ""
         }
         else{
-            categoryName = listCateExpense[indexPath.row].name!
-            categoryImage = listCateExpense[indexPath.row].iconImage!
-            transactionType = listCateExpense[indexPath.row].transactionType!
+            categoryId = listCateExpense[indexPath.row].id ?? ""
+            categoryName = listCateExpense[indexPath.row].name ?? ""
+            categoryImage = listCateExpense[indexPath.row].iconImage ?? ""
+            transactionType = listCateExpense[indexPath.row].transactionType ?? ""
         }
         
+        budgetObject.categoryId = categoryId
         budgetObject.categoryName = categoryName
         budgetObject.categoryImage = categoryImage
         budgetObject.transactionType = transactionType
@@ -153,5 +161,5 @@ class SelectCategoryViewController: UIViewController , UITableViewDataSource , U
         segmentIndex = uiSegmentedControl.selectedSegmentIndex
         tblCategory.reloadData()
     }
-    
+
 }

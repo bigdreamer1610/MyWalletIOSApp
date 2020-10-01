@@ -32,8 +32,6 @@ class BudgetListViewController: UIViewController , UITableViewDataSource , UITab
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(time)
-        
         getDataBudget()
         
         tblBudget.dataSource = self
@@ -72,22 +70,21 @@ class BudgetListViewController: UIViewController , UITableViewDataSource , UITab
                     print("Error")
                     return
                 }
-                let id = dict["id"] as! Int
-                let cateImage = dict["categoryImage"] as! String
-                let cateName = dict["categoryName"] as! String
-                let transType = dict["transactionType"] as! String
-                let amount = dict["amount"] as! Int
-                let startDate = dict["startDate"] as! String
-                let endDate = dict["endDate"] as! String
-//                let startDateSecondWith1970 = dict["startDateSecondWith1970"] as! Double
-//                let endDateSecondWith1970 = dict["endDateSecondWith1970"] as! Double
+                let id = dict["id"] as? Int
+                let cateId = dict["categoryId"] as? String
+                let cateImage = dict["categoryImage"] as? String
+                let cateName = dict["categoryName"] as? String
+                let transType = dict["transactionType"] as? String
+                let amount = dict["amount"] as? Int
+                let startDate = dict["startDate"] as? String
+                let endDate = dict["endDate"] as? String
                 
-                let budget = Budget(id: id, categoryName: cateName, categoryImage: cateImage, transactionType: transType, amount: Int(amount), startDate: startDate, endDate: endDate)
+                let budget = Budget(id: id, categoryId: cateId, categoryName: cateName, categoryImage: cateImage, transactionType: transType, amount: amount, startDate: startDate, endDate: endDate)
                 
                 let formatter = DateFormatter()
                 formatter.dateFormat = "dd/MM/yyyy"
                 
-                let end = formatter.date(from: endDate)
+                let end = formatter.date(from: endDate ?? "")
                 
                 if let end = end , end < self.time {
                     self.listBudgetFinish.append(budget)
@@ -219,6 +216,7 @@ class BudgetListViewController: UIViewController , UITableViewDataSource , UITab
         let vc = UIStoryboard.init(name: "budget", bundle: nil).instantiateViewController(withIdentifier: "BudgetDetailViewController") as! BudgetDetailViewController
         
         var id = 0
+        var categoryId = ""
         var categoryName = ""
         var categoryImage = ""
         var transactionType = ""
@@ -229,6 +227,7 @@ class BudgetListViewController: UIViewController , UITableViewDataSource , UITab
         
         if segmentIndex == 0{
             id = listBudgetCurrent[indexPath.row].id!
+            categoryId = listBudgetCurrent[indexPath.row].categoryId!
             categoryName = listBudgetCurrent[indexPath.row].categoryName!
             categoryImage = listBudgetCurrent[indexPath.row].categoryImage!
             transactionType = listBudgetCurrent[indexPath.row].transactionType!
@@ -239,6 +238,7 @@ class BudgetListViewController: UIViewController , UITableViewDataSource , UITab
         }
         else{
             id = listBudgetFinish[indexPath.row].id!
+            categoryId = listBudgetCurrent[indexPath.row].categoryId!
             categoryName = listBudgetFinish[indexPath.row].categoryName!
             categoryImage = listBudgetFinish[indexPath.row].categoryImage!
             transactionType = listBudgetFinish[indexPath.row].transactionType!
@@ -248,7 +248,7 @@ class BudgetListViewController: UIViewController , UITableViewDataSource , UITab
             spentTransaction = getAmountListTransaction(cateName: listBudgetFinish[indexPath.row].categoryName!)
         }
         
-        let budgetObject = Budget(id: id, categoryName: categoryName, categoryImage: categoryImage, transactionType: transactionType, amount: amount, startDate: startDate, endDate: endDate)
+        let budgetObject = Budget(id: id,categoryId: categoryId, categoryName: categoryName, categoryImage: categoryImage, transactionType: transactionType, amount: amount, startDate: startDate, endDate: endDate)
         
         vc.budgetObject = budgetObject
         vc.spent = spentTransaction
@@ -258,6 +258,7 @@ class BudgetListViewController: UIViewController , UITableViewDataSource , UITab
 
     //MARK: Click Add
     @IBAction func btnAddClick(_ sender: Any) {
+        
         let vc = UIStoryboard.init(name: "budget", bundle: nil).instantiateViewController(withIdentifier: "TestController") as! BudgetController
 
         vc.type = "Add Budget"
@@ -270,4 +271,5 @@ class BudgetListViewController: UIViewController , UITableViewDataSource , UITab
     }
     
 }
+
 
