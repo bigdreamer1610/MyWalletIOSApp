@@ -87,7 +87,7 @@ class AddEventController: UIViewController {
         btSave.layer.shadowColor = UIColor.black.cgColor
     }
     func leftAction(){
-        if tableViewController.tfDate.text! != "" && (tableViewController.tfMoney.text != "")  && (tableViewController.tfNameEvent.text != "") {
+        if tableViewController.tfDate.text! != ""   && (tableViewController.tfNameEvent.text != "") {
             
             if  arrayNameEvent.contains((tableViewController.tfNameEvent.text)!) == false {
                 print("edit\(tableViewController.imgCategory)")
@@ -98,8 +98,7 @@ class AddEventController: UIViewController {
                              "spent": 0]
                     as [String : Any]
                 self.event.date = tableViewController.tfDate.text!
-                self.event.spent = Int((tableViewController.tfMoney.text)!)
-                       self.ref.child("Account").child("userid1").child("event").child("\(self.newChild)").updateChildValues(event,withCompletionBlock: { error , ref in
+        self.ref.child("Account").child("userid1").child("event").child("\(self.newChild)").updateChildValues(event,withCompletionBlock: { error , ref in
                            if error == nil {
                             self.completionHandler?(self.event)
                         self.navigationController?.popViewController(animated: true)

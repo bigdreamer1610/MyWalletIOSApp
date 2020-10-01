@@ -14,7 +14,7 @@ class TableDetailEventController: UITableViewController {
     
     
     
-    @IBOutlet weak var viewImg: UIView!
+    //@IBOutlet weak var viewImg: UIView!
     
     @IBOutlet weak var lbNameEvent: UILabel!
     @IBOutlet weak var lbMoney: UILabel!
@@ -61,8 +61,8 @@ class TableDetailEventController: UITableViewController {
     }
 
     func setUpView()  {
-        viewImg.layer.cornerRadius = viewImg.frame.height / 2
-        viewImg.layer.cornerRadius = viewImg.frame.width / 2
+//        viewImg.layer.cornerRadius = viewImg.frame.height / 2
+//        viewImg.layer.cornerRadius = viewImg.frame.width / 2
         lbNameEvent.text = event.name
         imgCategory.image = UIImage(named: event.eventImage!)
         lbMoney.text = String(event.spent!)
