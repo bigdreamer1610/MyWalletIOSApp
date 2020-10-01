@@ -31,7 +31,9 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
     var id: String = ""
     var type: String = ""
     var thisDate = Date()
+    var budgets = [Budget]()
     private let dateFormatter = DateFormatter()
+    
     override func viewDidLoad() {
         customizeLayout()
         viewShowMore.isHidden = true
@@ -48,8 +50,6 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
         tfNote.delegate = self
         btnSave.isEnabled = false
         customizeLayout()
-        
-        
     }
     
     func customizeLayout(){
@@ -93,8 +93,8 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func clickCancel(_ sender: Any) {
-        let vc = UIStoryboard.init(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as? ViewTransactionController
-        AppRouter.routerTo(from: vc!, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
+        let vc = RouterType.tabbar.getVc()
+        AppRouter.routerTo(from: vc, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
         
     }
     @IBAction func btnSave(_ sender: Any) {
@@ -117,9 +117,34 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
         Defined.ref.child("Account/userid1/transaction/\(type)").childByAutoId().setValue(writeData)
         let alert = UIAlertController(title: "Notification", message: "Add a new transaction successfully", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-            let vc = UIStoryboard.init(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as? ViewTransactionController
-            AppRouter.routerTo(from: vc!, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
+            let vc = RouterType.tabbar.getVc()
+            AppRouter.routerTo(from: vc, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
         }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func budgetCheck(){
+        
+    }
+    
+    func fetchDataBudget(){
+        let dispatchGroup = DispatchGroup()
+        
+        dispatchGroup.enter()
+        Defined.ref.child("Account/userid1/budget").observeSingleEvent(of: .value) {[weak self] (snapshot) in
+            guard let `self` = self else {return}
+            if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
+                for snap in snapshots {
+                    let id = snap.key
+                    if let value = snap.value as? [String: Any]{
+                        let dateStart = value["startDate"] as? String
+                        let dateEnd = value["endDate"] as? String
+                        let categoryid = value["categoryId"] as? String
+                        let amount = value["amount"] as? Int
+                    }
+                }
+            }
+        }
     }
     
     @IBAction func btnAddMoreDetails(_ sender: Any) {

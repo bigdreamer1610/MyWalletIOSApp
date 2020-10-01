@@ -290,6 +290,7 @@ extension BudgetController: AddBudgetControll {
         
             let budget = [
                 "id" : self.newChild,
+                "categoryId" : self.budgetObject.categoryId!,
                 "categoryName" : self.budgetObject.categoryName!,
                 "categoryImage" : self.budgetObject.categoryImage!,
                 "transactionType" : self.budgetObject.transactionType!,
@@ -328,6 +329,7 @@ extension BudgetController: EditBudgetControll{
             
             let budget = [
                 "id" : self.budgetObject.id!,
+                "categoryId" : self.budgetObject.categoryId! ,
                 "categoryName" : self.budgetObject.categoryName!,
                 "categoryImage" : self.budgetObject.categoryImage!,
                 "transactionType" : self.budgetObject.transactionType!,

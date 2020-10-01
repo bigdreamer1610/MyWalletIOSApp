@@ -21,7 +21,6 @@ class ReportViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var txtDatePicker: UITextField!
-    
     var ref: DatabaseReference!
     
     private var dateFormatter = DateFormatter()
@@ -34,6 +33,14 @@ class ReportViewController: UIViewController {
     var expense = 0
     var state = 0
     
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(ReportViewController.handleRefresh(_:)), for: UIControl.Event.valueChanged)
+        refreshControl.tintColor = .lightGray
+        refreshControl.attributedTitle = NSAttributedString(string: "loading")
+        return refreshControl
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
@@ -41,6 +48,7 @@ class ReportViewController: UIViewController {
         setupTxtDate()
         showDatePicker()
         createDatePicker()
+        self.tableView.addSubview(self.refreshControl)
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -50,6 +58,12 @@ class ReportViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
         super.viewWillDisappear(animated)
+    }
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        tableView.reloadData()
+        refreshControl.endRefreshing()
+        print("scroll to top")
     }
     
     func setupTxtDate() {
@@ -153,8 +167,8 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
 extension ReportViewController: CustomCollectionCellDelegate {
     func collectionView(collectioncell: PieChartCollectionViewCell?, didTappedInTableview TableCell: PieChartTableViewCell) {
         let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailPC") as! DetailPieChartVC
-            vc.sumIncome = self.income
-            vc.sumExpense = self.expense
+        vc.sumIncome = self.income
+        vc.sumExpense = self.expense
         navigationController?.pushViewController(vc, animated: true)
     }
 }

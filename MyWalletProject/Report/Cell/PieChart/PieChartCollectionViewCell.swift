@@ -37,7 +37,9 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
         formatter.groupingSeparator = ","
         formatter.numberStyle = .decimal
         buildChart()
+
         setChart()
+   
     }
     
     var incomeArray: [Transaction] = [] {
@@ -197,5 +199,7 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
         chartView.data = data
         chartView.highlightValues(nil)
     }
+    
+   
 }
 

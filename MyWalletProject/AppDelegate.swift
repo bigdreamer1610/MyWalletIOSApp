@@ -18,19 +18,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.makeKeyAndVisible()
-        let tabbar = MainTabViewController.createTabbar()
-        let navigationController = UINavigationController(rootViewController: tabbar)
-        navigationController.isNavigationBarHidden = true
-        window?.rootViewController = navigationController
         
 //        window = UIWindow(frame: UIScreen.main.bounds)
 //        window?.makeKeyAndVisible()
-//        let vc = RouterType.viewTransaction.getVc()
-//        let navigationController = UINavigationController(rootViewController: vc)
+//        let loginVc = LoginViewController()
+//        let navigationController = UINavigationController(rootViewController: loginVc)
 //        navigationController.isNavigationBarHidden = true
 //        window?.rootViewController = navigationController
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        let navigationController = UINavigationController(rootViewController: RouterType.tabbar.getVc())
+        navigationController.isNavigationBarHidden = true
+        window?.rootViewController = navigationController
+        
         
         // google
         GIDSignIn.sharedInstance().clientID = "530496501963-pkmcpemkjme33b511eof2i60mkcsmuus.apps.googleusercontent.com"

@@ -121,17 +121,17 @@
                                 <rect key="frame" x="10" y="198" width="40" height="40"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdP-Xw-7f3">
-                                <rect key="frame" x="55" y="108" width="349" height="60"/>
+                                <rect key="frame" x="60" y="108" width="344" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Toh-nC-142"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="33"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.000.000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="15y-eH-1WR">
-                                <rect key="frame" x="55" y="188" width="349" height="60"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                <rect key="frame" x="60" y="188" width="344" height="60"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -225,8 +225,8 @@
                                 <rect key="frame" x="10" y="368" width="40" height="40"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dd/mm/yy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gyc-Sq-Epj">
-                                <rect key="frame" x="55" y="358" width="349" height="60"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <rect key="frame" x="60" y="358" width="344" height="60"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -267,7 +267,7 @@
                             <constraint firstItem="7Yh-F1-2cn" firstAttribute="trailing" secondItem="Ptb-ya-pkF" secondAttribute="trailing" constant="10" id="Hxr-JT-94c"/>
                             <constraint firstItem="HZ3-D9-2wg" firstAttribute="width" secondItem="JSj-6b-q34" secondAttribute="width" id="K4b-9b-Cnv"/>
                             <constraint firstItem="Gyc-Sq-Epj" firstAttribute="top" secondItem="Ptb-ya-pkF" secondAttribute="bottom" constant="20" id="KqH-n8-IjQ"/>
-                            <constraint firstItem="mdP-Xw-7f3" firstAttribute="leading" secondItem="Vcg-fv-aGg" secondAttribute="trailing" constant="5" id="LEX-hn-rxe"/>
+                            <constraint firstItem="mdP-Xw-7f3" firstAttribute="leading" secondItem="Vcg-fv-aGg" secondAttribute="trailing" constant="10" id="LEX-hn-rxe"/>
                             <constraint firstItem="JSj-6b-q34" firstAttribute="top" secondItem="mdP-Xw-7f3" secondAttribute="bottom" constant="30" id="LXH-aQ-2vx"/>
                             <constraint firstItem="Ptb-ya-pkF" firstAttribute="top" secondItem="15y-eH-1WR" secondAttribute="bottom" constant="20" id="Pzn-qn-BQs"/>
                             <constraint firstItem="HZ3-D9-2wg" firstAttribute="top" secondItem="Ptb-ya-pkF" secondAttribute="bottom" constant="30" id="QqY-qS-Dwz"/>
@@ -277,11 +277,11 @@
                             <constraint firstItem="vC2-u1-CFe" firstAttribute="centerX" secondItem="7Yh-F1-2cn" secondAttribute="centerX" id="Yxl-Yz-cnD"/>
                             <constraint firstItem="7Yh-F1-2cn" firstAttribute="trailing" secondItem="mdP-Xw-7f3" secondAttribute="trailing" constant="10" id="arP-Ft-UpR"/>
                             <constraint firstItem="vC2-u1-CFe" firstAttribute="top" secondItem="zUB-yh-LcV" secondAttribute="bottom" constant="10" id="bJk-tG-axu"/>
-                            <constraint firstItem="15y-eH-1WR" firstAttribute="leading" secondItem="JSj-6b-q34" secondAttribute="trailing" constant="5" id="d7v-Ga-LmZ"/>
+                            <constraint firstItem="15y-eH-1WR" firstAttribute="leading" secondItem="JSj-6b-q34" secondAttribute="trailing" constant="10" id="d7v-Ga-LmZ"/>
                             <constraint firstItem="Vcg-fv-aGg" firstAttribute="leading" secondItem="7Yh-F1-2cn" secondAttribute="leading" constant="10" id="fSZ-mh-z66"/>
                             <constraint firstItem="zUB-yh-LcV" firstAttribute="centerX" secondItem="7Yh-F1-2cn" secondAttribute="centerX" id="gmV-45-geP"/>
                             <constraint firstItem="vC2-u1-CFe" firstAttribute="height" secondItem="zUB-yh-LcV" secondAttribute="height" id="ptK-sW-I4r"/>
-                            <constraint firstItem="Gyc-Sq-Epj" firstAttribute="leading" secondItem="HZ3-D9-2wg" secondAttribute="trailing" constant="5" id="q0n-Gd-GbD"/>
+                            <constraint firstItem="Gyc-Sq-Epj" firstAttribute="leading" secondItem="HZ3-D9-2wg" secondAttribute="trailing" constant="10" id="q0n-Gd-GbD"/>
                             <constraint firstItem="HZ3-D9-2wg" firstAttribute="height" secondItem="JSj-6b-q34" secondAttribute="height" id="qdj-Zt-Mfa"/>
                             <constraint firstItem="JSj-6b-q34" firstAttribute="width" secondItem="Vcg-fv-aGg" secondAttribute="width" id="qjB-jZ-nK0"/>
                             <constraint firstItem="HZ3-D9-2wg" firstAttribute="leading" secondItem="7Yh-F1-2cn" secondAttribute="leading" constant="10" id="tyd-Xy-osS"/>
@@ -318,7 +318,39 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SC6-ar-lzI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2941" y="440"/>
+            <point key="canvasLocation" x="2940.579710144928" y="439.95535714285711"/>
+        </scene>
+        <!--Budget Detail-->
+        <scene sceneID="wbL-4h-geY">
+            <objects>
+                <viewController id="ZoX-Nw-Ztb" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="D2A-bk-0zH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GmZ-7P-HQw">
+                                <rect key="frame" x="10" y="108" width="394" height="734"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="GmZ-7P-HQw" firstAttribute="width" secondItem="D2A-bk-0zH" secondAttribute="width" constant="-20" id="9Ad-N6-5nW"/>
+                            <constraint firstItem="GmZ-7P-HQw" firstAttribute="centerX" secondItem="IfD-FV-pE5" secondAttribute="centerX" id="Qfc-y5-qOD"/>
+                            <constraint firstItem="IfD-FV-pE5" firstAttribute="bottom" secondItem="GmZ-7P-HQw" secondAttribute="bottom" constant="20" id="Xov-nJ-JU1"/>
+                            <constraint firstItem="GmZ-7P-HQw" firstAttribute="top" secondItem="IfD-FV-pE5" secondAttribute="top" constant="20" id="hba-bJ-Huw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="IfD-FV-pE5"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Budget Detail" id="4CB-a8-9DJ">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="Pnd-rb-2fg"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="at9-Tg-AZJ"/>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0KK-O0-UXY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3842.0289855072465" y="439.95535714285711"/>
         </scene>
         <!--Select Category View Controller-->
         <scene sceneID="tdK-md-jl4">
@@ -422,7 +454,7 @@
                         <viewLayoutGuide key="safeArea" id="om2-kH-wa4"/>
                     </view>
                     <navigationItem key="navigationItem" title="Time Ranger" id="ELy-y3-Va9">
-                        <barButtonItem key="leftBarButtonItem" title="Reset" id="x1l-uL-TDF">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="x1l-uL-TDF">
                             <connections>
                                 <action selector="btnBackClick:" destination="0bA-Rd-RyN" id="lgc-zX-249"/>
                             </connections>
@@ -542,7 +574,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iq5-0s-TlI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3722" y="440"/>
+            <point key="canvasLocation" x="4770" y="440"/>
         </scene>
     </scenes>
     <resources>
