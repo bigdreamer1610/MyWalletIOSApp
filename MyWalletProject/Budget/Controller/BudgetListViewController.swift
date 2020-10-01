@@ -213,7 +213,7 @@ class BudgetListViewController: UIViewController , UITableViewDataSource , UITab
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let vc = UIStoryboard.init(name: "budget", bundle: nil).instantiateViewController(withIdentifier: "BudgetDetailViewController") as! BudgetDetailViewController
+        let vc = UIStoryboard.init(name: "budget", bundle: nil).instantiateViewController(withIdentifier: "BudgetDetailController") as! BudgetDetailController
         
         var id = 0
         var categoryId = ""
