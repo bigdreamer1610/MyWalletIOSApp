@@ -49,7 +49,7 @@ class MainTabViewController: UITabBarController {
         let report = UIStoryboard(name: "Report", bundle: nil).instantiateViewController(withIdentifier: "ReportViewController") as! ReportViewController
         let scan = UIViewController()
         let planning = UIStoryboard(name: "AddEvent", bundle: nil).instantiateViewController(withIdentifier: "EventController") as! EventController
-        let account = UIStoryboard(name: "UserSettings", bundle: nil).instantiateViewController(withIdentifier: "userSettingsVC") as! UserSettingsViewController
+        let account = UIStoryboard(name: "UserSettings", bundle: nil).instantiateViewController(withIdentifier: "userSettingsNav") as! UINavigationController
         
         let homeItem = UITabBarItem(title: "Transactions", image: #imageLiteral(resourceName: "transaction"), tag: 0)
         let home1Item = UITabBarItem(title: "Report", image: #imageLiteral(resourceName: "report"), tag: 1)
