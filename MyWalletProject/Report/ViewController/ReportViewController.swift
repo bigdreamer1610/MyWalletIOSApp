@@ -151,17 +151,6 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 }
-
-extension UITextField{
-    
-    func setRightImage(imageName:String) {
-        
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 00, width: 8, height: 8))
-        imageView.image = UIImage(named: imageName)
-        self.rightView = imageView
-        self.rightViewMode = .always
-    }
-}
 extension ReportViewController: CustomCollectionCellDelegate {
     func collectionView(collectioncell: PieChartCollectionViewCell?, didTappedInTableview TableCell: PieChartTableViewCell) {
             let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailPC") as! DetailPieChartVC

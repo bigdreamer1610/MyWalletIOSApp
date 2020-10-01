@@ -16,13 +16,13 @@ class SelectEventUserCase{
                    //self.events.removeAll()
                    for artist in snapshot.children.allObjects as! [DataSnapshot] {
                        let art = artist.value as? [String:AnyObject]
-                       let artName = art?[Constant.nameEvent]
-                       let artGoal = art?[Constant .goalEvent]
-                       let artDateStart = art?[Constant.dateStartEvent]
-                       let artDateEnd = art?[Constant.dateEndEvent]
-                       let artCategory = art?[Constant.categoryid]
-                       let artSpent = art?[Constant.spentEvent]
-                       let arts = Event(name: artName as? String, goal: artGoal as? Int, dateStart: artDateStart as? String, dateEnd: artDateEnd as? String, category: artCategory as? String)
+                       let id = artist.key
+                       let artName = art?["name"]
+                       let artDate = art?["date"]
+                       let eventImage = art?["eventImage"]
+                       let artSpent = art?["spent"]
+                       let arts = Event(id: id, name: artName as? String, date: artDate as? String, eventImage: eventImage as? String, spent: artSpent as? Int)
+                       //self.events.append(arts)
                       // self.events.append(arts)
                    }
                  
