@@ -759,8 +759,8 @@
 			children = (
 				8A3BB414251ADEE6008113E9 /* ScanBill */,
 				8A3BB432251B5022008113E9 /* MoneyCurrencies */,
-				8A3BB42B251B20A9008113E9 /* Categories */,
 				8A3BB42A251B20A3008113E9 /* Settings */,
+				8A3BB42B251B20A9008113E9 /* Categories */,
 				8A3BB420251AF91F008113E9 /* UserSettingsViewController.swift */,
 				8A3BB428251B204C008113E9 /* UserSettings.storyboard */,
 				8A3BB424251AFE7C008113E9 /* SettingsItemViewCell.swift */,
