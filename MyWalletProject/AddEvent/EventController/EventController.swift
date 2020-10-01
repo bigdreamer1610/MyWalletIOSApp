@@ -140,7 +140,7 @@ class EventController: UIViewController, UITableViewDataSource, UITableViewDeleg
                        let dateEnd = dict["date"] as! String
                         var check = self.checkDay(dayThis: self.dateThis, dateEnd: dateEnd)
                         if check == false {
-                               let id = dict["id"] as! String
+                               let id = dict["id"] as? String
                                 let img = dict["categoryid"] as! String
                                 let nameEvent = dict["name"] as! String
                                 let spent = dict["spent"] as! Int

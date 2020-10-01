@@ -36,8 +36,8 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
         ref = Database.database().reference()
         formatter.groupingSeparator = ","
         formatter.numberStyle = .decimal
-        
         setChart()
+   
     }
     var incomeArray: [Transaction] = [] {
         didSet {
@@ -136,8 +136,6 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
         l.verticalAlignment = .bottom
         l.orientation = .vertical
         l.formToTextSpace = 4
-//        l.yOffset = 20
-//        l.xOffset = 10
         l.xEntrySpace = 6
         
         chartView.frame = CGRect(x: 0,
@@ -189,5 +187,7 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
         chartView.data = data
         chartView.highlightValues(nil)
     }
+    
+   
 }
 
