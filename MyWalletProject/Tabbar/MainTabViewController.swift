@@ -15,6 +15,15 @@ class MainTabViewController: UITabBarController {
         self.delegate = self
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     // TabBarButton – Setup Middle Button
     func setupMiddleButton() {
         let middleBtn = UIButton(frame: CGRect(x: (self.view.bounds.width / 2) - middleButtonRadius, y: -middleButtonRadius/2, width: middleButtonHeight, height: middleButtonHeight))
@@ -29,9 +38,8 @@ class MainTabViewController: UITabBarController {
     
     // Menu Button Touch Action
     @objc func menuButtonAction(sender: UIButton) {
-        //MARK: - Temporary: View budget
-        let vc = UIStoryboard.init(name: "budget", bundle: nil).instantiateViewController(withIdentifier: "BudgetListViewController") as? BudgetListViewController
-        AppRouter.routerTo(from: vc!, options: .transitionCrossDissolve, duration: 0.2, isNaviHidden: false)
+        let vc = RouterType.add.getVc()
+        AppRouter.routerTo(from: vc, options: .transitionCrossDissolve, duration: 0.2, isNaviHidden: false)
     }
     
     class func createTabbar() -> MainTabViewController {
@@ -39,8 +47,8 @@ class MainTabViewController: UITabBarController {
         let transaction = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as! ViewTransactionController
         let report = UIStoryboard(name: "Report", bundle: nil).instantiateViewController(withIdentifier: "ReportViewController") as! ReportViewController
         let scan = UIViewController()
-        let planning = UIStoryboard(name: "AddEvent", bundle: nil).instantiateViewController(withIdentifier: "EventController") as! EventController
-        let account = UIStoryboard(name: "UserSettings", bundle: nil).instantiateViewController(withIdentifier: "userSettingsVC") as! UserSettingsViewController
+        let planning = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "navi_second") as! SecondNavigationController
+        let account = UIStoryboard(name: "UserSettings", bundle: nil).instantiateViewController(withIdentifier: "userSettingsNav") as! UINavigationController
         
         let homeItem = UITabBarItem(title: "Transactions", image: #imageLiteral(resourceName: "transaction"), tag: 0)
         let home1Item = UITabBarItem(title: "Report", image: #imageLiteral(resourceName: "report"), tag: 1)
