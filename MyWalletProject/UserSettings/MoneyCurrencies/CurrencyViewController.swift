@@ -36,6 +36,16 @@ class CurrencyViewController: UIViewController {
         disabledEdittingTextField()
     }
     
+    // MARK: - Hide tab bar
+    override var hidesBottomBarWhenPushed: Bool {
+        get {
+            return true
+        }
+        set {
+            super.hidesBottomBarWhenPushed = newValue
+        }
+    }
+    
     func setupTextFieldDelegate() {
         txtVND.delegate = self
     }
@@ -62,7 +72,6 @@ class CurrencyViewController: UIViewController {
     // MARK: - Make rounded buttons
     func configureButton(_ button: UIButton) {
         button.layer.cornerRadius = 10
-        button.layer.borderWidth = 1
     }
     
     @IBAction func btnChangeCurrencyClick(_ sender: Any) {
