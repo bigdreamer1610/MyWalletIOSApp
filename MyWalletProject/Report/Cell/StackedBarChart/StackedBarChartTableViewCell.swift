@@ -10,8 +10,11 @@ import UIKit
 import Charts
 import FirebaseDatabase
 
+protocol setUpData {
+    func pushData(income: Int, expen:Int)
+}
+
 class StackedBarChartTableViewCell: BaseTBCell, ChartViewDelegate {
-    
     @IBOutlet weak var lblNetIncome: UILabel!
     @IBOutlet weak var containerView: UIView!
     var chartView = BarChartView()
@@ -21,6 +24,7 @@ class StackedBarChartTableViewCell: BaseTBCell, ChartViewDelegate {
     var sumIncome = 0
     var netIncome = 0
     private var formatter = NumberFormatter()
+    var delegate:setUpData?
     
     var reportView: ReceiveData?
     
