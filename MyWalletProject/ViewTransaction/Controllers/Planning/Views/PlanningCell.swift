@@ -10,11 +10,15 @@ import UIKit
 
 class PlanningCell: BaseTBCell {
 
+    @IBOutlet var rightArrow2: UIImageView!
+    @IBOutlet var rightArrow1: UIImageView!
     @IBOutlet weak var eventView: UIView!
     @IBOutlet weak var budgetView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
+        customizeLayout()
         addTapGestures()
+        
         // Initialization code
     }
 
@@ -22,6 +26,11 @@ class PlanningCell: BaseTBCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func customizeLayout(){
+        rightArrow1.setImageColor(color: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
+        rightArrow2.setImageColor(color: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
     }
     
     func addTapGestures(){
@@ -41,4 +50,12 @@ class PlanningCell: BaseTBCell {
         AppRouter.routerTo(from: vc, options: .curveEaseIn, duration: 0.2, isNaviHidden: false)
     }
     
+}
+
+extension UIImageView {
+  func setImageColor(color: UIColor) {
+    let templateImage = self.image?.withRenderingMode(.alwaysTemplate)
+    self.image = templateImage
+    self.tintColor = color
+  }
 }
