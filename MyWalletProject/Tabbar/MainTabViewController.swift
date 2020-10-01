@@ -13,17 +13,6 @@ class MainTabViewController: UITabBarController {
         super.viewDidLoad()
         setupMiddleButton()
         self.delegate = self
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-        self.navigationItem.setHidesBackButton(true, animated: true)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     // TabBarButton – Setup Middle Button
@@ -40,19 +29,18 @@ class MainTabViewController: UITabBarController {
     
     // Menu Button Touch Action
     @objc func menuButtonAction(sender: UIButton) {
-        let vc = UIStoryboard.init(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "BacNavigationController") as! BacNavigationController
-        vc.modalPresentationStyle = .fullScreen
-        vc.modalTransitionStyle = .coverVertical
-        self.present(vc, animated: true)
+        //MARK: - Temporary: View budget
+        let vc = UIStoryboard.init(name: "budget", bundle: nil).instantiateViewController(withIdentifier: "BudgetListViewController") as? BudgetListViewController
+        AppRouter.routerTo(from: vc!, options: .transitionCrossDissolve, duration: 0.2, isNaviHidden: false)
     }
     
     class func createTabbar() -> MainTabViewController {
         let tabbar = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "MainTabViewController") as! MainTabViewController
         let transaction = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as! ViewTransactionController
-        let report = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as! ViewTransactionController
+        let report = UIStoryboard(name: "Report", bundle: nil).instantiateViewController(withIdentifier: "ReportViewController") as! ReportViewController
         let scan = UIViewController()
-        let planning = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as! ViewTransactionController
-        let account = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as! ViewTransactionController
+        let planning = UIStoryboard(name: "AddEvent", bundle: nil).instantiateViewController(withIdentifier: "EventController") as! EventController
+        let account = UIStoryboard(name: "UserSettings", bundle: nil).instantiateViewController(withIdentifier: "userSettingsVC") as! UserSettingsViewController
         
         let homeItem = UITabBarItem(title: "Transactions", image: #imageLiteral(resourceName: "transaction"), tag: 0)
         let home1Item = UITabBarItem(title: "Report", image: #imageLiteral(resourceName: "report"), tag: 1)
@@ -74,7 +62,6 @@ class MainTabViewController: UITabBarController {
 
 extension MainTabViewController : UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        viewController.navigationController?.setNavigationBarHidden(true, animated: true)
         //let selected = tabBarController.selectedIndex
         //print("SELECTED INDEX IS : \(selected)")
         return true

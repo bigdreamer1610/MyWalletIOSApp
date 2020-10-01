@@ -1,18 +1,17 @@
 //
-//  MoneyTableViewCell.swift
-//  MyWallet
+//  DayDetailCell.swift
+//  MyWalletProject
 //
-//  Created by Nguyen Thi Huong on 9/21/20.
-//  Copyright © 2020 THUY Nguyen Duong Thu. All rights reserved.
+//  Created by Nguyen Thi Huong on 9/30/20.
+//  Copyright © 2020 Vuong Vu Bac Son. All rights reserved.
 //
 
 import UIKit
 
-class MoneyTableViewCell: BaseTBCell {
+class DayDetailCell: BaseTBCell {
 
-    @IBOutlet weak var lblBeginBalance: UILabel!
-    @IBOutlet weak var lblEndBalance: UILabel!
-    
+    @IBOutlet weak var lblTypeOfMoney: UILabel!
+    @IBOutlet weak var lblMoney: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

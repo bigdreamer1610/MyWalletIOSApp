@@ -48,13 +48,12 @@ class SelectEventController: UIViewController {
                 self.events.removeAll()
                 for artist in snapshot.children.allObjects as! [DataSnapshot] {
                     let art = artist.value as? [String:AnyObject]
+                    let id = artist.key
                     let artName = art?["name"]
-                    let artGoal = art?["goal"]
-                    let artDateStart = art?["dateStart"]
-                    let artDateEnd = art?["dateEnd"]
-                    let artCategory = art?["categoryid"]
+                    let artDate = art?["date"]
+                    let eventImage = art?["eventImage"]
                     let artSpent = art?["spent"]
-                    let arts = Event(name: artName as? String, goal: artGoal as? Int, dateStart: artDateStart as? String, dateEnd: artDateEnd as? String, category: artCategory as? String)
+                    let arts = Event(id: id, name: artName as? String, date: artDate as? String, eventImage: eventImage as? String, spent: artSpent as? Int)
                     self.events.append(arts)
                 }
                 self.tableView.reloadData()
