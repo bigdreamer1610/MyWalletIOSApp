@@ -104,6 +104,9 @@
 		73E78DAA2524427B00D7B962 /* SelectEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E78DA82524427B00D7B962 /* SelectEventCell.swift */; };
 		73E78DAB2524427B00D7B962 /* SelectEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73E78DA92524427B00D7B962 /* SelectEventCell.xib */; };
 		73E78DAD252442FD00D7B962 /* SelectEventUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E78DAC252442FD00D7B962 /* SelectEventUseCase.swift */; };
+		73FC0D342525DE4C0012676D /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FC0D332525DE4C0012676D /* TransactionViewController.swift */; };
+		73FC0D362525DE5E0012676D /* TransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FC0D352525DE5E0012676D /* TransactionUseCase.swift */; };
+		73FC0D382525DE6C0012676D /* TransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FC0D372525DE6C0012676D /* TransactionPresenter.swift */; };
 		8A1E077A251C3DB3000DCF07 /* CurrencyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1E0779251C3DB3000DCF07 /* CurrencyPresenter.swift */; };
 		8A1E077C251C4175000DCF07 /* CurrencyUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A1E077B251C4175000DCF07 /* CurrencyUseCase.swift */; };
 		8A3BB40B251ADE6E008113E9 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BB40A251ADE6E008113E9 /* Transaction.swift */; };
@@ -264,6 +267,9 @@
 		73E78DA82524427B00D7B962 /* SelectEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectEventCell.swift; sourceTree = "<group>"; };
 		73E78DA92524427B00D7B962 /* SelectEventCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectEventCell.xib; sourceTree = "<group>"; };
 		73E78DAC252442FD00D7B962 /* SelectEventUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectEventUseCase.swift; sourceTree = "<group>"; };
+		73FC0D332525DE4C0012676D /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
+		73FC0D352525DE5E0012676D /* TransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionUseCase.swift; sourceTree = "<group>"; };
+		73FC0D372525DE6C0012676D /* TransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionPresenter.swift; sourceTree = "<group>"; };
 		8A1E0779251C3DB3000DCF07 /* CurrencyPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyPresenter.swift; sourceTree = "<group>"; };
 		8A1E077B251C4175000DCF07 /* CurrencyUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyUseCase.swift; sourceTree = "<group>"; };
 		8A3BB40A251ADE6E008113E9 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
@@ -665,6 +671,7 @@
 		73E0B15E2521E0ED0097D41F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				73FC0D322525DE240012676D /* TestViewController */,
 				73AA67F42525825E001EAA1D /* Planning */,
 				73E0B1902521ED6F0097D41F /* Balance */,
 				73E0B18F2521ED680097D41F /* MainTransaction */,
@@ -771,6 +778,16 @@
 				73E78DA92524427B00D7B962 /* SelectEventCell.xib */,
 			);
 			path = EventCell;
+			sourceTree = "<group>";
+		};
+		73FC0D322525DE240012676D /* TestViewController */ = {
+			isa = PBXGroup;
+			children = (
+				73FC0D332525DE4C0012676D /* TransactionViewController.swift */,
+				73FC0D352525DE5E0012676D /* TransactionUseCase.swift */,
+				73FC0D372525DE6C0012676D /* TransactionPresenter.swift */,
+			);
+			path = TestViewController;
 			sourceTree = "<group>";
 		};
 		8A3BB414251ADEE6008113E9 /* ScanBill */ = {
@@ -1222,6 +1239,7 @@
 				8A3BB413251ADED6008113E9 /* Budget.swift in Sources */,
 				73E78DA42524420200D7B962 /* SelectEventUserCase.swift in Sources */,
 				56B8A80625248A5D00B8E8F0 /* AmountCell.swift in Sources */,
+				73FC0D342525DE4C0012676D /* TransactionViewController.swift in Sources */,
 				D270F4C1251B550E00CB274C /* CategoryEventCell.swift in Sources */,
 				72873D9325249B6100313629 /* IncomDetailTableViewCell.swift in Sources */,
 				73E0B17C2521E0EE0097D41F /* FirstNavigationController.swift in Sources */,
@@ -1232,6 +1250,7 @@
 				7338861D25231F67002F126B /* Constant.swift in Sources */,
 				56B8A7EE2524846400B8E8F0 /* LoginPresenterGG.swift in Sources */,
 				8ACA6248251A07980031E6DF /* AppDelegate.swift in Sources */,
+				73FC0D362525DE5E0012676D /* TransactionUseCase.swift in Sources */,
 				73E0B1772521E0EE0097D41F /* TransactionModel.swift in Sources */,
 				72873D9F25249C3200313629 /* NameTableViewCell.swift in Sources */,
 				8A3BB40B251ADE6E008113E9 /* Transaction.swift in Sources */,
@@ -1270,6 +1289,7 @@
 				D270F4BD251B54DF00CB274C /* EventCell.swift in Sources */,
 				72A7191A251DDE87003ED157 /* StackedBarChartTableViewCell.swift in Sources */,
 				72A71923251DDEEE003ED157 /* PieChartCollectionViewCell.swift in Sources */,
+				73FC0D382525DE6C0012676D /* TransactionPresenter.swift in Sources */,
 				735873EF2521780D00B8235D /* MainTabViewController.swift in Sources */,
 				73AA67FA25258294001EAA1D /* PlanningCell.swift in Sources */,
 				73E0B17E2521E0EE0097D41F /* TransactionCell.swift in Sources */,
