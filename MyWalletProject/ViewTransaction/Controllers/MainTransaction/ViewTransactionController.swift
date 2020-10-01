@@ -531,9 +531,9 @@ class ViewTransactionController: UIViewController {
         Defined.ref.child("Category").observeSingleEvent(of: .value) {[weak self] (snapshot) in
             guard let `self` = self else {return}
             if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
-                let myKey = (snapshot as AnyObject).key as String
                 //expense/income
                 for mySnap in snapshots {
+                    let myKey = (mySnap as AnyObject).key as String
                     //key inside expense/income
                     if let mySnap = mySnap.children.allObjects as? [DataSnapshot]{
                         for snap in mySnap {

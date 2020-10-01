@@ -125,6 +125,8 @@
             <connections>
                 <outlet property="budgetView" destination="wDM-9b-vhP" id="g7u-ht-ygO"/>
                 <outlet property="eventView" destination="X1s-Zb-qoF" id="umA-AA-GU6"/>
+                <outlet property="rightArrow1" destination="2RL-PB-tsF" id="BRX-9y-xI4"/>
+                <outlet property="rightArrow2" destination="Nfz-KQ-rE5" id="Ae0-xo-Sq8"/>
             </connections>
             <point key="canvasLocation" x="202.89855072463769" y="147.32142857142856"/>
         </tableViewCell>

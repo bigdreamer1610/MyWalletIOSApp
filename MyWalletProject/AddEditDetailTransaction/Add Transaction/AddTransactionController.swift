@@ -48,8 +48,6 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
         tfNote.delegate = self
         btnSave.isEnabled = false
         customizeLayout()
-        
-        
     }
     
     func customizeLayout(){
@@ -93,7 +91,7 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func clickCancel(_ sender: Any) {
-        let vc = MainTabViewController.createTabbar()
+        let vc = RouterType.tabbar.getVc()
         AppRouter.routerTo(from: vc, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
         
     }
@@ -117,9 +115,14 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
         Defined.ref.child("Account/userid1/transaction/\(type)").childByAutoId().setValue(writeData)
         let alert = UIAlertController(title: "Notification", message: "Add a new transaction successfully", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-            let vc = UIStoryboard.init(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as? ViewTransactionController
-            AppRouter.routerTo(from: vc!, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
+            let vc = RouterType.tabbar.getVc()
+            AppRouter.routerTo(from: vc, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
         }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func budgetCheck(){
+        
     }
     
     @IBAction func btnAddMoreDetails(_ sender: Any) {
