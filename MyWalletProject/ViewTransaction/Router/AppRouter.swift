@@ -13,6 +13,10 @@ enum RouterType {
     case transactionDetail(item: TransactionItem, header: TransactionHeader)
     case categoryDetail(item: CategoryItem, header: CategoryHeader)
     case balance
+    case add
+    case planning
+    case budget
+    case event
     
     //case viewTransaction
 }
@@ -30,21 +34,21 @@ class AppRouter {
         }
     }
     
-//    class func setRootView(){
-//        DispatchQueue.main.async {
-//            if let window = UIApplication.shared.keyWindow {
-//                window.rootViewController = nil
-//                let navigationController = UINavigationController(rootViewController: RouterType.viewTransaction.getVc())
-//                navigationController.isNavigationBarHidden = true
-//                window.rootViewController = navigationController
-//                let options: UIView.AnimationOptions = .transitionCrossDissolve
-//                UIView.transition(with: window, duration: 0.3, options: options, animations: {}) { (completed) in
-//
-//                }
-//                window.makeKeyAndVisible()
-//            }
-//        }
-//    }
+    //    class func setRootView(){
+    //        DispatchQueue.main.async {
+    //            if let window = UIApplication.shared.keyWindow {
+    //                window.rootViewController = nil
+    //                let navigationController = UINavigationController(rootViewController: RouterType.viewTransaction.getVc())
+    //                navigationController.isNavigationBarHidden = true
+    //                window.rootViewController = navigationController
+    //                let options: UIView.AnimationOptions = .transitionCrossDissolve
+    //                UIView.transition(with: window, duration: 0.3, options: options, animations: {}) { (completed) in
+    //
+    //                }
+    //                window.makeKeyAndVisible()
+    //            }
+    //        }
+    //    }
 }
 extension RouterType{
     func getVc() -> UIViewController {
@@ -60,12 +64,25 @@ extension RouterType{
         case .balance:
             let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "BalanceViewController") as! BalanceViewController
             return vc
+        case .add:
+            let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "add") as! AddTransactionController
+            return vc
+        case .planning:
+            let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "planning_vc") as! PlanningViewController
+            return vc
+        case .budget:
+            let vc = UIStoryboard(name: "budget", bundle: nil).instantiateViewController(withIdentifier: "BudgetListViewController") as! BudgetListViewController
+            return vc
+        case .event:
+            let vc = UIStoryboard(name: "AddEvent", bundle: nil).instantiateViewController(withIdentifier: "EventController") as! EventController
+            return vc
             
-//        default:
-//            let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as! ViewTransactionViewController
-//            let presenter = ViewTransactionPresenter(delegate: vc, viewTransUseCase: ViewTransactionUseCase())
-//            vc.setUp(presenter: presenter)
-//            return vc
+            //        default:
+            //            let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as! ViewTransactionViewController
+            //            let presenter = ViewTransactionPresenter(delegate: vc, viewTransUseCase: ViewTransactionUseCase())
+            //            vc.setUp(presenter: presenter)
+            //            return vc
+            
         }
     }
 }

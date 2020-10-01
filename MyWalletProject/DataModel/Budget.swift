@@ -10,6 +10,7 @@ import Foundation
 
 struct Budget {
     var id: Int? = nil
+    var categoryId:String? = nil
     var categoryName: String? = nil
     var categoryImage: String? = nil
     var transactionType: String? = nil
