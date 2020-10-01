@@ -93,8 +93,8 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func clickCancel(_ sender: Any) {
-        let vc = UIStoryboard.init(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as? ViewTransactionController
-        AppRouter.routerTo(from: vc!, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
+        let vc = MainTabViewController.createTabbar()
+        AppRouter.routerTo(from: vc, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
         
     }
     @IBAction func btnSave(_ sender: Any) {
