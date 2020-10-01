@@ -31,7 +31,9 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
     var id: String = ""
     var type: String = ""
     var thisDate = Date()
+    var budgets = [Budget]()
     private let dateFormatter = DateFormatter()
+    
     override func viewDidLoad() {
         customizeLayout()
         viewShowMore.isHidden = true
@@ -123,6 +125,26 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
     
     func budgetCheck(){
         
+    }
+    
+    func fetchDataBudget(){
+        let dispatchGroup = DispatchGroup()
+        
+        dispatchGroup.enter()
+        Defined.ref.child("Account/userid1/budget").observeSingleEvent(of: .value) {[weak self] (snapshot) in
+            guard let `self` = self else {return}
+            if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
+                for snap in snapshots {
+                    let id = snap.key
+                    if let value = snap.value as? [String: Any]{
+                        let dateStart = value["startDate"] as? String
+                        let dateEnd = value["endDate"] as? String
+                        let categoryid = value["categoryId"] as? String
+                        let amount = value["amount"] as? Int
+                    }
+                }
+            }
+        }
     }
     
     @IBAction func btnAddMoreDetails(_ sender: Any) {

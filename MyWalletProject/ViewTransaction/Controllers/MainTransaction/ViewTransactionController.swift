@@ -104,7 +104,7 @@ class ViewTransactionController: UIViewController {
             Defined.defaults.set(userid, forKey: Constants.userid)
         }
         initTableViews()
-        getDataCategory()
+        fetchData()
         //check mode
         if mode == nil {
             UserDefaults.standard.set("transaction", forKey: "viewmode")
@@ -120,8 +120,6 @@ class ViewTransactionController: UIViewController {
         super.viewWillAppear(animated)
         DispatchQueue.main.async {
             self.getDataTransactions(month: self.currentMonth, year: self.currentYear)
-            self.getBalance()
-            //self.jumpToDate(from: self.dateFormatter.date(from: "02/\(self.currentMonth)/\(self.currentYear)")!)
             self.jumpToDate(from: self.current)
             print("current: \(self.current)")
         }
@@ -205,57 +203,34 @@ class ViewTransactionController: UIViewController {
             centerIcon.isHidden = true
             centerLabel.isHidden = true
         }
-        //get transaction expense
-        Defined.ref.child("Account/userid1/transaction/expense").observeSingleEvent(of: .value) {[weak self] (snapshot) in
+        //MARK: - Get All Transactions
+        Defined.ref.child("Account/userid1/transaction").observeSingleEvent(of: .value) {[weak self] (snapshot) in
             guard let `self` = self else {
                 return
             }
             if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
-                for snap in snapshots {
-                    let id = snap.key
-                    if let value = snap.value as? [String: Any]{
-                        let transactionType = TransactionType.expense.getValue()
-                        let amount = value["amount"] as! Int
-                        let categoryid = value["categoryid"] as! String
-                        let date = value["date"] as! String
-                        var transaction = Transaction(id: id, transactionType: transactionType, amount: amount, categoryid: categoryid, date: date)
-                        if let note = value["note"] as? String {
-                            transaction.note = note
+                for mySnap in snapshots {
+                    let transactionType = (mySnap as AnyObject).key as String
+                    if let snaps = mySnap.children.allObjects as? [DataSnapshot]{
+                        for snap in snaps {
+                            let id = snap.key
+                            if let value = snap.value as? [String: Any]{
+                                let amount = value["amount"] as! Int
+                                let categoryid = value["categoryid"] as! String
+                                let date = value["date"] as! String
+                                var transaction = Transaction(id: id, transactionType: transactionType, amount: amount, categoryid: categoryid, date: date)
+                                if let note = value["note"] as? String {
+                                    transaction.note = note
+                                }
+                                if let eventid = value["eventid"] as? String {
+                                    transaction.eventid = eventid
+                                }
+                                self.allTransactions.append(transaction)
+                            }
                         }
-                        if let eventid = value["eventid"] as? String {
-                            transaction.eventid = eventid
-                        }
-                        self.allTransactions.append(transaction)
-
                     }
                 }
-                self.transactionTableView.reloadData()
-                self.viewByCategoryTableView.reloadData()
-            }
-        }
-        Defined.ref.child("Account/userid1/transaction/\(TransactionType.income.getValue())").observeSingleEvent(of: .value) {[weak self] (snapshot) in
-            guard let `self` = self else {
-                return
-            }
-            if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
-                for snap in snapshots {
-                    let id = snap.key
-                    if let value = snap.value as? [String: Any]{
-                        let transactionType = TransactionType.income.getValue()
-                        let amount = value["amount"] as! Int
-                        let categoryid = value["categoryid"] as! String
-                        let date = value["date"] as! String
-                        var transaction = Transaction(id: id, transactionType: transactionType, amount: amount, categoryid: categoryid, date: date)
-                        if let note = value["note"] as? String {
-                            transaction.note = note
-                        }
-                        if let eventid = value["eventid"] as? String {
-                            transaction.eventid = eventid
-                        }
-                        self.allTransactions.append(transaction)
-                    }
-                }
-
+                
                 self.getTransactionbyMonth(month: month, year: year)
                 self.loadingView.isHidden = true
                 self.loadDetailCell(month: month, year: year)
@@ -278,10 +253,10 @@ class ViewTransactionController: UIViewController {
                     self.transactionTableView.reloadData()
                     self.viewByCategoryTableView.reloadData()
                     self.centerIndicator.stopAnimating()
-                }
-
             }
         }
+        }
+        
 
     }
     //MARK: - Get Transaction by month
@@ -472,19 +447,53 @@ class ViewTransactionController: UIViewController {
         }
         return checkArray
     }
-
-    func getBalance(){
+    
+    func fetchData(){
+        let dispatchGroup = DispatchGroup()
+        
+        //MARK: - Get Balance
+        dispatchGroup.enter()
         Defined.ref.child("Account/userid1/information/balance").observeSingleEvent(of: .value) { (snapshot) in
             if let value = snapshot.value as? Int {
                 self.balance = value
-                Defined.defaults.setValue(value, forKey: Constants.balance)
-                DispatchQueue.main.async {
-                    self.balance = value
-                    self.lbBalance.text = "\(Defined.formatter.string(from: NSNumber(value: self.balance))!) đ"
-                }
             }
 
 
+        }
+        dispatchGroup.leave()
+        
+        //MARK: - Get Category
+        dispatchGroup.enter()
+        Defined.ref.child("Category").observeSingleEvent(of: .value) {[weak self] (snapshot) in
+            guard let `self` = self else {return}
+            if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
+                //expense/income
+                for mySnap in snapshots {
+                    let myKey = (mySnap as AnyObject).key as String
+                    //key inside expense/income
+                    if let mySnap = mySnap.children.allObjects as? [DataSnapshot]{
+                        for snap in mySnap {
+                            let id = snap.key
+                            if let value = snap.value as? [String: Any]{
+                                let name = value["name"] as? String
+                                let iconImage = value["iconImage"] as? String
+                                let transactionType =  myKey
+                                let category = Category(id: id, name: name, transactionType: transactionType, iconImage: iconImage)
+                                self.categories.append(category)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        dispatchGroup.leave()
+        
+        dispatchGroup.notify(queue: .main) {
+            Defined.defaults.setValue(self.balance, forKey: Constants.balance)
+            self.lbBalance.text = "\(Defined.formatter.string(from: NSNumber(value: self.balance))!) đ"
+            
+            self.transactionTableView.reloadData()
+            self.viewByCategoryTableView.reloadData()
         }
     }
 
