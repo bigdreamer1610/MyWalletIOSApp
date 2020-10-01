@@ -48,6 +48,16 @@ class ScanBillViewController: UIViewController {
         removeTextViewLeftPadding(txtNote)
     }
     
+    // MARK: - Hide tab bar
+    override var hidesBottomBarWhenPushed: Bool {
+        get {
+            return true
+        }
+        set {
+            super.hidesBottomBarWhenPushed = newValue
+        }
+    }
+    
     // MARK: - Make rounded buttons
     func configureButton(_ button: UIButton) {
         button.layer.cornerRadius = 10
