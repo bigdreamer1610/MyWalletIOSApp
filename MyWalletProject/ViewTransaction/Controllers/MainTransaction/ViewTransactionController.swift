@@ -225,9 +225,6 @@ class ViewTransactionController: UIViewController {
                         if let eventid = value["eventid"] as? String {
                             transaction.eventid = eventid
                         }
-                        if let budgetid = value["budgetid"] as? String {
-                            transaction.budgetid = budgetid
-                        }
                         self.allTransactions.append(transaction)
 
                     }
@@ -254,9 +251,6 @@ class ViewTransactionController: UIViewController {
                         }
                         if let eventid = value["eventid"] as? String {
                             transaction.eventid = eventid
-                        }
-                        if let budgetid = value["budgetid"] as? String {
-                            transaction.budgetid = budgetid
                         }
                         self.allTransactions.append(transaction)
                     }
