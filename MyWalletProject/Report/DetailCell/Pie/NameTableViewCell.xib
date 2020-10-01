@@ -24,13 +24,13 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Khoản thu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCL-07-YiY">
-                        <rect key="frame" x="20" y="0.0" width="84" height="20.5"/>
+                        <rect key="frame" x="15" y="0.0" width="84" height="20.5"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="800000000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKU-FE-4m9">
-                        <rect key="frame" x="208.5" y="0.0" width="101.5" height="20.5"/>
+                        <rect key="frame" x="213.5" y="0.0" width="101.5" height="20.5"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                         <color key="textColor" red="0.110705017" green="0.13001743160000001" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
@@ -49,7 +49,7 @@
                     <constraint firstItem="ySA-tN-kbx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="JeB-fg-S8i"/>
                     <constraint firstItem="aCL-07-YiY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Kyp-LQ-BOS"/>
                     <constraint firstItem="NKU-FE-4m9" firstAttribute="leading" secondItem="aCL-07-YiY" secondAttribute="trailing" priority="250" constant="118" id="LTN-dE-okz"/>
-                    <constraint firstAttribute="trailing" secondItem="NKU-FE-4m9" secondAttribute="trailing" constant="20" id="POk-VL-ZMS"/>
+                    <constraint firstAttribute="trailing" secondItem="NKU-FE-4m9" secondAttribute="trailing" constant="15" id="POk-VL-ZMS"/>
                     <constraint firstAttribute="bottom" secondItem="NKU-FE-4m9" secondAttribute="bottom" id="VYi-PH-4nE"/>
                     <constraint firstAttribute="trailing" secondItem="PBc-3x-kW8" secondAttribute="trailing" id="aCn-Yb-XiH"/>
                     <constraint firstItem="PBc-3x-kW8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="aXu-1T-Jx2"/>
@@ -57,7 +57,7 @@
                     <constraint firstAttribute="bottom" secondItem="PBc-3x-kW8" secondAttribute="bottom" id="gy3-q5-JCl"/>
                     <constraint firstAttribute="bottom" secondItem="aCL-07-YiY" secondAttribute="bottom" id="jej-uu-ad2"/>
                     <constraint firstItem="NKU-FE-4m9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="qpW-E8-zhd"/>
-                    <constraint firstItem="aCL-07-YiY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="x1x-Qm-ErL"/>
+                    <constraint firstItem="aCL-07-YiY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="x1x-Qm-ErL"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

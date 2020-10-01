@@ -45,10 +45,10 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="97w-Em-YgM">
-                        <rect key="frame" x="20" y="66.5" width="363" height="160"/>
+                        <rect key="frame" x="15" y="66.5" width="383" height="160"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CfB-qj-AYc">
-                                <rect key="frame" x="-20" y="169.5" width="413" height="0.5"/>
+                                <rect key="frame" x="-15" y="169.5" width="413" height="0.5"/>
                                 <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="0.5" id="WVh-fK-aRP"/>
@@ -65,13 +65,13 @@
                 <constraints>
                     <constraint firstItem="UcT-ef-hSl" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="1/4" id="7Cv-sR-Fpz"/>
                     <constraint firstItem="97w-Em-YgM" firstAttribute="top" secondItem="UcT-ef-hSl" secondAttribute="bottom" id="9Gy-DD-dwF"/>
-                    <constraint firstAttribute="trailing" secondItem="97w-Em-YgM" secondAttribute="trailing" constant="30" id="HpJ-xn-L0j"/>
+                    <constraint firstAttribute="trailing" secondItem="97w-Em-YgM" secondAttribute="trailing" constant="15" id="HpJ-xn-L0j"/>
                     <constraint firstAttribute="bottomMargin" secondItem="97w-Em-YgM" secondAttribute="bottom" id="MxC-Fa-Kqf"/>
                     <constraint firstItem="UcT-ef-hSl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="QPg-F2-kdy"/>
                     <constraint firstItem="UcT-ef-hSl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="WEL-dA-9uL"/>
                     <constraint firstAttribute="trailing" secondItem="CfB-qj-AYc" secondAttribute="trailing" id="hog-M8-jPe"/>
                     <constraint firstItem="CfB-qj-AYc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="iJi-Yd-7KE"/>
-                    <constraint firstItem="97w-Em-YgM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="nYs-a5-qsh"/>
+                    <constraint firstItem="97w-Em-YgM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="nYs-a5-qsh"/>
                     <constraint firstAttribute="trailing" secondItem="UcT-ef-hSl" secondAttribute="trailing" id="vef-h2-kzx"/>
                 </constraints>
             </tableViewCellContentView>
