@@ -38,33 +38,25 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        makeRoundedImage()
         configureButton(btnSave)
         configureButton(btnCancel)
         
-        scrollViewDidScroll(scrollView: scrollView)
+        self.title = "Information"
     }
     
-    // MARK: - Disable horizontal scroll
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        if scrollView.contentOffset.x>0 {
-            scrollView.contentOffset.x = 0
+    // MARK: - Hide tab bar
+    override var hidesBottomBarWhenPushed: Bool {
+        get {
+            return true
         }
-    }
-    
-    // MARK: - Rounded user's avatar
-    func makeRoundedImage() {
-        avaImage.layer.borderWidth = 1
-        avaImage.layer.masksToBounds = false
-        avaImage.layer.backgroundColor = UIColor.systemPink.cgColor
-        avaImage.layer.cornerRadius = avaImage.frame.height / 2
-        avaImage.clipsToBounds = true
+        set {
+            super.hidesBottomBarWhenPushed = newValue
+        }
     }
     
     // MARK: - Make rounded buttons
     func configureButton(_ button: UIButton) {
         button.layer.cornerRadius = 10
-        button.layer.borderWidth = 1
     }
     
     @IBAction func btnSaveClicked(_ sender: Any) {
