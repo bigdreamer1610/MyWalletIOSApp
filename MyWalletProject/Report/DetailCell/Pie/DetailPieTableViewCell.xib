@@ -17,10 +17,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="97w-Em-YgM">
-                        <rect key="frame" x="20" y="11" width="373" height="200"/>
+                        <rect key="frame" x="15" y="11" width="383" height="200"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dH1-qu-VLg">
-                                <rect key="frame" x="-20" y="209.5" width="413" height="0.5"/>
+                                <rect key="frame" x="-15" y="209.5" width="413" height="0.5"/>
                                 <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="0.5" id="Cnp-KJ-GsO"/>
@@ -35,11 +35,11 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="97w-Em-YgM" secondAttribute="trailing" constant="20" id="HpJ-xn-L0j"/>
+                    <constraint firstAttribute="trailing" secondItem="97w-Em-YgM" secondAttribute="trailing" constant="15" id="HpJ-xn-L0j"/>
                     <constraint firstAttribute="trailing" secondItem="dH1-qu-VLg" secondAttribute="trailing" id="Kte-iU-kSE"/>
                     <constraint firstAttribute="bottomMargin" secondItem="97w-Em-YgM" secondAttribute="bottom" id="MxC-Fa-Kqf"/>
                     <constraint firstItem="dH1-qu-VLg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="cLf-qX-DH2"/>
-                    <constraint firstItem="97w-Em-YgM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="nYs-a5-qsh"/>
+                    <constraint firstItem="97w-Em-YgM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="nYs-a5-qsh"/>
                     <constraint firstItem="97w-Em-YgM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="uAk-Su-ceA"/>
                 </constraints>
             </tableViewCellContentView>
