@@ -26,7 +26,7 @@
         <!--User Settings View Controller-->
         <scene sceneID="qwm-wR-yrn">
             <objects>
-                <viewController storyboardIdentifier="userSettingsVC" id="Zsl-5b-ilH" customClass="UserSettingsViewController" customModule="MyWalletProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="userSettingsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Zsl-5b-ilH" customClass="UserSettingsViewController" customModule="MyWalletProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x00-OI-JPX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

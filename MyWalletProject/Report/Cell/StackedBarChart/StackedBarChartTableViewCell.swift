@@ -10,7 +10,7 @@ import UIKit
 import Charts
 import FirebaseDatabase
 
-class StackedBarChartTableViewCell: UITableViewCell, ChartViewDelegate {
+class StackedBarChartTableViewCell: BaseTBCell, ChartViewDelegate {
     
     @IBOutlet weak var lblNetIncome: UILabel!
     @IBOutlet weak var containerView: UIView!
@@ -20,9 +20,14 @@ class StackedBarChartTableViewCell: UITableViewCell, ChartViewDelegate {
     var sumExpense = 0
     var sumIncome = 0
     var netIncome = 0
+    private var formatter = NumberFormatter()
+    
+    var reportView: ReceiveData?
+    
     var date = "" {
         didSet {
-            getData()
+            getIncome()
+            getExpense()
             setChartData()
         }
     }
@@ -32,9 +37,10 @@ class StackedBarChartTableViewCell: UITableViewCell, ChartViewDelegate {
         
         ref = Database.database().reference()
         
-        buildChart()
+        formatter.groupingSeparator = ","
+        formatter.numberStyle = .decimal
         
-        getData()
+        buildChart()
     }
     
     var expenseArray: [Transaction] = [] {
@@ -83,13 +89,9 @@ class StackedBarChartTableViewCell: UITableViewCell, ChartViewDelegate {
         super.setSelected(selected, animated: animated)
     }
     
-    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-    }
-    
-    func getData()  {
+    func getExpense()  {
         expenseArray.removeAll()
-        incomeArray.removeAll()
-        sumIncome = 0
+        
         sumExpense = 0
         
         self.ref.child("Account").child("userid1").child("transaction").child("expense").observeSingleEvent(of: .value) {
@@ -101,18 +103,20 @@ class StackedBarChartTableViewCell: UITableViewCell, ChartViewDelegate {
                 let amount = dict["amount"] as! Int
                 let date = dict["date"] as! String
                 let tempDate = date.split(separator: "/")
-                //                let categoryid = dict["categotyid"] as! String
                 let checkDate = tempDate[1] + "/" + tempDate[2]
                 
-                if self.date == checkDate || self.date == date {
+                if self.date == checkDate {
                     let ex = Transaction(amount: amount, date: date)
                     self.sumExpense += amount
                     self.expenseArray.append(ex)
                 }
             }
-            print(self.sumExpense)
         }
-        
+    }
+    
+    func getIncome() {
+        incomeArray.removeAll()
+        sumIncome = 0
         self.ref.child("Account").child("userid1").child("transaction").child("income").observeSingleEvent(of: .value) {
             snapshot in
             for case let child as DataSnapshot in snapshot.children {
@@ -121,17 +125,15 @@ class StackedBarChartTableViewCell: UITableViewCell, ChartViewDelegate {
                 }
                 let amount = dict["amount"] as! Int
                 let date = dict["date"] as! String
-                //                let categoryid = dict["categotyid"] as! String
                 let tempDate = date.split(separator: "/")
                 let checkDate = tempDate[1] + "/" + tempDate[2]
                 
-                if self.date == checkDate || self.date == date {
+                if self.date == checkDate {
                     let ex = Transaction(amount: amount, date: date)
                     self.sumIncome += amount
                     self.incomeArray.append(ex)
                 }
             }
-            print(self.sumIncome)
         }
     }
     
@@ -143,7 +145,9 @@ class StackedBarChartTableViewCell: UITableViewCell, ChartViewDelegate {
         containerView.addSubview(chartView)
         
         netIncome = sumIncome - sumExpense
-        lblNetIncome.text = "\(netIncome)"
+        reportView?.receiveData(income: sumIncome, expense: sumExpense)
+        
+        lblNetIncome.text = "\(formatter.string(from: NSNumber(value: netIncome))!)"
         
         var yVals =  [BarChartDataEntry]()
         let val1 = Double(sumIncome)
@@ -168,3 +172,5 @@ extension StackedBarChartTableViewCell: IAxisValueFormatter {
         return days[min(max(Int(value), 0), days.count - 1)]
     }
 }
+
+

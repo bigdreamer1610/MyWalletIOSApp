@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MoneyTableViewCell: UITableViewCell {
+class MoneyTableViewCell: BaseTBCell {
 
     @IBOutlet weak var lblBeginBalance: UILabel!
     @IBOutlet weak var lblEndBalance: UILabel!

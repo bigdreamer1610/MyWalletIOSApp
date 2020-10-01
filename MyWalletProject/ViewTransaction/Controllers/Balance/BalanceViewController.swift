@@ -34,12 +34,12 @@ class BalanceViewController: UIViewController {
                 
             }
         }
-        self.dismiss(animated: true, completion: nil)
-        self.modalPresentationStyle = .fullScreen
+        let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as? ViewTransactionController
+        AppRouter.routerTo(from: vc!, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
     }
     @IBAction func clickCancel(_ sender: Any) {
         let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as? ViewTransactionController
-        AppRouter.routerTo(from: vc!, options: .curveEaseOut, duration: 0.3, isNaviHidden: true)
+        AppRouter.routerTo(from: vc!, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
         
     }
 }
