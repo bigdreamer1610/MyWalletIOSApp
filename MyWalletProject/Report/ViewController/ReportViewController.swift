@@ -16,7 +16,7 @@ protocol ReceiveData: class {
 }
 
 class ReportViewController: UIViewController {
-
+    
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var containerView: UIView!
@@ -32,6 +32,7 @@ class ReportViewController: UIViewController {
     var currentYear = 2020
     var income = 0
     var expense = 0
+    var state = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +46,7 @@ class ReportViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         super.viewWillAppear(animated)
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
         super.viewWillDisappear(animated)
@@ -59,7 +60,7 @@ class ReportViewController: UIViewController {
         dateFormatter.dateFormat = "dd/MM/yyyy"
         lblDate.text = "\(months[currentMonth - 1]) \(currentYear)"
         if currentMonth < 10 {
-             txtDatePicker.text = "0\(currentMonth)/\(currentYear)"
+            txtDatePicker.text = "0\(currentMonth)/\(currentYear)"
         } else {
             txtDatePicker.text = "\(currentMonth)/\(currentYear)"
         }
@@ -74,7 +75,7 @@ class ReportViewController: UIViewController {
         toolbar.isUserInteractionEnabled = true
         txtDatePicker.inputAccessoryView = toolbar
     }
-
+    
     @objc func doneDatePicker(){
         self.view.endEditing(true)
         
@@ -92,10 +93,10 @@ class ReportViewController: UIViewController {
         let components = calendar.dateComponents([.day, .month, .year, .weekday], from: picker.date)
         lblDate.text = "\(months[components.month! - 1]) \(components.year!)"
         if components.month! < 10 {
-                    txtDatePicker.text = "0\(components.month!)/\(components.year!)"
-               } else {
-                   txtDatePicker.text = "\(components.month!)/\(components.year!)"
-               }
+            txtDatePicker.text = "0\(components.month!)/\(components.year!)"
+        } else {
+            txtDatePicker.text = "\(components.month!)/\(components.year!)"
+        }
         tableView.reloadData()
     }
     
@@ -103,9 +104,9 @@ class ReportViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-         MoneyTableViewCell.registerCellByNib(tableView)
-         StackedBarChartTableViewCell.registerCellByNib(tableView)
-         PieChartTableViewCell.registerCellByNib(tableView)
+        MoneyTableViewCell.registerCellByNib(tableView)
+        StackedBarChartTableViewCell.registerCellByNib(tableView)
+        PieChartTableViewCell.registerCellByNib(tableView)
         
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 600
@@ -143,19 +144,18 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailSBC") as! DetailStackedBarChartVC
-            
             vc.expense = self.expense
             vc.income = self.income
-            
             navigationController?.pushViewController(vc, animated: true)
         }
     }
 }
 extension ReportViewController: CustomCollectionCellDelegate {
     func collectionView(collectioncell: PieChartCollectionViewCell?, didTappedInTableview TableCell: PieChartTableViewCell) {
-            let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailPC") as! DetailPieChartVC
-            navigationController?.pushViewController(vc, animated: true)
-        
+        let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailPC") as! DetailPieChartVC
+            vc.sumIncome = self.income
+            vc.sumExpense = self.expense
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

@@ -23,25 +23,25 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
     var entries = [ChartDataEntry]()
     var sumByCategory = [(category: String, amount: Int)]()
     private var formatter = NumberFormatter()
-    
     var date = "" {
         didSet {
             getData()
             setChart()
         }
     }
+    var reportView2: ReceiveData?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         ref = Database.database().reference()
         formatter.groupingSeparator = ","
         formatter.numberStyle = .decimal
-        
+        buildChart()
         setChart()
     }
+    
     var incomeArray: [Transaction] = [] {
         didSet {
-            
             setChart()
         }
     }
@@ -51,8 +51,8 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
             setChart()
         }
     }
-
     
+    // Get data from db
     func getData()  {
         expenseArray.removeAll()
         incomeArray.removeAll()
@@ -101,6 +101,7 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
         }
     }
     
+    // Tính tổng theo category
     func dataForPieChart(dataArray: [Transaction]) {
         sumByCategory.removeAll()
         for index in 0 ..< dataArray.count {
@@ -113,6 +114,7 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
         }
     }
     
+    // kiểm tra category có tồn tại trong mảng
     func checkExist(category: String) -> Int {
         for index in 0 ..< sumByCategory.count {
             if category == sumByCategory[index].category {
@@ -122,23 +124,26 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
         return -1
     }
     
-    func setChart(){
-        entries.removeAll()
-        
+    func buildChart() {
         chartView.delegate = self
-        
         chartView.rotationEnabled = false
         chartView.transparentCircleRadiusPercent = 0
         chartView.drawEntryLabelsEnabled = false
         
+        // set label entry
         let l = chartView.legend
         l.horizontalAlignment = .left
         l.verticalAlignment = .bottom
         l.orientation = .vertical
         l.formToTextSpace = 4
-//        l.yOffset = 20
-//        l.xOffset = 10
         l.xEntrySpace = 6
+        l.xOffset = 15
+        
+    }
+    
+    // Set data chart
+    func setChart(){
+        entries.removeAll()
         
         chartView.frame = CGRect(x: 0,
                                  y: 0,
@@ -149,7 +154,7 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
         
         if state == 1 {
             dataForPieChart(dataArray: incomeArray)
-
+            
             lblMoney.text = "\(formatter.string(from: NSNumber(value: sumIncome))!)"
             for index in 0 ..< sumByCategory.count {
                 entries.append(PieChartDataEntry(value: Double(sumByCategory[index].amount), label: sumByCategory[index].category))
@@ -158,12 +163,14 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
             
         else {
             dataForPieChart(dataArray: expenseArray)
-
+            
             lblMoney.text = "\(formatter.string(from: NSNumber(value: sumExpense))!)"
             for index in 0 ..< sumByCategory.count {
                 entries.append(PieChartDataEntry(value: Double(sumByCategory[index].amount), label: sumByCategory[index].category))
             }
         }
+        
+        reportView2?.receiveData(income: sumIncome, expense: sumExpense)
         
         let set = PieChartDataSet(entries: entries, label: "")
         set.drawIconsEnabled = false
@@ -185,6 +192,7 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
         data.setValueFont(.systemFont(ofSize: 11, weight: .light))
         data.setValueTextColor(.black)
         set.drawValuesEnabled = false
+        data.highlightEnabled = false
         
         chartView.data = data
         chartView.highlightValues(nil)

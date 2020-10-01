@@ -9,12 +9,20 @@
 import UIKit
 
 class DetailPieChartVC: UIViewController {
-    
+    var sumIncome = 0
+    var sumExpense = 0
+    var state = 0
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupTableView()
+       
+        print("Pie \(sumIncome)")
+      
+        print("Pie \(sumExpense)")
+        
+        
     }
     
     private func setupTableView() {

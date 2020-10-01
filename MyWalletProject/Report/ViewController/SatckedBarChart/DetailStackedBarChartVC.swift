@@ -12,14 +12,16 @@ class DetailStackedBarChartVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var expense = 0
     var income = 0
+//    var delegate: GetDataFromVC?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         print(expense)
         print(income)
+//        delegate?.getData(income: income, expense: expense)
     }
-
+    
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -47,7 +49,9 @@ extension DetailStackedBarChartVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = DetailSBCTableViewCell.loadCell(tableView)  as! DetailSBCTableViewCell
-            cell.delegate = self
+////            cell.delegate = self
+//            cell.income = income
+//            cell.expense = expense
             cell.selectionStyle = .none
             return cell
         } else {
@@ -68,9 +72,3 @@ extension DetailStackedBarChartVC: UITableViewDelegate, UITableViewDataSource {
   
 }
 
-extension DetailStackedBarChartVC: GetDataFromVC {
-    func getData(income: Int, expense: Int) {
-           self.income = income
-           self.expense = expense
-    }
-}

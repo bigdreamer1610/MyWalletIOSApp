@@ -66,10 +66,12 @@ class StackedBarChartTableViewCell: BaseTBCell, ChartViewDelegate {
         chartView.maxVisibleCount = 40
         chartView.drawBarShadowEnabled = false
         chartView.drawValueAboveBarEnabled = false
+        chartView.doubleTapToZoomEnabled = false
         chartView.highlightFullBarEnabled = false
         
         let leftAxis = chartView.leftAxis
         leftAxis.labelPosition = .outsideChart
+        leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: formatter)
         leftAxis.axisMinimum = 0
         leftAxis.labelFont = .systemFont(ofSize: 13)
         leftAxis.labelTextColor = UIColor.gray
@@ -162,7 +164,7 @@ class StackedBarChartTableViewCell: BaseTBCell, ChartViewDelegate {
         let data = BarChartData(dataSet: set)
         set.drawValuesEnabled = false
         data.barWidth = 0.1
-        
+        data.highlightEnabled = false
         chartView.data = data
     }
 }
