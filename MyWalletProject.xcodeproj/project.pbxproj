@@ -412,6 +412,24 @@
 			path = CellAdd;
 			sourceTree = "<group>";
 		};
+		7222A9492525AA2700146CD1 /* PieChart */ = {
+			isa = PBXGroup;
+			children = (
+				72873D7B25249A3F00313629 /* DetailPieChartVC.swift */,
+				72873D7F25249A6500313629 /* DayDetailPC.swift */,
+			);
+			path = PieChart;
+			sourceTree = "<group>";
+		};
+		7222A94B2525AA5500146CD1 /* SatckedBarChart */ = {
+			isa = PBXGroup;
+			children = (
+				72873D7925249A2900313629 /* DetailStackedBarChartVC.swift */,
+				72873D7D25249A5100313629 /* DayDetailSBC.swift */,
+			);
+			path = SatckedBarChart;
+			sourceTree = "<group>";
+		};
 		72873D78252499EB00313629 /* DetailCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -489,11 +507,9 @@
 		72A71911251DDDC8003ED157 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				7222A94B2525AA5500146CD1 /* SatckedBarChart */,
+				7222A9492525AA2700146CD1 /* PieChart */,
 				72A71925251DDF35003ED157 /* ReportViewController.swift */,
-				72873D7925249A2900313629 /* DetailStackedBarChartVC.swift */,
-				72873D7B25249A3F00313629 /* DetailPieChartVC.swift */,
-				72873D7D25249A5100313629 /* DayDetailSBC.swift */,
-				72873D7F25249A6500313629 /* DayDetailPC.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";

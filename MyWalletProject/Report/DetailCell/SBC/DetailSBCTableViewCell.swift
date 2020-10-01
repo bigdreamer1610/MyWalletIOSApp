@@ -8,9 +8,10 @@
 
 import UIKit
 import Charts
-protocol GetDataFromVC {
-    func getData(income: Int, expense: Int)
-}
+
+//protocol GetDataFromVC {
+//    func getData(income: Int, expense: Int)
+//}
 
 class DetailSBCTableViewCell: BaseTBCell, ChartViewDelegate {
    
@@ -19,13 +20,18 @@ class DetailSBCTableViewCell: BaseTBCell, ChartViewDelegate {
     
     var income = 0
     var expense = 0
-        
+
+//    var delegate: GetDataFromVC?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         chartView.delegate = self
         chartView.dragEnabled = false
         setChart()
-        
+
+//        print(income)
+//        print(expense)
+
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -57,14 +63,13 @@ class DetailSBCTableViewCell: BaseTBCell, ChartViewDelegate {
     
 }
 
-extension DetailSBCTableViewCell: GetDataFromVC{
-    func getData(income: Int, expense: Int) {
-        self.income = income
-        self.expense = expense
-    }
 
-
-}
-
-
+//extension DetailSBCTableViewCell: GetDataFromVC{
+//    func getData(income: Int, expense: Int) {
+//        self.income = income
+//        self.expense = expense
+//    }
+//
+//
+//}
 

@@ -12,10 +12,20 @@ class NameTableViewCell: BaseTBCell {
 
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblMoney: UILabel!
-    
+    var sumIncome = 0
+    var sumExpense = 0
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+//        if state == 1 {
+//            lblName.text = "Khoản thu"
+//            lblMoney.text = "\(sumIncome)"
+//            lblMoney.textColor = .blue
+//        } else {
+//            lblName.text = "Khoản chi"
+//            lblMoney.text = "\(sumExpense)"
+//            lblMoney.textColor = .red
+//        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
