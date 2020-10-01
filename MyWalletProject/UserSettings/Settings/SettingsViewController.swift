@@ -38,27 +38,8 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        makeRoundedImage()
         configureButton(btnSave)
         configureButton(btnCancel)
-        
-        scrollViewDidScroll(scrollView: scrollView)
-    }
-    
-    // MARK: - Disable horizontal scroll
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        if scrollView.contentOffset.x>0 {
-            scrollView.contentOffset.x = 0
-        }
-    }
-    
-    // MARK: - Rounded user's avatar
-    func makeRoundedImage() {
-        avaImage.layer.borderWidth = 1
-        avaImage.layer.masksToBounds = false
-        avaImage.layer.backgroundColor = UIColor.systemPink.cgColor
-        avaImage.layer.cornerRadius = avaImage.frame.height / 2
-        avaImage.clipsToBounds = true
     }
     
     // MARK: - Make rounded buttons

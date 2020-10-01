@@ -20,8 +20,7 @@ class UserSettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        makeRoundedImage()
+        
         configureButton(btnSignOut)
         tableViewConfiguration()
     }
@@ -33,15 +32,6 @@ class UserSettingsViewController: UIViewController {
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
         tableView.alwaysBounceVertical = false
-    }
-    
-    // MARK: - Rounded user's avatar
-    func makeRoundedImage() {
-        avaImage.layer.borderWidth = 1
-        avaImage.layer.masksToBounds = false
-        avaImage.layer.backgroundColor = UIColor.systemPink.cgColor
-        avaImage.layer.cornerRadius = avaImage.frame.height / 2
-        avaImage.clipsToBounds = true
     }
     
     // MARK: - Make rounded buttons
@@ -87,24 +77,21 @@ extension UserSettingsViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        switch indexPath.row {
-//        case 0:
-//            let settingsController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: "settings")
-//            navigationController?.pushViewController(settingsController, animated: true)
-//        case 1:
-//            let settingsController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: "settings")
-//            navigationController?.pushViewController(settingsController, animated: true)
-//        default:
-//            <#code#>
-//        }
-        if indexPath.row == 0 {
+        switch indexPath.row {
+        case 0:
             let settingsController = UIStoryboard.init(name: "UserSettings", bundle: nil).instantiateViewController(identifier: "settingsVC") as! SettingsViewController
             navigationController?.pushViewController(settingsController, animated: true)
-        }
-        if indexPath.row == 2 {
+        case 1:
+            // TO DO: - Implementation of Categories Screen
+//            let settingsController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: "settings")
+//            navigationController?.pushViewController(settingsController, animated: true)
+            print("For categories")
+        case 2:
             let currencyController = UIStoryboard.init(name: "UserSettings", bundle: nil).instantiateViewController(identifier: "currencyVC") as! CurrencyViewController
             currencyController.presenter.fetchData()
             navigationController?.pushViewController(currencyController, animated: true)
+        default:
+            return
         }
     }
 }
