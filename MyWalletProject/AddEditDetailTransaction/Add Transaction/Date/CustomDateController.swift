@@ -25,8 +25,8 @@ class CustomDateController: UIViewController {
     }
     
     func CreactCalendar() {
-        calendar = FSCalendar(frame: CGRect(x: 0, y: 100, width: self.view.frame.size.width, height: self.view.frame.size.height/2))
-        calendar.scrollDirection = .horizontal
+        calendar = FSCalendar(frame: CGRect(x: 0, y: 50, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        calendar.scrollDirection = .vertical
         calendar.scope = .month
         calendar.select(customDate)
         self.view.addSubview(calendar)

@@ -31,7 +31,7 @@ class ViewTransactionController: UIViewController {
     var balance = Defined.defaults.integer(forKey: Constants.balance)
     //var balance = Defined.defaults.integer(forKey: Constants.balance)
     var dates = [TransactionDate]()
-    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+    var months = ["01","02","03","04","05","06","07","08","09","10","11","12"]
     var weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thurday","Friday","Saturday"]
 
     var transactionBotMenu = [
@@ -173,7 +173,7 @@ class ViewTransactionController: UIViewController {
         //var allDates: [String] = []
         var allDates: [Date] = []
         let dateRangeFormatter = DateFormatter()
-        dateRangeFormatter.dateFormat = "MMM yyyy"
+        dateRangeFormatter.dateFormat = "MM yyyy"
 
         for i in 1...components.month! {
             guard let date = calendar.date(byAdding: .month, value: i, to: startDate) else {
