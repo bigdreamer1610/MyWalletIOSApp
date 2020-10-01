@@ -38,9 +38,8 @@ class MainTabViewController: UITabBarController {
     
     // Menu Button Touch Action
     @objc func menuButtonAction(sender: UIButton) {
-        //MARK: - Temporary: View budget
-        let vc = UIStoryboard.init(name: "budget", bundle: nil).instantiateViewController(withIdentifier: "BudgetListViewController") as? BudgetListViewController
-        AppRouter.routerTo(from: vc!, options: .transitionCrossDissolve, duration: 0.2, isNaviHidden: false)
+        let vc = RouterType.add.getVc()
+        AppRouter.routerTo(from: vc, options: .transitionCrossDissolve, duration: 0.2, isNaviHidden: false)
     }
     
     class func createTabbar() -> MainTabViewController {
@@ -48,7 +47,7 @@ class MainTabViewController: UITabBarController {
         let transaction = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as! ViewTransactionController
         let report = UIStoryboard(name: "Report", bundle: nil).instantiateViewController(withIdentifier: "ReportViewController") as! ReportViewController
         let scan = UIViewController()
-        let planning = UIStoryboard(name: "AddEvent", bundle: nil).instantiateViewController(withIdentifier: "EventController") as! EventController
+        let planning = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "navi_second") as! SecondNavigationController
         let account = UIStoryboard(name: "UserSettings", bundle: nil).instantiateViewController(withIdentifier: "userSettingsVC") as! UserSettingsViewController
         
         let homeItem = UITabBarItem(title: "Transactions", image: #imageLiteral(resourceName: "transaction"), tag: 0)

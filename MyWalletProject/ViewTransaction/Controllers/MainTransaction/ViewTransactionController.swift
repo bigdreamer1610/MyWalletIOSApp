@@ -69,6 +69,7 @@ class ViewTransactionController: UIViewController {
     var finalTransactions = [Transaction]()
 
 
+    @IBOutlet var btnAdd: UIButton!
     @IBOutlet var monthCollectionView: UICollectionView!
     @IBOutlet var btnShowMore: UIButton!
     @IBOutlet var transactionTableView: UITableView!
@@ -125,13 +126,6 @@ class ViewTransactionController: UIViewController {
             print("current: \(self.current)")
         }
     }
-
-
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-
     func jumpToDate(from date: Date){
         let firstIndexPath = IndexPath(item: getIndexPathOfThisMonthCell(from: date), section: 0)
         print("this date: \(date)")
@@ -593,6 +587,12 @@ class ViewTransactionController: UIViewController {
     @objc func onClickTransparentView() {
         animateOutScreen()
     }
+    
+    @IBAction func clickAddTransaction(_ sender: Any) {
+        let vc = RouterType.add.getVc()
+        AppRouter.routerTo(from: vc, options: .transitionCrossDissolve, duration: 0.2, isNaviHidden: false)
+    }
+    
 }
 
 extension ViewTransactionController : UITableViewDataSource {
@@ -799,7 +799,7 @@ extension UITextField {
                 self.rightViewMode = .always
     }
 }
-
+//MARK: MENU CELL
 extension ViewTransactionController : UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return monthTitles.count
