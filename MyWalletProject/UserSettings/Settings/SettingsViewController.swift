@@ -40,6 +40,8 @@ class SettingsViewController: UIViewController {
         
         configureButton(btnSave)
         configureButton(btnCancel)
+        
+        self.title = "Information"
     }
     
     // MARK: - Hide tab bar

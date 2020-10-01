@@ -24,6 +24,7 @@ class UserSettingsViewController: UIViewController {
         tableViewConfiguration()
     }
     
+    // MARK: - Deselected effect on cell after popping a view from view stack
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -40,11 +41,18 @@ class UserSettingsViewController: UIViewController {
         tableView.tableFooterView = UIView()
         tableView.alwaysBounceVertical = false
     }
+    
+    // MARK: - Set text for back button
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let backItem = UIBarButtonItem()
+        backItem.title = "Back"
+        navigationItem.backBarButtonItem = backItem
+    }
 }
 
 extension UserSettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -59,10 +67,16 @@ extension UserSettingsViewController: UITableViewDelegate, UITableViewDataSource
             labelName = "Settings"
         case 1:
             imageName = "s-categories"
-            labelName = "Categories"
+            labelName = "Add Category"
         case 2:
             imageName = "s-currencies"
-            labelName = "Money Currencies"
+            labelName = "Currencies Exchange"
+        case 3:
+            imageName = ""
+            labelName = "Travel Mode"
+        case 4:
+            imageName = ""
+            labelName = "Bill Scanner"
         default:
             imageName = "Undefined"
             labelName = "Undefined"

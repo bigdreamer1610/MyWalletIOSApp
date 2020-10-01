@@ -34,6 +34,8 @@ class CurrencyViewController: UIViewController {
         setupTextFieldDelegate()
         configureButton(btnChangeCurrency)
         disabledEdittingTextField()
+        
+        self.title = "Currencies Exchange"
     }
     
     // MARK: - Hide tab bar
