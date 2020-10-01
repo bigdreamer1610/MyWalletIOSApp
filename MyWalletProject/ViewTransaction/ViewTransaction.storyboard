@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dcR-n0-Vq0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -11,7 +11,7 @@
         <!--Main Tab View Controller-->
         <scene sceneID="H2P-3F-74C">
             <objects>
-                <tabBarController storyboardIdentifier="MainTabViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TNp-S5-7HZ" customClass="MainTabViewController" customModule="MyWalletProject" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TNp-S5-7HZ" customClass="MainTabViewController" customModule="MyWalletProject" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2n9-ck-ZtZ" customClass="MainTabbar" customModule="MyWalletProject" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -20,7 +20,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bwd-n3-LbF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-926" y="138"/>
+            <point key="canvasLocation" x="-681" y="139"/>
         </scene>
         <!--Transaction-->
         <scene sceneID="Sel-fD-VTr">
@@ -477,22 +477,15 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TJX-zl-bm1">
-                                        <rect key="frame" x="60" y="51" width="314" height="2"/>
-                                        <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="MJc-lZ-NKk" firstAttribute="centerY" secondItem="fL7-ni-nXR" secondAttribute="centerY" id="0cD-JD-WRe"/>
                                     <constraint firstItem="rUc-lI-sN2" firstAttribute="height" secondItem="MJc-lZ-NKk" secondAttribute="height" id="IJQ-Tx-51f"/>
-                                    <constraint firstItem="TJX-zl-bm1" firstAttribute="width" secondItem="rUc-lI-sN2" secondAttribute="width" id="LdZ-KR-67e"/>
                                     <constraint firstItem="rUc-lI-sN2" firstAttribute="leading" secondItem="MJc-lZ-NKk" secondAttribute="trailing" constant="20" id="U1c-Rd-HyN"/>
                                     <constraint firstAttribute="trailing" secondItem="rUc-lI-sN2" secondAttribute="trailing" id="Ubb-fd-ijU"/>
-                                    <constraint firstItem="TJX-zl-bm1" firstAttribute="top" secondItem="rUc-lI-sN2" secondAttribute="bottom" constant="2" id="aPq-tT-4tN"/>
                                     <constraint firstItem="rUc-lI-sN2" firstAttribute="centerY" secondItem="fL7-ni-nXR" secondAttribute="centerY" id="eBc-Bm-SjE"/>
                                     <constraint firstAttribute="height" constant="58" id="jde-Qh-1Dz"/>
-                                    <constraint firstItem="TJX-zl-bm1" firstAttribute="centerX" secondItem="rUc-lI-sN2" secondAttribute="centerX" id="lLT-b0-uZe"/>
                                     <constraint firstItem="MJc-lZ-NKk" firstAttribute="leading" secondItem="fL7-ni-nXR" secondAttribute="leading" id="rmK-HI-VPD"/>
                                 </constraints>
                             </view>
@@ -545,7 +538,6 @@
                             <constraint firstItem="YXa-s0-BsE" firstAttribute="trailing" secondItem="61f-Jh-odg" secondAttribute="trailing" constant="20" id="Sxn-fi-4jT"/>
                             <constraint firstItem="Pto-cr-9yU" firstAttribute="height" secondItem="r35-UH-Hlo" secondAttribute="height" id="TzG-Pn-NRX"/>
                             <constraint firstItem="mqH-04-B20" firstAttribute="centerY" secondItem="yXT-8g-XtZ" secondAttribute="centerY" id="UJd-MP-3hU"/>
-                            <constraint firstItem="TJX-zl-bm1" firstAttribute="height" secondItem="Pto-cr-9yU" secondAttribute="height" id="W1A-hN-u4G"/>
                             <constraint firstItem="r35-UH-Hlo" firstAttribute="top" secondItem="mqH-04-B20" secondAttribute="bottom" constant="2" id="WU6-Kx-WB0"/>
                             <constraint firstItem="t6c-SK-yuf" firstAttribute="top" secondItem="61f-Jh-odg" secondAttribute="bottom" constant="2" id="WZc-4m-nCz"/>
                             <constraint firstItem="3zc-D7-cxH" firstAttribute="top" secondItem="Fpq-st-1nm" secondAttribute="bottom" constant="20" id="XnB-IG-aBh"/>

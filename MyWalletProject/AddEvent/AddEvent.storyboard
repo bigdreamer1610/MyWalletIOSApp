@@ -41,7 +41,7 @@
         <!--Events-->
         <scene sceneID="165-cd-rVd">
             <objects>
-                <viewController id="hH6-Ub-noT" customClass="EventController" customModule="MyWalletProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EventController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hH6-Ub-noT" customClass="EventController" customModule="MyWalletProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="89o-EM-krS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
