@@ -542,8 +542,8 @@
 		7338860625231F67002F126B /* Add Transaction */ = {
 			isa = PBXGroup;
 			children = (
-				73E78DA2252441CC00D7B962 /* SelectEvent2 */,
 				7338860725231F67002F126B /* AddTransactionController.swift */,
+				73E78DA2252441CC00D7B962 /* SelectEvent2 */,
 				7338860F25231F67002F126B /* Date */,
 				7338861125231F67002F126B /* SelectCategory */,
 			);
@@ -757,6 +757,7 @@
 		8A3BB41D251AE6D9008113E9 /* UserSettings */ = {
 			isa = PBXGroup;
 			children = (
+				8A3BB414251ADEE6008113E9 /* ScanBill */,
 				8A3BB432251B5022008113E9 /* MoneyCurrencies */,
 				8A3BB42B251B20A9008113E9 /* Categories */,
 				8A3BB42A251B20A3008113E9 /* Settings */,
@@ -836,7 +837,6 @@
 				7338860225231F67002F126B /* AddEditDetailTransaction */,
 				73E0B15A2521E0ED0097D41F /* ViewTransaction */,
 				735873EB252177FA00B8235D /* Tabbar */,
-				8A3BB414251ADEE6008113E9 /* ScanBill */,
 				8A3BB41D251AE6D9008113E9 /* UserSettings */,
 				D270F4AE251B52A700CB274C /* AddEvent */,
 				72A7190D251DDD08003ED157 /* Report */,

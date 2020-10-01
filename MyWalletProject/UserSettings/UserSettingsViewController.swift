@@ -72,10 +72,10 @@ extension UserSettingsViewController: UITableViewDelegate, UITableViewDataSource
             imageName = "s-currencies"
             labelName = "Currencies Exchange"
         case 3:
-            imageName = ""
+            imageName = "s-travel"
             labelName = "Travel Mode"
         case 4:
-            imageName = ""
+            imageName = "s-scanner"
             labelName = "Bill Scanner"
         default:
             imageName = "Undefined"
@@ -101,6 +101,9 @@ extension UserSettingsViewController: UITableViewDelegate, UITableViewDataSource
             let currencyController = UIStoryboard.init(name: "UserSettings", bundle: nil).instantiateViewController(identifier: "currencyVC") as! CurrencyViewController
             currencyController.presenter.fetchData()
             navigationController?.pushViewController(currencyController, animated: true)
+        case 4:
+            let scanBillController = UIStoryboard.init(name: "ScanBill", bundle: nil).instantiateViewController(identifier: "scanBillVC") as! ScanBillViewController
+            navigationController?.pushViewController(scanBillController, animated: true)
         default:
             return
         }
