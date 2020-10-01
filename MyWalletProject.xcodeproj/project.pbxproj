@@ -830,10 +830,10 @@
 		8ACA6246251A07980031E6DF /* MyWalletProject */ = {
 			isa = PBXGroup;
 			children = (
+				8ACA6284251A0C2A0031E6DF /* DataModel */,
 				56B8A7E52524830B00B8E8F0 /* SignIn */,
 				56B8A7F52524886000B8E8F0 /* Budget */,
 				8AB19A0C2524400D0074C8F0 /* Helpers */,
-				8ACA6284251A0C2A0031E6DF /* DataModel */,
 				7338860225231F67002F126B /* AddEditDetailTransaction */,
 				73E0B15A2521E0ED0097D41F /* ViewTransaction */,
 				735873EB252177FA00B8235D /* Tabbar */,

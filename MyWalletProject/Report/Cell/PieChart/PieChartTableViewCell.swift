@@ -29,7 +29,6 @@ class PieChartTableViewCell: BaseTBCell {
     }
     
     func setupCollection() {
-        
         PieChartCollectionViewCell.registerCellByNib(collectionView)
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
@@ -38,6 +37,7 @@ class PieChartTableViewCell: BaseTBCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
 }
 
 extension PieChartTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {

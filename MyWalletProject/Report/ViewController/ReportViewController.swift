@@ -130,7 +130,7 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = StackedBarChartTableViewCell.loadCell(tableView)  as! StackedBarChartTableViewCell
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             cell.date = txtDatePicker.text ?? "Error"
-            cell.reportView = self
+           // cell.reportView = self
             return cell
         } else {
             let cell = PieChartTableViewCell.loadCell(tableView)  as! PieChartTableViewCell
@@ -159,10 +159,10 @@ extension ReportViewController: CustomCollectionCellDelegate {
     }
 }
 
-extension ReportViewController: ReceiveData {
-    func receiveData(income: Int, expense: Int) {
-        self.income = income
-        self.expense = expense
-    }
-}
+//extension ReportViewController: ReceiveData {
+//    func receiveData(income: Int, expense: Int) {
+//        self.income = income
+//        self.expense = expense
+//    }
+//}
 
