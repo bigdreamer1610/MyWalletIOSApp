@@ -460,9 +460,9 @@
 		72A7190D251DDD08003ED157 /* Report */ = {
 			isa = PBXGroup;
 			children = (
-				72873D78252499EB00313629 /* DetailCell */,
 				72A71911251DDDC8003ED157 /* ViewController */,
 				72A71910251DDDBD003ED157 /* Cell */,
+				72873D78252499EB00313629 /* DetailCell */,
 				72A7190E251DDD43003ED157 /* Report.storyboard */,
 			);
 			path = Report;
