@@ -14,15 +14,22 @@ class UserSettingsViewController: UIViewController {
     
     @IBOutlet weak var lblUsername: UILabel!
     
-    @IBOutlet weak var btnSignOut: UIButton!
-    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureButton(btnSignOut)
+        self.title = "Settings and Tools"
+        
         tableViewConfiguration()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selectedIndexPath, animated: animated)
+        }
     }
     
     // MARK: - Config and regist for tableView
@@ -32,16 +39,6 @@ class UserSettingsViewController: UIViewController {
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
         tableView.alwaysBounceVertical = false
-    }
-    
-    // MARK: - Make rounded buttons
-    func configureButton(_ button: UIButton) {
-        button.layer.cornerRadius = 10
-        button.layer.borderWidth = 1
-    }
-    
-    @IBAction func btnSignOutClicked(_ sender: Any) {
-        // TODO: - Implementation of signing out action
     }
 }
 
