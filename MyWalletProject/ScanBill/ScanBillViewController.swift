@@ -51,7 +51,6 @@ class ScanBillViewController: UIViewController {
     // MARK: - Make rounded buttons
     func configureButton(_ button: UIButton) {
         button.layer.cornerRadius = 10
-        button.layer.borderWidth = 1
     }
     
     // MARK: - Remove left padding of text view

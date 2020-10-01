@@ -27,15 +27,6 @@ class ViewTransactionController: UIViewController {
     var tableView = UITableView()
     var height: CGFloat = 190
     private var dateFormatter = DateFormatter()
-
-    //MARK: HEIGHT FOR CELL & HEADER
-    let transactionHeader: CGFloat = 60
-    let categoryHeader: CGFloat = 65
-    let categoryRow: CGFloat = 70
-    let transactionRow: CGFloat = 65
-    let detailCell: CGFloat = 135
-    let menuCell: CGFloat = 60
-
     var categories = [Category]()
     var balance = Defined.defaults.integer(forKey: Constants.balance)
     //var balance = Defined.defaults.integer(forKey: Constants.balance)
@@ -55,7 +46,6 @@ class ViewTransactionController: UIViewController {
     ]
 
     var monthTitles = [Date]()
-
     //main class
     var transactionHeaders = [TransactionHeader]()
     var transactionSections = [TransactionSection]()
@@ -79,6 +69,7 @@ class ViewTransactionController: UIViewController {
     var finalTransactions = [Transaction]()
 
 
+    @IBOutlet var btnAdd: UIButton!
     @IBOutlet var monthCollectionView: UICollectionView!
     @IBOutlet var btnShowMore: UIButton!
     @IBOutlet var transactionTableView: UITableView!
@@ -135,13 +126,6 @@ class ViewTransactionController: UIViewController {
             print("current: \(self.current)")
         }
     }
-
-
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-
     func jumpToDate(from date: Date){
         let firstIndexPath = IndexPath(item: getIndexPathOfThisMonthCell(from: date), section: 0)
         print("this date: \(date)")
@@ -544,41 +528,29 @@ class ViewTransactionController: UIViewController {
     //MARK: - Get Category array
     func getDataCategory(){
         var myList = [Category]()
-        Defined.ref.child("Category").child("\(TransactionType.expense.getValue())").observeSingleEvent(of: .value) {[weak self] (snapshot) in
-            guard let `self` = self else {
-                return
-            }
-            if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
-                for snap in snapshots {
-                    let id = snap.key
-                    if let value = snap.value as? [String: Any]{
-                        let name = value["name"] as? String
-                        let iconImage = value["iconImage"] as? String
-                        let transactionType = TransactionType.expense.getValue()
-                        let category = Category(id: id, name: name, transactionType: transactionType, iconImage: iconImage)
-                        myList.append(category)
+        Defined.ref.child("Category").observeSingleEvent(of: .value) {[weak self] (snapshot) in
+            guard let `self` = self else {return}
+            if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
+                let myKey = (snapshot as AnyObject).key as String
+                //expense/income
+                for mySnap in snapshots {
+                    //key inside expense/income
+                    if let mySnap = mySnap.children.allObjects as? [DataSnapshot]{
+                        for snap in mySnap {
+                            let id = snap.key
+                            if let value = snap.value as? [String: Any]{
+                                let name = value["name"] as? String
+                                let iconImage = value["iconImage"] as? String
+                                let transactionType =  myKey
+                                let category = Category(id: id, name: name, transactionType: transactionType, iconImage: iconImage)
+                                myList.append(category)
+                            }
+                        }
+                        self.categories.append(contentsOf: myList)
                     }
                 }
             }
-        }
-        Defined.ref.child("Category").child("\(TransactionType.income.getValue())").observeSingleEvent(of: .value) {[weak self] (snapshot) in
-            guard let `self` = self else {
-                return
-            }
-            if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
-                for snap in snapshots {
-                    let id = snap.key
-                    if let value = snap.value as? [String: Any]{
-                        let name = value["name"] as? String
-                        let iconImage = value["iconImage"] as? String
-                        let transactionType = TransactionType.income.getValue()
-                        let category = Category(id: id, name: name, transactionType: transactionType, iconImage: iconImage)
-                        myList.append(category)
-                    }
-                }
-                self.categories.append(contentsOf: myList)
-
-            }
+            
         }
     }
 
@@ -590,7 +562,7 @@ class ViewTransactionController: UIViewController {
         window?.addSubview(bottomMenuView)
 
         let screenSize = UIScreen.main.bounds.size
-        tableView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: menuCell * CGFloat(transactionBotMenu.count))
+        tableView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: Constants.menuCell * CGFloat(transactionBotMenu.count))
         window?.addSubview(tableView)
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickTransparentView))
@@ -615,6 +587,12 @@ class ViewTransactionController: UIViewController {
     @objc func onClickTransparentView() {
         animateOutScreen()
     }
+    
+    @IBAction func clickAddTransaction(_ sender: Any) {
+        let vc = RouterType.add.getVc()
+        AppRouter.routerTo(from: vc, options: .transitionCrossDissolve, duration: 0.2, isNaviHidden: false)
+    }
+    
 }
 
 extension ViewTransactionController : UITableViewDataSource {
@@ -697,8 +675,8 @@ extension ViewTransactionController : UITableViewDataSource {
         switch tableView {
         case self.tableView:
             if indexPath.row == 0 {
-                let vc = UIStoryboard.init(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "BalanceViewController") as? BalanceViewController
-                AppRouter.routerTo(from: vc!, options: .transitionCrossDissolve, duration: 0.3, isNaviHidden: false)
+                let vc = RouterType.balance.getVc()
+                AppRouter.routerTo(from: vc, options: .transitionCrossDissolve, duration: 0.3, isNaviHidden: false)
             } else if indexPath.row == 1 {
                 if mode == "transaction" {
                     mode = "category"
@@ -721,17 +699,15 @@ extension ViewTransactionController : UITableViewDataSource {
             tableView.deselectRow(at: indexPath, animated: true)
         case transactionTableView:
             if indexPath.section != 0 {
-                let vc = RouterType.detailTransactionController(item: transactionSections[indexPath.section - 1].items[indexPath.row], header: transactionSections[indexPath.section - 1].header).getVc()
+                let vc = RouterType.transactionDetail(item: transactionSections[indexPath.section - 1].items[indexPath.row], header: transactionSections[indexPath.section - 1].header).getVc()
                 self.navigationController?.pushViewController(vc, animated: true)
                 tableView.deselectRow(at: indexPath, animated: true)
             }
         default:
             if indexPath.section != 0 {
-                let vc = UIStoryboard.init(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "detail") as? DetailTransactionController
-                vc?.setUpDataCategoryView(item: categorySections[indexPath.section-1].items[indexPath.row], header: categorySections[indexPath.section-1].header)
-                self.navigationController?.pushViewController(vc!, animated: true)
+                let vc = RouterType.categoryDetail(item: categorySections[indexPath.section-1].items[indexPath.row], header: categorySections[indexPath.section-1].header).getVc()
+                self.navigationController?.pushViewController(vc, animated: true)
                 tableView.deselectRow(at: indexPath, animated: true)
-
             }
         }
     }
@@ -767,13 +743,13 @@ extension ViewTransactionController : UITableViewDelegate {
         case transactionTableView:
             //if not the first detail view
             if section != 0 {
-                myHeight = transactionHeader
+                myHeight = Constants.transactionHeader
             } else {
                 myHeight = 0
             }
         case viewByCategoryTableView:
             if section != 0 {
-                myHeight = categoryHeader
+                myHeight = Constants.categoryHeader
             } else {
                 myHeight = 0
             }
@@ -789,18 +765,18 @@ extension ViewTransactionController : UITableViewDelegate {
         switch tableView {
         case transactionTableView:
             if indexPath.section == 0 {
-                myHeight = detailCell
+                myHeight = Constants.detailCell
             } else {
-                myHeight = transactionRow
+                myHeight = Constants.transactionRow
             }
         case viewByCategoryTableView:
             if indexPath.section == 0 {
-                myHeight = detailCell
+                myHeight = Constants.detailCell
             } else {
-                myHeight = categoryRow
+                myHeight = Constants.categoryRow
             }
         default:
-            myHeight = menuCell
+            myHeight = Constants.menuCell
         }
         return myHeight
     }
@@ -823,7 +799,7 @@ extension UITextField {
                 self.rightViewMode = .always
     }
 }
-
+//MARK: MENU CELL
 extension ViewTransactionController : UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return monthTitles.count
