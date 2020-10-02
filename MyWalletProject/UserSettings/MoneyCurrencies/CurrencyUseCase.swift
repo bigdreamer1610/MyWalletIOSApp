@@ -7,11 +7,11 @@
 //
 
 import Foundation
+import Firebase
 
 class CurrencyUseCase {
     var rateData: CurrencyData?
     var presenterDelegate: CurrencyPresenterProtocol?
-    
     // MARK: - Get data from API with desired currencies, base is USA
     func fetchData() {
         let url = URL(string: "https://api.currencyfreaks.com/latest?apikey=ae28c3231f23426b80da6acb5bc27c63&symbols=VND,EUR,JPY,KRW,CNY,SGD,AUD,CAD")!
@@ -30,7 +30,7 @@ class CurrencyUseCase {
             }
         }.resume()
     }
-    
+     
     // MARK: - Perform logic to transfer base from USA back to VND, return result of other currencies
     func exchangeVNDToOtherCurrencies(_ amount: Double) {
         var result: ResultData = ResultData(USD: 0.0, EUR: 0.0, JPY: 0.0, KRW: 0.0, CNY: 0.0, SGD: 0.0, AUD: 0.0, CAD: 0.0)
