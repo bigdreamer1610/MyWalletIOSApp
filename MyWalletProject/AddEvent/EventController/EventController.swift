@@ -18,7 +18,7 @@ class EventController: UIViewController, UITableViewDataSource, UITableViewDeleg
     var ref : DatabaseReference!
     var idUser = "userid1"
     var dateThis = ""
-    var format = CheckFormat()
+    var format = FormatNumber()
     
     var total = 0 {
         didSet {
