@@ -15,6 +15,9 @@ class EventCell: UITableViewCell {
     @IBOutlet weak var lblMoney: UILabel!
     @IBOutlet weak var imgCategory: UIImageView!
     
+    @IBOutlet weak var lbSpent: UILabel!
+    
+    var format = CheckFormat()
     
     
     
@@ -33,7 +36,8 @@ class EventCell: UITableViewCell {
     func load(event: Event )  {
         imgCategory.image = UIImage(named: event.eventImage!)
         nameEvent.text = event.name
-        lblMoney.text = String(event.spent!)
+        
+        lbSpent.text = format.formatInt(so: event.spent!)
     }
     
 }

@@ -70,6 +70,10 @@
 		7338862E25231F68002F126B /* DetailTransactionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7338861C25231F67002F126B /* DetailTransactionController.swift */; };
 		735873EE2521780D00B8235D /* MainTabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735873EC2521780D00B8235D /* MainTabbar.swift */; };
 		735873EF2521780D00B8235D /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735873ED2521780D00B8235D /* MainTabViewController.swift */; };
+		73AA67F625258275001EAA1D /* PlanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AA67F525258275001EAA1D /* PlanningViewController.swift */; };
+		73AA67FA25258294001EAA1D /* PlanningCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AA67F825258294001EAA1D /* PlanningCell.swift */; };
+		73AA67FB25258294001EAA1D /* PlanningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73AA67F925258294001EAA1D /* PlanningCell.xib */; };
+		73AA67FD25258E29001EAA1D /* SecondNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AA67FC25258E29001EAA1D /* SecondNavigationController.swift */; };
 		73E0B1772521E0EE0097D41F /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E0B15B2521E0ED0097D41F /* TransactionModel.swift */; };
 		73E0B1782521E0EE0097D41F /* ViewTransaction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 73E0B15C2521E0ED0097D41F /* ViewTransaction.storyboard */; };
 		73E0B1792521E0EE0097D41F /* Defined.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E0B15D2521E0ED0097D41F /* Defined.swift */; };
@@ -138,6 +142,7 @@
 		D270F4C1251B550E00CB274C /* CategoryEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D270F4BF251B550E00CB274C /* CategoryEventCell.swift */; };
 		D270F4C2251B550E00CB274C /* CategoryEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D270F4C0251B550E00CB274C /* CategoryEventCell.xib */; };
 		D270F4C4251B557D00CB274C /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D270F4C3251B557D00CB274C /* CalendarController.swift */; };
+		D27F30F52526D7A200FF940B /* CheckFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27F30F42526D7A200FF940B /* CheckFormat.swift */; };
 		D29A104E251C4D15009EF2DC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D29A104D251C4D15009EF2DC /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -224,6 +229,10 @@
 		7338861C25231F67002F126B /* DetailTransactionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTransactionController.swift; sourceTree = "<group>"; };
 		735873EC2521780D00B8235D /* MainTabbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabbar.swift; sourceTree = "<group>"; };
 		735873ED2521780D00B8235D /* MainTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
+		73AA67F525258275001EAA1D /* PlanningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningViewController.swift; sourceTree = "<group>"; };
+		73AA67F825258294001EAA1D /* PlanningCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningCell.swift; sourceTree = "<group>"; };
+		73AA67F925258294001EAA1D /* PlanningCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlanningCell.xib; sourceTree = "<group>"; };
+		73AA67FC25258E29001EAA1D /* SecondNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondNavigationController.swift; sourceTree = "<group>"; };
 		73E0B15B2521E0ED0097D41F /* TransactionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
 		73E0B15C2521E0ED0097D41F /* ViewTransaction.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ViewTransaction.storyboard; sourceTree = "<group>"; };
 		73E0B15D2521E0ED0097D41F /* Defined.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defined.swift; sourceTree = "<group>"; };
@@ -297,6 +306,7 @@
 		D270F4BF251B550E00CB274C /* CategoryEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEventCell.swift; sourceTree = "<group>"; };
 		D270F4C0251B550E00CB274C /* CategoryEventCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryEventCell.xib; sourceTree = "<group>"; };
 		D270F4C3251B557D00CB274C /* CalendarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
+		D27F30F42526D7A200FF940B /* CheckFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckFormat.swift; sourceTree = "<group>"; };
 		D29A104D251C4D15009EF2DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F1BE2AE340B9107ED17B8534 /* Pods_MyWalletProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyWalletProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -594,6 +604,24 @@
 			path = Tabbar;
 			sourceTree = "<group>";
 		};
+		73AA67F42525825E001EAA1D /* Planning */ = {
+			isa = PBXGroup;
+			children = (
+				73AA67F72525827C001EAA1D /* Views */,
+				73AA67F525258275001EAA1D /* PlanningViewController.swift */,
+			);
+			path = Planning;
+			sourceTree = "<group>";
+		};
+		73AA67F72525827C001EAA1D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				73AA67F825258294001EAA1D /* PlanningCell.swift */,
+				73AA67F925258294001EAA1D /* PlanningCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		73E0B15A2521E0ED0097D41F /* ViewTransaction */ = {
 			isa = PBXGroup;
 			children = (
@@ -609,9 +637,11 @@
 		73E0B15E2521E0ED0097D41F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				73AA67F42525825E001EAA1D /* Planning */,
 				73E0B1902521ED6F0097D41F /* Balance */,
 				73E0B18F2521ED680097D41F /* MainTransaction */,
 				73E0B1612521E0ED0097D41F /* FirstNavigationController.swift */,
+				73AA67FC25258E29001EAA1D /* SecondNavigationController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -801,10 +831,10 @@
 		8ACA6246251A07980031E6DF /* MyWalletProject */ = {
 			isa = PBXGroup;
 			children = (
+				8ACA6284251A0C2A0031E6DF /* DataModel */,
 				56B8A7E52524830B00B8E8F0 /* SignIn */,
 				56B8A7F52524886000B8E8F0 /* Budget */,
 				8AB19A0C2524400D0074C8F0 /* Helpers */,
-				8ACA6284251A0C2A0031E6DF /* DataModel */,
 				7338860225231F67002F126B /* AddEditDetailTransaction */,
 				73E0B15A2521E0ED0097D41F /* ViewTransaction */,
 				735873EB252177FA00B8235D /* Tabbar */,
@@ -865,6 +895,7 @@
 		D270F4AE251B52A700CB274C /* AddEvent */ = {
 			isa = PBXGroup;
 			children = (
+				D27F30F32526D75F00FF940B /* check */,
 				D270F4BA251B547100CB274C /* EventCell */,
 				D270F4B1251B53A500CB274C /* EventController */,
 				D270F4AF251B52E700CB274C /* AddEvent.storyboard */,
@@ -895,6 +926,14 @@
 				D270F4C0251B550E00CB274C /* CategoryEventCell.xib */,
 			);
 			path = EventCell;
+			sourceTree = "<group>";
+		};
+		D27F30F32526D75F00FF940B /* check */ = {
+			isa = PBXGroup;
+			children = (
+				D27F30F42526D7A200FF940B /* CheckFormat.swift */,
+			);
+			path = check;
 			sourceTree = "<group>";
 		};
 		F3FF6B4E86E3A96527CC41F4 /* Frameworks */ = {
@@ -1021,6 +1060,7 @@
 				8A3BB429251B204C008113E9 /* UserSettings.storyboard in Resources */,
 				56B8A7E72524835500B8E8F0 /* Signin.storyboard in Resources */,
 				72873D9425249B6100313629 /* IncomDetailTableViewCell.xib in Resources */,
+				73AA67FB25258294001EAA1D /* PlanningCell.xib in Resources */,
 				56B8A7F72524889300B8E8F0 /* budget.storyboard in Resources */,
 				D270F4B0251B52E700CB274C /* AddEvent.storyboard in Resources */,
 				73E0B1862521E0EE0097D41F /* HeaderCategoryCell.xib in Resources */,
@@ -1137,6 +1177,7 @@
 			files = (
 				56B8A81525248C5A00B8E8F0 /* BudgetController.swift in Sources */,
 				56B8A81325248C3E00B8E8F0 /* BudgetDetailViewController.swift in Sources */,
+				73AA67FD25258E29001EAA1D /* SecondNavigationController.swift in Sources */,
 				8A3BB41A251AE01A008113E9 /* ScanBillPresenter.swift in Sources */,
 				56B8A7EC2524841400B8E8F0 /* LoginUseCase.swift in Sources */,
 				8ACA624C251A07980031E6DF /* ViewController.swift in Sources */,
@@ -1144,9 +1185,11 @@
 				56B8A7F42524857E00B8E8F0 /* TestLoginViewController.swift in Sources */,
 				73E0B17F2521E0EE0097D41F /* HeaderTransactionCell.swift in Sources */,
 				7338862025231F68002F126B /* AddTransactionController.swift in Sources */,
+				73AA67F625258275001EAA1D /* PlanningViewController.swift in Sources */,
 				73E0B1832521E0EE0097D41F /* TransactionDayCell.swift in Sources */,
 				56B8A80A25248A7700B8E8F0 /* TimeCell.swift in Sources */,
 				8A3BB426251AFE7C008113E9 /* SettingsItemViewCell.swift in Sources */,
+				D27F30F52526D7A200FF940B /* CheckFormat.swift in Sources */,
 				73E0B17B2521E0EE0097D41F /* ViewTransactionController.swift in Sources */,
 				8A3BB40D251ADE9E008113E9 /* Category.swift in Sources */,
 				72873D8B25249AFC00313629 /* DetailSBCTableViewCell.swift in Sources */,
@@ -1209,6 +1252,7 @@
 				72A7191A251DDE87003ED157 /* StackedBarChartTableViewCell.swift in Sources */,
 				72A71923251DDEEE003ED157 /* PieChartCollectionViewCell.swift in Sources */,
 				735873EF2521780D00B8235D /* MainTabViewController.swift in Sources */,
+				73AA67FA25258294001EAA1D /* PlanningCell.swift in Sources */,
 				73E0B17E2521E0EE0097D41F /* TransactionCell.swift in Sources */,
 				7338862E25231F68002F126B /* DetailTransactionController.swift in Sources */,
 				D270F4B5251B541000CB274C /* AddEventController.swift in Sources */,
