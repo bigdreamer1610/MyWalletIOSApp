@@ -14,6 +14,10 @@ protocol DetailBudgetTappedButton : class {
     func btnListTransactionTapped()
 }
 
+protocol BudgetDetailControllerDelegate {
+    func reloadDataListBudgetintoBudgetDetailController()
+}
+
 class BudgetDetailController: UIViewController {
 
     @IBOutlet weak var tblBudget: UITableView!
@@ -22,6 +26,8 @@ class BudgetDetailController: UIViewController {
     
     var budgetObject:Budget = Budget()
     var spent:Int = 0
+    
+    var delegateBudgetDetail:BudgetControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +39,7 @@ class BudgetDetailController: UIViewController {
     }
  
     @IBAction func btnBackClick(_ sender: Any) {
+        self.delegateBudgetDetail?.reloadDataListBudgetintoBudgetController()
         navigationController?.popViewController(animated: true)
     }
     
@@ -44,6 +51,7 @@ class BudgetDetailController: UIViewController {
         
         vc.type = "Edit Budget"
         vc.budgetObject = budgetObject
+        vc.delegateBudgetController = self
         
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -84,9 +92,9 @@ extension BudgetDetailController : DetailBudgetTappedButton {
         
             self.ref.child("Account").child("userid1").child("budget").child("\(self.budgetObject.id!)").removeValue()
             
-            let vc = UIStoryboard.init(name: "budget", bundle: nil).instantiateViewController(withIdentifier: "BudgetListViewController") as! BudgetListViewController
+            self.delegateBudgetDetail?.reloadDataListBudgetintoBudgetController()
+            self.navigationController?.popViewController(animated: true)
             
-            self.navigationController?.pushViewController(vc, animated: true)
          }
         
          let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
@@ -100,6 +108,17 @@ extension BudgetDetailController : DetailBudgetTappedButton {
     
     @objc func btnListTransactionTapped() {
         print("Transaction")
+    }
+}
+
+extension BudgetDetailController : BudgetControllerDelegate {
+    func reloadDataDetailBudgetintoBudgetController(budget: Budget, spend: Int) {
+        self.spent = spend
+        self.budgetObject = budget
+        tblBudget.reloadData()
+    }
+    
+    func reloadDataListBudgetintoBudgetController() {
     }
 }
 

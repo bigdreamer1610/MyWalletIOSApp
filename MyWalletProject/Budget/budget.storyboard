@@ -67,7 +67,14 @@
                         <viewLayoutGuide key="safeArea" id="b1D-bn-HHu"/>
                     </view>
                     <navigationItem key="navigationItem" title="Budgets" id="eBY-sx-Tno">
-                        <barButtonItem key="leftBarButtonItem" id="7T1-UH-Owl"/>
+                        <leftBarButtonItems>
+                            <barButtonItem id="7T1-UH-Owl"/>
+                            <barButtonItem title="Back" id="MBj-OJ-ZcV">
+                                <connections>
+                                    <action selector="btnBackClick:" destination="5ub-H2-mSD" id="zTH-rv-Ktv"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="E5k-fH-kjR">
                             <connections>
                                 <action selector="btnAddClick:" destination="5ub-H2-mSD" id="ihZ-8e-vCo"/>

@@ -169,7 +169,7 @@
 		56053C232525E88C00685FFC /* SelectCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectCategoryViewController.swift; path = Controller/SelectCategoryViewController.swift; sourceTree = "<group>"; };
 		56053C242525E88C00685FFC /* BudgetDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BudgetDetailController.swift; path = Controller/BudgetDetailController.swift; sourceTree = "<group>"; };
 		56053C252525E88C00685FFC /* BudgetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BudgetController.swift; path = Controller/BudgetController.swift; sourceTree = "<group>"; };
-		56053C262525E88C00685FFC /* BudgetListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BudgetListViewController.swift; path = Controller/BudgetListViewController.swift; sourceTree = "<group>"; };
+		56053C262525E88C00685FFC /* BudgetListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetListViewController.swift; sourceTree = "<group>"; };
 		56053C272525E88C00685FFC /* TimeRangerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeRangerViewController.swift; path = Controller/TimeRangerViewController.swift; sourceTree = "<group>"; };
 		56053C282525E88C00685FFC /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CalendarViewController.swift; path = Controller/CalendarViewController.swift; sourceTree = "<group>"; };
 		56053C422525E8F500685FFC /* DetailBudgetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailBudgetCell.xib; sourceTree = "<group>"; };
@@ -390,12 +390,12 @@
 			children = (
 				56B8A7F62524889300B8E8F0 /* budget.storyboard */,
 				56B8A7F8252488EF00B8E8F0 /* Cell */,
-				56053C252525E88C00685FFC /* BudgetController.swift */,
-				56053C242525E88C00685FFC /* BudgetDetailController.swift */,
 				56053C262525E88C00685FFC /* BudgetListViewController.swift */,
-				56053C282525E88C00685FFC /* CalendarViewController.swift */,
+				56053C242525E88C00685FFC /* BudgetDetailController.swift */,
+				56053C252525E88C00685FFC /* BudgetController.swift */,
 				56053C232525E88C00685FFC /* SelectCategoryViewController.swift */,
 				56053C272525E88C00685FFC /* TimeRangerViewController.swift */,
+				56053C282525E88C00685FFC /* CalendarViewController.swift */,
 			);
 			path = Budget;
 			sourceTree = "<group>";
@@ -403,8 +403,8 @@
 		56B8A7F8252488EF00B8E8F0 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				56B8A7F92524890100B8E8F0 /* CellAdd */,
 				56053C412525E8F500685FFC /* CellDetail */,
+				56B8A7F92524890100B8E8F0 /* CellAdd */,
 				56B8A7FC2524896400B8E8F0 /* CategoryCell.swift */,
 				56B8A7FD2524896400B8E8F0 /* CategoryCell.xib */,
 				56B8A8002524898400B8E8F0 /* BudgetCell.swift */,
