@@ -20,18 +20,14 @@ class AddEventController: UIViewController {
     var dayThis: Date?
     var newChild = 0
     var arrayNameEvent = [String]()
-    let cell1 = "nameEventCell"
-    let cell2 = "moneyEventCell"
-    let cell3 = "calendarEventCell"
     var state = 1
     var event = Event()
+    var string = Int()
+    var userID = "userid1"
+       
+    
    // cũ
-    @IBOutlet weak var imgCalendar: UIImageView!
-    @IBOutlet weak var imgCategory: UIImageView!
-    @IBOutlet weak var edMoney: UITextField!
-    @IBOutlet weak var edAddEvent: UITextField!
-    @IBOutlet weak var tvDate: UITextField!
-    @IBOutlet weak var vCategory: UIView!
+   
     // moi
 
     
@@ -51,7 +47,7 @@ class AddEventController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+         ref = Database.database().reference()
         tableViewController = self.children[0] as! AddEventTableController
         
         if state == 0  {
@@ -62,10 +58,11 @@ class AddEventController: UIViewController {
             
         } else {
             self.title = "Add Event"
+              getNewChildTitle()
         }
         
-        ref = Database.database().reference()
-        getNewChildTitle()
+       
+       
         
         setUpView()
     }
@@ -87,61 +84,82 @@ class AddEventController: UIViewController {
         btSave.layer.shadowColor = UIColor.black.cgColor
     }
     func leftAction(){
-        if tableViewController.tfDate.text! != "" && (tableViewController.tfMoney.text != "")  && (tableViewController.tfNameEvent.text != "") {
-            
-            if  arrayNameEvent.contains((tableViewController.tfNameEvent.text)!) == false {
-                print("edit\(tableViewController.imgCategory)")
-                let event = [ "id": String(newChild),
-                               "name": (tableViewController.tfNameEvent.text)! ,
-                              "date": tableViewController.tfDate.text!,
-                             "eventImage": tableViewController.event.eventImage,
-                             "spent": 0]
-                    as [String : Any]
-                self.event.date = tableViewController.tfDate.text!
-                self.event.spent = Int((tableViewController.tfMoney.text)!)
-                       self.ref.child("Account").child("userid1").child("event").child("\(self.newChild)").updateChildValues(event,withCompletionBlock: { error , ref in
-                           if error == nil {
-                            self.completionHandler?(self.event)
-                        self.navigationController?.popViewController(animated: true)
-                           }else{
-                           }
-                       } )
-            } else {
-                let alert = UIAlertController(title: "error", message: "Event này đã tồn tại", preferredStyle: UIAlertController.Style.actionSheet)
-                alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
-                 self.present(alert, animated: true, completion: nil)
-            }
-            
-            
+        if state == 1 {
+              if tableViewController.tfDate.text! != ""   && (tableViewController.tfNameEvent.text != "") {
+                      
+                      if  arrayNameEvent.contains((tableViewController.tfNameEvent.text)!) == false {
+                          
+                          let event = [ "id": String(newChild),
+                                         "name": (tableViewController.tfNameEvent.text)! ,
+                                        "date": tableViewController.tfDate.text!,
+                                       "eventImage": tableViewController.eventImg,
+                                       "spent": 0]
+                              as [String : Any]
+                          self.event.date = tableViewController.tfDate.text!
+                  self.ref.child("Account").child(userID).child("event").child(String(string)).updateChildValues(event,withCompletionBlock: { error , ref in
+                                     if error == nil {
+                                      self.completionHandler?(self.event)
+                                  self.navigationController?.popViewController(animated: true)
+                                     }else{
+                                     }
+                                 } )
+                      } else {
+                          let alert = UIAlertController(title: "error", message: "Event này đã tồn tại", preferredStyle: UIAlertController.Style.actionSheet)
+                          alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+                           self.present(alert, animated: true, completion: nil)
+                      }
+                      
+                      
+                  } else {
+                      let alert = UIAlertController(title: "error", message: "Moi nhap day du", preferredStyle: UIAlertController.Style.actionSheet)
+                                 alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+                                  self.present(alert, animated: true, completion: nil)
+                      
+                      }
         } else {
-            let alert = UIAlertController(title: "error", message: "Moi nhap day du", preferredStyle: UIAlertController.Style.actionSheet)
-                       alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
-                        self.present(alert, animated: true, completion: nil)
-            
+            if tableViewController.tfNameEvent.text != "" {
+                if arrayNameEvent.contains(tableViewController.tfNameEvent.text!) == false {
+                    newChild = Int(tableViewController.event.id!)!
+                    let event = [ "id": String(newChild),
+                                           "name": (tableViewController.tfNameEvent.text)! ,
+                                          "date": tableViewController.tfDate.text!,
+                                         "eventImage": tableViewController.eventImg,
+                                         "spent": 0]
+                                as [String : Any]
+                            self.event.date = tableViewController.tfDate.text!
+                    self.ref.child("Account").child(userID).child("event").child(String(newChild)).updateChildValues(event,withCompletionBlock: { error , ref in
+                                       if error == nil {
+                                        self.completionHandler?(self.event)
+                                    self.navigationController?.popViewController(animated: true)
+                                       }else{
+                                       }
+                                   } )
+                }
             }
+        }
        }
 
     func getNewChildTitle(){
-        ref.child("Account").child("userid1").child("event").observeSingleEvent(of: .value) {[weak self] (snapshot) in
-            guard let self = self else {
-                return
-           }
-            if snapshot.childrenCount == 0 {
-                self.newChild = 0
-            } else if snapshot.childrenCount != 0 {
-                self.newChild = Int(snapshot.childrenCount)
-            }
-          
-        }
+        self.ref.child("Account").child(userID).child("event").queryLimited(toLast: 1).observeSingleEvent(of: .value, with: {
+                snapshot in
+                for category in snapshot.children{
+                    print(snapshot.childrenCount)
+                    if  snapshot.childrenCount == nil   {
+                        self.string = 0
+                    } else{
+                        self.string = Int((category as AnyObject).key)! + 1
+                        print(self.string)
+                    }
+                   
+                    
+                    
+                }
+                
+            })
+    
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let vc = segue.description as? AddEventTableController, segue.identifier == "AddEventTableController" {
-//            self.infos = vc
-//            tableViewController?.event = self.event
-//
-//        }
-//    }
+
    
 
 }

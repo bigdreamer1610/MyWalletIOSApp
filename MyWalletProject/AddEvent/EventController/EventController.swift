@@ -13,14 +13,23 @@ class EventController: UIViewController, UITableViewDataSource, UITableViewDeleg
    
 
     
+    @IBOutlet weak var lbTotal: UILabel!
     @IBOutlet weak var EventTable: UITableView!
     var ref : DatabaseReference!
     var idUser = "userid1"
     var dateThis = ""
+    var format = CheckFormat()
+    
+    var total = 0 {
+        didSet {
+            lbTotal.text = "Total:  " + format.formatInt(so: total)
+        }
+    }
     var arrEvent: [Event] = []{
         didSet{
-            print("dachi")
+        
             EventTable.reloadData()
+            
         }
     }
     var arrNameEvent = [String]()
@@ -28,6 +37,7 @@ class EventController: UIViewController, UITableViewDataSource, UITableViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: .add, style: .done, target: self, action: #selector(leftAction))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: .remove, style: .done, target: self, action: #selector(back))
         ref = Database.database().reference()
         dateThis = setDate()
        
@@ -40,8 +50,11 @@ class EventController: UIViewController, UITableViewDataSource, UITableViewDeleg
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
+        self.arrEvent.removeAll()
         getDataCurrenlyApplying()
+        total = 0
         sg.selectedSegmentIndex = 0
+        
     }
     
     
@@ -49,9 +62,13 @@ class EventController: UIViewController, UITableViewDataSource, UITableViewDeleg
     @IBAction func smMode(_ sender: UISegmentedControl) {
         switch sg.selectedSegmentIndex {
         case 0:
+            total = 0
             getDataCurrenlyApplying()
+            lbTotal.text = "Total: " + String(total)
         case 1:
+            total = 0
             getEventFinished()
+             lbTotal.text = "Total: " + String(total)
         default:
             print("chon lai")
         }
@@ -62,7 +79,11 @@ class EventController: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     
     func getDataCurrenlyApplying()  {
-          arrEvent.removeAll()
+        
+        self.arrEvent.removeAll()
+        self.arrNameEvent.removeAll()
+      
+        
               self.ref.child("Account").child(idUser).child("event").observe(.value) { snapshot in
                            for case let child as DataSnapshot in snapshot.children {
                                guard let dict = child.value as? [String: Any] else {
@@ -72,16 +93,16 @@ class EventController: UIViewController, UITableViewDataSource, UITableViewDeleg
                               var check = self.checkDay(dayThis: self.dateThis, dateEnd: dateEnd)
                               if check {
                                           let id = dict["id"] as! String
-                                          let img = dict["categoryid"] as! String
+                                          let img = dict["eventImage"] as! String
                                           let nameEvent = dict["name"] as! String
                                           let spent = dict["spent"] as! Int
                                           let event1 = Event(id: id, name: nameEvent, date: dateEnd, eventImage: img, spent: spent)
-                        //        let event1 = Event(name: nameEvent, goal: money, dateStart: dateStars, dateEnd: dateEnd, categoryid: img, spent: spent)
                                 self.arrNameEvent.append(nameEvent)
                                   self.arrEvent.append(event1)
+                                self.total += spent
                               }
                               else {
-                                print(" dang dien ra ")
+                                
                             }
                            }
                        }
@@ -99,14 +120,20 @@ class EventController: UIViewController, UITableViewDataSource, UITableViewDeleg
          
        }
        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-           100
+           80
+        
        }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detail = UIStoryboard.init(name: "AddEvent", bundle: nil).instantiateViewController(identifier: "DetailEvent")
         as! TableDetailEventController
         detail.event = arrEvent[indexPath.row]
         
+        self.arrEvent.removeAll()
         self.navigationController?.pushViewController(detail, animated: true)
+        
        
     }
     
@@ -121,6 +148,9 @@ class EventController: UIViewController, UITableViewDataSource, UITableViewDeleg
         self.navigationController?.pushViewController(add, animated: true)
         
         
+    }
+    @objc func back() {
+        self.navigationController?.popViewController(animated: true)
     }
     func setDate() -> String {
         let date = Date()
@@ -140,15 +170,18 @@ class EventController: UIViewController, UITableViewDataSource, UITableViewDeleg
                        let dateEnd = dict["date"] as! String
                         var check = self.checkDay(dayThis: self.dateThis, dateEnd: dateEnd)
                         if check == false {
-                               let id = dict["id"] as? String
-                                let img = dict["categoryid"] as! String
+
+                               let id = dict["id"] as! String
+                                let img = dict["eventImage"] as! String
                                 let nameEvent = dict["name"] as! String
                                 let spent = dict["spent"] as! Int
                                 let event1 = Event(id: id, name: nameEvent, date: dateEnd, eventImage: img, spent: spent)
                             self.arrEvent.append(event1)
+                            
+                            self.total += spent
                         }
                         else {
-                            print("da ket thuc")
+                            
                         }
                      }
                  }
@@ -175,7 +208,10 @@ class EventController: UIViewController, UITableViewDataSource, UITableViewDeleg
 
 }
 
+
 }
+
+
 
 
 

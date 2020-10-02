@@ -16,13 +16,17 @@ protocol CustomCollectionCellDelegate:class {
 class PieChartTableViewCell: BaseTBCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
-       var date = "" {
+    var date = "" {
         didSet {
             collectionView.reloadData()
         }
     }
-    weak var delegate: CustomCollectionCellDelegate?
+    var category = ""
+    var sumIncome = 0
+    var sumExpense = 0
     
+    
+    weak var delegate: CustomCollectionCellDelegate?
     override func awakeFromNib() {
         super.awakeFromNib()
         setupCollection()
@@ -49,7 +53,7 @@ extension PieChartTableViewCell: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = PieChartCollectionViewCell.loadCell(collectionView, path: indexPath) as! PieChartCollectionViewCell
         cell.date = date
-       
+        
         if indexPath.row == 0 {
             cell.state = 1
             cell.lblTypeOfMoney.text = "Khoản thu"
@@ -61,9 +65,18 @@ extension PieChartTableViewCell: UICollectionViewDataSource, UICollectionViewDel
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("This is pie chart")
+       
         let cell = PieChartCollectionViewCell.loadCell(collectionView, path: indexPath) as! PieChartCollectionViewCell
         self.delegate?.collectionView(collectioncell: cell, didTappedInTableview: self)
+        if indexPath.row == 0 {
+            cell.state = 0
+             print("This is pie chart")
+        } else {
+
+            cell.sumExpense = sumExpense
+            print("This is pie chart22222")
+        }
+        
     }
 }
 

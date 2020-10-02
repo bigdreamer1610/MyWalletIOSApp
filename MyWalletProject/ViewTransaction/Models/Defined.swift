@@ -14,6 +14,24 @@ class Defined {
     static let defaults = UserDefaults.standard
     static let ref = Database.database().reference()
     static let formatter = NumberFormatter()
+    static let dateFormatter = DateFormatter()
+    static let calendar = Calendar.current
+    
+    //MARK: - Convert String to DateComponents
+    class func convertToDate(resultDate: String) -> DateComponents {
+        let myDate = resultDate
+        let date = dateFormatter.date(from: myDate)
+        let components = calendar.dateComponents([.day, .month, .year, .weekday], from: date!)
+        return components
+    }
+    
+    class func convertStringToDate(str: String) -> Date {
+        let date = dateFormatter.date(from: str)!
+        return date
+    }
+    
+    
+    
 }
 
 class Constants {

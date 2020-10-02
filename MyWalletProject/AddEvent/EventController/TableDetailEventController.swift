@@ -7,14 +7,19 @@
 //
 
 import UIKit
+import FirebaseDatabase
 
 class TableDetailEventController: UITableViewController {
     var delegate: TableDetailEventControllerDelegate?
     var event = Event()
+    var ref : DatabaseReference!
+    var userId = "userid1"
+    var format = CheckFormat()
     
     
     
-    @IBOutlet weak var viewImg: UIView!
+    
+    //@IBOutlet weak var viewImg: UIView!
     
     @IBOutlet weak var lbNameEvent: UILabel!
     @IBOutlet weak var lbMoney: UILabel!
@@ -44,9 +49,26 @@ class TableDetailEventController: UITableViewController {
     }
     
     @IBAction func btDelete(_ sender: Any) {
+        let alertController = UIAlertController(title: "Are you sure", message: nil, preferredStyle: .alert)
+        
+         let confirmAction = UIAlertAction(title: "OK", style: .default) { (_) in
+        
+            self.ref.child("Account").child(self.userId).child("event").child("\(self.event.id!)").removeValue()
+            self.navigationController?.popViewController(animated: true)
+           
+         }
+        
+         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
+            print("cancel")
+        }
+        
+        alertController.addAction(confirmAction)
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        ref = Database.database().reference()
      //  setUpView()
         
         
@@ -61,11 +83,11 @@ class TableDetailEventController: UITableViewController {
     }
 
     func setUpView()  {
-        viewImg.layer.cornerRadius = viewImg.frame.height / 2
-        viewImg.layer.cornerRadius = viewImg.frame.width / 2
+//        viewImg.layer.cornerRadius = viewImg.frame.height / 2
+//        viewImg.layer.cornerRadius = viewImg.frame.width / 2
         lbNameEvent.text = event.name
         imgCategory.image = UIImage(named: event.eventImage!)
-        lbMoney.text = String(event.spent!)
+        lbMoney.text = format.formatInt(so: event.spent!)
         lbCalendar.text = event.date
     }
 }

@@ -19,6 +19,7 @@ class CurrencyPresenter {
     
     func fetchData() {
         usecase.presenterDelegate = self
+        //show loading
         usecase.fetchData()
     }
     
