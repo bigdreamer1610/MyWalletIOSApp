@@ -103,7 +103,7 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
         }
     }
     
-    // Tính tổng theo category
+    // Sum by Category
     func dataForPieChart(dataArray: [Transaction]) {
         sumByCategory.removeAll()
         for index in 0 ..< dataArray.count {
@@ -116,7 +116,7 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
         }
     }
     
-    // kiểm tra category có tồn tại trong mảng
+    // Check if a Category exists
     func checkExist(category: String) -> Int {
         for index in 0 ..< sumByCategory.count {
             if category == sumByCategory[index].category {
