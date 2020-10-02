@@ -26,12 +26,12 @@ class ViewTransactionController: UIViewController {
     var bottomMenuView = UIView()
     var tableView = UITableView()
     var height: CGFloat = 190
-    private var dateFormatter = DateFormatter()
     var categories = [Category]()
     var balance = Defined.defaults.integer(forKey: Constants.balance)
     //var balance = Defined.defaults.integer(forKey: Constants.balance)
     var dates = [TransactionDate]()
-    var months = ["01","02","03","04","05","06","07","08","09","10","11","12"]
+    //var months = ["01","02","03","04","05","06","07","08","09","10","11","12"]
+    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
     var weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thurday","Friday","Saturday"]
 
     var transactionBotMenu = [
@@ -60,7 +60,6 @@ class ViewTransactionController: UIViewController {
     var today = Date()
     var minDate: Date!
     var maxDate: Date!
-    let calendar = Calendar.current
     var todayMonth = 9
     var todayYear = 2020
     var mode = UserDefaults.standard.string(forKey: "viewmode")
@@ -87,16 +86,16 @@ class ViewTransactionController: UIViewController {
     override func viewDidLoad() {
 
         super.viewDidLoad()
-        todayYear = calendar.component(.year, from: today)
-        todayMonth = calendar.component(.month, from: today)
+        todayYear = Defined.calendar.component(.year, from: today)
+        todayMonth = Defined.calendar.component(.month, from: today)
         currentMonth = todayMonth
         currentYear = todayYear
         current = today
         centerIcon.isHidden = true
         centerLabel.isHidden = true
         
-        dateFormatter.locale = Locale(identifier: "vi_VN")
-        dateFormatter.dateFormat = "dd/MM/yyyy"
+        Defined.dateFormatter.locale = Locale(identifier: "vi_VN")
+        Defined.dateFormatter.dateFormat = "dd/MM/yyyy"
         //mode
         setUpMode(transaction: false, category: true)
         if userid == nil {
@@ -104,14 +103,14 @@ class ViewTransactionController: UIViewController {
             Defined.defaults.set(userid, forKey: Constants.userid)
         }
         initTableViews()
-        getDataCategory()
+        fetchData()
         //check mode
         if mode == nil {
             UserDefaults.standard.set("transaction", forKey: "viewmode")
             mode = "transaction"
         }
-        minDate = calendar.date(byAdding: .year, value: -2, to: today)
-        maxDate = calendar.date(byAdding: .month, value: 1, to: today)
+        minDate = Defined.calendar.date(byAdding: .year, value: -2, to: today)
+        maxDate = Defined.calendar.date(byAdding: .month, value: 1, to: today)
         monthTitles = getMonthYearInRange(from: minDate, to: maxDate)
         
     }
@@ -120,8 +119,6 @@ class ViewTransactionController: UIViewController {
         super.viewWillAppear(animated)
         DispatchQueue.main.async {
             self.getDataTransactions(month: self.currentMonth, year: self.currentYear)
-            self.getBalance()
-            //self.jumpToDate(from: self.dateFormatter.date(from: "02/\(self.currentMonth)/\(self.currentYear)")!)
             self.jumpToDate(from: self.current)
             print("current: \(self.current)")
         }
@@ -168,15 +165,16 @@ class ViewTransactionController: UIViewController {
         monthCollectionView.isScrollEnabled = false
     }
 
+    //MARK: - Get all month year in range min-max to set collectionview menu
     func getMonthYearInRange(from startDate: Date, to endDate: Date) -> [Date] {
-        let components = calendar.dateComponents(Set([.month]), from: startDate, to: endDate)
+        let components = Defined.calendar.dateComponents(Set([.month]), from: startDate, to: endDate)
         //var allDates: [String] = []
         var allDates: [Date] = []
         let dateRangeFormatter = DateFormatter()
         dateRangeFormatter.dateFormat = "MM yyyy"
 
         for i in 1...components.month! {
-            guard let date = calendar.date(byAdding: .month, value: i, to: startDate) else {
+            guard let date = Defined.calendar.date(byAdding: .month, value: i, to: startDate) else {
                         continue
                         }
             allDates.append(date)
@@ -184,6 +182,7 @@ class ViewTransactionController: UIViewController {
         return allDates
     }
 
+    //MARK: - Get indexpath of the month in collectionview menu
     func getIndexPathOfThisMonthCell(from date: Date) -> Int{
         for i in 0..<monthTitles.count {
             if monthTitles[i].dateComponents.month == today.dateComponents.month && monthTitles[i].dateComponents.year == today.dateComponents.year {
@@ -192,6 +191,7 @@ class ViewTransactionController: UIViewController {
         }
         return 0
     }
+    //MARK: - Get All Transaction at month/year
     func getDataTransactions(month: Int, year: Int){
         allTransactions.removeAll()
         finalTransactions.removeAll()
@@ -205,63 +205,34 @@ class ViewTransactionController: UIViewController {
             centerIcon.isHidden = true
             centerLabel.isHidden = true
         }
-        //get transaction expense
-        Defined.ref.child("Account/userid1/transaction/expense").observeSingleEvent(of: .value) {[weak self] (snapshot) in
+        //MARK: - Get All Transactions
+        Defined.ref.child("Account/userid1/transaction").observeSingleEvent(of: .value) {[weak self] (snapshot) in
             guard let `self` = self else {
                 return
             }
             if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
-                for snap in snapshots {
-                    let id = snap.key
-                    if let value = snap.value as? [String: Any]{
-                        let transactionType = TransactionType.expense.getValue()
-                        let amount = value["amount"] as! Int
-                        let categoryid = value["categoryid"] as! String
-                        let date = value["date"] as! String
-                        var transaction = Transaction(id: id, transactionType: transactionType, amount: amount, categoryid: categoryid, date: date)
-                        if let note = value["note"] as? String {
-                            transaction.note = note
+                for mySnap in snapshots {
+                    let transactionType = (mySnap as AnyObject).key as String
+                    if let snaps = mySnap.children.allObjects as? [DataSnapshot]{
+                        for snap in snaps {
+                            let id = snap.key
+                            if let value = snap.value as? [String: Any]{
+                                let amount = value["amount"] as! Int
+                                let categoryid = value["categoryid"] as! String
+                                let date = value["date"] as! String
+                                var transaction = Transaction(id: id, transactionType: transactionType, amount: amount, categoryid: categoryid, date: date)
+                                if let note = value["note"] as? String {
+                                    transaction.note = note
+                                }
+                                if let eventid = value["eventid"] as? String {
+                                    transaction.eventid = eventid
+                                }
+                                self.allTransactions.append(transaction)
+                            }
                         }
-                        if let eventid = value["eventid"] as? String {
-                            transaction.eventid = eventid
-                        }
-                        if let budgetid = value["budgetid"] as? String {
-                            transaction.budgetid = budgetid
-                        }
-                        self.allTransactions.append(transaction)
-
                     }
                 }
-                self.transactionTableView.reloadData()
-                self.viewByCategoryTableView.reloadData()
-            }
-        }
-        Defined.ref.child("Account/userid1/transaction/\(TransactionType.income.getValue())").observeSingleEvent(of: .value) {[weak self] (snapshot) in
-            guard let `self` = self else {
-                return
-            }
-            if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
-                for snap in snapshots {
-                    let id = snap.key
-                    if let value = snap.value as? [String: Any]{
-                        let transactionType = TransactionType.income.getValue()
-                        let amount = value["amount"] as! Int
-                        let categoryid = value["categoryid"] as! String
-                        let date = value["date"] as! String
-                        var transaction = Transaction(id: id, transactionType: transactionType, amount: amount, categoryid: categoryid, date: date)
-                        if let note = value["note"] as? String {
-                            transaction.note = note
-                        }
-                        if let eventid = value["eventid"] as? String {
-                            transaction.eventid = eventid
-                        }
-                        if let budgetid = value["budgetid"] as? String {
-                            transaction.budgetid = budgetid
-                        }
-                        self.allTransactions.append(transaction)
-                    }
-                }
-
+                
                 self.getTransactionbyMonth(month: month, year: year)
                 self.loadingView.isHidden = true
                 self.loadDetailCell(month: month, year: year)
@@ -284,13 +255,13 @@ class ViewTransactionController: UIViewController {
                     self.transactionTableView.reloadData()
                     self.viewByCategoryTableView.reloadData()
                     self.centerIndicator.stopAnimating()
-                }
-
             }
         }
+        }
+        
 
     }
-    //MARK: - Get Transaction by month
+    //MARK: - Get Transactions by month
     func getTransactionbyMonth(month: Int, year: Int){
         //date model of given month year
         dates = getDateArray(arr: getAllDayArray(), month: month, year: year)
@@ -376,7 +347,7 @@ class ViewTransactionController: UIViewController {
                     items.append(item)
                 }
             }
-            let components = convertToDate(resultDate: a.dateString)
+            let components = Defined.convertToDate(resultDate: a.dateString)
             let dateModel = getDateModel(components: components)
             let th = TransactionHeader(dateModel: dateModel, amount: amount)
             sections.append(TransactionSection(header: th, items: items))
@@ -419,7 +390,7 @@ class ViewTransactionController: UIViewController {
                         amount += b.amount!
                     }
                     //MARK: - Get item for each section
-                    let components = convertToDate(resultDate: b.date!)
+                    let components = Defined.convertToDate(resultDate: b.date!)
                     let dateModel = getDateModel(components: components)
                     items.append(CategoryItem(id: b.id!,dateModel: dateModel, amount: amount2,type: type, note: note))
                 }
@@ -478,62 +449,27 @@ class ViewTransactionController: UIViewController {
         }
         return checkArray
     }
-
-    func getBalance(){
+    
+    func fetchData(){
+        let dispatchGroup = DispatchGroup()
+        
+        //MARK: - Get Balance
+        dispatchGroup.enter()
         Defined.ref.child("Account/userid1/information/balance").observeSingleEvent(of: .value) { (snapshot) in
             if let value = snapshot.value as? Int {
                 self.balance = value
-                Defined.defaults.setValue(value, forKey: Constants.balance)
-                DispatchQueue.main.async {
-                    self.balance = value
-                    self.lbBalance.text = "\(Defined.formatter.string(from: NSNumber(value: self.balance))!) đ"
-                }
-            }
-
-
-        }
-    }
-
-    //MARK: - Convert String to DateComponents
-    func convertToDate(resultDate: String) -> DateComponents {
-        let myDate = resultDate
-        let date = dateFormatter.date(from: myDate)
-        let components = calendar.dateComponents([.day, .month, .year, .weekday], from: date!)
-        return components
-    }
-    //MARK: - GET Transaction date in descending order from date string array
-    func getDateArray(arr: [String], month: Int, year: Int) -> [TransactionDate]{
-        var list = [TransactionDate]()
-        var mDates = [Date]()
-        for a in arr {
-            let myDate = a
-            let date = dateFormatter.date(from: myDate)
-            let components = calendar.dateComponents([.day, .month, .year, .weekday], from: date!)
-            //if year & month = given
-            if components.month == month && components.year == year {
-                mDates.append(date!)
             }
         }
-        //sort descending
-        mDates = mDates.sorted { (first, second) -> Bool in
-            first.compare(second) == ComparisonResult.orderedDescending        }
-        //Date style: 18/09/2020
-        dateFormatter.dateStyle = .short
-        for d in mDates {
-            let t = TransactionDate(dateString: dateFormatter.string(from: d), date: d)
-            list.append(t)
-        }
-        return list
-    }
-    //MARK: - Get Category array
-    func getDataCategory(){
-        var myList = [Category]()
+        dispatchGroup.leave()
+        
+        //MARK: - Get Category
+        dispatchGroup.enter()
         Defined.ref.child("Category").observeSingleEvent(of: .value) {[weak self] (snapshot) in
             guard let `self` = self else {return}
             if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
-                let myKey = (snapshot as AnyObject).key as String
                 //expense/income
                 for mySnap in snapshots {
+                    let myKey = (mySnap as AnyObject).key as String
                     //key inside expense/income
                     if let mySnap = mySnap.children.allObjects as? [DataSnapshot]{
                         for snap in mySnap {
@@ -543,17 +479,48 @@ class ViewTransactionController: UIViewController {
                                 let iconImage = value["iconImage"] as? String
                                 let transactionType =  myKey
                                 let category = Category(id: id, name: name, transactionType: transactionType, iconImage: iconImage)
-                                myList.append(category)
+                                self.categories.append(category)
                             }
                         }
-                        self.categories.append(contentsOf: myList)
                     }
                 }
             }
+        }
+        dispatchGroup.leave()
+        
+        dispatchGroup.notify(queue: .main) {
+            Defined.defaults.setValue(self.balance, forKey: Constants.balance)
+            self.lbBalance.text = "\(Defined.formatter.string(from: NSNumber(value: self.balance))!) đ"
             
+            self.transactionTableView.reloadData()
+            self.viewByCategoryTableView.reloadData()
         }
     }
 
+    //MARK: - GET Transaction date in descending order from date string array
+    func getDateArray(arr: [String], month: Int, year: Int) -> [TransactionDate]{
+        var list = [TransactionDate]()
+        var mDates = [Date]()
+        for a in arr {
+            let myDate = a
+            let date = Defined.dateFormatter.date(from: myDate)
+            let components = Defined.calendar.dateComponents([.day, .month, .year, .weekday], from: date!)
+            //if year & month = given
+            if components.month == month && components.year == year {
+                mDates.append(date!)
+            }
+        }
+        //sort descending
+        mDates = mDates.sorted { (first, second) -> Bool in
+            first.compare(second) == ComparisonResult.orderedDescending        }
+        //Date style: 18/09/2020
+        Defined.dateFormatter.dateStyle = .short
+        for d in mDates {
+            let t = TransactionDate(dateString: Defined.dateFormatter.string(from: d), date: d)
+            list.append(t)
+        }
+        return list
+    }
 
     @IBAction func clickMore(_ sender: Any) {
         let window = UIApplication.shared.keyWindow
@@ -589,7 +556,7 @@ class ViewTransactionController: UIViewController {
     }
     
     @IBAction func clickAddTransaction(_ sender: Any) {
-        let vc = RouterType.add.getVc()
+        let vc = RouterType.test.getVc()
         AppRouter.routerTo(from: vc, options: .transitionCrossDissolve, duration: 0.2, isNaviHidden: false)
     }
     
@@ -823,7 +790,7 @@ extension ViewTransactionController : UICollectionViewDelegateFlowLayout, UIColl
             let year = monthTitles[indexPath.row].dateComponents.year{
             currentMonth = month
             currentYear = year
-            current = dateFormatter.date(from: "02/\(month)/\(year)")!
+            current = Defined.dateFormatter.date(from: "02/\(month)/\(year)")!
             getDataTransactions(month: currentMonth, year: currentYear)
             //current = dateFormatter.date(from: "02/\(currentMonth)/\(currentYear)")!
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)

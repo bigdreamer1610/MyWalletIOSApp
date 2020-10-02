@@ -10,7 +10,7 @@
         <!--Login View Controller-->
         <scene sceneID="RjU-Iz-XC5">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="BF5-bb-jFC" customClass="LoginViewController" customModule="MyWalletProject" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BF5-bb-jFC" customClass="LoginViewController" customModule="MyWalletProject" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Rkr-7p-qpl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -152,7 +152,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UB5-Cd-a46" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2934.7826086956525" y="-560.49107142857144"/>
+            <point key="canvasLocation" x="3228" y="-560"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="LBj-JL-c1u">

@@ -10,55 +10,33 @@ import UIKit
 import Charts
 import FirebaseDatabase
 
-protocol setUpData {
-    func pushData(income: Int, expen:Int)
-}
-
 class StackedBarChartTableViewCell: BaseTBCell, ChartViewDelegate {
     @IBOutlet weak var lblNetIncome: UILabel!
     @IBOutlet weak var containerView: UIView!
     var chartView = BarChartView()
+    
     let days = [""]
-    var ref: DatabaseReference!
-    var sumExpense = 0
-    var sumIncome = 0
+    var timer: Timer!
+    var sumExpense = 0 
+    var sumIncome = 0 {
+        didSet {
+            setChartData()
+        }
+    }
     var netIncome = 0
     private var formatter = NumberFormatter()
-    var delegate:setUpData?
     
     var reportView: ReceiveData?
     
-    var date = "" {
-        didSet {
-            getIncome()
-            getExpense()
-            setChartData()
-        }
-    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        ref = Database.database().reference()
-        
         formatter.groupingSeparator = ","
         formatter.numberStyle = .decimal
-        
         buildChart()
+        setChartData()
     }
-    
-    var expenseArray: [Transaction] = [] {
-        didSet {
-            setChartData()
-        }
-    }
-    
-    var incomeArray: [Transaction] = [] {
-        didSet {
-            setChartData()
-        }
-    }
-    
+
+//MARK: - Build Chart
     func buildChart() {
         chartView.delegate = self
         chartView.dragEnabled = false
@@ -70,10 +48,12 @@ class StackedBarChartTableViewCell: BaseTBCell, ChartViewDelegate {
         chartView.maxVisibleCount = 40
         chartView.drawBarShadowEnabled = false
         chartView.drawValueAboveBarEnabled = false
+        chartView.doubleTapToZoomEnabled = false
         chartView.highlightFullBarEnabled = false
         
         let leftAxis = chartView.leftAxis
         leftAxis.labelPosition = .outsideChart
+        leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: formatter)
         leftAxis.axisMinimum = 0
         leftAxis.labelFont = .systemFont(ofSize: 13)
         leftAxis.labelTextColor = UIColor.gray
@@ -93,54 +73,7 @@ class StackedBarChartTableViewCell: BaseTBCell, ChartViewDelegate {
         super.setSelected(selected, animated: animated)
     }
     
-    func getExpense()  {
-        expenseArray.removeAll()
-        
-        sumExpense = 0
-        
-        self.ref.child("Account").child("userid1").child("transaction").child("expense").observeSingleEvent(of: .value) {
-            snapshot in
-            for case let child as DataSnapshot in snapshot.children {
-                guard let dict = child.value as? [String:Any] else {
-                    return
-                }
-                let amount = dict["amount"] as! Int
-                let date = dict["date"] as! String
-                let tempDate = date.split(separator: "/")
-                let checkDate = tempDate[1] + "/" + tempDate[2]
-                
-                if self.date == checkDate {
-                    let ex = Transaction(amount: amount, date: date)
-                    self.sumExpense += amount
-                    self.expenseArray.append(ex)
-                }
-            }
-        }
-    }
-    
-    func getIncome() {
-        incomeArray.removeAll()
-        sumIncome = 0
-        self.ref.child("Account").child("userid1").child("transaction").child("income").observeSingleEvent(of: .value) {
-            snapshot in
-            for case let child as DataSnapshot in snapshot.children {
-                guard let dict = child.value as? [String:Any] else {
-                    return
-                }
-                let amount = dict["amount"] as! Int
-                let date = dict["date"] as! String
-                let tempDate = date.split(separator: "/")
-                let checkDate = tempDate[1] + "/" + tempDate[2]
-                
-                if self.date == checkDate {
-                    let ex = Transaction(amount: amount, date: date)
-                    self.sumIncome += amount
-                    self.incomeArray.append(ex)
-                }
-            }
-        }
-    }
-    
+    //MARK: - Setup data for Chart
     func setChartData( ){
         chartView.frame = CGRect(x: 0,
                                  y: 0,
@@ -149,14 +82,14 @@ class StackedBarChartTableViewCell: BaseTBCell, ChartViewDelegate {
         containerView.addSubview(chartView)
         
         netIncome = sumIncome - sumExpense
+        print("\(sumIncome) Tôi là ai ?\(sumExpense)")
         reportView?.receiveData(income: sumIncome, expense: sumExpense)
         
         lblNetIncome.text = "\(formatter.string(from: NSNumber(value: netIncome))!)"
-        
-        var yVals =  [BarChartDataEntry]()
+     
         let val1 = Double(sumIncome)
         let val2 = Double(sumExpense)
-        
+        var yVals =  [BarChartDataEntry]()
         yVals.append(BarChartDataEntry(x: 1.0, yValues: [val1, val2]))
         
         let set = BarChartDataSet(entries: yVals, label: "")
@@ -166,7 +99,7 @@ class StackedBarChartTableViewCell: BaseTBCell, ChartViewDelegate {
         let data = BarChartData(dataSet: set)
         set.drawValuesEnabled = false
         data.barWidth = 0.1
-        
+        data.highlightEnabled = false
         chartView.data = data
     }
 }
@@ -176,5 +109,4 @@ extension StackedBarChartTableViewCell: IAxisValueFormatter {
         return days[min(max(Int(value), 0), days.count - 1)]
     }
 }
-
 

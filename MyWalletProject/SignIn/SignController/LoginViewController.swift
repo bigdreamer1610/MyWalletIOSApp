@@ -18,6 +18,7 @@ protocol LoginViewControllerDelegate {
 
 class LoginViewController: UIViewController {
     
+    var window: UIWindow?
     @IBOutlet weak var btnLoginFacebook: UIButton!
     @IBOutlet weak var btnLoginGoogle: UIButton!
     @IBOutlet weak var btnLoginApple: UIButton!
