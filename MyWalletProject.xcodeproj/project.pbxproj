@@ -147,7 +147,7 @@
 		D270F4C1251B550E00CB274C /* CategoryEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D270F4BF251B550E00CB274C /* CategoryEventCell.swift */; };
 		D270F4C2251B550E00CB274C /* CategoryEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D270F4C0251B550E00CB274C /* CategoryEventCell.xib */; };
 		D270F4C4251B557D00CB274C /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D270F4C3251B557D00CB274C /* CalendarController.swift */; };
-		D27F30F52526D7A200FF940B /* CheckFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27F30F42526D7A200FF940B /* CheckFormat.swift */; };
+		D27F30F8252722AE00FF940B /* FormatNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27F30F7252722AE00FF940B /* FormatNumber.swift */; };
 		D29A104E251C4D15009EF2DC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D29A104D251C4D15009EF2DC /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -316,7 +316,7 @@
 		D270F4BF251B550E00CB274C /* CategoryEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEventCell.swift; sourceTree = "<group>"; };
 		D270F4C0251B550E00CB274C /* CategoryEventCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryEventCell.xib; sourceTree = "<group>"; };
 		D270F4C3251B557D00CB274C /* CalendarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarController.swift; sourceTree = "<group>"; };
-		D27F30F42526D7A200FF940B /* CheckFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckFormat.swift; sourceTree = "<group>"; };
+		D27F30F7252722AE00FF940B /* FormatNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatNumber.swift; sourceTree = "<group>"; };
 		D29A104D251C4D15009EF2DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F1BE2AE340B9107ED17B8534 /* Pods_MyWalletProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyWalletProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -942,7 +942,7 @@
 		D270F4AE251B52A700CB274C /* AddEvent */ = {
 			isa = PBXGroup;
 			children = (
-				D27F30F32526D75F00FF940B /* check */,
+				D27F30F62527226700FF940B /* Format */,
 				D270F4BA251B547100CB274C /* EventCell */,
 				D270F4B1251B53A500CB274C /* EventController */,
 				D270F4AF251B52E700CB274C /* AddEvent.storyboard */,
@@ -975,12 +975,12 @@
 			path = EventCell;
 			sourceTree = "<group>";
 		};
-		D27F30F32526D75F00FF940B /* check */ = {
+		D27F30F62527226700FF940B /* Format */ = {
 			isa = PBXGroup;
 			children = (
-				D27F30F42526D7A200FF940B /* CheckFormat.swift */,
+				D27F30F7252722AE00FF940B /* FormatNumber.swift */,
 			);
-			path = check;
+			path = Format;
 			sourceTree = "<group>";
 		};
 		F3FF6B4E86E3A96527CC41F4 /* Frameworks */ = {
@@ -1237,9 +1237,7 @@
 				73E0B1832521E0EE0097D41F /* TransactionDayCell.swift in Sources */,
 				56B8A80A25248A7700B8E8F0 /* TimeCell.swift in Sources */,
 				8A3BB426251AFE7C008113E9 /* SettingsItemViewCell.swift in Sources */,
-
 				56053C2C2525E88C00685FFC /* BudgetListViewController.swift in Sources */,
-
 				73E0B17B2521E0EE0097D41F /* ViewTransactionController.swift in Sources */,
 				8A3BB40D251ADE9E008113E9 /* Category.swift in Sources */,
 				72873D8B25249AFC00313629 /* DetailSBCTableViewCell.swift in Sources */,
@@ -1275,6 +1273,7 @@
 				56B8A80E25248AAC00B8E8F0 /* CateCell.swift in Sources */,
 				7338862925231F68002F126B /* SelectCategoryController.swift in Sources */,
 				73E0B1A9252206200097D41F /* AppRouter.swift in Sources */,
+				D27F30F8252722AE00FF940B /* FormatNumber.swift in Sources */,
 				8A725C4E251C79FD00610758 /* CurrencyModel.swift in Sources */,
 				D269928F25247BCA0061EDF6 /* TableDetailEventController.swift in Sources */,
 				72A71926251DDF35003ED157 /* ReportViewController.swift in Sources */,
