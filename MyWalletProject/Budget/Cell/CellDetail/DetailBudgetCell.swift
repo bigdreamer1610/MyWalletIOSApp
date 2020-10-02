@@ -37,7 +37,7 @@ class DetailBudgetCell: UITableViewCell {
         lblCategory.text = cateName
         lblAmount.text = "\(amount)"
         lblSpend.text = "\(spend)"
-        lblRest.text = "\(spend - amount)"
+        lblRest.text = "\(amount - spend)"
         lblTotalAmount.text = "\(amount)"
         lblCalendar.text = "\(startdate) - \(endDate)"
         
