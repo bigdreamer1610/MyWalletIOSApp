@@ -46,6 +46,8 @@ class ScanBillViewController: UIViewController {
         borderImageView(imageInput)
         
         removeTextViewLeftPadding(txtNote)
+        
+        self.title = "Bill Scanner"
     }
     
     // MARK: - Hide tab bar
@@ -112,7 +114,7 @@ class ScanBillViewController: UIViewController {
     }
     
     @IBAction func btnCancelClicked(_ sender: Any) {
-        // TODO: Implementation of cancelling
+        navigationController?.popViewController(animated: true)
     }
 }
 
