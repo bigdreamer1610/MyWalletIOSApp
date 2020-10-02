@@ -14,7 +14,7 @@ class TableDetailEventController: UITableViewController {
     var event = Event()
     var ref : DatabaseReference!
     var userId = "userid1"
-    var format = CheckFormat()
+    var format = FormatNumber()
     
     
     

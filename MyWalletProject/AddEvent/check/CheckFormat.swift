@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CheckFormat {
+open class CheckFormat {
     public func formatInt(so: Int)  -> String{
         
         let numberFormatter = NumberFormatter()
