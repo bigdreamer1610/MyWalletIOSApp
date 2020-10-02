@@ -10,16 +10,16 @@ import UIKit
 
 class DetailStackedBarChartVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    var expense = 0
-    var income = 0
+    var sumExpense = 0
+    var sumIncome = 0 
 //    var delegate: GetDataFromVC?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         
-        print(expense)
-        print(income)
+        print(sumExpense)
+        print(sumIncome)
     }
     
     private func setupTableView() {
@@ -29,7 +29,7 @@ class DetailStackedBarChartVC: UIViewController {
         DayStackedBarChartTableViewCell.registerCellByNib(tableView)
         
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 600
+        tableView.estimatedRowHeight = 400
     }
     
     @IBAction func popReportVC(_ sender: Any) {
@@ -50,8 +50,8 @@ extension DetailStackedBarChartVC: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 0 {
             let cell = DetailSBCTableViewCell.loadCell(tableView)  as! DetailSBCTableViewCell
 ////            cell.delegate = self
-//            cell.income = income
-//            cell.expense = expense
+            cell.sumIncome = sumIncome
+            cell.sumExpense = sumExpense
 
             cell.selectionStyle = .none
             return cell

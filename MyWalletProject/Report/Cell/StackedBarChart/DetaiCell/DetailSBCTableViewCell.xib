@@ -17,23 +17,24 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="97w-Em-YgM">
-                        <rect key="frame" x="15" y="11" width="383" height="220"/>
+                        <rect key="frame" x="15" y="11" width="383" height="180"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r5b-ej-81b">
-                                <rect key="frame" x="-15" y="229.5" width="413" height="0.5"/>
+                                <rect key="frame" x="-15" y="189.5" width="413" height="0.5"/>
                                 <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="0.5" id="bd1-Sh-FOx"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="220" id="0dl-HG-lCP"/>
+                            <constraint firstAttribute="height" constant="180" id="0dl-HG-lCP"/>
                             <constraint firstAttribute="bottom" secondItem="r5b-ej-81b" secondAttribute="bottom" constant="-10" id="lXY-ox-wLP"/>
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="r5b-ej-81b" secondAttribute="trailing" id="CmB-wF-0rd"/>
                     <constraint firstAttribute="trailing" secondItem="97w-Em-YgM" secondAttribute="trailing" constant="15" id="HpJ-xn-L0j"/>

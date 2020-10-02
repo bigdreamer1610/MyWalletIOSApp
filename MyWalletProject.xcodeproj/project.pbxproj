@@ -450,16 +450,7 @@
 			path = SatckedBarChart;
 			sourceTree = "<group>";
 		};
-		72873D78252499EB00313629 /* DetailCell */ = {
-			isa = PBXGroup;
-			children = (
-				72873D8225249A8100313629 /* SBC */,
-				72873D8125249A7A00313629 /* Pie */,
-			);
-			path = DetailCell;
-			sourceTree = "<group>";
-		};
-		72873D8125249A7A00313629 /* Pie */ = {
+		72873D8125249A7A00313629 /* DetailCell */ = {
 			isa = PBXGroup;
 			children = (
 				72873D8425249AA300313629 /* DayDetail */,
@@ -470,10 +461,10 @@
 				72873D9D25249C3200313629 /* NameTableViewCell.swift */,
 				72873D9E25249C3200313629 /* NameTableViewCell.xib */,
 			);
-			path = Pie;
+			path = DetailCell;
 			sourceTree = "<group>";
 		};
-		72873D8225249A8100313629 /* SBC */ = {
+		72873D8225249A8100313629 /* DetaiCell */ = {
 			isa = PBXGroup;
 			children = (
 				72873D8325249A8E00313629 /* DayDetail */,
@@ -482,7 +473,7 @@
 				72873D8925249AFC00313629 /* DetailSBCTableViewCell.swift */,
 				72873D8A25249AFC00313629 /* DetailSBCTableViewCell.xib */,
 			);
-			path = SBC;
+			path = DetaiCell;
 			sourceTree = "<group>";
 		};
 		72873D8325249A8E00313629 /* DayDetail */ = {
@@ -508,7 +499,6 @@
 			children = (
 				72A71911251DDDC8003ED157 /* ViewController */,
 				72A71910251DDDBD003ED157 /* Cell */,
-				72873D78252499EB00313629 /* DetailCell */,
 				72A7190E251DDD43003ED157 /* Report.storyboard */,
 			);
 			path = Report;
@@ -548,6 +538,7 @@
 			children = (
 				72A71918251DDE87003ED157 /* StackedBarChartTableViewCell.swift */,
 				72A71919251DDE87003ED157 /* StackedBarChartTableViewCell.xib */,
+				72873D8225249A8100313629 /* DetaiCell */,
 			);
 			path = StackedBarChart;
 			sourceTree = "<group>";
@@ -559,6 +550,7 @@
 				72A7191E251DDEBD003ED157 /* PieChartTableViewCell.xib */,
 				72A71921251DDEEE003ED157 /* PieChartCollectionViewCell.swift */,
 				72A71922251DDEEE003ED157 /* PieChartCollectionViewCell.xib */,
+				72873D8125249A7A00313629 /* DetailCell */,
 			);
 			path = PieChart;
 			sourceTree = "<group>";
