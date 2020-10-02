@@ -17,6 +17,8 @@ enum RouterType {
     case planning
     case budget
     case event
+    case tabbar
+    case test
     
     //case viewTransaction
 }
@@ -75,6 +77,14 @@ extension RouterType{
             return vc
         case .event:
             let vc = UIStoryboard(name: "AddEvent", bundle: nil).instantiateViewController(withIdentifier: "EventController") as! EventController
+            return vc
+        case .tabbar:
+            let vc = MainTabViewController.createTabbar()
+            return vc
+        case .test:
+            let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "transaction") as! TransactionViewController
+            let presenter = TransactionPresenter(delegate: vc, usecase: TransactionUseCase())
+            vc.setUp(presenter: presenter)
             return vc
             
             //        default:

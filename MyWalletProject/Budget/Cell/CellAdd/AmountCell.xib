@@ -28,7 +28,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="6cj-5C-mdu"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <textInputTraits key="textInputTraits"/>
                         <connections>
                             <action selector="txtAmountChange:" destination="KGk-i7-Jjw" eventType="editingChanged" id="7jF-BN-DY7"/>
