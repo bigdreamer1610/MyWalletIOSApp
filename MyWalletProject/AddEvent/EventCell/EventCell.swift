@@ -17,7 +17,7 @@ class EventCell: UITableViewCell {
     
     @IBOutlet weak var lbSpent: UILabel!
     
-    var format = CheckFormat()
+    var format = FormatNumber()
     
     
     
