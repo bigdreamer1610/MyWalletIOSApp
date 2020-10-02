@@ -1,42 +1,47 @@
 //
-//  StackedBarChartTableViewCell.swift
-//  MyWallet
+//  DetailSBCTableViewCell.swift
+//  MyWalletProject
 //
-//  Created by Nguyen Thi Huong on 9/23/20.
-//  Copyright © 2020 THUY Nguyen Duong Thu. All rights reserved.
+//  Created by Nguyen Thi Huong on 9/28/20.
+//  Copyright © 2020 Vuong Vu Bac Son. All rights reserved.
 //
 
 import UIKit
 import Charts
-import FirebaseDatabase
 
-class StackedBarChartTableViewCell: BaseTBCell, ChartViewDelegate {
-    @IBOutlet weak var lblNetIncome: UILabel!
+//protocol GetDataFromVC {
+//    func getData(income: Int, expense: Int)
+//}
+
+class DetailSBCTableViewCell: BaseTBCell, ChartViewDelegate {
+    
     @IBOutlet weak var containerView: UIView!
     var chartView = BarChartView()
-    
+    private var formatter = NumberFormatter()
     let days = [""]
-    var timer: Timer!
-    var sumExpense = 0 
-    var sumIncome = 0 {
+    var sumExpense = 0 {
         didSet {
             setChartData()
         }
     }
-    var netIncome = 0
-    private var formatter = NumberFormatter()
-    
-    var reportView: ReceiveData?
-    
+    var sumIncome = 0
     override func awakeFromNib() {
         super.awakeFromNib()
         formatter.groupingSeparator = ","
         formatter.numberStyle = .decimal
         buildChart()
         setChartData()
+      
     }
-
-//MARK: - Build Chart
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+    }
+    
+    //MARK: - Build Chart
     func buildChart() {
         chartView.delegate = self
         chartView.dragEnabled = false
@@ -69,24 +74,16 @@ class StackedBarChartTableViewCell: BaseTBCell, ChartViewDelegate {
         chartView.rightAxis.enabled = false
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
     //MARK: - Setup data for Chart
     func setChartData( ){
-        chartView.frame = CGRect(x: 0,
+        chartView.frame = CGRect(x: -5,
                                  y: 0,
-                                 width: containerView.frame.size.width,
+                                 width: containerView.frame.size.width - 30,
                                  height: containerView.frame.size.height)
         containerView.addSubview(chartView)
         
-        netIncome = sumIncome - sumExpense
-        print("\(sumIncome) Tôi là ai ?\(sumExpense)")
-        reportView?.receiveData(income: sumIncome, expense: sumExpense)
+        print("\(sumIncome) heloeojciodi286268 \(sumExpense)")
         
-        lblNetIncome.text = "\(formatter.string(from: NSNumber(value: netIncome))!)"
-     
         let val1 = Double(sumIncome)
         let val2 = Double(sumExpense)
         var yVals =  [BarChartDataEntry]()
@@ -103,8 +100,7 @@ class StackedBarChartTableViewCell: BaseTBCell, ChartViewDelegate {
         chartView.data = data
     }
 }
-
-extension StackedBarChartTableViewCell: IAxisValueFormatter {
+extension DetailSBCTableViewCell: IAxisValueFormatter {
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         return days[min(max(Int(value), 0), days.count - 1)]
     }

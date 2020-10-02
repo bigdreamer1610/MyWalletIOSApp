@@ -21,8 +21,10 @@ class PieChartTableViewCell: BaseTBCell {
             collectionView.reloadData()
         }
     }
+    var category = ""
     var sumIncome = 0
     var sumExpense = 0
+    
     
     weak var delegate: CustomCollectionCellDelegate?
     override func awakeFromNib() {
@@ -67,6 +69,7 @@ extension PieChartTableViewCell: UICollectionViewDataSource, UICollectionViewDel
         let cell = PieChartCollectionViewCell.loadCell(collectionView, path: indexPath) as! PieChartCollectionViewCell
         self.delegate?.collectionView(collectioncell: cell, didTappedInTableview: self)
         if indexPath.row == 0 {
+            cell.state = 0
              print("This is pie chart")
         } else {
 
