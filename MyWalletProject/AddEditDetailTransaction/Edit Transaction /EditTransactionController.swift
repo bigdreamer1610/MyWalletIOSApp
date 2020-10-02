@@ -20,8 +20,10 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
     var amount: Int = 0
     var icon: String = ""
     var dateModel: DateModel!
+    var thisDate = Date()
+    private let dateFormatter = DateFormatter()
+    
     @IBOutlet var btnSave: UIBarButtonItem!
-    //@IBOutlet weak var txtNote: UITextView!
     
     @IBOutlet var btnCancel: UIBarButtonItem!
     @IBOutlet var iconImage: UIImageView!
@@ -31,13 +33,30 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
     @IBOutlet var tfEvent: UITextField!
     @IBOutlet var txtCategory: UITextField!
     @IBOutlet var txtAmount: UITextField!
-    let datePicker = UIDatePicker()
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        ShowDatePicker()
         customizeLayout()
         txtAmount.delegate = self
+        addEvent()
+    }
+    
+    // add event txtDate,txtCategory
+    func addEvent()  {
+        txtCategory.addTarget(self, action: #selector(myCategory), for: .touchDown)
+        txtDate.addTarget(self, action: #selector(myDate), for: .touchDown)
+    }
+    
+    @objc func myCategory(textField: UITextField) {
+        let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "selectCategory") as? SelectCategoryController
+        vc?.delegate = self
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    
+    @objc func myDate(textField: UITextField) {
+        let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "customDate") as? CustomDateController
+        vc?.delegate = self
+        self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     func customizeLayout(){
@@ -45,7 +64,6 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
         tfEvent.setRightImage(imageName: "arrowright")
         txtDate.setRightImage(imageName: "arrowright")
     }
-    
     
     func configure(){
         txtCategory.text = categoryName
@@ -66,15 +84,20 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
         
     }
     
-    
     @IBAction func clickCancel(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func clickSave(_ sender: Any) {
-        if let strAmount = txtAmount.text,
-            let intAmount = Int(strAmount){
-            amount = intAmount
-        }
+         if let strAmount = txtAmount.text,
+                  let intAmount = Int(strAmount){
+                  amount = intAmount
+                  if amount <= 0{
+                      let alert = UIAlertController(title: "Notification", message: "Amount of money cannot be 0", preferredStyle: .alert)
+                      alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                      self.present(alert, animated: true, completion: nil)
+                      return
+                  }
+              }
         let update = [
             "note":txtNote.text! ,
             "date":txtDate.text!,
@@ -88,41 +111,10 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
                 print(reference)
                 print("Remove successfully")
                 self.navigationController?.popToRootViewController(animated: true)
-            
             }
         }
-        
     }
     
-    func ShowDatePicker(){
-        //formate date
-        datePicker.datePickerMode = .date
-        
-        //toolbar
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        let btnDone = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(donedatePicker))
-        
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker));
-        
-        toolbar.setItems([btnDone,spaceButton,cancelButton], animated: false)
-        
-        txtDate.inputAccessoryView = toolbar
-        txtDate.inputView = datePicker
-    }
-    
-    @objc func donedatePicker(){
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM/yyyy"
-        txtDate.text = formatter.string(from: datePicker.date)
-        self.view.endEditing(true)
-    }
-    
-    @objc func cancelDatePicker(){
-        self.view.endEditing(true)
-    }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let allowCharacters = "0123456789"
@@ -139,5 +131,17 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
         }
         return true
     }
+}
+
+extension EditTransactionController: SelectCategory, SelectDate{
+    func setDate(date: String) {
+        txtDate.text = date
+    }
+    
+    func setCategory(nameCategory: String, iconCategory: String, type: String, id: String) {
+        txtCategory.text = nameCategory
+        iconImage.image = UIImage(named: iconCategory)
+    }
+    
     
 }

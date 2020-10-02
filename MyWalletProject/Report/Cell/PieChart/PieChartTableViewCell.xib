@@ -12,16 +12,16 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="217" id="KGk-i7-Jjw" customClass="PieChartTableViewCell" customModule="MyWalletProject" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="243" height="217"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="243" height="217"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="oOQ-bR-2Hv">
-                        <rect key="frame" x="0.0" y="0.0" width="200" height="180"/>
+                        <rect key="frame" x="0.0" y="0.0" width="230" height="200"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="180" id="bph-dE-mw2"/>
-                            <constraint firstAttribute="width" constant="200" id="f93-8V-cNT"/>
+                            <constraint firstAttribute="height" constant="200" id="bph-dE-mw2"/>
+                            <constraint firstAttribute="width" constant="230" id="f93-8V-cNT"/>
                         </constraints>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lYX-CR-fRE">
                             <size key="itemSize" width="180" height="180"/>
@@ -31,7 +31,8 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2jv-c8-dYb">
-                        <rect key="frame" x="0.0" y="190" width="200" height="0.5"/>
+                        <rect key="frame" x="0.0" y="210" width="230" height="0.5"/>
+                        <color key="backgroundColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="0.5" id="lVv-oo-WP0"/>
                         </constraints>
@@ -41,7 +42,7 @@
                     <constraint firstAttribute="trailing" secondItem="2jv-c8-dYb" secondAttribute="trailing" id="0Jd-Yv-JKT"/>
                     <constraint firstItem="2jv-c8-dYb" firstAttribute="trailing" secondItem="oOQ-bR-2Hv" secondAttribute="trailing" id="DBG-4K-8DZ"/>
                     <constraint firstItem="2jv-c8-dYb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Q71-ZU-CRf"/>
-                    <constraint firstAttribute="bottom" secondItem="2jv-c8-dYb" secondAttribute="bottom" constant="26.5" id="UIV-2Y-jaV"/>
+                    <constraint firstAttribute="bottom" secondItem="2jv-c8-dYb" secondAttribute="bottom" id="UIV-2Y-jaV"/>
                     <constraint firstAttribute="trailing" secondItem="oOQ-bR-2Hv" secondAttribute="trailing" id="WmF-nO-N6c"/>
                     <constraint firstItem="oOQ-bR-2Hv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="i84-cG-ONy"/>
                     <constraint firstItem="2jv-c8-dYb" firstAttribute="top" secondItem="oOQ-bR-2Hv" secondAttribute="bottom" constant="10" id="n3O-qI-FzM"/>
