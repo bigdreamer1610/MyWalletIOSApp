@@ -68,5 +68,229 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EE5D9BBA-6D80-4E89-BECC-23FF65FBEF6C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyWalletProject/Budget/BudgetListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "283"
+            endingLineNumber = "283"
+            landmarkName = "btnAddClick(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4C91CDEF-92FD-418D-BDF2-ADE6E5FCC1BC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyWalletProject/Budget/BudgetListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "302"
+            endingLineNumber = "302"
+            landmarkName = "reloadDataListBudgetintoBudgetController()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "19FE538B-8C12-412F-8822-A7D739D1B45B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyWalletProject/Budget/Controller/BudgetDetailController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "reloadDataDetailBudgetintoBudgetController(budget:spend:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F55D68A8-FB73-4BEC-80DF-8BCFA939F32A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyWalletProject/Budget/Controller/BudgetController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "398"
+            endingLineNumber = "398"
+            landmarkName = "editBudget()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F55D68A8-FB73-4BEC-80DF-8BCFA939F32A - a449bca4c16b1fc4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyWalletProject.BudgetController.editBudget() -&gt; ()"
+                  moduleName = "MyWalletProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hoanglam/Desktop/MyWalletProject/MyWalletProject/Budget/Controller/BudgetController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "398"
+                  endingLineNumber = "398"
+                  offsetFromSymbolStart = "133">
+               </Location>
+               <Location
+                  uuid = "F55D68A8-FB73-4BEC-80DF-8BCFA939F32A - c94b3cd3af601904"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.UIAlertAction) -&gt; () in MyWalletProject.BudgetController.editBudget() -&gt; ()"
+                  moduleName = "MyWalletProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hoanglam/Desktop/MyWalletProject/MyWalletProject/Budget/Controller/BudgetController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "400"
+                  endingLineNumber = "400"
+                  offsetFromSymbolStart = "90">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9FD7AF04-A13B-4F76-8C76-B2082F712A6A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyWalletProject/Budget/Controller/BudgetController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "398"
+            endingLineNumber = "398"
+            landmarkName = "editBudget()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9FD7AF04-A13B-4F76-8C76-B2082F712A6A - a449bca4c16b1fc4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyWalletProject.BudgetController.editBudget() -&gt; ()"
+                  moduleName = "MyWalletProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hoanglam/Desktop/MyWalletProject/MyWalletProject/Budget/Controller/BudgetController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "398"
+                  endingLineNumber = "398"
+                  offsetFromSymbolStart = "133">
+               </Location>
+               <Location
+                  uuid = "9FD7AF04-A13B-4F76-8C76-B2082F712A6A - c94b3cd3af601904"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.UIAlertAction) -&gt; () in MyWalletProject.BudgetController.editBudget() -&gt; ()"
+                  moduleName = "MyWalletProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hoanglam/Desktop/MyWalletProject/MyWalletProject/Budget/Controller/BudgetController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "400"
+                  endingLineNumber = "400"
+                  offsetFromSymbolStart = "90">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "30043E86-5C2F-4496-9AB2-D42E0D929861"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyWalletProject/Budget/Controller/BudgetController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "398"
+            endingLineNumber = "398"
+            landmarkName = "editBudget()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "30043E86-5C2F-4496-9AB2-D42E0D929861 - a449bca4c16b1fc4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyWalletProject.BudgetController.editBudget() -&gt; ()"
+                  moduleName = "MyWalletProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hoanglam/Desktop/MyWalletProject/MyWalletProject/Budget/Controller/BudgetController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "398"
+                  endingLineNumber = "398"
+                  offsetFromSymbolStart = "133">
+               </Location>
+               <Location
+                  uuid = "30043E86-5C2F-4496-9AB2-D42E0D929861 - c94b3cd3af601904"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.UIAlertAction) -&gt; () in MyWalletProject.BudgetController.editBudget() -&gt; ()"
+                  moduleName = "MyWalletProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/hoanglam/Desktop/MyWalletProject/MyWalletProject/Budget/Controller/BudgetController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "400"
+                  endingLineNumber = "400"
+                  offsetFromSymbolStart = "90">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B1EC92B7-83E2-44AD-B19B-55B5CFF5DC54"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyWalletProject/Budget/BudgetListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "getAmountListTransaction(cateName:startDate:endDate:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "48B62408-28DE-4ACA-8A87-4CB905B35FB3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyWalletProject/Budget/BudgetListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "getAmountListTransaction(cateName:startDate:endDate:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -22,24 +22,20 @@ class ReportViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var txtDatePicker: UITextField!
     var ref: DatabaseReference!
-    
     private var dateFormatter = DateFormatter()
-    var today = Date()
     var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
     let calendar = Calendar.current
     var currentMonth = 9
     var currentYear = 2020
-    var income = 0
-    var expense = 0
+    var sumIncome = 0
+    var sumExpense = 0
     var state = 0
-    
-    lazy var refreshControl: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(ReportViewController.handleRefresh(_:)), for: UIControl.Event.valueChanged)
-        refreshControl.tintColor = .lightGray
-        refreshControl.attributedTitle = NSAttributedString(string: "loading")
-        return refreshControl
-    }()
+    var date = "" 
+    var category = ""
+    var expenseArray: [Transaction] = []
+    var incomeArray: [Transaction] = []
+    var timer = Timer()
+    var sumByCategory = [(category: String, amount: Int)]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,11 +44,20 @@ class ReportViewController: UIViewController {
         setupTxtDate()
         showDatePicker()
         createDatePicker()
-        self.tableView.addSubview(self.refreshControl)
+//        self.tableView.addSubview(self.refreshControl)
+      
+        DispatchQueue.main.async {
+            self.getIncome()
+            self.getExpense()
+        }
+        
+        checkWhenDataIsReady()
+        tableView.reloadData()
     }
+
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
         super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -60,23 +65,107 @@ class ReportViewController: UIViewController {
         super.viewWillDisappear(animated)
     }
     
-    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-        tableView.reloadData()
-        refreshControl.endRefreshing()
-        print("scroll to top")
+    //MARK: - Check data is ready
+    func checkWhenDataIsReady() {
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(ReportViewController.finishLoading)), userInfo: nil, repeats: true)
     }
     
+    @objc func finishLoading() {
+        if expenseArray.count != 0 && incomeArray.count != 0 {
+            tableView.reloadData()
+            timer.invalidate()
+        }
+    }
+    
+    //MARK: - Get all transaction
+    func getExpense()  {
+        expenseArray.removeAll()
+        sumExpense = 0
+        self.ref.child("Account").child("userid1").child("transaction").child("expense").observeSingleEvent(of: .value) {
+            snapshot in
+            for case let child as DataSnapshot in snapshot.children {
+                guard let dict = child.value as? [String:Any] else {
+                    return
+                }
+                let amount = dict["amount"] as! Int
+                let date = dict["date"] as! String
+                let categoryid = dict["categoryid"] as! String
+                let tempDate = date.split(separator: "/")
+                let checkDate = tempDate[1] + "/" + tempDate[2]
+                
+                if self.date == checkDate {
+                    let ex = Transaction(amount: amount, categoryid: categoryid, date: date)
+                    self.sumExpense += amount
+                    self.category = categoryid
+                    self.expenseArray.append(ex)
+                }
+            }
+        }
+    }
+    
+    func getIncome() {
+        incomeArray.removeAll()
+        sumIncome = 0
+        self.ref.child("Account").child("userid1").child("transaction").child("income").observeSingleEvent(of: .value) {
+            snapshot in
+            for case let child as DataSnapshot in snapshot.children {
+                guard let dict = child.value as? [String:Any] else {
+                    return
+                }
+                let amount = dict["amount"] as! Int
+                let date = dict["date"] as! String
+                let categoryid = dict["categoryid"] as! String
+                
+                let tempDate = date.split(separator: "/")
+                let checkDate = tempDate[1] + "/" + tempDate[2]
+                
+                if self.date == checkDate {
+                   let ex = Transaction(amount: amount, categoryid: categoryid, date: date)
+                    self.sumIncome += amount
+                    self.category = categoryid
+                    self.incomeArray.append(ex)
+                }
+            }
+        }
+    }
+    
+    // Sum by Category
+    func dataForPieChart(dataArray: [Transaction]) {
+        sumByCategory.removeAll()
+        for index in 0 ..< dataArray.count {
+            let sumIndex = checkExist(category: dataArray[index].categoryid!)
+            if sumIndex != -1 {
+                sumByCategory[sumIndex].amount += dataArray[index].amount!
+            } else {
+                sumByCategory.append((category: dataArray[index].categoryid!, amount: dataArray[index].amount!))
+            }
+        }
+    }
+    
+    // Check if a Category exists
+    func checkExist(category: String) -> Int {
+        for index in 0 ..< sumByCategory.count {
+            if category == sumByCategory[index].category {
+                return index
+            }
+        }
+        return -1
+    }
+    
+    //MARK: - Setup Date
     func setupTxtDate() {
         txtDatePicker.tintColor = .clear
-        currentYear = calendar.component(.year, from: today)
-        currentMonth = calendar.component(.month, from: today)
+        currentYear = calendar.component(.year, from: Date())
+        currentMonth = calendar.component(.month, from: Date())
         dateFormatter.locale = Locale(identifier: "vi_VN")
         dateFormatter.dateFormat = "dd/MM/yyyy"
         lblDate.text = "\(months[currentMonth - 1]) \(currentYear)"
         if currentMonth < 10 {
             txtDatePicker.text = "0\(currentMonth)/\(currentYear)"
+            self.date = "0\(currentMonth)/\(currentYear)"
         } else {
             txtDatePicker.text = "\(currentMonth)/\(currentYear)"
+            self.date = "\(currentMonth)/\(currentYear)"
         }
         txtDatePicker.setRightImage(imageName: "down")
     }
@@ -114,6 +203,7 @@ class ReportViewController: UIViewController {
         tableView.reloadData()
     }
     
+    //MARK: - Setup TableView
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
@@ -144,12 +234,15 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
         } else if indexPath.section == 1  {
             let cell = StackedBarChartTableViewCell.loadCell(tableView)  as! StackedBarChartTableViewCell
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
-            cell.date = txtDatePicker.text ?? "Error"
+            cell.sumExpense = sumExpense
+            cell.sumIncome = sumIncome
+            print("\(sumIncome) 01235648 \(sumExpense)")
             cell.reportView = self
             return cell
         } else {
             let cell = PieChartTableViewCell.loadCell(tableView)  as! PieChartTableViewCell
             cell.delegate = self
+
             cell.date = txtDatePicker.text ?? "Error"
             return cell
         }
@@ -158,25 +251,28 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailSBC") as! DetailStackedBarChartVC
-            vc.expense = self.expense
-            vc.income = self.income
+            vc.sumExpense = self.sumExpense
+            vc.sumIncome = self.sumIncome
             navigationController?.pushViewController(vc, animated: true)
         }
     }
 }
+
+
+//MARK: - Go to DetailPieChartVC
 extension ReportViewController: CustomCollectionCellDelegate {
     func collectionView(collectioncell: PieChartCollectionViewCell?, didTappedInTableview TableCell: PieChartTableViewCell) {
         let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailPC") as! DetailPieChartVC
-        vc.sumIncome = self.income
-        vc.sumExpense = self.expense
+        vc.sumIncome = self.sumIncome
+        vc.sumExpense = self.sumExpense
         navigationController?.pushViewController(vc, animated: true)
     }
 }
 
 extension ReportViewController: ReceiveData {
     func receiveData(income: Int, expense: Int) {
-        self.income = income
-        self.expense = expense
+        self.sumIncome = income
+        self.sumExpense = expense
     }
 }
 

@@ -46,6 +46,7 @@ class UserSettingsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let backItem = UIBarButtonItem()
         backItem.title = "Back"
+        backItem.tintColor = UIColor(displayP3Red: 52, green: 199, blue: 90, alpha: 1.0)
         navigationItem.backBarButtonItem = backItem
     }
 }
@@ -64,7 +65,7 @@ extension UserSettingsViewController: UITableViewDelegate, UITableViewDataSource
         switch indexPath.row {
         case 0:
             imageName = "s-settings"
-            labelName = "Settings"
+            labelName = "Information"
         case 1:
             imageName = "s-categories"
             labelName = "Add Category"
@@ -101,6 +102,9 @@ extension UserSettingsViewController: UITableViewDelegate, UITableViewDataSource
             let currencyController = UIStoryboard.init(name: "UserSettings", bundle: nil).instantiateViewController(identifier: "currencyVC") as! CurrencyViewController
             currencyController.presenter.fetchData()
             navigationController?.pushViewController(currencyController, animated: true)
+        case 3:
+            let travelModeController = UIStoryboard.init(name: "UserSettings", bundle: nil).instantiateViewController(identifier: "travelModeVC") as! TravelModeViewController
+            navigationController?.pushViewController(travelModeController, animated: true)
         case 4:
             let scanBillController = UIStoryboard.init(name: "ScanBill", bundle: nil).instantiateViewController(identifier: "scanBillVC") as! ScanBillViewController
             navigationController?.pushViewController(scanBillController, animated: true)
