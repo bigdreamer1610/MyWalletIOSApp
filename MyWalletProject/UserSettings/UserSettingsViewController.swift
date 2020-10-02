@@ -46,7 +46,7 @@ class UserSettingsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let backItem = UIBarButtonItem()
         backItem.title = "Back"
-        backItem.tintColor = UIColor(displayP3Red: 52, green: 199, blue: 90, alpha: 1.0)
+        backItem.tintColor = UIColor.init(displayP3Red: 52, green: 199, blue: 90, alpha: 1.0)
         navigationItem.backBarButtonItem = backItem
     }
 }

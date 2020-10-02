@@ -937,6 +937,7 @@
             <point key="canvasLocation" x="840.57971014492762" y="-692.11956521739137"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
     <resources>
         <image name="banker" width="170.66667175292969" height="170.66667175292969"/>
         <image name="rightarrow" width="170.66667175292969" height="170.66667175292969"/>
