@@ -626,7 +626,6 @@
 			isa = PBXGroup;
 			children = (
 				73E0B15B2521E0ED0097D41F /* TransactionModel.swift */,
-				73E0B15D2521E0ED0097D41F /* Defined.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -662,7 +661,6 @@
 			isa = PBXGroup;
 			children = (
 				7338863B25232A77002F126B /* Models */,
-				73E0B1A7252206180097D41F /* Router */,
 				73E0B15C2521E0ED0097D41F /* ViewTransaction.storyboard */,
 				73E0B15E2521E0ED0097D41F /* Controllers */,
 				73E0B1622521E0ED0097D41F /* Views */,
@@ -755,14 +753,6 @@
 				73E0B15F2521E0ED0097D41F /* BalanceViewController.swift */,
 			);
 			path = Balance;
-			sourceTree = "<group>";
-		};
-		73E0B1A7252206180097D41F /* Router */ = {
-			isa = PBXGroup;
-			children = (
-				73E0B1A8252206200097D41F /* AppRouter.swift */,
-			);
-			path = Router;
 			sourceTree = "<group>";
 		};
 		73E78DA2252441CC00D7B962 /* SelectEvent2 */ = {
@@ -861,6 +851,8 @@
 		8AB19A0C2524400D0074C8F0 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				73E0B1A8252206200097D41F /* AppRouter.swift */,
+				73E0B15D2521E0ED0097D41F /* Defined.swift */,
 				7338860325231F67002F126B /* Constant.swift */,
 			);
 			path = Helpers;
