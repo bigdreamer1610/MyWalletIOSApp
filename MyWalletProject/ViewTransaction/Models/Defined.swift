@@ -10,6 +10,17 @@ import Foundation
 import Firebase
 import FirebaseDatabase
 
+enum Mode: String {
+    case transaction = "transaction"
+    case category = "income"
+    
+    func getValue() -> String{
+        return self.rawValue
+    }
+}
+
+
+
 class Defined {
     static let defaults = UserDefaults.standard
     static let ref = Database.database().reference()

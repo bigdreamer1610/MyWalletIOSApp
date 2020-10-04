@@ -44,11 +44,11 @@ class MainTabViewController: UITabBarController {
     
     class func createTabbar() -> MainTabViewController {
         let tabbar = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "MainTabViewController") as! MainTabViewController
-        let transaction = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as! ViewTransactionController
-        let report = UIStoryboard(name: "Report", bundle: nil).instantiateViewController(withIdentifier: "ReportViewController") as! ReportViewController
+        let transaction = RouterType.viewTransaction.getVc()
+        let report = RouterType.report.getVc()
         let scan = UIViewController()
-        let planning = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "navi_second") as! SecondNavigationController
-        let account = UIStoryboard(name: "UserSettings", bundle: nil).instantiateViewController(withIdentifier: "userSettingsNav") as! UINavigationController
+        let planning = RouterType.planningNavi.getVc()
+        let account = RouterType.account.getVc()
         
         let homeItem = UITabBarItem(title: "Transactions", image: #imageLiteral(resourceName: "transaction"), tag: 0)
         let home1Item = UITabBarItem(title: "Report", image: #imageLiteral(resourceName: "report"), tag: 1)
