@@ -54,16 +54,6 @@ class ReportViewController: UIViewController {
         checkWhenDataIsReady()
         tableView.reloadData()
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
-        super.viewWillDisappear(animated)
-    }
     
     //MARK: - Check data is ready
     func checkWhenDataIsReady() {

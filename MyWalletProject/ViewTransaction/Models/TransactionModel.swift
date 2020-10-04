@@ -66,3 +66,10 @@ struct TransactionDate {
     var dateString: String
     var date: Date
 }
+
+//Detail cell
+
+struct DetailInfo {
+    var opening: Int
+    var ending: Int
+}
