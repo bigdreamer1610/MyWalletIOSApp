@@ -30,7 +30,7 @@ class CategoryEvent: UIViewController, UICollectionViewDataSource, UICollectionV
         clCategoryEvent.register(UINib(nibName: "CategoryEventCell", bundle: nil), forCellWithReuseIdentifier: "CategoryEventCell")
         clCategoryEvent.delegate = self
         clCategoryEvent.dataSource = self
-       
+        
        
     }
     
@@ -45,8 +45,8 @@ class CategoryEvent: UIViewController, UICollectionViewDataSource, UICollectionV
        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryEventCell", for: indexPath) as! CategoryEventCell
         let img = arrImg[indexPath.row].lowercased()
-        cell.layer.cornerRadius = cell.frame.height / 2
-        cell.layer.cornerRadius = cell.frame.width / 2
+//        cell.layer.cornerRadius = cell.frame.height / 2
+//        cell.layer.cornerRadius = cell.frame.width / 2
         cell.load(iconImg: img)
         
         return cell

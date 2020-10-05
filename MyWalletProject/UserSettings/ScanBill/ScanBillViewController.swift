@@ -37,15 +37,13 @@ class ScanBillViewController: UIViewController {
 
         imagePicker.delegate = self
         
-        configureButton(btnCamera)
-        configureButton(btnGallery)
-        configureButton(btnScan)
-        configureButton(btnAddTransaction)
-        configureButton(btnCancel)
+        configureButton([btnCamera, btnGallery, btnScan, btnAddTransaction, btnCancel])
         
         borderImageView(imageInput)
         
         removeTextViewLeftPadding(txtNote)
+        
+        self.title = "Bill Scanner"
     }
     
     // MARK: - Hide tab bar
@@ -59,8 +57,10 @@ class ScanBillViewController: UIViewController {
     }
     
     // MARK: - Make rounded buttons
-    func configureButton(_ button: UIButton) {
-        button.layer.cornerRadius = 10
+    func configureButton(_ buttons: [UIButton]) {
+        buttons.forEach { button in
+            button.layer.cornerRadius = 10
+        }
     }
     
     // MARK: - Remove left padding of text view
@@ -112,12 +112,12 @@ class ScanBillViewController: UIViewController {
     }
     
     @IBAction func btnCancelClicked(_ sender: Any) {
-        // TODO: Implementation of cancelling
+        navigationController?.popViewController(animated: true)
     }
 }
 
 extension ScanBillViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    // MARK: - Get image from photo library and place it in image view
+    // Get image from photo library and place it in image view
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             imageInput.contentMode = .scaleAspectFit
@@ -133,7 +133,7 @@ extension ScanBillViewController: UIImagePickerControllerDelegate, UINavigationC
 }
 
 extension ScanBillViewController: ScanBillViewControllerProtocol {
-    // MARK: - Show alert to inform user depend on state (fail or success)
+    // Show alert to inform user depend on state (fail or success)
     func showAlert(_ state: Bool) {
         if !state {
             let alert = UIAlertController(title: "INVALID TRANSACTION", message: "You might haven't scanned your bill yet, please try again!", preferredStyle: UIAlertController.Style.alert)
@@ -146,7 +146,7 @@ extension ScanBillViewController: ScanBillViewControllerProtocol {
         }
     }
     
-    // MARK: - Set up views with processed data from presenter
+    // Set up views with processed data from presenter
     func setupForViews(_ transaction: Transaction) {
         self.lblDate.text = transaction.date ?? "Undefined"
         self.lblTotal.text = "\(transaction.amount ?? 0) VND"

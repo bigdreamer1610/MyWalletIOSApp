@@ -28,9 +28,7 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var btnSave: UIButton!
     @IBOutlet weak var btnCancel: UIButton!
-    
-    
-    
+
     var user = Account()
     
     var presenter: SettingsPresenter = SettingsPresenter()
@@ -38,8 +36,7 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configureButton(btnSave)
-        configureButton(btnCancel)
+        configureButton([btnSave, btnCancel])
         
         self.title = "Information"
     }
@@ -55,8 +52,10 @@ class SettingsViewController: UIViewController {
     }
     
     // MARK: - Make rounded buttons
-    func configureButton(_ button: UIButton) {
-        button.layer.cornerRadius = 10
+    func configureButton(_ buttons: [UIButton]) {
+        buttons.forEach { button in
+            button.layer.cornerRadius = 10
+        }
     }
     
     @IBAction func btnSaveClicked(_ sender: Any) {

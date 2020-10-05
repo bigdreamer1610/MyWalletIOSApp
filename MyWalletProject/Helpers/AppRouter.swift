@@ -19,6 +19,10 @@ enum RouterType {
     case event
     case tabbar
     case test
+    case viewTransaction
+    case report
+    case account
+    case planningNavi
     
     //case viewTransaction
 }
@@ -86,13 +90,20 @@ extension RouterType{
             let presenter = TransactionPresenter(delegate: vc, usecase: TransactionUseCase())
             vc.setUp(presenter: presenter)
             return vc
-            
-            //        default:
-            //            let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as! ViewTransactionViewController
-            //            let presenter = ViewTransactionPresenter(delegate: vc, viewTransUseCase: ViewTransactionUseCase())
-            //            vc.setUp(presenter: presenter)
-            //            return vc
-            
+        case .viewTransaction:
+            let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "transaction_vc") as! ViewTransactionViewController
+            let presenter = ViewTransactionPresenter(delegate: vc, usecase: ViewTransactionUseCase())
+            vc.setUp(presenter: presenter)
+            return vc
+        case .account:
+             let vc = UIStoryboard(name: "UserSettings", bundle: nil).instantiateViewController(withIdentifier: "userSettingsNav") as! UINavigationController
+            return vc
+        case .report:
+             let vc = UIStoryboard(name: "Report", bundle: nil).instantiateViewController(withIdentifier: "ReportViewController") as! ReportViewController
+            return vc
+        case .planningNavi:
+            let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "navi_second") as! SecondNavigationController
+            return vc
         }
     }
 }

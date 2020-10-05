@@ -22,6 +22,11 @@ protocol EditBudgetControll {
     func editBudget()
 }
 
+protocol BudgetControllerDelegate {
+    func reloadDataListBudgetintoBudgetController()
+    func reloadDataDetailBudgetintoBudgetController(budget:Budget , spend:Int)
+}
+
 class BudgetController: UIViewController {
 
     @IBOutlet weak var tblAddBudget: UITableView!
@@ -30,16 +35,20 @@ class BudgetController: UIViewController {
     
     var newChild = 0
     
-    var listBudgetName:[String] = []
+    var listBudgetName:[Budget] = []
+    var listTransaction:[Transaction] = []
     
     var ref = Database.database().reference()
     
     var type = ""
     
+    var delegateBudgetController:BudgetControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         getDataNameBudget()
+        getDataTransaction()
         
         if type == "Add Budget" {
             
@@ -87,14 +96,14 @@ class BudgetController: UIViewController {
                     
                     var checkExist = true
                     
-                    for budgetName in listBudgetName {
-                        if (budgetObject.categoryName == budgetName){
+                    for budget in listBudgetName {
+                        if (budgetObject.startDate == budget.startDate && budgetObject.endDate == budget.endDate){
                             checkExist = false
                         }
                     }
                     
                     if (checkExist == false){
-                        let alertController = UIAlertController(title: nil, message: "Category name is exist", preferredStyle: .alert)
+                        let alertController = UIAlertController(title: nil, message: "Start date and End date is coexist", preferredStyle: .alert)
                         let cancelAction = UIAlertAction(title: "OK", style: .default) { (_) in
                             print("cancel")
                         }
@@ -109,12 +118,12 @@ class BudgetController: UIViewController {
             }
             
             else if type == "Edit Budget" {
-                listBudgetName = listBudgetName.filter({ $0 != UserDefaults.standard.string(forKey: "name")! })
+//                listBudgetName = listBudgetName.filter({ $0 != UserDefaults.standard.string(forKey: "name")! })
                 
                 var checkExist = true
                 
-                for budgetName in listBudgetName {
-                    if (budgetObject.categoryName == budgetName){
+                for budget in listBudgetName {
+                    if (budgetObject.startDate == budget.startDate && budgetObject.endDate == budget.endDate){
                         checkExist = false
                     }
                 }
@@ -149,8 +158,6 @@ extension BudgetController: UITableViewDataSource , UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-//        var cell: UITableViewCell?
     
         switch indexPath.row {
         case 0:
@@ -247,16 +254,20 @@ extension BudgetController: CheckBudgetControll {
                        return
                    }
       
-                   let cateName = dict["categoryName"] as! String
-                   
-                   self.listBudgetName.append(cateName)
-                   
+                let cateName = dict["categoryName"] as? String
+                let startDate = dict["startDate"] as? String
+                let endDate = dict["endDate"] as? String
+                
+                let budget = Budget(categoryName: cateName, startDate: startDate, endDate: endDate)
+ 
+                self.listBudgetName.append(budget)
                }
            
            }
        }
 }
 
+//MARK: - add budget about func getNewChildTitle , addBudget()
 extension BudgetController: AddBudgetControll {
     //MARK: get new Child database (increament)
     func getNewChildTitle(){
@@ -307,8 +318,9 @@ extension BudgetController: AddBudgetControll {
                 }
             } )
             
-            let vc = UIStoryboard.init(name: "budget", bundle: nil).instantiateViewController(withIdentifier: "BudgetListViewController") as! BudgetListViewController
-            self.navigationController?.pushViewController(vc, animated: true)
+            self.delegateBudgetController?.reloadDataListBudgetintoBudgetController()
+            self.navigationController?.popViewController(animated:true)
+
          }
         
          let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
@@ -321,7 +333,65 @@ extension BudgetController: AddBudgetControll {
     }
 }
 
+//MARK: - edit budget about func getAmountListTransaction , getDataTransaction() , editBudget()
 extension BudgetController: EditBudgetControll{
+    
+    //MARK: lấy tổng số tiền đã tiêu theo tên Category
+    func getAmountListTransaction(cateName:String) -> Int {
+        var amount = 0
+        
+        for transaction in listTransaction {
+            if (cateName == transaction.categoryid) {
+                amount += transaction.amount ?? 0
+            }
+        }
+        
+        return amount
+    }
+    
+    func getDataTransaction() {
+        
+        let dispatchGroup = DispatchGroup() // tạo luồng load cùng 1 nhóm
+        
+        // Load api Transaction expense
+        dispatchGroup.enter()
+          ref.child("Account").child("userid1").child("transaction").child("expense").observeSingleEvent(of: .value) { (data) in
+              for case let child as DataSnapshot in data.children{
+                  guard let dict = child.value as? [String:Any] else {
+                      print("Error")
+                      return
+                  }
+                  
+                  let cateName = dict["categoryid"] as? String
+                  let amount = dict["amount"] as? Int
+                  
+                  let transaction = Transaction(amount: amount, categoryid: cateName)
+                  
+                  self.listTransaction.append(transaction)
+              }
+              dispatchGroup.leave()
+          }
+          
+        // load api transaction income
+          dispatchGroup.enter()
+          ref.child("Account").child("userid1").child("transaction").child("income").observeSingleEvent(of: .value) { (data) in
+              for case let child as DataSnapshot in data.children{
+                  guard let dict = child.value as? [String:Any] else {
+                      print("Error")
+                      return
+                  }
+                  
+                  let cateName = dict["categoryid"] as? String
+                  let amount = dict["amount"] as? Int
+                  
+                  let transaction = Transaction(amount: amount, categoryid: cateName)
+                  
+                  self.listTransaction.append(transaction)
+              }
+              dispatchGroup.leave()
+          }
+    }
+    
     func editBudget() {
         let alertController = UIAlertController(title: "Edit Budget ?", message: nil, preferredStyle: .alert)
         
@@ -344,8 +414,12 @@ extension BudgetController: EditBudgetControll{
                 }else{
                 }
             } )
-            let vc = UIStoryboard.init(name: "budget", bundle: nil).instantiateViewController(withIdentifier: "BudgetListViewController") as! BudgetListViewController
-            self.navigationController?.pushViewController(vc, animated: true)
+            
+            let spend = self.getAmountListTransaction(cateName: self.budgetObject.categoryName!)
+            
+            self.delegateBudgetController?.reloadDataDetailBudgetintoBudgetController(budget: self.budgetObject , spend: spend)
+            self.navigationController?.popViewController(animated:true)
+
          }
         
          let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in

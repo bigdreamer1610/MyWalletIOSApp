@@ -1,0 +1,6 @@
+framework module FloatingButtonPOP_swift {
+  umbrella header "FloatingButtonPOP-swift-umbrella.h"
+
+  export *
+  module * { export * }
+}

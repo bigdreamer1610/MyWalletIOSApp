@@ -58,7 +58,7 @@ class ScanBillPresenter {
                 return
             }
             
-            // MARK: - Extract: 2nd line / Address, 4th line / Date, After "Item(s)" is information about money user spent
+            // Extract: 2nd line / Address, 4th line / Date, After "Item(s)" is information about money user spent
             self.textIndex = 0
             self.isMoney = false
             for observation in observations {

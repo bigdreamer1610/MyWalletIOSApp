@@ -12,6 +12,7 @@ import Firebase
 class CurrencyUseCase {
     var rateData: CurrencyData?
     var presenterDelegate: CurrencyPresenterProtocol?
+    
     // MARK: - Get data from API with desired currencies, base is USA
     func fetchData() {
         let url = URL(string: "https://api.currencyfreaks.com/latest?apikey=ae28c3231f23426b80da6acb5bc27c63&symbols=VND,EUR,JPY,KRW,CNY,SGD,AUD,CAD")!

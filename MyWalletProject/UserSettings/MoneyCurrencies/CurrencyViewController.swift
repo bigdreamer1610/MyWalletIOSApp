@@ -33,7 +33,7 @@ class CurrencyViewController: UIViewController {
         
         setupTextFieldDelegate()
         configureButton(btnChangeCurrency)
-        disabledEdittingTextField()
+        disabledEdittingTextField([txtUSD, txtEUR, txtJPY, txtKRW, txtCNY, txtSGD, txtAUD, txtCAD])
         
         self.title = "Currencies Exchange"
     }
@@ -52,23 +52,11 @@ class CurrencyViewController: UIViewController {
         txtVND.delegate = self
     }
     
-    func disabledEdittingTextField() {
-        txtUSD.isEnabled = false
-        txtUSD.isUserInteractionEnabled = false
-        txtEUR.isEnabled = false
-        txtEUR.isUserInteractionEnabled = false
-        txtJPY.isEnabled = false
-        txtJPY.isUserInteractionEnabled = false
-        txtKRW.isEnabled = false
-        txtKRW.isUserInteractionEnabled = false
-        txtCNY.isEnabled = false
-        txtCNY.isUserInteractionEnabled = false
-        txtSGD.isEnabled = false
-        txtSGD.isUserInteractionEnabled = false
-        txtAUD.isEnabled = false
-        txtAUD.isUserInteractionEnabled = false
-        txtCAD.isEnabled = false
-        txtCAD.isUserInteractionEnabled = false
+    func disabledEdittingTextField(_ textFields: [UITextField]) {
+        textFields.forEach { (textField) in
+            textField.isEnabled = false
+            textField.isUserInteractionEnabled = false
+        }
     }
     
     // MARK: - Make rounded buttons
