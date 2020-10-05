@@ -185,7 +185,7 @@ class ViewTransactionController: UIViewController {
     //MARK: - Get indexpath of the month in collectionview menu
     func getIndexPathOfThisMonthCell(from date: Date) -> Int{
         for i in 0..<monthTitles.count {
-            if monthTitles[i].dateComponents.month == today.dateComponents.month && monthTitles[i].dateComponents.year == today.dateComponents.year {
+            if monthTitles[i].dateComponents.month == date.dateComponents.month && monthTitles[i].dateComponents.year == date.dateComponents.year {
                 return i
             }
         }

@@ -36,12 +36,8 @@ class ViewTransactionViewController: UIViewController {
     var opening = 0
     var ending = 0
     var total = 0
-    var currentMonth = 8
-    var currentYear = 2020
     var current = Date()
     var today = Date()
-    var minDate: Date!
-    var maxDate: Date!
     var todayMonth = 9
     var todayYear = 2020
     var mode = UserDefaults.standard.string(forKey: "viewmode")
@@ -56,20 +52,19 @@ class ViewTransactionViewController: UIViewController {
     @IBOutlet var centerLabel: UILabel!
     @IBOutlet var centerIcon: UIImageView!
     @IBOutlet var noTransaction: UIStackView!
-    
     @IBOutlet var lbBalance: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initData()
         initComponents()
-        
-        //
         todayYear = Defined.calendar.component(.year, from: today)
         todayMonth = Defined.calendar.component(.month, from: today)
-        currentMonth = todayMonth
-        currentYear = todayYear
+        if Defined.defaults.integer(forKey: Constants.currentMonth) == 0 || Defined.defaults.integer(forKey: Constants.currentYear) == 0 {
+            setUpCurrentDate(month: todayMonth, year: todayYear)
+        }
         current = today
+        Defined.defaults.set(current, forKey: Constants.currentDate)
         centerIcon.isHidden = true
         centerLabel.isHidden = true
         Defined.dateFormatter.locale = Locale(identifier: "vi_VN")
@@ -83,17 +78,14 @@ class ViewTransactionViewController: UIViewController {
             mode = Mode.transaction.getValue()
         }
         transactionTableView.isHidden = false
-        minDate = Defined.calendar.date(byAdding: .year, value: -2, to: today)
-        maxDate = Defined.calendar.date(byAdding: .month, value: 1, to: today)
-        monthTitles = getMonthYearInRange(from: minDate, to: maxDate)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         DispatchQueue.main.async {
-            self.presenter?.getDataTransaction(month: self.currentMonth, year: self.currentYear)
+            self.current = Defined.dateFormatter.date(from: "02/\(Defined.defaults.integer(forKey: Constants.currentMonth))/\(Defined.defaults.integer(forKey: Constants.currentYear))")!
+            self.presenter?.getDataTransaction(month: self.current.dateComponents.month!, year: self.current.dateComponents.year!)
             self.jumpToDate(from: self.current)
-            print("current: \(self.current)")
         }
     }
     
@@ -101,9 +93,15 @@ class ViewTransactionViewController: UIViewController {
         self.presenter = presenter
     }
     
+    func setUpCurrentDate(month: Int, year: Int){
+        Defined.defaults.set(month, forKey: Constants.currentMonth)
+        Defined.defaults.set(year, forKey: Constants.currentYear)
+        Defined.defaults.set(Defined.dateFormatter.date(from: "02/\(month)/\(year)")!, forKey: Constants.currentDate)
+    }
+    
     func initData(){
         presenter?.fetchData()
-        presenter?.getDataTransaction(month: currentMonth, year: currentYear)
+        presenter?.getDataTransaction(month: Defined.defaults.integer(forKey: Constants.currentMonth), year: Defined.defaults.integer(forKey: Constants.currentYear))
     }
     
     func initComponents(){
@@ -138,16 +136,12 @@ class ViewTransactionViewController: UIViewController {
         bottomMenuView.backgroundColor = UIColor.black.withAlphaComponent(0.9)
         bottomMenuView.frame = self.view.frame
         window?.addSubview(bottomMenuView)
-
         let screenSize = UIScreen.main.bounds.size
         tableView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: Constants.menuCell * CGFloat(transactionBotMenu.count))
         window?.addSubview(tableView)
-
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickTransparentView))
         bottomMenuView.addGestureRecognizer(tapGesture)
-
         bottomMenuView.alpha = 0
-
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
             self.bottomMenuView.alpha = 0.5
             self.tableView.frame = CGRect(x: 0, y: screenSize.height - self.height, width: screenSize.width, height: self.height)
@@ -170,7 +164,7 @@ class ViewTransactionViewController: UIViewController {
     //MARK: - Get indexpath of the month in collectionview menu
     func getIndexPathOfThisMonthCell(from date: Date) -> Int{
         for i in 0..<monthTitles.count {
-            if monthTitles[i].dateComponents.month == today.dateComponents.month && monthTitles[i].dateComponents.year == today.dateComponents.year {
+            if monthTitles[i].dateComponents.month == date.dateComponents.month && monthTitles[i].dateComponents.year == date.dateComponents.year {
                 return i
             }
         }
@@ -180,36 +174,19 @@ class ViewTransactionViewController: UIViewController {
 }
 
 extension ViewTransactionViewController {
-    
     fileprivate func jumpToDate(from date: Date){
+        print(date)
         let firstIndexPath = IndexPath(item: getIndexPathOfThisMonthCell(from: date), section: 0)
-        print("this date: \(date)")
+        print("Date indexpath: \(firstIndexPath)")
         monthCollectionView.selectItem(at: firstIndexPath, animated: true, scrollPosition: .centeredHorizontally)
     }
-    
-    //MARK: - Get all month year in range min-max to set collectionview menu
-    func getMonthYearInRange(from startDate: Date, to endDate: Date) -> [Date] {
-        let components = Defined.calendar.dateComponents(Set([.month]), from: startDate, to: endDate)
-        //var allDates: [String] = []
-        var allDates: [Date] = []
-        let dateRangeFormatter = DateFormatter()
-        dateRangeFormatter.dateFormat = "MM yyyy"
-        
-        for i in 1...components.month! {
-            guard let date = Defined.calendar.date(byAdding: .month, value: i, to: startDate) else {
-                continue
-            }
-            allDates.append(date)
-        }
-        return allDates
-    }
-    
 }
 
 extension ViewTransactionViewController : ViewTransactionPresenterDelegate {
     
     func getBalance(balance: Int) {
         self.lbBalance.text = "\(Defined.formatter.string(from: NSNumber(value: balance))!) đ"
+        Defined.defaults.set(balance, forKey: Constants.balance)
     }
 
     func startLoading() {
@@ -273,7 +250,9 @@ extension ViewTransactionViewController : ViewTransactionPresenterDelegate {
         self.transactionTableView.reloadData()
     }
     
-    
+    func getMonthYearMenu(dates: [Date]) {
+        self.monthTitles = dates
+    }
 }
 
 
@@ -291,7 +270,6 @@ extension ViewTransactionViewController : UITableViewDataSource {
                 default:
                     number = categorySections[section-1].items.count
                 }
-                number = transactionSections[section-1].items.count
             }
         default:
             number = transactionBotMenu.count
@@ -493,10 +471,9 @@ extension ViewTransactionViewController : UICollectionViewDelegateFlowLayout, UI
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let month = monthTitles[indexPath.row].dateComponents.month,
             let year = monthTitles[indexPath.row].dateComponents.year{
-            currentMonth = month
-            currentYear = year
+            setUpCurrentDate(month: month, year: year)
             current = Defined.dateFormatter.date(from: "02/\(month)/\(year)")!
-            presenter?.getDataTransaction(month: currentMonth, year: currentYear)
+            presenter?.getDataTransaction(month: Defined.defaults.integer(forKey: Constants.currentMonth), year: Defined.defaults.integer(forKey: Constants.currentYear))
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
         }
 
