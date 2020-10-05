@@ -19,6 +19,13 @@ enum RouterType {
     case event
     case tabbar
     case test
+    case viewTransaction
+    case report
+    case account
+    case planningNavi
+    case barChartDetail
+    case pieChartDetail
+    case dayBarChartDetail
     
     //case viewTransaction
 }
@@ -65,6 +72,8 @@ extension RouterType{
             return vc
         case .balance:
             let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "BalanceViewController") as! BalanceViewController
+            let presenter = BalancePresenter(usecase: BalanceUseCase())
+            vc.setUp(presenter: presenter)
             return vc
         case .add:
             let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "add") as! AddTransactionController
@@ -86,13 +95,29 @@ extension RouterType{
             let presenter = TransactionPresenter(delegate: vc, usecase: TransactionUseCase())
             vc.setUp(presenter: presenter)
             return vc
-            
-            //        default:
-            //            let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as! ViewTransactionViewController
-            //            let presenter = ViewTransactionPresenter(delegate: vc, viewTransUseCase: ViewTransactionUseCase())
-            //            vc.setUp(presenter: presenter)
-            //            return vc
-            
+        case .viewTransaction:
+            let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "transaction_vc") as! ViewTransactionViewController
+            let presenter = ViewTransactionPresenter(delegate: vc, usecase: ViewTransactionUseCase())
+            vc.setUp(presenter: presenter)
+            return vc
+        case .account:
+             let vc = UIStoryboard(name: "UserSettings", bundle: nil).instantiateViewController(withIdentifier: "userSettingsNav") as! UINavigationController
+            return vc
+        case .report:
+             let vc = UIStoryboard(name: "Report", bundle: nil).instantiateViewController(withIdentifier: "ReportViewController") as! ReportViewController
+            return vc
+        case .planningNavi:
+            let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "navi_second") as! SecondNavigationController
+            return vc
+        case .barChartDetail:
+            let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailSBC") as! DetailStackedBarChartVC
+            return vc
+        case .pieChartDetail:
+            let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailPC") as! DetailPieChartVC
+            return vc
+        case .dayBarChartDetail:
+            let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "dayDetailSBC") as! DayDetailSBC
+            return vc
         }
     }
 }

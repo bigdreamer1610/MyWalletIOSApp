@@ -59,10 +59,10 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
         btnAddMore.layer.borderColor = #colorLiteral(red: 0.3929189782, green: 0.4198221317, blue: 0.8705882353, alpha: 1)
         btnAddMore.layer.cornerRadius = 6
         
-        tfCategory.setRightImage(imageName: "arrowright")
-        tfDate.setRightImage(imageName: "arrowright")
+        tfCategory.setRightImage2(imageName: "arrowright")
+        tfDate.setRightImage2(imageName: "arrowright")
         
-        tfEvent.setRightImage(imageName: "arrowright")
+        tfEvent.setRightImage2(imageName: "arrowright")
     }
     
     func addEvent()  {
@@ -169,9 +169,10 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
                         }
                     }
                 }
+                dispatchGroup.leave()
             }
         }
-        dispatchGroup.leave()
+        
     }
     
     @IBAction func btnAddMoreDetails(_ sender: Any) {

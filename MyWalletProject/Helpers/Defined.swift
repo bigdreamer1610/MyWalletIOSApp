@@ -10,6 +10,17 @@ import Foundation
 import Firebase
 import FirebaseDatabase
 
+enum Mode: String {
+    case transaction = "transaction"
+    case category = "income"
+    
+    func getValue() -> String{
+        return self.rawValue
+    }
+}
+
+
+
 class Defined {
     static let defaults = UserDefaults.standard
     static let ref = Database.database().reference()
@@ -38,6 +49,9 @@ class Constants {
     static let mode = "mode"
     static let balance = "balance"
     static let userid = "userid"
+    static let currentMonth = "currentMonth"
+    static let currentYear = "currentYear"
+    static let currentDate = "currentDate"
     //MARK: HEIGHT FOR CELL & HEADER
     static let transactionHeader: CGFloat = 60
     static let categoryHeader: CGFloat = 65

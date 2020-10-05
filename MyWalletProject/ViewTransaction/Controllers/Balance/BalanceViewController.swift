@@ -10,39 +10,43 @@ import UIKit
 
 class BalanceViewController: UIViewController {
 
-    
+    var presenter: BalancePresenter?
     @IBOutlet var txtAmount: UITextField!
     @IBOutlet var btnCancel: UIBarButtonItem!
     @IBOutlet var btnSave: UIBarButtonItem!
     var balance = Defined.defaults.integer(forKey: Constants.balance)
     private var formatter = NumberFormatter()
+    
     override func viewDidLoad() {
         formatter.groupingSeparator = "."
         formatter.numberStyle = .decimal
         super.viewDidLoad()
         txtAmount.delegate = self
+        initData()
+        
+    }
+    
+    func setUp(presenter: BalancePresenter){
+        self.presenter = presenter
+    }
+    
+    func initData(){
         txtAmount.text = "\(formatter.string(from: NSNumber(value: balance))!)"
     }
     
-    
     @IBAction func clickSave(_ sender: Any) {
         if let balanceStr = txtAmount.text,
-            let balancInt = Int(balanceStr){
-            Defined.defaults.set(balancInt, forKey: Constants.balance)
-            balance = balancInt
-            Defined.ref.child("Account/userid1/information").updateChildValues(["balance": balancInt]){ (error,reference) in
-                
-            }
+            let balanceInt = Int(balanceStr){
+            presenter?.updateBalance(with: balanceInt)
+            AppRouter.routerTo(from: RouterType.tabbar.getVc(), options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
         }
-        let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as? ViewTransactionController
-        AppRouter.routerTo(from: vc!, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
-    }
-    @IBAction func clickCancel(_ sender: Any) {
-        let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "ViewTransactionController") as? ViewTransactionController
-        AppRouter.routerTo(from: vc!, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
         
     }
+    @IBAction func clickCancel(_ sender: Any) {
+        AppRouter.routerTo(from: RouterType.tabbar.getVc(), options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
+    }
 }
+
 extension BalanceViewController : UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         //only text num

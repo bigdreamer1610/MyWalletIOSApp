@@ -5,7 +5,6 @@
 //  Created by Nguyen Thi Huong on 9/23/20.
 //  Copyright © 2020 THUY Nguyen Duong Thu. All rights reserved.
 //
-
 import UIKit
 import Charts
 import FirebaseDatabase
@@ -37,9 +36,9 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
         formatter.groupingSeparator = ","
         formatter.numberStyle = .decimal
         buildChart()
-
+        
         setChart()
-   
+        
     }
     
     var incomeArray: [Transaction] = [] {
@@ -114,6 +113,8 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
                 sumByCategory.append((category: dataArray[index].categoryid!, amount: dataArray[index].amount!))
             }
         }
+        sumByCategory.sort(by: { $0.amount > $1.amount })
+        print("Here is sumbyCategory: \(sumByCategory)")
     }
     
     // Check if a Category exists
@@ -200,6 +201,5 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
         chartView.highlightValues(nil)
     }
     
-   
+    
 }
-
