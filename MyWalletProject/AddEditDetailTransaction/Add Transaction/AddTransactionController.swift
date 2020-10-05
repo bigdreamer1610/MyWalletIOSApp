@@ -169,9 +169,10 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
                         }
                     }
                 }
+                dispatchGroup.leave()
             }
         }
-        dispatchGroup.leave()
+        
     }
     
     @IBAction func btnAddMoreDetails(_ sender: Any) {
