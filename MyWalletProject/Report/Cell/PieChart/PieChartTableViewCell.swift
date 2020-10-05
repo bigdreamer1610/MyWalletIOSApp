@@ -1,18 +1,12 @@
-//
-//  PieChartTableViewCell.swift
-//  MyWallet
-//
-//  Created by Nguyen Thi Huong on 9/23/20.
-//  Copyright © 2020 THUY Nguyen Duong Thu. All rights reserved.
-//
-
 import UIKit
 
 protocol CustomCollectionCellDelegate:class {
     func collectionView(collectioncell:PieChartCollectionViewCell?, didTappedInTableview TableCell:PieChartTableViewCell)
+    
 }
 
 class PieChartTableViewCell: BaseTBCell {
+    
     @IBOutlet weak var collectionView: UICollectionView!
     var date = "" {
         didSet {
@@ -22,6 +16,8 @@ class PieChartTableViewCell: BaseTBCell {
     var category = ""
     var sumIncome = 0
     var sumExpense = 0
+    
+    
     weak var delegate: CustomCollectionCellDelegate?
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,15 +29,11 @@ class PieChartTableViewCell: BaseTBCell {
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
     }
-//    func setupDataTB(sumIncome: Int, sumExpense: Int) {
-//         self.sumIncome = sumIncome
-//         self.sumExpense = sumExpense
-//        print("Sum income: \(sumIncome), Sum expense: \(sumExpense)")
-//     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-    }    
+    }
+    
 }
 
 extension PieChartTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -53,8 +45,7 @@ extension PieChartTableViewCell: UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = PieChartCollectionViewCell.loadCell(collectionView, path: indexPath) as! PieChartCollectionViewCell
         cell.date = date
-//        print("Sum income 1: \(sumIncome), Sum expense 1: \(sumExpense)")
-//        cell.setupDataCL(sumIncome: sumIncome, sumExpense: sumExpense)
+        
         if indexPath.row == 0 {
             cell.state = 1
             cell.lblTypeOfMoney.text = "Khoản thu"
@@ -66,16 +57,17 @@ extension PieChartTableViewCell: UICollectionViewDataSource, UICollectionViewDel
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+       
         let cell = PieChartCollectionViewCell.loadCell(collectionView, path: indexPath) as! PieChartCollectionViewCell
         self.delegate?.collectionView(collectioncell: cell, didTappedInTableview: self)
         if indexPath.row == 0 {
             cell.state = 0
              print("This is pie chart")
         } else {
+
             cell.sumExpense = sumExpense
             print("This is pie chart22222")
         }
         
     }
 }
-

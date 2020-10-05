@@ -273,6 +273,7 @@ class BudgetListViewController: UIViewController , UITableViewDataSource , UITab
 
     @IBAction func btnBackClick(_ sender: Any) {
 //        self.navigationController?.popViewController(animated: true)
+        AppRouter.routerTo(from: RouterType.tabbar.getVc(), options: .transitionCrossDissolve, duration: 0.2, isNaviHidden: true)
     }
     //MARK: Click Add
     @IBAction func btnAddClick(_ sender: Any) {
