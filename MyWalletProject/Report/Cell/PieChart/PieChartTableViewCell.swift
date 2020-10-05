@@ -1,11 +1,3 @@
-//
-//  PieChartTableViewCell.swift
-//  MyWallet
-//
-//  Created by Nguyen Thi Huong on 9/23/20.
-//  Copyright © 2020 THUY Nguyen Duong Thu. All rights reserved.
-//
-
 import UIKit
 
 protocol CustomCollectionCellDelegate:class {
@@ -79,4 +71,3 @@ extension PieChartTableViewCell: UICollectionViewDataSource, UICollectionViewDel
         
     }
 }
-

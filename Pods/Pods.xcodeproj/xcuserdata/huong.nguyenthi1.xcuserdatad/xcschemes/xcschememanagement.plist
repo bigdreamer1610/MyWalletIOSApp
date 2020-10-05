@@ -95,6 +95,11 @@
 			<key>orderHint</key>
 			<integer>11</integer>
 		</dict>
+		<key>FloatingButtonPOP-swift.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>25</integer>
+		</dict>
 		<key>GTMAppAuth.xcscheme</key>
 		<dict>
 			<key>isShown</key>

@@ -23,6 +23,9 @@ enum RouterType {
     case report
     case account
     case planningNavi
+    case barChartDetail
+    case pieChartDetail
+    case dayBarChartDetail
     
     //case viewTransaction
 }
@@ -105,6 +108,15 @@ extension RouterType{
             return vc
         case .planningNavi:
             let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "navi_second") as! SecondNavigationController
+            return vc
+        case .barChartDetail:
+            let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailSBC") as! DetailStackedBarChartVC
+            return vc
+        case .pieChartDetail:
+            let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailPC") as! DetailPieChartVC
+            return vc
+        case .dayBarChartDetail:
+            let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "dayDetailSBC") as! DayDetailSBC
             return vc
         }
     }

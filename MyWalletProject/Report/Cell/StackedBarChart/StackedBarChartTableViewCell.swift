@@ -13,16 +13,11 @@ import FirebaseDatabase
 class StackedBarChartTableViewCell: BaseTBCell, ChartViewDelegate {
     @IBOutlet weak var lblNetIncome: UILabel!
     @IBOutlet weak var containerView: UIView!
-    var chartView = BarChartView()
-    
+    var chartView = BarChartView()    
     let days = [""]
     var timer: Timer!
-    var sumExpense = 0 
-    var sumIncome = 0 {
-        didSet {
-            setChartData()
-        }
-    }
+    var sumExpense = 0
+    var sumIncome = 0 
     var netIncome = 0
     private var formatter = NumberFormatter()
     
@@ -33,6 +28,11 @@ class StackedBarChartTableViewCell: BaseTBCell, ChartViewDelegate {
         formatter.groupingSeparator = ","
         formatter.numberStyle = .decimal
         buildChart()
+    }
+    
+    func setupData(sumIncome: Int, sumExpense: Int) {
+        self.sumIncome = sumIncome
+        self.sumExpense = sumExpense
         setChartData()
     }
 
@@ -42,14 +42,13 @@ class StackedBarChartTableViewCell: BaseTBCell, ChartViewDelegate {
         chartView.dragEnabled = false
         chartView.noDataText = "Data will be loaded soon."
         chartView.dragEnabled = false
-        
         chartView.chartDescription?.enabled = false
-        
         chartView.maxVisibleCount = 40
         chartView.drawBarShadowEnabled = false
         chartView.drawValueAboveBarEnabled = false
         chartView.doubleTapToZoomEnabled = false
         chartView.highlightFullBarEnabled = false
+        chartView.rightAxis.enabled = false
         
         let leftAxis = chartView.leftAxis
         leftAxis.labelPosition = .outsideChart
@@ -65,8 +64,6 @@ class StackedBarChartTableViewCell: BaseTBCell, ChartViewDelegate {
         xAxis.centerAxisLabelsEnabled = true
         xAxis.granularity = 8
         xAxis.valueFormatter = self
-        
-        chartView.rightAxis.enabled = false
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -82,10 +79,9 @@ class StackedBarChartTableViewCell: BaseTBCell, ChartViewDelegate {
         containerView.addSubview(chartView)
         
         netIncome = sumIncome - sumExpense
-        print("\(sumIncome) Tôi là ai ?\(sumExpense)")
-        reportView?.receiveData(income: sumIncome, expense: sumExpense)
-        
         lblNetIncome.text = "\(formatter.string(from: NSNumber(value: netIncome))!)"
+        
+        reportView?.receiveData(income: sumIncome, expense: sumExpense)
      
         let val1 = Double(sumIncome)
         let val2 = Double(sumExpense)

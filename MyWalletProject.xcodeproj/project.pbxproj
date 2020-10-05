@@ -743,9 +743,9 @@
 		73E0B18F2521ED680097D41F /* MainTransaction */ = {
 			isa = PBXGroup;
 			children = (
-				999389EF252A2AB100E72A41 /* ViewTransactionPresenter.swift */,
 				999389EB252A2AB000E72A41 /* ViewTransactionUseCase.swift */,
 				999389EA252A2AB000E72A41 /* ViewTransactionViewController.swift */,
+				999389EF252A2AB100E72A41 /* ViewTransactionPresenter.swift */,
 				73E0B1602521E0ED0097D41F /* ViewTransactionController.swift */,
 			);
 			path = MainTransaction;
