@@ -26,16 +26,14 @@ class DayDetailSBC: UIViewController {
     @IBAction func popToView(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
+    
     func initTableViews(){
-        
         tableView.delegate = self
         tableView.dataSource = self
         DayDetail.registerCellByNib(tableView)
         HeaderTransactionCell.registerCellByNib(tableView)
         TransactionCell.registerCellByNib(tableView)
     }
-    
-  
 }
 
 extension DayDetailSBC: UITableViewDataSource {
@@ -66,8 +64,8 @@ extension DayDetailSBC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         if indexPath.section != 0 {
             print("Hello My friend")
-        let vc = UIStoryboard.init(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "detail") as! DetailTransactionController
-//            vc.setUpDataTransactionView(item: transactionSections[indexPath.section - 1].items[indexPath.row], header: transactionSections[indexPath.section - 1].header)
+            let vc = UIStoryboard.init(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "detail") as! DetailTransactionController
+            //            vc.setUpDataTransactionView(item: transactionSections[indexPath.section - 1].items[indexPath.row], header: transactionSections[indexPath.section - 1].header)
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

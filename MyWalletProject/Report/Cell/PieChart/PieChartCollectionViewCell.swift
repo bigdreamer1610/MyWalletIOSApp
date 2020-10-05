@@ -54,7 +54,7 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
         }
     }
     
-    // Get data from db
+    //MARK: - Get data from db
     func getData()  {
         expenseArray.removeAll()
         incomeArray.removeAll()
@@ -126,6 +126,7 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
         return -1
     }
     
+    //MARK: - Build Chart
     func buildChart() {
         chartView.delegate = self
         chartView.rotationEnabled = false
@@ -143,7 +144,7 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
         
     }
     
-    // Set data chart
+    //MARK: - Set Data Chart
     func setChart(){
         entries.removeAll()
         
