@@ -21,6 +21,7 @@ protocol ViewTransactionPresenterDelegate: class {
     func getTransactionSections(section: [TransactionSection])
     func getCategorySections(section: [CategorySection])
     func reloadTableView()
+    func getMonthYearMenu(dates: [Date])
 }
 
 class ViewTransactionPresenter {
@@ -34,10 +35,7 @@ class ViewTransactionPresenter {
     var maxDate = Date()
     var currentMonth = 8
     var currentYear = 2020
-    var todayMonth = 10
-    var todayYear = 10
     var today = Date()
-    var current: Date!
     var transactionSections = [TransactionSection]()
     var categorySections = [CategorySection]()
     
@@ -53,8 +51,12 @@ class ViewTransactionPresenter {
     
     //Get data balance and category
     func fetchData(){
+        minDate = Defined.calendar.date(byAdding: .year, value: -2, to: today)!
+        maxDate = Defined.calendar.date(byAdding: .month, value: 1, to: today)!
+        //monthTitles = getMonthYearInRange(from: minDate, to: maxDate)
         viewTransUseCase?.getBalance()
         viewTransUseCase?.getListCategories()
+        getMonthYearInRange(from: minDate, to: maxDate)
     }
     
     // Get data transaction by month
@@ -305,5 +307,22 @@ extension ViewTransactionPresenter {
         }
         //return DetailInfo(opening: open, ending: end)
         delegate?.getDetailCellInfo(info: DetailInfo(opening: open, ending: end))
+    }
+    
+    //MARK: - Get all month year in range min-max to set collectionview menu
+    func getMonthYearInRange(from startDate: Date, to endDate: Date){
+        let components = Defined.calendar.dateComponents(Set([.month]), from: startDate, to: endDate)
+        //var allDates: [String] = []
+        var allDates: [Date] = []
+        let dateRangeFormatter = DateFormatter()
+        dateRangeFormatter.dateFormat = "MM yyyy"
+        
+        for i in 1...components.month! {
+            guard let date = Defined.calendar.date(byAdding: .month, value: i, to: startDate) else {
+                continue
+            }
+            allDates.append(date)
+        }
+        delegate?.getMonthYearMenu(dates: allDates)
     }
 }

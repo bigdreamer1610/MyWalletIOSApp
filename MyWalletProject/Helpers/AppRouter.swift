@@ -69,6 +69,8 @@ extension RouterType{
             return vc
         case .balance:
             let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "BalanceViewController") as! BalanceViewController
+            let presenter = BalancePresenter(usecase: BalanceUseCase())
+            vc.setUp(presenter: presenter)
             return vc
         case .add:
             let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "add") as! AddTransactionController
