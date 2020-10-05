@@ -23,7 +23,7 @@ class ReportViewController: UIViewController {
     @IBOutlet weak var txtDatePicker: UITextField!
     var ref: DatabaseReference!
     private var dateFormatter = DateFormatter()
-//    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+    //    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
     var months = ["Tháng 1","Tháng 2","Tháng 3","Tháng 4","Tháng 5","Tháng 6","Tháng 7","Tháng 8","Tháng 9","Tháng 10","Tháng 11","Tháng 12"]
     let calendar = Calendar.current
     var currentMonth = 9
@@ -51,16 +51,6 @@ class ReportViewController: UIViewController {
         }
         checkWhenDataIsReady()
         tableView.reloadData()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
-        super.viewWillAppear(animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
-        super.viewWillDisappear(animated)
     }
     
     //MARK: - Check data is ready
@@ -201,8 +191,6 @@ class ReportViewController: UIViewController {
     }
     
     @objc func dateChanged(_ picker: MonthYearPickerView) {
-//        getIncome()
-//        getExpense()
         let components = calendar.dateComponents([.month, .year], from: picker.date)
         lblDate.text = "\(months[components.month! - 1]) \(components.year!)"
         if components.month! < 10 {
@@ -239,20 +227,21 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
+        switch indexPath.section {
+        case 0:
             let cell = MoneyTableViewCell.loadCell(tableView)  as! MoneyTableViewCell
             cell.selectionStyle = .none
             return cell
-        } else if indexPath.section == 1  {
+        case 1:
             let cell = StackedBarChartTableViewCell.loadCell(tableView) as! StackedBarChartTableViewCell
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
             cell.setupData(sumIncome: sumIncome, sumExpense: sumExpense)
-            print("\(sumIncome) 01235648 \(sumExpense)")
             cell.reportView = self
             return cell
-        } else {
+        default:
             let cell = PieChartTableViewCell.loadCell(tableView)  as! PieChartTableViewCell
             cell.delegate = self
+//            cell.setupDataTB(sumIncome: sumIncome, sumExpense: sumExpense)
             cell.date = txtDatePicker.text ?? "Error"
             return cell
         }

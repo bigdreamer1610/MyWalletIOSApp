@@ -25,7 +25,6 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
     private var formatter = NumberFormatter()
     var date = "" {
         didSet {
-            getData()
             setChart()
         }
     }
@@ -37,9 +36,7 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
         formatter.groupingSeparator = ","
         formatter.numberStyle = .decimal
         buildChart()
-
         setChart()
-   
     }
     
     var incomeArray: [Transaction] = [] {
@@ -49,12 +46,16 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
     }
     var expenseArray: [Transaction] = [] {
         didSet {
-            
             setChart()
         }
     }
-    
-    //MARK: - Get data from db
+
+//    func setupDataCL(sumIncome: Int, sumExpense: Int) {
+//        self.sumIncome = sumIncome
+//        self.sumExpense = sumExpense
+//        setChart()
+//    }
+//    MARK: - Get data from db
     func getData()  {
         expenseArray.removeAll()
         incomeArray.removeAll()
@@ -70,9 +71,9 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
                 let date = dict["date"] as! String
                 let categoryid = dict["categoryid"] as! String
                 let tempDate = date.split(separator: "/")
-                
+
                 let checkDate = tempDate[1] + "/" + tempDate[2]
-                
+
                 if self.date == checkDate {
                     let ex = Transaction(amount: amount, categoryid: categoryid, date: date)
                     self.sumExpense += amount
@@ -80,7 +81,7 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
                 }
             }
         }
-        
+
         self.ref.child("Account").child("userid1").child("transaction").child("income").observeSingleEvent(of: .value) {
             snapshot in
             for case let child as DataSnapshot in snapshot.children {
@@ -91,9 +92,9 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
                 let date = dict["date"] as! String
                 let categoryid = dict["categoryid"] as! String
                 let tempDate = date.split(separator: "/")
-                
+
                 let checkDate = tempDate[1] + "/" + tempDate[2]
-                
+
                 if self.date == checkDate {
                     let ex = Transaction(amount: amount, categoryid: categoryid, date: date)
                     self.sumIncome += amount
@@ -102,7 +103,7 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
             }
         }
     }
-    
+
     // Sum by Category
     func dataForPieChart(dataArray: [Transaction]) {
         sumByCategory.removeAll()
@@ -110,12 +111,15 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
             let sumIndex = checkExist(category: dataArray[index].categoryid!)
             if sumIndex != -1 {
                 sumByCategory[sumIndex].amount += dataArray[index].amount!
+
             } else {
                 sumByCategory.append((category: dataArray[index].categoryid!, amount: dataArray[index].amount!))
             }
         }
+        sumByCategory.sort(by: { $0.amount > $1.amount })
+        print("Here is sumbyCategory: \(sumByCategory)")
     }
-    
+
     // Check if a Category exists
     func checkExist(category: String) -> Int {
         for index in 0 ..< sumByCategory.count {
@@ -125,7 +129,7 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
         }
         return -1
     }
-    
+
     //MARK: - Build Chart
     func buildChart() {
         chartView.delegate = self
@@ -141,32 +145,25 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
         l.formToTextSpace = 4
         l.xEntrySpace = 6
         l.xOffset = 15
-        
     }
     
     //MARK: - Set Data Chart
     func setChart(){
         entries.removeAll()
-        
         chartView.frame = CGRect(x: 0,
                                  y: 0,
                                  width: self.containerView.frame.size.width,
                                  height: self.containerView.frame.size.height)
-        
         containerView.addSubview(chartView)
         
         if state == 1 {
             dataForPieChart(dataArray: incomeArray)
-            
             lblMoney.text = "\(formatter.string(from: NSNumber(value: sumIncome))!)"
             for index in 0 ..< sumByCategory.count {
                 entries.append(PieChartDataEntry(value: Double(sumByCategory[index].amount), label: sumByCategory[index].category))
             }
-        }
-            
-        else {
+        } else {
             dataForPieChart(dataArray: expenseArray)
-            
             lblMoney.text = "\(formatter.string(from: NSNumber(value: sumExpense))!)"
             for index in 0 ..< sumByCategory.count {
                 entries.append(PieChartDataEntry(value: Double(sumByCategory[index].amount), label: sumByCategory[index].category))
@@ -200,7 +197,5 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
         chartView.data = data
         chartView.highlightValues(nil)
     }
-    
-   
 }
 

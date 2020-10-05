@@ -68,6 +68,7 @@ PODS:
     - GoogleUtilities/Environment (~> 6.7)
     - GoogleUtilities/UserDefaults (~> 6.7)
     - PromisesObjC (~> 1.2)
+  - FloatingButtonPOP-swift (1.0.0)
   - FSCalendar (2.8.1)
   - GoogleAppMeasurement (6.8.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
@@ -125,6 +126,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Crashlytics
   - Firebase/Database
+  - FloatingButtonPOP-swift
   - FSCalendar
   - GoogleSignIn
   - MonthYearPicker (~> 4.0.2)
@@ -144,6 +146,7 @@ SPEC REPOS:
     - FirebaseCrashlytics
     - FirebaseDatabase
     - FirebaseInstallations
+    - FloatingButtonPOP-swift
     - FSCalendar
     - GoogleAppMeasurement
     - GoogleDataTransport
@@ -170,6 +173,7 @@ SPEC CHECKSUMS:
   FirebaseCrashlytics: d2a350ec7fd4a332031b906b0802a7a73697630b
   FirebaseDatabase: d85b47213273708e48c972012b39105f76229588
   FirebaseInstallations: 466c7b4d1f58fe16707693091da253726a731ed2
+  FloatingButtonPOP-swift: 406bc011ed894f1c5f2b59a679ca0fad2d2452db
   FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
   GoogleAppMeasurement: ecc30d0ab5b66d7d18e85ce1b8e2b345db60626d
   GoogleDataTransport: e85fb700c9b027079ce182c3d08e12e0f9618bb4
@@ -183,6 +187,6 @@ SPEC CHECKSUMS:
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
   SwiftDate: d117c3eb6beed72e47d3f4d1e3bc63fa1e66d7c3
 
-PODFILE CHECKSUM: ef8a9a4d0e28a2c7da71a1f8f55fd84e796ef10c
+PODFILE CHECKSUM: f84eac739b63759d1754df9641d487ad846ab6c9
 
 COCOAPODS: 1.9.3

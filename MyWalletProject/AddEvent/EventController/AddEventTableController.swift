@@ -16,8 +16,9 @@ class AddEventTableController: UITableViewController,UITextFieldDelegate {
         let vc = UIStoryboard.init(name: "AddEvent", bundle: nil).instantiateViewController(identifier: "CategoryEvent") as! CategoryEvent
                    vc .completionHandler = {
                        print($0)
-                    self.categoryName = $0
+                    self.eventImg = $0
                     self.imgCategory.image = UIImage(named: $0)
+                    self.viewImg.alpha = 0
                    }
                    navigationController?.pushViewController(vc, animated: true)
         
@@ -25,9 +26,10 @@ class AddEventTableController: UITableViewController,UITextFieldDelegate {
     }
     var event = Event()
     
-    var categoryName = ""
+    var eventImg = ""
     @IBOutlet weak var tfNameEvent: UITextField!
-    @IBOutlet weak var tfMoney: UITextField!
+ 
+    @IBOutlet weak var viewImg: UIView!
     @IBOutlet weak var imgCategory: UIImageView!
     @IBOutlet weak var tfDate: UITextField!
     @IBOutlet weak var viewCategory: UIView!
@@ -38,11 +40,11 @@ class AddEventTableController: UITableViewController,UITextFieldDelegate {
     var delegate: AddEventTableControllerDelegate?
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-        tfMoney.delegate = self
+        super.viewDidLoad()       
         viewCategory.layer.cornerRadius = viewCategory.frame.width / 2
         viewCategory.layer.cornerRadius = viewCategory.frame.height / 2
-        
+        viewImg.layer.cornerRadius = viewImg.frame.width / 2
+        viewImg.layer.cornerRadius = viewImg.frame.height / 2
         
 
       
@@ -64,7 +66,7 @@ class AddEventTableController: UITableViewController,UITextFieldDelegate {
                 
             }
         }
-        if indexPath.row == 2 {
+        if indexPath.row == 1 {
             let vc = UIStoryboard.init(name: "AddEvent", bundle: nil).instantiateViewController(identifier: "calendarView") as! CalendarController
             vc .completionHandler = {
                 print($0)
@@ -84,7 +86,6 @@ class AddEventTableController: UITableViewController,UITextFieldDelegate {
     func setUpView()  {
         if event.name != nil {
                            tfNameEvent.text = event.name!
-                           tfMoney.text = String(event.spent!)
                            tfDate.text = event.date!
                            imgCategory.image = UIImage(named: event.eventImage!)
                 } else {
