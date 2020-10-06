@@ -41,8 +41,30 @@ class Defined {
         return date
     }
     
-    
-    
+    class func getAllDayArray(allTransactions: [Transaction]) -> [String]{
+        var checkArray = [String]()
+        //MARK: - Get all distinct date string
+        for a in allTransactions {
+            var check = false
+            for b in checkArray {
+                if a.date == b {
+                    check = true
+                }
+            }
+            if !check {
+                checkArray.append(a.date!)
+            }
+        }
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "vi_VN")
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        //MARK: - Sort date string
+        let sortedArray = checkArray.sorted { (first, second) -> Bool in
+            dateFormatter.date(from: first)?.compare(dateFormatter.date(from: second)!) == ComparisonResult.orderedDescending
+        }
+        print("sortedArray: \(sortedArray)")
+        return sortedArray
+    }
 }
 
 class Constants {

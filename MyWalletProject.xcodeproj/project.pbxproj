@@ -131,6 +131,10 @@
 		8A3BB42F251B31B4008113E9 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BB42E251B31B4008113E9 /* SettingsPresenter.swift */; };
 		8A3BB431251B326E008113E9 /* SettingsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BB430251B326E008113E9 /* SettingsUseCase.swift */; };
 		8A3BB434251B6069008113E9 /* CurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BB433251B6069008113E9 /* CurrencyViewController.swift */; };
+		8A3D7DE1252C47E5004F4FEA /* AddCategory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A3D7DE0252C47E5004F4FEA /* AddCategory.storyboard */; };
+		8A3D7DE3252C4B55004F4FEA /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D7DE2252C4B55004F4FEA /* AddCategoryViewController.swift */; };
+		8A3D7DE7252C4E08004F4FEA /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D7DE5252C4E08004F4FEA /* CategoryTableViewCell.swift */; };
+		8A3D7DE8252C4E08004F4FEA /* CategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3D7DE6252C4E08004F4FEA /* CategoryTableViewCell.xib */; };
 		8A6DABF82525BA800033FE07 /* TravelModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6DABF72525BA800033FE07 /* TravelModeViewController.swift */; };
 		8A725C4E251C79FD00610758 /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A725C4D251C79FD00610758 /* CurrencyModel.swift */; };
 		8ACA6248251A07980031E6DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACA6247251A07980031E6DF /* AppDelegate.swift */; };
@@ -306,6 +310,10 @@
 		8A3BB42E251B31B4008113E9 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		8A3BB430251B326E008113E9 /* SettingsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUseCase.swift; sourceTree = "<group>"; };
 		8A3BB433251B6069008113E9 /* CurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewController.swift; sourceTree = "<group>"; };
+		8A3D7DE0252C47E5004F4FEA /* AddCategory.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddCategory.storyboard; sourceTree = "<group>"; };
+		8A3D7DE2252C4B55004F4FEA /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
+		8A3D7DE5252C4E08004F4FEA /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		8A3D7DE6252C4E08004F4FEA /* CategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryTableViewCell.xib; sourceTree = "<group>"; };
 		8A6DABF72525BA800033FE07 /* TravelModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelModeViewController.swift; sourceTree = "<group>"; };
 		8A725C4D251C79FD00610758 /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
 		8ACA6244251A07980031E6DF /* MyWalletProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWalletProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -862,6 +870,9 @@
 		8A3BB42B251B20A9008113E9 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				8A3D7DE4252C4DDB004F4FEA /* CategoryTableCell */,
+				8A3D7DE0252C47E5004F4FEA /* AddCategory.storyboard */,
+				8A3D7DE2252C4B55004F4FEA /* AddCategoryViewController.swift */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -875,6 +886,15 @@
 				8A725C4D251C79FD00610758 /* CurrencyModel.swift */,
 			);
 			path = MoneyCurrencies;
+			sourceTree = "<group>";
+		};
+		8A3D7DE4252C4DDB004F4FEA /* CategoryTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				8A3D7DE5252C4E08004F4FEA /* CategoryTableViewCell.swift */,
+				8A3D7DE6252C4E08004F4FEA /* CategoryTableViewCell.xib */,
+			);
+			path = CategoryTableCell;
 			sourceTree = "<group>";
 		};
 		8A6DABF62525BA580033FE07 /* TravelMode */ = {
@@ -1155,10 +1175,12 @@
 				8A3BB427251AFE7C008113E9 /* SettingsItemViewCell.xib in Resources */,
 				72873D9C25249C0800313629 /* DetailPieTableViewCell.xib in Resources */,
 				D270F4BE251B54DF00CB274C /* EventCell.xib in Resources */,
+				8A3D7DE1252C47E5004F4FEA /* AddCategory.storyboard in Resources */,
 				56B8A80B25248A7700B8E8F0 /* TimeCell.xib in Resources */,
 				72A71920251DDEBD003ED157 /* PieChartTableViewCell.xib in Resources */,
 				56B8A80F25248AAC00B8E8F0 /* CateCell.xib in Resources */,
 				D270F4C2251B550E00CB274C /* CategoryEventCell.xib in Resources */,
+				8A3D7DE8252C4E08004F4FEA /* CategoryTableViewCell.xib in Resources */,
 				73E0B1822521E0EE0097D41F /* DetailCell.xib in Resources */,
 				73E0B1872521E0EE0097D41F /* BottomMenuCell.xib in Resources */,
 				D29A104E251C4D15009EF2DC /* GoogleService-Info.plist in Resources */,
@@ -1357,6 +1379,7 @@
 				735873EF2521780D00B8235D /* MainTabViewController.swift in Sources */,
 				73AA67FA25258294001EAA1D /* PlanningCell.swift in Sources */,
 				73E0B17E2521E0EE0097D41F /* TransactionCell.swift in Sources */,
+				8A3D7DE3252C4B55004F4FEA /* AddCategoryViewController.swift in Sources */,
 				7338862E25231F68002F126B /* DetailTransactionController.swift in Sources */,
 				56053C2D2525E88C00685FFC /* TimeRangerViewController.swift in Sources */,
 				9862A910252C178100F3FF5D /* SelectEventPresenter.swift in Sources */,
@@ -1368,6 +1391,7 @@
 				8A1E077C251C4175000DCF07 /* CurrencyUseCase.swift in Sources */,
 				8A3BB40F251ADEB3008113E9 /* Account.swift in Sources */,
 				8A3BB42F251B31B4008113E9 /* SettingsPresenter.swift in Sources */,
+				8A3D7DE7252C4E08004F4FEA /* CategoryTableViewCell.swift in Sources */,
 				D270F4B3251B53F100CB274C /* EventController.swift in Sources */,
 				56B8A7F2252484E700B8E8F0 /* LoginViewController.swift in Sources */,
 				56053C2E2525E88C00685FFC /* CalendarViewController.swift in Sources */,
