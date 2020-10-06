@@ -11,27 +11,35 @@ import UIKit
 import Vision
 import VisionKit
 
+protocol ScanBillPresenterDelegate {
+    func showAlertMessage(_ state: Bool)
+    func setupForViews(_ transaction: Transaction)
+}
+
 class ScanBillPresenter {
     
     var transaction = Transaction()
     var textIndex = 0
     var isMoney = false
 
-    var viewDelegate: ScanBillViewControllerProtocol?
-    var useCase: ScanBillUseCase = ScanBillUseCase()
+    var delegate: ScanBillPresenterDelegate?
+    var useCase: ScanBillUseCase?
     
     var ocrRequest = VNRecognizeTextRequest(completionHandler: nil)
     
-    init() {}
+    init(delegate: ScanBillPresenterDelegate, usecase: ScanBillUseCase) {
+        self.delegate = delegate
+        self.useCase = usecase
+    }
     
     // MARK: - Validate transaction and save transaction to DB
     func saveTransaction(_ transation: Transaction) {
         self.transaction = transation
         if self.transaction.date! == "" {
-            self.viewDelegate?.showAlert(false)
+            self.delegate?.showAlertMessage(false)
         } else {
-            self.useCase.saveTransactionToDB(self.transaction)
-            self.viewDelegate?.showAlert(true)
+            self.useCase?.saveTransactionToDB(self.transaction)
+            self.delegate?.showAlertMessage(true)
         }
     }
     
@@ -58,7 +66,7 @@ class ScanBillPresenter {
                 return
             }
             
-            // MARK: - Extract: 2nd line / Address, 4th line / Date, After "Item(s)" is information about money user spent
+            // Extract: 2nd line / Address, 4th line / Date, After "Item(s)" is information about money user spent
             self.textIndex = 0
             self.isMoney = false
             for observation in observations {
@@ -87,7 +95,7 @@ class ScanBillPresenter {
             }
             
             // Push data back to view controller to show on UI
-            self.viewDelegate?.setupForViews(self.transaction)
+            self.delegate?.setupForViews(self.transaction)
         }
         
         self.ocrRequest.recognitionLevel = .accurate
@@ -144,4 +152,5 @@ class ScanBillPresenter {
         self.transaction.date = formattedDate
     }
 }
+
 

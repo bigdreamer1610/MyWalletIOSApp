@@ -9,12 +9,17 @@
 import Foundation
 import FirebaseDatabase
 
+protocol SettingsUseCaseDelegate {
+    func responseData(_ user: Account)
+}
+
 class SettingsUseCase {
-    var ref: DatabaseReference!
-    
-    func saveUserInfoToDB(_ user: Account) {
-        ref = Database.database().reference()
-        
+    var delegate: SettingsUseCaseDelegate?
+}
+
+extension SettingsUseCase {
+    // MARK: - Save user info to DB
+    func saveUserInfoToDB(_ user: Account, _ userId: String) {
         let userInfo = [
             "name": user.name!,
             "email": user.email!,
@@ -25,10 +30,34 @@ class SettingsUseCase {
             "gender": user.gender!,
             "language": user.language!] as [String : Any]
 
-        self.ref.child("Account").child("userid1").child("information").setValue(userInfo, withCompletionBlock: {
+        Defined.ref.child("Account").child(userId).child("information").setValue(userInfo, withCompletionBlock: {
             error, ref in
             if error == nil {}
             else {}
         })
     }
+    
+    // MARK: - Get user info from DB to display in view
+    func getUserInfoFromDB(_ userId: String) {
+        var userInfo: Account = Account()
+        
+        Defined.ref.child("Account").child(userId).child("information").observeSingleEvent(of: .value, with: { snapshot in
+            guard let dict = snapshot.value as? NSDictionary else {
+                print("error")
+                return
+            }
+            
+            userInfo.address = dict["address"] as? String
+            userInfo.balance = dict["balance"] as? Int
+            userInfo.dateOfBirth = dict["dateOfBirth"] as? String
+            userInfo.email = dict["email"] as? String
+            userInfo.gender = dict["gender"] as? String
+            userInfo.language = dict["language"] as? String
+            userInfo.name = dict["name"] as? String
+            userInfo.phoneNumber = dict["phoneNumber"] as? String
+            
+            self.delegate?.responseData(userInfo)
+        })
+    }
 }
+

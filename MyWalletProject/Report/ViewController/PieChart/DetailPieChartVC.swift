@@ -14,14 +14,9 @@ class DetailPieChartVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupTableView()
-       
         print("Pie \(sumIncome)")
-      
         print("Pie \(sumExpense)")
-        
-        
     }
     
     private func setupTableView() {
@@ -45,7 +40,6 @@ extension DetailPieChartVC: UITableViewDelegate, UITableViewDataSource {
         return 10
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         1
     }
@@ -61,18 +55,13 @@ extension DetailPieChartVC: UITableViewDelegate, UITableViewDataSource {
             let cell = IncomDetailTableViewCell.loadCell(tableView) as! IncomDetailTableViewCell
             return cell
         }
-        
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         if indexPath.section != 0 && indexPath.section != 1 {
-            print("Helđjhaiựh")
             let vc = UIStoryboard.init(name: "Report", bundle: nil).instantiateViewController(withIdentifier: "dayDetailPC") as! DayDetailPC
             //            vc.setUpDataTransactionView(item: transactionSections[indexPath.section - 1].items[indexPath.row], header: transactionSections[indexPath.section - 1].header)
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
-    
-    
 }

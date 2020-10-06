@@ -35,23 +35,22 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
     private let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
-        customizeLayout()
-        fetchDataBudget()
-        viewShowMore.isHidden = true
         super.viewDidLoad()
-        fetchDataBudget()
+        viewShowMore.isHidden = true
         dateFormatter.locale = Locale(identifier: "vi_VN")
         dateFormatter.dateFormat = "dd/MM/yyyy"
         tfCategory.text = nameCategory
         iconImage.image = UIImage(named: iconImages)
         tfDate.text = date
-        addEvent()
         tfDate.delegate = self
         tfAmount.delegate = self
         tfCategory.delegate = self
         tfNote.delegate = self
         btnSave.isEnabled = false
         customizeLayout()
+        addEvent()
+        fetchDataBudget()
+        
     }
     
     func customizeLayout(){
@@ -59,19 +58,18 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
         btnAddMore.layer.borderColor = #colorLiteral(red: 0.3929189782, green: 0.4198221317, blue: 0.8705882353, alpha: 1)
         btnAddMore.layer.cornerRadius = 6
         
-        tfCategory.setRightImage(imageName: "arrowright")
-        tfDate.setRightImage(imageName: "arrowright")
-        
-        tfEvent.setRightImage(imageName: "arrowright")
+        tfCategory.setRightImage2(imageName: "arrowright")
+        tfDate.setRightImage2(imageName: "arrowright")
+        tfEvent.setRightImage2(imageName: "arrowright")
     }
     
     func addEvent()  {
-        tfCategory.addTarget(self, action: #selector(myEvent), for: .touchDown)
+        tfCategory.addTarget(self, action: #selector(myCategory), for: .touchDown)
         tfDate.addTarget(self, action: #selector(myDate), for: .touchDown)
-        //        tfEvent.addTarget(self, action: #selector(myEven), for: .touchDown)
+        tfEvent.addTarget(self, action: #selector(myEven), for: .touchDown)
     }
     
-    @objc func myEvent(textField: UITextField) {
+    @objc func myCategory(textField: UITextField) {
         let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "selectCategory") as? SelectCategoryController
         vc?.delegate = self
         self.navigationController?.pushViewController(vc!, animated: true)
@@ -87,11 +85,13 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
         self.navigationController?.pushViewController(vc!, animated: true)
         
     }
-    //    @objc func myEven(textField:UITextField){
-    //           let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "selectEvent") as? SelectEventController
-    //           vc?.delegate = self
-    //           self.navigationController?.pushViewController(vc!, animated: true)
-    //       }
+    @objc func myEven(textField:UITextField){
+        let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "selectEvent") as! SelectEventController
+        vc.delegate = self
+        let presenter = SelectEventPresenter(delegate: vc, usecase: SelectEventUserCase())
+        vc.setUp(presenter: presenter)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     
     
     @IBAction func clickCancel(_ sender: Any) {
@@ -169,9 +169,10 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
                         }
                     }
                 }
+                dispatchGroup.leave()
             }
         }
-        dispatchGroup.leave()
+        
     }
     
     @IBAction func btnAddMoreDetails(_ sender: Any) {
@@ -202,7 +203,14 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
     }
 }
 
-extension AddTransactionController: SelectCategory, SelectDate{
+extension AddTransactionController: SelectCategory, SelectDate, SelectEvent{
+    func setEvent(nameEvent: String, imageEvent: String) {
+        tfEvent.text = nameEvent
+        iconEvent.image = UIImage(named: imageEvent)
+    }
+    
+  
+    
     func setDate(date: String) {
         tfDate.text = date
     }

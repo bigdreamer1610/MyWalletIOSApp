@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MonthCell" id="gTV-IL-0wX" customClass="MonthCell" customModule="MyWalletProject" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="167" height="140"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="167" height="140"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UfI-8P-7Rs">
+                        <rect key="frame" x="0.0" y="44" width="167" height="96"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="THIS MONTH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVm-Q3-Old">
+                                <rect key="frame" x="0.0" y="0.0" width="167" height="96"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="KVm-Q3-Old" firstAttribute="leading" secondItem="UfI-8P-7Rs" secondAttribute="leading" id="Fdr-tR-qnS"/>
+                            <constraint firstAttribute="bottom" secondItem="KVm-Q3-Old" secondAttribute="bottom" id="KKz-SP-dA5"/>
+                            <constraint firstAttribute="trailing" secondItem="KVm-Q3-Old" secondAttribute="trailing" id="rja-9f-omO"/>
+                            <constraint firstItem="KVm-Q3-Old" firstAttribute="top" secondItem="UfI-8P-7Rs" secondAttribute="top" id="roY-Yj-RTo"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="UfI-8P-7Rs" secondAttribute="bottom" id="SLW-Xn-UNM"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="UfI-8P-7Rs" secondAttribute="trailing" id="Tex-hS-66p"/>
+                <constraint firstItem="UfI-8P-7Rs" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="sQ1-hD-jAM"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="top" secondItem="UfI-8P-7Rs" secondAttribute="top" id="wPs-Ub-BSH"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="167" height="140"/>
+            <connections>
+                <outlet property="lbMonth" destination="KVm-Q3-Old" id="8DL-wS-ibC"/>
+            </connections>
+            <point key="canvasLocation" x="216.66666666666669" y="168.75"/>
+        </collectionViewCell>
+    </objects>
+</document>

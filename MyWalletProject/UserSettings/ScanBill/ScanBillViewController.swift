@@ -8,14 +8,9 @@
 
 import UIKit
 
-protocol ScanBillViewControllerProtocol: class {
-    func setupForViews(_ transaction: Transaction)
-    func showAlert(_ state: Bool)
-}
-
 class ScanBillViewController: UIViewController {
     
-    var presenter: ScanBillPresenter = ScanBillPresenter()
+    var presenter: ScanBillPresenter?
 
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var txtNote: UITextView!
@@ -28,7 +23,6 @@ class ScanBillViewController: UIViewController {
     @IBOutlet weak var btnScan: UIButton!
     
     @IBOutlet weak var btnAddTransaction: UIButton!
-    @IBOutlet weak var btnCancel: UIButton!
     
     let imagePicker = UIImagePickerController()
     
@@ -37,17 +31,15 @@ class ScanBillViewController: UIViewController {
 
         imagePicker.delegate = self
         
-        configureButton(btnCamera)
-        configureButton(btnGallery)
-        configureButton(btnScan)
-        configureButton(btnAddTransaction)
-        configureButton(btnCancel)
+        configureButton([btnCamera, btnGallery, btnScan, btnAddTransaction])
         
         borderImageView(imageInput)
         
         removeTextViewLeftPadding(txtNote)
         
         self.title = "Bill Scanner"
+        
+        // Comment for testing git
     }
     
     // MARK: - Hide tab bar
@@ -61,8 +53,10 @@ class ScanBillViewController: UIViewController {
     }
     
     // MARK: - Make rounded buttons
-    func configureButton(_ button: UIButton) {
-        button.layer.cornerRadius = 10
+    func configureButton(_ buttons: [UIButton]) {
+        buttons.forEach { button in
+            button.layer.cornerRadius = 10
+        }
     }
     
     // MARK: - Remove left padding of text view
@@ -75,6 +69,10 @@ class ScanBillViewController: UIViewController {
         imageView.layer.cornerRadius = 10
         imageView.layer.borderWidth = 1
         imageView.layer.borderColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0).cgColor
+    }
+    
+    func setupDelegate(presenter: ScanBillPresenter) {
+        self.presenter = presenter
     }
     
     // MARK: - Get bill's image from user with photo library
@@ -96,8 +94,7 @@ class ScanBillViewController: UIViewController {
     
     // MARK: - Process image to presenter to handle
     @IBAction func btnScanClicked(_ sender: Any) {
-        presenter.viewDelegate = self
-        presenter.handleImage(imageInput.image!)
+        presenter?.handleImage(imageInput.image!)
     }
     
     // MARK: - Save transaction to DB
@@ -109,17 +106,12 @@ class ScanBillViewController: UIViewController {
         userTransaction.note = txtNote.text
         userTransaction.date = lblDate.text
         
-        presenter.viewDelegate = self
-        presenter.saveTransaction(userTransaction)
-    }
-    
-    @IBAction func btnCancelClicked(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        presenter?.saveTransaction(userTransaction)
     }
 }
 
 extension ScanBillViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    // MARK: - Get image from photo library and place it in image view
+    // Get image from photo library and place it in image view
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             imageInput.contentMode = .scaleAspectFit
@@ -134,9 +126,9 @@ extension ScanBillViewController: UIImagePickerControllerDelegate, UINavigationC
     }
 }
 
-extension ScanBillViewController: ScanBillViewControllerProtocol {
-    // MARK: - Show alert to inform user depend on state (fail or success)
-    func showAlert(_ state: Bool) {
+extension ScanBillViewController: ScanBillPresenterDelegate {
+    // Show alert to inform user depend on state (fail or success)
+    func showAlertMessage(_ state: Bool) {
         if !state {
             let alert = UIAlertController(title: "INVALID TRANSACTION", message: "You might haven't scanned your bill yet, please try again!", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
@@ -148,10 +140,11 @@ extension ScanBillViewController: ScanBillViewControllerProtocol {
         }
     }
     
-    // MARK: - Set up views with processed data from presenter
+    // Set up views with processed data from presenter
     func setupForViews(_ transaction: Transaction) {
         self.lblDate.text = transaction.date ?? "Undefined"
         self.lblTotal.text = "\(transaction.amount ?? 0) VND"
         self.txtNote.text = transaction.note ?? "Undefined"
     }
 }
+

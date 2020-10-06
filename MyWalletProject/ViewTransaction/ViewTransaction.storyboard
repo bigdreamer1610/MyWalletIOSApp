@@ -25,7 +25,7 @@
         <!--Transaction-->
         <scene sceneID="Sel-fD-VTr">
             <objects>
-                <viewController storyboardIdentifier="ViewTransactionController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iIv-nx-1Oz" customClass="ViewTransactionController" customModule="MyWalletProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="transaction_vc" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iIv-nx-1Oz" customClass="ViewTransactionViewController" customModule="MyWalletProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NpJ-90-PQR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -34,10 +34,6 @@
                                 <rect key="frame" x="0.0" y="154" width="414" height="708"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
-                            </tableView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BXB-hp-I2X" userLabel="CategoryTableview">
-                                <rect key="frame" x="0.0" y="154" width="414" height="708"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Lg-6f-4Kz">
                                 <rect key="frame" x="87" y="389" width="240" height="128"/>
@@ -111,26 +107,14 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XZe-HV-kaU">
-                                        <rect key="frame" x="32" y="15" width="93" height="30"/>
-                                        <color key="backgroundColor" red="1" green="0.41087010410000002" blue="0.45685387500000002" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Test Button">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="clickAddTransaction:" destination="iIv-nx-1Oz" eventType="touchUpInside" id="3qt-5c-yb1"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="XZe-HV-kaU" firstAttribute="leading" secondItem="NGy-Z6-NcZ" secondAttribute="leading" constant="32" id="2v8-yi-WFw"/>
                                     <constraint firstItem="a0o-Zo-xWX" firstAttribute="centerY" secondItem="bWw-uk-5vs" secondAttribute="centerY" id="7fs-Ed-LaZ"/>
                                     <constraint firstAttribute="trailing" secondItem="a0o-Zo-xWX" secondAttribute="trailing" constant="30" id="AhN-7y-V9Y"/>
                                     <constraint firstAttribute="height" constant="60" id="FhT-A9-a2X"/>
                                     <constraint firstItem="bWw-uk-5vs" firstAttribute="centerY" secondItem="NGy-Z6-NcZ" secondAttribute="centerY" id="Ogg-fj-UyX"/>
                                     <constraint firstItem="bWw-uk-5vs" firstAttribute="centerX" secondItem="NGy-Z6-NcZ" secondAttribute="centerX" id="QQ4-RC-CoX"/>
-                                    <constraint firstItem="XZe-HV-kaU" firstAttribute="centerY" secondItem="NGy-Z6-NcZ" secondAttribute="centerY" id="oKS-pC-byz"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7cd-Kh-02u">
@@ -167,18 +151,14 @@
                             <constraint firstItem="5Lg-6f-4Kz" firstAttribute="centerY" secondItem="7Mv-ph-GgW" secondAttribute="centerY" id="2NI-J3-vsy"/>
                             <constraint firstItem="7Mv-ph-GgW" firstAttribute="bottom" secondItem="HVO-pU-eEj" secondAttribute="bottom" id="4he-K5-Wzi"/>
                             <constraint firstItem="7Mv-ph-GgW" firstAttribute="trailing" secondItem="HVO-pU-eEj" secondAttribute="trailing" id="6iD-3M-8mO"/>
-                            <constraint firstItem="7Mv-ph-GgW" firstAttribute="bottom" secondItem="BXB-hp-I2X" secondAttribute="bottom" id="DRZ-i2-8bp"/>
                             <constraint firstItem="eCd-Ke-4ec" firstAttribute="centerY" secondItem="7Mv-ph-GgW" secondAttribute="centerY" constant="50" id="Lzh-zx-l6T"/>
                             <constraint firstItem="HVO-pU-eEj" firstAttribute="leading" secondItem="7Mv-ph-GgW" secondAttribute="leading" id="NWy-M0-EeF"/>
                             <constraint firstItem="HVO-pU-eEj" firstAttribute="top" secondItem="7cd-Kh-02u" secondAttribute="bottom" id="Sa9-be-Dem"/>
                             <constraint firstItem="7Mv-ph-GgW" firstAttribute="trailing" secondItem="NGy-Z6-NcZ" secondAttribute="trailing" id="XlU-M6-aj8"/>
-                            <constraint firstItem="7Mv-ph-GgW" firstAttribute="trailing" secondItem="BXB-hp-I2X" secondAttribute="trailing" id="b9e-bu-YYs"/>
                             <constraint firstItem="7cd-Kh-02u" firstAttribute="top" secondItem="NGy-Z6-NcZ" secondAttribute="bottom" id="d4w-Ih-CAD"/>
                             <constraint firstItem="7cd-Kh-02u" firstAttribute="leading" secondItem="7Mv-ph-GgW" secondAttribute="leading" id="dNo-4I-HJS"/>
                             <constraint firstItem="eCd-Ke-4ec" firstAttribute="centerX" secondItem="7Mv-ph-GgW" secondAttribute="centerX" id="kor-vG-4ie"/>
-                            <constraint firstItem="BXB-hp-I2X" firstAttribute="top" secondItem="7cd-Kh-02u" secondAttribute="bottom" id="oAR-6Q-lNL"/>
                             <constraint firstItem="NGy-Z6-NcZ" firstAttribute="top" secondItem="7Mv-ph-GgW" secondAttribute="top" id="rMO-xx-czo"/>
-                            <constraint firstItem="BXB-hp-I2X" firstAttribute="leading" secondItem="7Mv-ph-GgW" secondAttribute="leading" id="svh-mj-gpO"/>
                             <constraint firstItem="NGy-Z6-NcZ" firstAttribute="leading" secondItem="7Mv-ph-GgW" secondAttribute="leading" id="wfv-Pg-PuV"/>
                             <constraint firstItem="7Mv-ph-GgW" firstAttribute="trailing" secondItem="7cd-Kh-02u" secondAttribute="trailing" id="yow-wj-nZx"/>
                         </constraints>
@@ -186,7 +166,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Transaction" id="scG-kq-Zbv"/>
                     <connections>
-                        <outlet property="btnAdd" destination="XZe-HV-kaU" id="nb7-gv-Ree"/>
                         <outlet property="btnShowMore" destination="a0o-Zo-xWX" id="3xf-Ne-gBc"/>
                         <outlet property="centerIcon" destination="VHJ-m4-SB9" id="bLh-TV-Ekt"/>
                         <outlet property="centerIndicator" destination="YFX-lA-6wC" id="cDx-UW-0iD"/>
@@ -196,7 +175,6 @@
                         <outlet property="monthCollectionView" destination="7cd-Kh-02u" id="obh-Qw-IZa"/>
                         <outlet property="noTransaction" destination="eCd-Ke-4ec" id="auF-nb-SMQ"/>
                         <outlet property="transactionTableView" destination="HVO-pU-eEj" id="bqY-3K-fzS"/>
-                        <outlet property="viewByCategoryTableView" destination="BXB-hp-I2X" id="B1g-LL-y7C"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0F5-ms-3p8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -219,7 +197,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter current balance of your wallet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zSL-88-9hD">
-                                <rect key="frame" x="71" y="336" width="272" height="21"/>
+                                <rect key="frame" x="71.5" y="336" width="271.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -829,11 +807,12 @@
                     <connections>
                         <outlet property="btnCancel" destination="FlJ-FO-PdS" id="1AM-T2-L5v"/>
                         <outlet property="btnSave" destination="Rit-VP-p6v" id="NwV-Bg-g3z"/>
+                        <outlet property="iconEvent" destination="KEG-KC-4Tz" id="PAd-Z9-nV6"/>
                         <outlet property="iconImage" destination="3bm-Po-Ne4" id="X3w-OR-o1V"/>
-                        <outlet property="tfEvent" destination="VCB-W7-aso" id="W01-my-nH5"/>
                         <outlet property="txtAmount" destination="ogq-js-IMD" id="dib-kg-ECR"/>
                         <outlet property="txtCategory" destination="mp1-xZ-gW6" id="Qy6-R7-Gt5"/>
                         <outlet property="txtDate" destination="ao0-f7-UaN" id="D0w-cb-NIj"/>
+                        <outlet property="txtEvent" destination="VCB-W7-aso" id="ahB-Fd-fg7"/>
                         <outlet property="txtNote" destination="h7g-kG-2dI" id="0RB-Ub-pme"/>
                     </connections>
                 </viewController>
@@ -1106,39 +1085,35 @@
             </objects>
             <point key="canvasLocation" x="3457.971014492754" y="938.83928571428567"/>
         </scene>
-        <!--Transaction View Controller-->
-        <scene sceneID="JHD-lO-fdc">
+        <!--Budget Transaction View Controller-->
+        <scene sceneID="V2Y-eb-icp">
             <objects>
-                <viewController storyboardIdentifier="transaction" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3dy-mI-fCb" customClass="TransactionViewController" customModule="MyWalletProject" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="GWW-Mr-UBp">
+                <viewController storyboardIdentifier="budgetTransaction_vc" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ClT-5x-2lU" customClass="BudgetTransactionViewController" customModule="MyWalletProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LXa-XP-Z4N">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTI-Q1-3aT">
-                                <rect key="frame" x="56" y="392" width="62" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cn-mL-u2V">
-                                <rect key="frame" x="204" y="372" width="84" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hXp-zG-5h6">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="2Us-Vt-FXG"/>
+                        <constraints>
+                            <constraint firstItem="giV-wr-vZA" firstAttribute="trailing" secondItem="hXp-zG-5h6" secondAttribute="trailing" id="Ang-Pi-IJC"/>
+                            <constraint firstItem="hXp-zG-5h6" firstAttribute="top" secondItem="giV-wr-vZA" secondAttribute="top" id="Emo-q0-p78"/>
+                            <constraint firstItem="giV-wr-vZA" firstAttribute="bottom" secondItem="hXp-zG-5h6" secondAttribute="bottom" id="WWQ-3L-H4z"/>
+                            <constraint firstItem="hXp-zG-5h6" firstAttribute="leading" secondItem="giV-wr-vZA" secondAttribute="leading" id="wL7-24-Jqg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="giV-wr-vZA"/>
                     </view>
                     <connections>
-                        <outlet property="lbNumber" destination="5cn-mL-u2V" id="EiO-MR-Wfq"/>
+                        <outlet property="detailTableView" destination="hXp-zG-5h6" id="fCl-xM-HsT"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Avk-2p-BEv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3o3-Wz-Ou3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="377" y="916"/>
+            <point key="canvasLocation" x="571" y="940"/>
         </scene>
         <!--Second Navigation Controller-->
         <scene sceneID="mvL-LK-eUA">

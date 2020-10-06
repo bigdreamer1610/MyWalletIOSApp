@@ -46,7 +46,7 @@ class UserSettingsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let backItem = UIBarButtonItem()
         backItem.title = "Back"
-        backItem.tintColor = UIColor(displayP3Red: 52, green: 199, blue: 90, alpha: 1.0)
+        backItem.tintColor = UIColor.init(displayP3Red: 52, green: 199, blue: 90, alpha: 1.0)
         navigationItem.backBarButtonItem = backItem
     }
 }
@@ -91,25 +91,18 @@ extension UserSettingsViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            let settingsController = UIStoryboard.init(name: "UserSettings", bundle: nil).instantiateViewController(identifier: "settingsVC") as! SettingsViewController
-            navigationController?.pushViewController(settingsController, animated: true)
+            AppRouter.routerTo(from: self, router: .settings, options: .push)
         case 1:
-            // TO DO: - Implementation of Categories Screen
-//            let settingsController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: "settings")
-//            navigationController?.pushViewController(settingsController, animated: true)
-            print("For categories")
+            AppRouter.routerTo(from: self, router: .addCategories, options: .push)
         case 2:
-            let currencyController = UIStoryboard.init(name: "UserSettings", bundle: nil).instantiateViewController(identifier: "currencyVC") as! CurrencyViewController
-            currencyController.presenter.fetchData()
-            navigationController?.pushViewController(currencyController, animated: true)
+            AppRouter.routerTo(from: self, router: .currencies, options: .push)
         case 3:
-            let travelModeController = UIStoryboard.init(name: "UserSettings", bundle: nil).instantiateViewController(identifier: "travelModeVC") as! TravelModeViewController
-            navigationController?.pushViewController(travelModeController, animated: true)
+            AppRouter.routerTo(from: self, router: .travelMode, options: .push)
         case 4:
-            let scanBillController = UIStoryboard.init(name: "ScanBill", bundle: nil).instantiateViewController(identifier: "scanBillVC") as! ScanBillViewController
-            navigationController?.pushViewController(scanBillController, animated: true)
+            AppRouter.routerTo(from: self, router: .billScanner, options: .push)
         default:
             return
         }
     }
 }
+

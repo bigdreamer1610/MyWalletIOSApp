@@ -5,7 +5,6 @@
 //  Created by Nguyen Thi Huong on 9/23/20.
 //  Copyright © 2020 THUY Nguyen Duong Thu. All rights reserved.
 //
-
 import UIKit
 import Charts
 import FirebaseDatabase
@@ -19,16 +18,12 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
     var ref: DatabaseReference!
     var sumExpense = 0
     var sumIncome = 0
-    var state = 0
+    var state: String = ""
     var entries = [ChartDataEntry]()
-    var sumByCategory = [(category: String, amount: Int)]()
+    var sumByCategoryIncome = [(category: String, amount: Int)]()
+    var sumByCategoryExpense = [(category: String, amount: Int)]()
     private var formatter = NumberFormatter()
-    var date = "" {
-        didSet {
-            getData()
-            setChart()
-        }
-    }
+    
     var reportView2: ReceiveData?
     
     override func awakeFromNib() {
@@ -37,93 +32,15 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
         formatter.groupingSeparator = ","
         formatter.numberStyle = .decimal
         buildChart()
-
         setChart()
-   
     }
     
-    var incomeArray: [Transaction] = [] {
-        didSet {
-            setChart()
-        }
-    }
-    var expenseArray: [Transaction] = [] {
-        didSet {
-            
-            setChart()
-        }
-    }
-    
-    // Get data from db
-    func getData()  {
-        expenseArray.removeAll()
-        incomeArray.removeAll()
-        sumIncome = 0
-        sumExpense = 0
-        self.ref.child("Account").child("userid1").child("transaction").child("expense").observeSingleEvent(of: .value) {
-            snapshot in
-            for case let child as DataSnapshot in snapshot.children {
-                guard let dict = child.value as? [String:Any] else {
-                    return
-                }
-                let amount = dict["amount"] as! Int
-                let date = dict["date"] as! String
-                let categoryid = dict["categoryid"] as! String
-                let tempDate = date.split(separator: "/")
-                
-                let checkDate = tempDate[1] + "/" + tempDate[2]
-                
-                if self.date == checkDate {
-                    let ex = Transaction(amount: amount, categoryid: categoryid, date: date)
-                    self.sumExpense += amount
-                    self.expenseArray.append(ex)
-                }
-            }
-        }
-        
-        self.ref.child("Account").child("userid1").child("transaction").child("income").observeSingleEvent(of: .value) {
-            snapshot in
-            for case let child as DataSnapshot in snapshot.children {
-                guard let dict = child.value as? [String:Any] else {
-                    return
-                }
-                let amount = dict["amount"] as! Int
-                let date = dict["date"] as! String
-                let categoryid = dict["categoryid"] as! String
-                let tempDate = date.split(separator: "/")
-                
-                let checkDate = tempDate[1] + "/" + tempDate[2]
-                
-                if self.date == checkDate {
-                    let ex = Transaction(amount: amount, categoryid: categoryid, date: date)
-                    self.sumIncome += amount
-                    self.incomeArray.append(ex)
-                }
-            }
-        }
-    }
-    
-    // Sum by Category
-    func dataForPieChart(dataArray: [Transaction]) {
-        sumByCategory.removeAll()
-        for index in 0 ..< dataArray.count {
-            let sumIndex = checkExist(category: dataArray[index].categoryid!)
-            if sumIndex != -1 {
-                sumByCategory[sumIndex].amount += dataArray[index].amount!
-            } else {
-                sumByCategory.append((category: dataArray[index].categoryid!, amount: dataArray[index].amount!))
-            }
-        }
-    }
-    
-    // Check if a Category exists
-    func checkExist(category: String) -> Int {
-        for index in 0 ..< sumByCategory.count {
-            if category == sumByCategory[index].category {
-                return index
-            }
-        }
-        return -1
+    func setupDataCL(sumIncome: Int, sumExpense: Int, sumByCategoryIncome: [(category: String, amount: Int)], sumByCategoryExpense: [(category: String, amount: Int)]) {
+        self.sumIncome = sumIncome
+        self.sumExpense = sumExpense
+        self.sumByCategoryIncome = sumByCategoryIncome
+        self.sumByCategoryExpense = sumByCategoryExpense
+        setChart()
     }
     
     func buildChart() {
@@ -140,35 +57,26 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
         l.formToTextSpace = 4
         l.xEntrySpace = 6
         l.xOffset = 15
-        
     }
     
     // Set data chart
     func setChart(){
         entries.removeAll()
-        
         chartView.frame = CGRect(x: 0,
                                  y: 0,
                                  width: self.containerView.frame.size.width,
                                  height: self.containerView.frame.size.height)
-        
         containerView.addSubview(chartView)
         
-        if state == 1 {
-            dataForPieChart(dataArray: incomeArray)
-            
+        if state == "income" {
             lblMoney.text = "\(formatter.string(from: NSNumber(value: sumIncome))!)"
-            for index in 0 ..< sumByCategory.count {
-                entries.append(PieChartDataEntry(value: Double(sumByCategory[index].amount), label: sumByCategory[index].category))
+            for index in 0 ..< sumByCategoryIncome.count {
+                entries.append(PieChartDataEntry(value: Double(sumByCategoryIncome[index].amount), label: sumByCategoryIncome[index].category))
             }
-        }
-            
-        else {
-            dataForPieChart(dataArray: expenseArray)
-            
+        } else {
             lblMoney.text = "\(formatter.string(from: NSNumber(value: sumExpense))!)"
-            for index in 0 ..< sumByCategory.count {
-                entries.append(PieChartDataEntry(value: Double(sumByCategory[index].amount), label: sumByCategory[index].category))
+            for index in 0 ..< sumByCategoryExpense.count {
+                entries.append(PieChartDataEntry(value: Double(sumByCategoryExpense[index].amount), label: sumByCategoryExpense[index].category))
             }
         }
         
@@ -199,7 +107,4 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
         chartView.data = data
         chartView.highlightValues(nil)
     }
-    
-   
 }
-

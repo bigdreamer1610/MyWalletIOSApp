@@ -16,26 +16,27 @@ protocol ReceiveData: class {
 }
 
 class ReportViewController: UIViewController {
-    
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var txtDatePicker: UITextField!
     var ref: DatabaseReference!
     private var dateFormatter = DateFormatter()
-    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+    //    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+    var months = ["Tháng một","Tháng hai","Tháng ba","Tháng tư","Tháng năm","Tháng sáu","Tháng bảy","Tháng tám","Tháng chín","Tháng mười","Tháng mười một","Tháng mười hai"]
     let calendar = Calendar.current
     var currentMonth = 9
     var currentYear = 2020
     var sumIncome = 0
     var sumExpense = 0
     var state = 0
-    var date = "" 
+    var date = ""
     var category = ""
     var expenseArray: [Transaction] = []
     var incomeArray: [Transaction] = []
     var timer = Timer()
-    var sumByCategory = [(category: String, amount: Int)]()
+    var sumByCategoryIncome = [(category: String, amount: Int)]()
+    var sumByCategoryExpense = [(category: String, amount: Int)]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,25 +45,12 @@ class ReportViewController: UIViewController {
         setupTxtDate()
         showDatePicker()
         createDatePicker()
-//        self.tableView.addSubview(self.refreshControl)
-      
         DispatchQueue.main.async {
             self.getIncome()
             self.getExpense()
         }
-        
         checkWhenDataIsReady()
         tableView.reloadData()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
-        super.viewWillDisappear(animated)
     }
     
     //MARK: - Check data is ready
@@ -72,6 +60,10 @@ class ReportViewController: UIViewController {
     
     @objc func finishLoading() {
         if expenseArray.count != 0 && incomeArray.count != 0 {
+            sumByCategoryIncome.removeAll()
+            sumByCategoryExpense.removeAll()
+            dataForPieChart(dataArray: incomeArray, state: "income")
+            dataForPieChart(dataArray: expenseArray, state: "expense")
             tableView.reloadData()
             timer.invalidate()
         }
@@ -81,6 +73,12 @@ class ReportViewController: UIViewController {
     func getExpense()  {
         expenseArray.removeAll()
         sumExpense = 0
+        
+        // tạo luồng load cùng 1 nhóm
+        let dispatchGroup = DispatchGroup()
+        
+        // load api Transaction
+        dispatchGroup.enter()
         self.ref.child("Account").child("userid1").child("transaction").child("expense").observeSingleEvent(of: .value) {
             snapshot in
             for case let child as DataSnapshot in snapshot.children {
@@ -101,11 +99,14 @@ class ReportViewController: UIViewController {
                 }
             }
         }
+        dispatchGroup.leave()
     }
     
     func getIncome() {
         incomeArray.removeAll()
         sumIncome = 0
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
         self.ref.child("Account").child("userid1").child("transaction").child("income").observeSingleEvent(of: .value) {
             snapshot in
             for case let child as DataSnapshot in snapshot.children {
@@ -120,32 +121,39 @@ class ReportViewController: UIViewController {
                 let checkDate = tempDate[1] + "/" + tempDate[2]
                 
                 if self.date == checkDate {
-                   let ex = Transaction(amount: amount, categoryid: categoryid, date: date)
+                    let ex = Transaction(amount: amount, categoryid: categoryid, date: date)
                     self.sumIncome += amount
                     self.category = categoryid
                     self.incomeArray.append(ex)
                 }
             }
         }
+        dispatchGroup.leave()
     }
     
     // Sum by Category
-    func dataForPieChart(dataArray: [Transaction]) {
-        sumByCategory.removeAll()
+    func dataForPieChart(dataArray: [Transaction], state: String) {
+        var sumByCategory = [(category: String, amount: Int)]()
         for index in 0 ..< dataArray.count {
-            let sumIndex = checkExist(category: dataArray[index].categoryid!)
+            let sumIndex = checkExist(category: dataArray[index].categoryid!, array: sumByCategory)
             if sumIndex != -1 {
                 sumByCategory[sumIndex].amount += dataArray[index].amount!
             } else {
                 sumByCategory.append((category: dataArray[index].categoryid!, amount: dataArray[index].amount!))
             }
         }
+        sumByCategory.sort(by: { $0.amount > $1.amount })
+        if state == "income" {
+            sumByCategoryIncome = sumByCategory
+        } else {
+            sumByCategoryExpense = sumByCategory
+        }
     }
     
     // Check if a Category exists
-    func checkExist(category: String) -> Int {
-        for index in 0 ..< sumByCategory.count {
-            if category == sumByCategory[index].category {
+    func checkExist(category: String, array: [(category: String, amount: Int)]) -> Int {
+        for index in 0 ..< array.count {
+            if category == array[index].category {
                 return index
             }
         }
@@ -162,10 +170,10 @@ class ReportViewController: UIViewController {
         lblDate.text = "\(months[currentMonth - 1]) \(currentYear)"
         if currentMonth < 10 {
             txtDatePicker.text = "0\(currentMonth)/\(currentYear)"
-            self.date = "0\(currentMonth)/\(currentYear)"
+            self.date = txtDatePicker.text ?? "Error"
         } else {
             txtDatePicker.text = "\(currentMonth)/\(currentYear)"
-            self.date = "\(currentMonth)/\(currentYear)"
+            self.date = txtDatePicker.text ?? "Error"
         }
         txtDatePicker.setRightImage(imageName: "down")
     }
@@ -181,7 +189,6 @@ class ReportViewController: UIViewController {
     
     @objc func doneDatePicker(){
         self.view.endEditing(true)
-        
     }
     
     func createDatePicker(){
@@ -193,12 +200,14 @@ class ReportViewController: UIViewController {
     }
     
     @objc func dateChanged(_ picker: MonthYearPickerView) {
-        let components = calendar.dateComponents([.day, .month, .year, .weekday], from: picker.date)
+        let components = calendar.dateComponents([.month, .year], from: picker.date)
         lblDate.text = "\(months[components.month! - 1]) \(components.year!)"
         if components.month! < 10 {
             txtDatePicker.text = "0\(components.month!)/\(components.year!)"
+            self.date = txtDatePicker.text ?? "\(currentMonth)/\(currentYear)"
         } else {
             txtDatePicker.text = "\(components.month!)/\(components.year!)"
+            self.date = txtDatePicker.text ?? "\(currentMonth)/\(currentYear)"
         }
         tableView.reloadData()
     }
@@ -227,23 +236,24 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
+        switch indexPath.section {
+        case 0:
             let cell = MoneyTableViewCell.loadCell(tableView)  as! MoneyTableViewCell
             cell.selectionStyle = .none
             return cell
-        } else if indexPath.section == 1  {
-            let cell = StackedBarChartTableViewCell.loadCell(tableView)  as! StackedBarChartTableViewCell
+        case 1:
+            let cell = StackedBarChartTableViewCell.loadCell(tableView) as! StackedBarChartTableViewCell
             cell.selectionStyle = UITableViewCell.SelectionStyle.none
-            cell.sumExpense = sumExpense
-            cell.sumIncome = sumIncome
-            print("\(sumIncome) 01235648 \(sumExpense)")
+            cell.setupData(sumIncome: sumIncome, sumExpense: sumExpense)
             cell.reportView = self
             return cell
-        } else {
+        default:
             let cell = PieChartTableViewCell.loadCell(tableView)  as! PieChartTableViewCell
             cell.delegate = self
-
-            cell.date = txtDatePicker.text ?? "Error"
+            cell.setupDataTB(sumIncome: sumIncome, sumExpense: sumExpense, sumByCategoryIncome: sumByCategoryIncome, sumByCategoryExpense: sumByCategoryExpense)
+            print("@@@@@@@@@2")
+            print(sumByCategoryExpense)
+            print(sumByCategoryIncome)
             return cell
         }
     }
@@ -257,7 +267,6 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 }
-
 
 //MARK: - Go to DetailPieChartVC
 extension ReportViewController: CustomCollectionCellDelegate {
