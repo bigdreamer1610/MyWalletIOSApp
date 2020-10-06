@@ -153,7 +153,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FuI-jd-Eul">
                                                 <rect key="frame" x="0.0" y="0.0" width="187.66666666666666" height="40"/>
-                                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" image="camera.fill" catalog="system"/>
@@ -163,7 +163,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WSg-ln-72d">
                                                 <rect key="frame" x="206.33333333333337" y="0.0" width="187.66666666666663" height="40"/>
-                                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" image="photo.fill" catalog="system">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -188,7 +188,7 @@
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DGt-Bv-c4n">
                                         <rect key="frame" x="0.0" y="45" width="394" height="40"/>
-                                        <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="gnl-eZ-mjA"/>
                                         </constraints>
@@ -198,53 +198,29 @@
                                             <action selector="btnScanClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="d6u-4u-mJv"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4nI-Fh-72v">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MOm-TW-dsG">
                                         <rect key="frame" x="0.0" y="221.33333333333331" width="394" height="40"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MOm-TW-dsG">
-                                                <rect key="frame" x="0.0" y="0.0" width="187.66666666666666" height="40"/>
-                                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="ADD TRANSACTION">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="btnAddTransactionClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LlK-mC-wsy"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hU1-s4-7Wt">
-                                                <rect key="frame" x="206.33333333333337" y="0.0" width="187.66666666666663" height="40"/>
-                                                <color key="backgroundColor" red="1" green="0.29097051740000002" blue="0.16793154539999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="CANCEL">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="btnCancelClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eKy-Bu-lDd"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="hU1-s4-7Wt" secondAttribute="trailing" id="9R5-IO-6oG"/>
-                                            <constraint firstAttribute="bottom" secondItem="MOm-TW-dsG" secondAttribute="bottom" id="HC6-AR-DmI"/>
-                                            <constraint firstItem="MOm-TW-dsG" firstAttribute="width" secondItem="4nI-Fh-72v" secondAttribute="width" multiplier="10/21" id="MTL-vR-efa"/>
-                                            <constraint firstItem="MOm-TW-dsG" firstAttribute="top" secondItem="4nI-Fh-72v" secondAttribute="top" id="WGF-v9-VoQ"/>
-                                            <constraint firstAttribute="height" constant="40" id="cnL-wO-tjS"/>
-                                            <constraint firstItem="hU1-s4-7Wt" firstAttribute="width" secondItem="4nI-Fh-72v" secondAttribute="width" multiplier="10/21" id="il8-eK-gmu"/>
-                                            <constraint firstItem="MOm-TW-dsG" firstAttribute="leading" secondItem="4nI-Fh-72v" secondAttribute="leading" id="mDk-Ps-kZe"/>
-                                            <constraint firstItem="hU1-s4-7Wt" firstAttribute="top" secondItem="4nI-Fh-72v" secondAttribute="top" id="r4A-WF-sZk"/>
-                                            <constraint firstAttribute="bottom" secondItem="hU1-s4-7Wt" secondAttribute="bottom" id="zlc-hc-GTF"/>
+                                            <constraint firstAttribute="height" constant="40" id="I3i-EA-EZq"/>
                                         </constraints>
-                                    </view>
+                                        <state key="normal" title="ADD TRANSACTION">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnAddTransactionClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LlK-mC-wsy"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="4nI-Fh-72v" secondAttribute="bottom" id="CUB-B9-q6W"/>
-                                    <constraint firstItem="4nI-Fh-72v" firstAttribute="leading" secondItem="vfG-mv-UbY" secondAttribute="leading" id="CeZ-DQ-BAr"/>
+                                    <constraint firstAttribute="bottom" secondItem="MOm-TW-dsG" secondAttribute="bottom" id="QPs-g1-y6p"/>
                                     <constraint firstItem="DGt-Bv-c4n" firstAttribute="leading" secondItem="vfG-mv-UbY" secondAttribute="leading" id="ak4-l9-dAo"/>
                                     <constraint firstItem="DGt-Bv-c4n" firstAttribute="top" secondItem="Q3r-Nl-tHR" secondAttribute="bottom" constant="5" id="fFf-OC-m5d"/>
+                                    <constraint firstItem="MOm-TW-dsG" firstAttribute="leading" secondItem="vfG-mv-UbY" secondAttribute="leading" id="fHR-as-Hgr"/>
                                     <constraint firstAttribute="trailing" secondItem="Q3r-Nl-tHR" secondAttribute="trailing" id="lH5-1U-mrX"/>
+                                    <constraint firstAttribute="trailing" secondItem="MOm-TW-dsG" secondAttribute="trailing" id="n3m-ae-Lqh"/>
                                     <constraint firstItem="Q3r-Nl-tHR" firstAttribute="leading" secondItem="vfG-mv-UbY" secondAttribute="leading" id="rBg-c5-fT9"/>
-                                    <constraint firstAttribute="trailing" secondItem="4nI-Fh-72v" secondAttribute="trailing" id="twL-pd-77O"/>
                                     <constraint firstAttribute="trailing" secondItem="DGt-Bv-c4n" secondAttribute="trailing" id="zJs-jt-mFa"/>
                                     <constraint firstItem="Q3r-Nl-tHR" firstAttribute="top" secondItem="vfG-mv-UbY" secondAttribute="top" id="znn-It-7Ia"/>
                                 </constraints>
@@ -270,7 +246,6 @@
                     <connections>
                         <outlet property="btnAddTransaction" destination="MOm-TW-dsG" id="toi-b0-jwk"/>
                         <outlet property="btnCamera" destination="FuI-jd-Eul" id="Da8-dY-kmh"/>
-                        <outlet property="btnCancel" destination="hU1-s4-7Wt" id="0wF-ug-UAc"/>
                         <outlet property="btnGallery" destination="WSg-ln-72d" id="E8r-aZ-eqW"/>
                         <outlet property="btnScan" destination="DGt-Bv-c4n" id="22E-sr-Ewk"/>
                         <outlet property="imageInput" destination="IlV-Vz-JCn" id="TrJ-Bh-cjc"/>
@@ -294,3 +269,4 @@
         <image name="photo.fill.on.rectangle.fill" catalog="system" width="128" height="98"/>
     </resources>
 </document>
+

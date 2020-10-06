@@ -19,10 +19,19 @@ enum Language: String {
     case english = "English"
 }
 
+protocol SettingsPresenterDelegate {
+    func showAlertMessage(_ message: String, _ state: Bool)
+}
+
 class SettingsPresenter {
     
-    var viewDelegate: SettingsViewControllerProtocol?
-    var usecase: SettingsUseCase = SettingsUseCase()
+    var delegate: SettingsPresenterDelegate?
+    var usecase: SettingsUseCase?
+    
+    init(delegate: SettingsPresenterDelegate, usecase: SettingsUseCase) {
+        self.delegate = delegate
+        self.usecase = usecase
+    }
     
     func validateInput(_ user: Account) {
         var message = ""
@@ -72,12 +81,9 @@ class SettingsPresenter {
         else {
             // Input passes all validation
             state = true
+            usecase?.saveUserInfoToDB(user)
         }
 
-        viewDelegate?.showAlert(message, state)
-    }
-    
-    func saveUserInfo(_ user: Account) {
-        usecase.saveUserInfoToDB(user)
+        delegate?.showAlertMessage(message, state)
     }
 }

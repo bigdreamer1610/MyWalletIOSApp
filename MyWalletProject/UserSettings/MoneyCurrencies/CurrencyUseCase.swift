@@ -9,10 +9,16 @@
 import Foundation
 import Firebase
 
+protocol CurrencyUseCaseDelegate {
+    func responseData(resultModel: ResultData)
+}
+
 class CurrencyUseCase {
     var rateData: CurrencyData?
-    var presenterDelegate: CurrencyPresenterProtocol?
-    
+    var delegate: CurrencyUseCaseDelegate?
+}
+
+extension CurrencyUseCase {
     // MARK: - Get data from API with desired currencies, base is USA
     func fetchData() {
         let url = URL(string: "https://api.currencyfreaks.com/latest?apikey=ae28c3231f23426b80da6acb5bc27c63&symbols=VND,EUR,JPY,KRW,CNY,SGD,AUD,CAD")!
@@ -47,8 +53,7 @@ class CurrencyUseCase {
         result.AUD = exchangeMiddleware(sourceRate: result.USD, exchangeRate: Double(self.rateData?.rates.AUD ?? "")!)
         result.CAD = exchangeMiddleware(sourceRate: result.USD, exchangeRate: Double(self.rateData?.rates.CAD ?? "")!)
         
-        
-        presenterDelegate?.receiveExchangeResult(resultModel: result)
+        delegate?.responseData(resultModel: result)
     }
     
     // MARK: - Middleware to exchange USD to other currencies
