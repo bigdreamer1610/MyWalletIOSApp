@@ -16,7 +16,6 @@ protocol ReceiveData: class {
 }
 
 class ReportViewController: UIViewController {
-    
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var containerView: UIView!
@@ -24,19 +23,20 @@ class ReportViewController: UIViewController {
     var ref: DatabaseReference!
     private var dateFormatter = DateFormatter()
     //    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
-    var months = ["Tháng 1","Tháng 2","Tháng 3","Tháng 4","Tháng 5","Tháng 6","Tháng 7","Tháng 8","Tháng 9","Tháng 10","Tháng 11","Tháng 12"]
+    var months = ["Tháng một","Tháng hai","Tháng ba","Tháng tư","Tháng năm","Tháng sáu","Tháng bảy","Tháng tám","Tháng chín","Tháng mười","Tháng mười một","Tháng mười hai"]
     let calendar = Calendar.current
     var currentMonth = 9
     var currentYear = 2020
     var sumIncome = 0
     var sumExpense = 0
     var state = 0
-    var date = "" 
+    var date = ""
     var category = ""
     var expenseArray: [Transaction] = []
     var incomeArray: [Transaction] = []
     var timer = Timer()
-    var sumByCategory = [(category: String, amount: Int)]()
+    var sumByCategoryIncome = [(category: String, amount: Int)]()
+    var sumByCategoryExpense = [(category: String, amount: Int)]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +60,10 @@ class ReportViewController: UIViewController {
     
     @objc func finishLoading() {
         if expenseArray.count != 0 && incomeArray.count != 0 {
+            sumByCategoryIncome.removeAll()
+            sumByCategoryExpense.removeAll()
+            dataForPieChart(dataArray: incomeArray, state: "income")
+            dataForPieChart(dataArray: expenseArray, state: "expense")
             tableView.reloadData()
             timer.invalidate()
         }
@@ -128,22 +132,28 @@ class ReportViewController: UIViewController {
     }
     
     // Sum by Category
-    func dataForPieChart(dataArray: [Transaction]) {
-        sumByCategory.removeAll()
+    func dataForPieChart(dataArray: [Transaction], state: String) {
+        var sumByCategory = [(category: String, amount: Int)]()
         for index in 0 ..< dataArray.count {
-            let sumIndex = checkExist(category: dataArray[index].categoryid!)
+            let sumIndex = checkExist(category: dataArray[index].categoryid!, array: sumByCategory)
             if sumIndex != -1 {
                 sumByCategory[sumIndex].amount += dataArray[index].amount!
             } else {
                 sumByCategory.append((category: dataArray[index].categoryid!, amount: dataArray[index].amount!))
             }
         }
+        sumByCategory.sort(by: { $0.amount > $1.amount })
+        if state == "income" {
+            sumByCategoryIncome = sumByCategory
+        } else {
+            sumByCategoryExpense = sumByCategory
+        }
     }
     
     // Check if a Category exists
-    func checkExist(category: String) -> Int {
-        for index in 0 ..< sumByCategory.count {
-            if category == sumByCategory[index].category {
+    func checkExist(category: String, array: [(category: String, amount: Int)]) -> Int {
+        for index in 0 ..< array.count {
+            if category == array[index].category {
                 return index
             }
         }
@@ -179,7 +189,6 @@ class ReportViewController: UIViewController {
     
     @objc func doneDatePicker(){
         self.view.endEditing(true)
-        
     }
     
     func createDatePicker(){
@@ -241,8 +250,10 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
         default:
             let cell = PieChartTableViewCell.loadCell(tableView)  as! PieChartTableViewCell
             cell.delegate = self
-//            cell.setupDataTB(sumIncome: sumIncome, sumExpense: sumExpense)
-            cell.date = txtDatePicker.text ?? "Error"
+            cell.setupDataTB(sumIncome: sumIncome, sumExpense: sumExpense, sumByCategoryIncome: sumByCategoryIncome, sumByCategoryExpense: sumByCategoryExpense)
+            print("@@@@@@@@@2")
+            print(sumByCategoryExpense)
+            print(sumByCategoryIncome)
             return cell
         }
     }
@@ -256,7 +267,6 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 }
-
 
 //MARK: - Go to DetailPieChartVC
 extension ReportViewController: CustomCollectionCellDelegate {
