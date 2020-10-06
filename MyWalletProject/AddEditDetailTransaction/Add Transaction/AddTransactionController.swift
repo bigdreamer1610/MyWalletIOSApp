@@ -10,7 +10,7 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
-class AddTransactionController: UIViewController, UITextFieldDelegate {
+class AddTransactionController: UIViewController,UITextFieldDelegate {
     
     @IBOutlet weak var tfDate: UITextField!
     @IBOutlet weak var tfNote: UITextField!
@@ -34,6 +34,7 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
     var eventid: String? = nil
     var thisDate = Date()
     var budgets = [Budget]()
+    
     private let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
@@ -58,10 +59,8 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
         btnAddMore.layer.borderWidth = 1
         btnAddMore.layer.borderColor = #colorLiteral(red: 0.3929189782, green: 0.4198221317, blue: 0.8705882353, alpha: 1)
         btnAddMore.layer.cornerRadius = 6
-        
         tfCategory.setRightImage2(imageName: "arrowright")
         tfDate.setRightImage2(imageName: "arrowright")
-        tfEvent.setRightImage2(imageName: "arrowright")
     }
     
     func addEvent()  {
@@ -91,7 +90,6 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
         vc.delegate = self
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
     
     @IBAction func clickCancel(_ sender: Any) {
         let vc = RouterType.tabbar.getVc()
@@ -126,15 +124,16 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
         }))
         self.present(alert, animated: true, completion: nil)
     }
+  
     
 
     
     @IBAction func btnAddMoreDetails(_ sender: Any) {
-        
         UIView.animate(withDuration: 0.7) {
             self.viewShowMore.isHidden = false
             self.btnAddMore.isHidden = true
         }
+
     }
     
     @IBAction func btnDeleteMoreDetails(_ sender: Any) {
@@ -148,7 +147,6 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
         let allowCharacterSet = CharacterSet(charactersIn: allowCharacters)
         let typeCharacterSet = CharacterSet(charactersIn: string)
         let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-        
         btnSave.isEnabled = !text.isEmpty
         if textField == tfAmount {
             return allowCharacterSet.isSuperset(of: typeCharacterSet)
@@ -175,4 +173,5 @@ extension AddTransactionController: SelectCategory, SelectDate, SelectEvent{
         iconImage.image = UIImage(named: iconCategory)
     }
 }
+
 

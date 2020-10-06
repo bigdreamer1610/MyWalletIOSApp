@@ -23,6 +23,8 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
     var dateModel: DateModel!
     var thisDate = Date()
     var event: Event!
+    var timer = Timer()
+    var runAnimation = true
     private let dateFormatter = DateFormatter()
     
     @IBOutlet var btnSave: UIBarButtonItem!
@@ -40,10 +42,13 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        Defined.formatter.groupingSeparator = "."
+        Defined.formatter.numberStyle = .decimal
         configure()
         customizeLayout()
         txtAmount.delegate = self
         addEvent()
+        scheduledTimerWithTimeInterval()
         
     }
     
@@ -108,7 +113,7 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
     func configure(){
         txtCategory.text = categoryName
         txtNote.text = note
-        txtAmount.text = "\(amount)"
+        txtAmount.text = "\(Defined.formatter.string(from: NSNumber(value: amount))!)"
         txtDate.text = "\(dateModel.date)/\(dateModel.month)/\(dateModel.year)"
         iconImage.image = UIImage(named: icon)
     }
@@ -124,21 +129,23 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
         
         
     }
-    
     @IBAction func clickCancel(_ sender: Any) {
+        timer.invalidate()
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func clickSave(_ sender: Any) {
-         if let strAmount = txtAmount.text,
-                  let intAmount = Int(strAmount){
-                  amount = intAmount
-                  if amount <= 0{
-                      let alert = UIAlertController(title: "Notification", message: "Amount of money cannot be 0", preferredStyle: .alert)
-                      alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                      self.present(alert, animated: true, completion: nil)
-                      return
-                  }
-              }
+        timer.invalidate()
+        print("stop time")
+        if let strAmount = txtAmount.text,
+            let intAmount = Int(strAmount){
+            amount = intAmount
+            if amount <= 0{
+                let alert = UIAlertController(title: "Notification", message: "Amount of money cannot be 0", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+        }
         let update = [
             "note":txtNote.text! ,
             "date":txtDate.text!,
@@ -162,8 +169,20 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
         txtEvent.text = ""
         iconEvent.image = UIImage(named: "others")
     }
-    
+    func scheduledTimerWithTimeInterval(){
+        if !runAnimation { return }
+        timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
+    }
+    @objc func updateCounting(){
+        var checkAmount = Int(txtAmount.text!)
 
+        if checkAmount == 0 || txtCategory.text!.isEmpty || txtDate.text!.isEmpty{
+            btnSave.isEnabled = false
+        }else{
+            btnSave.isEnabled = true
+        }
+        
+    }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let allowCharacters = "0123456789"
@@ -175,7 +194,7 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
         } else {
             btnSave.isEnabled = false
         }
-        if textField == txtAmount {
+        if textField == txtAmount{
             return allowCharacterSet.isSuperset(of: typeCharacterSet)
         }
         return true
