@@ -925,18 +925,17 @@
     <color key="tintColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
     <resources>
         <image name="banker" width="170.66667175292969" height="170.66667175292969"/>
-        <image name="flag-australia" width="170.66667175292969" height="170.66667175292969"/>
-        <image name="flag-canada" width="170.66667175292969" height="170.66667175292969"/>
-        <image name="flag-china" width="170.66667175292969" height="170.66667175292969"/>
-        <image name="flag-european-union" width="170.66667175292969" height="170.66667175292969"/>
-        <image name="flag-japan" width="170.66667175292969" height="170.66667175292969"/>
-        <image name="flag-singapore" width="170.66667175292969" height="170.66667175292969"/>
-        <image name="flag-south-korea" width="170.66667175292969" height="170.66667175292969"/>
-        <image name="flag-united-states" width="170.66667175292969" height="170.66667175292969"/>
-        <image name="flag-vietnam" width="170.66667175292969" height="170.66667175292969"/>
+        <image name="flag-australia" width="128" height="128"/>
+        <image name="flag-canada" width="128" height="128"/>
+        <image name="flag-china" width="128" height="128"/>
+        <image name="flag-european-union" width="128" height="128"/>
+        <image name="flag-japan" width="128" height="128"/>
+        <image name="flag-singapore" width="128" height="128"/>
+        <image name="flag-south-korea" width="128" height="128"/>
+        <image name="flag-united-states" width="128" height="128"/>
+        <image name="flag-vietnam" width="128" height="128"/>
         <image name="rightarrow" width="170.66667175292969" height="170.66667175292969"/>
         <image name="s-defaultimage" width="170.66667175292969" height="170.66667175292969"/>
         <image name="users" width="170.66667175292969" height="170.66667175292969"/>
     </resources>
 </document>
-

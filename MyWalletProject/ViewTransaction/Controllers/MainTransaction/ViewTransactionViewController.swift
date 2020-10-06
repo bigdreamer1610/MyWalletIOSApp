@@ -353,12 +353,12 @@ extension ViewTransactionViewController : UITableViewDataSource {
             tableView.deselectRow(at: indexPath, animated: true)
         default:
             if indexPath.section != 0 {
-                let transVc = RouterType.transactionDetail(item: transactionSections[indexPath.section - 1].items[indexPath.row], header: transactionSections[indexPath.section - 1].header).getVc()
-                let cateVc = RouterType.categoryDetail(item: categorySections[indexPath.section-1].items[indexPath.row], header: categorySections[indexPath.section-1].header).getVc()
                 switch mode {
                 case Mode.transaction.getValue():
+                    let transVc = RouterType.transactionDetail(item: transactionSections[indexPath.section - 1].items[indexPath.row], header: transactionSections[indexPath.section - 1].header).getVc()
                     self.navigationController?.pushViewController(transVc, animated: true)
                 default:
+                    let cateVc = RouterType.categoryDetail(item: categorySections[indexPath.section-1].items[indexPath.row], header: categorySections[indexPath.section-1].header).getVc()
                     self.navigationController?.pushViewController(cateVc, animated: true)
                 }
                 tableView.deselectRow(at: indexPath, animated: true)

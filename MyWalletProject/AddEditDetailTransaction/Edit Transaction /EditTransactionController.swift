@@ -12,6 +12,7 @@ import Firebase
 
 class EditTransactionController: UIViewController, UITextFieldDelegate {
     
+    var eventid: String? = nil
     var note:String? = ""
     var date:String = ""
     var categoryName: String = ""
@@ -32,6 +33,8 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var txtDate: UITextField!
     @IBOutlet var txtCategory: UITextField!
     @IBOutlet var txtAmount: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -142,11 +145,11 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
 }
 
 extension EditTransactionController: SelectCategory, SelectDate, SelectEvent{
-    func setEvent(nameEvent: String, imageEvent: String) {
+    func setEvent(nameEvent: String, imageEvent: String, eventid: String) {
         txtEvent.text = nameEvent
         iconEvent.image = UIImage(named: imageEvent)
+        self.eventid = eventid
     }
-    
     
     func setDate(date: String) {
         txtDate.text = date
