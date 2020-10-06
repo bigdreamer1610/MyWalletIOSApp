@@ -9,24 +9,27 @@
 import Foundation
 import FirebaseDatabase
 
+protocol ScanBillUseCaseDelegate {
+    func saveTransactionToDB(_ transaction: Transaction)
+}
+
 class ScanBillUseCase {
-    
-    var ref: DatabaseReference!
-    
-    // MARK: - Save transaction to DB
+    var delegate: ScanBillUseCaseDelegate?
+}
+
+extension ScanBillUseCase: ScanBillUseCaseDelegate {
     func saveTransactionToDB(_ transaction: Transaction) {
-        ref = Database.database().reference()
-        
         let userTransaction = [
             "amount": transaction.amount!,
             "categoryid": "Bill",
             "date": transaction.date!,
-        "note": transaction.note!] as [String : Any]
+            "note": transaction.note!] as [String : Any]
         
-        self.ref.child("Account").child("userid1").child("transaction").child("expense").childByAutoId().setValue(userTransaction, withCompletionBlock: {
+        Defined.ref.child("Account").child("userid1").child("transaction").child("expense").childByAutoId().setValue(userTransaction, withCompletionBlock: {
             error, ref in
             if error == nil {}
             else {}
         })
     }
 }
+

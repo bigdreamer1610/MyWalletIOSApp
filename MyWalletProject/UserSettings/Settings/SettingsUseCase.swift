@@ -9,12 +9,16 @@
 import Foundation
 import FirebaseDatabase
 
+protocol SettingsUseCaseDelegate {
+    func saveUserInfoToDB(_ user: Account)
+}
+
 class SettingsUseCase {
-    var ref: DatabaseReference!
-    
+    var delegate: SettingsUseCaseDelegate?
+}
+
+extension SettingsUseCase: SettingsUseCaseDelegate {
     func saveUserInfoToDB(_ user: Account) {
-        ref = Database.database().reference()
-        
         let userInfo = [
             "name": user.name!,
             "email": user.email!,
@@ -25,10 +29,11 @@ class SettingsUseCase {
             "gender": user.gender!,
             "language": user.language!] as [String : Any]
 
-        self.ref.child("Account").child("userid1").child("information").setValue(userInfo, withCompletionBlock: {
+        Defined.ref.child("Account").child("userid1").child("information").setValue(userInfo, withCompletionBlock: {
             error, ref in
             if error == nil {}
             else {}
         })
     }
 }
+
