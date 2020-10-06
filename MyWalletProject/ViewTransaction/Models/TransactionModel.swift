@@ -27,6 +27,7 @@ struct TransactionItem {
     var amount: Int
     var iconImage: String
     var type: String
+    var eventid: String? = nil
 }
 
 struct TransactionSection {
@@ -48,6 +49,7 @@ struct CategoryItem {
     var amount: Int
     var type: String
     var note: String? = ""
+    var eventid: String? = nil
 }
 
 struct CategorySection {
