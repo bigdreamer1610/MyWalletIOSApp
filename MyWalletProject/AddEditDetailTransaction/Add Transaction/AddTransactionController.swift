@@ -24,12 +24,14 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
     @IBOutlet var btnAddMore: UIButton!
     @IBOutlet var btnCancel: UIBarButtonItem!
     @IBOutlet var btnSave: UIBarButtonItem!
-    var nameCategory: String = ""
-    var iconImages: String = ""
-    var date: String = ""
-    var amount: Int = 0
-    var categoryid: String = ""
-    var type: String = ""
+    var nameCategory: String? = ""
+    var iconImages: String? = ""
+    var date: String? = ""
+    var note: String? = ""
+    var amount: Int? = 0
+    var categoryid: String? = ""
+    var type: String? = ""
+    var eventid: String? = nil
     var thisDate = Date()
     var budgets = [Budget]()
     private let dateFormatter = DateFormatter()
@@ -40,7 +42,7 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
         dateFormatter.locale = Locale(identifier: "vi_VN")
         dateFormatter.dateFormat = "dd/MM/yyyy"
         tfCategory.text = nameCategory
-        iconImage.image = UIImage(named: iconImages)
+        iconImage.image = UIImage(named: iconImages!)
         tfDate.text = date
         tfDate.delegate = self
         tfAmount.delegate = self
@@ -49,7 +51,6 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
         btnSave.isEnabled = false
         customizeLayout()
         addEvent()
-        fetchDataBudget()
         
     }
     
@@ -103,23 +104,23 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
         if let strAmount = tfAmount.text,
             let intAmount = Int(strAmount){
             amount = intAmount
-            if amount <= 0{
+            if amount! <= 0{
                 let alert = UIAlertController(title: "Notification", message: "Amount of money cannot be 0", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
                 return
             }
         }
+        date = tfDate.text!
+        note = tfNote.text!
+        
         let writeData: [String: Any] = [
             "date": tfDate.text!,
             "note": tfNote.text!,
-            "amount" :amount,
-            "categoryid": categoryid,
-            "eventid":tfEvent.text!]
-        print("my categoryid ahihi: \(categoryid)")
-        Defined.ref.child("Account/userid1/transaction/\(type)").childByAutoId().setValue(writeData)
-        //check budget
-        modifyBudget(list: budgets, date: dateFormatter.date(from: tfDate.text!)!, aAmount: amount)
+            "amount" :amount!,
+            "categoryid": categoryid!,
+            "eventid":eventid!]
+        Defined.ref.child("Account/userid1/transaction/\(type!)").childByAutoId().setValue(writeData)
         let alert = UIAlertController(title: "Notification", message: "Add a new transaction successfully", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
             let vc = RouterType.tabbar.getVc()
@@ -128,52 +129,7 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func modifyBudget(list: [Budget], date: Date, aAmount: Int){
-        print("budget list: \(list)")
-        for a in list {
-            let startDate = Defined.convertStringToDate(str: a.startDate!)
-            let endDate = Defined.convertStringToDate(str: a.endDate!)
-            if startDate.compare(date) != .orderedDescending && date.compare(endDate) != .orderedDescending {
-                print("Yes in this case")
-                let newValue = a.amount! + aAmount
-                Defined.ref.child("Account/userid1/budget/\(a.id)").updateChildValues(["amount": newValue]){(error,ref) in
-                }
-            } else {
-                print("no in this case")
-            }
-        }
-    }
-    
-    func fetchDataBudget(){
-        let dispatchGroup = DispatchGroup()
-        
-        print("my categoryid: \(categoryid)")
-        dispatchGroup.enter()
-        //start loading
-        
-        Defined.ref.child("Account/userid1/budget").observeSingleEvent(of: .value) {[weak self] (snapshot) in
-            guard let `self` = self else {return}
-            if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
-                for snap in snapshots {
-                    if let value = snap.value as? [String: Any]{
-                        if let id = Int(snap.key),
-                            let dateStart = value["startDate"] as? String,
-                            let dateEnd = value["endDate"] as? String,
-                            let categoryid = value["categoryId"] as? String,
-                            let amount = value["amount"] as? Int {
-                            print("budget categoryid: \(categoryid)")
-                            if categoryid == self.categoryid {
-                                let bud = Budget(id: id, categoryId: categoryid, amount: amount, startDate: dateStart, endDate: dateEnd)
-                                self.budgets.append(bud)
-                            }
-                        }
-                    }
-                }
-                dispatchGroup.leave()
-            }
-        }
-        
-    }
+
     
     @IBAction func btnAddMoreDetails(_ sender: Any) {
         
@@ -204,13 +160,12 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
 }
 
 extension AddTransactionController: SelectCategory, SelectDate, SelectEvent{
-    func setEvent(nameEvent: String, imageEvent: String) {
+    
+    func setEvent(nameEvent: String, imageEvent: String, eventid: String) {
         tfEvent.text = nameEvent
         iconEvent.image = UIImage(named: imageEvent)
+        self.eventid = eventid
     }
-    
-  
-    
     func setDate(date: String) {
         tfDate.text = date
     }

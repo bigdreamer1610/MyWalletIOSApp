@@ -1,0 +1,45 @@
+//
+//  ViewCategoryPresenter.swift
+//  MyWalletProject
+//
+//  Created by Vuong Vu Bac Son on 10/6/20.
+//  Copyright © 2020 Vuong Vu Bac Son. All rights reserved.
+//
+
+import Foundation
+
+protocol ViewCategoryPresenterDelegate {
+    func receiveIncomeCategories(_ listCategoryIncome: [Category])
+    func receiveExpenseCategories(_ listCategoryExpense: [Category])
+}
+
+class ViewCategoryPresenter {
+    var delegate: ViewCategoryPresenterDelegate?
+    var usecase: ViewCategoryUseCase?
+    
+    init(delegate: ViewCategoryPresenterDelegate, usecase: ViewCategoryUseCase) {
+        self.delegate = delegate
+        self.usecase = usecase
+        self.usecase?.delegate = self
+    }
+}
+
+extension ViewCategoryPresenter {
+    func requestIncomeCategories() {
+        usecase?.getIncomeCategories()
+    }
+    
+    func requestExpenseCategories() {
+        usecase?.getExpenseCategories()
+    }
+}
+
+extension ViewCategoryPresenter: ViewCategoryUseCaseDelegate {
+    func responseListCategoryIncome(_ listCategoryIncome: [Category]) {
+        delegate?.receiveIncomeCategories(listCategoryIncome)
+    }
+    
+    func responseListCategoryExpense(_ listCategoryExpense: [Category]) {
+        delegate?.receiveExpenseCategories(listCategoryExpense)
+    }
+}

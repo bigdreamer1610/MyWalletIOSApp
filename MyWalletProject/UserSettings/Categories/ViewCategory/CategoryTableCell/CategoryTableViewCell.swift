@@ -8,8 +8,11 @@
 
 import UIKit
 
-class CategoryTableViewCell: UITableViewCell {
+class CategoryTableViewCell: BaseTBCell {
 
+    @IBOutlet weak var imgCategory: UIImageView!
+    @IBOutlet weak var lblCategory: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,4 +24,8 @@ class CategoryTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func setupForView(_ imageName: String, _ categoryName: String) {
+        lblCategory.text = categoryName
+        imgCategory.image = UIImage(named: imageName)
+    }
 }

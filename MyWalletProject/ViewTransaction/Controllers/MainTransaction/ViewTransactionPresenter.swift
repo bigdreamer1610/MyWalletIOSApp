@@ -110,6 +110,9 @@ class ViewTransactionPresenter {
                     if let note = b.note {
                         item.note = note
                     }
+                    if let eventid = b.eventid {
+                        item.eventid = eventid
+                    }
                     items.append(item)
                 }
             }
@@ -147,7 +150,11 @@ class ViewTransactionPresenter {
                     //MARK: - Get item for each section
                     let components = Defined.convertToDate(resultDate: b.date!)
                     let dateModel = getDateModel(components: components)
-                    items.append(CategoryItem(id: b.id!,dateModel: dateModel, amount: amount2,type: type, note: note))
+                    var item = CategoryItem(id: b.id!,dateModel: dateModel, amount: amount2,type: type, note: note)
+                    if let eventid = b.eventid {
+                        item.eventid = eventid
+                    }
+                    items.append(item)
                 }
             }
             for a in categories! {
