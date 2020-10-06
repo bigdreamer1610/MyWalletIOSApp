@@ -135,6 +135,8 @@
 		8ACA6254251A079B0031E6DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ACA6252251A079B0031E6DF /* LaunchScreen.storyboard */; };
 		8ACA625F251A079C0031E6DF /* MyWalletProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACA625E251A079C0031E6DF /* MyWalletProjectTests.swift */; };
 		8ACA626A251A079C0031E6DF /* MyWalletProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACA6269251A079C0031E6DF /* MyWalletProjectUITests.swift */; };
+		9862A910252C178100F3FF5D /* SelectEventPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9862A90F252C178100F3FF5D /* SelectEventPresenter.swift */; };
+		9862A913252C17F100F3FF5D /* SelectEventUserCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9862A912252C17F100F3FF5D /* SelectEventUserCase.swift */; };
 		999389F0252A2AB100E72A41 /* ViewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999389EA252A2AB000E72A41 /* ViewTransactionViewController.swift */; };
 		999389F1252A2AB100E72A41 /* ViewTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999389EB252A2AB000E72A41 /* ViewTransactionUseCase.swift */; };
 		999389F2252A2AB100E72A41 /* ViewTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999389EF252A2AB100E72A41 /* ViewTransactionPresenter.swift */; };
@@ -309,6 +311,8 @@
 		8ACA6265251A079C0031E6DF /* MyWalletProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyWalletProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8ACA6269251A079C0031E6DF /* MyWalletProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWalletProjectUITests.swift; sourceTree = "<group>"; };
 		8ACA626B251A079C0031E6DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9862A90F252C178100F3FF5D /* SelectEventPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectEventPresenter.swift; sourceTree = "<group>"; };
+		9862A912252C17F100F3FF5D /* SelectEventUserCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectEventUserCase.swift; sourceTree = "<group>"; };
 		999389EA252A2AB000E72A41 /* ViewTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTransactionViewController.swift; sourceTree = "<group>"; };
 		999389EB252A2AB000E72A41 /* ViewTransactionUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTransactionUseCase.swift; sourceTree = "<group>"; };
 		999389EF252A2AB100E72A41 /* ViewTransactionPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTransactionPresenter.swift; sourceTree = "<group>"; };
@@ -762,6 +766,8 @@
 			children = (
 				73E78DA72524425400D7B962 /* EventCell */,
 				73E78DA52524422700D7B962 /* SelectEventController.swift */,
+				9862A90F252C178100F3FF5D /* SelectEventPresenter.swift */,
+				9862A912252C17F100F3FF5D /* SelectEventUserCase.swift */,
 			);
 			path = SelectEvent2;
 			sourceTree = "<group>";
@@ -1255,6 +1261,7 @@
 				8A3BB413251ADED6008113E9 /* Budget.swift in Sources */,
 				56B8A80625248A5D00B8E8F0 /* AmountCell.swift in Sources */,
 				73FC0D342525DE4C0012676D /* TransactionViewController.swift in Sources */,
+				9862A913252C17F100F3FF5D /* SelectEventUserCase.swift in Sources */,
 				D270F4C1251B550E00CB274C /* CategoryEventCell.swift in Sources */,
 				72873D9325249B6100313629 /* IncomDetailTableViewCell.swift in Sources */,
 				73E0B17C2521E0EE0097D41F /* FirstNavigationController.swift in Sources */,
@@ -1316,6 +1323,7 @@
 				73E0B17E2521E0EE0097D41F /* TransactionCell.swift in Sources */,
 				7338862E25231F68002F126B /* DetailTransactionController.swift in Sources */,
 				56053C2D2525E88C00685FFC /* TimeRangerViewController.swift in Sources */,
+				9862A910252C178100F3FF5D /* SelectEventPresenter.swift in Sources */,
 				D270F4B5251B541000CB274C /* AddEventController.swift in Sources */,
 				D270F4B7251B542900CB274C /* EventDetailController.swift in Sources */,
 				8A3BB41C251AE043008113E9 /* ScanBillUseCase.swift in Sources */,

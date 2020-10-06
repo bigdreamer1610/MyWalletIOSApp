@@ -807,11 +807,12 @@
                     <connections>
                         <outlet property="btnCancel" destination="FlJ-FO-PdS" id="1AM-T2-L5v"/>
                         <outlet property="btnSave" destination="Rit-VP-p6v" id="NwV-Bg-g3z"/>
+                        <outlet property="iconEvent" destination="KEG-KC-4Tz" id="PAd-Z9-nV6"/>
                         <outlet property="iconImage" destination="3bm-Po-Ne4" id="X3w-OR-o1V"/>
-                        <outlet property="tfEvent" destination="VCB-W7-aso" id="W01-my-nH5"/>
                         <outlet property="txtAmount" destination="ogq-js-IMD" id="dib-kg-ECR"/>
                         <outlet property="txtCategory" destination="mp1-xZ-gW6" id="Qy6-R7-Gt5"/>
                         <outlet property="txtDate" destination="ao0-f7-UaN" id="D0w-cb-NIj"/>
+                        <outlet property="txtEvent" destination="VCB-W7-aso" id="ahB-Fd-fg7"/>
                         <outlet property="txtNote" destination="h7g-kG-2dI" id="0RB-Ub-pme"/>
                     </connections>
                 </viewController>
