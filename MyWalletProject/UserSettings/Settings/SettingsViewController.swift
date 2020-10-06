@@ -32,6 +32,7 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         
         configureButton([btnSave])
+        presenter?.requestUserInfo("userid1")
         
         self.title = "Information"
     }
@@ -72,6 +73,16 @@ class SettingsViewController: UIViewController {
 }
 
 extension SettingsViewController: SettingsPresenterDelegate {
+    func setupForViews(_ user: Account) {
+        txtUsername.text = user.name!
+        txtBalance.text = "\(user.balance ?? 0)"
+        txtDate.text = user.dateOfBirth!
+        txtPhoneNumber.text = user.phoneNumber!
+        txtGender.text = user.gender!
+        txtAddress.text = user.address!
+        txtLanguage.text = user.language!
+    }
+    
     func showAlertMessage(_ message: String, _ state: Bool) {
         if !state {
             let alert = UIAlertController(title: "INVALID TRANSACTION", message: message, preferredStyle: UIAlertController.Style.alert)

@@ -59,4 +59,5 @@ class Constants {
     static let transactionRow: CGFloat = 65
     static let detailCell: CGFloat = 135
     static let menuCell: CGFloat = 60
+    static let overviewCell: CGFloat = 80
 }
