@@ -8,7 +8,18 @@
 
 import Foundation
 
-
+protocol AddTransactionPresenterDelegate: class {
+    
+}
 class AddTransactionPresenter  {
+    fileprivate var usecase: AddTransactionUseCase?
+
+    init(usecase: AddTransactionUseCase) {
+        self.usecase = usecase
+    }
+    
+    func add(trans: Transaction){
+        usecase?.addTransactionToDB(t: trans)
+    }
 }
 
