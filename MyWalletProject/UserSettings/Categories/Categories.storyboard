@@ -26,19 +26,19 @@
         <!--settingsCategoryVC-->
         <scene sceneID="0Uh-iA-TUP">
             <objects>
-                <viewController storyboardIdentifier="settingsCategoryVC" title="settingsCategoryVC" id="Wl9-46-4He" customClass="AddCategoryViewController" customModule="MyWalletProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="settingsCategoryVC" title="settingsCategoryVC" id="Wl9-46-4He" customClass="ViewCategoryViewController" customModule="MyWalletProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TZ9-rS-dRp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mt4-Wa-boE">
-                                <rect key="frame" x="0.0" y="118" width="414" height="744"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Mt4-Wa-boE" firstAttribute="top" secondItem="Qs7-fh-lb5" secondAttribute="top" constant="30" id="VWF-CA-mpC"/>
+                            <constraint firstItem="Mt4-Wa-boE" firstAttribute="top" secondItem="Qs7-fh-lb5" secondAttribute="top" id="VWF-CA-mpC"/>
                             <constraint firstItem="Mt4-Wa-boE" firstAttribute="trailing" secondItem="Qs7-fh-lb5" secondAttribute="trailing" id="lZ7-Ep-ZmO"/>
                             <constraint firstItem="Mt4-Wa-boE" firstAttribute="leading" secondItem="Qs7-fh-lb5" secondAttribute="leading" id="nAF-my-bcA"/>
                             <constraint firstItem="Mt4-Wa-boE" firstAttribute="bottom" secondItem="Qs7-fh-lb5" secondAttribute="bottom" id="u3v-jv-lZS"/>
@@ -63,7 +63,7 @@
                                 <rect key="frame" x="302" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Save">
+                                <state key="normal" title="Add">
                                     <color key="titleColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -72,10 +72,48 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="Mt4-Wa-boE" id="egZ-j8-h1o"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kWG-2b-rQe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2394" y="-303"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="cLh-Gv-QBi">
+            <objects>
+                <tableViewController id="MgQ-1L-TNu" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ZiK-lC-G24">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="MgQ-1L-TNu" id="bOT-gI-qzN"/>
+                            <outlet property="delegate" destination="MgQ-1L-TNu" id="aTs-pl-r1l"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Svg-cL-Cvl"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fqN-77-W81" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2394" y="406"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="VAo-yV-9dS">
+            <objects>
+                <navigationController id="LkD-RU-tEk" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cTu-a6-VRP">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="MgQ-1L-TNu" kind="relationship" relationship="rootViewController" id="xuN-nC-csi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mdt-Dr-nkZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3458" y="406"/>
         </scene>
     </scenes>
 </document>
