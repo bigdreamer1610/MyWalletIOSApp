@@ -74,13 +74,13 @@ class SettingsViewController: UIViewController {
 
 extension SettingsViewController: SettingsPresenterDelegate {
     func setupForViews(_ user: Account) {
-        txtUsername.text = user.name
+        txtUsername.text = user.name!
         txtBalance.text = "\(user.balance ?? 0)"
-        txtDate.text = user.dateOfBirth
-        txtPhoneNumber.text = user.phoneNumber
-        txtGender.text = user.gender
-        txtAddress.text = user.address
-        txtLanguage.text = user.language
+        txtDate.text = user.dateOfBirth!
+        txtPhoneNumber.text = user.phoneNumber!
+        txtGender.text = user.gender!
+        txtAddress.text = user.address!
+        txtLanguage.text = user.language!
     }
     
     func showAlertMessage(_ message: String, _ state: Bool) {

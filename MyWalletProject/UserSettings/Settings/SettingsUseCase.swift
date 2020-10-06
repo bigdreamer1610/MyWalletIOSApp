@@ -38,25 +38,24 @@ extension SettingsUseCase {
     
     // MARK: - Dang bi loi khong biet vi sao!!!!!!
     func getUserInfoFromDB(_ userId: String) {
-        var user: Account = Account()
-        Defined.ref.child("Account").child("userid1").child("information").observe(.value, with: { snapshot in
-            for case let child as DataSnapshot in snapshot.children {
-                guard let dict = child.value as? [String:Any] else {
-                    print("Error")
-                    return
-                }
-                
-                user.address = dict["address"] as? String
-                user.balance = dict["balance"] as? Int
-                user.dateOfBirth = dict["dateOfBirth"] as? String
-                user.email = dict["email"] as? String
-                user.gender = dict["gender"] as? String
-                user.language = dict["language"] as? String
-                user.name = dict["name"] as? String
-                user.phoneNumber = dict["phoneNumber"] as? String
+        var userInfo: Account = Account()
+        
+        Defined.ref.child("Account").child("userid1").child("information").observeSingleEvent(of: .value, with: { snapshot in
+            guard let dict = snapshot.value as? NSDictionary else {
+                print("error")
+                return
             }
             
-            self.delegate?.responseData(user)
+            userInfo.address = dict["address"] as? String
+            userInfo.balance = dict["balance"] as? Int
+            userInfo.dateOfBirth = dict["dateOfBirth"] as? String
+            userInfo.email = dict["email"] as? String
+            userInfo.gender = dict["gender"] as? String
+            userInfo.language = dict["language"] as? String
+            userInfo.name = dict["name"] as? String
+            userInfo.phoneNumber = dict["phoneNumber"] as? String
+            
+            self.delegate?.responseData(userInfo)
         })
     }
 }
