@@ -39,10 +39,10 @@ class BudgetTransactionPresenter {
     
     func fetchData(cid: String){
         usecase?.getTransactionsbyCategory(cid: cid)
+        print("all transactions aaa: \(allTransactions.count)")
         getTransactionByCategoryInRange()
         getTotalAmount()
-        getTransactionSections(list: finalTransactions)
-        delegate?.reloadData()
+        processTransactionSection(list: finalTransactions)
     }
     
     func getTotalAmount(){
@@ -51,7 +51,7 @@ class BudgetTransactionPresenter {
         }
         delegate?.getTotal(total: amount)
     }
-    func getTransactionSections(list: [Transaction]){
+    func processTransactionSection(list: [Transaction]){
         var sections = [TransactionSection]()
         for a in dates {
             var items = [TransactionItem]()
@@ -176,8 +176,10 @@ extension BudgetTransactionPresenter {
 extension BudgetTransactionPresenter : BudgetTransactionUseCaseDelegate {
     func responseDataTransactions(trans: [Transaction]) {
         self.allTransactions = trans
+        fetchData(cid: budget.categoryId!)
+        delegate?.getTransactionSection(section: transactionSections)
         print("this delegate transactions: \(allTransactions.count)")
-        delegate?.reloadData()
+        //delegate?.reloadData()
     }
     
     
