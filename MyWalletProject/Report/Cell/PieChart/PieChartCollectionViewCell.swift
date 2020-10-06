@@ -18,7 +18,7 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
     var ref: DatabaseReference!
     var sumExpense = 0
     var sumIncome = 0
-    var state = 0
+    var state: String = ""
     var entries = [ChartDataEntry]()
     var sumByCategoryIncome = [(category: String, amount: Int)]()
     var sumByCategoryExpense = [(category: String, amount: Int)]()
@@ -68,7 +68,7 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
                                  height: self.containerView.frame.size.height)
         containerView.addSubview(chartView)
         
-        if state == 1 {
+        if state == "income" {
             lblMoney.text = "\(formatter.string(from: NSNumber(value: sumIncome))!)"
             for index in 0 ..< sumByCategoryIncome.count {
                 entries.append(PieChartDataEntry(value: Double(sumByCategoryIncome[index].amount), label: sumByCategoryIncome[index].category))
