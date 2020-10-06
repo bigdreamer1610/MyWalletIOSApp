@@ -23,7 +23,6 @@ class BudgetTransactionViewController: UIViewController {
         super.viewDidLoad()
         initComponents()
         initData()
-
         // Do any additional setup after loading the view.
     }
     
@@ -41,12 +40,14 @@ class BudgetTransactionViewController: UIViewController {
     
     func setUpBudget(budget: Budget){
         self.budget = budget
-        print("budget: \(budget)")
     }
     
     func initData(){
         presenter?.setUpBudget(budgetObject: budget)
-        //presenter?.fetchData(cid: budget.categoryId!)
+        presenter?.fetchDataTransactions(cid: budget.categoryId!)
+    }
+    func fetchData(trans: [Transaction]){
+        presenter?.fetchData(trans: trans)
     }
 
 }
@@ -113,20 +114,21 @@ extension BudgetTransactionViewController : UITableViewDelegate,UITableViewDataS
 
 extension BudgetTransactionViewController : BudgetTransactionPresenterDelegate {
     func reloadData() {
-//        self.detailTableView.reloadData()
+        self.detailTableView.reloadData()
     }
     
     func getTransactionSection(section: [TransactionSection]) {
         self.transactionSections = section
-        print(section.count)
         self.detailTableView.reloadData()
     }
     
     func getTotal(total: Int) {
-        
         self.amount = total
-        print("total: \(total)")
         self.detailTableView.reloadData()
+    }
+    
+    func getAllTransactions(trans: [Transaction]) {
+        fetchData(trans: trans)
     }
     
     
