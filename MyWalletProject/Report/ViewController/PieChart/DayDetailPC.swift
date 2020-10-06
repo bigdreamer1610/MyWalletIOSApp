@@ -27,15 +27,14 @@ class DayDetailPC: UIViewController {
     @IBAction func popToView(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
+    
     func initTableViews(){
-        
         tableView.delegate = self
         tableView.dataSource = self
         DayDetailCell.registerCellByNib(tableView)
         HeaderTransactionCell.registerCellByNib(tableView)
         TransactionCell.registerCellByNib(tableView)
     }
-
 }
 
 extension DayDetailPC: UITableViewDataSource {
@@ -56,7 +55,6 @@ extension DayDetailPC: UITableViewDataSource {
             let cell = DayDetailCell.loadCell(tableView) as! DayDetailCell
             cell.selectionStyle = .none
             return cell
-            
         } else {
             let cell = TransactionCell.loadCell(tableView) as! TransactionCell
             return cell
