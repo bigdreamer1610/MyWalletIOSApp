@@ -45,7 +45,7 @@ extension PieChartTableViewCell: UICollectionViewDataSource, UICollectionViewDel
         let cell = PieChartCollectionViewCell.loadCell(collectionView, path: indexPath) as! PieChartCollectionViewCell
         cell.setupDataCL(sumIncome: sumIncome, sumExpense: sumExpense, sumByCategoryIncome: sumByCategoryIncome, sumByCategoryExpense: sumByCategoryExpense)
         if indexPath.row == 0 {
-            cell.state = 1
+            cell.state = "income"
             cell.lblTypeOfMoney.text = "Khoản thu"
             cell.lblMoney.textColor = #colorLiteral(red: 0, green: 0.3944762324, blue: 0.9803921569, alpha: 1)
         } else {
@@ -59,6 +59,7 @@ extension PieChartTableViewCell: UICollectionViewDataSource, UICollectionViewDel
         let cell = PieChartCollectionViewCell.loadCell(collectionView, path: indexPath) as! PieChartCollectionViewCell
         self.delegate?.collectionView(collectioncell: cell, didTappedInTableview: self)
         if indexPath.row == 0 {
+            cell.state = "income"
             print("This is pie chart")
         } else {
             print("This is pie chart22222")
