@@ -147,6 +147,7 @@ extension RouterType{
             vc.setUpBudget(budget: budgetObject)
             let presenter = BudgetTransactionPresenter(delegate: vc, usecase: BudgetTransactionUseCase())
             vc.setUp(presenter: presenter)
+            return vc
         case .settings:
             let vc = UIStoryboard.init(name: "UserSettings", bundle: Bundle.main).instantiateViewController(identifier: "settingsVC") as! SettingsViewController
             let presenter = SettingsPresenter(delegate: vc, usecase: SettingsUseCase())
