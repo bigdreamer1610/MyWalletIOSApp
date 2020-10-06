@@ -67,7 +67,7 @@ extension SelectEventController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = UIStoryboard.init(name:Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "add") as? AddTransactionController
+        _ = RouterType.add.getVc() as! AddTransactionViewController
         let ex = events[indexPath.row]
         delegate?.setEvent(nameEvent: ex.name ?? "", imageEvent: ex.eventImage ?? "", eventid: ex.id ?? "")
         self.navigationController?.popViewController(animated: true)

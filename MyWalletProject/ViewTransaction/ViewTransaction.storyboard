@@ -415,7 +415,7 @@
         <!--Detail Transaction-->
         <scene sceneID="Lwo-HI-qtn">
             <objects>
-                <viewController storyboardIdentifier="detail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GHL-Dw-3f4" customClass="DetailTransactionController" customModule="MyWalletProject" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GHL-Dw-3f4" customClass="DetailTransactionViewController" customModule="MyWalletProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t54-wy-dQb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -900,7 +900,7 @@
         <!--Add Transaction-->
         <scene sceneID="6QG-6h-pw1">
             <objects>
-                <viewController storyboardIdentifier="add" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lqv-GL-MUS" customClass="AddTransactionController" customModule="MyWalletProject" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="add" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lqv-GL-MUS" customClass="AddTransactionViewController" customModule="MyWalletProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dG7-D5-uda">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1110,15 +1110,15 @@
                     </navigationItem>
                     <connections>
                         <outlet property="btnAddMore" destination="khd-TG-ewd" id="b1v-1i-FxE"/>
-                        <outlet property="btnCancel" destination="oZX-TI-wdG" id="JoD-pK-bG9"/>
-                        <outlet property="btnSave" destination="YVi-QS-eGd" id="zJx-OQ-unM"/>
+                        <outlet property="btnCancel" destination="oZX-TI-wdG" id="wTo-9u-ELJ"/>
+                        <outlet property="btnSave" destination="YVi-QS-eGd" id="iD3-Xh-g3D"/>
                         <outlet property="iconEvent" destination="bTd-ZB-tk5" id="i1J-Ab-yiX"/>
-                        <outlet property="iconImage" destination="jLc-sk-vGq" id="L2a-xK-ute"/>
-                        <outlet property="tfAmount" destination="sPk-aU-DHi" id="r3B-Vc-MPz"/>
-                        <outlet property="tfCategory" destination="idK-ts-xT8" id="64P-tt-iP5"/>
-                        <outlet property="tfDate" destination="fke-ih-37Q" id="Ij7-gb-hrU"/>
-                        <outlet property="tfEvent" destination="Lts-zw-wy2" id="knj-iZ-XIz"/>
-                        <outlet property="tfNote" destination="dcZ-oq-81y" id="omk-d5-cbX"/>
+                        <outlet property="iconImage" destination="bTd-ZB-tk5" id="NKD-jk-y94"/>
+                        <outlet property="tfAmount" destination="sPk-aU-DHi" id="ab5-0e-Inm"/>
+                        <outlet property="tfCategory" destination="idK-ts-xT8" id="sST-3S-0w9"/>
+                        <outlet property="tfDate" destination="fke-ih-37Q" id="fH9-me-Ma7"/>
+                        <outlet property="tfEvent" destination="Lts-zw-wy2" id="YrG-Cj-Lf4"/>
+                        <outlet property="tfNote" destination="dcZ-oq-81y" id="XKf-vd-lDh"/>
                         <outlet property="viewShowMore" destination="644-JT-VAk" id="q4K-sd-j9L"/>
                     </connections>
                 </viewController>
