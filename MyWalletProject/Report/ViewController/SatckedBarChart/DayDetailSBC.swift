@@ -54,7 +54,6 @@ extension DayDetailSBC: UITableViewDataSource {
             let cell = DayDetail.loadCell(tableView) as! DayDetail
             cell.selectionStyle = .none
             return cell
-            
         } else {
             let cell = TransactionCell.loadCell(tableView) as! TransactionCell
             return cell
