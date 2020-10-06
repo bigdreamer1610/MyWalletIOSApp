@@ -15,6 +15,8 @@ class OverviewCell: BaseTBCell {
     @IBOutlet var lbType: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
+        Defined.formatter.groupingSeparator = "."
+        Defined.formatter.numberStyle = .decimal
         // Initialization code
     }
 
@@ -31,6 +33,6 @@ class OverviewCell: BaseTBCell {
             lbAmount.textColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
         }
         lbType.text = transactionType.capitalized
-        lbAmount.text = "\(amount)"
+        lbAmount.text = "\(Defined.formatter.string(from: NSNumber(value: amount))!)"
     }
 }
