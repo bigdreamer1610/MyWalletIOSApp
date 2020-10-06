@@ -27,21 +27,7 @@ class SelectEventController: UIViewController {
         tableView.register(UINib(nibName: cellId, bundle: nil), forCellReuseIdentifier:cellId)
         GetListEvent()
     }
-    /*
-     static let amount = "amount"
-     static let categoryid = "categoryid"
-     static let date = "date"
-     static let note = "note"
-     static let detailsTransaction = "ViewTransaction"
-     
-     // Event
-     static let categoryIdEvent = "categoryid"
-     static let nameEvent = "name"
-     static let dateEndEvent = "dateEnd"
-     static let dateStartEvent = "dateStart"
-     static let goalEvent = "goal"
-     static let spentEvent = "spent"
-     */
+  
     func GetListEvent(){
         Defined.ref.child("Account").child("userid1").child("event").observe(DataEventType.value) { (snapshot) in
             if snapshot.childrenCount > 0 {
