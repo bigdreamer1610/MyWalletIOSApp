@@ -24,13 +24,12 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
     private let dateFormatter = DateFormatter()
     
     @IBOutlet var btnSave: UIBarButtonItem!
-    
+    @IBOutlet weak var iconEvent: UIImageView!
     @IBOutlet var btnCancel: UIBarButtonItem!
     @IBOutlet var iconImage: UIImageView!
     @IBOutlet var txtNote: UITextField!
+    @IBOutlet weak var txtEvent: UITextField!
     @IBOutlet weak var txtDate: UITextField!
-    
-    @IBOutlet var tfEvent: UITextField!
     @IBOutlet var txtCategory: UITextField!
     @IBOutlet var txtAmount: UITextField!
     override func viewDidLoad() {
@@ -39,12 +38,14 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
         customizeLayout()
         txtAmount.delegate = self
         addEvent()
+        
     }
     
     // add event txtDate,txtCategory
     func addEvent()  {
         txtCategory.addTarget(self, action: #selector(myCategory), for: .touchDown)
         txtDate.addTarget(self, action: #selector(myDate), for: .touchDown)
+        txtEvent.addTarget(self, action: #selector(myEvent), for: .touchDown)
     }
     
     @objc func myCategory(textField: UITextField) {
@@ -59,9 +60,15 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
+    @objc func myEvent(textField: UITextField) {
+        let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "selectEvent") as? SelectEventController
+        vc?.delegate = self
+        self.navigationController?.pushViewController(vc!, animated: true)
+    }
+    
     func customizeLayout(){
         txtCategory.setRightImage(imageName: "arrowright")
-        tfEvent.setRightImage(imageName: "arrowright")
+        txtEvent.setRightImage(imageName: "arrowright")
         txtDate.setRightImage(imageName: "arrowright")
     }
     
@@ -115,6 +122,7 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
         }
     }
     
+
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let allowCharacters = "0123456789"
@@ -133,7 +141,13 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
     }
 }
 
-extension EditTransactionController: SelectCategory, SelectDate{
+extension EditTransactionController: SelectCategory, SelectDate, SelectEvent{
+    func setEvent(nameEvent: String, imageEvent: String) {
+        txtEvent.text = nameEvent
+        iconEvent.image = UIImage(named: imageEvent)
+    }
+    
+    
     func setDate(date: String) {
         txtDate.text = date
     }

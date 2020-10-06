@@ -8,47 +8,56 @@
 
 import UIKit
 import Firebase
-import FirebaseAuth
-import FirebaseDatabase
-import FirebaseAnalytics
 
 protocol SelectEvent {
-    func setEvent(nameEvent:String)
+    func setEvent(nameEvent:String, imageEvent:String)
 }
 
 class SelectEventController: UIViewController {
+    
     @IBOutlet weak var tableView: UITableView!
     var cellId = "SelectEventCell"
+    
     var events = [Event]()
     var delegate:SelectEvent?
+    var presenter: SelectEventPresenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(UINib(nibName: cellId, bundle: nil), forCellReuseIdentifier:cellId)
-        GetListEvent()
+        initComponents()
+        initData()
     }
-  
-    func GetListEvent(){
-        Defined.ref.child("Account").child("userid1").child("event").observe(DataEventType.value) { (snapshot) in
-            if snapshot.childrenCount > 0 {
-                self.events.removeAll()
-                for artist in snapshot.children.allObjects as! [DataSnapshot] {
-                    let art = artist.value as? [String:AnyObject]
-                    let id = artist.key
-                    let artName = art?["name"]
-                    let artDate = art?["date"]
-                    let eventImage = art?["eventImage"]
-                    let artSpent = art?["spent"]
-                    let arts = Event(id: id, name: artName as? String, date: artDate as? String, eventImage: eventImage as? String, spent: artSpent as? Int)
-                    self.events.append(arts)
-                }
-                self.tableView.reloadData()
-            }
-        }
+    
+    func initData(){
+        presenter?.responseDataEvent()
+        tableView.reloadData()
+    }
+    
+    func initComponents(){
+        SelectEventCell.registerCellByNib(tableView)
+        tableView.dataSource = self
+        tableView.delegate = self
+        //tableView.register(UINib(nibName: cellId, bundle: nil), forCellReuseIdentifier:cellId)
+    }
+    
+    func setUp(presenter: SelectEventPresenter) {
+        self.presenter = presenter
+    }
+    
+}
+extension SelectEventController: SelectEventPresenterDelegate{
+    func getDataOfEvent(data: [Event]) {
+        self.events = data
+        self.tableView.reloadData()
+    }
+    
+    func reloadData() {
+        self.tableView.reloadData()
     }
 }
 
 extension SelectEventController: UITableViewDataSource, UITableViewDelegate{
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
     }
@@ -62,9 +71,7 @@ extension SelectEventController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = UIStoryboard.init(name:Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "add") as? AddTransactionController
         let ex = events[indexPath.row]
-        delegate?.setEvent(nameEvent: ex.name ?? "" )
+        delegate?.setEvent(nameEvent: ex.name ?? "", imageEvent: ex.eventImage ?? "" )
         self.navigationController?.popViewController(animated: true)
     }
-    
-    
 }
