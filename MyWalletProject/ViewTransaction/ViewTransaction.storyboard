@@ -807,11 +807,12 @@
                     <connections>
                         <outlet property="btnCancel" destination="FlJ-FO-PdS" id="1AM-T2-L5v"/>
                         <outlet property="btnSave" destination="Rit-VP-p6v" id="NwV-Bg-g3z"/>
+                        <outlet property="iconEvent" destination="KEG-KC-4Tz" id="PAd-Z9-nV6"/>
                         <outlet property="iconImage" destination="3bm-Po-Ne4" id="X3w-OR-o1V"/>
-                        <outlet property="tfEvent" destination="VCB-W7-aso" id="W01-my-nH5"/>
                         <outlet property="txtAmount" destination="ogq-js-IMD" id="dib-kg-ECR"/>
                         <outlet property="txtCategory" destination="mp1-xZ-gW6" id="Qy6-R7-Gt5"/>
                         <outlet property="txtDate" destination="ao0-f7-UaN" id="D0w-cb-NIj"/>
+                        <outlet property="txtEvent" destination="VCB-W7-aso" id="ahB-Fd-fg7"/>
                         <outlet property="txtNote" destination="h7g-kG-2dI" id="0RB-Ub-pme"/>
                     </connections>
                 </viewController>
@@ -1084,39 +1085,35 @@
             </objects>
             <point key="canvasLocation" x="3457.971014492754" y="938.83928571428567"/>
         </scene>
-        <!--Transaction View Controller-->
-        <scene sceneID="JHD-lO-fdc">
+        <!--Budget Transaction View Controller-->
+        <scene sceneID="V2Y-eb-icp">
             <objects>
-                <viewController storyboardIdentifier="transaction" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3dy-mI-fCb" customClass="TransactionViewController" customModule="MyWalletProject" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="GWW-Mr-UBp">
+                <viewController storyboardIdentifier="budgetTransaction_vc" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ClT-5x-2lU" customClass="BudgetTransactionViewController" customModule="MyWalletProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LXa-XP-Z4N">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eTI-Q1-3aT">
-                                <rect key="frame" x="56" y="392" width="62" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5cn-mL-u2V">
-                                <rect key="frame" x="204" y="372" width="84" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hXp-zG-5h6">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="2Us-Vt-FXG"/>
+                        <constraints>
+                            <constraint firstItem="giV-wr-vZA" firstAttribute="trailing" secondItem="hXp-zG-5h6" secondAttribute="trailing" id="Ang-Pi-IJC"/>
+                            <constraint firstItem="hXp-zG-5h6" firstAttribute="top" secondItem="giV-wr-vZA" secondAttribute="top" id="Emo-q0-p78"/>
+                            <constraint firstItem="giV-wr-vZA" firstAttribute="bottom" secondItem="hXp-zG-5h6" secondAttribute="bottom" id="WWQ-3L-H4z"/>
+                            <constraint firstItem="hXp-zG-5h6" firstAttribute="leading" secondItem="giV-wr-vZA" secondAttribute="leading" id="wL7-24-Jqg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="giV-wr-vZA"/>
                     </view>
                     <connections>
-                        <outlet property="lbNumber" destination="5cn-mL-u2V" id="EiO-MR-Wfq"/>
+                        <outlet property="detailTableView" destination="hXp-zG-5h6" id="fCl-xM-HsT"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Avk-2p-BEv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3o3-Wz-Ou3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="377" y="916"/>
+            <point key="canvasLocation" x="571" y="940"/>
         </scene>
         <!--Second Navigation Controller-->
         <scene sceneID="mvL-LK-eUA">

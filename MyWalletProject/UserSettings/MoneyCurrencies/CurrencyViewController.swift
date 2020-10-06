@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol CurrencyViewControllerProtocol {
-    func setupForView(resultModel: ResultData)
-}
-
 class CurrencyViewController: UIViewController {
 
     @IBOutlet weak var txtVND: UITextField!
@@ -26,7 +22,7 @@ class CurrencyViewController: UIViewController {
     
     @IBOutlet weak var btnChangeCurrency: UIButton!
     
-    public var presenter: CurrencyPresenter = CurrencyPresenter()
+    public var presenter: CurrencyPresenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +30,8 @@ class CurrencyViewController: UIViewController {
         setupTextFieldDelegate()
         configureButton(btnChangeCurrency)
         disabledEdittingTextField([txtUSD, txtEUR, txtJPY, txtKRW, txtCNY, txtSGD, txtAUD, txtCAD])
+        
+        presenter?.fetchData()
         
         self.title = "Currencies Exchange"
     }
@@ -48,15 +46,22 @@ class CurrencyViewController: UIViewController {
         }
     }
     
+    // MARK: - Setup text field delegate
     func setupTextFieldDelegate() {
         txtVND.delegate = self
     }
     
+    // MARK: - Disable editable text in other currencies text field
     func disabledEdittingTextField(_ textFields: [UITextField]) {
         textFields.forEach { (textField) in
             textField.isEnabled = false
             textField.isUserInteractionEnabled = false
         }
+    }
+    
+    // MARK: - Setup delegate
+    func setupDelegate(presenter: CurrencyPresenter) {
+        self.presenter = presenter
     }
     
     // MARK: - Make rounded buttons
@@ -71,8 +76,7 @@ class CurrencyViewController: UIViewController {
             self.present(alert, animated: true, completion: nil)
         } else {
             let amount = Double(txtVND.text!) ?? 0
-            presenter.viewDelegate = self
-            presenter.exchangeCurrency(amount: amount)
+            presenter?.exchangeCurrency(amount: amount)
         }
     }
 }
@@ -87,8 +91,8 @@ extension CurrencyViewController: UITextFieldDelegate {
     }
 }
 
-extension CurrencyViewController: CurrencyViewControllerProtocol {
-    func setupForView(resultModel: ResultData) {
+extension CurrencyViewController: CurrencyPresenterDelegate {
+    func setupForViews(resultModel: ResultData) {
         txtUSD.text = "\(resultModel.USD)"
         txtEUR.text = "\(resultModel.EUR)"
         txtJPY.text = "\(resultModel.JPY)"
@@ -99,3 +103,4 @@ extension CurrencyViewController: CurrencyViewControllerProtocol {
         txtCAD.text = "\(resultModel.CAD)"
     }
 }
+

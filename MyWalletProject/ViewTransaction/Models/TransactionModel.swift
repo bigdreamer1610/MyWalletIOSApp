@@ -73,3 +73,4 @@ struct DetailInfo {
     var opening: Int
     var ending: Int
 }
+
