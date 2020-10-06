@@ -22,6 +22,7 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
     var icon: String = ""
     var dateModel: DateModel!
     var thisDate = Date()
+    var event: Event!
     private let dateFormatter = DateFormatter()
     
     @IBOutlet var btnSave: UIBarButtonItem!
@@ -33,6 +34,8 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var txtDate: UITextField!
     @IBOutlet var txtCategory: UITextField!
     @IBOutlet var txtAmount: UITextField!
+    
+    @IBOutlet var btnTrash: UIButton!
     
     
     override func viewDidLoad() {
@@ -64,15 +67,42 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func myEvent(textField: UITextField) {
-        let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "selectEvent") as? SelectEventController
-        vc?.delegate = self
-        self.navigationController?.pushViewController(vc!, animated: true)
+        let vc = RouterType.selectEvent.getVc() as! SelectEventController
+        vc.delegate = self
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func customizeLayout(){
         txtCategory.setRightImage(imageName: "arrowright")
         txtEvent.setRightImage(imageName: "arrowright")
         txtDate.setRightImage(imageName: "arrowright")
+    }
+    
+    func getEventInfo() {
+        Defined.ref.child("Account").child("userid1").child("event").observe(DataEventType.value) { (snapshot) in
+            if snapshot.childrenCount > 0 {
+                for artist in snapshot.children.allObjects as! [DataSnapshot] {
+                    let art = artist.value as? [String:AnyObject]
+                    let id = artist.key
+                    
+                    if id == self.eventid {
+                        print("my eventid: \(id)")
+                        let artName = art?["name"]
+                        let artDate = art?["date"]
+                        let eventImage = art?["eventImage"]
+                        let artSpent = art?["spent"]
+                        let arts = Event(id: id, name: artName as? String, date: artDate as? String, eventImage: eventImage as? String, spent: artSpent as? Int)
+                        self.event = arts
+                        print("event image: \(eventImage!)")
+                        self.txtEvent.text = artName as! String
+                        self.iconEvent.image = UIImage(named: eventImage as! String)
+                        break
+                    }
+                }
+                
+            }
+            
+        }
     }
     
     func configure(){
@@ -91,6 +121,7 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
         self.amount = amount
         self.icon = icon
         self.dateModel = dateModel
+        
         
     }
     
@@ -123,6 +154,13 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
                 self.navigationController?.popToRootViewController(animated: true)
             }
         }
+    }
+    
+    
+    @IBAction func clickTrash(_ sender: Any) {
+        eventid?.removeAll()
+        txtEvent.text = ""
+        iconEvent.image = UIImage(named: "others")
     }
     
 

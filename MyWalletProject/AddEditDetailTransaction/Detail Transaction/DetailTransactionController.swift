@@ -103,9 +103,9 @@ class DetailTransactionController: UIViewController {
             getEventInfo()
         }
         if let event = event {
-                   lbEventName.text = event.name
-                   imageEvent.image = UIImage(named: event.eventImage!)
-               }
+            lbEventName.text = event.name
+            imageEvent.image = UIImage(named: event.eventImage!)
+        }
         categoryDate = "\(dateModel.weekDay), \(dateModel.date) \(dateModel.month) \(dateModel.year)"
     }
     
@@ -132,7 +132,7 @@ class DetailTransactionController: UIViewController {
                 }
                 
             }
-           
+            
         }
     }
     @IBAction func btnEditTransaction(_ sender: Any) {

@@ -32,6 +32,7 @@ enum RouterType {
     case pieChartDetail
     case dayBarChartDetail
     case budgetTransaction(budgetObject: Budget)
+    case selectEvent
     
     // Settings and Tools
     case settings
@@ -170,6 +171,11 @@ extension RouterType{
             let vc = UIStoryboard.init(name: "ScanBill", bundle: Bundle.main).instantiateViewController(identifier: "scanBillVC") as! ScanBillViewController
             let presenter = ScanBillPresenter(delegate: vc, usecase: ScanBillUseCase())
             vc.setupDelegate(presenter: presenter)
+            return vc
+        case .selectEvent:
+            let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "selectEvent") as! SelectEventController
+            let presenter = SelectEventPresenter(delegate: vc, usecase: SelectEventUserCase())
+            vc.setUp(presenter: presenter)
             return vc
         }
         

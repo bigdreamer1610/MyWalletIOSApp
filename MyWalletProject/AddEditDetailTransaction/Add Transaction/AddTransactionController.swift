@@ -87,10 +87,8 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
         
     }
     @objc func myEven(textField:UITextField){
-        let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "selectEvent") as! SelectEventController
+        let vc = RouterType.selectEvent.getVc() as! SelectEventController
         vc.delegate = self
-        let presenter = SelectEventPresenter(delegate: vc, usecase: SelectEventUserCase())
-        vc.setUp(presenter: presenter)
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -133,11 +131,14 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
     
     @IBAction func btnAddMoreDetails(_ sender: Any) {
         
-        viewShowMore.isHidden = false
-        btnAddMore.isHidden = true
+        UIView.animate(withDuration: 0.7) {
+            self.viewShowMore.isHidden = false
+            self.btnAddMore.isHidden = true
+        }
     }
     
     @IBAction func btnDeleteMoreDetails(_ sender: Any) {
+        eventid?.removeAll()
         tfEvent.text = ""
         iconEvent.image = UIImage(named: "others")
     }
@@ -147,11 +148,8 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
         let allowCharacterSet = CharacterSet(charactersIn: allowCharacters)
         let typeCharacterSet = CharacterSet(charactersIn: string)
         let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-        if !text.isEmpty {
-            btnSave.isEnabled = true
-        } else {
-            btnSave.isEnabled = false
-        }
+        
+        btnSave.isEnabled = !text.isEmpty
         if textField == tfAmount {
             return allowCharacterSet.isSuperset(of: typeCharacterSet)
         }
