@@ -8,14 +8,9 @@
 
 import UIKit
 
-protocol ScanBillViewControllerProtocol: class {
-    func setupForViews(_ transaction: Transaction)
-    func showAlert(_ state: Bool)
-}
-
 class ScanBillViewController: UIViewController {
     
-    var presenter: ScanBillPresenter = ScanBillPresenter()
+    var presenter: ScanBillPresenter?
 
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var txtNote: UITextView!
@@ -28,7 +23,6 @@ class ScanBillViewController: UIViewController {
     @IBOutlet weak var btnScan: UIButton!
     
     @IBOutlet weak var btnAddTransaction: UIButton!
-    @IBOutlet weak var btnCancel: UIButton!
     
     let imagePicker = UIImagePickerController()
     
@@ -37,13 +31,15 @@ class ScanBillViewController: UIViewController {
 
         imagePicker.delegate = self
         
-        configureButton([btnCamera, btnGallery, btnScan, btnAddTransaction, btnCancel])
+        configureButton([btnCamera, btnGallery, btnScan, btnAddTransaction])
         
         borderImageView(imageInput)
         
         removeTextViewLeftPadding(txtNote)
         
         self.title = "Bill Scanner"
+        
+        // Comment for testing git
     }
     
     // MARK: - Hide tab bar
@@ -75,6 +71,10 @@ class ScanBillViewController: UIViewController {
         imageView.layer.borderColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0).cgColor
     }
     
+    func setupDelegate(presenter: ScanBillPresenter) {
+        self.presenter = presenter
+    }
+    
     // MARK: - Get bill's image from user with photo library
     @IBAction func btnGalleryClicked(_ sender: Any) {
         imagePicker.allowsEditing = false
@@ -94,8 +94,7 @@ class ScanBillViewController: UIViewController {
     
     // MARK: - Process image to presenter to handle
     @IBAction func btnScanClicked(_ sender: Any) {
-        presenter.viewDelegate = self
-        presenter.handleImage(imageInput.image!)
+        presenter?.handleImage(imageInput.image!)
     }
     
     // MARK: - Save transaction to DB
@@ -107,12 +106,7 @@ class ScanBillViewController: UIViewController {
         userTransaction.note = txtNote.text
         userTransaction.date = lblDate.text
         
-        presenter.viewDelegate = self
-        presenter.saveTransaction(userTransaction)
-    }
-    
-    @IBAction func btnCancelClicked(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        presenter?.saveTransaction(userTransaction)
     }
 }
 
@@ -132,9 +126,9 @@ extension ScanBillViewController: UIImagePickerControllerDelegate, UINavigationC
     }
 }
 
-extension ScanBillViewController: ScanBillViewControllerProtocol {
+extension ScanBillViewController: ScanBillPresenterDelegate {
     // Show alert to inform user depend on state (fail or success)
-    func showAlert(_ state: Bool) {
+    func showAlertMessage(_ state: Bool) {
         if !state {
             let alert = UIAlertController(title: "INVALID TRANSACTION", message: "You might haven't scanned your bill yet, please try again!", preferredStyle: UIAlertController.Style.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
@@ -153,3 +147,4 @@ extension ScanBillViewController: ScanBillViewControllerProtocol {
         self.txtNote.text = transaction.note ?? "Undefined"
     }
 }
+
