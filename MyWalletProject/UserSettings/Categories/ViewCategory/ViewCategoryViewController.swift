@@ -58,6 +58,8 @@ class ViewCategoryViewController: UIViewController {
     }
     
     @IBAction func btnSaveClick(_ sender: Any) {
+        let vc = UIStoryboard.init(name: "Categories", bundle: nil).instantiateViewController(withIdentifier: "settingsAddCategoryVC") as! AddEditCategoryViewController
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
