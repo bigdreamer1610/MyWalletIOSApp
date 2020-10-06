@@ -110,6 +110,9 @@ class ViewTransactionPresenter {
                     if let note = b.note {
                         item.note = note
                     }
+                    if let eventid = b.eventid {
+                        item.eventid = eventid
+                    }
                     items.append(item)
                 }
             }
@@ -124,16 +127,16 @@ class ViewTransactionPresenter {
         delegate?.getTransactionSections(section: sections)
     }
     
+    //MARK: - Get all sections in category view mode
     func getCategorySections(list: [Transaction]){
         var sections = [CategorySection]()
         let categoryArray = getAllCategoryArray()
-        for c in categoryArray {
+        categoryArray.forEach { (c) in
             var items = [CategoryItem]()
             var categoryName = ""
             var iconImage = ""
             var amount = 0
-            for b in finalTransactions{
-                
+            finalTransactions.forEach { (b) in
                 if b.categoryid == c {
                     let amount2 = b.amount!
                     let type = b.transactionType!
@@ -147,7 +150,11 @@ class ViewTransactionPresenter {
                     //MARK: - Get item for each section
                     let components = Defined.convertToDate(resultDate: b.date!)
                     let dateModel = getDateModel(components: components)
-                    items.append(CategoryItem(id: b.id!,dateModel: dateModel, amount: amount2,type: type, note: note))
+                    var item = CategoryItem(id: b.id!,dateModel: dateModel, amount: amount2,type: type, note: note)
+                    if let eventid = b.eventid {
+                        item.eventid = eventid
+                    }
+                    items.append(item)
                 }
             }
             for a in categories! {
@@ -185,7 +192,7 @@ extension ViewTransactionPresenter {
     //MARK: - Get all categories from transaction list
     func getAllCategoryArray() -> [String]{
         var checkArray = [String]()
-        for a in finalTransactions {
+        finalTransactions.forEach { (a) in
             var check = false
             for b in checkArray {
                 if a.categoryid == b {
@@ -210,7 +217,7 @@ extension ViewTransactionPresenter {
     func getAllDayArray() -> [String]{
         var checkArray = [String]()
         //MARK: - Get all distinct date string
-        for a in allTransactions {
+        allTransactions.forEach { (a) in
             var check = false
             for b in checkArray {
                 if a.date == b {
@@ -231,10 +238,11 @@ extension ViewTransactionPresenter {
         return sortedArray
     }
     
+    //MARK: - GET Transaction date in descending order from date string array
     func getDateArray(arr: [String], month: Int, year: Int) -> [TransactionDate]{
         var list = [TransactionDate]()
         var mDates = [Date]()
-        for a in arr {
+        arr.forEach { (a) in
             let myDate = a
             let date = Defined.dateFormatter.date(from: myDate)
             let components = Defined.calendar.dateComponents([.day, .month, .year, .weekday], from: date!)
@@ -248,13 +256,13 @@ extension ViewTransactionPresenter {
             first.compare(second) == ComparisonResult.orderedDescending        }
         //Date style: 18/09/2020
         Defined.dateFormatter.dateStyle = .short
-        for d in mDates {
+        mDates.forEach { (d) in
             let t = TransactionDate(dateString: Defined.dateFormatter.string(from: d), date: d)
             list.append(t)
         }
         return list
     }
-    
+    //MARK: - Get Transactions by month
     func getTransactionbyMonth(month: Int, year: Int){
         //date model of given month year
         dates = getDateArray(arr: getAllDayArray(), month: month, year: year)
@@ -262,6 +270,7 @@ extension ViewTransactionPresenter {
         finalTransactions = getTransactionbyDate(dateArr: dates)
     }
     
+    //MARK: - Get All transaction from the given month/year
     func getTransactionbyDate(dateArr: [TransactionDate]) -> [Transaction]{
         var list = [Transaction]()
         for day in dateArr {
@@ -275,39 +284,29 @@ extension ViewTransactionPresenter {
     }
     
     func loadDetailCell(month: Int, year: Int){
-        var open = 0
-        var end = 0
         let previousMonth = (month == 1) ? 12 : (month - 1)
         let previousYear = (month == 1) ? (year - 1) : year
         let previousDates = getDateArray(arr: getAllDayArray(), month: previousMonth, year: previousYear)
         let currentDates = getDateArray(arr: getAllDayArray(), month: month, year: year)
-        
-        if previousDates.count == 0 {
-            open = 0
-        } else {
-            for t in getTransactionbyDate(dateArr: previousDates){
-                if t.transactionType == TransactionType.expense.getValue() {
-                    open -= t.amount!
-                } else {
-                    open += t.amount!
-                }
-            }
-        }
-        
-        if currentDates.count == 0 {
-            end = 0
-        } else {
-            for t in getTransactionbyDate(dateArr: currentDates){
-                if t.transactionType == TransactionType.expense.getValue() {
-                    end -= t.amount!
-                } else {
-                    end += t.amount!
-                }
-            }
-        }
-        //return DetailInfo(opening: open, ending: end)
+        let open = calculateDetail(list: getTransactionbyDate(dateArr: previousDates))
+        let end = calculateDetail(list: getTransactionbyDate(dateArr: currentDates))
         delegate?.getDetailCellInfo(info: DetailInfo(opening: open, ending: end))
     }
+    
+    // calculate sum amount of given list in a months
+    func calculateDetail(list: [Transaction]) -> Int {
+        var number = 0
+        list.forEach { (a) in
+            if a.transactionType == TransactionType.expense.getValue(){
+                number -= a.amount!
+            } else {
+                number -= a.amount!
+            }
+        }
+        return number
+    }
+    
+    
     
     //MARK: - Get all month year in range min-max to set collectionview menu
     func getMonthYearInRange(from startDate: Date, to endDate: Date){

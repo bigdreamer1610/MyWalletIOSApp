@@ -631,7 +631,7 @@
                                 </connections>
                             </button>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="tOk-TT-U5a">
+                        <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="tOk-TT-U5a">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Dsx-xj-BGH">
                                 <rect key="frame" x="302" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -640,13 +640,18 @@
                                     <color key="titleColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
+                            <connections>
+                                <action selector="btnDoneClick:" destination="Vpz-KK-ddV" id="4N4-dI-ft2"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="btnCancel" destination="cbF-4x-feo" id="8dy-yn-vWz"/>
                         <outlet property="btnDone" destination="tOk-TT-U5a" id="GBC-x2-WXE"/>
                         <outlet property="eventView" destination="OlP-hM-dh0" id="W0N-ZR-9Zz"/>
+                        <outlet property="imgEvent" destination="CUB-Z2-I3P" id="CPp-re-2el"/>
                         <outlet property="labelEventView" destination="a4U-Od-Phj" id="Srr-7P-eGr"/>
+                        <outlet property="lblSelectEvent" destination="gtC-dC-wSv" id="dxS-d2-4Ei"/>
                         <outlet property="switch" destination="ABN-p1-2qO" id="N5R-QU-YtV"/>
                         <outlet property="switchView" destination="MAy-G9-71t" id="byD-Xj-Wjz"/>
                     </connections>
@@ -925,18 +930,17 @@
     <color key="tintColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
     <resources>
         <image name="banker" width="170.66667175292969" height="170.66667175292969"/>
-        <image name="flag-australia" width="170.66667175292969" height="170.66667175292969"/>
-        <image name="flag-canada" width="170.66667175292969" height="170.66667175292969"/>
-        <image name="flag-china" width="170.66667175292969" height="170.66667175292969"/>
-        <image name="flag-european-union" width="170.66667175292969" height="170.66667175292969"/>
-        <image name="flag-japan" width="170.66667175292969" height="170.66667175292969"/>
-        <image name="flag-singapore" width="170.66667175292969" height="170.66667175292969"/>
-        <image name="flag-south-korea" width="170.66667175292969" height="170.66667175292969"/>
-        <image name="flag-united-states" width="170.66667175292969" height="170.66667175292969"/>
-        <image name="flag-vietnam" width="170.66667175292969" height="170.66667175292969"/>
+        <image name="flag-australia" width="128" height="128"/>
+        <image name="flag-canada" width="128" height="128"/>
+        <image name="flag-china" width="128" height="128"/>
+        <image name="flag-european-union" width="128" height="128"/>
+        <image name="flag-japan" width="128" height="128"/>
+        <image name="flag-singapore" width="128" height="128"/>
+        <image name="flag-south-korea" width="128" height="128"/>
+        <image name="flag-united-states" width="128" height="128"/>
+        <image name="flag-vietnam" width="128" height="128"/>
         <image name="rightarrow" width="170.66667175292969" height="170.66667175292969"/>
         <image name="s-defaultimage" width="170.66667175292969" height="170.66667175292969"/>
         <image name="users" width="170.66667175292969" height="170.66667175292969"/>
     </resources>
 </document>
-
