@@ -54,6 +54,7 @@ class SettingsViewController: UIViewController {
         }
     }
     
+    // MARK: - Setup delegate
     func setupDelegate(presenter: SettingsPresenter) {
         self.presenter = presenter
     }
@@ -68,7 +69,7 @@ class SettingsViewController: UIViewController {
         user.address = txtAddress.text!
         user.language = txtLanguage.text!
         
-        presenter?.validateInput(user)
+        presenter?.validateInput(user, "userid1")
     }
 }
 
