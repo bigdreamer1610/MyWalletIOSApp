@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SelectEventCell: UITableViewCell {
+class SelectEventCell: BaseTBCell {
     
     @IBOutlet weak var lblEvent: UILabel!
     @IBOutlet weak var iconEvent: UIImageView!
@@ -22,7 +22,7 @@ class SelectEventCell: UITableViewCell {
     }
     func setUp(data:Event){
         lblEvent.text = data.name
-        iconEvent.image = UIImage(named: data.name ?? "")
+        iconEvent.image = UIImage(named: data.eventImage ?? "")
     }
     
     

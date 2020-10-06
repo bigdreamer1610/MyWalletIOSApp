@@ -54,6 +54,7 @@ class SettingsViewController: UIViewController {
         }
     }
     
+    // MARK: - Setup delegate
     func setupDelegate(presenter: SettingsPresenter) {
         self.presenter = presenter
     }
@@ -68,19 +69,19 @@ class SettingsViewController: UIViewController {
         user.address = txtAddress.text!
         user.language = txtLanguage.text!
         
-        presenter?.validateInput(user)
+        presenter?.validateInput(user, "userid1")
     }
 }
 
 extension SettingsViewController: SettingsPresenterDelegate {
     func setupForViews(_ user: Account) {
-        txtUsername.text = user.name
+        txtUsername.text = user.name!
         txtBalance.text = "\(user.balance ?? 0)"
-        txtDate.text = user.dateOfBirth
-        txtPhoneNumber.text = user.phoneNumber
-        txtGender.text = user.gender
-        txtAddress.text = user.address
-        txtLanguage.text = user.language
+        txtDate.text = user.dateOfBirth!
+        txtPhoneNumber.text = user.phoneNumber!
+        txtGender.text = user.gender!
+        txtAddress.text = user.address!
+        txtLanguage.text = user.language!
     }
     
     func showAlertMessage(_ message: String, _ state: Bool) {
