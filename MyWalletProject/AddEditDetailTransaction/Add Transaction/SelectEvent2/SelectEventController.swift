@@ -13,7 +13,7 @@ import FirebaseDatabase
 import FirebaseAnalytics
 
 protocol SelectEvent {
-    func setEvent(nameEvent:String)
+    func setEvent(nameEvent:String, imageEvent:String)
 }
 
 class SelectEventController: UIViewController {
@@ -62,7 +62,7 @@ extension SelectEventController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = UIStoryboard.init(name:Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "add") as? AddTransactionController
         let ex = events[indexPath.row]
-        delegate?.setEvent(nameEvent: ex.name ?? "" )
+        delegate?.setEvent(nameEvent: ex.name ?? "", imageEvent: ex.eventImage ?? "" )
         self.navigationController?.popViewController(animated: true)
     }
     

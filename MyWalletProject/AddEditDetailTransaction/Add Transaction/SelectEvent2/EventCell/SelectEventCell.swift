@@ -22,7 +22,7 @@ class SelectEventCell: UITableViewCell {
     }
     func setUp(data:Event){
         lblEvent.text = data.name
-        iconEvent.image = UIImage(named: data.name ?? "")
+        iconEvent.image = UIImage(named: data.eventImage ?? "")
     }
     
     

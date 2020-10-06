@@ -202,9 +202,12 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
 }
 
 extension AddTransactionController: SelectCategory, SelectDate, SelectEvent{
-    func setEvent(nameEvent: String) {
+    func setEvent(nameEvent: String, imageEvent: String) {
         tfEvent.text = nameEvent
+        iconEvent.image = UIImage(named: imageEvent)
     }
+    
+  
     
     func setDate(date: String) {
         tfDate.text = date
