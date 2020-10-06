@@ -9,9 +9,11 @@
 import Foundation
 protocol SelectEventPresenterDelegate: class  {
     func getDataOfEvent(data: [Event])
+    func reloadData()
 }
 
 class SelectEventPresenter {
+    var events  = [Event]()
     var delegate: SelectEventPresenterDelegate?
     var selectEventUserCase: SelectEventUserCase?
     
@@ -28,6 +30,8 @@ class SelectEventPresenter {
 
 extension SelectEventPresenter: SelectEventUserCaseDelegate {
     func responseData(data: [Event]) {
+        self.events = data
+        delegate?.reloadData()
         delegate?.getDataOfEvent(data: data)
     }
     

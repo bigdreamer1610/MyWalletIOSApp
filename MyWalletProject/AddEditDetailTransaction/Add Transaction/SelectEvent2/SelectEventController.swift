@@ -8,9 +8,6 @@
 
 import UIKit
 import Firebase
-import FirebaseAuth
-import FirebaseDatabase
-import FirebaseAnalytics
 
 protocol SelectEvent {
     func setEvent(nameEvent:String, imageEvent:String)
@@ -27,15 +24,40 @@ class SelectEventController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter?.responseDataEvent()
-        tableView.register(UINib(nibName: cellId, bundle: nil), forCellReuseIdentifier:cellId)
+        initComponents()
+        initData()
     }
-    func setUp(presenter: SelectEventPresenter) -> <#return type#> {
-        <#function body#>
+    
+    func initData(){
+        presenter?.responseDataEvent()
+        tableView.reloadData()
+    }
+    
+    func initComponents(){
+        SelectEventCell.registerCellByNib(tableView)
+        tableView.dataSource = self
+        tableView.delegate = self
+        //tableView.register(UINib(nibName: cellId, bundle: nil), forCellReuseIdentifier:cellId)
+    }
+    
+    func setUp(presenter: SelectEventPresenter) {
+        self.presenter = presenter
+    }
+    
+}
+extension SelectEventController: SelectEventPresenterDelegate{
+    func getDataOfEvent(data: [Event]) {
+        self.events = data
+        self.tableView.reloadData()
+    }
+    
+    func reloadData() {
+        self.tableView.reloadData()
     }
 }
 
 extension SelectEventController: UITableViewDataSource, UITableViewDelegate{
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
     }
@@ -52,6 +74,4 @@ extension SelectEventController: UITableViewDataSource, UITableViewDelegate{
         delegate?.setEvent(nameEvent: ex.name ?? "", imageEvent: ex.eventImage ?? "" )
         self.navigationController?.popViewController(animated: true)
     }
-    
-    
 }

@@ -21,7 +21,7 @@ class SelectEventUserCase {
 
 extension SelectEventUserCase{
     func getDataFromFirebase() {
-        // get data event
+
         Defined.ref.child("Account").child("userid1").child("event").observe(DataEventType.value) { (snapshot) in
             if snapshot.childrenCount > 0 {
                 self.events.removeAll()

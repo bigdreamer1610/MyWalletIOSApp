@@ -21,6 +21,7 @@ enum Language: String {
 
 protocol SettingsPresenterDelegate {
     func showAlertMessage(_ message: String, _ state: Bool)
+    func setupForViews(_ user: Account)
 }
 
 class SettingsPresenter {
@@ -31,6 +32,11 @@ class SettingsPresenter {
     init(delegate: SettingsPresenterDelegate, usecase: SettingsUseCase) {
         self.delegate = delegate
         self.usecase = usecase
+        self.usecase?.delegate = self
+    }
+    
+    func requestUserInfo(_ userId: String) {
+        usecase?.getUserInfoFromDB(userId)
     }
     
     func validateInput(_ user: Account) {
@@ -85,5 +91,11 @@ class SettingsPresenter {
         }
 
         delegate?.showAlertMessage(message, state)
+    }
+}
+
+extension SettingsPresenter: SettingsUseCaseDelegate {
+    func responseData(_ user: Account) {
+        delegate?.setupForViews(user)
     }
 }

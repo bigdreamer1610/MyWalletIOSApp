@@ -10,14 +10,14 @@ import Foundation
 import FirebaseDatabase
 
 protocol SettingsUseCaseDelegate {
-    func saveUserInfoToDB(_ user: Account)
+    func responseData(_ user: Account)
 }
 
 class SettingsUseCase {
     var delegate: SettingsUseCaseDelegate?
 }
 
-extension SettingsUseCase: SettingsUseCaseDelegate {
+extension SettingsUseCase {
     func saveUserInfoToDB(_ user: Account) {
         let userInfo = [
             "name": user.name!,
@@ -33,6 +33,29 @@ extension SettingsUseCase: SettingsUseCaseDelegate {
             error, ref in
             if error == nil {}
             else {}
+        })
+    }
+    
+    // MARK: - Dang bi loi khong biet vi sao!!!!!!
+    func getUserInfoFromDB(_ userId: String) {
+        var userInfo: Account = Account()
+        
+        Defined.ref.child("Account").child("userid1").child("information").observeSingleEvent(of: .value, with: { snapshot in
+            guard let dict = snapshot.value as? NSDictionary else {
+                print("error")
+                return
+            }
+            
+            userInfo.address = dict["address"] as? String
+            userInfo.balance = dict["balance"] as? Int
+            userInfo.dateOfBirth = dict["dateOfBirth"] as? String
+            userInfo.email = dict["email"] as? String
+            userInfo.gender = dict["gender"] as? String
+            userInfo.language = dict["language"] as? String
+            userInfo.name = dict["name"] as? String
+            userInfo.phoneNumber = dict["phoneNumber"] as? String
+            
+            self.delegate?.responseData(userInfo)
         })
     }
 }

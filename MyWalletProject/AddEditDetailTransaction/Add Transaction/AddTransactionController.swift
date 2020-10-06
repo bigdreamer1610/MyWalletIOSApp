@@ -86,9 +86,11 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
         
     }
     @objc func myEven(textField:UITextField){
-        let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "selectEvent") as? SelectEventController
-        vc?.delegate = self
-        self.navigationController?.pushViewController(vc!, animated: true)
+        let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "selectEvent") as! SelectEventController
+        vc.delegate = self
+        let presenter = SelectEventPresenter(delegate: vc, usecase: SelectEventUserCase())
+        vc.setUp(presenter: presenter)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SelectEventCell: UITableViewCell {
+class SelectEventCell: BaseTBCell {
     
     @IBOutlet weak var lblEvent: UILabel!
     @IBOutlet weak var iconEvent: UIImageView!

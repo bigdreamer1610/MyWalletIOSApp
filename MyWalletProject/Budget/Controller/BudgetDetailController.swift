@@ -107,7 +107,9 @@ extension BudgetDetailController : DetailBudgetTappedButton {
     }
     
     @objc func btnListTransactionTapped() {
-        print("Transaction")
+        let vc = RouterType.budgetTransaction(budgetObject: budgetObject).getVc()
+        self.navigationController?.pushViewController(vc, animated: true)
+        print("Transaction ok")
     }
 }
 
