@@ -9,6 +9,11 @@
 import Foundation
 import UIKit
 
+enum RouterOption: Int {
+    case present = 0
+    case push = 1
+}
+
 enum RouterType {
     case transactionDetail(item: TransactionItem, header: TransactionHeader)
     case categoryDetail(item: CategoryItem, header: CategoryHeader)
@@ -28,6 +33,13 @@ enum RouterType {
     case dayBarChartDetail
     case budgetTransaction(budgetObject: Budget)
     
+    // Settings and Tools
+    case settings
+    case addCategories
+    case currencies
+    case travelMode
+    case billScanner
+    
     //case viewTransaction
 }
 
@@ -41,6 +53,17 @@ class AppRouter {
                 
             }
             window.makeKeyAndVisible()
+        }
+    }
+    
+    class func routerTo(from vc: UIViewController, router: RouterType, options: RouterOption) {
+        switch options {
+        case .present:
+            let vct = router.getVc()
+            vct.modalPresentationStyle = .fullScreen
+            vc.present(vct, animated: true, completion: nil)
+        default:
+            vc.navigationController?.pushViewController(router.getVc(), animated: true)
         }
     }
     
@@ -124,7 +147,30 @@ extension RouterType{
             vc.setUpBudget(budget: budgetObject)
             let presenter = BudgetTransactionPresenter(delegate: vc, usecase: BudgetTransactionUseCase())
             vc.setUp(presenter: presenter)
+        case .settings:
+            let vc = UIStoryboard.init(name: "UserSettings", bundle: Bundle.main).instantiateViewController(identifier: "settingsVC") as! SettingsViewController
+            let presenter = SettingsPresenter(delegate: vc, usecase: SettingsUseCase())
+            vc.setupDelegate(presenter: presenter)
+            return vc
+        case .addCategories:
+            let vc = UIStoryboard.init(name: "UserSettings", bundle: Bundle.main).instantiateViewController(identifier: "settingsVC") as! SettingsViewController
+            let presenter = SettingsPresenter(delegate: vc, usecase: SettingsUseCase())
+            vc.setupDelegate(presenter: presenter)
+            return vc
+        case .currencies:
+            let vc = UIStoryboard.init(name: "UserSettings", bundle: Bundle.main).instantiateViewController(identifier: "currencyVC") as! CurrencyViewController
+            let presenter = CurrencyPresenter(delegate: vc, usecase: CurrencyUseCase())
+            vc.setupDelegate(presenter: presenter)
+            return vc
+        case .travelMode:
+            let vc = UIStoryboard.init(name: "UserSettings", bundle: Bundle.main).instantiateViewController(identifier: "travelModeVC") as! TravelModeViewController
+            return vc
+        case .billScanner:
+            let vc = UIStoryboard.init(name: "ScanBill", bundle: Bundle.main).instantiateViewController(identifier: "scanBillVC") as! ScanBillViewController
+            let presenter = ScanBillPresenter(delegate: vc, usecase: ScanBillUseCase())
+            vc.setupDelegate(presenter: presenter)
             return vc
         }
+        
     }
 }
