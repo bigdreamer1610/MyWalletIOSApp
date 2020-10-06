@@ -93,10 +93,7 @@ extension UserSettingsViewController: UITableViewDelegate, UITableViewDataSource
         case 0:
             AppRouter.routerTo(from: self, router: .settings, options: .push)
         case 1:
-            // TO DO: - Implementation of Categories Screen
-//            let settingsController = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: "settings")
-//            navigationController?.pushViewController(settingsController, animated: true)
-            print("For categories")
+            AppRouter.routerTo(from: self, router: .addCategories, options: .push)
         case 2:
             AppRouter.routerTo(from: self, router: .currencies, options: .push)
         case 3:

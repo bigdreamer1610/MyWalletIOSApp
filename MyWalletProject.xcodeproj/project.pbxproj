@@ -131,6 +131,15 @@
 		8A3BB42F251B31B4008113E9 /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BB42E251B31B4008113E9 /* SettingsPresenter.swift */; };
 		8A3BB431251B326E008113E9 /* SettingsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BB430251B326E008113E9 /* SettingsUseCase.swift */; };
 		8A3BB434251B6069008113E9 /* CurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3BB433251B6069008113E9 /* CurrencyViewController.swift */; };
+		8A3D7DE1252C47E5004F4FEA /* Categories.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A3D7DE0252C47E5004F4FEA /* Categories.storyboard */; };
+		8A3D7DE7252C4E08004F4FEA /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D7DE5252C4E08004F4FEA /* CategoryTableViewCell.swift */; };
+		8A3D7DE8252C4E08004F4FEA /* CategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3D7DE6252C4E08004F4FEA /* CategoryTableViewCell.xib */; };
+		8A3D7DEB252C552B004F4FEA /* ViewCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D7DEA252C552B004F4FEA /* ViewCategoryViewController.swift */; };
+		8A3D7DED252C55D4004F4FEA /* ViewCategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D7DEC252C55D4004F4FEA /* ViewCategoryPresenter.swift */; };
+		8A3D7DEF252C55E4004F4FEA /* ViewCategoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D7DEE252C55E4004F4FEA /* ViewCategoryUseCase.swift */; };
+		8A3D7DF2252C683C004F4FEA /* AddEditCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D7DF1252C683C004F4FEA /* AddEditCategoryViewController.swift */; };
+		8A3D7DF4252C6854004F4FEA /* AddEditCategoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D7DF3252C6854004F4FEA /* AddEditCategoryPresenter.swift */; };
+		8A3D7DF6252C6865004F4FEA /* AddEditCategoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3D7DF5252C6865004F4FEA /* AddEditCategoryUseCase.swift */; };
 		8A6DABF82525BA800033FE07 /* TravelModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6DABF72525BA800033FE07 /* TravelModeViewController.swift */; };
 		8A725C4E251C79FD00610758 /* CurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A725C4D251C79FD00610758 /* CurrencyModel.swift */; };
 		8ACA6248251A07980031E6DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACA6247251A07980031E6DF /* AppDelegate.swift */; };
@@ -306,6 +315,15 @@
 		8A3BB42E251B31B4008113E9 /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		8A3BB430251B326E008113E9 /* SettingsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsUseCase.swift; sourceTree = "<group>"; };
 		8A3BB433251B6069008113E9 /* CurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewController.swift; sourceTree = "<group>"; };
+		8A3D7DE0252C47E5004F4FEA /* Categories.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Categories.storyboard; sourceTree = "<group>"; };
+		8A3D7DE5252C4E08004F4FEA /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		8A3D7DE6252C4E08004F4FEA /* CategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryTableViewCell.xib; sourceTree = "<group>"; };
+		8A3D7DEA252C552B004F4FEA /* ViewCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCategoryViewController.swift; sourceTree = "<group>"; };
+		8A3D7DEC252C55D4004F4FEA /* ViewCategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCategoryPresenter.swift; sourceTree = "<group>"; };
+		8A3D7DEE252C55E4004F4FEA /* ViewCategoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCategoryUseCase.swift; sourceTree = "<group>"; };
+		8A3D7DF1252C683C004F4FEA /* AddEditCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditCategoryViewController.swift; sourceTree = "<group>"; };
+		8A3D7DF3252C6854004F4FEA /* AddEditCategoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditCategoryPresenter.swift; sourceTree = "<group>"; };
+		8A3D7DF5252C6865004F4FEA /* AddEditCategoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditCategoryUseCase.swift; sourceTree = "<group>"; };
 		8A6DABF72525BA800033FE07 /* TravelModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelModeViewController.swift; sourceTree = "<group>"; };
 		8A725C4D251C79FD00610758 /* CurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyModel.swift; sourceTree = "<group>"; };
 		8ACA6244251A07980031E6DF /* MyWalletProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWalletProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -836,11 +854,11 @@
 		8A3BB41D251AE6D9008113E9 /* UserSettings */ = {
 			isa = PBXGroup;
 			children = (
-				8A6DABF62525BA580033FE07 /* TravelMode */,
-				8A3BB414251ADEE6008113E9 /* ScanBill */,
-				8A3BB432251B5022008113E9 /* MoneyCurrencies */,
 				8A3BB42A251B20A3008113E9 /* Settings */,
 				8A3BB42B251B20A9008113E9 /* Categories */,
+				8A3BB432251B5022008113E9 /* MoneyCurrencies */,
+				8A6DABF62525BA580033FE07 /* TravelMode */,
+				8A3BB414251ADEE6008113E9 /* ScanBill */,
 				8A3BB420251AF91F008113E9 /* UserSettingsViewController.swift */,
 				8A3BB428251B204C008113E9 /* UserSettings.storyboard */,
 				8A3BB424251AFE7C008113E9 /* SettingsItemViewCell.swift */,
@@ -862,6 +880,9 @@
 		8A3BB42B251B20A9008113E9 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				8A3D7DE0252C47E5004F4FEA /* Categories.storyboard */,
+				8A3D7DF0252C6815004F4FEA /* AddCategory */,
+				8A3D7DE9252C5423004F4FEA /* ViewCategory */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -875,6 +896,36 @@
 				8A725C4D251C79FD00610758 /* CurrencyModel.swift */,
 			);
 			path = MoneyCurrencies;
+			sourceTree = "<group>";
+		};
+		8A3D7DE4252C4DDB004F4FEA /* CategoryTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				8A3D7DE5252C4E08004F4FEA /* CategoryTableViewCell.swift */,
+				8A3D7DE6252C4E08004F4FEA /* CategoryTableViewCell.xib */,
+			);
+			path = CategoryTableCell;
+			sourceTree = "<group>";
+		};
+		8A3D7DE9252C5423004F4FEA /* ViewCategory */ = {
+			isa = PBXGroup;
+			children = (
+				8A3D7DE4252C4DDB004F4FEA /* CategoryTableCell */,
+				8A3D7DEA252C552B004F4FEA /* ViewCategoryViewController.swift */,
+				8A3D7DEC252C55D4004F4FEA /* ViewCategoryPresenter.swift */,
+				8A3D7DEE252C55E4004F4FEA /* ViewCategoryUseCase.swift */,
+			);
+			path = ViewCategory;
+			sourceTree = "<group>";
+		};
+		8A3D7DF0252C6815004F4FEA /* AddCategory */ = {
+			isa = PBXGroup;
+			children = (
+				8A3D7DF1252C683C004F4FEA /* AddEditCategoryViewController.swift */,
+				8A3D7DF3252C6854004F4FEA /* AddEditCategoryPresenter.swift */,
+				8A3D7DF5252C6865004F4FEA /* AddEditCategoryUseCase.swift */,
+			);
+			path = AddCategory;
 			sourceTree = "<group>";
 		};
 		8A6DABF62525BA580033FE07 /* TravelMode */ = {
@@ -1155,10 +1206,12 @@
 				8A3BB427251AFE7C008113E9 /* SettingsItemViewCell.xib in Resources */,
 				72873D9C25249C0800313629 /* DetailPieTableViewCell.xib in Resources */,
 				D270F4BE251B54DF00CB274C /* EventCell.xib in Resources */,
+				8A3D7DE1252C47E5004F4FEA /* Categories.storyboard in Resources */,
 				56B8A80B25248A7700B8E8F0 /* TimeCell.xib in Resources */,
 				72A71920251DDEBD003ED157 /* PieChartTableViewCell.xib in Resources */,
 				56B8A80F25248AAC00B8E8F0 /* CateCell.xib in Resources */,
 				D270F4C2251B550E00CB274C /* CategoryEventCell.xib in Resources */,
+				8A3D7DE8252C4E08004F4FEA /* CategoryTableViewCell.xib in Resources */,
 				73E0B1822521E0EE0097D41F /* DetailCell.xib in Resources */,
 				73E0B1872521E0EE0097D41F /* BottomMenuCell.xib in Resources */,
 				D29A104E251C4D15009EF2DC /* GoogleService-Info.plist in Resources */,
@@ -1281,6 +1334,7 @@
 				8A3BB426251AFE7C008113E9 /* SettingsItemViewCell.swift in Sources */,
 				56053C2C2525E88C00685FFC /* BudgetListViewController.swift in Sources */,
 				73E0B17B2521E0EE0097D41F /* ViewTransactionController.swift in Sources */,
+				8A3D7DEB252C552B004F4FEA /* ViewCategoryViewController.swift in Sources */,
 				8A3BB40D251ADE9E008113E9 /* Category.swift in Sources */,
 				72873D8B25249AFC00313629 /* DetailSBCTableViewCell.swift in Sources */,
 				8A3BB418251ADF9E008113E9 /* ScanBillViewController.swift in Sources */,
@@ -1288,6 +1342,7 @@
 				56053C292525E88C00685FFC /* SelectCategoryViewController.swift in Sources */,
 				D270F4C4251B557D00CB274C /* CalendarController.swift in Sources */,
 				8A3BB421251AF91F008113E9 /* UserSettingsViewController.swift in Sources */,
+				8A3D7DEF252C55E4004F4FEA /* ViewCategoryUseCase.swift in Sources */,
 				73D7D88D252C076C0014F5A1 /* BudgetTransactionUseCase.swift in Sources */,
 				56B8A8022524898400B8E8F0 /* BudgetCell.swift in Sources */,
 				73D7D88B252C07570014F5A1 /* BudgetTransactionViewController.swift in Sources */,
@@ -1297,6 +1352,7 @@
 				73FC0D342525DE4C0012676D /* TransactionViewController.swift in Sources */,
 				9862A913252C17F100F3FF5D /* SelectEventUserCase.swift in Sources */,
 				D270F4C1251B550E00CB274C /* CategoryEventCell.swift in Sources */,
+				8A3D7DED252C55D4004F4FEA /* ViewCategoryPresenter.swift in Sources */,
 				72873D9325249B6100313629 /* IncomDetailTableViewCell.swift in Sources */,
 				73E0B17C2521E0EE0097D41F /* FirstNavigationController.swift in Sources */,
 				73E78DAA2524427B00D7B962 /* SelectEventCell.swift in Sources */,
@@ -1320,6 +1376,7 @@
 				73E0B1A9252206200097D41F /* AppRouter.swift in Sources */,
 				D27F30F8252722AE00FF940B /* FormatNumber.swift in Sources */,
 				73D7D88F252C07780014F5A1 /* BudgetTransactionPresenter.swift in Sources */,
+				8A3D7DF2252C683C004F4FEA /* AddEditCategoryViewController.swift in Sources */,
 				73E60E8B252AB35F007A81C6 /* BalanceUseCase.swift in Sources */,
 				8A725C4E251C79FD00610758 /* CurrencyModel.swift in Sources */,
 				D269928F25247BCA0061EDF6 /* TableDetailEventController.swift in Sources */,
@@ -1329,6 +1386,7 @@
 				8A3BB431251B326E008113E9 /* SettingsUseCase.swift in Sources */,
 				7338862D25231F68002F126B /* EditTransactionController.swift in Sources */,
 				72873D8F25249B2700313629 /* DayDetail.swift in Sources */,
+				8A3D7DF4252C6854004F4FEA /* AddEditCategoryPresenter.swift in Sources */,
 				7338862625231F68002F126B /* CustomDateController.swift in Sources */,
 				8A1E077A251C3DB3000DCF07 /* CurrencyPresenter.swift in Sources */,
 				999389F1252A2AB100E72A41 /* ViewTransactionUseCase.swift in Sources */,
@@ -1337,6 +1395,7 @@
 				56053C2B2525E88C00685FFC /* BudgetController.swift in Sources */,
 				72873D9B25249C0800313629 /* DetailPieTableViewCell.swift in Sources */,
 				56B8A7F02524849300B8E8F0 /* LoginPresenterFB.swift in Sources */,
+				8A3D7DF6252C6865004F4FEA /* AddEditCategoryUseCase.swift in Sources */,
 				73D7D893252C07B50014F5A1 /* OverviewCell.swift in Sources */,
 				7338862825231F68002F126B /* SelectCategoryCell.swift in Sources */,
 				73E60E8D252AB36A007A81C6 /* BalancePresenter.swift in Sources */,
@@ -1368,6 +1427,7 @@
 				8A1E077C251C4175000DCF07 /* CurrencyUseCase.swift in Sources */,
 				8A3BB40F251ADEB3008113E9 /* Account.swift in Sources */,
 				8A3BB42F251B31B4008113E9 /* SettingsPresenter.swift in Sources */,
+				8A3D7DE7252C4E08004F4FEA /* CategoryTableViewCell.swift in Sources */,
 				D270F4B3251B53F100CB274C /* EventController.swift in Sources */,
 				56B8A7F2252484E700B8E8F0 /* LoginViewController.swift in Sources */,
 				56053C2E2525E88C00685FFC /* CalendarViewController.swift in Sources */,

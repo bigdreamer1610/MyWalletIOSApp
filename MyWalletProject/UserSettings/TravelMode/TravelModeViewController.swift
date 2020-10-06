@@ -19,6 +19,9 @@ class TravelModeViewController: UIViewController {
     
     @IBOutlet weak var `switch`: UISwitch!
     
+    @IBOutlet weak var lblSelectEvent: UILabel!
+    @IBOutlet weak var imgEvent: UIImageView!
+    
     var switchState = false
     var travelModeState = false
     
@@ -28,6 +31,7 @@ class TravelModeViewController: UIViewController {
         self.title = "Travel Mode"
         
         addBorder([switchView, eventView])
+        setupGestureForView([eventView])
         
         labelEventView.alpha = 0
         eventView.alpha = 0
@@ -57,6 +61,7 @@ class TravelModeViewController: UIViewController {
             self.view.addSubview(view)
         }
     }
+    
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         print("Hello World")
     }
@@ -90,5 +95,11 @@ class TravelModeViewController: UIViewController {
     
     @IBAction func btnCancelClick(_ sender: Any) {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func btnDoneClick(_ sender: Any) {
+        if lblSelectEvent.text != "Select Event" {
+            print("Passed")
+        }
     }
 }

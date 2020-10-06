@@ -154,8 +154,8 @@ extension RouterType{
             vc.setupDelegate(presenter: presenter)
             return vc
         case .addCategories:
-            let vc = UIStoryboard.init(name: "UserSettings", bundle: Bundle.main).instantiateViewController(identifier: "settingsVC") as! SettingsViewController
-            let presenter = SettingsPresenter(delegate: vc, usecase: SettingsUseCase())
+            let vc = UIStoryboard.init(name: "Categories", bundle: Bundle.main).instantiateViewController(identifier: "settingsCategoryVC") as! ViewCategoryViewController
+            let presenter = ViewCategoryPresenter(delegate: vc, usecase: ViewCategoryUseCase())
             vc.setupDelegate(presenter: presenter)
             return vc
         case .currencies:
