@@ -8,29 +8,32 @@
 
 import Foundation
 
-protocol CurrencyPresenterProtocol {
-    func receiveExchangeResult(resultModel: ResultData)
+protocol CurrencyPresenterDelegate {
+    func setupForViews(resultModel: ResultData)
 }
 
 class CurrencyPresenter {
     
-    var viewDelegate: CurrencyViewControllerProtocol?
-    var usecase: CurrencyUseCase = CurrencyUseCase()
+    var delegate: CurrencyPresenterDelegate?
+    var usecase: CurrencyUseCase?
     
+    init(delegate: CurrencyPresenterDelegate, usecase: CurrencyUseCase) {
+        self.delegate = delegate
+        self.usecase = usecase
+        self.usecase?.delegate = self
+    }
+
     func fetchData() {
-        usecase.presenterDelegate = self
-        //show loading
-        usecase.fetchData()
+        usecase?.fetchData()
     }
     
     func exchangeCurrency(amount: Double) {
-        usecase.presenterDelegate = self
-        usecase.exchangeVNDToOtherCurrencies(amount)
+        usecase?.exchangeVNDToOtherCurrencies(amount)
     }
 }
 
-extension CurrencyPresenter: CurrencyPresenterProtocol {
-    func receiveExchangeResult(resultModel: ResultData) {
-        viewDelegate?.setupForView(resultModel: resultModel)
+extension CurrencyPresenter: CurrencyUseCaseDelegate {
+    func responseData(resultModel: ResultData) {
+        delegate?.setupForViews(resultModel: resultModel)
     }
 }
