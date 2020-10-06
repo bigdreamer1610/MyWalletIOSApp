@@ -31,6 +31,7 @@ enum RouterType {
     case barChartDetail
     case pieChartDetail
     case dayBarChartDetail
+    case budgetTransaction(budgetObject: Budget)
     
     // Settings and Tools
     case settings
@@ -140,6 +141,12 @@ extension RouterType{
             return vc
         case .dayBarChartDetail:
             let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "dayDetailSBC") as! DayDetailSBC
+            return vc
+        case .budgetTransaction(let budgetObject):
+            let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "budgetTransaction_vc") as! BudgetTransactionViewController
+            vc.setUpBudget(budget: budgetObject)
+            let presenter = BudgetTransactionPresenter(delegate: vc, usecase: BudgetTransactionUseCase())
+            vc.setUp(presenter: presenter)
             return vc
         case .settings:
             let vc = UIStoryboard.init(name: "UserSettings", bundle: Bundle.main).instantiateViewController(identifier: "settingsVC") as! SettingsViewController
