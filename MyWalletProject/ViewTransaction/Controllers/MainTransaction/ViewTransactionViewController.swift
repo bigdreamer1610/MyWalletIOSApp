@@ -337,12 +337,10 @@ extension ViewTransactionViewController : UITableViewDataSource {
                 AppRouter.routerTo(from: vc, options: .transitionCrossDissolve, duration: 0.3, isNaviHidden: false)
             } else if indexPath.row == 1 {
                 if mode == Mode.transaction.getValue() {
-                    //self.transactionTableView.reloadData()
                     mode = Mode.category.getValue()
                     Defined.defaults.set(mode, forKey: Constants.mode)
                 } else {
                     self.tableView.reloadData()
-                    
                     mode = Mode.transaction.getValue()
                     Defined.defaults.set(mode, forKey: Constants.mode)
                 }
@@ -396,7 +394,7 @@ extension ViewTransactionViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         var myHeight: CGFloat = 0
         if section != 0 {
-            if mode == "transaction"{
+            if mode == Mode.transaction.getValue(){
                 myHeight = Constants.transactionHeader
             } else {
                 myHeight = Constants.categoryHeader
