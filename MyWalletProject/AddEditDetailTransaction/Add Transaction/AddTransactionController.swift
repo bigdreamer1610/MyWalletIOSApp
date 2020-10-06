@@ -10,7 +10,7 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
-class AddTransactionController: UIViewController, UITextFieldDelegate {
+class AddTransactionController: UIViewController,UITextFieldDelegate {
     
     @IBOutlet weak var tfDate: UITextField!
     @IBOutlet weak var tfNote: UITextField!
@@ -32,6 +32,7 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
     var type: String = ""
     var thisDate = Date()
     var budgets = [Budget]()
+    
     private let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
@@ -57,10 +58,8 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
         btnAddMore.layer.borderWidth = 1
         btnAddMore.layer.borderColor = #colorLiteral(red: 0.3929189782, green: 0.4198221317, blue: 0.8705882353, alpha: 1)
         btnAddMore.layer.cornerRadius = 6
-        
         tfCategory.setRightImage2(imageName: "arrowright")
         tfDate.setRightImage2(imageName: "arrowright")
-        tfEvent.setRightImage2(imageName: "arrowright")
     }
     
     func addEvent()  {
@@ -93,23 +92,21 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
-    
     @IBAction func clickCancel(_ sender: Any) {
         let vc = RouterType.tabbar.getVc()
         AppRouter.routerTo(from: vc, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
         
     }
     @IBAction func btnSave(_ sender: Any) {
-        if let strAmount = tfAmount.text,
-            let intAmount = Int(strAmount){
-            amount = intAmount
-            if amount <= 0{
-                let alert = UIAlertController(title: "Notification", message: "Amount of money cannot be 0", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-                return
-            }
+        var checkAmount = Int(tfAmount.text!)
+        if checkAmount == 0{
+            btnSave.isEnabled = false
+            let alert = UIAlertController(title: "Notification", message: "Amount of money cannot be 0", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
         }
+        
         let writeData: [String: Any] = [
             "date": tfDate.text!,
             "note": tfNote.text!,
@@ -127,6 +124,7 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
         }))
         self.present(alert, animated: true, completion: nil)
     }
+  
     
     func modifyBudget(list: [Budget], date: Date, aAmount: Int){
         print("budget list: \(list)")
@@ -176,7 +174,6 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func btnAddMoreDetails(_ sender: Any) {
-        
         viewShowMore.isHidden = false
         btnAddMore.isHidden = true
     }
@@ -191,7 +188,7 @@ class AddTransactionController: UIViewController, UITextFieldDelegate {
         let allowCharacterSet = CharacterSet(charactersIn: allowCharacters)
         let typeCharacterSet = CharacterSet(charactersIn: string)
         let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-        if !text.isEmpty {
+        if !text.isEmpty{
             btnSave.isEnabled = true
         } else {
             btnSave.isEnabled = false
@@ -209,8 +206,6 @@ extension AddTransactionController: SelectCategory, SelectDate, SelectEvent{
         iconEvent.image = UIImage(named: imageEvent)
     }
     
-  
-    
     func setDate(date: String) {
         tfDate.text = date
     }
@@ -222,4 +217,5 @@ extension AddTransactionController: SelectCategory, SelectDate, SelectEvent{
         iconImage.image = UIImage(named: iconCategory)
     }
 }
+
 
