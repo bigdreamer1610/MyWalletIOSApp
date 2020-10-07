@@ -8,11 +8,15 @@
 
 import UIKit
 
-class ImageCollectionViewCell: UICollectionViewCell {
+class ImageCollectionViewCell: BaseCLCell {
 
+    @IBOutlet weak var categoryIcon: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
+    func setupImage(_ imageName: String) {
+        categoryIcon.image = UIImage(named: imageName)
+    }
 }

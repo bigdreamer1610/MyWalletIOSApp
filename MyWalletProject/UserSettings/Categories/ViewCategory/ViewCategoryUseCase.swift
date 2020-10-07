@@ -23,7 +23,6 @@ class ViewCategoryUseCase {
 
 extension ViewCategoryUseCase {
     func getExpenseCategories() {
-        print("expense")
         categoriesExpense.removeAll()
         
         Defined.ref.child("Category").child("expense").observeSingleEvent(of: .value) { snapshot in
@@ -45,7 +44,6 @@ extension ViewCategoryUseCase {
     }
     
     func getIncomeCategories() {
-        print("income")
         categoriesIncome.removeAll()
         
         Defined.ref.child("Category").child("income").observeSingleEvent(of: .value) { snapshot in
