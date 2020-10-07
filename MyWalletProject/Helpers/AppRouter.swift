@@ -185,15 +185,15 @@ extension RouterType{
             
             
         case .selectEvent:
-            let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "selectEvent") as! SelectEventController
+            let vc = UIStoryboard.init(name: Constants.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "selectEvent") as! SelectEventController
             let presenter = SelectEventPresenter(delegate: vc, usecase: SelectEventUserCase())
             vc.setUp(presenter: presenter)
             return vc
         case .selectDate:
-            let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "customDate") as! CustomDateController
+            let vc = UIStoryboard.init(name: Constants.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "customDate") as! CustomDateController
             return vc
         case .selectCategory:
-            let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "selectCategory") as! SelectCategoryController
+            let vc = UIStoryboard.init(name: Constants.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "selectCategory") as! SelectCategoryController
             return vc
         }
         

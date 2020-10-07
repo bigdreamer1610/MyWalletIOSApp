@@ -66,20 +66,3 @@ class Defined {
         return sortedArray
     }
 }
-
-class Constants {
-    static let mode = "mode"
-    static let balance = "balance"
-    static let userid = "userid"
-    static let currentMonth = "currentMonth"
-    static let currentYear = "currentYear"
-    static let currentDate = "currentDate"
-    //MARK: HEIGHT FOR CELL & HEADER
-    static let transactionHeader: CGFloat = 60
-    static let categoryHeader: CGFloat = 65
-    static let categoryRow: CGFloat = 70
-    static let transactionRow: CGFloat = 65
-    static let detailCell: CGFloat = 135
-    static let menuCell: CGFloat = 60
-    static let overviewCell: CGFloat = 80
-}
