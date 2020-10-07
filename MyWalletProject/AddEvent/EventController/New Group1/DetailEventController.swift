@@ -86,6 +86,12 @@ class DetailEventController: UITableViewController {
         
     }
     
+    @IBAction func clickTransaction(_ sender: Any) {
+        let vc = RouterType.eventTransaction(event: self.event).getVc()
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
 }
 // TableView
 extension DetailEventController {
