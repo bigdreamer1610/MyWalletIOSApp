@@ -32,6 +32,9 @@ enum RouterType {
     case pieChartDetail
     case dayBarChartDetail
     case budgetTransaction(budgetObject: Budget)
+    case selectEvent
+    case selectCategory
+    case selectDate
     
     // Settings and Tools
     case settings
@@ -87,12 +90,16 @@ extension RouterType{
     func getVc() -> UIViewController {
         switch self {
         case .transactionDetail(let item, let header):
-            let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "detail") as! DetailTransactionController
+            let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "detail") as! DetailTransactionViewController
+            let presenter = DetailTransactionPresenter(delegate: vc, usecase: DetailTransactionUseCase())
             vc.setUpDataTransactionView(item: item, header: header)
+            vc.setUp(presenter: presenter)
             return vc
         case .categoryDetail(let item, let header):
-            let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "detail") as! DetailTransactionController
+            let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "detail") as! DetailTransactionViewController
+            let presenter = DetailTransactionPresenter(delegate: vc, usecase: DetailTransactionUseCase())
             vc.setUpDataCategoryView(item: item, header: header)
+            vc.setUp(presenter: presenter)
             return vc
         case .balance:
             let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "BalanceViewController") as! BalanceViewController
@@ -100,7 +107,9 @@ extension RouterType{
             vc.setUp(presenter: presenter)
             return vc
         case .add:
-            let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "add") as! AddTransactionController
+            let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "add") as! AddTransactionViewController
+            let presenter = AddTransactionPresenter(usecase: AddTransactionUseCase())
+            vc.setUp(presenter: presenter)
             return vc
         case .planning:
             let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "planning_vc") as! PlanningViewController
@@ -170,6 +179,17 @@ extension RouterType{
             let vc = UIStoryboard.init(name: "ScanBill", bundle: Bundle.main).instantiateViewController(identifier: "scanBillVC") as! ScanBillViewController
             let presenter = ScanBillPresenter(delegate: vc, usecase: ScanBillUseCase())
             vc.setupDelegate(presenter: presenter)
+            return vc
+        case .selectEvent:
+            let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "selectEvent") as! SelectEventController
+            let presenter = SelectEventPresenter(delegate: vc, usecase: SelectEventUserCase())
+            vc.setUp(presenter: presenter)
+            return vc
+        case .selectDate:
+            let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "customDate") as! CustomDateController
+            return vc
+        case .selectCategory:
+            let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "selectCategory") as! SelectCategoryController
             return vc
         }
         

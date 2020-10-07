@@ -19,8 +19,6 @@ class UserSettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Settings and Tools"
-        
         tableViewConfiguration()
     }
     

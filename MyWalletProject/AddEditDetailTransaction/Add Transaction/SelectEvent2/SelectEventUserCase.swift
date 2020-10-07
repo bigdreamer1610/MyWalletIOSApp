@@ -12,8 +12,6 @@ import Firebase
 protocol SelectEventUserCaseDelegate: class{
     func responseData(data: [Event])
 }
-
-
 class SelectEventUserCase {
     var events = [Event]()
     var delegate: SelectEventUserCaseDelegate?

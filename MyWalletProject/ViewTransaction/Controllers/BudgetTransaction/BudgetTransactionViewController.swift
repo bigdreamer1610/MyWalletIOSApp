@@ -67,18 +67,27 @@ extension BudgetTransactionViewController : UITableViewDelegate,UITableViewDataS
         if indexPath.section == 0 {
             let cell = OverviewCell.loadCell(tableView) as! OverviewCell
             cell.setUpData(transactionType: budget.transactionType!, amount: amount)
+            myCell.selectionStyle = .none
             myCell = cell
         } else {
             let cell = TransactionCell.loadCell(tableView) as! TransactionCell
             cell.setUpData(data: transactionSections[indexPath.section-1].items[indexPath.row])
             myCell = cell
         }
-        myCell.selectionStyle = .none
+        
         return myCell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return transactionSections.count + 1
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section != 0 {
+            let transVc = RouterType.transactionDetail(item: transactionSections[indexPath.section - 1].items[indexPath.row], header: transactionSections[indexPath.section - 1].header).getVc()
+            self.navigationController?.pushViewController(transVc, animated: true)
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
