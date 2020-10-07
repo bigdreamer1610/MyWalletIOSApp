@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol AddEditCategoryViewControllerDelegate {
+    func finishAddingCategory(_ state: Bool)
+}
+
 class AddEditCategoryViewController: UIViewController {
 
     @IBOutlet weak var selectCategoryView: UIView!
@@ -24,6 +28,8 @@ class AddEditCategoryViewController: UIViewController {
     var imageIndex = -1
     var categoryType = ""
     var presenter: AddEditCategoryPresenter?
+    var delegate: AddEditCategoryViewControllerDelegate?
+    var isFinish = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,6 +97,11 @@ class AddEditCategoryViewController: UIViewController {
         self.navigationController?.pushViewController(selectIconController, animated: true)
     }
     
+    func finish() {
+        self.delegate?.finishAddingCategory(isFinish)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     // MARK: - Button clicked
     @IBAction func btnCancelClick(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -133,8 +144,10 @@ extension AddEditCategoryViewController: AddEditCategoryPresenterDelegate {
             }
             presenter?.saveUserCategory(userCategory, self.categoryType)
             
+            self.isFinish = state
+            
             let alert = UIAlertController(title: "SUCCESS", message: "Your category has successfully been added!", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in self.finish()}))
             self.present(alert, animated: true, completion: nil)
         }
     }

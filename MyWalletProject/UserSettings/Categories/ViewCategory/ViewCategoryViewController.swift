@@ -62,6 +62,7 @@ class ViewCategoryViewController: UIViewController {
     @IBAction func btnAddClick(_ sender: Any) {
         let addEditCategoryController = UIStoryboard.init(name: "Categories", bundle: nil).instantiateViewController(identifier: "settingsAddCategoryVC") as! AddEditCategoryViewController
         addEditCategoryController.listImageName = self.listImage
+        addEditCategoryController.delegate = self
         let presenter = AddEditCategoryPresenter(delegate: addEditCategoryController, usecase: AddEditCategoryUseCase())
         addEditCategoryController.setupDelegate(presenter: presenter)
         self.navigationController?.pushViewController(addEditCategoryController, animated: true)
@@ -118,3 +119,10 @@ extension ViewCategoryViewController: UITableViewDelegate, UITableViewDataSource
     }
 }
 
+extension ViewCategoryViewController: AddEditCategoryViewControllerDelegate {
+    func finishAddingCategory(_ state: Bool) {
+        self.presenter?.requestIncomeCategories()
+        self.presenter?.requestExpenseCategories()
+        self.presenter?.requestListImage()
+    }
+}
