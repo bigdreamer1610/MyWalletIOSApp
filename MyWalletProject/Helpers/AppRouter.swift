@@ -38,7 +38,7 @@ enum RouterType {
     
     // Settings and Tools
     case settings
-    case addCategories
+    case categories
     case currencies
     case travelMode
     case billScanner
@@ -162,7 +162,9 @@ extension RouterType{
             let presenter = SettingsPresenter(delegate: vc, usecase: SettingsUseCase())
             vc.setupDelegate(presenter: presenter)
             return vc
-        case .addCategories:
+            
+            // MARK: - Settings and Tools
+        case .categories:
             let vc = UIStoryboard.init(name: "Categories", bundle: Bundle.main).instantiateViewController(identifier: "settingsCategoryVC") as! ViewCategoryViewController
             let presenter = ViewCategoryPresenter(delegate: vc, usecase: ViewCategoryUseCase())
             vc.setupDelegate(presenter: presenter)
@@ -180,6 +182,8 @@ extension RouterType{
             let presenter = ScanBillPresenter(delegate: vc, usecase: ScanBillUseCase())
             vc.setupDelegate(presenter: presenter)
             return vc
+            
+            
         case .selectEvent:
             let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "selectEvent") as! SelectEventController
             let presenter = SelectEventPresenter(delegate: vc, usecase: SelectEventUserCase())
