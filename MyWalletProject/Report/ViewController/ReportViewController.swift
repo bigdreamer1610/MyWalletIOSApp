@@ -200,6 +200,8 @@ class ReportViewController: UIViewController {
     }
     
     @objc func dateChanged(_ picker: MonthYearPickerView) {
+//        getIncome()
+//        getExpense()
         let components = calendar.dateComponents([.month, .year], from: picker.date)
         lblDate.text = "\(months[components.month! - 1]) \(components.year!)"
         if components.month! < 10 {
@@ -210,6 +212,7 @@ class ReportViewController: UIViewController {
             self.date = txtDatePicker.text ?? "\(currentMonth)/\(currentYear)"
         }
         tableView.reloadData()
+        print(picker.date)
     }
     
     //MARK: - Setup TableView
@@ -251,9 +254,6 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = PieChartTableViewCell.loadCell(tableView)  as! PieChartTableViewCell
             cell.delegate = self
             cell.setupDataTB(sumIncome: sumIncome, sumExpense: sumExpense, sumByCategoryIncome: sumByCategoryIncome, sumByCategoryExpense: sumByCategoryExpense)
-            print("@@@@@@@@@2")
-            print(sumByCategoryExpense)
-            print(sumByCategoryIncome)
             return cell
         }
     }
