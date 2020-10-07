@@ -30,6 +30,7 @@ class ViewCategoryViewController: UIViewController {
         tableView.reloadData()
     }
     
+    // MARK: - Setup for table view
     func setupTableView() {
         CategoryTableViewCell.registerCellByNib(tableView)
         tableView.delegate = self
