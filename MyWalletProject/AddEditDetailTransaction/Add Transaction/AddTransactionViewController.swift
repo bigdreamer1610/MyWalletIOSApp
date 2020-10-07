@@ -58,6 +58,8 @@ class AddTransactionViewController: UIViewController {
         btnAddMore.layer.cornerRadius = 6
         tfCategory.setRightImage2(imageName: "arrowright")
         tfDate.setRightImage2(imageName: "arrowright")
+        tfEvent.setRightImage2(imageName: "arrowright")
+        iconEvent.image = UIImage(named: "others")
     }
     
     func initComponents(){

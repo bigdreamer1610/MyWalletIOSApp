@@ -60,7 +60,7 @@
 		72A71923251DDEEE003ED157 /* PieChartCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A71921251DDEEE003ED157 /* PieChartCollectionViewCell.swift */; };
 		72A71924251DDEEE003ED157 /* PieChartCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72A71922251DDEEE003ED157 /* PieChartCollectionViewCell.xib */; };
 		72A71926251DDF35003ED157 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72A71925251DDF35003ED157 /* ReportViewController.swift */; };
-		7338861D25231F67002F126B /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7338860325231F67002F126B /* Constant.swift */; };
+		7338861D25231F67002F126B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7338860325231F67002F126B /* Constants.swift */; };
 		7338861E25231F68002F126B /* BacNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7338860425231F67002F126B /* BacNavigationController.swift */; };
 		7338861F25231F68002F126B /* DetailTransaction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7338860525231F67002F126B /* DetailTransaction.storyboard */; };
 		7338862625231F68002F126B /* CustomDateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7338861025231F67002F126B /* CustomDateController.swift */; };
@@ -249,7 +249,7 @@
 		72A71921251DDEEE003ED157 /* PieChartCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartCollectionViewCell.swift; sourceTree = "<group>"; };
 		72A71922251DDEEE003ED157 /* PieChartCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PieChartCollectionViewCell.xib; sourceTree = "<group>"; };
 		72A71925251DDF35003ED157 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
-		7338860325231F67002F126B /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constant.swift; path = ../AddEditDetailTransaction/Constant.swift; sourceTree = "<group>"; };
+		7338860325231F67002F126B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../AddEditDetailTransaction/Constants.swift; sourceTree = "<group>"; };
 		7338860425231F67002F126B /* BacNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BacNavigationController.swift; sourceTree = "<group>"; };
 		7338860525231F67002F126B /* DetailTransaction.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DetailTransaction.storyboard; sourceTree = "<group>"; };
 		7338861025231F67002F126B /* CustomDateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDateController.swift; sourceTree = "<group>"; };
@@ -956,7 +956,7 @@
 			children = (
 				73E0B1A8252206200097D41F /* AppRouter.swift */,
 				73E0B15D2521E0ED0097D41F /* Defined.swift */,
-				7338860325231F67002F126B /* Constant.swift */,
+				7338860325231F67002F126B /* Constants.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1373,7 +1373,7 @@
 				72A71915251DDE23003ED157 /* MoneyTableViewCell.swift in Sources */,
 				72873D7A25249A2900313629 /* DetailStackedBarChartVC.swift in Sources */,
 				72A7191F251DDEBD003ED157 /* PieChartTableViewCell.swift in Sources */,
-				7338861D25231F67002F126B /* Constant.swift in Sources */,
+				7338861D25231F67002F126B /* Constants.swift in Sources */,
 				56B8A7EE2524846400B8E8F0 /* LoginPresenterGG.swift in Sources */,
 				8ACA6248251A07980031E6DF /* AppDelegate.swift in Sources */,
 				73FC0D362525DE5E0012676D /* TransactionUseCase.swift in Sources */,
