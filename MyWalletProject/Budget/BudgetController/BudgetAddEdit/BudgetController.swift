@@ -51,6 +51,16 @@ class BudgetController: UIViewController {
         tblAddBudget.register(UINib(nibName: "TimeCell", bundle: nil), forCellReuseIdentifier: "TimeCell")
         tblAddBudget.reloadData()
         tblAddBudget.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tblAddBudget.bounds.width, height: 0))
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        
+        tapGestureRecognizer.cancelsTouchesInView = false
+        tblAddBudget.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    // func hide keyboard when tap tableview 
+    @objc func hideKeyboard(){
+        tblAddBudget.endEditing(true)
     }
     
     func setUp(presenter : BudgetPresenter){

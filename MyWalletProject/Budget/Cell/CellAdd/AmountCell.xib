@@ -25,13 +25,13 @@
                             <constraint firstAttribute="width" constant="40" id="my5-Wk-h7b"/>
                         </constraints>
                     </imageView>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Input Amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zu1-aR-ut0">
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Input Amount" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Zu1-aR-ut0">
                         <rect key="frame" x="50" y="2.5" width="319" height="60"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="6cj-5C-mdu"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <textInputTraits key="textInputTraits"/>
+                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                         <connections>
                             <action selector="txtAmountChange:" destination="KGk-i7-Jjw" eventType="editingChanged" id="7jF-BN-DY7"/>
                         </connections>
