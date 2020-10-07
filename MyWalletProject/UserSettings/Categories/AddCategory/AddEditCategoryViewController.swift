@@ -16,6 +16,15 @@ class AddEditCategoryViewController: UIViewController {
     
     @IBOutlet weak var segmentControl: UISegmentedControl!
     
+    @IBOutlet weak var imageCategory: UIImageView!
+    
+    @IBOutlet weak var txtCategoryName: UITextField!
+    
+    var listImageName: [String] = []
+    var imageIndex = -1
+    var categoryType = ""
+    var presenter: AddEditCategoryPresenter?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,6 +34,12 @@ class AddEditCategoryViewController: UIViewController {
         addRightBorder([selectImageView])
         
         self.title = "Add category"
+        self.categoryType = "income"
+    }
+    
+    // MARK: - Setup delegate
+    func setupDelegate(presenter: AddEditCategoryPresenter) {
+        self.presenter = presenter
     }
     
     // MARK: - Add borders for views
@@ -70,17 +85,67 @@ class AddEditCategoryViewController: UIViewController {
         }
     }
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
-        AppRouter.routerTo(from: self, router: .selectIcon, options: .push)
+        let selectIconController = UIStoryboard.init(name: "Categories", bundle: nil).instantiateViewController(identifier: "selectIconVC") as! SelectIconViewController
+        selectIconController.listImageName = self.listImageName
+        selectIconController.delegate = self
+        self.navigationController?.pushViewController(selectIconController, animated: true)
     }
     
+    // MARK: - Button clicked
     @IBAction func btnCancelClick(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func btnSaveClick(_ sender: Any) {
+        presenter?.validateInput(txtCategoryName.text, imageIndex)
     }
     
     @IBAction func segmentClick(_ sender: Any) {
+        switch segmentControl.selectedSegmentIndex {
+        case 0:
+            self.categoryType = "income"
+        default:
+            self.categoryType = "expense"
+        }
+    }
+}
+
+extension AddEditCategoryViewController: SelectIconViewControllerDelegate {
+    func setupForAddCategory(_ index: Int, _ listImageName: [String]) {
+        self.listImageName = listImageName
+        self.imageIndex = index
         
+        imageCategory.image = UIImage(named: listImageName[imageIndex])
+    }
+}
+
+extension AddEditCategoryViewController: AddEditCategoryPresenterDelegate {
+    func showAlertMessage(_ message: String, _ state: Bool) {
+        if !state {
+            let alert = UIAlertController(title: "INVALID CATEGORY", message: message, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            var userCategory = Category()
+            userCategory.iconImage = listImageName[imageIndex]
+            if let categoryName = txtCategoryName.text {
+                userCategory.name = categoryName
+            }
+            presenter?.saveUserCategory(userCategory, self.categoryType)
+            
+            let alert = UIAlertController(title: "SUCCESS", message: "Your category has successfully been added!", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+}
+
+extension String {
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).capitalized + dropFirst()
+    }
+
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
     }
 }

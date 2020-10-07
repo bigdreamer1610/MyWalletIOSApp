@@ -13,17 +13,12 @@ protocol CalendarViewControllerDelegate {
     func fetchDataCalendar(budget:Budget,type:String)
 }
 
-
 class CalendarViewController: UIViewController, FSCalendarDelegate {
-
-    
     @IBOutlet weak var viewCalendar: FSCalendar!
     
     var type = ""
     var key = ""
-    
     var budgetObject:Budget = Budget()
-    
     var delegateCalendar:CalendarViewControllerDelegate?
     
     override func viewDidLoad() {
@@ -32,22 +27,16 @@ class CalendarViewController: UIViewController, FSCalendarDelegate {
     }
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/YYYY"
-        
         let dateFormat = formatter.string(from: date)
-        
-        if (key == "Start"){
+        if key == "Start"{
             budgetObject.startDate = dateFormat
-        }
-        else if (key == "End"){
+        } else if key == "End"{
             budgetObject.endDate = dateFormat
         }
-        
         delegateCalendar?.fetchDataCalendar(budget: budgetObject, type: type)
         self.navigationController?.popViewController(animated: true)
     }
-
 }
 

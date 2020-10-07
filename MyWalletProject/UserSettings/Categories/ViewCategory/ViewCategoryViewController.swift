@@ -13,10 +13,9 @@ class ViewCategoryViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var presenter: ViewCategoryPresenter?
-    
     var categoriesIncome: [Category] = []
     var categoriesExpense: [Category] = []
-    var listImageName: [String] = []
+    var listImage: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +26,7 @@ class ViewCategoryViewController: UIViewController {
         
         presenter?.requestIncomeCategories()
         presenter?.requestExpenseCategories()
+        presenter?.requestListImage()
         
         tableView.reloadData()
     }
@@ -54,33 +54,32 @@ class ViewCategoryViewController: UIViewController {
     func setupDelegate(presenter: ViewCategoryPresenter) {
         self.presenter = presenter
     }
-    
-    // MARK: - Get list image name for select icon screen
-    func getListImageName(_ dataArray: [Category]) {
-        dataArray.forEach { (category) in
-            self.listImageName.append(category.iconImage!)
-        }
-    }
 
     @IBAction func btnCancelClick(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
     
     @IBAction func btnAddClick(_ sender: Any) {
-        AppRouter.routerTo(from: self, router: .addCategories, options: .push)
+        let addEditCategoryController = UIStoryboard.init(name: "Categories", bundle: nil).instantiateViewController(identifier: "settingsAddCategoryVC") as! AddEditCategoryViewController
+        addEditCategoryController.listImageName = self.listImage
+        let presenter = AddEditCategoryPresenter(delegate: addEditCategoryController, usecase: AddEditCategoryUseCase())
+        addEditCategoryController.setupDelegate(presenter: presenter)
+        self.navigationController?.pushViewController(addEditCategoryController, animated: true)
     }
 }
 
 extension ViewCategoryViewController: ViewCategoryPresenterDelegate {
+    func receiveListImage(_ listImage: [String]) {
+        self.listImage = listImage
+    }
+    
     func receiveIncomeCategories(_ listCategoryIncome: [Category]) {
         categoriesIncome = listCategoryIncome
-        getListImageName(categoriesIncome)
         tableView.reloadData()
     }
     
     func receiveExpenseCategories(_ listCategoryExpense: [Category]) {
         categoriesExpense = listCategoryExpense
-        getListImageName(categoriesExpense)
         tableView.reloadData()
     }
 }

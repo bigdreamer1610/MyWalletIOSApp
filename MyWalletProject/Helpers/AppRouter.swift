@@ -21,6 +21,9 @@ enum RouterType {
     case add
     case planning
     case budget
+    case budgetDetail
+    case selectCateBudget
+    case budgetAddEdit
     case event
     case tabbar
     case test
@@ -118,6 +121,23 @@ extension RouterType{
             return vc
         case .budget:
             let vc = UIStoryboard(name: "budget", bundle: nil).instantiateViewController(withIdentifier: "BudgetListViewController") as! BudgetListViewController
+            let presenter = BudgetListPresenter(delegate: vc, budgetlistUseCase: BudgetListUseCase())
+            vc.setUp(presenter: presenter)
+            return vc
+        case .budgetDetail:
+            let vc = UIStoryboard(name: "budget", bundle: nil).instantiateViewController(withIdentifier: "BudgetDetailController") as! BudgetDetailController
+            let presenter = BudgetDetailPresenter(usecase: BudgetDetailUseCase())
+            vc.setUp(presenter: presenter)
+            return vc
+        case .selectCateBudget:
+            let vc = UIStoryboard(name: "budget", bundle: nil).instantiateViewController(withIdentifier: "SelectCategoryViewController") as! SelectCategoryViewController
+            let presenter = SelectCategoryBudgetPresenter(delegate: vc, selectCateBudgetUseCase: SelectCategoryBudgetUseCase())
+            vc.setUp(presenter: presenter)
+            return vc
+        case .budgetAddEdit:
+            let vc = UIStoryboard(name: "budget", bundle: nil).instantiateViewController(withIdentifier: "TestController") as! BudgetController
+            let presenter = BudgetPresenter(delegate: vc, budgetUseCase: BudgetUseCase())
+            vc.setUp(presenter: presenter)
             return vc
         case .event:
             let vc = UIStoryboard(name: "AddEvent", bundle: nil).instantiateViewController(withIdentifier: "EventController") as! EventController
