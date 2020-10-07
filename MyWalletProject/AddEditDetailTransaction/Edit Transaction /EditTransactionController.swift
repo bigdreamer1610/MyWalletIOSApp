@@ -60,13 +60,13 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func myCategory(textField: UITextField) {
-        let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "selectCategory") as? SelectCategoryController
+        let vc = UIStoryboard.init(name: Constants.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "selectCategory") as? SelectCategoryController
         vc?.delegate = self
         self.navigationController?.pushViewController(vc!, animated: true)
     }
     
     @objc func myDate(textField: UITextField) {
-        let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "customDate") as? CustomDateController
+        let vc = UIStoryboard.init(name: Constants.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "customDate") as? CustomDateController
         vc?.delegate = self
         self.navigationController?.pushViewController(vc!, animated: true)
     }

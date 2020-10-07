@@ -15,12 +15,16 @@ class BudgetTransactionViewController: UIViewController {
     var presenter: BudgetTransactionPresenter?
     @IBOutlet var detailTableView: UITableView!
     
+    @IBOutlet var lbNoTrans: UILabel!
+    
     var transactionSections = [TransactionSection]()
     var amount: Int = 0
     var budget: Budget!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        lbNoTrans.isHidden = true
+        detailTableView.isHidden = true
         initComponents()
         initData()
         // Do any additional setup after loading the view.
@@ -128,6 +132,13 @@ extension BudgetTransactionViewController : BudgetTransactionPresenterDelegate {
     
     func getTransactionSection(section: [TransactionSection]) {
         self.transactionSections = section
+        if section.count == 0 {
+            lbNoTrans.isHidden = false
+            detailTableView.isHidden = true
+        } else {
+            lbNoTrans.isHidden = true
+            detailTableView.isHidden = false
+        }
         self.detailTableView.reloadData()
     }
     
@@ -138,6 +149,7 @@ extension BudgetTransactionViewController : BudgetTransactionPresenterDelegate {
     
     func getAllTransactions(trans: [Transaction]) {
         fetchData(trans: trans)
+        
     }
     
     

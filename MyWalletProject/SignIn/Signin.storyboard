@@ -15,64 +15,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="money_manager" translatesAutoresizingMaskIntoConstraints="NO" id="L19-YT-Obc">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TxH-hu-d6s">
-                                <rect key="frame" x="60" y="672" width="294" height="50"/>
-                                <color key="backgroundColor" red="0.1109278138" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="50" y="662" width="314" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                <state key="normal" title="     LOGIN WITH FACEBOOK" image="facebook"/>
+                                <inset key="titleEdgeInsets" minX="25" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Login with Facebook" image="symbolFB">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
                                 <connections>
                                     <action selector="btnLoginFacebookClick:" destination="BF5-bb-jFC" eventType="touchUpInside" id="wzD-dO-TWI"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aSb-9F-FRl">
-                                <rect key="frame" x="60" y="732" width="294" height="50"/>
-                                <color key="backgroundColor" red="1" green="0.060358078400000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                <state key="normal" title="     LOGIN WITH GOOGLE +" image="google"/>
-                                <connections>
-                                    <action selector="btnLoginGoogleClick:" destination="BF5-bb-jFC" eventType="touchUpInside" id="jtX-Gb-SkZ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tn4-lW-7ez">
-                                <rect key="frame" x="60" y="792" width="294" height="50"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="50" y="732" width="314" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="5iM-s2-SHE"/>
+                                    <constraint firstAttribute="height" constant="50" id="WOw-zI-rjO"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                <state key="normal" title="     LOGIN WITH APPLE ID  " image="apple"/>
+                                <inset key="titleEdgeInsets" minX="25" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Login with Google" image="symbolGG-1">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
                                 <connections>
-                                    <action selector="btnLoginAppleClick:" destination="BF5-bb-jFC" eventType="touchUpInside" id="h5m-kR-Bot"/>
+                                    <action selector="btnLoginGoogleClick:" destination="BF5-bb-jFC" eventType="touchUpInside" id="jtX-Gb-SkZ"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Tn4-lW-7ez" firstAttribute="centerX" secondItem="Je9-2F-hCW" secondAttribute="centerX" id="21B-c9-aMj"/>
-                            <constraint firstItem="L19-YT-Obc" firstAttribute="leading" secondItem="Je9-2F-hCW" secondAttribute="leading" id="4Ac-n8-HRq"/>
-                            <constraint firstItem="Tn4-lW-7ez" firstAttribute="width" secondItem="Je9-2F-hCW" secondAttribute="width" constant="-120" id="7SP-tP-j4E"/>
-                            <constraint firstItem="aSb-9F-FRl" firstAttribute="width" secondItem="Tn4-lW-7ez" secondAttribute="width" id="7g5-fe-ZxZ"/>
-                            <constraint firstItem="aSb-9F-FRl" firstAttribute="top" secondItem="TxH-hu-d6s" secondAttribute="bottom" constant="10" id="9HV-L1-YOw"/>
-                            <constraint firstItem="TxH-hu-d6s" firstAttribute="height" secondItem="aSb-9F-FRl" secondAttribute="height" id="9aU-t9-XL1"/>
-                            <constraint firstItem="Je9-2F-hCW" firstAttribute="trailing" secondItem="L19-YT-Obc" secondAttribute="trailing" id="F3x-XQ-MxO"/>
-                            <constraint firstItem="Tn4-lW-7ez" firstAttribute="top" secondItem="aSb-9F-FRl" secondAttribute="bottom" constant="10" id="FLj-uh-WBd"/>
-                            <constraint firstItem="Je9-2F-hCW" firstAttribute="bottom" secondItem="Tn4-lW-7ez" secondAttribute="bottom" constant="20" id="Gja-y3-l4m"/>
-                            <constraint firstItem="L19-YT-Obc" firstAttribute="top" secondItem="Je9-2F-hCW" secondAttribute="top" id="PoM-WY-tjd"/>
-                            <constraint firstItem="TxH-hu-d6s" firstAttribute="centerX" secondItem="Je9-2F-hCW" secondAttribute="centerX" id="PpS-VP-HLL"/>
-                            <constraint firstItem="aSb-9F-FRl" firstAttribute="height" secondItem="Tn4-lW-7ez" secondAttribute="height" id="ZDS-Ab-SPl"/>
-                            <constraint firstItem="TxH-hu-d6s" firstAttribute="width" secondItem="aSb-9F-FRl" secondAttribute="width" id="eXd-cG-FOy"/>
-                            <constraint firstItem="Je9-2F-hCW" firstAttribute="bottom" secondItem="L19-YT-Obc" secondAttribute="bottom" id="ms3-e6-QYu"/>
-                            <constraint firstItem="aSb-9F-FRl" firstAttribute="centerX" secondItem="Je9-2F-hCW" secondAttribute="centerX" id="sM4-Rg-xLj"/>
+                            <constraint firstItem="TxH-hu-d6s" firstAttribute="height" secondItem="aSb-9F-FRl" secondAttribute="height" id="Dam-05-dNY"/>
+                            <constraint firstItem="Je9-2F-hCW" firstAttribute="bottom" secondItem="aSb-9F-FRl" secondAttribute="bottom" constant="80" id="bFG-bJ-cIq"/>
+                            <constraint firstItem="aSb-9F-FRl" firstAttribute="leading" secondItem="Je9-2F-hCW" secondAttribute="leading" constant="50" id="bzq-Pn-9p3"/>
+                            <constraint firstItem="Je9-2F-hCW" firstAttribute="trailing" secondItem="aSb-9F-FRl" secondAttribute="trailing" constant="50" id="mPM-Bv-xa5"/>
+                            <constraint firstItem="TxH-hu-d6s" firstAttribute="centerX" secondItem="aSb-9F-FRl" secondAttribute="centerX" id="uAF-JL-QXc"/>
+                            <constraint firstItem="TxH-hu-d6s" firstAttribute="width" secondItem="aSb-9F-FRl" secondAttribute="width" id="uY2-sj-skY"/>
+                            <constraint firstItem="aSb-9F-FRl" firstAttribute="top" secondItem="TxH-hu-d6s" secondAttribute="bottom" constant="20" id="w7K-bw-AWg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Je9-2F-hCW"/>
                     </view>
                     <navigationItem key="navigationItem" id="UcL-7t-6CW"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="btnLoginApple" destination="Tn4-lW-7ez" id="53N-qb-Giw"/>
                         <outlet property="btnLoginFacebook" destination="TxH-hu-d6s" id="W0o-QW-DbJ"/>
                         <outlet property="btnLoginGoogle" destination="aSb-9F-FRl" id="Nj0-5C-BUv"/>
                     </connections>
@@ -174,9 +159,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="apple" width="32" height="32"/>
-        <image name="facebook" width="48" height="48"/>
-        <image name="google" width="48" height="48"/>
-        <image name="money_manager" width="480" height="720"/>
+        <image name="symbolFB" width="32" height="32"/>
+        <image name="symbolGG-1" width="32" height="32"/>
     </resources>
 </document>

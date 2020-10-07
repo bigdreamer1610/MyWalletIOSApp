@@ -16,28 +16,27 @@ protocol LoginViewControllerDelegate {
     func autoLogin()
 }
 
+
 class LoginViewController: UIViewController {
     
     var window: UIWindow?
     @IBOutlet weak var btnLoginFacebook: UIButton!
     @IBOutlet weak var btnLoginGoogle: UIButton!
-    @IBOutlet weak var btnLoginApple: UIButton!
     
     var isLogined:Bool = UserDefaults.standard.bool(forKey: "login")
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        btnLoginFacebook.layer.borderWidth = 1
-        btnLoginFacebook.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        btnLoginFacebook.layer.cornerRadius = btnLoginFacebook.bounds.height / 4
-        btnLoginGoogle.layer.borderWidth = 1
-        btnLoginGoogle.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        btnLoginGoogle.layer.cornerRadius = btnLoginGoogle.bounds.height / 4
-        btnLoginApple.layer.borderWidth = 1
-        btnLoginApple.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        btnLoginApple.layer.cornerRadius = btnLoginApple.bounds.height / 4
+        customizeLayout(buttons: [btnLoginFacebook, btnLoginGoogle])
     }
     
+    func customizeLayout(buttons: [UIButton]){
+        buttons.forEach { (button) in
+            button.layer.borderWidth = 1
+            button.layer.borderColor = UIColor.black.cgColor
+            button.layer.cornerRadius = 6
+        }
+    }
     //MARK: - viewDidload
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,9 +64,11 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController:LoginViewControllerDelegate{
     func nextCategory(viewController: UIViewController) {
-        let vc = UIStoryboard.init(name: "Signin", bundle: nil).instantiateViewController(withIdentifier: "TestLoginViewController") as! TestLoginViewController
-        vc.modalPresentationStyle = .fullScreen
-        viewController.navigationController?.pushViewController(vc, animated: true)
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        let navigationController = UINavigationController(rootViewController: RouterType.tabbar.getVc())
+        navigationController.isNavigationBarHidden = true
+        window?.rootViewController = navigationController
     }
     
     func autoLogin(){

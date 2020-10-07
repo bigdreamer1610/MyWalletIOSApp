@@ -43,7 +43,7 @@ class SettingsPresenter {
         var message = ""
         var state = false
         
-        let constant = Constant()
+        let constant = Constants()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = constant.dateFormat
         
