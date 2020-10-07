@@ -168,8 +168,8 @@
                                     <constraint firstAttribute="height" constant="40" id="zxK-hj-h9q"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="Income"/>
                                     <segment title="Expense"/>
+                                    <segment title="Income"/>
                                 </segments>
                                 <connections>
                                     <action selector="segmentCate:" destination="A53-6w-pJ3" eventType="valueChanged" id="faf-UX-bWE"/>
