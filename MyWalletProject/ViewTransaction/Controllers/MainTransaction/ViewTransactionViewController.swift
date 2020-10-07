@@ -240,6 +240,15 @@ extension ViewTransactionViewController : ViewTransactionPresenterDelegate {
     
     func getTransactionSections(section: [TransactionSection]) {
         self.transactionSections = section
+        if section.count == 0 {
+            centerIcon.isHidden = false
+            centerLabel.isHidden = false
+            transactionTableView.isHidden = true
+        } else {
+            centerIcon.isHidden = true
+            centerLabel.isHidden = true
+            transactionTableView.isHidden = false
+        }
     }
     
     func getCategorySections(section: [CategorySection]) {

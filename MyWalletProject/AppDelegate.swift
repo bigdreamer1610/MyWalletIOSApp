@@ -26,11 +26,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        navigationController.isNavigationBarHidden = true
 //        window?.rootViewController = navigationController
         
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.makeKeyAndVisible()
-        let navigationController = UINavigationController(rootViewController: RouterType.tabbar.getVc())
-        navigationController.isNavigationBarHidden = true
-        window?.rootViewController = navigationController
+//        window = UIWindow(frame: UIScreen.main.bounds)
+//        window?.makeKeyAndVisible()
+//        let navigationController = UINavigationController(rootViewController: RouterType.tabbar.getVc())
+//        navigationController.isNavigationBarHidden = true
+//        window?.rootViewController = navigationController
         
         
         // google
