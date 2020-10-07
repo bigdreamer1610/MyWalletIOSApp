@@ -58,7 +58,6 @@ class TravelModeViewController: UIViewController {
             let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
             view.addGestureRecognizer(tap)
             view.isUserInteractionEnabled = true
-            self.view.addSubview(view)
         }
     }
     

@@ -68,7 +68,7 @@
                                     <color key="titleColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="btnSaveClick:" destination="Wl9-46-4He" eventType="touchUpInside" id="tIb-CJ-F2m"/>
+                                    <action selector="btnAddClick:" destination="Wl9-46-4He" eventType="touchUpInside" id="hDb-xp-N9N"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -214,6 +214,9 @@
                                 <state key="normal" title="Save">
                                     <color key="titleColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="btnSaveClick:" destination="trh-IN-cM3" eventType="touchUpInside" id="gMu-f3-2Fc"/>
+                                </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
@@ -231,19 +234,19 @@
         <!--Select Icon View Controller-->
         <scene sceneID="T19-tn-Rff">
             <objects>
-                <viewController id="hlI-mB-dsF" customClass="SelectIconViewController" customModule="MyWalletProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="selectIconVC" id="hlI-mB-dsF" customClass="SelectIconViewController" customModule="MyWalletProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0lp-Wx-9G0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jO8-IC-Cr3">
-                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="40"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Okx-3t-bPs">
-                                        <rect key="frame" x="126.5" y="5" width="161" height="41"/>
+                                        <rect key="frame" x="126.5" y="5" width="161" height="31"/>
                                         <color key="backgroundColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="dU2-d7-TkE"/>
+                                            <constraint firstAttribute="height" constant="30" id="dU2-d7-TkE"/>
                                         </constraints>
                                         <segments>
                                             <segment title="Basic"/>
@@ -257,25 +260,25 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="Okx-3t-bPs" firstAttribute="centerY" secondItem="jO8-IC-Cr3" secondAttribute="centerY" id="24U-w6-vmn"/>
-                                    <constraint firstAttribute="height" constant="50" id="se7-JH-YrZ"/>
+                                    <constraint firstAttribute="height" constant="40" id="se7-JH-YrZ"/>
                                     <constraint firstItem="Okx-3t-bPs" firstAttribute="centerX" secondItem="jO8-IC-Cr3" secondAttribute="centerX" id="wMf-22-IH2"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JFK-OG-bG9">
-                                <rect key="frame" x="20" y="104" width="374" height="758"/>
+                                <rect key="frame" x="20" y="94" width="374" height="768"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FjI-d7-fa2">
-                                    <size key="itemSize" width="128" height="128"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="FjI-d7-fa2">
+                                    <size key="itemSize" width="50" height="50"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="8M1-3F-beL">
-                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="mDi-nC-Kmz">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
                                     </collectionViewCell>
