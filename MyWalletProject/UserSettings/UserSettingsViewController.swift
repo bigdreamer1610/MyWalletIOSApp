@@ -19,8 +19,6 @@ class UserSettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Settings and Tools"
-        
         tableViewConfiguration()
     }
     
@@ -93,7 +91,7 @@ extension UserSettingsViewController: UITableViewDelegate, UITableViewDataSource
         case 0:
             AppRouter.routerTo(from: self, router: .settings, options: .push)
         case 1:
-            AppRouter.routerTo(from: self, router: .addCategories, options: .push)
+            AppRouter.routerTo(from: self, router: .categories, options: .push)
         case 2:
             AppRouter.routerTo(from: self, router: .currencies, options: .push)
         case 3:
