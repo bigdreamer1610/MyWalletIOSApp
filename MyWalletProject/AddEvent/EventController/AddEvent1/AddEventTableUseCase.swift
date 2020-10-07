@@ -25,7 +25,7 @@ class AddEventTableUseCase  {
             dispatchGroup.enter()
             // get child moi
             var  newChild = 0
-            EventDefined.ref.child("Account").child(userID).child("event").queryLimited(toLast: 1).observeSingleEvent(of: .value, with: {
+            Defined.ref.child("Account").child(userID).child("event").queryLimited(toLast: 1).observeSingleEvent(of: .value, with: {
                 snapshot in
                 for category in snapshot.children{
                     if  snapshot.childrenCount == 0   {
@@ -49,7 +49,7 @@ class AddEventTableUseCase  {
                                "status": "true"
                     ]
                     as [String : Any]
-                EventDefined.ref.child("Account").child(self.userID).child("event").child(String(newChild)).updateChildValues(event1,withCompletionBlock: { error , ref in
+                Defined.ref.child("Account").child(self.userID).child("event").child(String(newChild)).updateChildValues(event1,withCompletionBlock: { error , ref in
                     if error == nil {
                         
                     }else{
@@ -67,7 +67,7 @@ class AddEventTableUseCase  {
                 ]
                 as [String : Any]
             var eventEDit = Event(id: event.id, name: event.name , date: event.date, eventImage: event.eventImage, spent: event.spent, status: event.status)
-            EventDefined.ref.child("Account").child(self.userID).child("event").child(event.id!).updateChildValues(event1,withCompletionBlock: { error , ref in
+            Defined.ref.child("Account").child(self.userID).child("event").child(event.id!).updateChildValues(event1,withCompletionBlock: { error , ref in
                 if error == nil {
                     self.delegate?.editEvent(event: eventEDit)
                 }else{

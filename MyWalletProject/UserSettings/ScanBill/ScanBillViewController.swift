@@ -71,6 +71,7 @@ class ScanBillViewController: UIViewController {
         imageView.layer.borderColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0).cgColor
     }
     
+    // MARK: - Setup delegate
     func setupDelegate(presenter: ScanBillPresenter) {
         self.presenter = presenter
     }

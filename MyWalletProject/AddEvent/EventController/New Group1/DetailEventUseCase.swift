@@ -21,7 +21,7 @@ class DetailEventUseCase {
 extension DetailEventUseCase {
     // Xoa event
     func deleteData(event : Event)  {
-        EventDefined.ref.child("Account").child(idUser).child("event").child(event.id!).removeValue()
+        Defined.ref.child("Account").child(idUser).child("event").child(event.id!).removeValue()
         
         
     }
@@ -36,7 +36,7 @@ extension DetailEventUseCase {
             ]
             as [String : Any]
         var eventUpdate = Event(id: event.id, name: event.name , date: event.date, eventImage: event.eventImage, spent: event.spent, status: "false")
-        EventDefined.ref.child("Account").child(idUser).child("event").child(event.id!).updateChildValues(event1,withCompletionBlock: { error , ref in
+        Defined.ref.child("Account").child(idUser).child("event").child(event.id!).updateChildValues(event1,withCompletionBlock: { error , ref in
             if error == nil {
                 self.delegate?.marKedCompeleEvent(event: eventUpdate)
             }else{
@@ -55,7 +55,7 @@ extension DetailEventUseCase {
             ]
             as [String : Any]
         var eventUpdate = Event(id: event.id, name: event.name , date: event.date, eventImage: event.eventImage, spent: event.spent, status: "true")
-        EventDefined.ref.child("Account").child(idUser).child("event").child(event.id!).updateChildValues(event1,withCompletionBlock: { error , ref in
+        Defined.ref.child("Account").child(idUser).child("event").child(event.id!).updateChildValues(event1,withCompletionBlock: { error , ref in
             if error == nil {
                 
             }else{

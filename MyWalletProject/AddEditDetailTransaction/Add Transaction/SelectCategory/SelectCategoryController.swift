@@ -90,10 +90,10 @@ extension SelectCategoryController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "add") as? AddTransactionController
+        let vc = RouterType.add.getVc() as! AddTransactionViewController
         let ex = categories[indexPath.row]
-        vc?.nameCategory = ex.name ?? ""
-        vc?.iconImages = ex.iconImage ?? ""
+        vc.nameCategory = ex.name ?? ""
+        vc.iconImages = ex.iconImage ?? ""
         delegate?.setCategory(nameCategory: ex.name ?? "", iconCategory: ex.iconImage ?? "", type: ex.transactionType ?? "", id: ex.id ?? "")
         self.navigationController?.popViewController(animated: true)
         

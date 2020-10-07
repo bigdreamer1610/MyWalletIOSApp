@@ -45,9 +45,9 @@ class LoginFbPresenter {
                     
                     
                     let dict = result as! [String : AnyObject]
-                              
+                    
                     let picutreDic = dict as NSDictionary
-                  
+                    
                     // id
                     let idOfUser = picutreDic.object(forKey: "id") as! String
                     // name
@@ -65,12 +65,11 @@ class LoginFbPresenter {
                         tmpEmailAdd = usrName+"@facebook.com"
                     }
                     LoginUseCase().checkAccountExist(id: idOfUser, name: nameOfUser, email: tmpEmailAdd)
-                  
-                    UserDefaults.standard.set(idOfUser, forKey: "idUser")
-                    UserDefaults.standard.set(nameOfUser, forKey: "nameUser")
-                    UserDefaults.standard.set(tmpEmailAdd, forKey: "emailUser")
-                    UserDefaults.standard.set(true, forKey: "login")
                     
+                    Defined.defaults.set(idOfUser, forKey: Constants.userid)
+                    Defined.defaults.set(nameOfUser, forKey: Constants.username)
+                    Defined.defaults.set(tmpEmailAdd, forKey: Constants.email)
+                    Defined.defaults.set(true, forKey: Constants.loginStatus)
                     if let controller = self.parentViewController as? LoginViewController {
                         controller.nextCategory(viewController: controller)
                         

@@ -11,6 +11,6 @@ import Firebase
 import FirebaseDatabase
 
 class EventDefined {
-    static let ref = Database.database().reference()
+    let ref = Database.database().reference()
    
 }

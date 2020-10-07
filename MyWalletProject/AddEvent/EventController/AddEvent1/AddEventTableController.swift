@@ -42,11 +42,8 @@ class AddEventTableController: UITableViewController {
         setUpViewImg()
     }
     
-    @IBAction func btnSave(_ sender: Any) {
-        
+    @IBAction func btnSave(_ sender: Any) {        
         add()
-        
-        
         navigationController?.popViewController(animated: true)
     }
     
