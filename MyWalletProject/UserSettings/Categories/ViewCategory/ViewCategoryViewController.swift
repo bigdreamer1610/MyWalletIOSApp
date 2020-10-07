@@ -16,6 +16,7 @@ class ViewCategoryViewController: UIViewController {
     
     var categoriesIncome: [Category] = []
     var categoriesExpense: [Category] = []
+    var listImageName: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,25 +54,33 @@ class ViewCategoryViewController: UIViewController {
     func setupDelegate(presenter: ViewCategoryPresenter) {
         self.presenter = presenter
     }
+    
+    // MARK: - Get list image name for select icon screen
+    func getListImageName(_ dataArray: [Category]) {
+        dataArray.forEach { (category) in
+            self.listImageName.append(category.iconImage!)
+        }
+    }
 
     @IBAction func btnCancelClick(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func btnSaveClick(_ sender: Any) {
-        let vc = UIStoryboard.init(name: "Categories", bundle: nil).instantiateViewController(withIdentifier: "settingsAddCategoryVC") as! AddEditCategoryViewController
-        self.navigationController?.pushViewController(vc, animated: true)
+    @IBAction func btnAddClick(_ sender: Any) {
+        AppRouter.routerTo(from: self, router: .addCategories, options: .push)
     }
 }
 
 extension ViewCategoryViewController: ViewCategoryPresenterDelegate {
     func receiveIncomeCategories(_ listCategoryIncome: [Category]) {
         categoriesIncome = listCategoryIncome
+        getListImageName(categoriesIncome)
         tableView.reloadData()
     }
     
     func receiveExpenseCategories(_ listCategoryExpense: [Category]) {
         categoriesExpense = listCategoryExpense
+        getListImageName(categoriesExpense)
         tableView.reloadData()
     }
 }

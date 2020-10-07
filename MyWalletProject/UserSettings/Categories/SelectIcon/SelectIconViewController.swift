@@ -16,12 +16,13 @@ class SelectIconViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var presenter: SelectIconPresenter?
+    var listImage: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupCollectionView()
+        setupCell()
     }
     
     // MARK: - Setup for table view
@@ -31,9 +32,10 @@ class SelectIconViewController: UIViewController {
         collectionView.dataSource = self
     }
     
-    // MARK: - Setup delegate
-    func setupDelegate(presenter: SelectIconPresenter) {
-        self.presenter = presenter
+    // MARK: - Customize the width and the height of a cell
+    func setupCell() {
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: 50, height: 50)
     }
     
     @IBAction func segmentControlClick(_ sender: Any) {
@@ -45,7 +47,7 @@ class SelectIconViewController: UIViewController {
     }
 }
 
-extension SelectIconViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension SelectIconViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
     }
@@ -56,5 +58,9 @@ extension SelectIconViewController: UICollectionViewDelegate, UICollectionViewDa
         return cell
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+    sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 50, height: 50)
+    }
 }

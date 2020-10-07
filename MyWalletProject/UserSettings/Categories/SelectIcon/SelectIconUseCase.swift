@@ -8,6 +8,16 @@
 
 import Foundation
 
+protocol SelectIconUseCaseDelegate {
+    func responseListImage(_ imageName: [String])
+}
+
 class SelectIconUseCase {
-    
+    var delegate: SelectIconUseCaseDelegate?
+}
+
+extension SelectIconUseCase {
+    func getListImageFromDB() {
+        
+    }
 }

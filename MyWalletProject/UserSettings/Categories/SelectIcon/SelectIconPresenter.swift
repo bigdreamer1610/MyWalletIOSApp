@@ -8,6 +8,29 @@
 
 import Foundation
 
+protocol SelectIconPresenterDelegate {
+    func getDataForView(_ imageName: [String])
+}
+
 class SelectIconPresenter {
+    var delegate: SelectIconPresenterDelegate?
+    var usecase: SelectIconUseCase?
     
+    init(delegate: SelectIconPresenterDelegate, usecase: SelectIconUseCase) {
+        self.delegate = delegate
+        self.usecase = usecase
+        self.usecase?.delegate = self
+    }
+}
+
+extension SelectIconPresenter {
+    func requestListImage() {
+        usecase?.getListImageFromDB()
+    }
+}
+
+extension SelectIconPresenter: SelectIconUseCaseDelegate {
+    func responseListImage(_ imageName: [String]) {
+        delegate?.getDataForView(imageName)
+    }
 }
