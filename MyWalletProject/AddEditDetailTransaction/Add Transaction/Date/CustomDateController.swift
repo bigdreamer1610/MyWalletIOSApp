@@ -15,7 +15,6 @@ protocol SelectDate {
 
 class CustomDateController: UIViewController {
     var delegate:SelectDate?
-    
     var calendar:FSCalendar!
     var formatter = DateFormatter()
     var customDate = Date()
@@ -32,14 +31,14 @@ class CustomDateController: UIViewController {
         self.view.addSubview(calendar)
         calendar.delegate = self
         calendar.dataSource = self
-        
     }
-    
 }
+
 extension CustomDateController: FSCalendarDelegate, FSCalendarDataSource{
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        var dates = formatter.dateFormat = "dd/MM/yyyy"
-        let vc = UIStoryboard.init(name: Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "add") as? AddTransactionController
+        _ = formatter.dateFormat = "dd/MM/yyyy"
+        _ = RouterType.add.getVc() as! AddTransactionViewController
+        
         delegate?.setDate(date: formatter.string(from: date))
         self.navigationController?.popViewController(animated: true)
     }
