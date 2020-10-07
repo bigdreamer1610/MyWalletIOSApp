@@ -23,7 +23,7 @@
                                 <rect key="frame" x="15" y="0.0" width="40" height="80"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="travel" translatesAutoresizingMaskIntoConstraints="NO" id="1Dz-eV-vYx">
-                                        <rect key="frame" x="0.0" y="20" width="40" height="40"/>
+                                        <rect key="frame" x="0.0" y="10" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="Bha-nG-da4"/>
                                             <constraint firstAttribute="height" constant="40" id="KPE-ve-wVW"/>
@@ -33,7 +33,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="88L-Ce-BB9"/>
-                                    <constraint firstItem="1Dz-eV-vYx" firstAttribute="centerY" secondItem="s3p-HY-pa5" secondAttribute="centerY" id="KAX-1e-PC0"/>
+                                    <constraint firstItem="1Dz-eV-vYx" firstAttribute="top" secondItem="s3p-HY-pa5" secondAttribute="top" constant="10" id="R95-3B-Fby"/>
                                     <constraint firstItem="1Dz-eV-vYx" firstAttribute="centerX" secondItem="s3p-HY-pa5" secondAttribute="centerX" id="vSJ-1z-qac"/>
                                 </constraints>
                             </view>
@@ -54,11 +54,11 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="jPw-Uf-gUI"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="da chi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ns3-Tm-UXz">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ns3-Tm-UXz">
                                         <rect key="frame" x="15" y="55" width="40" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="NdA-Xf-QPw"/>
