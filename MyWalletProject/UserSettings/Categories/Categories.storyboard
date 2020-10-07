@@ -222,9 +222,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="categoryTypeView" destination="HYu-xh-xwq" id="cpV-fh-2Bc"/>
+                        <outlet property="imageCategory" destination="cD9-r4-kmM" id="KHG-WV-GCS"/>
                         <outlet property="segmentControl" destination="mWR-qa-gFb" id="49G-5X-hPv"/>
                         <outlet property="selectCategoryView" destination="PGb-Hc-9oi" id="Sp6-f6-I0c"/>
                         <outlet property="selectImageView" destination="4sQ-j2-UP1" id="saC-2B-Isx"/>
+                        <outlet property="txtCategoryName" destination="cHB-yN-e86" id="nFf-bP-tDd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPw-Wv-0gY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
