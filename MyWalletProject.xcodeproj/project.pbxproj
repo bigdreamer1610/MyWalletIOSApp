@@ -832,8 +832,8 @@
 				73AA67F42525825E001EAA1D /* Planning */,
 				73E0B1902521ED6F0097D41F /* Balance */,
 				73E0B18F2521ED680097D41F /* MainTransaction */,
-				73E0B1612521E0ED0097D41F /* FirstNavigationController.swift */,
 				73AA67FC25258E29001EAA1D /* SecondNavigationController.swift */,
+				73E0B1612521E0ED0097D41F /* FirstNavigationController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
