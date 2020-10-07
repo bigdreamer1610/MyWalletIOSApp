@@ -31,7 +31,7 @@
             <connections>
                 <outlet property="categoryIcon" destination="WMZ-HH-v9l" id="fJS-DC-PLm"/>
             </connections>
-            <point key="canvasLocation" x="131.8840579710145" y="123.88392857142857"/>
+            <point key="canvasLocation" x="-274" y="-56"/>
         </collectionViewCell>
     </objects>
 </document>

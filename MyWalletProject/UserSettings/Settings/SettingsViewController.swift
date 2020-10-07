@@ -25,7 +25,6 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var btnSave: UIButton!
 
     var user = Account()
-    
     var presenter: SettingsPresenter?
     
     override func viewDidLoad() {
