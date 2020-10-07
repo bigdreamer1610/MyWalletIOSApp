@@ -12,6 +12,7 @@ class AddEditCategoryViewController: UIViewController {
 
     @IBOutlet weak var selectCategoryView: UIView!
     @IBOutlet weak var categoryTypeView: UIView!
+    @IBOutlet weak var selectImageView: UIView!
     
     @IBOutlet weak var segmentControl: UISegmentedControl!
     
@@ -20,6 +21,7 @@ class AddEditCategoryViewController: UIViewController {
         
         addTopBorder([selectCategoryView])
         addBottomBorder([selectCategoryView, categoryTypeView])
+        setupGestureForView([selectImageView])
         
         self.title = "Add category"
     }
@@ -33,7 +35,6 @@ class AddEditCategoryViewController: UIViewController {
             view.layer.addSublayer(bottomBorder)
         }
     }
-    
     func addTopBorder(_ views: [UIView]) {
         views.forEach { (view) in
             let topBorder = CALayer()
@@ -43,16 +44,24 @@ class AddEditCategoryViewController: UIViewController {
         }
     }
     
+    // MARK: - Setup gesture on view
+    func setupGestureForView(_ views: [UIView]) {
+        views.forEach { (view) in
+            let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+            view.addGestureRecognizer(tap)
+            view.isUserInteractionEnabled = true
+            self.view.addSubview(view)
+        }
+    }
+    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+        print("Hello World")
+    }
+    
     @IBAction func btnCancelClick(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func segmentClick(_ sender: Any) {
-        switch segmentControl.selectedSegmentIndex {
-        case 0:
-            break
-        default:
-            break
-        }
+        
     }
 }
