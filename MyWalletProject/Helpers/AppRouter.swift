@@ -35,6 +35,7 @@ enum RouterType {
     case pieChartDetail
     case dayBarChartDetail
     case budgetTransaction(budgetObject: Budget)
+    case eventTransaction(event: Event)
     case selectEvent
     case selectCategory
     case selectDate
@@ -222,6 +223,12 @@ extension RouterType{
             return vc
         case .selectCategory:
             let vc = UIStoryboard.init(name: Constants.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "selectCategory") as! SelectCategoryController
+            return vc
+        case .eventTransaction(let event):
+            let vc = UIStoryboard.init(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "eventTransaction_vc") as! EventTransactionViewController
+            let presenter = EventTransactionPresenter(delegate: vc, usecase: EventTransactionUseCase())
+            vc.setUpData(event: event)
+            vc.setUp(presenter: presenter)
             return vc
         }
         
