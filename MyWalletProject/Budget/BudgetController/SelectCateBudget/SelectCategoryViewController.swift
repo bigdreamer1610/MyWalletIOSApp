@@ -63,7 +63,7 @@ class SelectCategoryViewController: UIViewController {
 extension SelectCategoryViewController : UITableViewDataSource , UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if segmentIndex == 0 {
+        if segmentIndex == 1 {
             return listCateIncome.count
         } else {
             return listCateExpense.count
@@ -72,7 +72,7 @@ extension SelectCategoryViewController : UITableViewDataSource , UITableViewDele
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tblCategory.dequeueReusableCell(withIdentifier: "CategoryCell") as! CategoryCell
-        if segmentIndex == 0 {
+        if segmentIndex == 1 {
             let imgName = listCateIncome[indexPath.row].iconImage
             let categoryName = listCateIncome[indexPath.row].name
             cell.loadContent(imgName: imgName!, categoryName: categoryName!)
@@ -89,7 +89,7 @@ extension SelectCategoryViewController : UITableViewDataSource , UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if segmentIndex == 0{
+        if segmentIndex == 1{
             budgetObject.categoryId = listCateIncome[indexPath.row].id ?? ""
             budgetObject.categoryName = listCateIncome[indexPath.row].name ?? ""
             budgetObject.categoryImage = listCateIncome[indexPath.row].iconImage ?? ""
