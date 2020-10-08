@@ -10,6 +10,7 @@ import UIKit
 
 protocol DetailTransactionPresenterDelegate: class {
     func getEvent(event: Event)
+    func getTransaction(transaction: Transaction)
 }
 class DetailTransactionPresenter {
     weak var delegate: DetailTransactionPresenterDelegate?
@@ -24,12 +25,23 @@ class DetailTransactionPresenter {
     func getInfo(id: String){
         usecase?.getEventInfo(eventid: id)
     }
+    
+    func fetchTransaction(id: String){
+        usecase?.getTransaction(transid: id)
+    }
+    
+    func deleteTransaction(t: Transaction){
+        usecase?.deleteTransaction(t: t)
+    }
 }
 
 extension DetailTransactionPresenter : DetailTransactionUseCaseDelegate{
     func responseEvent(event: Event) {
-        print("this event: \(event)")
         delegate?.getEvent(event: event)
+    }
+    
+    func responseTrans(trans: Transaction) {
+        delegate?.getTransaction(transaction: trans)
     }
     
     

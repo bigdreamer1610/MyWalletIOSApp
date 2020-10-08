@@ -40,6 +40,8 @@ class ViewTransactionViewController: UIViewController {
     var today = Date()
     var todayMonth = 9
     var todayYear = 2020
+    var currentMonth = 9
+    var currentYear = 2020
     var mode = UserDefaults.standard.string(forKey: "viewmode")
     var userid = Defined.defaults.string(forKey: Constants.userid)
 
@@ -56,35 +58,42 @@ class ViewTransactionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initData()
+        initData(month: Defined.defaults.integer(forKey: Constants.currentMonth), year: Defined.defaults.integer(forKey: Constants.currentYear))
         initComponents()
         todayYear = Defined.calendar.component(.year, from: today)
         todayMonth = Defined.calendar.component(.month, from: today)
-        if Defined.defaults.integer(forKey: Constants.currentMonth) == 0 || Defined.defaults.integer(forKey: Constants.currentYear) == 0 {
-            setUpCurrentDate(month: todayMonth, year: todayYear)
-        }
+        currentMonth = todayMonth
+        currentYear = todayYear
         current = today
         Defined.defaults.set(current, forKey: Constants.currentDate)
-        centerIcon.isHidden = true
-        centerLabel.isHidden = true
+        setUpCurrentDate(month: currentMonth, year: currentYear)
+        
+        //status of center label : NO TRANSACTION
+        setUpNoTransaction(status: true)
+    
         Defined.dateFormatter.locale = Locale(identifier: "vi_VN")
         Defined.dateFormatter.dateFormat = "dd/MM/yyyy"
+        
         if userid == nil {
             userid = "userid1"
             Defined.defaults.set(userid, forKey: Constants.userid)
         }
+        
         if mode == nil {
             UserDefaults.standard.set(Mode.transaction.getValue(), forKey: "viewmode")
             mode = Mode.transaction.getValue()
         }
-        transactionTableView.isHidden = false
+//        transactionTableView.isHidden = true
+//        loadingView.isHidden = false
+//        centerIndicator.isHidden = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         DispatchQueue.main.async {
             self.current = Defined.dateFormatter.date(from: "02/\(Defined.defaults.integer(forKey: Constants.currentMonth))/\(Defined.defaults.integer(forKey: Constants.currentYear))")!
-            self.presenter?.getDataTransaction(month: self.current.dateComponents.month!, year: self.current.dateComponents.year!)
+            self.initData(month: self.current.dateComponents.month!, year: self.current.dateComponents.year!)
+            self.transactionTableView.reloadData()
             self.jumpToDate(from: self.current)
         }
     }
@@ -99,9 +108,10 @@ class ViewTransactionViewController: UIViewController {
         Defined.defaults.set(Defined.dateFormatter.date(from: "02/\(month)/\(year)")!, forKey: Constants.currentDate)
     }
     
-    func initData(){
+    func initData(month: Int, year: Int){
         presenter?.fetchData()
-        presenter?.getDataTransaction(month: Defined.defaults.integer(forKey: Constants.currentMonth), year: Defined.defaults.integer(forKey: Constants.currentYear))
+        presenter?.getDataTransaction(month: month, year: year)
+        transactionTableView.reloadData()
     }
     
     func initComponents(){
@@ -168,7 +178,7 @@ class ViewTransactionViewController: UIViewController {
                 return i
             }
         }
-        return 0
+        return -1
     }
     
 }
@@ -179,6 +189,8 @@ extension ViewTransactionViewController {
         let firstIndexPath = IndexPath(item: getIndexPathOfThisMonthCell(from: date), section: 0)
         print("Date indexpath: \(firstIndexPath)")
         monthCollectionView.selectItem(at: firstIndexPath, animated: true, scrollPosition: .centeredHorizontally)
+        
+        //transactionTableView.setContentOffset(.zero, animated: true)
     }
 }
 
@@ -187,72 +199,52 @@ extension ViewTransactionViewController : ViewTransactionPresenterDelegate {
     func getBalance(balance: Int) {
         self.lbBalance.text = "\(Defined.formatter.string(from: NSNumber(value: balance))!) đ"
         Defined.defaults.set(balance, forKey: Constants.balance)
+        reloadTableView()
     }
 
     func startLoading() {
         centerIndicator.startAnimating()
         transactionTableView.isHidden = true
         loadingView.isHidden = false
-        centerIcon.isHidden = true
-        centerLabel.isHidden = true
-        noTransaction.isHidden = true
+        centerIndicator.isHidden = false
+        setUpNoTransaction(status: true)
     }
     
     func endLoading() {
         loadingView.isHidden = true
+        centerIndicator.isHidden = true
         centerIndicator.stopAnimating()
     }
     
     func getDetailCellInfo(info: DetailInfo) {
         opening = info.opening
         ending = info.ending
-        transactionTableView.reloadData()
         
     }
     
-    func loadingViewHidden() {
-        self.loadingView.isHidden = true
-    }
-    
-    func loadingViewShow() {
-        self.loadingView.isHidden = false
-    }
-    
-    func centerIndicatorHidden() {
-        self.centerIndicator.isHidden = true
-    }
-    
     func noFinalTransactions() {
-        self.noTransaction.isHidden = false
-        self.centerIcon.isHidden = false
-        self.centerLabel.isHidden = false
-        self.transactionTableView.isHidden = true
+        setUpNoTransaction(status: false)
+    }
+    
+    func setUpNoTransaction(status: Bool){
+        self.centerIcon.isHidden = status
+        self.centerLabel.isHidden = status
+        self.transactionTableView.isHidden = !status
     }
     
     func yesFinalTransactions() {
-        self.transactionTableView.isHidden = false
-        self.transactionTableView.reloadData()
-        self.centerIndicator.stopAnimating()
-        self.centerIcon.isHidden = true
-        self.centerLabel.isHidden = true
-        self.noTransaction.isHidden = true
+        setUpNoTransaction(status: true)
+        //self.transactionTableView.reloadData()
     }
     
     func getTransactionSections(section: [TransactionSection]) {
         self.transactionSections = section
-        if section.count == 0 {
-            centerIcon.isHidden = false
-            centerLabel.isHidden = false
-            transactionTableView.isHidden = true
-        } else {
-            centerIcon.isHidden = true
-            centerLabel.isHidden = true
-            transactionTableView.isHidden = false
-        }
+        //reloadTableView()
     }
     
     func getCategorySections(section: [CategorySection]) {
         self.categorySections  = section
+        //reloadTableView()
     }
     
     func reloadTableView() {
@@ -261,6 +253,11 @@ extension ViewTransactionViewController : ViewTransactionPresenterDelegate {
     
     func getMonthYearMenu(dates: [Date]) {
         self.monthTitles = dates
+    }
+    func scrollToTop() {
+        if categorySections.count != 0 || transactionSections.count != 0 {
+        transactionTableView.scrollToRow(at:IndexPath(row: 0, section: 0), at: .top, animated: false)
+        }
     }
 }
 
@@ -364,11 +361,9 @@ extension ViewTransactionViewController : UITableViewDataSource {
             if indexPath.section != 0 {
                 switch mode {
                 case Mode.transaction.getValue():
-                    let transVc = RouterType.transactionDetail(item: transactionSections[indexPath.section - 1].items[indexPath.row], header: transactionSections[indexPath.section - 1].header).getVc()
-                    self.navigationController?.pushViewController(transVc, animated: true)
+                    AppRouter.routerTo(from: self, router: .transactionDetail(item: transactionSections[indexPath.section - 1].items[indexPath.row], header: transactionSections[indexPath.section - 1].header), options: .push)
                 default:
-                    let cateVc = RouterType.categoryDetail(item: categorySections[indexPath.section-1].items[indexPath.row], header: categorySections[indexPath.section-1].header).getVc()
-                    self.navigationController?.pushViewController(cateVc, animated: true)
+                    AppRouter.routerTo(from: self, router: .categoryDetail(item: categorySections[indexPath.section-1].items[indexPath.row], header: categorySections[indexPath.section-1].header), options: .push)
                 }
                 tableView.deselectRow(at: indexPath, animated: true)
             }
@@ -449,11 +444,16 @@ extension ViewTransactionViewController : UITableViewDelegate {
 }
 extension UITextField {
     func setRightImage2(imageName: String) {
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
-                imageView.image = UIImage(named: imageName)
-                imageView.contentMode = .scaleToFill
-                self.rightView = imageView;
-                self.rightViewMode = .always
+        let cRightImageView = UIImageView()
+        cRightImageView.image = UIImage(named: imageName)
+        cRightImageView.setImageColor(color: #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1))
+        cRightImageView.contentMode = .scaleToFill
+        let cRightView = UIView()
+        cRightView.addSubview(cRightImageView)
+        rightView?.frame = CGRect(x: 0, y: 0, width: 15, height: 15)
+        cRightImageView.frame = CGRect(x: -25, y: -7.5, width: 15, height: 15)
+        rightView = cRightView
+        rightViewMode = .always
     }
 }
 //MARK: MENU CELL
@@ -481,6 +481,7 @@ extension ViewTransactionViewController : UICollectionViewDelegateFlowLayout, UI
             setUpCurrentDate(month: month, year: year)
             current = Defined.dateFormatter.date(from: "02/\(month)/\(year)")!
             presenter?.getDataTransaction(month: Defined.defaults.integer(forKey: Constants.currentMonth), year: Defined.defaults.integer(forKey: Constants.currentYear))
+            
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
         }
 
