@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AddEditCategoryViewControllerDelegate {
-    func finishAddingCategory(_ state: Bool)
+    func finishManagingCategory(_ category: Category)
 }
 
 class AddEditCategoryViewController: UIViewController {
@@ -30,6 +30,8 @@ class AddEditCategoryViewController: UIViewController {
     var presenter: AddEditCategoryPresenter?
     var delegate: AddEditCategoryViewControllerDelegate?
     var isFinish = false
+    var action = ""
+    var category: Category = Category()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,8 +41,33 @@ class AddEditCategoryViewController: UIViewController {
         setupGestureForView([selectImageView])
         addRightBorder([selectImageView])
         
-        self.title = "Add category"
-        self.categoryType = "income"
+        setupView()
+    }
+    
+    // MARK: - Setup view depends on which screen call this view
+    func setupView() {
+        if action == "add" {
+            self.title = "Add category"
+            self.categoryType = "income"
+            self.segmentControl.selectedSegmentIndex = 0
+        } else {
+            self.title = "Edit category"
+            
+            if self.category.transactionType == "Income" {
+                self.segmentControl.selectedSegmentIndex = 0
+            } else {
+                self.segmentControl.selectedSegmentIndex = 1
+            }
+            
+            if let imageName = self.category.iconImage {
+                imageCategory.image = UIImage(named: imageName)
+            }
+            if let categoryName = self.category.name {
+                txtCategoryName.text = categoryName
+            }
+            
+            segmentControl.isEnabled = false
+        }
     }
     
     // MARK: - Setup delegate
@@ -97,8 +124,14 @@ class AddEditCategoryViewController: UIViewController {
         self.navigationController?.pushViewController(selectIconController, animated: true)
     }
     
+    // MARK: - Show success alert depends on activity: Add or Edit
+    func showSuccessAlert(_ message: String) {
+        let alert = UIAlertController(title: "SUCCESS", message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in self.finish()}))
+        self.present(alert, animated: true, completion: nil)
+    }
     func finish() {
-        self.delegate?.finishAddingCategory(isFinish)
+        self.delegate?.finishManagingCategory(self.category)
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -108,7 +141,23 @@ class AddEditCategoryViewController: UIViewController {
     }
     
     @IBAction func btnSaveClick(_ sender: Any) {
-        presenter?.validateInput(txtCategoryName.text, imageIndex)
+        if action == "add" {
+            presenter?.validateInput(txtCategoryName.text, imageIndex)
+        } else {
+            if let categoryType = self.category.transactionType {
+                var editedCategory = Category()
+                editedCategory.id = self.category.id
+                editedCategory.iconImage = self.category.iconImage
+                if let categoryName = txtCategoryName.text {
+                    editedCategory.name = categoryName
+                }
+                
+                self.category = editedCategory
+                
+                presenter?.saveUserCategory(editedCategory, categoryType)
+                showSuccessAlert("Your category has been successfully edited!")
+            }
+        }
     }
     
     @IBAction func segmentClick(_ sender: Any) {
@@ -141,14 +190,11 @@ extension AddEditCategoryViewController: AddEditCategoryPresenterDelegate {
             userCategory.iconImage = listImageName[imageIndex]
             if let categoryName = txtCategoryName.text {
                 userCategory.name = categoryName
+                userCategory.id = categoryName
             }
             presenter?.saveUserCategory(userCategory, self.categoryType)
             
-            self.isFinish = state
-            
-            let alert = UIAlertController(title: "SUCCESS", message: "Your category has successfully been added!", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { action in self.finish()}))
-            self.present(alert, animated: true, completion: nil)
+            showSuccessAlert("Your category has been successfully added!")
         }
     }
 }

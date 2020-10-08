@@ -18,7 +18,8 @@ protocol EventTransactionPresenterDelegate: class {
 
 class EventTransactionPresenter {
     weak var delegate: EventTransactionPresenterDelegate?
-    fileprivate var usecase: EventTransactionUseCase?
+    fileprivate var eventUseCase: EventTransactionUseCase?
+    fileprivate var viewTransUseCase: ViewTransactionUseCase?
     
     var transactionSections = [TransactionSection]()
     var allTransactions = [Transaction]()
@@ -26,18 +27,34 @@ class EventTransactionPresenter {
     var dates = [TransactionDate]()
     var amount: Int = 0
     var event: Event!
+    var categories: [Category]?
     
     var weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thurday","Friday","Saturday"]
     var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
     
-    init(delegate: EventTransactionPresenterDelegate, usecase: EventTransactionUseCase) {
+    init(delegate: EventTransactionPresenterDelegate, eventUseCase: EventTransactionUseCase, viewTransUseCase: ViewTransactionUseCase) {
         self.delegate = delegate
-        self.usecase = usecase
-        self.usecase?.delegate = self
+        self.eventUseCase = eventUseCase
+        self.viewTransUseCase = viewTransUseCase
+        self.viewTransUseCase?.delegate = self
+        self.eventUseCase?.delegate = self
+    }
+    
+    func setUpEvent(e: Event){
+        self.event = e
     }
     
     func fetchDataTransactions(eid: String){
-        usecase?.getTransactionByEvent(eid: eid)
+        eventUseCase?.getTransactionByEvent(eid: eid)
+        viewTransUseCase?.getListCategories()
+    }
+    
+    func fetchData(trans: [Transaction]){
+        allTransactions = trans
+        getTransactionByEvent()
+        getTotalAmount()
+        processTransactionSection(list: finalTransactions)
+        
     }
     
     func getTotalAmount(){
@@ -47,89 +64,88 @@ class EventTransactionPresenter {
         delegate?.getTotal(total: amount)
     }
     
+    func processTransactionSection(list: [Transaction]){
+        var sections = [TransactionSection]()
+        for a in dates {
+            var items = [TransactionItem]()
+            var amount = 0
+            //header
+            for b in list {
+                if a.dateString == b.date {
+                    //MARK: - Get count for each header amount
+                    if b.transactionType == TransactionType.expense.getValue(){
+                        amount -= b.amount!
+                    } else {
+                        amount += b.amount!
+                    }
+                    //MARK: - Get Item for each section of header
+                    var categoryName = ""
+                    var icon = ""
+                    var type = ""
+                    for c in categories! {
+                        if b.categoryid == c.id {
+                            categoryName = c.name!
+                            icon = c.iconImage!
+                            type = c.transactionType!
+                            break
+                        }
+                    }
+                    var item = TransactionItem(id: "\(b.id!)", categoryName: categoryName,amount: b.amount!, iconImage: icon, type: type)
+                    if let note = b.note {
+                        item.note = note
+                    }
+                    if let eventid = b.eventid {
+                        item.eventid = eventid
+                    }
+                    items.append(item)
+                }
+            }
+            let components = Defined.convertToDate(resultDate: a.dateString)
+            let dateModel = Defined.getDateModel(components: components, weekdays: weekdays, months: months)
+            let th = TransactionHeader(dateModel: dateModel, amount: amount)
+            sections.append(TransactionSection(header: th, items: items))
+            
+        }
+        transactionSections = sections
+        delegate?.getTransactionSection(section: transactionSections)
+    }
     
 }
 
 extension EventTransactionPresenter {
-    func getDateModel(components: DateComponents) -> DateModel{
-        let weekDay = components.weekday!
-        let month = components.month!
-        let date = components.day!
-        let year = components.year!
-        let model = DateModel(date: date, month: months[month-1], year: year, weekDay: weekdays[weekDay-1])
-        return model
-    }
-    //MARK: - Get all day string array sorted descending
-    func getAllDayArray() -> [String]{
-        var checkArray = [String]()
-        //MARK: - Get all distinct date string
-        for a in allTransactions {
-            var check = false
-            for b in checkArray {
-                if a.date == b {
-                    check = true
-                }
-            }
-            if !check {
-                checkArray.append(a.date!)
-            }
-        }
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "vi_VN")
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        //MARK: - Sort date string
-        let sortedArray = checkArray.sorted { (first, second) -> Bool in
-            dateFormatter.date(from: first)?.compare(dateFormatter.date(from: second)!) == ComparisonResult.orderedDescending
-        }
-        print("sortedArray: \(sortedArray)")
-        return sortedArray
-    }
-    
-    func getDateArray(arr: [String], startDate: String, endDate: String) -> [TransactionDate]{
-        let date1 = Defined.dateFormatter.date(from: startDate)!
-        let date2 = Defined.dateFormatter.date(from: endDate)!
-        var list = [TransactionDate]()
+    func getDateArray(arr: [String]) -> [TransactionDate]{
         var mDates = [Date]()
         for a in arr {
             let myDate = a
             let date = Defined.dateFormatter.date(from: myDate)!
-            if date >= date1 && date <= date2 {
-                mDates.append(date)
-            }
+            mDates.append(date)
         }
-        //sort descending
-        mDates = mDates.sorted { (first, second) -> Bool in
-            first.compare(second) == ComparisonResult.orderedDescending        }
-        //Date style: 18/09/2020
-        Defined.dateFormatter.dateStyle = .short
-        for d in mDates {
-            let t = TransactionDate(dateString: Defined.dateFormatter.string(from: d), date: d)
-            list.append(t)
-        }
-        print("get Date array: \(list)")
-        return list
+        return Defined.getTransactionDates(dates: mDates)
     }
     
-    func getTransactionByCategoryInRange(){
+    func getTransactionByEvent(){
         //date model of given month year
-        //dates = getDateArray(arr: getAllDayArray(), startDate: budget.startDate!, endDate: budget.endDate!)
+        dates = getDateArray(arr: Defined.getAllDayArray(allTransactions: allTransactions))
         //get transaction by month
-        finalTransactions = getTransactionbyDate(dateArr: dates)
-        print("final transactions: \(finalTransactions.count)")
+        finalTransactions = Defined.getTransactionbyDate(dateArr: dates, allTrans: allTransactions)
+    }
+}
+
+extension EventTransactionPresenter : ViewTransactionUseCaseDelegate {
+    func responseBalance(balance: Int) {
+        print("something")
     }
     
-    func getTransactionbyDate(dateArr: [TransactionDate]) -> [Transaction]{
-        var list = [Transaction]()
-        for day in dateArr {
-            for tran in allTransactions {
-                if tran.date == day.dateString {
-                    list.append(tran)
-                }
-            }
-        }
-        print("get Transaction by date: \(list)")
-        return list
+    func responseAllTransactions(trans: [Transaction]) {
+        print("something")
     }
+    
+    func responseCategories(cate: [Category]) {
+        DispatchQueue.main.async {
+            self.categories = cate
+        }
+    }
+    
 }
 
 extension EventTransactionPresenter : EventTransactionUseCaseDelegate {
@@ -137,6 +153,4 @@ extension EventTransactionPresenter : EventTransactionUseCaseDelegate {
         self.allTransactions = trans
         delegate?.getAllTransactions(trans: trans)
     }
-    
-    
 }

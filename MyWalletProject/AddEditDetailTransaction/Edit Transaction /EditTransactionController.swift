@@ -13,16 +13,11 @@ import Firebase
 class EditTransactionController: UIViewController, UITextFieldDelegate {
     
     var eventid: String? = nil
-    var note:String? = ""
-    var date:String = ""
     var categoryName: String = ""
-    var transactionId: String = ""
-    var type: String = ""
+    var categoryId: String? = nil
     var amount: Int = 0
     var icon: String = ""
-    var dateModel: DateModel!
     var thisDate = Date()
-    var event: Event!
     var timer = Timer()
     var runAnimation = true
     private let dateFormatter = DateFormatter()
@@ -39,12 +34,15 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var btnTrash: UIButton!
     
+    var transaction: Transaction?
+    var event: Event?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         Defined.formatter.groupingSeparator = "."
         Defined.formatter.numberStyle = .decimal
-        configure()
+        
+        initComponents()
         customizeLayout()
         txtAmount.delegate = self
         addEvent()
@@ -54,6 +52,27 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
         tapGestureRecognizer.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGestureRecognizer)
         
+    }
+    
+    func setUpData(trans: Transaction, event: Event?, categoryName: String, categoryImage: String){
+        self.transaction = trans
+        self.categoryId = trans.categoryid
+        self.event = event
+        self.eventid = event?.id
+        self.categoryName = categoryName
+        self.icon = categoryImage
+    }
+    
+    
+    func initComponents(){
+        txtCategory.text = categoryName
+        txtNote.text = transaction?.note!
+        txtAmount.text = "\(transaction?.amount ?? 0)"
+        iconImage.image = UIImage(named: icon)
+        txtDate.text = transaction?.date!
+        txtEvent.text = event?.name ?? nil
+        iconEvent.image = UIImage(named: event?.eventImage ?? "others")
+        categoryId = transaction?.categoryid
     }
     @objc func hideKeyboard(){
         self.view.endEditing(true)
@@ -89,82 +108,6 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
         txtDate.setRightImage(imageName: "arrowright")
     }
     
-    func getEventInfo() {
-        Defined.ref.child("Account").child("userid1").child("event").observe(DataEventType.value) { (snapshot) in
-            if snapshot.childrenCount > 0 {
-                for artist in snapshot.children.allObjects as! [DataSnapshot] {
-                    let art = artist.value as? [String:AnyObject]
-                    let id = artist.key
-                    
-                    if id == self.eventid {
-                        print("my eventid: \(id)")
-                        let artName = art?["name"]
-                        let artDate = art?["date"]
-                        let eventImage = art?["eventImage"]
-                        let artSpent = art?["spent"]
-                        let arts = Event(id: id, name: artName as? String, date: artDate as? String, eventImage: eventImage as? String, spent: artSpent as? Int)
-                        self.event = arts
-                        print("event image: \(eventImage!)")
-                        self.txtEvent.text = artName as! String
-                        self.iconEvent.image = UIImage(named: eventImage as! String)
-                        break
-                    }
-                }
-                
-            }
-            
-        }
-    }
-    
-    func configure(){
-        txtCategory.text = categoryName
-        txtNote.text = note
-        txtAmount.text = "\(Defined.formatter.string(from: NSNumber(value: amount))!)"
-        txtDate.text = "\(dateModel.date)/\(dateModel.month)/\(dateModel.year)"
-        iconImage.image = UIImage(named: icon)
-
-        switch dateModel.month {
-        case "January":
-            txtDate.text = "\(dateModel.date)/01/\(dateModel.year)"
-        case "February":
-            txtDate.text = "\(dateModel.date)/02/\(dateModel.year)"
-        case "March":
-            txtDate.text = "\(dateModel.date)/03/\(dateModel.year)"
-        case "April":
-            txtDate.text = "\(dateModel.date)/04/\(dateModel.year)"
-        case "May":
-            txtDate.text = "\(dateModel.date)/05/\(dateModel.year)"
-        case "June":
-            txtDate.text = "\(dateModel.date)/06/\(dateModel.year)"
-        case "July":
-            txtDate.text = "\(dateModel.date)/07/\(dateModel.year)"
-        case "August":
-            txtDate.text = "\(dateModel.date)/08/\(dateModel.year)"
-        case "September":
-            txtDate.text = "\(dateModel.date)/09/\(dateModel.year)"
-        case "October":
-            txtDate.text = "\(dateModel.date)/10/\(dateModel.year)"
-        case "November":
-            txtDate.text = "\(dateModel.date)/11/\(dateModel.year)"
-        case "December":
-            txtDate.text = "\(dateModel.date)/12/\(dateModel.year)"
-        default:
-            break
-            
-        }
-    }
-    func setUpData(type: String, transactionId: String, name: String,
-                   note: String?,amount: Int,icon: String, dateModel: DateModel){
-        self.type = type
-        self.transactionId = transactionId
-        self.categoryName = name
-        self.note = note
-        self.amount = amount
-        self.icon = icon
-        self.dateModel = dateModel
-        
-        
-    }
     @IBAction func clickCancel(_ sender: Any) {
         timer.invalidate()
         self.navigationController?.popViewController(animated: true)
@@ -182,13 +125,16 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
                 return
             }
         }
+        
+        let trans = Transaction(id: transaction?.id ?? "", transactionType: transaction?.transactionType ?? "", amount: amount, categoryid: categoryId , date: txtDate.text!, note: txtNote.text!, eventid: eventid ?? "")
         let update = [
             "note":txtNote.text! ,
             "date":txtDate.text!,
             "categoryid": txtCategory.text!,
-            "amount": amount
+            "amount": amount,
+            "eventid": eventid ?? ""
             ] as [String : Any]
-        Defined.ref.child("Account/userid1/transaction/\(self.type)/\(self.transactionId)").updateChildValues(update) { (error, reference) in
+        Defined.ref.child("Account/userid1/transaction/\(transaction?.transactionType ?? "")/\(transaction?.id ?? "")").updateChildValues(update) { (error, reference) in
             if error != nil {
                 print("Error: \(error!)")
             } else {
@@ -201,6 +147,10 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func clickTrash(_ sender: Any) {
+        resetEvent()
+    }
+    
+    func resetEvent(){
         eventid?.removeAll()
         txtEvent.text = ""
         iconEvent.image = UIImage(named: "others")
@@ -251,6 +201,8 @@ extension EditTransactionController: SelectCategory, SelectDate, SelectEvent{
     func setCategory(nameCategory: String, iconCategory: String, type: String, id: String) {
         txtCategory.text = nameCategory
         iconImage.image = UIImage(named: iconCategory)
+        categoryId = id
+        
     }
     
     
