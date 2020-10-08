@@ -440,10 +440,11 @@ extension ViewTransactionViewController : UITableViewDelegate {
 extension UITextField {
     func setRightImage2(imageName: String) {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
-                imageView.image = UIImage(named: imageName)
-                imageView.contentMode = .scaleToFill
-                self.rightView = imageView;
-                self.rightViewMode = .always
+        imageView.image = UIImage(named: imageName)
+        imageView.contentMode = .scaleToFill
+        imageView.setImageColor(color: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
+        self.rightView = imageView;
+        self.rightViewMode = .always
     }
 }
 //MARK: MENU CELL

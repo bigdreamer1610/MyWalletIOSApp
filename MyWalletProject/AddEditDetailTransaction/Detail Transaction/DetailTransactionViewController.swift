@@ -87,10 +87,10 @@ class DetailTransactionViewController: UIViewController {
             print("a1: \(eventid)")
             presenter?.getInfo(id: eventid)
         }
-        if let event = event {
-            lbEventName.text = event.name
-            imageEvent.image = UIImage(named: event.eventImage!)
-        }
+//        if let event = event {
+//            lbEventName.text = event.name
+//            imageEvent.image = UIImage(named: event.eventImage!)
+//        }
         dateModel = header.dateModel
         //eventName = item.ev
         categoryDate = "\(dateModel.weekDay), \(dateModel.date) \(dateModel.month) \(dateModel.year)"
@@ -109,10 +109,10 @@ class DetailTransactionViewController: UIViewController {
             print("a2: \(eventid)")
             presenter?.getInfo(id: eventid)
         }
-        if let event = event {
-            lbEventName.text = event.name
-            imageEvent.image = UIImage(named: event.eventImage!)
-        }
+//        if let event = event {
+//            lbEventName.text = event.name
+//            imageEvent.image = UIImage(named: event.eventImage!)
+//        }
         categoryDate = "\(dateModel.weekDay), \(dateModel.date) \(dateModel.month) \(dateModel.year)"
     }
     
@@ -150,7 +150,7 @@ class DetailTransactionViewController: UIViewController {
 extension DetailTransactionViewController : DetailTransactionPresenterDelegate {
     func getEvent(event: Event) {
         self.event = event
-        eventid = event.id
+        //eventid = event.id
         print("my event: \(event)")
         lbEventName.text = event.name
         imageEvent.image = UIImage(named: event.eventImage!)

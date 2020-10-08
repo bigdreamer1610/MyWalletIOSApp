@@ -18,6 +18,7 @@ class DetailTransactionUseCase{
 
 extension DetailTransactionUseCase {
     func getEventInfo(eventid: String){
+        var finalEvent: Event!
         Defined.ref.child("Account").child("userid1").child("event").observe(DataEventType.value) { (snapshot) in
             if snapshot.childrenCount > 0 {
                 for artist in snapshot.children.allObjects as! [DataSnapshot] {
@@ -30,11 +31,12 @@ extension DetailTransactionUseCase {
                         let image = art?["eventImage"]
                         let spent = art?["spent"]
                         let event = Event(id: id, name: name as? String, date: date as? String, eventImage: image as? String, spent: spent as? Int)
-                        self.delegate?.responseEvent(event: event)
+                        finalEvent = event
+                        
                         break
                     }
                 }
-                
+                self.delegate?.responseEvent(event: finalEvent)
             }
             
         }
