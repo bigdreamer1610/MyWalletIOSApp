@@ -144,7 +144,8 @@ class EventController: UIViewController, UITableViewDataSource, UITableViewDeleg
         
     }
     @objc func back() {
-        AppRouter.routerTo(from: RouterType.tabbar.getVc(), options: .transitionCrossDissolve, duration: 0.2, isNaviHidden: true)
+        self.navigationController?.popViewController(animated: true)
+        //AppRouter.routerTo(from: RouterType.tabbar.getVc(), options: .transitionCrossDissolve, duration: 0.2, isNaviHidden: true)
     }
     func setDate() -> String {
         let date = Date()
