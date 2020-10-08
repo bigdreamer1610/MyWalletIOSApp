@@ -24,11 +24,16 @@ class ViewCategoryViewController: UIViewController {
         
         setupTableView()
         
+        requestData()
+        
+        tableView.reloadData()
+    }
+    
+    // MARK: - Request data for view
+    func requestData() {
         presenter?.requestIncomeCategories()
         presenter?.requestExpenseCategories()
         presenter?.requestListImage()
-        
-        tableView.reloadData()
     }
     
     // MARK: - Setup for table view
@@ -62,6 +67,7 @@ class ViewCategoryViewController: UIViewController {
     @IBAction func btnAddClick(_ sender: Any) {
         let addEditCategoryController = UIStoryboard.init(name: "Categories", bundle: nil).instantiateViewController(identifier: "settingsAddCategoryVC") as! AddEditCategoryViewController
         addEditCategoryController.listImageName = self.listImage
+        addEditCategoryController.action = "add"
         addEditCategoryController.delegate = self
         let presenter = AddEditCategoryPresenter(delegate: addEditCategoryController, usecase: AddEditCategoryUseCase())
         addEditCategoryController.setupDelegate(presenter: presenter)
@@ -102,6 +108,7 @@ extension ViewCategoryViewController: UITableViewDelegate, UITableViewDataSource
         if indexPath.section == 0 {
             let cell = CategoryTableViewCell.loadCell(tableView) as! CategoryTableViewCell
             cell.setupForView(categoriesExpense[indexPath.row].iconImage!, categoriesExpense[indexPath.row].name!)
+            
             return cell
         } else {
             let cell = CategoryTableViewCell.loadCell(tableView) as! CategoryTableViewCell
@@ -117,12 +124,50 @@ extension ViewCategoryViewController: UITableViewDelegate, UITableViewDataSource
         
         return "Income"
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var category = Category()
+        if indexPath.section == 0 {
+            if let iconImage = categoriesExpense[indexPath.row].iconImage {
+                category.iconImage = iconImage
+            }
+            if let categoryName = categoriesExpense[indexPath.row].name {
+                category.name = categoryName
+            }
+            if let categoryId = categoriesExpense[indexPath.row].id {
+                category.id = categoryId
+            }
+            category.transactionType = "expense"
+        } else {
+            if let iconImage = categoriesIncome[indexPath.row].iconImage {
+                category.iconImage = iconImage
+            }
+            if let categoryName = categoriesIncome[indexPath.row].name {
+                category.name = categoryName
+            }
+            if let categoryId = categoriesIncome[indexPath.row].id {
+                category.id = categoryId
+            }
+            category.transactionType = "income"
+        }
+        
+        let detailCategoryController = UIStoryboard.init(name: "Categories", bundle: nil).instantiateViewController(identifier: "detailCategoryVC") as! DetailCategoryViewController
+        detailCategoryController.category = category
+        detailCategoryController.delegate = self
+        let presenter = DetailCategoryPresenter(delegate: detailCategoryController, usecase: DetailCategoryUseCase())
+        detailCategoryController.setupDelegate(presenter: presenter)
+        self.navigationController?.pushViewController(detailCategoryController, animated: true)
+    }
 }
 
 extension ViewCategoryViewController: AddEditCategoryViewControllerDelegate {
-    func finishAddingCategory(_ state: Bool) {
-        self.presenter?.requestIncomeCategories()
-        self.presenter?.requestExpenseCategories()
-        self.presenter?.requestListImage()
+    func finishManagingCategory(_ category: Category) {
+        requestData()
+    }
+}
+
+extension ViewCategoryViewController: DetailCategoryViewControllerDelegate {
+    func finishHandleCategory() {
+        requestData()
     }
 }

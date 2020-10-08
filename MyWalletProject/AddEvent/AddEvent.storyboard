@@ -260,6 +260,9 @@
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="tintColor" red="0.0" green="0.78039215689999997" blue="0.53171074910000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <state key="normal" title="Transactions"/>
+                                                            <connections>
+                                                                <action selector="clickTransaction:" destination="uwy-PE-reJ" eventType="touchUpInside" id="cqr-3w-Rkz"/>
+                                                            </connections>
                                                         </button>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BkO-jE-FdJ">
                                                             <rect key="frame" x="0.0" y="44.5" width="414" height="0.5"/>

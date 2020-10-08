@@ -41,8 +41,15 @@ class AddTransactionViewController: UIViewController {
         addTextFieldTarget()
         customizeLayout()
 
-        // Do any additional setup after loading the view.
+          let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+              
+              tapGestureRecognizer.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tapGestureRecognizer)
+        
     }
+    @objc func hideKeyboard(){
+        self.view.endEditing(true)
+       }
     
     func setUp(presenter: AddTransactionPresenter){
         self.presenter = presenter

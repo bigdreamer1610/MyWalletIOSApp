@@ -49,9 +49,15 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
         txtAmount.delegate = self
         addEvent()
         scheduledTimerWithTimeInterval()
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        
+        tapGestureRecognizer.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tapGestureRecognizer)
         
     }
-    
+    @objc func hideKeyboard(){
+        self.view.endEditing(true)
+    }
     // add event txtDate,txtCategory
     func addEvent()  {
         txtCategory.addTarget(self, action: #selector(myCategory), for: .touchDown)
@@ -116,6 +122,36 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
         txtAmount.text = "\(Defined.formatter.string(from: NSNumber(value: amount))!)"
         txtDate.text = "\(dateModel.date)/\(dateModel.month)/\(dateModel.year)"
         iconImage.image = UIImage(named: icon)
+
+        switch dateModel.month {
+        case "January":
+            txtDate.text = "\(dateModel.date)/01/\(dateModel.year)"
+        case "February":
+            txtDate.text = "\(dateModel.date)/02/\(dateModel.year)"
+        case "March":
+            txtDate.text = "\(dateModel.date)/03/\(dateModel.year)"
+        case "April":
+            txtDate.text = "\(dateModel.date)/04/\(dateModel.year)"
+        case "May":
+            txtDate.text = "\(dateModel.date)/05/\(dateModel.year)"
+        case "June":
+            txtDate.text = "\(dateModel.date)/06/\(dateModel.year)"
+        case "July":
+            txtDate.text = "\(dateModel.date)/07/\(dateModel.year)"
+        case "August":
+            txtDate.text = "\(dateModel.date)/08/\(dateModel.year)"
+        case "September":
+            txtDate.text = "\(dateModel.date)/09/\(dateModel.year)"
+        case "October":
+            txtDate.text = "\(dateModel.date)/10/\(dateModel.year)"
+        case "November":
+            txtDate.text = "\(dateModel.date)/11/\(dateModel.year)"
+        case "December":
+            txtDate.text = "\(dateModel.date)/12/\(dateModel.year)"
+        default:
+            break
+            
+        }
     }
     func setUpData(type: String, transactionId: String, name: String,
                    note: String?,amount: Int,icon: String, dateModel: DateModel){
@@ -175,7 +211,7 @@ class EditTransactionController: UIViewController, UITextFieldDelegate {
     }
     @objc func updateCounting(){
         var checkAmount = Int(txtAmount.text!)
-
+        
         if checkAmount == 0 || txtCategory.text!.isEmpty || txtDate.text!.isEmpty{
             btnSave.isEnabled = false
         }else{

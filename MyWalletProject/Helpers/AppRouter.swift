@@ -35,6 +35,7 @@ enum RouterType {
     case pieChartDetail
     case dayBarChartDetail
     case budgetTransaction(budgetObject: Budget)
+    case eventTransaction(event: Event)
     case selectEvent
     case selectCategory
     case selectDate
@@ -42,8 +43,6 @@ enum RouterType {
     // Settings and Tools
     case settings
     case categories
-    case addCategories
-    case selectIcon
     case currencies
     case travelMode
     case billScanner
@@ -191,12 +190,6 @@ extension RouterType{
             let presenter = ViewCategoryPresenter(delegate: vc, usecase: ViewCategoryUseCase())
             vc.setupDelegate(presenter: presenter)
             return vc
-        case .addCategories:
-            let vc = UIStoryboard.init(name: "Categories", bundle: Bundle.main).instantiateViewController(identifier: "settingsAddCategoryVC") as! AddEditCategoryViewController
-            return vc
-        case .selectIcon:
-            let vc = UIStoryboard.init(name: "Categories", bundle: Bundle.main).instantiateViewController(identifier: "selectIconVC") as! SelectIconViewController
-            return vc
         case .currencies:
             let vc = UIStoryboard.init(name: "UserSettings", bundle: Bundle.main).instantiateViewController(identifier: "currencyVC") as! CurrencyViewController
             let presenter = CurrencyPresenter(delegate: vc, usecase: CurrencyUseCase())
@@ -222,6 +215,12 @@ extension RouterType{
             return vc
         case .selectCategory:
             let vc = UIStoryboard.init(name: Constants.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "selectCategory") as! SelectCategoryController
+            return vc
+        case .eventTransaction(let event):
+            let vc = UIStoryboard.init(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "eventTransaction_vc") as! EventTransactionViewController
+            let presenter = EventTransactionPresenter(delegate: vc, usecase: EventTransactionUseCase())
+            vc.setUpData(event: event)
+            vc.setUp(presenter: presenter)
             return vc
         }
         
