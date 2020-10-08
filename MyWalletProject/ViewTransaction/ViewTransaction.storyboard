@@ -619,7 +619,7 @@
         <!--Edit Transaction-->
         <scene sceneID="MXN-zX-uZe">
             <objects>
-                <viewController storyboardIdentifier="edit" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1Xm-Hf-Job" customClass="EditTransactionController" customModule="MyWalletProject" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="edit" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1Xm-Hf-Job" customClass="EditTransactionViewController" customModule="MyWalletProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hhr-mS-RrC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

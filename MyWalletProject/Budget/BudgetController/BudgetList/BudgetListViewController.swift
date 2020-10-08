@@ -129,6 +129,7 @@ extension BudgetListViewController : UITableViewDataSource , UITableViewDelegate
                 vc.spent = amount
             default:
                 vc.budgetObject = listBudgetFinish[indexPath.row]
+                presenter?.getAmountListTransaction(budget: listBudgetFinish[indexPath.row], listTransaction: listTransaction)
                 vc.spent = amount
             }
             vc.delegateBudgetDetail = self
