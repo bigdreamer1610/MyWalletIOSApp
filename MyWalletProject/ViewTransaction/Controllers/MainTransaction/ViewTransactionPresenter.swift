@@ -272,6 +272,7 @@ extension ViewTransactionPresenter : ViewTransactionUseCaseDelegate {
         DispatchQueue.main.async {
             self.delegate?.endLoading()
             self.allTransactions = trans
+            self.delegate?.reloadTableView()
             print("Trans 1: \(self.allTransactions.count)")
         }
     }
