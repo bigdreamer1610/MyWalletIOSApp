@@ -255,16 +255,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kmh-9i-DxI">
-                                <rect key="frame" x="0.0" y="96" width="375" height="571"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="kmh-9i-DxI">
+                                <rect key="frame" x="0.0" y="116" width="375" height="551"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="kmh-9i-DxI" firstAttribute="leading" secondItem="ept-ND-Vy3" secondAttribute="leading" id="OKp-5l-FED"/>
-                            <constraint firstItem="kmh-9i-DxI" firstAttribute="top" secondItem="ept-ND-Vy3" secondAttribute="top" id="WED-H0-2EM"/>
+                            <constraint firstItem="kmh-9i-DxI" firstAttribute="top" secondItem="ept-ND-Vy3" secondAttribute="top" constant="20" id="WED-H0-2EM"/>
                             <constraint firstItem="ept-ND-Vy3" firstAttribute="trailing" secondItem="kmh-9i-DxI" secondAttribute="trailing" id="fJK-tQ-8fU"/>
                             <constraint firstItem="ept-ND-Vy3" firstAttribute="bottom" secondItem="kmh-9i-DxI" secondAttribute="bottom" id="zWr-WY-SEz"/>
                         </constraints>
