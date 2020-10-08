@@ -170,6 +170,7 @@
 		8A99735F252D58BA00A95A2F /* SelectIconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A99735E252D58BA00A95A2F /* SelectIconViewController.swift */; };
 		8A997367252D5A1100A95A2F /* ImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A997365252D5A1100A95A2F /* ImageCollectionViewCell.swift */; };
 		8A997368252D5A1100A95A2F /* ImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A997366252D5A1100A95A2F /* ImageCollectionViewCell.xib */; };
+		8A9FC43E252F271700564E18 /* EventIconCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2949659252EF8F200DB8BAC /* EventIconCell.xib */; };
 		8ACA6248251A07980031E6DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACA6247251A07980031E6DF /* AppDelegate.swift */; };
 		8ACA624C251A07980031E6DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ACA624B251A07980031E6DF /* ViewController.swift */; };
 		8ACA624F251A07980031E6DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8ACA624D251A07980031E6DF /* Main.storyboard */; };
@@ -205,7 +206,6 @@
 		D270F4C4251B557D00CB274C /* CalendarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D270F4C3251B557D00CB274C /* CalendarController.swift */; };
 		D27F30F8252722AE00FF940B /* FormatNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27F30F7252722AE00FF940B /* FormatNumber.swift */; };
 		D294965A252EF8F200DB8BAC /* EventIconCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2949658252EF8F200DB8BAC /* EventIconCell.swift */; };
-		D294965B252EF8F200DB8BAC /* EventIconCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2949659252EF8F200DB8BAC /* EventIconCell.xib */; };
 		D29A104E251C4D15009EF2DC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D29A104D251C4D15009EF2DC /* GoogleService-Info.plist */; };
 		D29A5AC6252DB7EA00BECA18 /* AddEventTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22597D7252C5FB400B7AB3B /* AddEventTableController.swift */; };
 		D29A5AC7252DB80B00BECA18 /* EventImgPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22597EC252C71E800B7AB3B /* EventImgPresenter.swift */; };
@@ -1445,14 +1445,13 @@
 				8A997368252D5A1100A95A2F /* ImageCollectionViewCell.xib in Resources */,
 				8A3BB429251B204C008113E9 /* UserSettings.storyboard in Resources */,
 				56B8A7E72524835500B8E8F0 /* Signin.storyboard in Resources */,
-
 				72873D9425249B6100313629 /* DetailPCCell.xib in Resources */,
-
 				73AA67FB25258294001EAA1D /* PlanningCell.xib in Resources */,
 				56B8A7F72524889300B8E8F0 /* budget.storyboard in Resources */,
 				D270F4B0251B52E700CB274C /* AddEvent.storyboard in Resources */,
 				D22597F3252C7B2100B7AB3B /* EventImg.xib in Resources */,
 				73204F38252F00F60067432B /* FooterCell.xib in Resources */,
+				8A9FC43E252F271700564E18 /* EventIconCell.xib in Resources */,
 				73E0B1862521E0EE0097D41F /* HeaderCategoryCell.xib in Resources */,
 				8A3BB427251AFE7C008113E9 /* SettingsItemViewCell.xib in Resources */,
 				72873D9C25249C0800313629 /* DetailPieTableViewCell.xib in Resources */,
