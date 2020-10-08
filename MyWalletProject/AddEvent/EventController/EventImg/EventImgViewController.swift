@@ -11,21 +11,21 @@ import UIKit
 class EventImgViewController: UIViewController {
     var completionHandler: ((String) -> Void)?
     var number = 0
+    @IBOutlet weak var collectionImgView: UICollectionView!
     var presenter: EventImgPresenter?
     var imgs = [String](){
         didSet {
-            tableImgView.reloadData()
+            collectionImgView.reloadData()
         }
     }
-    @IBOutlet weak var tableImgView: UITableView!
     // Load view
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.fetchData1()
-        let nib = UINib(nibName: "EventImg", bundle: nil)
-        tableImgView.register(nib, forCellReuseIdentifier: "EventImg")
-        tableImgView.delegate = self
-        tableImgView.dataSource = self
+        let nib = UINib(nibName: "EventIconCell", bundle: nil)
+        collectionImgView.register(nib, forCellWithReuseIdentifier: "EventIconCell")
+        collectionImgView.delegate = self
+        collectionImgView.dataSource = self
         
         // Do any additional setup after loading the view.
     }
@@ -41,21 +41,19 @@ extension EventImgViewController: EventImgPresenterDelegate{
     }
      
 }
-extension EventImgViewController: UITableViewDelegate, UITableViewDataSource{
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension EventImgViewController: UICollectionViewDelegate, UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imgs.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let imgEvent = tableView.dequeueReusableCell(withIdentifier: "EventImg", for: indexPath) as! EventImg
-        imgEvent.load(img: imgs[indexPath.row])
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let imgEvent = collectionView.dequeueReusableCell(withReuseIdentifier: "EventIconCell", for: indexPath) as! EventIconCell
+        imgEvent.setUp(data: imgs[indexPath.row])
         return imgEvent
-        
     }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        completionHandler?(imgs[indexPath.row])
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+         completionHandler?(imgs[indexPath.row])
         self.navigationController?.popViewController(animated: true)
     }
-    
     
 }
