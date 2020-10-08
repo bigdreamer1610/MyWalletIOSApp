@@ -27,11 +27,17 @@ class TimeRangerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        customizeLayout()
         txtStartDate.text = budgetObject.startDate ?? ""
         txtEndDate.text = budgetObject.endDate ?? ""
         // txt click
         txtStartDate.addTarget(self, action: #selector(pushCalendarStartClick), for: .touchDown)
         txtEndDate.addTarget(self, action: #selector(pushCalendarEndClick), for: .touchDown)
+    }
+    
+    func customizeLayout(){
+        txtStartDate.setRightImage2(imageName: "arrowright")
+        txtEndDate.setRightImage2(imageName: "arrowright")
     }
     
     @objc func pushCalendarStartClick() {

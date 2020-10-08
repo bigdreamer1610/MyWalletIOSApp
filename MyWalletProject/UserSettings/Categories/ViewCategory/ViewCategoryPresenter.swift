@@ -11,6 +11,7 @@ import Foundation
 protocol ViewCategoryPresenterDelegate {
     func receiveIncomeCategories(_ listCategoryIncome: [Category])
     func receiveExpenseCategories(_ listCategoryExpense: [Category])
+    func receiveListImage(_ listImage: [String])
 }
 
 class ViewCategoryPresenter {
@@ -25,6 +26,10 @@ class ViewCategoryPresenter {
 }
 
 extension ViewCategoryPresenter {
+    func requestListImage() {
+        usecase?.getListImage()
+    }
+    
     func requestIncomeCategories() {
         usecase?.getIncomeCategories()
     }
@@ -35,6 +40,10 @@ extension ViewCategoryPresenter {
 }
 
 extension ViewCategoryPresenter: ViewCategoryUseCaseDelegate {
+    func reponseListImage(_ listImage: [String]) {
+        delegate?.receiveListImage(listImage)
+    }
+    
     func responseListCategoryIncome(_ listCategoryIncome: [Category]) {
         delegate?.receiveIncomeCategories(listCategoryIncome)
     }

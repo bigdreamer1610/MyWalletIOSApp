@@ -66,7 +66,7 @@ extension UserSettingsViewController: UITableViewDelegate, UITableViewDataSource
             labelName = "Information"
         case 1:
             imageName = "s-categories"
-            labelName = "Add Category"
+            labelName = "Categories"
         case 2:
             imageName = "s-currencies"
             labelName = "Currencies Exchange"
