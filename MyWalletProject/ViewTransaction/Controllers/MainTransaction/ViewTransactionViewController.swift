@@ -93,7 +93,7 @@ class ViewTransactionViewController: UIViewController {
         DispatchQueue.main.async {
             self.current = Defined.dateFormatter.date(from: "02/\(Defined.defaults.integer(forKey: Constants.currentMonth))/\(Defined.defaults.integer(forKey: Constants.currentYear))")!
             self.initData(month: self.current.dateComponents.month!, year: self.current.dateComponents.year!)
-//            self.presenter?.getDataTransaction(month: self.current.dateComponents.month!, year: self.current.dateComponents.year!)
+            self.transactionTableView.reloadData()
             self.jumpToDate(from: self.current)
         }
     }
@@ -189,6 +189,8 @@ extension ViewTransactionViewController {
         let firstIndexPath = IndexPath(item: getIndexPathOfThisMonthCell(from: date), section: 0)
         print("Date indexpath: \(firstIndexPath)")
         monthCollectionView.selectItem(at: firstIndexPath, animated: true, scrollPosition: .centeredHorizontally)
+        
+        //transactionTableView.setContentOffset(.zero, animated: true)
     }
 }
 
@@ -251,6 +253,11 @@ extension ViewTransactionViewController : ViewTransactionPresenterDelegate {
     
     func getMonthYearMenu(dates: [Date]) {
         self.monthTitles = dates
+    }
+    func scrollToTop() {
+        if categorySections.count != 0 || transactionSections.count != 0 {
+        transactionTableView.scrollToRow(at:IndexPath(row: 0, section: 0), at: .top, animated: false)
+        }
     }
 }
 
@@ -354,11 +361,9 @@ extension ViewTransactionViewController : UITableViewDataSource {
             if indexPath.section != 0 {
                 switch mode {
                 case Mode.transaction.getValue():
-                    let transVc = RouterType.transactionDetail(item: transactionSections[indexPath.section - 1].items[indexPath.row], header: transactionSections[indexPath.section - 1].header).getVc()
-                    self.navigationController?.pushViewController(transVc, animated: true)
+                    AppRouter.routerTo(from: self, router: .transactionDetail(item: transactionSections[indexPath.section - 1].items[indexPath.row], header: transactionSections[indexPath.section - 1].header), options: .push)
                 default:
-                    let cateVc = RouterType.categoryDetail(item: categorySections[indexPath.section-1].items[indexPath.row], header: categorySections[indexPath.section-1].header).getVc()
-                    self.navigationController?.pushViewController(cateVc, animated: true)
+                    AppRouter.routerTo(from: self, router: .categoryDetail(item: categorySections[indexPath.section-1].items[indexPath.row], header: categorySections[indexPath.section-1].header), options: .push)
                 }
                 tableView.deselectRow(at: indexPath, animated: true)
             }
@@ -440,10 +445,11 @@ extension ViewTransactionViewController : UITableViewDelegate {
 extension UITextField {
     func setRightImage2(imageName: String) {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
-                imageView.image = UIImage(named: imageName)
-                imageView.contentMode = .scaleToFill
-                self.rightView = imageView;
-                self.rightViewMode = .always
+        imageView.image = UIImage(named: imageName)
+        imageView.contentMode = .scaleToFill
+        imageView.setImageColor(color: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
+        self.rightView = imageView;
+        self.rightViewMode = .always
     }
 }
 //MARK: MENU CELL
@@ -471,6 +477,7 @@ extension ViewTransactionViewController : UICollectionViewDelegateFlowLayout, UI
             setUpCurrentDate(month: month, year: year)
             current = Defined.dateFormatter.date(from: "02/\(month)/\(year)")!
             presenter?.getDataTransaction(month: Defined.defaults.integer(forKey: Constants.currentMonth), year: Defined.defaults.integer(forKey: Constants.currentYear))
+            
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
         }
 

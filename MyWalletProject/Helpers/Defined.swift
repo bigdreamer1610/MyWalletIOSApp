@@ -41,6 +41,7 @@ class Defined {
         return date
     }
     
+    //MARK: - Get all day string array sorted descending
     class func getAllDayArray(allTransactions: [Transaction]) -> [String]{
         var checkArray = [String]()
         //MARK: - Get all distinct date string
@@ -62,7 +63,42 @@ class Defined {
         let sortedArray = checkArray.sorted { (first, second) -> Bool in
             dateFormatter.date(from: first)?.compare(dateFormatter.date(from: second)!) == ComparisonResult.orderedDescending
         }
-        print("sortedArray: \(sortedArray)")
         return sortedArray
     }
+    
+    class func getDateModel(components: DateComponents, weekdays: [String], months: [String]) -> DateModel{
+        let weekDay = components.weekday!
+        let month = components.month!
+        let date = components.day!
+        let year = components.year!
+        let model = DateModel(date: date, month: months[month-1], year: year, weekDay: weekdays[weekDay-1])
+        return model
+    }
+    
+    class func getTransactionbyDate(dateArr: [TransactionDate],allTrans: [Transaction]) -> [Transaction]{
+        var list = [Transaction]()
+        for day in dateArr {
+            for tran in allTrans {
+                if tran.date == day.dateString {
+                    list.append(tran)
+                }
+            }
+        }
+        return list
+    }
+    
+    class func getTransactionDates(dates: [Date]) -> [TransactionDate]{
+        var list = [TransactionDate]()
+        // sort descending
+        var mDates = dates.sorted { (first, second) -> Bool in
+            first.compare(second) == ComparisonResult.orderedDescending        }
+        //Date style: 18/09/2020
+        Defined.dateFormatter.dateStyle = .short
+        for d in mDates {
+            let t = TransactionDate(dateString: Defined.dateFormatter.string(from: d), date: d)
+            list.append(t)
+        }
+        return list
+    }
+    
 }
