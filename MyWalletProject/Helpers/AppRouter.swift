@@ -140,7 +140,9 @@ extension RouterType{
             vc.setUp(presenter: presenter)
             return vc
         case .event:
-            let vc = UIStoryboard(name: "AddEvent", bundle: nil).instantiateViewController(withIdentifier: "EventController") as! EventController
+            let vc = UIStoryboard(name: "AddEvent", bundle: nil).instantiateViewController(withIdentifier: "EventController") as! EventControllerView
+            let presenter = EventPresenter(delegate: vc, usecase: EventUseCase())
+            vc.setUp(presenter: presenter)
             return vc
         case .tabbar:
             let vc = MainTabViewController.createTabbar()

@@ -115,7 +115,7 @@
             <connections>
                 <outlet property="imgCategory" destination="1Dz-eV-vYx" id="rcv-3W-ciT"/>
                 <outlet property="lbSpent" destination="v6q-bv-P4n" id="A33-Xk-HE7"/>
-                <outlet property="lblMoney" destination="ca9-n4-Sgv" id="TAb-KZ-0iR"/>
+                <outlet property="lblDate" destination="ca9-n4-Sgv" id="7QE-aI-Eth"/>
                 <outlet property="nameEvent" destination="550-5q-Lb6" id="6sB-ly-7Va"/>
                 <outlet property="spent" destination="Ns3-Tm-UXz" id="TbO-Tu-wCl"/>
             </connections>
