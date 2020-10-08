@@ -15,8 +15,7 @@ class DetailPresenter {
     weak var delegate: DetailPresenterDelegate?
     fileprivate var detailEventUseCase: DetailEventUseCase?
     var checkDate = CheckDate()
-    
-    
+
     init( delegate: DetailPresenterDelegate, useCase: DetailEventUseCase) {
         self.delegate = delegate
         self.detailEventUseCase = useCase

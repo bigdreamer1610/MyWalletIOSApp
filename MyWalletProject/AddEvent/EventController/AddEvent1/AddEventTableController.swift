@@ -10,11 +10,12 @@ import UIKit
 
 
 class AddEventTableController: UITableViewController {
-    var nameEvent = [String]()
+    var nameEvents = [String]()
     var event = Event()
     var eventImg = ""
     var presenter : AddEventPresenter?
     var state = 0
+    var nameEvent = ""
     var competionHandler: ((Event) -> Void)?
     // OutLet
     
@@ -76,7 +77,6 @@ extension AddEventTableController : AddEventPresenterDelegate, UITextFieldDelega
         viewImg.layer.cornerRadius = viewImg.frame.width / 2
         viewImg.layer.cornerRadius = viewImg.frame.height / 2
     }
-    
     // gioi han ky tu nhap vao name event
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -119,19 +119,24 @@ extension AddEventTableController : AddEventPresenterDelegate, UITextFieldDelega
     
     func add()  {
         if state == 0  {
-             if tfDate.text!.isEmpty && tfNameEvent.text!.isEmpty && eventImg.isEmpty {
-                let alert = UIAlertController(title: "Error", message: "Please enter fully", preferredStyle: UIAlertController.Style.actionSheet)
-                             alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
-                             self.present(alert, animated: true, completion: nil)
-                
-                   }else {
-                       let event = Event(id: nil, name: tfNameEvent.text!, date: tfDate.text!, eventImage: eventImg, spent: 0)
-                self.presenter?.addDataEvent(event: event, state: state)
-                   }
+            nameEvent = tfNameEvent.text?.trimmingCharacters(in: .whitespaces) as! String
+            if !nameEvents.contains(nameEvent) {
+                if tfDate.text!.isEmpty || nameEvent.isEmpty || eventImg.isEmpty {
+                               let alert = UIAlertController(title: "Error", message: "Please enter fully", preferredStyle: UIAlertController.Style.actionSheet)
+                                            alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+                                            self.present(alert, animated: true, completion: nil)
+                               
+                                  }else {
+                                      let event = Event(id: nil, name: nameEvent, date: tfDate.text!, eventImage: eventImg, spent: 0)
+                               self.presenter?.addDataEvent(event: event, state: state)
+                                  }
+            } else {
+                let alert = UIAlertController(title: "Error", message: "This event already exists", preferredStyle: UIAlertController.Style.actionSheet)
+                alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+   
         }
-        
-        
-        
         else {
             if tfDate.text!.isEmpty && tfNameEvent.text!.isEmpty && eventImg.isEmpty {
             }else {

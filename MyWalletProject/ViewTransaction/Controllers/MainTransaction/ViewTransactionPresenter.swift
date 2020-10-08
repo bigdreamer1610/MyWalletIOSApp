@@ -46,7 +46,6 @@ class ViewTransactionPresenter {
         self.viewTransUseCase = usecase
         self.viewTransUseCase?.delegate = self
     }
-    
     //Get data balance and category
     func fetchData(){
         minDate = Defined.calendar.date(byAdding: .year, value: -2, to: today)!
