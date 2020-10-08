@@ -14,7 +14,7 @@ import MonthYearPicker
 enum TransactionType: String {
     case expense = "expense"
     case income = "income"
-
+    
     func getValue() -> String {
         return self.rawValue
     }
@@ -33,7 +33,7 @@ class ViewTransactionController: UIViewController {
     //var months = ["01","02","03","04","05","06","07","08","09","10","11","12"]
     var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
     var weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thurday","Friday","Saturday"]
-
+    
     var transactionBotMenu = [
         BottomMenu(icon: "adjustbalance", title: "Adjust balance"),
         BottomMenu(icon: "viewbytransaction", title: "View by transaction"),
@@ -44,13 +44,13 @@ class ViewTransactionController: UIViewController {
         BottomMenu(icon: "viewbycategory", title: "View by category"),
         BottomMenu(icon: "today", title: "Jump to today")
     ]
-
+    
     var monthTitles = [Date]()
     //main class
     var transactionHeaders = [TransactionHeader]()
     var transactionSections = [TransactionSection]()
     var categorySections = [CategorySection]()
-
+    
     var opening = 0
     var ending = 0
     var total = 0
@@ -66,8 +66,8 @@ class ViewTransactionController: UIViewController {
     var userid = Defined.defaults.string(forKey: Constants.userid)
     var allTransactions = [Transaction]()
     var finalTransactions = [Transaction]()
-
-
+    
+    
     @IBOutlet var btnAdd: UIButton!
     @IBOutlet var monthCollectionView: UICollectionView!
     @IBOutlet var btnShowMore: UIButton!
@@ -82,9 +82,9 @@ class ViewTransactionController: UIViewController {
     @IBOutlet var noTransaction: UIStackView!
     
     @IBOutlet var lbBalance: UILabel!
-
+    
     override func viewDidLoad() {
-
+        
         super.viewDidLoad()
         todayYear = Defined.calendar.component(.year, from: today)
         todayMonth = Defined.calendar.component(.month, from: today)
@@ -114,7 +114,7 @@ class ViewTransactionController: UIViewController {
         monthTitles = getMonthYearInRange(from: minDate, to: maxDate)
         
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         DispatchQueue.main.async {
@@ -128,28 +128,28 @@ class ViewTransactionController: UIViewController {
         print("this date: \(date)")
         monthCollectionView.selectItem(at: firstIndexPath, animated: true, scrollPosition: .centeredHorizontally)
     }
-
+    
     //MARK: - Set up view mode
     func setUpMode(transaction: Bool, category: Bool){
         transactionTableView.isHidden = transaction
         viewByCategoryTableView.isHidden = category
     }
-
+    
     func initTableViews(){
         DetailCell.registerCellByNib(transactionTableView)
         HeaderTransactionCell.registerCellByNib(transactionTableView)
         TransactionCell.registerCellByNib(transactionTableView)
-
+        
         DetailCell.registerCellByNib(viewByCategoryTableView)
         HeaderCategoryCell.registerCellByNib(viewByCategoryTableView)
         TransactionDayCell.registerCellByNib(viewByCategoryTableView)
-
+        
         BottomMenuCell.registerCellByNib(tableView)
         tableView.separatorStyle = .none
         tableView.isScrollEnabled  = false
-
+        
         MonthCell.registerCellByNib(monthCollectionView)
-
+        
         transactionTableView.dataSource = self
         transactionTableView.delegate = self
         viewByCategoryTableView.dataSource = self
@@ -158,13 +158,13 @@ class ViewTransactionController: UIViewController {
         tableView.delegate = self
         monthCollectionView.dataSource = self
         monthCollectionView.delegate = self
-
+        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         monthCollectionView.collectionViewLayout = layout
         monthCollectionView.isScrollEnabled = false
     }
-
+    
     //MARK: - Get all month year in range min-max to set collectionview menu
     func getMonthYearInRange(from startDate: Date, to endDate: Date) -> [Date] {
         let components = Defined.calendar.dateComponents(Set([.month]), from: startDate, to: endDate)
@@ -172,16 +172,16 @@ class ViewTransactionController: UIViewController {
         var allDates: [Date] = []
         let dateRangeFormatter = DateFormatter()
         dateRangeFormatter.dateFormat = "MM yyyy"
-
+        
         for i in 1...components.month! {
             guard let date = Defined.calendar.date(byAdding: .month, value: i, to: startDate) else {
-                        continue
-                        }
+                continue
+            }
             allDates.append(date)
         }
         return allDates
     }
-
+    
     //MARK: - Get indexpath of the month in collectionview menu
     func getIndexPathOfThisMonthCell(from date: Date) -> Int{
         for i in 0..<monthTitles.count {
@@ -243,7 +243,7 @@ class ViewTransactionController: UIViewController {
                     self.centerLabel.isHidden = false
                     self.setUpMode(transaction: true, category: true)
                 } else {
-
+                    
                     self.getTransactionSections(list: self.finalTransactions)
                     //view by category
                     self.getCategorySections(list: self.finalTransactions)
@@ -255,11 +255,11 @@ class ViewTransactionController: UIViewController {
                     self.transactionTableView.reloadData()
                     self.viewByCategoryTableView.reloadData()
                     self.centerIndicator.stopAnimating()
+                }
             }
         }
-        }
         
-
+        
     }
     //MARK: - Get Transactions by month
     func getTransactionbyMonth(month: Int, year: Int){
@@ -276,7 +276,7 @@ class ViewTransactionController: UIViewController {
         let previousYear = (month == 1) ? (year - 1) : year
         let previousDates = getDateArray(arr: getAllDayArray(), month: previousMonth, year: previousYear)
         let currentDates = getDateArray(arr: getAllDayArray(), month: month, year: year)
-
+        
         if previousDates.count == 0 {
             open = 0
         } else {
@@ -288,7 +288,7 @@ class ViewTransactionController: UIViewController {
                 }
             }
         }
-
+        
         if currentDates.count == 0 {
             end = 0
         } else {
@@ -303,7 +303,7 @@ class ViewTransactionController: UIViewController {
         opening = open
         ending = end
     }
-
+    
     func getDateModel(components: DateComponents) -> DateModel{
         let weekDay = components.weekday!
         let month = components.month!
@@ -351,7 +351,7 @@ class ViewTransactionController: UIViewController {
             let dateModel = getDateModel(components: components)
             let th = TransactionHeader(dateModel: dateModel, amount: amount)
             sections.append(TransactionSection(header: th, items: items))
-
+            
         }
         transactionSections = sections
         //return sections
@@ -378,7 +378,7 @@ class ViewTransactionController: UIViewController {
             var iconImage = ""
             var amount = 0
             for b in finalTransactions {
-
+                
                 if b.categoryid == c {
                     let amount2 = b.amount!
                     let type = b.transactionType!
@@ -407,7 +407,7 @@ class ViewTransactionController: UIViewController {
         }
         categorySections = sections
     }
-
+    
     //MARK: - Get all day string array sorted descending
     func getAllDayArray() -> [String]{
         let myArray = allTransactions
@@ -496,7 +496,7 @@ class ViewTransactionController: UIViewController {
             self.viewByCategoryTableView.reloadData()
         }
     }
-
+    
     //MARK: - GET Transaction date in descending order from date string array
     func getDateArray(arr: [String], month: Int, year: Int) -> [TransactionDate]{
         var list = [TransactionDate]()
@@ -521,28 +521,28 @@ class ViewTransactionController: UIViewController {
         }
         return list
     }
-
+    
     @IBAction func clickMore(_ sender: Any) {
         let window = UIApplication.shared.keyWindow
         bottomMenuView.backgroundColor = UIColor.black.withAlphaComponent(0.9)
         bottomMenuView.frame = self.view.frame
         window?.addSubview(bottomMenuView)
-
+        
         let screenSize = UIScreen.main.bounds.size
         tableView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: Constants.menuCell * CGFloat(transactionBotMenu.count))
         window?.addSubview(tableView)
-
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onClickTransparentView))
         bottomMenuView.addGestureRecognizer(tapGesture)
-
+        
         bottomMenuView.alpha = 0
-
+        
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
             self.bottomMenuView.alpha = 0.5
             self.tableView.frame = CGRect(x: 0, y: screenSize.height - self.height, width: screenSize.width, height: self.height)
         }, completion: nil)
     }
-
+    
     func animateOutScreen(){
         let screenSize = UIScreen.main.bounds.size
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
@@ -550,7 +550,7 @@ class ViewTransactionController: UIViewController {
             self.tableView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: self.height)
         }, completion: nil)
     }
-
+    
     @objc func onClickTransparentView() {
         animateOutScreen()
     }
@@ -583,7 +583,7 @@ extension ViewTransactionController : UITableViewDataSource {
         }
         return number
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var myCell = UITableViewCell()
         switch tableView {
@@ -598,7 +598,7 @@ extension ViewTransactionController : UITableViewDataSource {
                 cell.setUpData(data: transactionSections[indexPath.section-1].items[indexPath.row])
                 myCell = cell
             }
-
+            
         case viewByCategoryTableView:
             if indexPath.section == 0 {
                 let cell = DetailCell.loadCell(tableView) as! DetailCell
@@ -620,10 +620,10 @@ extension ViewTransactionController : UITableViewDataSource {
             myCell = cell
         }
         return myCell
-
+        
     }
-
-
+    
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         var number = 1
         switch tableView {
@@ -636,7 +636,7 @@ extension ViewTransactionController : UITableViewDataSource {
         }
         return number
     }
-
+    
     //check selection at bottom menu
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch tableView {
@@ -657,7 +657,7 @@ extension ViewTransactionController : UITableViewDataSource {
                     setUpMode(transaction: false, category: true)
                 }
                 self.tableView.reloadData()
-
+                
             } else if indexPath.row == 2 {
                 getDataTransactions(month: todayMonth, year: todayYear)
                 jumpToDate(from: today)
@@ -678,7 +678,7 @@ extension ViewTransactionController : UITableViewDataSource {
             }
         }
     }
-
+    
 }
 
 extension ViewTransactionController : UITableViewDelegate {
@@ -703,7 +703,7 @@ extension ViewTransactionController : UITableViewDelegate {
         }
         return myView
     }
-
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         var myHeight: CGFloat = 0
         switch tableView {
@@ -724,9 +724,9 @@ extension ViewTransactionController : UITableViewDelegate {
             myHeight = 0
         }
         return myHeight
-
+        
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var myHeight: CGFloat = 0
         switch tableView {
@@ -747,23 +747,24 @@ extension ViewTransactionController : UITableViewDelegate {
         }
         return myHeight
     }
-
+    
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if tableView == transactionTableView || tableView == viewByCategoryTableView {
             return 30
         }
         return 0
     }
-
-
+    
+    
 }
 extension UITextField {
     func setRightImage(imageName: String) {
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
-                imageView.image = UIImage(named: imageName)
-                imageView.contentMode = .scaleToFill
-                self.rightView = imageView;
-                self.rightViewMode = .always
+        imageView.image = UIImage(named: imageName)
+        imageView.contentMode = .scaleToFill
+        self.rightView = imageView
+        imageView.setImageColor(color: #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
+        self.rightViewMode = .always
     }
 }
 //MARK: MENU CELL
@@ -771,17 +772,17 @@ extension ViewTransactionController : UICollectionViewDelegateFlowLayout, UIColl
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return monthTitles.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = MonthCell.loadCell(collectionView, path: indexPath) as! MonthCell
         cell.configure(data: monthTitles[indexPath.row])
         return cell
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.size.width/3, height: collectionView.frame.height)
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }
@@ -795,9 +796,9 @@ extension ViewTransactionController : UICollectionViewDelegateFlowLayout, UIColl
             //current = dateFormatter.date(from: "02/\(currentMonth)/\(currentYear)")!
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
         }
-
+        
     }
-
-
+    
+    
 }
 
