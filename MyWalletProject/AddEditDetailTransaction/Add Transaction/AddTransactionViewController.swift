@@ -123,10 +123,9 @@ class AddTransactionViewController: UIViewController {
                 return
             }
         }
-        
         date = tfDate.text!
         note = tfNote.text!
-        let transaction = Transaction(transactionType: type!, amount: amount!, categoryid: categoryid, date: date, note: note, eventid: eventid!)
+        let transaction = Transaction(transactionType: type!, amount: amount!, categoryid: categoryid, date: date, note: note, eventid: eventid ?? "")
         presenter?.add(trans: transaction)
         let alert = UIAlertController(title: "Notification", message: "Add a new transaction successfully", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in

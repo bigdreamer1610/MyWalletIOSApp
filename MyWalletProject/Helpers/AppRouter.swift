@@ -39,6 +39,7 @@ enum RouterType {
     case selectEvent
     case selectCategory
     case selectDate
+    case edit(trans: Transaction, event: Event, cateName: String,cateImage: String)
     
     // Settings and Tools
     case settings
@@ -228,7 +229,12 @@ extension RouterType{
             vc.setUpData(event: event)
             vc.setUp(presenter: presenter)
             return vc
-        }
-        
+        case .edit(let trans, let event, let name, let icon):
+            let vc = UIStoryboard.init(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "edit") as! EditTransactionViewController
+            vc.setUpData(trans: trans, event: event, categoryName: name, categoryImage: icon)
+            let presenter = EditTransactionPresenter(usecase: EditTransactionUseCase())
+            vc.setUp(presenter: presenter)
+            return vc
     }
+}
 }

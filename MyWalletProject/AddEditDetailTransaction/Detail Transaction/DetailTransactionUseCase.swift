@@ -11,6 +11,7 @@ import Firebase
 
 protocol DetailTransactionUseCaseDelegate: class {
     func responseEvent(event: Event)
+    func responseTrans(trans: Transaction)
 }
 class DetailTransactionUseCase{
     weak var delegate: DetailTransactionUseCaseDelegate?
@@ -19,26 +20,73 @@ class DetailTransactionUseCase{
 extension DetailTransactionUseCase {
     func getEventInfo(eventid: String){
         var finalEvent: Event!
-        Defined.ref.child("Account").child("userid1").child("event").observe(DataEventType.value) { (snapshot) in
-            if snapshot.childrenCount > 0 {
-                for artist in snapshot.children.allObjects as! [DataSnapshot] {
-                    let art = artist.value as? [String:AnyObject]
-                    let id = artist.key
-                    if id == eventid {
-                        print("my eventid: \(id)")
-                        let name = art?["name"]
-                        let date = art?["date"]
-                        let image = art?["eventImage"]
-                        let spent = art?["spent"]
-                        let event = Event(id: id, name: name as? String, date: date as? String, eventImage: image as? String, spent: spent as? Int)
-                        finalEvent = event
-                        
-                        break
+        if eventid != "" {
+            Defined.ref.child("Account").child("userid1").child("event").observe(DataEventType.value) { (snapshot) in
+                if snapshot.childrenCount > 0 {
+                    for artist in snapshot.children.allObjects as! [DataSnapshot] {
+                        let art = artist.value as? [String:AnyObject]
+                        let id = artist.key
+                        if id == eventid {
+                            print("my eventid: \(id)")
+                            let name = art?["name"]
+                            let date = art?["date"]
+                            let image = art?["eventImage"]
+                            let spent = art?["spent"]
+                            let event = Event(id: id, name: name as? String, date: date as? String, eventImage: image as? String, spent: spent as? Int)
+                            finalEvent = event
+                            
+                            break
+                        }
+                    }
+                    self.delegate?.responseEvent(event: finalEvent)
+                }
+                
+            }
+        }
+        
+    }
+    
+    func deleteTransaction(t: Transaction){
+        Defined.ref.child("Account/userid1/transaction/\(t.transactionType!)/\(t.id!)").removeValue { (error, reference) in
+            //remove old position
+        }
+    }
+    
+    func getTransaction(transid: String){
+        Defined.ref.child("Account/userid1/transaction").observeSingleEvent(of: .value) {[weak self] (snapshot) in
+            guard let `self` = self else {
+                return
+            }
+            if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
+                for mySnap in snapshots {
+                    let transactionType = (mySnap as AnyObject).key as String
+                    if let snaps = mySnap.children.allObjects as? [DataSnapshot]{
+                        for snap in snaps {
+                            let id = snap.key
+                            //if id match
+                            if id == transid {
+                                if let value = snap.value as? [String: Any]{
+                                    let amount = value["amount"] as! Int
+                                    let categoryid = value["categoryid"] as! String
+                                    let date = value["date"] as! String
+                                    var transaction = Transaction(id: id, transactionType: transactionType, amount: amount, categoryid: categoryid, date: date)
+                                    if let note = value["note"] as? String {
+                                        transaction.note = note
+                                    }
+                                    if let eventid = value["eventid"] as? String {
+                                        transaction.eventid = eventid
+                                    }
+                                    
+                                    self.delegate?.responseTrans(trans: transaction)
+                                    break
+                                    
+                                }
+                            }
+                            
+                        }
                     }
                 }
-                self.delegate?.responseEvent(event: finalEvent)
             }
-            
         }
     }
 }
