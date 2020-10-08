@@ -16,7 +16,6 @@ protocol SelectEvent {
 class SelectEventController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    var cellId = "SelectEventCell"
     
     var events = [Event]()
     var delegate:SelectEvent?
@@ -37,7 +36,6 @@ class SelectEventController: UIViewController {
         SelectEventCell.registerCellByNib(tableView)
         tableView.dataSource = self
         tableView.delegate = self
-        //tableView.register(UINib(nibName: cellId, bundle: nil), forCellReuseIdentifier:cellId)
     }
     
     func setUp(presenter: SelectEventPresenter) {
@@ -63,13 +61,13 @@ extension SelectEventController: UITableViewDataSource, UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! SelectEventCell
+        let cell = SelectEventCell.loadCell(tableView) as! SelectEventCell
         cell.setUp(data: events[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = UIStoryboard.init(name:Constant.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "add") as? AddTransactionController
+        _ = RouterType.add.getVc() as! AddTransactionViewController
         let ex = events[indexPath.row]
         delegate?.setEvent(nameEvent: ex.name ?? "", imageEvent: ex.eventImage ?? "", eventid: ex.id ?? "")
         self.navigationController?.popViewController(animated: true)

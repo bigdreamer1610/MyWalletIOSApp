@@ -13,9 +13,9 @@ class ViewCategoryViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var presenter: ViewCategoryPresenter?
-    
     var categoriesIncome: [Category] = []
     var categoriesExpense: [Category] = []
+    var listImage: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,10 +26,12 @@ class ViewCategoryViewController: UIViewController {
         
         presenter?.requestIncomeCategories()
         presenter?.requestExpenseCategories()
+        presenter?.requestListImage()
         
         tableView.reloadData()
     }
     
+    // MARK: - Setup for table view
     func setupTableView() {
         CategoryTableViewCell.registerCellByNib(tableView)
         tableView.delegate = self
@@ -57,13 +59,21 @@ class ViewCategoryViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func btnSaveClick(_ sender: Any) {
-        let vc = UIStoryboard.init(name: "Categories", bundle: nil).instantiateViewController(withIdentifier: "settingsAddCategoryVC") as! AddEditCategoryViewController
-        self.navigationController?.pushViewController(vc, animated: true)
+    @IBAction func btnAddClick(_ sender: Any) {
+        let addEditCategoryController = UIStoryboard.init(name: "Categories", bundle: nil).instantiateViewController(identifier: "settingsAddCategoryVC") as! AddEditCategoryViewController
+        addEditCategoryController.listImageName = self.listImage
+        addEditCategoryController.delegate = self
+        let presenter = AddEditCategoryPresenter(delegate: addEditCategoryController, usecase: AddEditCategoryUseCase())
+        addEditCategoryController.setupDelegate(presenter: presenter)
+        self.navigationController?.pushViewController(addEditCategoryController, animated: true)
     }
 }
 
 extension ViewCategoryViewController: ViewCategoryPresenterDelegate {
+    func receiveListImage(_ listImage: [String]) {
+        self.listImage = listImage
+    }
+    
     func receiveIncomeCategories(_ listCategoryIncome: [Category]) {
         categoriesIncome = listCategoryIncome
         tableView.reloadData()
@@ -109,3 +119,10 @@ extension ViewCategoryViewController: UITableViewDelegate, UITableViewDataSource
     }
 }
 
+extension ViewCategoryViewController: AddEditCategoryViewControllerDelegate {
+    func finishAddingCategory(_ state: Bool) {
+        self.presenter?.requestIncomeCategories()
+        self.presenter?.requestExpenseCategories()
+        self.presenter?.requestListImage()
+    }
+}

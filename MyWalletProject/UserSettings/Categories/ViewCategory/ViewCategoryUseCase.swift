@@ -12,6 +12,7 @@ import FirebaseDatabase
 protocol ViewCategoryUseCaseDelegate {
     func responseListCategoryIncome(_ listCategoryIncome: [Category])
     func responseListCategoryExpense(_ listCategoryExpense: [Category])
+    func reponseListImage(_ listImage: [String])
 }
 
 class ViewCategoryUseCase {
@@ -19,18 +20,37 @@ class ViewCategoryUseCase {
     
     var categoriesIncome: [Category] = []
     var categoriesExpense: [Category] = []
+    var listImage: [String] = []
 }
 
 extension ViewCategoryUseCase {
+    func getListImage() {
+        listImage.removeAll()
+        
+        Defined.ref.child("ImageLibrary").observeSingleEvent(of: .value) { snapshot in
+            for case let child as DataSnapshot in snapshot.children {
+                guard let dict = child.value as? [String:Any] else {
+                    return
+                }
+                
+                if let imgName = dict["iconImage"] as? String {
+                    self.listImage.append(imgName)
+                } else {
+                    return
+                }
+            }
+            
+            self.delegate?.reponseListImage(self.listImage)
+        }
+    }
+    
     func getExpenseCategories() {
-        print("expense")
         categoriesExpense.removeAll()
         
         Defined.ref.child("Category").child("expense").observeSingleEvent(of: .value) { snapshot in
             for case let child as DataSnapshot in snapshot.children{
                 let categoryId = child.key
                 guard let dict = child.value as? [String:Any] else{
-                    print("Error")
                     return
                 }
                 let imgName = dict["iconImage"] as? String
@@ -45,14 +65,12 @@ extension ViewCategoryUseCase {
     }
     
     func getIncomeCategories() {
-        print("income")
         categoriesIncome.removeAll()
         
         Defined.ref.child("Category").child("income").observeSingleEvent(of: .value) { snapshot in
             for case let child as DataSnapshot in snapshot.children{
                 let categoryId = child.key
                 guard let dict = child.value as? [String:Any] else{
-                    print("Error")
                     return
                 }
                 let imgName = dict["iconImage"] as? String

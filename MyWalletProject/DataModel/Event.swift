@@ -14,6 +14,6 @@ struct Event {
     var date: String? = nil
     var eventImage: String? = nil
     var spent: Int? = nil
-    
+    var status: String? = nil
 }
 

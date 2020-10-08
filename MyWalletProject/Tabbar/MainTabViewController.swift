@@ -54,7 +54,7 @@ class MainTabViewController: UITabBarController {
         let home1Item = UITabBarItem(title: "Report", image: #imageLiteral(resourceName: "report"), tag: 1)
         let scanItem = UITabBarItem(title: nil, image: nil, tag: 2)
         let home2Item = UITabBarItem(title: "Planning", image: #imageLiteral(resourceName: "planning"), tag: 3)
-        let home3Item = UITabBarItem(title: "Account", image: #imageLiteral(resourceName: "account"), tag: 4)
+        let home3Item = UITabBarItem(title: "Settings", image: #imageLiteral(resourceName: "account"), tag: 4)
         
         
         transaction.tabBarItem = homeItem

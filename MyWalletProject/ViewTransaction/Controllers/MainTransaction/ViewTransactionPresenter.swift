@@ -13,9 +13,6 @@ protocol ViewTransactionPresenterDelegate: class {
     func startLoading()
     func endLoading()
     func getDetailCellInfo(info: DetailInfo)
-    func loadingViewHidden()
-    func loadingViewShow()
-    func centerIndicatorHidden()
     func noFinalTransactions()
     func yesFinalTransactions()
     func getTransactionSections(section: [TransactionSection])
@@ -53,7 +50,6 @@ class ViewTransactionPresenter {
     func fetchData(){
         minDate = Defined.calendar.date(byAdding: .year, value: -2, to: today)!
         maxDate = Defined.calendar.date(byAdding: .month, value: 1, to: today)!
-        //monthTitles = getMonthYearInRange(from: minDate, to: maxDate)
         viewTransUseCase?.getBalance()
         viewTransUseCase?.getListCategories()
         getMonthYearInRange(from: minDate, to: maxDate)
@@ -63,19 +59,9 @@ class ViewTransactionPresenter {
     func getDataTransaction(month: Int, year: Int){
         delegate?.startLoading()
         viewTransUseCase?.getAllTransactions()
+        print("Trans 2: \(allTransactions.count)")
         getTransactionbyMonth(month: month, year: year)
         loadDetailCell(month: month, year: year)
-        delegate?.endLoading()
-        delegate?.loadingViewHidden()
-        delegate?.centerIndicatorHidden()
-        delegate?.reloadTableView()
-        if finalTransactions.count == 0 {
-            delegate?.noFinalTransactions()
-        } else {
-            getTransactionSections(list: self.finalTransactions)
-            getCategorySections(list: self.finalTransactions)
-            delegate?.yesFinalTransactions()
-        }
     }
     
     //MARK: - Get all sections in transaction view mode
@@ -172,21 +158,7 @@ class ViewTransactionPresenter {
     }
 }
 
-extension ViewTransactionPresenter : ViewTransactionUseCaseDelegate {
-    func responseAllTransactions(trans: [Transaction]) {
-        self.allTransactions = trans
-        getTransactionbyMonth(month: currentMonth, year: currentYear)
-    }
-    
-    func responseCategories(cate: [Category]) {
-        self.categories = cate
-    }
-    
-    func responseBalance(balance: Int) {
-        delegate?.getBalance(balance: balance)
-    }
-    
-}
+
 
 extension ViewTransactionPresenter {
     //MARK: - Get all categories from transaction list
@@ -264,10 +236,22 @@ extension ViewTransactionPresenter {
     }
     //MARK: - Get Transactions by month
     func getTransactionbyMonth(month: Int, year: Int){
+        print("Trans 3: \(allTransactions.count)")
         //date model of given month year
         dates = getDateArray(arr: getAllDayArray(), month: month, year: year)
         //get transaction by month
         finalTransactions = getTransactionbyDate(dateArr: dates)
+        // check
+        if finalTransactions.count == 0{
+            print("No transaction")
+            delegate?.noFinalTransactions()
+        } else {
+            print("Yes transaction")
+            getTransactionSections(list: finalTransactions)
+            getCategorySections(list: finalTransactions)
+            delegate?.yesFinalTransactions()
+            delegate?.reloadTableView()
+        }
     }
     
     //MARK: - Get All transaction from the given month/year
@@ -324,4 +308,29 @@ extension ViewTransactionPresenter {
         }
         delegate?.getMonthYearMenu(dates: allDates)
     }
+}
+
+extension ViewTransactionPresenter : ViewTransactionUseCaseDelegate {
+    func responseAllTransactions(trans: [Transaction]) {
+        DispatchQueue.main.async {
+            self.delegate?.endLoading()
+            self.allTransactions = trans
+            print("Trans 1: \(self.allTransactions.count)")
+        }
+    }
+    
+    func responseCategories(cate: [Category]) {
+        DispatchQueue.main.async {
+            self.categories = cate
+            
+        }
+    }
+    
+    func responseBalance(balance: Int) {
+        DispatchQueue.main.async {
+            self.delegate?.getBalance(balance: balance)
+        }
+        
+    }
+    
 }
