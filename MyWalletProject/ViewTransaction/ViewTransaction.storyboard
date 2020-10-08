@@ -592,9 +592,15 @@
                     <navigationItem key="navigationItem" title="Detail Transaction" leftItemsSupplementBackButton="YES" id="HDj-Ic-SJ0">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="arO-N1-y1T">
                             <color key="tintColor" red="0.39291897819999999" green="0.41982213169999999" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="clickBack:" destination="GHL-Dw-3f4" id="LKJ-ZU-Hfv"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="pencil" catalog="system" id="k03-xG-YhO">
                             <color key="tintColor" red="0.39291897819999999" green="0.41982213169999999" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="btnEditTransaction:" destination="GHL-Dw-3f4" id="Y0f-gn-gbh"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
@@ -1172,23 +1178,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cvK-wG-IGF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="244" y="1932"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="PJK-if-oq2">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="LBo-Gx-Z9g" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ip3-QF-2eS">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="iIv-nx-1Oz" kind="relationship" relationship="rootViewController" id="d4B-3G-BhG"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Nd0-MZ-TiP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="216.80000000000001" y="133.74384236453201"/>
         </scene>
     </scenes>
     <resources>

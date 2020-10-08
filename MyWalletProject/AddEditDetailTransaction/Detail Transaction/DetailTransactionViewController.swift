@@ -40,6 +40,7 @@ class DetailTransactionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.hidesBackButton = true
         customizeLayout()
         Defined.formatter.groupingSeparator = "."
         Defined.formatter.numberStyle = .decimal
@@ -113,6 +114,10 @@ class DetailTransactionViewController: UIViewController {
         AppRouter.routerTo(from: self, router: .edit(trans: self.transaction, event: self.event ?? Event(), cateName: self.categoryName, cateImage: self.icon), options: .push)
     }
     
+    
+    @IBAction func clickBack(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     @IBAction func btnDelateTransaction(_ sender: Any) {
         let alert = UIAlertController(title: "Delete transaction", message: "Are you sure to delete this transaction?", preferredStyle: .actionSheet)

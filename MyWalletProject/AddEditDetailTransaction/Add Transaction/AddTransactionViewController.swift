@@ -107,9 +107,9 @@ class AddTransactionViewController: UIViewController {
     }
     
     @IBAction func clickCancel(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-        //let vc = RouterType.tabbar.getVc()
-        //AppRouter.routerTo(from: vc, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
+        //self.dismiss(animated: true, completion: nil)
+        let vc = RouterType.tabbar.getVc()
+        AppRouter.routerTo(from: vc, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
         
     }
     
