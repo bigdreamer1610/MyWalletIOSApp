@@ -71,6 +71,10 @@
 		73204F2C252EBAB10067432B /* EditTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73204F2B252EBAB10067432B /* EditTransactionUseCase.swift */; };
 		73204F2E252EBAC10067432B /* EditTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73204F2D252EBAC10067432B /* EditTransactionPresenter.swift */; };
 		73204F30252EBAD10067432B /* EditTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73204F2F252EBAD10067432B /* EditTransactionViewController.swift */; };
+		73204F33252EFFA10067432B /* ItemPlanningCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73204F31252EFFA10067432B /* ItemPlanningCell.swift */; };
+		73204F34252EFFA10067432B /* ItemPlanningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73204F32252EFFA10067432B /* ItemPlanningCell.xib */; };
+		73204F37252F00F60067432B /* FooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73204F35252F00F60067432B /* FooterCell.swift */; };
+		73204F38252F00F60067432B /* FooterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73204F36252F00F60067432B /* FooterCell.xib */; };
 		7338861D25231F67002F126B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7338860325231F67002F126B /* Constants.swift */; };
 		7338861E25231F68002F126B /* BacNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7338860425231F67002F126B /* BacNavigationController.swift */; };
 		7338861F25231F68002F126B /* DetailTransaction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7338860525231F67002F126B /* DetailTransaction.storyboard */; };
@@ -289,6 +293,10 @@
 		73204F2B252EBAB10067432B /* EditTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionUseCase.swift; sourceTree = "<group>"; };
 		73204F2D252EBAC10067432B /* EditTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionPresenter.swift; sourceTree = "<group>"; };
 		73204F2F252EBAD10067432B /* EditTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionViewController.swift; sourceTree = "<group>"; };
+		73204F31252EFFA10067432B /* ItemPlanningCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPlanningCell.swift; sourceTree = "<group>"; };
+		73204F32252EFFA10067432B /* ItemPlanningCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemPlanningCell.xib; sourceTree = "<group>"; };
+		73204F35252F00F60067432B /* FooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterCell.swift; sourceTree = "<group>"; };
+		73204F36252F00F60067432B /* FooterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterCell.xib; sourceTree = "<group>"; };
 		7338860325231F67002F126B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../AddEditDetailTransaction/Constants.swift; sourceTree = "<group>"; };
 		7338860425231F67002F126B /* BacNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BacNavigationController.swift; sourceTree = "<group>"; };
 		7338860525231F67002F126B /* DetailTransaction.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DetailTransaction.storyboard; sourceTree = "<group>"; };
@@ -820,6 +828,10 @@
 			children = (
 				73AA67F825258294001EAA1D /* PlanningCell.swift */,
 				73AA67F925258294001EAA1D /* PlanningCell.xib */,
+				73204F31252EFFA10067432B /* ItemPlanningCell.swift */,
+				73204F32252EFFA10067432B /* ItemPlanningCell.xib */,
+				73204F35252F00F60067432B /* FooterCell.swift */,
+				73204F36252F00F60067432B /* FooterCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1421,6 +1433,7 @@
 				56B8A7F72524889300B8E8F0 /* budget.storyboard in Resources */,
 				D270F4B0251B52E700CB274C /* AddEvent.storyboard in Resources */,
 				D22597F3252C7B2100B7AB3B /* EventImg.xib in Resources */,
+				73204F38252F00F60067432B /* FooterCell.xib in Resources */,
 				73E0B1862521E0EE0097D41F /* HeaderCategoryCell.xib in Resources */,
 				8A3BB427251AFE7C008113E9 /* SettingsItemViewCell.xib in Resources */,
 				72873D9C25249C0800313629 /* DetailPieTableViewCell.xib in Resources */,
@@ -1450,6 +1463,7 @@
 				56B8A8032524898400B8E8F0 /* BudgetCell.xib in Resources */,
 				73E0B17D2521E0EE0097D41F /* TransactionCell.xib in Resources */,
 				73E0B18A2521E0EE0097D41F /* MonthCell.xib in Resources */,
+				73204F34252EFFA10067432B /* ItemPlanningCell.xib in Resources */,
 				8ACA624F251A07980031E6DF /* Main.storyboard in Resources */,
 				56B8A80725248A5D00B8E8F0 /* AmountCell.xib in Resources */,
 				73D7D894252C07B50014F5A1 /* OverviewCell.xib in Resources */,
@@ -1560,6 +1574,7 @@
 				8A3BB40D251ADE9E008113E9 /* Category.swift in Sources */,
 				72873D8B25249AFC00313629 /* DetailSBCTableViewCell.swift in Sources */,
 				D22597E4252C710D00B7AB3B /* EventControllerView.swift in Sources */,
+				73204F33252EFFA10067432B /* ItemPlanningCell.swift in Sources */,
 				8A3BB418251ADF9E008113E9 /* ScanBillViewController.swift in Sources */,
 				D22597DC252C5FDF00B7AB3B /* AddEventPresenter.swift in Sources */,
 				999389F2252A2AB100E72A41 /* ViewTransactionPresenter.swift in Sources */,
@@ -1641,6 +1656,7 @@
 				72873D8025249A6500313629 /* DayDetailPC.swift in Sources */,
 				5652293D252D8048006ED814 /* BudgetDetailPresenter.swift in Sources */,
 				8A997367252D5A1100A95A2F /* ImageCollectionViewCell.swift in Sources */,
+				73204F37252F00F60067432B /* FooterCell.swift in Sources */,
 				7346E25D252DD6F900924AB1 /* EventTransactionPresenter.swift in Sources */,
 				D29A5AC8252DB83900BECA18 /* EventImg.swift in Sources */,
 				999389F0252A2AB100E72A41 /* ViewTransactionViewController.swift in Sources */,

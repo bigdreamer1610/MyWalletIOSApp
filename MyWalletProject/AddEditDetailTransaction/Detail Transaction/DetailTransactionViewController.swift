@@ -121,6 +121,7 @@ class DetailTransactionViewController: UIViewController {
         
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
             self.presenter?.deleteTransaction(t: self.transaction)
+            self.navigationController?.popViewController(animated: true)
         }))
         self.present(alert, animated: true)
         
