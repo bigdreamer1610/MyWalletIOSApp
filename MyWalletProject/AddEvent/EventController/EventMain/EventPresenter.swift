@@ -8,6 +8,38 @@
 
 import UIKit
 
-class EventPresenter: NSObject {
+protocol EventPresenterDelegate: class {
+    func getDataEvent(arrEvent: [Event], arrNameEvent: [String])
+}
 
+class EventPresenter {
+    
+    weak var delegate: EventPresenterDelegate?
+    fileprivate var eventUseCase: EventUseCase?
+    
+    
+    init(delegate: EventPresenterDelegate, usecase: EventUseCase) {
+        self.delegate = delegate
+        self.eventUseCase = usecase
+        self.eventUseCase?.delegate = self
+    }
+    
+    // getdata
+    func fetchDataApplying() {
+        eventUseCase?.getCurrenlyApplying()
+    }
+    
+    func fetchDataFinished()  {
+        eventUseCase?.getEventFinished()
+    }
+    func pushVIew()  {  
+    }
+}
+
+extension EventPresenter: EventUseCaseDelegate{
+    func getData(arrEvent: [Event], arrNameEvent: [String]) {
+        delegate?.getDataEvent(arrEvent: arrEvent, arrNameEvent: arrNameEvent)
+    }
+    
+    
 }

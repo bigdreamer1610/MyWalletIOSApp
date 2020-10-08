@@ -60,9 +60,10 @@ class TravelModeViewController: UIViewController {
             view.isUserInteractionEnabled = true
         }
     }
-    
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
-        print("Hello World")
+        let vc = RouterType.selectEvent.getVc() as! SelectEventController
+        //vc.delegate = self
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     // MARK: - Hide tab bar

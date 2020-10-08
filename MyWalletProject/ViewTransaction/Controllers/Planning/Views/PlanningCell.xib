@@ -20,10 +20,10 @@
                         <rect key="frame" x="0.0" y="20" width="354" height="45"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="money-bag" translatesAutoresizingMaskIntoConstraints="NO" id="hSs-0g-1fd">
-                                <rect key="frame" x="20" y="5.5" width="39" height="34"/>
+                                <rect key="frame" x="20" y="7.5" width="30" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="39" id="AUl-UL-foo"/>
-                                    <constraint firstAttribute="height" constant="34" id="zvj-ir-9F9"/>
+                                    <constraint firstAttribute="width" constant="30" id="AUl-UL-foo"/>
+                                    <constraint firstAttribute="height" constant="30" id="zvj-ir-9F9"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rightarrow" translatesAutoresizingMaskIntoConstraints="NO" id="2RL-PB-tsF">
@@ -35,7 +35,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Budgets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Stj-zg-giB">
-                                <rect key="frame" x="69" y="14" width="240" height="17.5"/>
+                                <rect key="frame" x="60" y="14" width="249" height="17.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -63,10 +63,10 @@
                         <rect key="frame" x="0.0" y="106.5" width="354" height="45"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="events" translatesAutoresizingMaskIntoConstraints="NO" id="MUe-SZ-aKg">
-                                <rect key="frame" x="20" y="5.5" width="39" height="34"/>
+                                <rect key="frame" x="20" y="7.5" width="30" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="7ar-c2-z2x"/>
-                                    <constraint firstAttribute="width" constant="39" id="yQt-um-cmi"/>
+                                    <constraint firstAttribute="height" constant="30" id="7ar-c2-z2x"/>
+                                    <constraint firstAttribute="width" constant="30" id="yQt-um-cmi"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rightarrow" translatesAutoresizingMaskIntoConstraints="NO" id="Nfz-KQ-rE5">
@@ -78,7 +78,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Events" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBf-qu-WsT">
-                                <rect key="frame" x="69" y="14" width="240" height="17.5"/>
+                                <rect key="frame" x="60" y="14" width="249" height="17.5"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
