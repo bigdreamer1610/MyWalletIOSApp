@@ -40,18 +40,20 @@
 		56B8A80B25248A7700B8E8F0 /* TimeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56B8A80925248A7700B8E8F0 /* TimeCell.xib */; };
 		56B8A80E25248AAC00B8E8F0 /* CateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B8A80C25248AAC00B8E8F0 /* CateCell.swift */; };
 		56B8A80F25248AAC00B8E8F0 /* CateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56B8A80D25248AAC00B8E8F0 /* CateCell.xib */; };
+		72154280252EA2A50023BD9B /* SumAmout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7215427F252EA2A50023BD9B /* SumAmout.swift */; };
+		72154283252EA2C10023BD9B /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72154282252EA2C10023BD9B /* State.swift */; };
 		72873D7A25249A2900313629 /* DetailStackedBarChartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72873D7925249A2900313629 /* DetailStackedBarChartVC.swift */; };
 		72873D7C25249A3F00313629 /* DetailPieChartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72873D7B25249A3F00313629 /* DetailPieChartVC.swift */; };
 		72873D7E25249A5100313629 /* DayDetailSBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72873D7D25249A5100313629 /* DayDetailSBC.swift */; };
 		72873D8025249A6500313629 /* DayDetailPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72873D7F25249A6500313629 /* DayDetailPC.swift */; };
-		72873D8725249ACB00313629 /* DayStackedBarChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72873D8525249ACB00313629 /* DayStackedBarChartTableViewCell.swift */; };
-		72873D8825249ACB00313629 /* DayStackedBarChartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72873D8625249ACB00313629 /* DayStackedBarChartTableViewCell.xib */; };
+		72873D8725249ACB00313629 /* DetailSBCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72873D8525249ACB00313629 /* DetailSBCCell.swift */; };
+		72873D8825249ACB00313629 /* DetailSBCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72873D8625249ACB00313629 /* DetailSBCCell.xib */; };
 		72873D8B25249AFC00313629 /* DetailSBCTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72873D8925249AFC00313629 /* DetailSBCTableViewCell.swift */; };
 		72873D8C25249AFC00313629 /* DetailSBCTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72873D8A25249AFC00313629 /* DetailSBCTableViewCell.xib */; };
 		72873D8F25249B2700313629 /* DayDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72873D8D25249B2700313629 /* DayDetail.swift */; };
 		72873D9025249B2700313629 /* DayDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72873D8E25249B2700313629 /* DayDetail.xib */; };
-		72873D9325249B6100313629 /* IncomDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72873D9125249B6100313629 /* IncomDetailTableViewCell.swift */; };
-		72873D9425249B6100313629 /* IncomDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72873D9225249B6100313629 /* IncomDetailTableViewCell.xib */; };
+		72873D9325249B6100313629 /* DetailPCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72873D9125249B6100313629 /* DetailPCCell.swift */; };
+		72873D9425249B6100313629 /* DetailPCCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72873D9225249B6100313629 /* DetailPCCell.xib */; };
 		72873D9B25249C0800313629 /* DetailPieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72873D9925249C0800313629 /* DetailPieTableViewCell.swift */; };
 		72873D9C25249C0800313629 /* DetailPieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72873D9A25249C0800313629 /* DetailPieTableViewCell.xib */; };
 		72873D9F25249C3200313629 /* NameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72873D9D25249C3200313629 /* NameTableViewCell.swift */; };
@@ -251,19 +253,21 @@
 		56B8A80925248A7700B8E8F0 /* TimeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeCell.xib; sourceTree = "<group>"; };
 		56B8A80C25248AAC00B8E8F0 /* CateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CateCell.swift; sourceTree = "<group>"; };
 		56B8A80D25248AAC00B8E8F0 /* CateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CateCell.xib; sourceTree = "<group>"; };
+		7215427F252EA2A50023BD9B /* SumAmout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumAmout.swift; sourceTree = "<group>"; };
+		72154282252EA2C10023BD9B /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		7217ED81FA2304CDEDF74146 /* Pods-MyWalletProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWalletProject.debug.xcconfig"; path = "Target Support Files/Pods-MyWalletProject/Pods-MyWalletProject.debug.xcconfig"; sourceTree = "<group>"; };
 		72873D7925249A2900313629 /* DetailStackedBarChartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStackedBarChartVC.swift; sourceTree = "<group>"; };
 		72873D7B25249A3F00313629 /* DetailPieChartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPieChartVC.swift; sourceTree = "<group>"; };
 		72873D7D25249A5100313629 /* DayDetailSBC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailSBC.swift; sourceTree = "<group>"; };
 		72873D7F25249A6500313629 /* DayDetailPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailPC.swift; sourceTree = "<group>"; };
-		72873D8525249ACB00313629 /* DayStackedBarChartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayStackedBarChartTableViewCell.swift; sourceTree = "<group>"; };
-		72873D8625249ACB00313629 /* DayStackedBarChartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DayStackedBarChartTableViewCell.xib; sourceTree = "<group>"; };
+		72873D8525249ACB00313629 /* DetailSBCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSBCCell.swift; sourceTree = "<group>"; };
+		72873D8625249ACB00313629 /* DetailSBCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailSBCCell.xib; sourceTree = "<group>"; };
 		72873D8925249AFC00313629 /* DetailSBCTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSBCTableViewCell.swift; sourceTree = "<group>"; };
 		72873D8A25249AFC00313629 /* DetailSBCTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailSBCTableViewCell.xib; sourceTree = "<group>"; };
 		72873D8D25249B2700313629 /* DayDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetail.swift; sourceTree = "<group>"; };
 		72873D8E25249B2700313629 /* DayDetail.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DayDetail.xib; sourceTree = "<group>"; };
-		72873D9125249B6100313629 /* IncomDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomDetailTableViewCell.swift; sourceTree = "<group>"; };
-		72873D9225249B6100313629 /* IncomDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IncomDetailTableViewCell.xib; sourceTree = "<group>"; };
+		72873D9125249B6100313629 /* DetailPCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPCCell.swift; sourceTree = "<group>"; };
+		72873D9225249B6100313629 /* DetailPCCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailPCCell.xib; sourceTree = "<group>"; };
 		72873D9925249C0800313629 /* DetailPieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPieTableViewCell.swift; sourceTree = "<group>"; };
 		72873D9A25249C0800313629 /* DetailPieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailPieTableViewCell.xib; sourceTree = "<group>"; };
 		72873D9D25249C3200313629 /* NameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameTableViewCell.swift; sourceTree = "<group>"; };
@@ -579,6 +583,15 @@
 			path = CellAdd;
 			sourceTree = "<group>";
 		};
+		7215427E252EA24A0023BD9B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7215427F252EA2A50023BD9B /* SumAmout.swift */,
+				72154282252EA2C10023BD9B /* State.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		7222A9492525AA2700146CD1 /* PieChart */ = {
 			isa = PBXGroup;
 			children = (
@@ -601,8 +614,8 @@
 			isa = PBXGroup;
 			children = (
 				72873D8425249AA300313629 /* DayDetail */,
-				72873D9125249B6100313629 /* IncomDetailTableViewCell.swift */,
-				72873D9225249B6100313629 /* IncomDetailTableViewCell.xib */,
+				72873D9125249B6100313629 /* DetailPCCell.swift */,
+				72873D9225249B6100313629 /* DetailPCCell.xib */,
 				72873D9925249C0800313629 /* DetailPieTableViewCell.swift */,
 				72873D9A25249C0800313629 /* DetailPieTableViewCell.xib */,
 				72873D9D25249C3200313629 /* NameTableViewCell.swift */,
@@ -615,8 +628,8 @@
 			isa = PBXGroup;
 			children = (
 				72873D8325249A8E00313629 /* DayDetail */,
-				72873D8525249ACB00313629 /* DayStackedBarChartTableViewCell.swift */,
-				72873D8625249ACB00313629 /* DayStackedBarChartTableViewCell.xib */,
+				72873D8525249ACB00313629 /* DetailSBCCell.swift */,
+				72873D8625249ACB00313629 /* DetailSBCCell.xib */,
 				72873D8925249AFC00313629 /* DetailSBCTableViewCell.swift */,
 				72873D8A25249AFC00313629 /* DetailSBCTableViewCell.xib */,
 			);
@@ -644,31 +657,32 @@
 		72A7190D251DDD08003ED157 /* Report */ = {
 			isa = PBXGroup;
 			children = (
-				72A71911251DDDC8003ED157 /* ViewController */,
-				72A71910251DDDBD003ED157 /* Cell */,
+				7215427E252EA24A0023BD9B /* Model */,
+				72A71910251DDDBD003ED157 /* View */,
+				72A71911251DDDC8003ED157 /* Controller */,
 				72A7190E251DDD43003ED157 /* Report.storyboard */,
 			);
 			path = Report;
 			sourceTree = "<group>";
 		};
-		72A71910251DDDBD003ED157 /* Cell */ = {
+		72A71910251DDDBD003ED157 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				72A7191C251DDEA3003ED157 /* PieChart */,
 				72A71917251DDE59003ED157 /* StackedBarChart */,
 				72A71912251DDDF1003ED157 /* Money */,
 			);
-			path = Cell;
+			path = View;
 			sourceTree = "<group>";
 		};
-		72A71911251DDDC8003ED157 /* ViewController */ = {
+		72A71911251DDDC8003ED157 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				7222A94B2525AA5500146CD1 /* SatckedBarChart */,
 				7222A9492525AA2700146CD1 /* PieChart */,
 				72A71925251DDF35003ED157 /* ReportViewController.swift */,
 			);
-			path = ViewController;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		72A71912251DDDF1003ED157 /* Money */ = {
@@ -1390,7 +1404,7 @@
 				8A997368252D5A1100A95A2F /* ImageCollectionViewCell.xib in Resources */,
 				8A3BB429251B204C008113E9 /* UserSettings.storyboard in Resources */,
 				56B8A7E72524835500B8E8F0 /* Signin.storyboard in Resources */,
-				72873D9425249B6100313629 /* IncomDetailTableViewCell.xib in Resources */,
+				72873D9425249B6100313629 /* DetailPCCell.xib in Resources */,
 				73AA67FB25258294001EAA1D /* PlanningCell.xib in Resources */,
 				56B8A7F72524889300B8E8F0 /* budget.storyboard in Resources */,
 				D270F4B0251B52E700CB274C /* AddEvent.storyboard in Resources */,
@@ -1407,7 +1421,7 @@
 				73E0B1822521E0EE0097D41F /* DetailCell.xib in Resources */,
 				73E0B1872521E0EE0097D41F /* BottomMenuCell.xib in Resources */,
 				D29A104E251C4D15009EF2DC /* GoogleService-Info.plist in Resources */,
-				72873D8825249ACB00313629 /* DayStackedBarChartTableViewCell.xib in Resources */,
+				72873D8825249ACB00313629 /* DetailSBCCell.xib in Resources */,
 				7338862725231F68002F126B /* SelectCategoryCell.xib in Resources */,
 				72A71924251DDEEE003ED157 /* PieChartCollectionViewCell.xib in Resources */,
 				72873D9025249B2700313629 /* DayDetail.xib in Resources */,
@@ -1542,6 +1556,7 @@
 				73D7D88D252C076C0014F5A1 /* BudgetTransactionUseCase.swift in Sources */,
 				56B8A8022524898400B8E8F0 /* BudgetCell.swift in Sources */,
 				7346E259252DD6DB00924AB1 /* EventTransactionViewController.swift in Sources */,
+				72154280252EA2A50023BD9B /* SumAmout.swift in Sources */,
 				73D7D88B252C07570014F5A1 /* BudgetTransactionViewController.swift in Sources */,
 				8A3BB413251ADED6008113E9 /* Budget.swift in Sources */,
 				56B8A80625248A5D00B8E8F0 /* AmountCell.swift in Sources */,
@@ -1551,7 +1566,7 @@
 				56522942252D8059006ED814 /* BudgetDetailUseCase.swift in Sources */,
 				8A3D7DED252C55D4004F4FEA /* ViewCategoryPresenter.swift in Sources */,
 				7346E25F252DD8CC00924AB1 /* EventTransactionUseCase.swift in Sources */,
-				72873D9325249B6100313629 /* IncomDetailTableViewCell.swift in Sources */,
+				72873D9325249B6100313629 /* DetailPCCell.swift in Sources */,
 				73E0B17C2521E0EE0097D41F /* FirstNavigationController.swift in Sources */,
 				73E78DAA2524427B00D7B962 /* SelectEventCell.swift in Sources */,
 				72A71915251DDE23003ED157 /* MoneyTableViewCell.swift in Sources */,
@@ -1619,9 +1634,10 @@
 				73E0B1792521E0EE0097D41F /* Defined.swift in Sources */,
 				D22597E8252C716300B7AB3B /* EventPresenter.swift in Sources */,
 				D29A5AC6252DB7EA00BECA18 /* AddEventTableController.swift in Sources */,
-				72873D8725249ACB00313629 /* DayStackedBarChartTableViewCell.swift in Sources */,
+				72873D8725249ACB00313629 /* DetailSBCCell.swift in Sources */,
 				D22597D4252C5F5400B7AB3B /* EventConstant.swift in Sources */,
 				72873DA325249C5600313629 /* DayDetailCell.swift in Sources */,
+				72154283252EA2C10023BD9B /* State.swift in Sources */,
 				735873EE2521780D00B8235D /* MainTabbar.swift in Sources */,
 				73D7D89E252C8BE40014F5A1 /* DetailTransactionPresenter.swift in Sources */,
 				D270F4BD251B54DF00CB274C /* EventCell.swift in Sources */,
