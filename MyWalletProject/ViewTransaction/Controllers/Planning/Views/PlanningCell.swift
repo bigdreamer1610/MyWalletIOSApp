@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlanningCell: BaseTBCell {
+class PlanningCell: BaseTBCell{
 
     @IBOutlet var rightArrow2: UIImageView!
     @IBOutlet var rightArrow1: UIImageView!
@@ -48,6 +48,7 @@ class PlanningCell: BaseTBCell {
     @objc func clickEvent(){
         let vc = RouterType.event.getVc()
         AppRouter.routerTo(from: vc, options: .curveEaseIn, duration: 0.2, isNaviHidden: false)
+           
     }
     
 }
