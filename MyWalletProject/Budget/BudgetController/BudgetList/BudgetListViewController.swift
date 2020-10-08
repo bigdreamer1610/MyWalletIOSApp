@@ -53,7 +53,8 @@ class BudgetListViewController: UIViewController {
     
     // click back
     @IBAction func btnBackClick(_ sender: Any) {
-        AppRouter.routerTo(from: RouterType.tabbar.getVc(), options: .transitionCrossDissolve, duration: 0.2, isNaviHidden: true)
+        self.navigationController?.popViewController(animated: true)
+        //AppRouter.routerTo(from: RouterType.tabbar.getVc(), options: .transitionCrossDissolve, duration: 0.2, isNaviHidden: true)
     }
     
     //click Add

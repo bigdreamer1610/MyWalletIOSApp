@@ -63,9 +63,9 @@ class AddTransactionViewController: UIViewController {
         btnAddMore.layer.borderWidth = 1
         btnAddMore.layer.borderColor = #colorLiteral(red: 0.3929189782, green: 0.4198221317, blue: 0.8705882353, alpha: 1)
         btnAddMore.layer.cornerRadius = 6
-        tfCategory.setRightImage2(imageName: "arrowright")
-        tfDate.setRightImage2(imageName: "arrowright")
-        tfEvent.setRightImage2(imageName: "arrowright")
+        tfCategory.setRightImage(imageName: "arrowright")
+        tfDate.setRightImage(imageName: "arrowright")
+        tfEvent.setRightImage(imageName: "arrowright")
         iconEvent.image = UIImage(named: "others")
     }
     
@@ -107,6 +107,7 @@ class AddTransactionViewController: UIViewController {
     }
     
     @IBAction func clickCancel(_ sender: Any) {
+        //self.dismiss(animated: true, completion: nil)
         let vc = RouterType.tabbar.getVc()
         AppRouter.routerTo(from: vc, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
         
