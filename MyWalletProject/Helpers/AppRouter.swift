@@ -44,8 +44,6 @@ enum RouterType {
     // Settings and Tools
     case settings
     case categories
-    case addCategories
-    case selectIcon
     case currencies
     case travelMode
     case billScanner
@@ -190,12 +188,6 @@ extension RouterType{
             let vc = UIStoryboard.init(name: "Categories", bundle: Bundle.main).instantiateViewController(identifier: "settingsCategoryVC") as! ViewCategoryViewController
             let presenter = ViewCategoryPresenter(delegate: vc, usecase: ViewCategoryUseCase())
             vc.setupDelegate(presenter: presenter)
-            return vc
-        case .addCategories:
-            let vc = UIStoryboard.init(name: "Categories", bundle: Bundle.main).instantiateViewController(identifier: "settingsAddCategoryVC") as! AddEditCategoryViewController
-            return vc
-        case .selectIcon:
-            let vc = UIStoryboard.init(name: "Categories", bundle: Bundle.main).instantiateViewController(identifier: "selectIconVC") as! SelectIconViewController
             return vc
         case .currencies:
             let vc = UIStoryboard.init(name: "UserSettings", bundle: Bundle.main).instantiateViewController(identifier: "currencyVC") as! CurrencyViewController

@@ -60,7 +60,6 @@ class TravelModeViewController: UIViewController {
             view.isUserInteractionEnabled = true
         }
     }
-    
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         print("Hello World")
     }
