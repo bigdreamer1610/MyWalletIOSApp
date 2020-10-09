@@ -30,10 +30,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HVO-pU-eEj">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="HVO-pU-eEj">
                                 <rect key="frame" x="0.0" y="154" width="375" height="624"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Lg-6f-4Kz">
                                 <rect key="frame" x="67.666666666666686" y="347" width="240" height="128"/>
@@ -165,6 +165,7 @@
                         <viewLayoutGuide key="safeArea" id="7Mv-ph-GgW"/>
                     </view>
                     <navigationItem key="navigationItem" title="Transaction" id="scG-kq-Zbv"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="btnShowMore" destination="a0o-Zo-xWX" id="3xf-Ne-gBc"/>
                         <outlet property="centerIcon" destination="VHJ-m4-SB9" id="bLh-TV-Ekt"/>
@@ -179,7 +180,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0F5-ms-3p8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1159.2" y="133.74384236453201"/>
+            <point key="canvasLocation" x="1294" y="146"/>
         </scene>
         <!--Adjust Balance-->
         <scene sceneID="lxB-HT-8qj">
@@ -256,7 +257,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="kmh-9i-DxI">
-                                <rect key="frame" x="0.0" y="160" width="375" height="618"/>
+                                <rect key="frame" x="0.0" y="108" width="375" height="670"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableView>
                         </subviews>
@@ -309,7 +310,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Ik-as-ZfZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4876" y="880.20989505247383"/>
+            <point key="canvasLocation" x="5522.3999999999996" y="145.56650246305421"/>
         </scene>
         <!--Category-->
         <scene sceneID="Jxc-nC-uTd">
@@ -357,7 +358,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iVd-d2-qxs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4087.1999999999998" y="880.20989505247383"/>
+            <point key="canvasLocation" x="4732" y="145.56650246305421"/>
         </scene>
         <!--Event-->
         <scene sceneID="fk3-IH-aCd">
@@ -392,7 +393,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e5R-sH-2dQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5628" y="880.20989505247383"/>
+            <point key="canvasLocation" x="6274.3999999999996" y="145.56650246305421"/>
         </scene>
         <!--Detail Transaction-->
         <scene sceneID="Lwo-HI-qtn">
@@ -621,7 +622,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U1v-dT-4n8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2183.1999999999998" y="133.74384236453201"/>
+            <point key="canvasLocation" x="2127.1999999999998" y="145.56650246305421"/>
         </scene>
         <!--Edit Transaction-->
         <scene sceneID="MXN-zX-uZe">
@@ -847,7 +848,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LGh-sW-nXV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3082.4000000000001" y="133.74384236453201"/>
+            <point key="canvasLocation" x="3026.4000000000001" y="145.56650246305421"/>
         </scene>
         <!--Add Transaction-->
         <scene sceneID="6QG-6h-pw1">
@@ -1077,7 +1078,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="idC-bv-Wc5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3180" y="880.20989505247383"/>
+            <point key="canvasLocation" x="3826.4000000000001" y="145.56650246305421"/>
         </scene>
         <!--Event Transaction View Controller-->
         <scene sceneID="V2Y-eb-icp">
@@ -1087,7 +1088,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hXp-zG-5h6">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="hXp-zG-5h6">
                                 <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
@@ -1118,15 +1119,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3o3-Wz-Ou3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1274" y="1932"/>
+            <point key="canvasLocation" x="897" y="1628"/>
         </scene>
         <!--Second Navigation Controller-->
         <scene sceneID="mvL-LK-eUA">
             <objects>
                 <navigationController storyboardIdentifier="navi_second" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Vgt-By-OYJ" customClass="SecondNavigationController" customModule="MyWalletProject" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="JXc-Za-aH2">
-                        <rect key="frame" x="0.0" y="44" width="375" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JXc-Za-aH2">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1146,7 +1147,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rGp-ts-bRy">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="rGp-ts-bRy">
                                 <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
@@ -1177,7 +1178,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cvK-wG-IGF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="244" y="1932"/>
+            <point key="canvasLocation" x="161" y="1628"/>
         </scene>
     </scenes>
     <resources>

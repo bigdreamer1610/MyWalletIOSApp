@@ -38,12 +38,14 @@ class BalanceViewController: UIViewController {
         if let balanceStr = txtAmount.text,
             let balanceInt = Int(balanceStr){
             presenter?.updateBalance(with: balanceInt)
-            AppRouter.routerTo(from: RouterType.tabbar.getVc(), options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
+            self.dismiss(animated: true, completion: nil)
+            //AppRouter.routerTo(from: RouterType.tabbar.getVc(), options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
         }
         
     }
     @IBAction func clickCancel(_ sender: Any) {
-        AppRouter.routerTo(from: RouterType.tabbar.getVc(), options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
+        self.dismiss(animated: true, completion: nil)
+        //AppRouter.routerTo(from: RouterType.tabbar.getVc(), options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
     }
 }
 

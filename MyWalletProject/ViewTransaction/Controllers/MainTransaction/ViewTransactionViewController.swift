@@ -88,8 +88,23 @@ class ViewTransactionViewController: UIViewController {
 //        centerIndicator.isHidden = false
     }
     
+//    override func viewWillDisappear(animated: Bool) {
+//        self.navigationController?.setNavigationBarHidden(false, animated: animated);
+//        super.viewWillDisappear(animated)
+//    }
+//
+//    override func viewWillAppear(animated: Bool) {
+//        super.viewWillAppear(animated)
+//        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+//    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        super.viewWillDisappear(animated)
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
         DispatchQueue.main.async {
             self.current = Defined.dateFormatter.date(from: "02/\(Defined.defaults.integer(forKey: Constants.currentMonth))/\(Defined.defaults.integer(forKey: Constants.currentYear))")!
             self.initData(month: self.current.dateComponents.month!, year: self.current.dateComponents.year!)
@@ -105,11 +120,12 @@ class ViewTransactionViewController: UIViewController {
     func setUpCurrentDate(month: Int, year: Int){
         Defined.defaults.set(month, forKey: Constants.currentMonth)
         Defined.defaults.set(year, forKey: Constants.currentYear)
-        Defined.defaults.set(Defined.dateFormatter.date(from: "02/\(month)/\(year)")!, forKey: Constants.currentDate)
+        //Defined.defaults.set(Defined.dateFormatter.date(from: "02/\(month)/\(year)")!, forKey: Constants.currentDate)
     }
     
     func initData(month: Int, year: Int){
         presenter?.fetchData()
+        presenter?.getFirstTransaction()
         presenter?.getDataTransaction(month: month, year: year)
         transactionTableView.reloadData()
     }
@@ -194,73 +210,6 @@ extension ViewTransactionViewController {
     }
 }
 
-extension ViewTransactionViewController : ViewTransactionPresenterDelegate {
-    
-    func getBalance(balance: Int) {
-        self.lbBalance.text = "\(Defined.formatter.string(from: NSNumber(value: balance))!) đ"
-        Defined.defaults.set(balance, forKey: Constants.balance)
-        reloadTableView()
-    }
-
-    func startLoading() {
-        centerIndicator.startAnimating()
-        transactionTableView.isHidden = true
-        loadingView.isHidden = false
-        centerIndicator.isHidden = false
-        setUpNoTransaction(status: true)
-    }
-    
-    func endLoading() {
-        loadingView.isHidden = true
-        centerIndicator.isHidden = true
-        centerIndicator.stopAnimating()
-    }
-    
-    func getDetailCellInfo(info: DetailInfo) {
-        opening = info.opening
-        ending = info.ending
-        
-    }
-    
-    func noFinalTransactions() {
-        setUpNoTransaction(status: false)
-    }
-    
-    func setUpNoTransaction(status: Bool){
-        self.centerIcon.isHidden = status
-        self.centerLabel.isHidden = status
-        self.transactionTableView.isHidden = !status
-    }
-    
-    func yesFinalTransactions() {
-        setUpNoTransaction(status: true)
-        //self.transactionTableView.reloadData()
-    }
-    
-    func getTransactionSections(section: [TransactionSection]) {
-        self.transactionSections = section
-        //reloadTableView()
-    }
-    
-    func getCategorySections(section: [CategorySection]) {
-        self.categorySections  = section
-        //reloadTableView()
-    }
-    
-    func reloadTableView() {
-        self.transactionTableView.reloadData()
-    }
-    
-    func getMonthYearMenu(dates: [Date]) {
-        self.monthTitles = dates
-    }
-    func scrollToTop() {
-        if categorySections.count != 0 || transactionSections.count != 0 {
-        transactionTableView.scrollToRow(at:IndexPath(row: 0, section: 0), at: .top, animated: false)
-        }
-    }
-}
-
 
 extension ViewTransactionViewController : UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -340,7 +289,11 @@ extension ViewTransactionViewController : UITableViewDataSource {
         case self.tableView:
             if indexPath.row == 0 {
                 let vc = RouterType.balance.getVc()
-                AppRouter.routerTo(from: vc, options: .transitionCrossDissolve, duration: 0.3, isNaviHidden: false)
+                let navi = UINavigationController(rootViewController: vc)
+                navi.modalPresentationStyle = .fullScreen
+                navi.modalTransitionStyle = .crossDissolve
+                self.present(navi, animated: true, completion: nil)
+                //AppRouter.routerTo(from: vc, options: .transitionCrossDissolve, duration: 0.3, isNaviHidden: false)
             } else if indexPath.row == 1 {
                 if mode == Mode.transaction.getValue() {
                     mode = Mode.category.getValue()
@@ -392,6 +345,12 @@ extension ViewTransactionViewController : UITableViewDelegate {
         default:
             myView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         }
+        return myView
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let myView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 20))
+        myView.backgroundColor = #colorLiteral(red: 0.9014514594, green: 0.9014514594, blue: 0.9014514594, alpha: 1)
         return myView
     }
 
@@ -488,4 +447,71 @@ extension ViewTransactionViewController : UICollectionViewDelegateFlowLayout, UI
     }
 
 
+}
+
+extension ViewTransactionViewController : ViewTransactionPresenterDelegate {
+    
+    func getBalance(balance: Int) {
+        self.lbBalance.text = "\(Defined.formatter.string(from: NSNumber(value: balance))!) đ"
+        Defined.defaults.set(balance, forKey: Constants.balance)
+        reloadTableView()
+    }
+
+    func startLoading() {
+        centerIndicator.startAnimating()
+        transactionTableView.isHidden = true
+        loadingView.isHidden = false
+        centerIndicator.isHidden = false
+        setUpNoTransaction(status: true)
+    }
+    
+    func endLoading() {
+        loadingView.isHidden = true
+        centerIndicator.isHidden = true
+        centerIndicator.stopAnimating()
+    }
+    
+    func getDetailCellInfo(info: DetailInfo) {
+        opening = info.opening
+        ending = info.ending
+        reloadTableView()
+        
+    }
+    
+    func noFinalTransactions() {
+        setUpNoTransaction(status: false)
+    }
+    
+    func setUpNoTransaction(status: Bool){
+        self.centerIcon.isHidden = status
+        self.centerLabel.isHidden = status
+        self.transactionTableView.isHidden = !status
+    }
+    
+    func yesFinalTransactions() {
+        setUpNoTransaction(status: true)
+    }
+    
+    func getTransactionSections(section: [TransactionSection]) {
+        self.transactionSections = section
+        reloadTableView()
+    }
+    
+    func getCategorySections(section: [CategorySection]) {
+        self.categorySections  = section
+        reloadTableView()
+    }
+    
+    func reloadTableView() {
+        self.transactionTableView.reloadData()
+    }
+    
+    func getMonthYearMenu(dates: [Date]) {
+        self.monthTitles = dates
+    }
+    func scrollToTop() {
+        if categorySections.count != 0 || transactionSections.count != 0 {
+        transactionTableView.scrollToRow(at:IndexPath(row: 0, section: 0), at: .top, animated: false)
+        }
+    }
 }

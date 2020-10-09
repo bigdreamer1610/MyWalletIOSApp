@@ -108,9 +108,9 @@ class AddTransactionViewController: UIViewController {
     }
     
     @IBAction func clickCancel(_ sender: Any) {
-        timer.invalidate()
-        let vc = RouterType.tabbar.getVc()
-        AppRouter.routerTo(from: vc, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
+        self.dismiss(animated: true, completion: nil)
+        //let vc = RouterType.tabbar.getVc()
+        //AppRouter.routerTo(from: vc, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
         
     }
     
@@ -132,8 +132,9 @@ class AddTransactionViewController: UIViewController {
         presenter?.add(trans: transaction)
         let alert = UIAlertController(title: "Notification", message: "Add a new transaction successfully", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-            let vc = RouterType.tabbar.getVc()
-            AppRouter.routerTo(from: vc, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
+//            let vc = RouterType.tabbar.getVc()
+//            AppRouter.routerTo(from: vc, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
+            self.dismiss(animated: true, completion: nil)
         }))
         self.present(alert, animated: true, completion: nil)
     }

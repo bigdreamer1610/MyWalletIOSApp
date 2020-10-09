@@ -152,9 +152,10 @@ extension RouterType{
             return vc
         case .viewTransaction:
             let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "transaction_vc") as! ViewTransactionViewController
+            let front = UINavigationController(rootViewController: vc)
             let presenter = ViewTransactionPresenter(delegate: vc, usecase: ViewTransactionUseCase())
             vc.setUp(presenter: presenter)
-            return vc
+            return front
         case .account:
              let vc = UIStoryboard(name: "UserSettings", bundle: nil).instantiateViewController(withIdentifier: "userSettingsNav") as! UINavigationController
             return vc
