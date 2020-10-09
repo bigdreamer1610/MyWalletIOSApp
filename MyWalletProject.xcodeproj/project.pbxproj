@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A1D7B78253053E900631E60 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1D7B77253053E900631E60 /* String+Localized.swift */; };
+		0A1D7B7B2530541B00631E60 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0A1D7B7D2530541B00631E60 /* Localizable.strings */; };
+		0A1D7B82253054AB00631E60 /* BudgetListDataString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1D7B81253054AB00631E60 /* BudgetListDataString.swift */; };
+		0A1D7B84253054BD00631E60 /* BudgetDetailDataString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1D7B83253054BD00631E60 /* BudgetDetailDataString.swift */; };
+		0A1D7B87253054DB00631E60 /* BudgetAddEditDataString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1D7B86253054DB00631E60 /* BudgetAddEditDataString.swift */; };
+		0A1D7B89253054F700631E60 /* SelectCategoryDataString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1D7B88253054F700631E60 /* SelectCategoryDataString.swift */; };
+		0A1D7B8B2530551200631E60 /* TimeRangerDataString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A1D7B8A2530551200631E60 /* TimeRangerDataString.swift */; };
 		56053C292525E88C00685FFC /* SelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56053C232525E88C00685FFC /* SelectCategoryViewController.swift */; };
 		56053C2A2525E88C00685FFC /* BudgetDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56053C242525E88C00685FFC /* BudgetDetailController.swift */; };
 		56053C2B2525E88C00685FFC /* BudgetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56053C252525E88C00685FFC /* BudgetController.swift */; };
@@ -234,6 +241,16 @@
 
 /* Begin PBXFileReference section */
 		02F6EC051F80467C05ACF530 /* Pods-MyWalletProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWalletProject.release.xcconfig"; path = "Target Support Files/Pods-MyWalletProject/Pods-MyWalletProject.release.xcconfig"; sourceTree = "<group>"; };
+		0A1D7B75253053AF00631E60 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Main.strings; sourceTree = "<group>"; };
+		0A1D7B76253053B000631E60 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		0A1D7B77253053E900631E60 /* String+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
+		0A1D7B7C2530541B00631E60 /* vi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = vi; path = vi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0A1D7B7E2530542100631E60 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0A1D7B81253054AB00631E60 /* BudgetListDataString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetListDataString.swift; sourceTree = "<group>"; };
+		0A1D7B83253054BD00631E60 /* BudgetDetailDataString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetDetailDataString.swift; sourceTree = "<group>"; };
+		0A1D7B86253054DB00631E60 /* BudgetAddEditDataString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetAddEditDataString.swift; sourceTree = "<group>"; };
+		0A1D7B88253054F700631E60 /* SelectCategoryDataString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCategoryDataString.swift; sourceTree = "<group>"; };
+		0A1D7B8A2530551200631E60 /* TimeRangerDataString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRangerDataString.swift; sourceTree = "<group>"; };
 		56053C232525E88C00685FFC /* SelectCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCategoryViewController.swift; sourceTree = "<group>"; };
 		56053C242525E88C00685FFC /* BudgetDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetDetailController.swift; sourceTree = "<group>"; };
 		56053C252525E88C00685FFC /* BudgetController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BudgetController.swift; sourceTree = "<group>"; };
@@ -476,6 +493,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A1D7B7F2530546F00631E60 /* TimeRanger */ = {
+			isa = PBXGroup;
+			children = (
+				56053C272525E88C00685FFC /* TimeRangerViewController.swift */,
+				0A1D7B8A2530551200631E60 /* TimeRangerDataString.swift */,
+			);
+			path = TimeRanger;
+			sourceTree = "<group>";
+		};
+		0A1D7B802530547B00631E60 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				56053C282525E88C00685FFC /* CalendarViewController.swift */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
 		56053C412525E8F500685FFC /* CellDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -492,8 +526,8 @@
 				5652292C252D7F48006ED814 /* BudgetDetail */,
 				5652292D252D7F5A006ED814 /* BudgetAddEdit */,
 				56522931252D7F89006ED814 /* SelectCateBudget */,
-				56053C272525E88C00685FFC /* TimeRangerViewController.swift */,
-				56053C282525E88C00685FFC /* CalendarViewController.swift */,
+				0A1D7B7F2530546F00631E60 /* TimeRanger */,
+				0A1D7B802530547B00631E60 /* Calendar */,
 			);
 			path = BudgetController;
 			sourceTree = "<group>";
@@ -504,6 +538,7 @@
 				56053C262525E88C00685FFC /* BudgetListViewController.swift */,
 				56522932252D801C006ED814 /* BudgetListPresenter.swift */,
 				56522937252D8032006ED814 /* BudgetListUseCase.swift */,
+				0A1D7B81253054AB00631E60 /* BudgetListDataString.swift */,
 			);
 			path = BudgetList;
 			sourceTree = "<group>";
@@ -514,6 +549,7 @@
 				56053C242525E88C00685FFC /* BudgetDetailController.swift */,
 				5652293C252D8048006ED814 /* BudgetDetailPresenter.swift */,
 				56522941252D8059006ED814 /* BudgetDetailUseCase.swift */,
+				0A1D7B83253054BD00631E60 /* BudgetDetailDataString.swift */,
 			);
 			path = BudgetDetail;
 			sourceTree = "<group>";
@@ -524,6 +560,7 @@
 				56053C252525E88C00685FFC /* BudgetController.swift */,
 				56522946252D8071006ED814 /* BudgetPresenter.swift */,
 				5652294B252D8085006ED814 /* BudgetUseCase.swift */,
+				0A1D7B86253054DB00631E60 /* BudgetAddEditDataString.swift */,
 			);
 			path = BudgetAddEdit;
 			sourceTree = "<group>";
@@ -534,6 +571,7 @@
 				56053C232525E88C00685FFC /* SelectCategoryViewController.swift */,
 				56522950252D80CB006ED814 /* SelectCategoryBudgetPresenter.swift */,
 				56522955252D80F2006ED814 /* SelectCategoryBudgetUseCase.swift */,
+				0A1D7B88253054F700631E60 /* SelectCategoryDataString.swift */,
 			);
 			path = SelectCateBudget;
 			sourceTree = "<group>";
@@ -579,6 +617,8 @@
 			isa = PBXGroup;
 			children = (
 				56B8A7F62524889300B8E8F0 /* budget.storyboard */,
+				0A1D7B77253053E900631E60 /* String+Localized.swift */,
+				0A1D7B7D2530541B00631E60 /* Localizable.strings */,
 				56B8A7F8252488EF00B8E8F0 /* Cell */,
 				5652292A252D7F2F006ED814 /* BudgetController */,
 			);
@@ -1435,6 +1475,7 @@
 			knownRegions = (
 				en,
 				Base,
+				vi,
 			);
 			mainGroup = 8ACA623B251A07980031E6DF;
 			productRefGroup = 8ACA6245251A07980031E6DF /* Products */;
@@ -1488,6 +1529,7 @@
 				73E78DAB2524427B00D7B962 /* SelectEventCell.xib in Resources */,
 				72873DA425249C5600313629 /* DayDetailCell.xib in Resources */,
 				56B8A7FF2524896400B8E8F0 /* CategoryCell.xib in Resources */,
+				0A1D7B7B2530541B00631E60 /* Localizable.strings in Resources */,
 				73E0B1802521E0EE0097D41F /* HeaderTransactionCell.xib in Resources */,
 				72873DA025249C3200313629 /* NameTableViewCell.xib in Resources */,
 				72A7191B251DDE87003ED157 /* StackedBarChartTableViewCell.xib in Resources */,
@@ -1609,10 +1651,12 @@
 				8A3BB40D251ADE9E008113E9 /* Category.swift in Sources */,
 				72873D8B25249AFC00313629 /* DetailSBCTableViewCell.swift in Sources */,
 				D22597E4252C710D00B7AB3B /* EventControllerView.swift in Sources */,
+				0A1D7B78253053E900631E60 /* String+Localized.swift in Sources */,
 				73204F33252EFFA10067432B /* ItemPlanningCell.swift in Sources */,
 				8A3BB418251ADF9E008113E9 /* ScanBillViewController.swift in Sources */,
 				D22597DC252C5FDF00B7AB3B /* AddEventPresenter.swift in Sources */,
 				999389F2252A2AB100E72A41 /* ViewTransactionPresenter.swift in Sources */,
+				0A1D7B82253054AB00631E60 /* BudgetListDataString.swift in Sources */,
 				724F64ED252FF4710067DED9 /* ReportPresenter.swift in Sources */,
 				56053C292525E88C00685FFC /* SelectCategoryViewController.swift in Sources */,
 				D270F4C4251B557D00CB274C /* CalendarController.swift in Sources */,
@@ -1635,10 +1679,12 @@
 				7346E25F252DD8CC00924AB1 /* EventTransactionUseCase.swift in Sources */,
 				72873D9325249B6100313629 /* DetailPCCell.swift in Sources */,
 				73E0B17C2521E0EE0097D41F /* FirstNavigationController.swift in Sources */,
+				0A1D7B8B2530551200631E60 /* TimeRangerDataString.swift in Sources */,
 				73E78DAA2524427B00D7B962 /* SelectEventCell.swift in Sources */,
 				73204F2C252EBAB10067432B /* EditTransactionUseCase.swift in Sources */,
 				72A71915251DDE23003ED157 /* MoneyTableViewCell.swift in Sources */,
 				56522951252D80CB006ED814 /* SelectCategoryBudgetPresenter.swift in Sources */,
+				0A1D7B84253054BD00631E60 /* BudgetDetailDataString.swift in Sources */,
 				72873D7A25249A2900313629 /* DetailStackedBarChartVC.swift in Sources */,
 				72A7191F251DDEBD003ED157 /* PieChartTableViewCell.swift in Sources */,
 				7338861D25231F67002F126B /* Constants.swift in Sources */,
@@ -1701,6 +1747,7 @@
 				73E0B17A2521E0EE0097D41F /* BalanceViewController.swift in Sources */,
 				73E0B18C2521E0EE0097D41F /* BaseCLCell.swift in Sources */,
 				73E0B1792521E0EE0097D41F /* Defined.swift in Sources */,
+				0A1D7B87253054DB00631E60 /* BudgetAddEditDataString.swift in Sources */,
 				D22597E8252C716300B7AB3B /* EventPresenter.swift in Sources */,
 				D29A5AC6252DB7EA00BECA18 /* AddEventTableController.swift in Sources */,
 				72873D8725249ACB00313629 /* DetailSBCCell.swift in Sources */,
@@ -1727,6 +1774,7 @@
 				D294965A252EF8F200DB8BAC /* EventIconCell.swift in Sources */,
 				8A3BB41C251AE043008113E9 /* ScanBillUseCase.swift in Sources */,
 				D22597EB252C71B500B7AB3B /* EventImgViewController.swift in Sources */,
+				0A1D7B89253054F700631E60 /* SelectCategoryDataString.swift in Sources */,
 				8A3BB411251ADEC3008113E9 /* Event.swift in Sources */,
 				D22597D6252C5F7000B7AB3B /* CheckDate.swift in Sources */,
 				72873D7E25249A5100313629 /* DayDetailSBC.swift in Sources */,
@@ -1774,10 +1822,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		0A1D7B7D2530541B00631E60 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0A1D7B7C2530541B00631E60 /* vi */,
+				0A1D7B7E2530542100631E60 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		8ACA624D251A07980031E6DF /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				8ACA624E251A07980031E6DF /* Base */,
+				0A1D7B75253053AF00631E60 /* vi */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -1786,6 +1844,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8ACA6253251A079B0031E6DF /* Base */,
+				0A1D7B76253053B000631E60 /* vi */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -1797,6 +1856,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1857,6 +1917,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

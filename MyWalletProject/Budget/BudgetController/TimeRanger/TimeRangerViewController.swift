@@ -20,10 +20,15 @@ class TimeRangerViewController: UIViewController {
     @IBOutlet weak var txtStartDate: UITextField!
     @IBOutlet weak var txtEndDate: UITextField!
     @IBOutlet weak var btnDone: UIBarButtonItem!
+    @IBOutlet weak var btnBack: UIBarButtonItem!
+    @IBOutlet weak var lblStartDateTitle: UILabel!
+    @IBOutlet weak var lblEndDateTitle: UILabel!
     
     var type = ""
     var budgetObject:Budget = Budget()
     var delegateTimeRanger:TimeRangerViewControllerDelegate?
+    
+    var language = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +38,14 @@ class TimeRangerViewController: UIViewController {
         // txt click
         txtStartDate.addTarget(self, action: #selector(pushCalendarStartClick), for: .touchDown)
         txtEndDate.addTarget(self, action: #selector(pushCalendarEndClick), for: .touchDown)
+        // change language
+        navigationItem.title = TimeRangerDataString.timeRanger.rawValue.addLocalizableString(str: language)
+        btnBack.title = TimeRangerDataString.back.rawValue.addLocalizableString(str: language)
+        btnDone.title = TimeRangerDataString.done.rawValue.addLocalizableString(str: language)
+        lblStartDateTitle.text = TimeRangerDataString.startingDateUp.rawValue.addLocalizableString(str: language)
+        lblEndDateTitle.text = TimeRangerDataString.endDateUp.rawValue.addLocalizableString(str: language)
+        txtStartDate.placeholder = TimeRangerDataString.startingDateLow.rawValue.addLocalizableString(str: language)
+        txtEndDate.placeholder = TimeRangerDataString.endDateLow.rawValue.addLocalizableString(str: language)
     }
     
     func customizeLayout(){
@@ -44,8 +57,9 @@ class TimeRangerViewController: UIViewController {
         let vc = UIStoryboard.init(name: "budget", bundle: nil).instantiateViewController(withIdentifier: "CalendarViewController") as! CalendarViewController
         // push data Start CalendarViewController
         vc.type = type
-        vc.key = "Start"
+        vc.key = TimeRangerDataString.start.rawValue
         vc.budgetObject = budgetObject
+        vc.language = language
         vc.delegateCalendar = self
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -54,8 +68,9 @@ class TimeRangerViewController: UIViewController {
         let vc = UIStoryboard.init(name: "budget", bundle: nil).instantiateViewController(withIdentifier: "CalendarViewController") as! CalendarViewController
         // push data End CalendarViewController
         vc.type = type
-        vc.key = "End"
+        vc.key = TimeRangerDataString.end.rawValue
         vc.budgetObject = budgetObject
+        vc.language = language
         vc.delegateCalendar = self
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -70,10 +85,10 @@ class TimeRangerViewController: UIViewController {
         let startDate = formatter.date(from: budgetObject.startDate ?? "")
         let endDate = formatter.date(from: budgetObject.endDate ?? "")
         if startDate == nil || endDate == nil{
-            self.dialogMess(title: "" , message: "Select full Start and End date")
+            self.dialogMess(title: "" , message: TimeRangerDataString.dialogWarningSelectFullStartandEnd.rawValue.addLocalizableString(str: language))
            
         } else if let start = startDate , let end = endDate , start >= end {
-            self.dialogMess(title: "" , message: "Start date is less than End date")
+            self.dialogMess(title: "" , message: TimeRangerDataString.dialogWarningStartLessThanEnd.rawValue.addLocalizableString(str: language))
             
         } else{
             delegateTimeRanger?.fetchDataTimeRanger(budget: budgetObject, type: type)
@@ -94,8 +109,7 @@ extension TimeRangerViewController : CalendarViewControllerDelegate {
 extension TimeRangerViewController : Dialog {
     func dialogMess(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "OK", style: .default) { (_) in
-            print("cancel")
+        let cancelAction = UIAlertAction(title: TimeRangerDataString.dialogItemOK.rawValue.addLocalizableString(str: language), style: .default) { (_) in
         }
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)

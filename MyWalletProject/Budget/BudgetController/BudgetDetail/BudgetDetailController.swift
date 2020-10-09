@@ -20,17 +20,29 @@ protocol BudgetDetailControllerDelegate {
 
 class BudgetDetailController: UIViewController {
     @IBOutlet weak var tblBudget: UITableView!
+    @IBOutlet weak var btnBack: UIBarButtonItem!
+    @IBOutlet weak var btnEdit: UIBarButtonItem!
     
     var presenter:BudgetDetailPresenter?
     var budgetObject:Budget = Budget()
     var spent:Int = 0
     var delegateBudgetDetail:BudgetDetailControllerDelegate?
     
+    var language = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        localizableDetailBudget()
         tblBudget.dataSource = self
         tblBudget.delegate = self
         tblBudget.register(UINib(nibName: "DetailBudgetCell", bundle: nil), forCellReuseIdentifier: "DetailBudgetCell")
+    }
+    
+    // Localizable (change language)
+    func localizableDetailBudget(){
+        btnBack.title = BudgetDetailDataString.back.rawValue.addLocalizableString(str: language)
+        btnEdit.title = BudgetDetailDataString.edit.rawValue.addLocalizableString(str: language)
+        navigationItem.title = BudgetDetailDataString.budgetDetail.rawValue.addLocalizableString(str: language)
     }
     
     func setUp(presenter:BudgetDetailPresenter){
@@ -46,8 +58,9 @@ class BudgetDetailController: UIViewController {
     // btn edit click
     @IBAction func btnEditClick(_ sender: Any) {
         let vc = RouterType.budgetAddEdit.getVc() as! BudgetController
-        vc.type = "Edit Budget"
+        vc.type = BudgetAddEditDataString.editBudget.rawValue
         vc.budgetObject = budgetObject
+        vc.language = language
         vc.delegateBudgetController = self
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -64,7 +77,7 @@ extension BudgetDetailController: UITableViewDataSource , UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailBudgetCell", for: indexPath) as! DetailBudgetCell
         cell.prgSpend.layer.cornerRadius = cell.prgSpend.bounds.height / 2
         cell.prgSpend.layer.masksToBounds = true
-        cell.setDataBackground(cateImage: budgetObject.categoryImage!, cateName: budgetObject.categoryName!, amount: budgetObject.amount!, startdate: budgetObject.startDate!, endDate: budgetObject.endDate!, spend: spent)
+        cell.setDataBackground(cateImage: budgetObject.categoryImage!, cateName: budgetObject.categoryName!, amount: budgetObject.amount!, startdate: budgetObject.startDate!, endDate: budgetObject.endDate!, spend: spent , language: language)
         UserDefaults.standard.set(budgetObject.categoryName!, forKey: "name")
         UserDefaults.standard.set(budgetObject.startDate!, forKey: "startdate")
         UserDefaults.standard.set(budgetObject.endDate!, forKey: "enddate")
@@ -82,14 +95,13 @@ extension BudgetDetailController: UITableViewDataSource , UITableViewDelegate {
 extension BudgetDetailController : DetailBudgetTappedButton {
     
     @objc func btnDeleteTapped(){
-        let alertController = UIAlertController(title: "Do you want exit", message: nil, preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: "OK", style: .default) { (_) in
+        let alertController = UIAlertController(title: BudgetDetailDataString.dialogConfirmDelete.rawValue.addLocalizableString(str: language), message: nil, preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: BudgetDetailDataString.dialogItemOK.rawValue.addLocalizableString(str: language), style: .default) { (_) in
             self.presenter?.deleteBudgetDB(id: self.budgetObject.id!)
             self.delegateBudgetDetail?.reloadDataListBudgetintoBudgetDetailController()
             self.navigationController?.popViewController(animated: true)
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
-            print("cancel")
+        let cancelAction = UIAlertAction(title: BudgetDetailDataString.dialogItemCancel.rawValue.addLocalizableString(str: language), style: .cancel) { (_) in
         }
         alertController.addAction(confirmAction)
         alertController.addAction(cancelAction)
@@ -99,7 +111,6 @@ extension BudgetDetailController : DetailBudgetTappedButton {
     @objc func btnListTransactionTapped() {
         let vc = RouterType.budgetTransaction(budgetObject: budgetObject).getVc()
         self.navigationController?.pushViewController(vc, animated: true)
-        print("Transaction ok")
     }
 }
 
