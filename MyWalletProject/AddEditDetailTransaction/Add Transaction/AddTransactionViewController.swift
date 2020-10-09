@@ -9,7 +9,7 @@
 import UIKit
 
 class AddTransactionViewController: UIViewController {
-
+    
     var presenter: AddTransactionPresenter?
     
     @IBOutlet weak var tfDate: UITextField!
@@ -33,6 +33,7 @@ class AddTransactionViewController: UIViewController {
     var type: String? = ""
     var eventid: String? = nil
     var thisDate = Date()
+    var timer = Timer()
     var budgets = [Budget]()
     
     override func viewDidLoad() {
@@ -40,16 +41,16 @@ class AddTransactionViewController: UIViewController {
         initComponents()
         addTextFieldTarget()
         customizeLayout()
-
-          let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-              
-              tapGestureRecognizer.cancelsTouchesInView = false
+        scheduledTimerWithTimeInterval()
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        tapGestureRecognizer.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGestureRecognizer)
         
     }
     @objc func hideKeyboard(){
         self.view.endEditing(true)
-       }
+    }
     
     func setUp(presenter: AddTransactionPresenter){
         self.presenter = presenter
@@ -107,13 +108,14 @@ class AddTransactionViewController: UIViewController {
     }
     
     @IBAction func clickCancel(_ sender: Any) {
-        //self.dismiss(animated: true, completion: nil)
+        timer.invalidate()
         let vc = RouterType.tabbar.getVc()
         AppRouter.routerTo(from: vc, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
         
     }
     
     @IBAction func btnSave(_ sender: Any) {
+        timer.invalidate()
         if let strAmount = tfAmount.text,
             let intAmount = Int(strAmount){
             amount = intAmount
@@ -136,16 +138,30 @@ class AddTransactionViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     @IBAction func btnAddMoreDetails(_ sender: Any) {
+        
         UIView.animate(withDuration: 0.7) {
             self.viewShowMore.isHidden = false
             self.btnAddMore.isHidden = true
         }
-
+        
     }
     @IBAction func btnDeleteMoreDetails(_ sender: Any) {
         eventid?.removeAll()
         tfEvent.text = ""
         iconEvent.image = UIImage(named: "others")
+    }
+    
+    func scheduledTimerWithTimeInterval(){
+        timer = Timer.scheduledTimer(timeInterval: 0, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
+    }
+    @objc func updateCounting(){
+        let checkAmount = Int(tfAmount.text!)
+        if checkAmount == 0 || tfDate.text!.isEmpty || tfCategory.text!.isEmpty || tfAmount.text!.isEmpty{
+            btnSave.isEnabled = false
+        }else{
+            btnSave.isEnabled = true
+        }
+        
     }
 }
 

@@ -9,7 +9,7 @@
 import UIKit
 
 class EditTransactionViewController: UIViewController {
-
+    
     var presenter: EditTransactionPresenter?
     var eventid: String? = nil
     var categoryName: String = ""
@@ -17,6 +17,7 @@ class EditTransactionViewController: UIViewController {
     var categoryId: String? = nil
     var amount: Int = 0
     var icon: String = ""
+    var timer = Timer()
     private let dateFormatter = DateFormatter()
     
     @IBOutlet var btnSave: UIBarButtonItem!
@@ -44,6 +45,7 @@ class EditTransactionViewController: UIViewController {
         customizeLayout()
         txtAmount.delegate = self
         addTapTarget()
+        scheduledTimerWithTimeInterval()
     }
     
     func setUp(presenter: EditTransactionPresenter){
@@ -110,6 +112,7 @@ class EditTransactionViewController: UIViewController {
     }
     
     @IBAction func clickCancel(_ sender: Any) {
+        timer.invalidate()
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -124,6 +127,7 @@ class EditTransactionViewController: UIViewController {
     }
     
     @IBAction func clickSave(_ sender: Any) {
+        timer.invalidate()
         if let strAmount = txtAmount.text,
             let intAmount = Int(strAmount){
             amount = intAmount
@@ -139,6 +143,21 @@ class EditTransactionViewController: UIViewController {
         presenter?.update(t: trans, oldType: transaction?.transactionType! ?? "")
         self.navigationController?.popToRootViewController(animated: true)
     }
+    
+    func scheduledTimerWithTimeInterval(){
+        timer = Timer.scheduledTimer(timeInterval: 0, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
+    }
+    @objc func updateCounting(){
+        var checkAmount = Int(txtAmount.text!)
+        
+        if checkAmount == 0 || txtCategory.text!.isEmpty || txtDate.text!.isEmpty || txtAmount.text!.isEmpty{
+            btnSave.isEnabled = false
+        }else{
+            btnSave.isEnabled = true
+        }
+        
+    }
+    
     
 }
 
