@@ -55,10 +55,13 @@ class ViewTransactionPresenter {
         getMonthYearInRange(from: minDate, to: maxDate)
     }
     
-    // Get data transaction by month
-    func getDataTransaction(month: Int, year: Int){
+    func getFirstTransaction(){
         delegate?.startLoading()
         viewTransUseCase?.getAllTransactions()
+    }
+    
+    // Get data transaction by month
+    func getDataTransaction(month: Int, year: Int){
         print("Trans 2: \(allTransactions.count)")
         getTransactionbyMonth(month: month, year: year)
         loadDetailCell(month: month, year: year)
@@ -210,7 +213,6 @@ extension ViewTransactionPresenter {
             getTransactionSections(list: finalTransactions)
             getCategorySections(list: finalTransactions)
             delegate?.yesFinalTransactions()
-            delegate?.reloadTableView()
         }
     }
     
@@ -272,6 +274,7 @@ extension ViewTransactionPresenter : ViewTransactionUseCaseDelegate {
         DispatchQueue.main.async {
             self.delegate?.endLoading()
             self.allTransactions = trans
+            //self.delegate?.reloadTableView()
             print("Trans 1: \(self.allTransactions.count)")
         }
     }
@@ -279,7 +282,6 @@ extension ViewTransactionPresenter : ViewTransactionUseCaseDelegate {
     func responseCategories(cate: [Category]) {
         DispatchQueue.main.async {
             self.categories = cate
-            
         }
     }
     
