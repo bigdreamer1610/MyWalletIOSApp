@@ -27,6 +27,7 @@ class BudgetListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.largeTitleDisplayMode = .never
         presenter?.getDataBudget()
         tblBudget.dataSource = self
         tblBudget.delegate = self

@@ -24,6 +24,7 @@ class PlanningViewController: UIViewController {
     @IBOutlet var planningTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.prefersLargeTitles = true
         initComponents()
         planningTableView.isScrollEnabled = false
     }
