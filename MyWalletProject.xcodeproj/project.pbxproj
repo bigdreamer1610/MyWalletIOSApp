@@ -88,6 +88,7 @@
 		7338862925231F68002F126B /* SelectCategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7338861425231F67002F126B /* SelectCategoryController.swift */; };
 		7338862D25231F68002F126B /* EditTransactionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7338861A25231F67002F126B /* EditTransactionController.swift */; };
 		7338862E25231F68002F126B /* DetailTransactionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7338861C25231F67002F126B /* DetailTransactionController.swift */; };
+		7345DCB3253008B70078D713 /* EventTransactionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7345DCB2253008B70078D713 /* EventTransactionController.swift */; };
 		7346E259252DD6DB00924AB1 /* EventTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7346E258252DD6DB00924AB1 /* EventTransactionViewController.swift */; };
 		7346E25D252DD6F900924AB1 /* EventTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7346E25C252DD6F900924AB1 /* EventTransactionPresenter.swift */; };
 		7346E25F252DD8CC00924AB1 /* EventTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7346E25E252DD8CC00924AB1 /* EventTransactionUseCase.swift */; };
@@ -315,6 +316,7 @@
 		7338861425231F67002F126B /* SelectCategoryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCategoryController.swift; sourceTree = "<group>"; };
 		7338861A25231F67002F126B /* EditTransactionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTransactionController.swift; sourceTree = "<group>"; };
 		7338861C25231F67002F126B /* DetailTransactionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTransactionController.swift; sourceTree = "<group>"; };
+		7345DCB2253008B70078D713 /* EventTransactionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTransactionController.swift; sourceTree = "<group>"; };
 		7346E258252DD6DB00924AB1 /* EventTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTransactionViewController.swift; sourceTree = "<group>"; };
 		7346E25C252DD6F900924AB1 /* EventTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTransactionPresenter.swift; sourceTree = "<group>"; };
 		7346E25E252DD8CC00924AB1 /* EventTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTransactionUseCase.swift; sourceTree = "<group>"; };
@@ -831,6 +833,7 @@
 				7346E258252DD6DB00924AB1 /* EventTransactionViewController.swift */,
 				7346E25C252DD6F900924AB1 /* EventTransactionPresenter.swift */,
 				7346E25E252DD8CC00924AB1 /* EventTransactionUseCase.swift */,
+				7345DCB2253008B70078D713 /* EventTransactionController.swift */,
 			);
 			path = EventTransaction;
 			sourceTree = "<group>";
@@ -1734,6 +1737,7 @@
 				8A3D7DE7252C4E08004F4FEA /* CategoryTableViewCell.swift in Sources */,
 				73D7D8A0252C8BF60014F5A1 /* DetailTransactionViewController.swift in Sources */,
 				56B8A7F2252484E700B8E8F0 /* LoginViewController.swift in Sources */,
+				7345DCB3253008B70078D713 /* EventTransactionController.swift in Sources */,
 				56053C2E2525E88C00685FFC /* CalendarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

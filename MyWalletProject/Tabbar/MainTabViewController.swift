@@ -39,7 +39,10 @@ class MainTabViewController: UITabBarController {
     // Menu Button Touch Action
     @objc func menuButtonAction(sender: UIButton) {
         let vc = RouterType.add.getVc()
-        AppRouter.routerTo(from: vc, options: .transitionCrossDissolve, duration: 0.2, isNaviHidden: false)
+        let navi = UINavigationController(rootViewController: vc)
+        navi.modalPresentationStyle = .fullScreen
+        self.present(navi, animated: true, completion: nil)
+        //AppRouter.routerTo(from: vc, options: .transitionCrossDissolve, duration: 0.2, isNaviHidden: false)
     }
     
     class func createTabbar() -> MainTabViewController {
