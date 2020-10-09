@@ -217,11 +217,23 @@
                         <viewLayoutGuide key="safeArea" id="gox-lp-4B7"/>
                     </view>
                     <navigationItem key="navigationItem" id="e6i-Qr-nN7">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" title="Item" image="chevron.left" catalog="system" id="hc0-6G-Kez">
                             <connections>
                                 <action selector="popToView:" destination="vgu-wV-lrK" id="7Pt-QV-rCL"/>
                             </connections>
                         </barButtonItem>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="h5Q-PR-2Ut">
+                            <rect key="frame" x="165.66666666666666" y="5.6666666666666679" width="83" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="" image="arrow.down" catalog="system"/>
+                                <segment title="" image="arrow.up" catalog="system"/>
+                            </segments>
+                            <connections>
+                                <action selector="segmentInAndDe:" destination="vgu-wV-lrK" eventType="valueChanged" id="FSG-aJ-01p"/>
+                            </connections>
+                        </segmentedControl>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="8WX-wd-ph5" id="Vma-DW-OWs"/>
@@ -322,6 +334,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.down" catalog="system" width="120" height="128"/>
+        <image name="arrow.up" catalog="system" width="120" height="128"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
     </resources>
 </document>

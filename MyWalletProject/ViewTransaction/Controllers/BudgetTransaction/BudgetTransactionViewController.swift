@@ -104,6 +104,12 @@ extension BudgetTransactionViewController : UITableViewDelegate,UITableViewDataS
         return myView
     }
     
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let myView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 20))
+        myView.backgroundColor = #colorLiteral(red: 0.9014514594, green: 0.9014514594, blue: 0.9014514594, alpha: 1)
+        return myView
+    }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section != 0 {
             return Constants.transactionHeader

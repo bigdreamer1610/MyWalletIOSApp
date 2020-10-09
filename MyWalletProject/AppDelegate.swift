@@ -18,14 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        
-//        window = UIWindow(frame: UIScreen.main.bounds)
-//        window?.makeKeyAndVisible()
-//        let loginVc = LoginViewController()
-//        let navigationController = UINavigationController(rootViewController: loginVc)
-//        navigationController.isNavigationBarHidden = true
-//        window?.rootViewController = navigationController
-        
 //        window = UIWindow(frame: UIScreen.main.bounds)
 //        window?.makeKeyAndVisible()
 //        let navigationController = UINavigationController(rootViewController: RouterType.tabbar.getVc())

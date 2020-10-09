@@ -137,7 +137,7 @@ class DetailTransactionController: UIViewController {
     }
     @IBAction func btnEditTransaction(_ sender: Any) {
         let vc = UIStoryboard.init(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "edit") as? EditTransactionController
-        vc?.setUpData(type: type, transactionId: transactionid, name: categoryName, note: categoryNote, amount: amount, icon: icon, dateModel: dateModel)
+        //vc?.setUpData(type: type, transactionId: transactionid, name: categoryName, note: categoryNote, amount: amount, icon: icon, dateModel: dateModel)
         
         self.navigationController?.pushViewController(vc!, animated: true)
     }

@@ -83,7 +83,7 @@ class BudgetTransactionPresenter {
                 }
             }
             let components = Defined.convertToDate(resultDate: a.dateString)
-            let dateModel = getDateModel(components: components)
+            let dateModel = Defined.getDateModel(components: components, weekdays: weekdays, months: months)
             let th = TransactionHeader(dateModel: dateModel, amount: amount)
             sections.append(TransactionSection(header: th, items: items))
             
@@ -97,40 +97,6 @@ class BudgetTransactionPresenter {
 }
 
 extension BudgetTransactionPresenter {
-    func getDateModel(components: DateComponents) -> DateModel{
-        let weekDay = components.weekday!
-        let month = components.month!
-        let date = components.day!
-        let year = components.year!
-        let model = DateModel(date: date, month: months[month-1], year: year, weekDay: weekdays[weekDay-1])
-        return model
-    }
-    //MARK: - Get all day string array sorted descending
-    func getAllDayArray() -> [String]{
-        var checkArray = [String]()
-        //MARK: - Get all distinct date string
-        for a in allTransactions {
-            var check = false
-            for b in checkArray {
-                if a.date == b {
-                    check = true
-                }
-            }
-            if !check {
-                checkArray.append(a.date!)
-            }
-        }
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "vi_VN")
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        //MARK: - Sort date string
-        let sortedArray = checkArray.sorted { (first, second) -> Bool in
-            dateFormatter.date(from: first)?.compare(dateFormatter.date(from: second)!) == ComparisonResult.orderedDescending
-        }
-        print("sortedArray: \(sortedArray)")
-        return sortedArray
-    }
-    
     func getDateArray(arr: [String], startDate: String, endDate: String) -> [TransactionDate]{
         let date1 = Defined.dateFormatter.date(from: startDate)!
         let date2 = Defined.dateFormatter.date(from: endDate)!
@@ -152,30 +118,17 @@ extension BudgetTransactionPresenter {
             let t = TransactionDate(dateString: Defined.dateFormatter.string(from: d), date: d)
             list.append(t)
         }
-        print("get Date array: \(list)")
         return list
     }
     
     func getTransactionByCategoryInRange(){
         //date model of given month year
-        dates = getDateArray(arr: getAllDayArray(), startDate: budget.startDate!, endDate: budget.endDate!)
+        dates = getDateArray(arr: Defined.getAllDayArray(allTransactions: allTransactions), startDate: budget.startDate!, endDate: budget.endDate!)
         //get transaction by month
-        finalTransactions = getTransactionbyDate(dateArr: dates)
+        finalTransactions = Defined.getTransactionbyDate(dateArr: dates, allTrans: allTransactions)
         print("final transactions: \(finalTransactions.count)")
     }
     
-    func getTransactionbyDate(dateArr: [TransactionDate]) -> [Transaction]{
-        var list = [Transaction]()
-        for day in dateArr {
-            for tran in allTransactions {
-                if tran.date == day.dateString {
-                    list.append(tran)
-                }
-            }
-        }
-        print("get Transaction by date: \(list)")
-        return list
-    }
 }
 
 extension BudgetTransactionPresenter : BudgetTransactionUseCaseDelegate {

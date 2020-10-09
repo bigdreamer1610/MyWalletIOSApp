@@ -27,6 +27,7 @@ class BudgetListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.largeTitleDisplayMode = .never
         presenter?.getDataBudget()
         tblBudget.dataSource = self
         tblBudget.delegate = self
@@ -53,7 +54,8 @@ class BudgetListViewController: UIViewController {
     
     // click back
     @IBAction func btnBackClick(_ sender: Any) {
-        AppRouter.routerTo(from: RouterType.tabbar.getVc(), options: .transitionCrossDissolve, duration: 0.2, isNaviHidden: true)
+        self.navigationController?.popViewController(animated: true)
+        //AppRouter.routerTo(from: RouterType.tabbar.getVc(), options: .transitionCrossDissolve, duration: 0.2, isNaviHidden: true)
     }
     
     //click Add
@@ -129,6 +131,7 @@ extension BudgetListViewController : UITableViewDataSource , UITableViewDelegate
                 vc.spent = amount
             default:
                 vc.budgetObject = listBudgetFinish[indexPath.row]
+                presenter?.getAmountListTransaction(budget: listBudgetFinish[indexPath.row], listTransaction: listTransaction)
                 vc.spent = amount
             }
             vc.delegateBudgetDetail = self
