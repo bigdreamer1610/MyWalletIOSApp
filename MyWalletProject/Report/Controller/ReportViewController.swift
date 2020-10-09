@@ -22,6 +22,7 @@ class ReportViewController: UIViewController {
     let calendar = Calendar.current
     var currentMonth = 9
     var currentYear = 2020
+    var open = 0
     var sumIncome = 0
     var sumExpense = 0
     var date = ""
@@ -241,6 +242,7 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 0:
             let cell = MoneyTableViewCell.loadCell(tableView) as! MoneyTableViewCell
+            cell.setUpData(opening: open, sumIncome: sumIncome, sumExpense: sumExpense)
             cell.selectionStyle = .none
             return cell
         case 1:
@@ -252,9 +254,6 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = PieChartTableViewCell.loadCell(tableView) as! PieChartTableViewCell
             cell.delegate = self
             cell.setupDataTB(info: SumForPieChart(sumIncome: sumIncome, sumExpense: sumExpense, sumByCateIncome: sumByCategoryIncome, sumByCateExpense: sumByCategoryExpense))
-            print("@@@@@@@@@@@@")
-            print(sumByCategoryExpense)
-            print(sumByCategoryIncome)
             return cell
         }
     }
@@ -262,7 +261,7 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailSBC") as! DetailStackedBarChartVC
-            vc.getData(info: SumInfo(sumIncome: sumIncome, sumExpense: sumExpense, date: lblDate.text!))
+            vc.getData(info: SumInfo(sumIncome: sumIncome, sumExpense: sumExpense, netIncome: sumIncome - sumExpense, date: lblDate.text!))
             navigationController?.pushViewController(vc, animated: true)
         }
     }
