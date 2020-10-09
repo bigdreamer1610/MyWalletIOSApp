@@ -30,7 +30,7 @@ class DetailEventController: UITableViewController {
         super.viewDidLoad()
         
     }
-     
+    
     func setUp(presenter: DetailPresenter) {
         self.presenter = presenter
     }
@@ -38,8 +38,7 @@ class DetailEventController: UITableViewController {
     // Chinh sua trạng thái
     @IBAction func btnMarkedComplete(_ sender: Any) {
         let alertController = UIAlertController(title: "Are you sure ? ", message: nil, preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: "OK", style: .default) { (_) in
-            
+        let confirmAction = UIAlertAction(title: "OK", style: .default) { (_) in   
             if self.status == "true" {
                 self.presenter?.markedComple(event: self.event)
             } else{
@@ -83,7 +82,6 @@ class DetailEventController: UITableViewController {
         alertController.addAction(confirmAction)
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil )
-        
     }
     
     @IBAction func clickTransaction(_ sender: Any) {
@@ -101,8 +99,6 @@ extension DetailEventController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         30
     }
-    
-    
 }
 
 // View
@@ -112,7 +108,6 @@ extension DetailEventController{
         presenter?.still(event: event)
     }
 }
-
 
 extension DetailEventController : DetailPresenterDelegate{
     func responData(number: String) {
