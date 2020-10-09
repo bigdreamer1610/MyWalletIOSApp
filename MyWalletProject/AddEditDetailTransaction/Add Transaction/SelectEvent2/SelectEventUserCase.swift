@@ -9,6 +9,15 @@
 import Foundation
 import Firebase
 
+enum EventStatus: String {
+    case applying = "true"
+    case finish = "false"
+    
+    func getValue() -> String {
+        return self.rawValue
+    }
+}
+
 protocol SelectEventUserCaseDelegate: class{
     func responseData(data: [Event])
 }
@@ -19,7 +28,6 @@ class SelectEventUserCase {
 
 extension SelectEventUserCase{
     func getDataFromFirebase() {
-
         Defined.ref.child("Account").child("userid1").child("event").observe(DataEventType.value) { (snapshot) in
             if snapshot.childrenCount > 0 {
                 self.events.removeAll()
@@ -30,8 +38,12 @@ extension SelectEventUserCase{
                     let artDate = art?["date"]
                     let eventImage = art?["eventImage"]
                     let artSpent = art?["spent"]
-                    let arts = Event(id: id, name: artName as? String, date: artDate as? String, eventImage: eventImage as? String, spent: artSpent as? Int)
-                    self.events.append(arts)
+                    let status = art?["status"] as? String
+                    if status == EventStatus.applying.getValue() {
+                        let arts = Event(id: id, name: artName as? String, date: artDate as? String, eventImage: eventImage as? String, spent: artSpent as? Int, status: status)
+                        self.events.append(arts)
+                    }
+                    
                 }
             }
             self.delegate?.responseData(data: self.events)
