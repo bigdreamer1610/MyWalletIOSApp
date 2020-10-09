@@ -16,6 +16,7 @@ struct SumByCate {
 struct SumInfo {
     var sumIncome: Int
     var sumExpense: Int
+    var netIncome: Int
     var date: String
 }
 

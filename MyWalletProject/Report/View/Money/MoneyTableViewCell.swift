@@ -27,9 +27,9 @@ class MoneyTableViewCell: BaseTBCell {
         // Configure the view for the selected state
     }
     
-    func setUpData(opening: Int, ending: Int, sumIncome: Int, sumExpense: Int){
+    func setUpData(opening: Int, sumIncome: Int, sumExpense: Int){
         lblBeginBalance.text = "\(formatter.string(from: NSNumber(value: opening))!)"
-        lblEndBalance.text = "\(formatter.string(from: NSNumber(value: ending + sumIncome - sumExpense))!)"
+        lblEndBalance.text = "\(formatter.string(from: NSNumber(value: opening + sumIncome - sumExpense))!)"
     }
     
 }
