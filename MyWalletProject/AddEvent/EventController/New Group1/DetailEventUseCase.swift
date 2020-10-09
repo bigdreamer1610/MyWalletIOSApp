@@ -22,8 +22,6 @@ extension DetailEventUseCase {
     // Xoa event
     func deleteData(event : Event)  {
         Defined.ref.child("Account").child(idUser).child("event").child(event.id!).removeValue()
-        
-        
     }
     // Danh dau da hoan tat
     func marKedCompele(event: Event)  {
@@ -57,7 +55,6 @@ extension DetailEventUseCase {
         var eventUpdate = Event(id: event.id, name: event.name , date: event.date, eventImage: event.eventImage, spent: event.spent, status: "true")
         Defined.ref.child("Account").child(idUser).child("event").child(event.id!).updateChildValues(event1,withCompletionBlock: { error , ref in
             if error == nil {
-                
             }else{
             }
         })

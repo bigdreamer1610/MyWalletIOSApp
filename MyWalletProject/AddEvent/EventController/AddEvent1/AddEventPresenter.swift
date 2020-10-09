@@ -25,12 +25,14 @@ class AddEventPresenter: AddEventTableUseCaseDelegate {
         self.delegate = delegate
         self.addEventTavbleUseCase = userCase
         self.addEventTavbleUseCase?.delegate = self
-        
-        
     }
     
     func addDataEvent(event: Event, state: Int)  {
         addEventTavbleUseCase?.addData(event: event, state: state)
+    }
+    
+    func alertController()  {
+        
     }
 
     

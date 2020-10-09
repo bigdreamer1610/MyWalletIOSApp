@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EventImg: UITableViewCell {
+class EventImg: UICollectionViewCell {
 
     @IBOutlet weak var lblEvent: UILabel!
     @IBOutlet weak var imgEvent: UIImageView!
@@ -19,15 +19,9 @@ class EventImg: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-    
-    }
     
     public func load(img: String)  {
-        lblEvent.text = img
-        imgEvent.image = UIImage(named: img)
+    imgEvent.image = UIImage(named: img)
     }
     
 }

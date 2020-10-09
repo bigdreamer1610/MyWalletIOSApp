@@ -12,11 +12,13 @@ class EventCell: UITableViewCell {
 
     @IBOutlet weak var spent: UILabel!
     @IBOutlet weak var nameEvent: UILabel!
-    @IBOutlet weak var lblMoney: UILabel!
+    @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var imgCategory: UIImageView!  
     @IBOutlet weak var lbSpent: UILabel!
     
     var format = FormatNumber()
+    var checkDate = CheckDate()
+    
        
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,8 +33,8 @@ class EventCell: UITableViewCell {
     func load(event: Event )  {
         imgCategory.image = UIImage(named: event.eventImage!)
         nameEvent.text = event.name
-        
         lbSpent.text = format.formatInt(so: event.spent!)
+        lblDate.text = checkDate.stillDate(endDate: event.date!)
     }
     
 }
