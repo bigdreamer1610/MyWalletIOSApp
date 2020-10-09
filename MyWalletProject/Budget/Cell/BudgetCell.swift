@@ -27,12 +27,12 @@ class BudgetCell: UITableViewCell {
 
     }
     
-    func setLayout(budget:Budget, spend:Int) {
+    func setLayout(budget:Budget, spend:Int , language:String) {
         imgCate.image = UIImage.init(named: budget.categoryImage ?? "")
         lblCate.text = budget.categoryName ?? ""
         lblSpent.text = "\(budget.amount ?? 0)"
-        lblStartDate.text = "Start: \(budget.startDate ?? "")"
-        lblEndDate.text = "End: \(budget.endDate ?? "")"
+        lblStartDate.text = "\(BudgetListDataString.start.rawValue.addLocalizableString(str: language)): \(budget.startDate ?? "")"
+        lblEndDate.text = "\(BudgetListDataString.end.rawValue.addLocalizableString(str: language)): \(budget.endDate ?? "")"
         prgFormCate.setProgress((Float(spend))/Float(budget.amount ?? 1), animated: true)
         if(Float((Float(spend))/Float(budget.amount ?? 1)) > 1.0){
             prgFormCate.progressTintColor = UIColor.red
