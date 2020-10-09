@@ -12,6 +12,7 @@ class EventTransactionViewController: UIViewController {
 
     var presenter: EventTransactionPresenter?
     
+    @IBOutlet var loadingView: UIActivityIndicatorView!
     @IBOutlet var detailTableView: UITableView!
     @IBOutlet var lbNoTransaction: UILabel!
     
@@ -21,12 +22,17 @@ class EventTransactionViewController: UIViewController {
     var amount: Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        lbNoTransaction.isHidden = true
-        detailTableView.isHidden = true
-        initData()
         initComponents()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadingView.isHidden = true
+        lbNoTransaction.isHidden = true
+        detailTableView.isHidden = true
+        initData()
     }
     
     func setUp(presenter: EventTransactionPresenter){
@@ -43,9 +49,6 @@ class EventTransactionViewController: UIViewController {
         presenter?.fetchDataTransactions(eid: event.id!)
     }
     
-    func fetchData(trans: [Transaction]){
-        presenter?.fetchData(trans: trans)
-    }
     
     func initComponents(){
         OverviewCell.registerCellByNib(detailTableView)
@@ -132,6 +135,17 @@ extension EventTransactionViewController : UITableViewDelegate,UITableViewDataSo
     }
 }
 extension EventTransactionViewController : EventTransactionPresenterDelegate {
+    func startLoading() {
+        loadingView.isHidden = false
+        loadingView.startAnimating()
+    }
+    
+    func endLoading() {
+        loadingView.stopAnimating()
+        loadingView.isHidden = true
+    }
+    
+    
     func reloadData() {
         self.detailTableView.reloadData()
     }
@@ -152,11 +166,6 @@ extension EventTransactionViewController : EventTransactionPresenterDelegate {
         self.amount = total
         self.detailTableView.reloadData()
         print(total)
-    }
-    
-    func getAllTransactions(trans: [Transaction]) {
-        self.allTransactionss = trans
-        fetchData(trans: trans)
     }
     
     

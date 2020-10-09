@@ -50,7 +50,7 @@ class MainTabViewController: UITabBarController {
         let transaction = RouterType.viewTransaction.getVc()
         let report = RouterType.report.getVc()
         let scan = UIViewController()
-        let planning = RouterType.planningNavi.getVc()
+        let planning = RouterType.planning.getVc()
         let account = RouterType.account.getVc()
         
         let homeItem = UITabBarItem(title: "Transactions", image: #imageLiteral(resourceName: "transaction"), tag: 0)
