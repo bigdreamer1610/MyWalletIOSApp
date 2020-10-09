@@ -97,7 +97,6 @@
 		73AA67F625258275001EAA1D /* PlanningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AA67F525258275001EAA1D /* PlanningViewController.swift */; };
 		73AA67FA25258294001EAA1D /* PlanningCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AA67F825258294001EAA1D /* PlanningCell.swift */; };
 		73AA67FB25258294001EAA1D /* PlanningCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73AA67F925258294001EAA1D /* PlanningCell.xib */; };
-		73AA67FD25258E29001EAA1D /* SecondNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AA67FC25258E29001EAA1D /* SecondNavigationController.swift */; };
 		73D7D88B252C07570014F5A1 /* BudgetTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D7D88A252C07570014F5A1 /* BudgetTransactionViewController.swift */; };
 		73D7D88D252C076C0014F5A1 /* BudgetTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D7D88C252C076C0014F5A1 /* BudgetTransactionUseCase.swift */; };
 		73D7D88F252C07780014F5A1 /* BudgetTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D7D88E252C07780014F5A1 /* BudgetTransactionPresenter.swift */; };
@@ -113,7 +112,6 @@
 		73E0B1792521E0EE0097D41F /* Defined.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E0B15D2521E0ED0097D41F /* Defined.swift */; };
 		73E0B17A2521E0EE0097D41F /* BalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E0B15F2521E0ED0097D41F /* BalanceViewController.swift */; };
 		73E0B17B2521E0EE0097D41F /* ViewTransactionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E0B1602521E0ED0097D41F /* ViewTransactionController.swift */; };
-		73E0B17C2521E0EE0097D41F /* FirstNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E0B1612521E0ED0097D41F /* FirstNavigationController.swift */; };
 		73E0B17D2521E0EE0097D41F /* TransactionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73E0B1642521E0ED0097D41F /* TransactionCell.xib */; };
 		73E0B17E2521E0EE0097D41F /* TransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E0B1652521E0ED0097D41F /* TransactionCell.swift */; };
 		73E0B17F2521E0EE0097D41F /* HeaderTransactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E0B1662521E0ED0097D41F /* HeaderTransactionCell.swift */; };
@@ -325,7 +323,6 @@
 		73AA67F525258275001EAA1D /* PlanningViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningViewController.swift; sourceTree = "<group>"; };
 		73AA67F825258294001EAA1D /* PlanningCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanningCell.swift; sourceTree = "<group>"; };
 		73AA67F925258294001EAA1D /* PlanningCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlanningCell.xib; sourceTree = "<group>"; };
-		73AA67FC25258E29001EAA1D /* SecondNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondNavigationController.swift; sourceTree = "<group>"; };
 		73D7D88A252C07570014F5A1 /* BudgetTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTransactionViewController.swift; sourceTree = "<group>"; };
 		73D7D88C252C076C0014F5A1 /* BudgetTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTransactionUseCase.swift; sourceTree = "<group>"; };
 		73D7D88E252C07780014F5A1 /* BudgetTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTransactionPresenter.swift; sourceTree = "<group>"; };
@@ -341,7 +338,6 @@
 		73E0B15D2521E0ED0097D41F /* Defined.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defined.swift; sourceTree = "<group>"; };
 		73E0B15F2521E0ED0097D41F /* BalanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceViewController.swift; sourceTree = "<group>"; };
 		73E0B1602521E0ED0097D41F /* ViewTransactionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTransactionController.swift; sourceTree = "<group>"; };
-		73E0B1612521E0ED0097D41F /* FirstNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstNavigationController.swift; sourceTree = "<group>"; };
 		73E0B1642521E0ED0097D41F /* TransactionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TransactionCell.xib; sourceTree = "<group>"; };
 		73E0B1652521E0ED0097D41F /* TransactionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionCell.swift; sourceTree = "<group>"; };
 		73E0B1662521E0ED0097D41F /* HeaderTransactionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderTransactionCell.swift; sourceTree = "<group>"; };
@@ -909,8 +905,6 @@
 				73AA67F42525825E001EAA1D /* Planning */,
 				73E0B1902521ED6F0097D41F /* Balance */,
 				73E0B18F2521ED680097D41F /* MainTransaction */,
-				73AA67FC25258E29001EAA1D /* SecondNavigationController.swift */,
-				73E0B1612521E0ED0097D41F /* FirstNavigationController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1585,7 +1579,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				73AA67FD25258E29001EAA1D /* SecondNavigationController.swift in Sources */,
 				56053C452525E8F500685FFC /* DetailBudgetCell.swift in Sources */,
 				56053C2A2525E88C00685FFC /* BudgetDetailController.swift in Sources */,
 				8A3BB41A251AE01A008113E9 /* ScanBillPresenter.swift in Sources */,
@@ -1634,7 +1627,6 @@
 				8A3D7DED252C55D4004F4FEA /* ViewCategoryPresenter.swift in Sources */,
 				7346E25F252DD8CC00924AB1 /* EventTransactionUseCase.swift in Sources */,
 				72873D9325249B6100313629 /* DetailPCCell.swift in Sources */,
-				73E0B17C2521E0EE0097D41F /* FirstNavigationController.swift in Sources */,
 				73E78DAA2524427B00D7B962 /* SelectEventCell.swift in Sources */,
 				73204F2C252EBAB10067432B /* EditTransactionUseCase.swift in Sources */,
 				72A71915251DDE23003ED157 /* MoneyTableViewCell.swift in Sources */,

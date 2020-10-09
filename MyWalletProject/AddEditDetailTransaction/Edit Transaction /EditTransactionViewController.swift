@@ -141,7 +141,7 @@ class EditTransactionViewController: UIViewController {
         
         let trans = Transaction(id: transaction?.id ?? "", transactionType: transactionType, amount: amount, categoryid: categoryId , date: txtDate.text!, note: txtNote.text!, eventid: eventid ?? "")
         presenter?.update(t: trans, oldType: transaction?.transactionType! ?? "")
-        self.navigationController?.popToRootViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     func scheduledTimerWithTimeInterval(){
