@@ -42,6 +42,8 @@
 		56B8A80F25248AAC00B8E8F0 /* CateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56B8A80D25248AAC00B8E8F0 /* CateCell.xib */; };
 		72154280252EA2A50023BD9B /* SumAmout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7215427F252EA2A50023BD9B /* SumAmout.swift */; };
 		72154283252EA2C10023BD9B /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72154282252EA2C10023BD9B /* State.swift */; };
+		724F64ED252FF4710067DED9 /* ReportPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724F64EC252FF4710067DED9 /* ReportPresenter.swift */; };
+		724F64EF252FF4AF0067DED9 /* ReportUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724F64EE252FF4AF0067DED9 /* ReportUseCase.swift */; };
 		72873D7A25249A2900313629 /* DetailStackedBarChartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72873D7925249A2900313629 /* DetailStackedBarChartVC.swift */; };
 		72873D7C25249A3F00313629 /* DetailPieChartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72873D7B25249A3F00313629 /* DetailPieChartVC.swift */; };
 		72873D7E25249A5100313629 /* DayDetailSBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72873D7D25249A5100313629 /* DayDetailSBC.swift */; };
@@ -267,6 +269,8 @@
 		7215427F252EA2A50023BD9B /* SumAmout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumAmout.swift; sourceTree = "<group>"; };
 		72154282252EA2C10023BD9B /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		7217ED81FA2304CDEDF74146 /* Pods-MyWalletProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWalletProject.debug.xcconfig"; path = "Target Support Files/Pods-MyWalletProject/Pods-MyWalletProject.debug.xcconfig"; sourceTree = "<group>"; };
+		724F64EC252FF4710067DED9 /* ReportPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPresenter.swift; sourceTree = "<group>"; };
+		724F64EE252FF4AF0067DED9 /* ReportUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportUseCase.swift; sourceTree = "<group>"; };
 		72873D7925249A2900313629 /* DetailStackedBarChartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStackedBarChartVC.swift; sourceTree = "<group>"; };
 		72873D7B25249A3F00313629 /* DetailPieChartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPieChartVC.swift; sourceTree = "<group>"; };
 		72873D7D25249A5100313629 /* DayDetailSBC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailSBC.swift; sourceTree = "<group>"; };
@@ -632,6 +636,16 @@
 			path = SatckedBarChart;
 			sourceTree = "<group>";
 		};
+		724F64EB252FF4380067DED9 /* ViewReport */ = {
+			isa = PBXGroup;
+			children = (
+				72A71925251DDF35003ED157 /* ReportViewController.swift */,
+				724F64EC252FF4710067DED9 /* ReportPresenter.swift */,
+				724F64EE252FF4AF0067DED9 /* ReportUseCase.swift */,
+			);
+			path = ViewReport;
+			sourceTree = "<group>";
+		};
 		72873D8125249A7A00313629 /* DetailCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -700,9 +714,9 @@
 		72A71911251DDDC8003ED157 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				724F64EB252FF4380067DED9 /* ViewReport */,
 				7222A94B2525AA5500146CD1 /* SatckedBarChart */,
 				7222A9492525AA2700146CD1 /* PieChart */,
-				72A71925251DDF35003ED157 /* ReportViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1596,6 +1610,7 @@
 				8A3BB418251ADF9E008113E9 /* ScanBillViewController.swift in Sources */,
 				D22597DC252C5FDF00B7AB3B /* AddEventPresenter.swift in Sources */,
 				999389F2252A2AB100E72A41 /* ViewTransactionPresenter.swift in Sources */,
+				724F64ED252FF4710067DED9 /* ReportPresenter.swift in Sources */,
 				56053C292525E88C00685FFC /* SelectCategoryViewController.swift in Sources */,
 				D270F4C4251B557D00CB274C /* CalendarController.swift in Sources */,
 				8A3BB421251AF91F008113E9 /* UserSettingsViewController.swift in Sources */,
@@ -1698,6 +1713,7 @@
 				56522947252D8071006ED814 /* BudgetPresenter.swift in Sources */,
 				73FC0D382525DE6C0012676D /* TransactionPresenter.swift in Sources */,
 				735873EF2521780D00B8235D /* MainTabViewController.swift in Sources */,
+				724F64EF252FF4AF0067DED9 /* ReportUseCase.swift in Sources */,
 				73AA67FA25258294001EAA1D /* PlanningCell.swift in Sources */,
 				73E0B17E2521E0EE0097D41F /* TransactionCell.swift in Sources */,
 				7338862E25231F68002F126B /* DetailTransactionController.swift in Sources */,
