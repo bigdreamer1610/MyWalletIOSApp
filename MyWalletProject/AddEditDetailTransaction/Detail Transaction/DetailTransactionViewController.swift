@@ -76,24 +76,30 @@ class DetailTransactionViewController: UIViewController {
         
     }
     
+    func fetchTransaction(id: String){
+        presenter?.fetchTransaction(id: id)
+    }
+    
     func setUpDataTransactionView(item: TransactionItem, header: TransactionHeader){
+        //presenter?.fetchTransaction(id: item.id)
         transactionid = item.id
         type = item.type
         categoryName = item.categoryName
         categoryNote = item.note ?? ""
         amount = item.amount
         icon = item.iconImage
+        dateModel = header.dateModel
+        categoryDate = "\(dateModel.weekDay), \(dateModel.date) \(dateModel.month) \(dateModel.year)"
         if let eventid = item.eventid {
             self.eventid = eventid
             print("a1: \(eventid)")
             presenter?.getInfo(id: eventid)
         }
-        dateModel = header.dateModel
-        categoryDate = "\(dateModel.weekDay), \(dateModel.date) \(dateModel.month) \(dateModel.year)"
-        presenter?.fetchTransaction(id: item.id)
+        
     }
     
     func setUpDataCategoryView(item: CategoryItem, header: CategoryHeader){
+        //presenter?.fetchTransaction(id: item.id)
         transactionid = item.id
         type = item.type
         categoryName = header.categoryName
@@ -101,13 +107,13 @@ class DetailTransactionViewController: UIViewController {
         amount = item.amount
         icon = header.icon
         dateModel = item.dateModel
+        categoryDate = "\(dateModel.weekDay), \(dateModel.date) \(dateModel.month) \(dateModel.year)"
         if let eventid = item.eventid {
             self.eventid = eventid
             print("a2: \(eventid)")
             presenter?.getInfo(id: eventid)
         }
-        categoryDate = "\(dateModel.weekDay), \(dateModel.date) \(dateModel.month) \(dateModel.year)"
-        presenter?.fetchTransaction(id: item.id)
+        
     }
     // mark: - event nil
     @IBAction func btnEditTransaction(_ sender: Any) {
