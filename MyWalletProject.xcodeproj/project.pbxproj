@@ -1671,7 +1671,6 @@
 				8A3D7DED252C55D4004F4FEA /* ViewCategoryPresenter.swift in Sources */,
 				7346E25F252DD8CC00924AB1 /* EventTransactionUseCase.swift in Sources */,
 				72873D9325249B6100313629 /* DetailPCCell.swift in Sources */,
-				73E0B17C2521E0EE0097D41F /* FirstNavigationController.swift in Sources */,
 				0A1D7B8B2530551200631E60 /* TimeRangerDataString.swift in Sources */,
 				73E78DAA2524427B00D7B962 /* SelectEventCell.swift in Sources */,
 				73204F2C252EBAB10067432B /* EditTransactionUseCase.swift in Sources */,
