@@ -96,12 +96,14 @@ extension RouterType{
             let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "detail") as! DetailTransactionViewController
             let presenter = DetailTransactionPresenter(delegate: vc, usecase: DetailTransactionUseCase())
             vc.setUp(presenter: presenter)
+            vc.fetchTransaction(id: item.id)
             vc.setUpDataTransactionView(item: item, header: header)
             return vc
         case .categoryDetail(let item, let header):
             let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "detail") as! DetailTransactionViewController
             let presenter = DetailTransactionPresenter(delegate: vc, usecase: DetailTransactionUseCase())
             vc.setUp(presenter: presenter)
+            vc.fetchTransaction(id: item.id)
             vc.setUpDataCategoryView(item: item, header: header)
             return vc
         case .balance:
