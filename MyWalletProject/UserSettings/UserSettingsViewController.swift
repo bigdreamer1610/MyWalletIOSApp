@@ -13,6 +13,7 @@ class UserSettingsViewController: UIViewController {
     @IBOutlet weak var avaImage: UIImageView!
     
     @IBOutlet weak var lblUsername: UILabel!
+    @IBOutlet weak var lblUserEmail: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -20,6 +21,7 @@ class UserSettingsViewController: UIViewController {
         super.viewDidLoad()
         
         tableViewConfiguration()
+        setupUserInfo()
     }
     
     // MARK: - Deselected effect on cell after popping a view from view stack
@@ -29,6 +31,12 @@ class UserSettingsViewController: UIViewController {
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selectedIndexPath, animated: animated)
         }
+    }
+    
+    // MARK: - Setup username and user email on view
+    func setupUserInfo() {
+        lblUsername.text = Defined.defaults.string(forKey: Constants.username)
+        lblUserEmail.text = Defined.defaults.string(forKey: Constants.email)
     }
     
     // MARK: - Config and regist for tableView
@@ -51,7 +59,7 @@ class UserSettingsViewController: UIViewController {
 
 extension UserSettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 6
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -76,6 +84,9 @@ extension UserSettingsViewController: UITableViewDelegate, UITableViewDataSource
         case 4:
             imageName = "s-scanner"
             labelName = "Bill Scanner"
+        case 5:
+            imageName = "s-logout"
+            labelName = "Logout"
         default:
             imageName = "Undefined"
             labelName = "Undefined"
@@ -98,6 +109,14 @@ extension UserSettingsViewController: UITableViewDelegate, UITableViewDataSource
             AppRouter.routerTo(from: self, router: .travelMode, options: .push)
         case 4:
             AppRouter.routerTo(from: self, router: .billScanner, options: .push)
+        case 5:
+            Defined.defaults.removeObject(forKey: Constants.userid)
+            Defined.defaults.removeObject(forKey: Constants.username)
+            Defined.defaults.removeObject(forKey: Constants.email)
+            Defined.defaults.set(false, forKey: Constants.loginStatus)
+            
+            let signInController = UIStoryboard.init(name: "Signin", bundle: nil).instantiateViewController(identifier: "LoginViewController") as! LoginViewController
+            AppRouter.routerTo(from: signInController, options: .curveEaseOut, duration: 0.5, isNaviHidden: true)
         default:
             return
         }

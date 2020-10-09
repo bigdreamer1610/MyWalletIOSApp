@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var btnLoginFacebook: UIButton!
     @IBOutlet weak var btnLoginGoogle: UIButton!
     
-    var isLogined:Bool = UserDefaults.standard.bool(forKey: "login")
+    var isLogined:Bool = UserDefaults.standard.bool(forKey: Constants.loginStatus)
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -56,9 +56,6 @@ class LoginViewController: UIViewController {
         GIDSignIn.sharedInstance().signIn()
     }
     
-    @IBAction func btnLoginAppleClick(_ sender: Any) {
-        
-    }
     
 }
 
