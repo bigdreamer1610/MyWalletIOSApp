@@ -28,6 +28,7 @@ class EventControllerView: UIViewController {
     //load view
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.largeTitleDisplayMode = .never
         let nib = UINib(nibName: "EventCell", bundle: nil)
         eventTable.register(nib, forCellReuseIdentifier: "EventCell")
         eventTable.delegate = self
@@ -58,7 +59,8 @@ class EventControllerView: UIViewController {
     }
     // back
     @IBAction func cancel(_ sender: Any) {
-           AppRouter.routerTo(from: RouterType.tabbar.getVc(), options: .transitionCrossDissolve, duration: 0.2, isNaviHidden: true)
+        self.navigationController?.popViewController(animated: true)
+           //AppRouter.routerTo(from: RouterType.tabbar.getVc(), options: .transitionCrossDissolve, duration: 0.2, isNaviHidden: true)
 
       }
     

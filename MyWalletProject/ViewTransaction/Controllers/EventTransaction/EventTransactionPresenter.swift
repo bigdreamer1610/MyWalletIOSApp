@@ -44,9 +44,13 @@ class EventTransactionPresenter {
         self.event = e
     }
     
+    func fetchCategories(){
+        viewTransUseCase?.getListCategories()
+    }
+    
     func fetchDataTransactions(eid: String){
         eventUseCase?.getTransactionByEvent(eid: eid)
-        viewTransUseCase?.getListCategories()
+        
     }
     
     func fetchData(trans: [Transaction]){

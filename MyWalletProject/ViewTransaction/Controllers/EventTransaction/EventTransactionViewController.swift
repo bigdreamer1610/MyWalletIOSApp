@@ -39,6 +39,7 @@ class EventTransactionViewController: UIViewController {
     
     func initData(){
         presenter?.setUpEvent(e: event)
+        presenter?.fetchCategories()
         presenter?.fetchDataTransactions(eid: event.id!)
     }
     
@@ -101,6 +102,12 @@ extension EventTransactionViewController : UITableViewDelegate,UITableViewDataSo
             cell.setUpData(data: transactionSections[section-1].header)
             myView = cell
         }
+        return myView
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let myView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 20))
+        myView.backgroundColor = #colorLiteral(red: 0.9014514594, green: 0.9014514594, blue: 0.9014514594, alpha: 1)
         return myView
     }
     
