@@ -15,6 +15,7 @@
 "End" = "Kết thúc";
 "Total" = "Tổng";
 "Refresh" = "Làm mới";
+"Save" = "Lưu";
 
 // budget detail
 "Back" = "Quay lại";
@@ -79,9 +80,12 @@
 "Select event" = "Chọn sự kiện ";
 
 // detail transaction
-"Quay lại" = "Back";
-"Detail Transaction " = "Chi tiết giao dịch";
-"Delete transaction" = "Xoá giao dịch";
+"Back" = "Quay lại";
+"Detail Transaction" = "Chi tiết giao dịch";
+"Delete Transaction" = "Xoá giao dịch";
+"Are you sure to delete this transaction?" = "Bạn có muốn xoá giao dịch này không?" ;
+"Cancel" = "Không";
+"Yes" = "Có";
 
 // Edit transaction
 "Cancel" = "Quay lại";
@@ -94,3 +98,20 @@
 "Note" = "Ghi chú";
 "Date" = "Ngày giao dịch";
 "Select event" = "Chọn sự kiện";
+"Notification" = "Thông Báo";
+"Add a new transaction successfully" = "Thêm giao dịch thành công";
+"Ok" = "Đóng";
+
+
+// Category
+"Category" = "Thể loại";
+"Expense" = "Chi phí";
+"Income" = "Thu nhập";
+
+// Planning
+"Planning" = "Lập kế hoạch";
+"Budgets" = "Ngân sách";
+"Events" = "Sự Kiện";
+"Set budget for individual category, or for all categories in a wallet" = "Đặt ngân sách cho danh mục riêng lẻ hoặc cho tất cả danh mục trong ví";
+"Create an event to track on your spending during an actual event, like travelling at weekend" = "Tạo sự kiện để theo dõi chi tiêu của bạn trong một sự kiện thực tế, chẳng hạn như đi du lịch vào cuối tuần";
+
