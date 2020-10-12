@@ -14,29 +14,31 @@ protocol SelectCategoryViewControllerDelegate {
 }
 
 class SelectCategoryViewController: UIViewController {
-    @IBOutlet weak var headerSegmentedControl: UISegmentedControl!
     @IBOutlet weak var tblCategory: UITableView!
+    @IBOutlet weak var btnBack: UIBarButtonItem!
     
     var presenter: SelectCategoryBudgetPresenter?
     var refreshControl = UIRefreshControl()
-    var segmentIndex = 0
     var budgetObject:Budget = Budget()
-    var listCateIncome:[Category] = []
     var listCateExpense:[Category] = []
     var ref = Database.database().reference()
     var type = ""
     var name = ""
     var delegateCategory:SelectCategoryViewControllerDelegate?
     
+    var language = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = SelectCategoryDataString.selectCategory.rawValue.addLocalizableString(str: language)
+        btnBack.title = SelectCategoryDataString.back.rawValue.addLocalizableString(str: language)
         presenter?.getCateDB()
         // table category
         tblCategory.dataSource = self
         tblCategory.delegate = self
         let nibName = UINib(nibName: "CategoryCell", bundle: nil)
         tblCategory.register(nibName, forCellReuseIdentifier: "CategoryCell")
-        refreshControl.attributedTitle = NSAttributedString(string: "Refresh")
+        refreshControl.attributedTitle = NSAttributedString(string: SelectCategoryDataString.refresh.rawValue.addLocalizableString(str: language))
         refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
         tblCategory.addSubview(refreshControl)
         tblCategory.reloadData()
@@ -49,38 +51,28 @@ class SelectCategoryViewController: UIViewController {
         refreshControl.endRefreshing()
     }
     
+    @IBAction func btnBackClick(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    
     func setUp(presenter: SelectCategoryBudgetPresenter) {
         self.presenter = presenter
     }
     
-    @IBAction func segmentCate(_ uiSegmentedControl: UISegmentedControl) {
-        segmentIndex = uiSegmentedControl.selectedSegmentIndex
-        tblCategory.reloadData()
-    }
 }
 
 //MARK: - table datasource , delegate
 extension SelectCategoryViewController : UITableViewDataSource , UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if segmentIndex == 1 {
-            return listCateIncome.count
-        } else {
-            return listCateExpense.count
-        }
+        return listCateExpense.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tblCategory.dequeueReusableCell(withIdentifier: "CategoryCell") as! CategoryCell
-        if segmentIndex == 1 {
-            let imgName = listCateIncome[indexPath.row].iconImage
-            let categoryName = listCateIncome[indexPath.row].name
-            cell.loadContent(imgName: imgName!, categoryName: categoryName!)
-        } else {
-            let imgName = listCateExpense[indexPath.row].iconImage
-            let categoryName = listCateExpense[indexPath.row].name
-            cell.loadContent(imgName: imgName!, categoryName: categoryName!)
-        }
+        let imgName = listCateExpense[indexPath.row].iconImage
+        let categoryName = listCateExpense[indexPath.row].name
+        cell.loadContent(imgName: imgName!, categoryName: categoryName!)
         return cell
     }
     
@@ -89,27 +81,21 @@ extension SelectCategoryViewController : UITableViewDataSource , UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if segmentIndex == 1{
-            budgetObject.categoryId = listCateIncome[indexPath.row].id ?? ""
-            budgetObject.categoryName = listCateIncome[indexPath.row].name ?? ""
-            budgetObject.categoryImage = listCateIncome[indexPath.row].iconImage ?? ""
-            budgetObject.transactionType = listCateIncome[indexPath.row].transactionType ?? ""
-        } else {
-            budgetObject.categoryId = listCateExpense[indexPath.row].id ?? ""
-            budgetObject.categoryName = listCateExpense[indexPath.row].name ?? ""
-            budgetObject.categoryImage = listCateExpense[indexPath.row].iconImage ?? ""
-            budgetObject.transactionType = listCateExpense[indexPath.row].transactionType ?? ""
-        }
+        
+        budgetObject.categoryId = listCateExpense[indexPath.row].id ?? ""
+        budgetObject.categoryName = listCateExpense[indexPath.row].name ?? ""
+        budgetObject.categoryImage = listCateExpense[indexPath.row].iconImage ?? ""
+        budgetObject.transactionType = listCateExpense[indexPath.row].transactionType ?? ""
+        
         delegateCategory?.fetchDataCategory(budget: budgetObject, type: type)
         self.navigationController?.popViewController(animated: true)
     }
 }
 
-//MARK: - SelectCategoryBudgetPresenterDelegate
+//MARK: - get and reload data table into SelectCategoryBudgetPresenterDelegate
 extension SelectCategoryViewController : SelectCategoryBudgetPresenterDelegate {
     func getDataCate(listCateExpense: [Category], listCateIncome: [Category]) {
         self.listCateExpense = listCateExpense
-        self.listCateIncome = listCateIncome
         tblCategory.reloadData()
     }
     

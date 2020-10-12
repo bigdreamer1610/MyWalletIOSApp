@@ -12,7 +12,8 @@ protocol BudgetTransactionPresenterDelegate: class {
     func reloadData()
     func getTransactionSection(section: [TransactionSection])
     func getTotal(total: Int)
-    func getAllTransactions(trans: [Transaction])
+    func startLoading()
+    func endLoading()
 }
 
 class BudgetTransactionPresenter {
@@ -23,11 +24,10 @@ class BudgetTransactionPresenter {
     var allTransactions = [Transaction]()
     var finalTransactions = [Transaction]()
     var dates = [TransactionDate]()
-    var amount: Int = 0
     var budget: Budget!
     
-    var weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thurday","Friday","Saturday"]
-    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+//    var weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thurday","Friday","Saturday"]
+//    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
     
     init(delegate: BudgetTransactionPresenterDelegate, usecase: BudgetTransactionUseCase) {
         self.delegate = delegate
@@ -40,17 +40,18 @@ class BudgetTransactionPresenter {
     }
     
     func fetchDataTransactions(cid: String){
+        delegate?.startLoading()
         usecase?.getTransactionsbyCategory(cid: cid)
     }
     
-    func fetchData(trans: [Transaction]){
-        allTransactions = trans
+    func fetchData(){
         getTransactionByCategoryInRange()
         getTotalAmount()
         processTransactionSection(list: finalTransactions)
     }
     
     func getTotalAmount(){
+        var amount = 0
         for t in finalTransactions {
             amount += t.amount!
         }
@@ -83,13 +84,13 @@ class BudgetTransactionPresenter {
                 }
             }
             let components = Defined.convertToDate(resultDate: a.dateString)
-            let dateModel = Defined.getDateModel(components: components, weekdays: weekdays, months: months)
+            let dateModel = Defined.getDateModel(components: components)
             let th = TransactionHeader(dateModel: dateModel, amount: amount)
             sections.append(TransactionSection(header: th, items: items))
             
         }
         transactionSections = sections
-        print("transactionsections: \(sections)")
+        delegate?.endLoading()
         delegate?.getTransactionSection(section: transactionSections)
     }
     
@@ -134,7 +135,8 @@ extension BudgetTransactionPresenter {
 extension BudgetTransactionPresenter : BudgetTransactionUseCaseDelegate {
     func responseDataTransactions(trans: [Transaction]) {
         self.allTransactions = trans
-        delegate?.getAllTransactions(trans: trans)
+        fetchData()
+        //delegate?.getAllTransactions(trans: trans)
     }
     
     

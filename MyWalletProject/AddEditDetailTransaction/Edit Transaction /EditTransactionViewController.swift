@@ -29,8 +29,10 @@ class EditTransactionViewController: UIViewController {
     @IBOutlet weak var txtDate: UITextField!
     @IBOutlet var txtCategory: UITextField!
     @IBOutlet var txtAmount: UITextField!
-    
     @IBOutlet var btnTrash: UIButton!
+    @IBOutlet weak var lblEvent: UILabel!
+    
+    var language = ChangeLanguage.vietnam.rawValue
     
     var transaction: Transaction?
     var event: Event?
@@ -46,6 +48,21 @@ class EditTransactionViewController: UIViewController {
         txtAmount.delegate = self
         addTapTarget()
         scheduledTimerWithTimeInterval()
+        setLanguage()
+    }
+    
+    func setLanguage(){
+        btnCancel.title = EditTransactionDataString.back.rawValue.addLocalizableString(str: language)
+        btnSave.title = EditTransactionDataString.save.rawValue.addLocalizableString(str: language)
+        navigationItem.title = EditTransactionDataString.editTransaction.rawValue.addLocalizableString(str: language)
+        btnTrash.setTitle(EditTransactionDataString.delete.rawValue.addLocalizableString(str: language), for: .normal)
+        lblEvent.text = EditTransactionDataString.event.rawValue.addLocalizableString(str: language)
+        txtDate.placeholder = EditTransactionDataString.date.rawValue.addLocalizableString(str: language)
+        txtNote.placeholder = EditTransactionDataString.note.rawValue.addLocalizableString(str: language)
+        txtAmount.placeholder = EditTransactionDataString.amount.rawValue.addLocalizableString(str: language)
+        txtEvent.placeholder = EditTransactionDataString.event.rawValue.addLocalizableString(str: language)
+
+
     }
     
     func setUp(presenter: EditTransactionPresenter){
@@ -141,7 +158,7 @@ class EditTransactionViewController: UIViewController {
         
         let trans = Transaction(id: transaction?.id ?? "", transactionType: transactionType, amount: amount, categoryid: categoryId , date: txtDate.text!, note: txtNote.text!, eventid: eventid ?? "")
         presenter?.update(t: trans, oldType: transaction?.transactionType! ?? "")
-        self.navigationController?.popToRootViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     func scheduledTimerWithTimeInterval(){

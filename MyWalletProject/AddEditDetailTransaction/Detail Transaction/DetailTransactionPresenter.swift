@@ -11,6 +11,8 @@ import UIKit
 protocol DetailTransactionPresenterDelegate: class {
     func getEvent(event: Event)
     func getTransaction(transaction: Transaction)
+    func getCategory(cate: Category)
+    func noEvent()
 }
 class DetailTransactionPresenter {
     weak var delegate: DetailTransactionPresenterDelegate?
@@ -36,12 +38,23 @@ class DetailTransactionPresenter {
 }
 
 extension DetailTransactionPresenter : DetailTransactionUseCaseDelegate{
+    func responseCategory(cate: Category) {
+        //after receive category
+        delegate?.getCategory(cate: cate)
+    }
+    
     func responseEvent(event: Event) {
         delegate?.getEvent(event: event)
     }
     
     func responseTrans(trans: Transaction) {
         delegate?.getTransaction(transaction: trans)
+        usecase?.getCategory(cid: trans.categoryid!)
+        usecase?.getEventInfo(eventid: trans.eventid ?? "")
+    }
+    
+    func responseNoEvent() {
+        delegate?.noEvent()
     }
     
     
