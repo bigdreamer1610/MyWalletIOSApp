@@ -99,14 +99,14 @@ class TravelModeViewController: UIViewController {
     }
     
     // MARK: - Hide tab bar
-    override var hidesBottomBarWhenPushed: Bool {
-        get {
-            return true
-        }
-        set {
-            super.hidesBottomBarWhenPushed = newValue
-        }
-    }
+//    override var hidesBottomBarWhenPushed: Bool {
+//        get {
+//            return true
+//        }
+//        set {
+//            super.hidesBottomBarWhenPushed = newValue
+//        }
+//    }
     
     func performAnimation(duration: Double, value: CGFloat) {
         UIView.animate(withDuration: duration, animations: {

@@ -38,11 +38,11 @@ class ViewTransactionPresenter {
     var categorySections = [CategorySection]()
     var month: Int = 0
     var year: Int = 0
-    
-    var weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thurday","Friday","Saturday"]
-    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
-    
-    
+//
+//    var weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thurday","Friday","Saturday"]
+//    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+//
+//
     init(delegate: ViewTransactionPresenterDelegate, usecase: ViewTransactionUseCase) {
         self.delegate = delegate
         self.viewTransUseCase = usecase
@@ -56,12 +56,13 @@ class ViewTransactionPresenter {
         viewTransUseCase?.getListCategories()
         getMonthYearInRange(from: minDate, to: maxDate)
     }
-    
+    // set up month year when change time
     func setUpMonthYear(month: Int, year: Int){
         self.month = month
         self.year = year
     }
     
+    // load transaction to set up sections
     func getFirstTransaction(){
         delegate?.startLoading()
         viewTransUseCase?.getAllTransactions()
@@ -69,7 +70,6 @@ class ViewTransactionPresenter {
     
     // Get data transaction by month
     func getDataTransaction(month: Int, year: Int){
-        print("Trans 2: \(allTransactions.count)")
         getTransactionbyMonth(month: month, year: year)
         loadDetailCell(month: month, year: year)
         
@@ -114,7 +114,7 @@ class ViewTransactionPresenter {
                 }
             }
             let components = Defined.convertToDate(resultDate: a.dateString)
-            let dateModel = Defined.getDateModel(components: components, weekdays: weekdays, months: months)
+            let dateModel = Defined.getDateModel(components: components)
             let th = TransactionHeader(dateModel: dateModel, amount: amount)
             sections.append(TransactionSection(header: th, items: items))
             
@@ -146,7 +146,7 @@ class ViewTransactionPresenter {
                     }
                     //MARK: - Get item for each section
                     let components = Defined.convertToDate(resultDate: b.date!)
-                    let dateModel = Defined.getDateModel(components: components, weekdays: weekdays, months: months)
+                    let dateModel = Defined.getDateModel(components: components)
                     var item = CategoryItem(id: b.id!,dateModel: dateModel, amount: amount2,type: type, note: note)
                     if let eventid = b.eventid {
                         item.eventid = eventid
@@ -205,17 +205,16 @@ extension ViewTransactionPresenter {
     }
     //MARK: - Get Transactions by month
     func getTransactionbyMonth(month: Int, year: Int){
-        print("Trans 3: \(allTransactions.count)")
         //date model of given month year
         dates = getDateArray(arr: Defined.getAllDayArray(allTransactions: allTransactions), month: month, year: year)
         //get transaction by month
         finalTransactions = getTransactionbyDate(dateArr: dates)
         // check
+        // no transaction final
         if finalTransactions.count == 0{
-            print("No transaction")
             delegate?.noFinalTransactions()
+            // there is transaction
         } else {
-            print("Yes transaction")
             getTransactionSections(list: finalTransactions)
             getCategorySections(list: finalTransactions)
             delegate?.yesFinalTransactions()
@@ -260,7 +259,6 @@ extension ViewTransactionPresenter {
     //MARK: - Get all month year in range min-max to set collectionview menu
     func getMonthYearInRange(from startDate: Date, to endDate: Date){
         let components = Defined.calendar.dateComponents(Set([.month]), from: startDate, to: endDate)
-        //var allDates: [String] = []
         var allDates: [Date] = []
         let dateRangeFormatter = DateFormatter()
         dateRangeFormatter.dateFormat = "MM yyyy"
@@ -281,8 +279,6 @@ extension ViewTransactionPresenter : ViewTransactionUseCaseDelegate {
             self.delegate?.endLoading()
             self.allTransactions = trans
             self.getDataTransaction(month: self.month, year: self.year)
-            //self.delegate?.reloadTableView()
-            print("Trans 1: \(self.allTransactions.count)")
         }
     }
     
