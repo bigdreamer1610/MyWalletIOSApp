@@ -15,6 +15,7 @@ enum RouterOption: Int {
 }
 
 enum RouterType {
+    case login
     case transactionDetail(item: TransactionItem, header: TransactionHeader)
     case categoryDetail(item: CategoryItem, header: CategoryHeader)
     case balance
@@ -30,7 +31,6 @@ enum RouterType {
     case viewTransaction
     case report
     case account
-    case planningNavi
     case barChartDetail
     case pieChartDetail
     case dayBarChartDetail
@@ -72,43 +72,35 @@ class AppRouter {
             vc.navigationController?.pushViewController(router.getVc(), animated: true)
         }
     }
-    
-    //    class func setRootView(){
-    //        DispatchQueue.main.async {
-    //            if let window = UIApplication.shared.keyWindow {
-    //                window.rootViewController = nil
-    //                let navigationController = UINavigationController(rootViewController: RouterType.viewTransaction.getVc())
-    //                navigationController.isNavigationBarHidden = true
-    //                window.rootViewController = navigationController
-    //                let options: UIView.AnimationOptions = .transitionCrossDissolve
-    //                UIView.transition(with: window, duration: 0.3, options: options, animations: {}) { (completed) in
-    //
-    //                }
-    //                window.makeKeyAndVisible()
-    //            }
-    //        }
-    //    }
 }
 extension RouterType{
     func getVc() -> UIViewController {
         switch self {
+        case .login:
+            let vc = UIStoryboard(name: "Signin", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+            let navigationController = UINavigationController(rootViewController: vc)
+            navigationController.isNavigationBarHidden = true
+            return navigationController
         case .transactionDetail(let item, let header):
             let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "detail") as! DetailTransactionViewController
             let presenter = DetailTransactionPresenter(delegate: vc, usecase: DetailTransactionUseCase())
             vc.setUp(presenter: presenter)
+            vc.fetchTransaction(id: item.id)
             vc.setUpDataTransactionView(item: item, header: header)
             return vc
         case .categoryDetail(let item, let header):
             let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "detail") as! DetailTransactionViewController
             let presenter = DetailTransactionPresenter(delegate: vc, usecase: DetailTransactionUseCase())
             vc.setUp(presenter: presenter)
+            vc.fetchTransaction(id: item.id)
             vc.setUpDataCategoryView(item: item, header: header)
             return vc
         case .balance:
             let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "BalanceViewController") as! BalanceViewController
             let presenter = BalancePresenter(usecase: BalanceUseCase())
             vc.setUp(presenter: presenter)
-            return vc
+            let navi = UINavigationController(rootViewController: vc)
+            return navi
         case .add:
             let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "add") as! AddTransactionViewController
             let presenter = AddTransactionPresenter(usecase: AddTransactionUseCase())
@@ -116,7 +108,8 @@ extension RouterType{
             return vc
         case .planning:
             let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "planning_vc") as! PlanningViewController
-            return vc
+            let navi = UINavigationController(rootViewController: vc)
+            return navi
         case .budget:
             let vc = UIStoryboard(name: "budget", bundle: nil).instantiateViewController(withIdentifier: "BudgetListViewController") as! BudgetListViewController
             let presenter = BudgetListPresenter(delegate: vc, budgetlistUseCase: BudgetListUseCase())
@@ -161,9 +154,6 @@ extension RouterType{
             return vc
         case .report:
              let vc = UIStoryboard(name: "Report", bundle: nil).instantiateViewController(withIdentifier: "ReportViewController") as! ReportViewController
-            return vc
-        case .planningNavi:
-            let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "navi_second") as! SecondNavigationController
             return vc
         case .barChartDetail:
             let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailSBC") as! DetailStackedBarChartVC
