@@ -10,13 +10,15 @@ import UIKit
 
 
 class AddEventTableController: UITableViewController {
+    var competionHandler: ((Event) -> Void)?
     var nameEvents = [String]()
     var event = Event()
     var eventImg = ""
     var presenter : AddEventPresenter?
     var state = 0
     var nameEvent = ""
-    var competionHandler: ((Event) -> Void)?
+    var defined = EventDefined()
+    
     // OutLet
     
     @IBOutlet weak var tfNameEvent: UITextField!
@@ -31,7 +33,9 @@ class AddEventTableController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let tapGestureRecognizer =  UITapGestureRecognizer(target: self, action: #selector(keyBoard))
+        tapGestureRecognizer.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGestureRecognizer)
     }
     
     func setUp(presenter: AddEventPresenter)  {
@@ -116,23 +120,23 @@ extension AddEventTableController : AddEventPresenterDelegate, UITextFieldDelega
         vc.setUp(presenter: presenter)
         navigationController?.pushViewController(vc, animated: true)
     }
-    
+  @objc  func keyBoard() {
+        view.endEditing(true)
+    }
     func add()  {
         if state == 0  {
             nameEvent = tfNameEvent.text?.trimmingCharacters(in: .whitespaces) as! String
             if !nameEvents.contains(nameEvent) {
                 if tfDate.text!.isEmpty || nameEvent.isEmpty || eventImg.isEmpty {
-                               let alert = UIAlertController(title: "Error", message: "Please enter fully", preferredStyle: UIAlertController.Style.actionSheet)
-                                            alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
-                                            self.present(alert, animated: true, completion: nil)
+                    let alert = defined.alert(state: state)
+                            self.present(alert, animated: true, completion: nil)
                                
                                   }else {
                                       let event = Event(id: nil, name: nameEvent, date: tfDate.text!, eventImage: eventImg, spent: 0)
                                self.presenter?.addDataEvent(event: event, state: state)
                                   }
             } else {
-                let alert = UIAlertController(title: "Error", message: "This event already exists", preferredStyle: UIAlertController.Style.actionSheet)
-                alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+                let alert = defined.alert(state: 4)
                 self.present(alert, animated: true, completion: nil)
             }
    
