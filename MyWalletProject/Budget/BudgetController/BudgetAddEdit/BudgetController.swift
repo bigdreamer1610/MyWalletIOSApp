@@ -15,11 +15,6 @@ protocol AddEditBudgetControll {
     func dialogMess(title:String,message:String)
 }
 
-protocol BudgetControllerDelegate {
-    func reloadDataListBudgetintoBudgetController()
-    func reloadDataDetailBudgetintoBudgetController(budget:Budget , spend:Int)
-}
-
 class BudgetController: UIViewController {
     @IBOutlet weak var tblAddBudget: UITableView!
     @IBOutlet weak var btnBack: UIBarButtonItem!
@@ -32,7 +27,6 @@ class BudgetController: UIViewController {
     var listTransaction:[Transaction] = []
     var ref = Database.database().reference()
     var type = ""
-    var delegateBudgetController:BudgetControllerDelegate?
     var spend = 0
     
     var language = ""
@@ -235,7 +229,6 @@ extension BudgetController: AddEditBudgetControll {
         let alertController = UIAlertController(title: "\(BudgetAddEditDataString.addBudget.rawValue.addLocalizableString(str: language)) ?", message: nil, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: BudgetAddEditDataString.dialogItemOK.rawValue.addLocalizableString(str: language), style: .default) { (_) in
             self.presenter?.addBudget(budget: self.budgetObject, id: self.newChild)
-            self.delegateBudgetController?.reloadDataListBudgetintoBudgetController()
             self.navigationController?.popViewController(animated:true)
         }
         let cancelAction = UIAlertAction(title: BudgetAddEditDataString.dialogItemCancel.rawValue.addLocalizableString(str: language), style: .cancel) { (_) in
@@ -251,7 +244,6 @@ extension BudgetController: AddEditBudgetControll {
         let confirmAction = UIAlertAction(title: BudgetAddEditDataString.dialogItemOK.rawValue.addLocalizableString(str: language), style: .default) { (_) in
             self.presenter?.editBudget(budget: self.budgetObject)
             self.presenter?.getAmountTrans(budget: self.budgetObject, listTransaction: self.listTransaction)
-//            self.delegateBudgetController?.reloadDataDetailBudgetintoBudgetController(budget: self.budgetObject , spend: self.spend)
             UserDefaults.standard.removeObject(forKey: Constants.budgetCateName)
             UserDefaults.standard.removeObject(forKey: Constants.budgetStartDate)
             UserDefaults.standard.removeObject(forKey: Constants.budgetEndDate)

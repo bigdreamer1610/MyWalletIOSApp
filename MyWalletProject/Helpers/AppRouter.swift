@@ -72,22 +72,6 @@ class AppRouter {
             vc.navigationController?.pushViewController(router.getVc(), animated: true)
         }
     }
-    
-    //    class func setRootView(){
-    //        DispatchQueue.main.async {
-    //            if let window = UIApplication.shared.keyWindow {
-    //                window.rootViewController = nil
-    //                let navigationController = UINavigationController(rootViewController: RouterType.viewTransaction.getVc())
-    //                navigationController.isNavigationBarHidden = true
-    //                window.rootViewController = navigationController
-    //                let options: UIView.AnimationOptions = .transitionCrossDissolve
-    //                UIView.transition(with: window, duration: 0.3, options: options, animations: {}) { (completed) in
-    //
-    //                }
-    //                window.makeKeyAndVisible()
-    //            }
-    //        }
-    //    }
 }
 extension RouterType{
     func getVc() -> UIViewController {
@@ -115,7 +99,8 @@ extension RouterType{
             let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "BalanceViewController") as! BalanceViewController
             let presenter = BalancePresenter(usecase: BalanceUseCase())
             vc.setUp(presenter: presenter)
-            return vc
+            let navi = UINavigationController(rootViewController: vc)
+            return navi
         case .add:
             let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "add") as! AddTransactionViewController
             let presenter = AddTransactionPresenter(usecase: AddTransactionUseCase())

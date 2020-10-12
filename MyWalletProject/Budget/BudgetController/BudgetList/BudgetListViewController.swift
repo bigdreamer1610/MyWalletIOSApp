@@ -45,6 +45,12 @@ class BudgetListViewController: UIViewController {
         tblBudget.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tblBudget.frame.width, height: 0))
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.getDataBudget()
+        tblBudget.reloadData()
+    }
+    
     // Localizable (change language)
     func localizableListBudget(){
         segmentTime.setTitle(BudgetListDataString.currentlyApplying.rawValue.addLocalizableString(str: language), forSegmentAt: 0)
@@ -68,14 +74,12 @@ class BudgetListViewController: UIViewController {
     // click back
     @IBAction func btnBackClick(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
-        //AppRouter.routerTo(from: RouterType.tabbar.getVc(), options: .transitionCrossDissolve, duration: 0.2, isNaviHidden: true)
     }
     
     //click Add
     @IBAction func btnAddClick(_ sender: Any) {
         let vc = RouterType.budgetAddEdit.getVc() as! BudgetController
         vc.type = BudgetAddEditDataString.addBudget.rawValue
-        vc.delegateBudgetController = self
         vc.language = language
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -140,42 +144,15 @@ extension BudgetListViewController : UITableViewDataSource , UITableViewDelegate
         if let vc = RouterType.budgetDetail.getVc() as? BudgetDetailController {
             switch segmentIndex {
             case 0:
-//                vc.budgetObject = listBudgetCurrent[indexPath.row]
-//                presenter?.getAmountListTransaction(budget: listBudgetCurrent[indexPath.row], listTransaction: listTransaction)
-//                vc.spent = amount
                 vc.budgetID = listBudgetCurrent[indexPath.row].id!
                 vc.language = language
             default:
-//                vc.budgetObject = listBudgetFinish[indexPath.row]
-//                presenter?.getAmountListTransaction(budget: listBudgetFinish[indexPath.row], listTransaction: listTransaction)
-//                vc.spent = amount
                 vc.budgetID = listBudgetFinish[indexPath.row].id!
                 vc.language = language
             }
-            vc.delegateBudgetDetail = self
+//            vc.delegateBudgetDetail = self
             navigationController?.pushViewController(vc, animated: true)
         }
-    }
-}
-
-// MARK: - BudgetControllerDelegate
-extension BudgetListViewController : BudgetControllerDelegate {
-    func reloadDataDetailBudgetintoBudgetController(budget: Budget, spend:Int) {
-        presenter?.getDataBudget()
-        tblBudget.reloadData()
-    }
-    
-    func reloadDataListBudgetintoBudgetController() {
-        presenter?.getDataBudget()
-        tblBudget.reloadData()
-    }
-}
-
-// MARK: - BudgetDetailControllerDelegate
-extension BudgetListViewController : BudgetDetailControllerDelegate {
-    func reloadDataListBudgetintoBudgetDetailController() {
-        presenter?.getDataBudget()
-        tblBudget.reloadData()
     }
 }
 

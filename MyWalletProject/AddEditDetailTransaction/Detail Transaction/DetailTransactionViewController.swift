@@ -22,6 +22,11 @@ class DetailTransactionViewController: UIViewController {
     @IBOutlet var lbNote: UILabel!
     @IBOutlet var eventView: UIView!
     
+    @IBOutlet var indicator: UIActivityIndicatorView!
+    
+    
+    @IBOutlet var backView: UIView!
+    
     var presenter: DetailTransactionPresenter?
     var transactions = [Transaction]()
     var transactionid: String = ""
@@ -44,8 +49,16 @@ class DetailTransactionViewController: UIViewController {
         customizeLayout()
         Defined.formatter.groupingSeparator = "."
         Defined.formatter.numberStyle = .decimal
-        initData()
-        // Do any additional setup after loading the view.
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        indicator.startAnimating()
+        if transactionid != "" {
+            fetchTransaction(id: transactionid)
+        }
+        
     }
     
     func setUp(presenter: DetailTransactionPresenter){
@@ -54,13 +67,8 @@ class DetailTransactionViewController: UIViewController {
     
     func customizeLayout(){
         btnDelete.layer.cornerRadius = 6
-        if eventid != nil && eventid != "" {
-            eventView.isHidden = false
-            lbTitle.isHidden = false
-        } else {
-            lbTitle.isHidden = true
-            eventView.isHidden = true
-        }
+        lbTitle.isHidden = true
+        eventView.isHidden = true
     }
     
     func initData(){
@@ -71,48 +79,19 @@ class DetailTransactionViewController: UIViewController {
         lblAmount.text = Defined.formatter.string(from: NSNumber(value: amount))!
         iconImage.image = UIImage(named: icon)
     }
-    
-    func initComponents(){
-        
-    }
-    
+
     func fetchTransaction(id: String){
+        self.transactionid = id
         presenter?.fetchTransaction(id: id)
     }
     
     func setUpDataTransactionView(item: TransactionItem, header: TransactionHeader){
-        //presenter?.fetchTransaction(id: item.id)
-        transactionid = item.id
-        type = item.type
-        categoryName = item.categoryName
-        categoryNote = item.note ?? ""
-        amount = item.amount
-        icon = item.iconImage
-        dateModel = header.dateModel
-        categoryDate = "\(dateModel.weekDay), \(dateModel.date) \(dateModel.month) \(dateModel.year)"
-        if let eventid = item.eventid {
-            self.eventid = eventid
-            print("a1: \(eventid)")
-            presenter?.getInfo(id: eventid)
-        }
+        fetchTransaction(id: item.id)
         
     }
     
     func setUpDataCategoryView(item: CategoryItem, header: CategoryHeader){
-        //presenter?.fetchTransaction(id: item.id)
-        transactionid = item.id
-        type = item.type
-        categoryName = header.categoryName
-        categoryNote = item.note ?? ""
-        amount = item.amount
-        icon = header.icon
-        dateModel = item.dateModel
-        categoryDate = "\(dateModel.weekDay), \(dateModel.date) \(dateModel.month) \(dateModel.year)"
-        if let eventid = item.eventid {
-            self.eventid = eventid
-            print("a2: \(eventid)")
-            presenter?.getInfo(id: eventid)
-        }
+        fetchTransaction(id: item.id)
         
     }
     // mark: - event nil
@@ -144,12 +123,43 @@ class DetailTransactionViewController: UIViewController {
 extension DetailTransactionViewController : DetailTransactionPresenterDelegate {
     func getEvent(event: Event) {
         self.event = event
-        lbEventName.text = event.name
-        imageEvent.image = UIImage(named: event.eventImage!)
+        print("this case myevent: \(event)")
+        if let myEvent = self.event {
+            lbTitle.isHidden = false
+            eventView.isHidden = false
+            lbEventName.text = event.name
+            imageEvent.image = UIImage(named: event.eventImage!)
+        } 
+        
     }
     
     func getTransaction(transaction: Transaction) {
         self.transaction = transaction
+    }
+    
+    func getCategory(cate: Category) {
+        type = transaction.transactionType!
+        categoryName = cate.name!
+        categoryNote = transaction.note!
+        amount = transaction.amount!
+        icon = cate.iconImage!
+        let date = Defined.convertStringToDate(str: transaction.date!)
+        dateModel = Defined.getDateModel(components: date.dateComponents)
+        categoryDate = "\(dateModel.weekDay), \(dateModel.date) \(dateModel.month) \(dateModel.year)"
+        
+        //
+        indicator.stopAnimating()
+        indicator.isHidden = true
+        //backView.isHidden = true
+        //init data
+        
+        initData()
+        
+    }
+    
+    func noEvent() {
+        lbTitle.isHidden = true
+        eventView.isHidden = true
     }
     
 }

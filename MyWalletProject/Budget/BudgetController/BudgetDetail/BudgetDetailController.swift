@@ -14,10 +14,6 @@ protocol DetailBudgetTappedButton : class {
     func btnListTransactionTapped()
 }
 
-protocol BudgetDetailControllerDelegate {
-    func reloadDataListBudgetintoBudgetDetailController()
-}
-
 class BudgetDetailController: UIViewController {
     @IBOutlet weak var tblBudget: UITableView!
     @IBOutlet weak var btnBack: UIBarButtonItem!
@@ -28,7 +24,6 @@ class BudgetDetailController: UIViewController {
     var budgetObject:Budget = Budget()
     var budgetID = 0
     var spent:Int = 0
-    var delegateBudgetDetail:BudgetDetailControllerDelegate?
     var listTransaction = [Transaction]()
     
     var language = ""
@@ -72,7 +67,6 @@ class BudgetDetailController: UIViewController {
     
     // btn back click
     @IBAction func btnBackClick(_ sender: Any) {
-        self.delegateBudgetDetail?.reloadDataListBudgetintoBudgetDetailController()
         navigationController?.popViewController(animated: true)
     }
     
@@ -82,7 +76,6 @@ class BudgetDetailController: UIViewController {
         vc.type = BudgetAddEditDataString.editBudget.rawValue
         vc.budgetObject = budgetObject
         vc.language = language
-//        vc.delegateBudgetController = self
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -120,7 +113,6 @@ extension BudgetDetailController : DetailBudgetTappedButton {
         let alertController = UIAlertController(title: BudgetDetailDataString.dialogConfirmDelete.rawValue.addLocalizableString(str: language), message: nil, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: BudgetDetailDataString.dialogItemOK.rawValue.addLocalizableString(str: language), style: .default) { (_) in
             self.presenter?.deleteBudgetDB(id: self.budgetObject.id!)
-            self.delegateBudgetDetail?.reloadDataListBudgetintoBudgetDetailController()
             self.navigationController?.popViewController(animated: true)
         }
         let cancelAction = UIAlertAction(title: BudgetDetailDataString.dialogItemCancel.rawValue.addLocalizableString(str: language), style: .cancel) { (_) in
@@ -147,19 +139,8 @@ extension BudgetDetailController : BudgetDetailPresenterDelegate {
         self.spent = amount
     }
     
-    
 }
 
-//// MARK: reload data budget detail into budget controller (edit)
-//extension BudgetDetailController : BudgetControllerDelegate {
-//    func reloadDataDetailBudgetintoBudgetController(budget: Budget, spend: Int) {
-//        self.spent = spend
-//        self.budgetObject = budget
-//        tblBudget.reloadData()
-//    }
-//    func reloadDataListBudgetintoBudgetController() {
-//    }
-//}
 
 
 
