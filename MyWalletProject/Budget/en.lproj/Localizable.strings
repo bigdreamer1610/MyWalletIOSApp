@@ -65,3 +65,42 @@
 "Hãy lựa chọn đủ ngày bắt đầu và kết thúc" = "Select full Start and End date";
 "Ngày bắt đầu nhỏ hơn ngày kết thúc" = "Start date is less than End date";
 "Lịch" = "Calendar";
+
+// add Transactiom
+"Quay lại" = "Cancel";
+"Thêm giao dịch" = "Add Transaction";
+"Lưu" = "Save";
+"Thêm chi tiết khác" = "Add More Details";
+"Số tiền" = "Amount";
+"Thể loại" = "Category";
+"Ghi chú" = "Note";
+"Ngày giao dịch" = "Date";
+"Chọn sự kiện " = "Select event";
+
+// detail transaction
+"Quay lại" = "Back";
+"Chi tiết giao dịch" = "Detail Transaction";
+"Xoá giao dịch" = "Delete transaction";
+
+// Edit transaction
+"Quay lại" = "Cancel";
+"Sự kiện" = "Event";
+"Sửa giao dịch" = "Edit Transaction";
+"Lưu" = "Save";
+"Số tiền" = "Amount";
+"Thể loại" = "Category";
+"Ghi chú" = "Note";
+"Ngày giao dịch" = "Date";
+"Chọn sự kiện " = "Select event";
+
+
+
+
+
+
+
+
+
+
+
+
