@@ -26,6 +26,8 @@ class ItemPlanningCell: BaseTBCell {
         // Configure the view for the selected state
     }
     
+    
+    
     func setUpData(item: PlanningItem){
         itemTitle.text = item.title
         itemIcon.image = UIImage(named: item.icon)

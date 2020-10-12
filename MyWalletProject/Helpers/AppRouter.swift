@@ -29,11 +29,7 @@ enum RouterType {
     case tabbar
     case test
     case viewTransaction
-    case report
     case account
-    case barChartDetail
-    case pieChartDetail
-    case dayBarChartDetail
     case budgetTransaction(budgetObject: Budget)
     case eventTransaction(event: Event)
     case selectEvent
@@ -47,6 +43,11 @@ enum RouterType {
     case currencies
     case travelMode
     case billScanner
+    
+    //report
+    case report
+    case barChartDetail
+    case pieChartDetail
 }
 
 class AppRouter {
@@ -129,6 +130,7 @@ extension RouterType{
             let vc = UIStoryboard(name: "budget", bundle: nil).instantiateViewController(withIdentifier: "TestController") as! BudgetController
             let presenter = BudgetPresenter(delegate: vc, budgetUseCase: BudgetUseCase())
             vc.setUp(presenter: presenter)
+            vc.hidesBottomBarWhenPushed = true
             return vc
         case .event:
             let vc = UIStoryboard(name: "AddEvent", bundle: nil).instantiateViewController(withIdentifier: "EventController") as! EventControllerView
@@ -150,19 +152,18 @@ extension RouterType{
             vc.setUp(presenter: presenter)
             return front
         case .account:
-             let vc = UIStoryboard(name: "UserSettings", bundle: nil).instantiateViewController(withIdentifier: "userSettingsNav") as! UINavigationController
+            let vc = UIStoryboard(name: "UserSettings", bundle: nil).instantiateViewController(withIdentifier: "userSettingsNav") as! UINavigationController
             return vc
+            
+        // MARK: - Report
         case .report:
-             let vc = UIStoryboard(name: "Report", bundle: nil).instantiateViewController(withIdentifier: "ReportViewController") as! ReportViewController
-            return vc
-        case .barChartDetail:
-            let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailSBC") as! DetailStackedBarChartVC
+            let vc = UIStoryboard(name: "Report", bundle: nil).instantiateViewController(withIdentifier: "ReportViewController") as! ReportViewController
             return vc
         case .pieChartDetail:
             let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailPC") as! DetailPieChartVC
             return vc
-        case .dayBarChartDetail:
-            let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "dayDetailSBC") as! DayDetailSBC
+        case .barChartDetail:
+            let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailSBC") as! DetailStackedBarChartVC
             return vc
         case .budgetTransaction(let budgetObject):
             let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "budgetTransaction_vc") as! BudgetTransactionViewController
@@ -176,7 +177,7 @@ extension RouterType{
             vc.setupDelegate(presenter: presenter)
             return vc
             
-            // MARK: - Settings and Tools
+        // MARK: - Settings and Tools
         case .categories:
             let vc = UIStoryboard.init(name: "Categories", bundle: Bundle.main).instantiateViewController(identifier: "settingsCategoryVC") as! ViewCategoryViewController
             let presenter = ViewCategoryPresenter(delegate: vc, usecase: ViewCategoryUseCase())
@@ -195,8 +196,6 @@ extension RouterType{
             let presenter = ScanBillPresenter(delegate: vc, usecase: ScanBillUseCase())
             vc.setupDelegate(presenter: presenter)
             return vc
-            
-            
         case .selectEvent:
             let vc = UIStoryboard.init(name: Constants.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "selectEvent") as! SelectEventController
             let presenter = SelectEventPresenter(delegate: vc, usecase: SelectEventUserCase())
@@ -219,7 +218,8 @@ extension RouterType{
             vc.setUpData(trans: trans, event: event, categoryName: name, categoryImage: icon)
             let presenter = EditTransactionPresenter(usecase: EditTransactionUseCase())
             vc.setUp(presenter: presenter)
+            vc.hidesBottomBarWhenPushed = true
             return vc
+        }
     }
-}
 }

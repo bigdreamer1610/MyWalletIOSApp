@@ -11,18 +11,28 @@ import UIKit
 class DetailPCCell: BaseTBCell {
     
     @IBOutlet weak var categoryImage: UIImageView!
-    @IBOutlet weak var lblTypeOfMoney: UILabel!
+    @IBOutlet weak var lblCategory: UILabel!
     @IBOutlet weak var lblMoney: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        Defined.formatter.groupingSeparator = ","
+        Defined.formatter.numberStyle = .decimal
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
-        // Configure the view for the selected state
+    }
+    
+    func setupLabel(_ color: UIColor) {
+        lblMoney.textColor = color
+    }
+    
+    func setupView(imageName: String, category: String, money: Int) {
+        lblMoney.text = String((Defined.formatter.string(from: NSNumber(value: money))!))
+        lblCategory.text = category
+        categoryImage.image = UIImage(named: imageName)
     }
     
 }

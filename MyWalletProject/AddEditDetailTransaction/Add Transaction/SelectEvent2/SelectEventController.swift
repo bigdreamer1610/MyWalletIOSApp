@@ -21,10 +21,19 @@ class SelectEventController: UIViewController {
     var delegate:SelectEvent?
     var presenter: SelectEventPresenter?
     
+    var language = ChangeLanguage.vietnam.rawValue
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initComponents()
         initData()
+        setLanguage()
+    }
+    
+    func setLanguage(){
+        navigationItem.title = SelectEventDataString.event.rawValue.addLocalizableString(str: language)
+        
     }
     
     func initData(){

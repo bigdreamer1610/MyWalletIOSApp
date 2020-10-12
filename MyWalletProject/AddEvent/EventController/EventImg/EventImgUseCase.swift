@@ -17,11 +17,13 @@ class EventImgUseCase {
     var idUser = "userid1"
     var imgEvents = [String]()
     weak var delegate: EventImgUseCaseDelegate?
+    
+    
     // Get data Firebase
     func fetchData()  {
         Defined.ref.child("ImageLibrary").observe( .value) { (snapshot) in
             for case let child as DataSnapshot in snapshot.children {
-                
+
                 print(snapshot)
                 guard let dict = child.value as? [String : Any] else {
                     print("error")
@@ -31,8 +33,11 @@ class EventImgUseCase {
                 self.imgEvents.append(img)
             }
             self.delegate?.data(imgEvents: self.imgEvents)
-            
+
         }
+
+        
+        // limit
         
     }
     

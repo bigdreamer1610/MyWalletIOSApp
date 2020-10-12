@@ -8,156 +8,42 @@
 
 import Charts
 import UIKit
-import FirebaseDatabase
 import MonthYearPicker
+import Firebase
 
 class ReportViewController: UIViewController {
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var txtDatePicker: UITextField!
-    var ref: DatabaseReference!
     private var dateFormatter = DateFormatter()
     var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
     let calendar = Calendar.current
     var currentMonth = 9
     var currentYear = 2020
     var open = 0
-    var sumIncome = 0
-    var sumExpense = 0
     var date = ""
-    var category = ""
     var expenseArray: [Transaction] = []
     var incomeArray: [Transaction] = []
+    var sumIncome = 0
+    var sumExpense = 0
     var categories: [Category] = []
-    var timer = Timer()
     var sumByCategoryIncome = [SumByCate]()
     var sumByCategoryExpense = [SumByCate]()
+    
+    var presenter: ReportPresenter = ReportPresenter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        ref = Database.database().reference()
         setupTableView()
         setupTxtDate()
         showDatePicker()
         createDatePicker()
-        DispatchQueue.main.async {
-            self.getIncome()
-            self.getExpense()
-            self.getCategory("expense")
-            self.getCategory("income")
-        }
-        checkWhenDataIsReady()
-        tableView.reloadData()
-    }
-    
-    //MARK: - Check data is ready
-    func checkWhenDataIsReady() {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(ReportViewController.finishLoading)), userInfo: nil, repeats: true)
-    }
-    
-    @objc func finishLoading() {
-        if expenseArray.count != 0 && incomeArray.count != 0 {
-            self.dataForPieChart(dataArray: self.incomeArray, state: "income")
-            self.dataForPieChart(dataArray: self.expenseArray, state: "expense")
-            tableView.reloadData()
-            timer.invalidate()
-        }
-    }
-    
-    //MARK: - Get all transaction
-    func getExpense() {
-        expenseArray.removeAll()
-        sumExpense = 0
-        self.ref.child("Account").child("userid1").child("transaction").child("expense").observeSingleEvent(of: .value) {
-            snapshot in
-            for case let child as DataSnapshot in snapshot.children {
-                guard let dict = child.value as? [String:Any] else {
-                    return
-                }
-                let amount = dict["amount"] as! Int
-                let date = dict["date"] as! String
-                let categoryid = dict["categoryid"] as! String
-                let tempDate = date.split(separator: "/")
-                let checkDate = tempDate[1] + "/" + tempDate[2]
-                
-                if self.date == checkDate {
-                    let ex = Transaction(amount: amount, categoryid: categoryid, date: date)
-                    self.sumExpense += amount
-                    self.category = categoryid
-                    self.expenseArray.append(ex)
-                }
-            }
-        }
-    }
-    
-    func getCategory(_ nameNode: String) {
-        self.ref.child("Category").child(nameNode).observeSingleEvent(of: .value) {
-            snapshot in
-            for case let child as DataSnapshot in snapshot.children {
-                guard let dict = child.value as? [String:Any] else {
-                    return
-                }
-                let iconImage = dict["iconImage"] as! String
-                let name = dict["name"] as! String
-                let ex = Category(id: child.key, name: name, iconImage: iconImage)
-                self.categories.append(ex)
-            }
-        }
-    }
-    
-    func getIncome() {
-        incomeArray.removeAll()
-        sumIncome = 0
-        self.ref.child("Account").child("userid1").child("transaction").child("income").observeSingleEvent(of: .value) {
-            snapshot in
-            for case let child as DataSnapshot in snapshot.children {
-                guard let dict = child.value as? [String:Any] else {
-                    return
-                }
-                let amount = dict["amount"] as! Int
-                let date = dict["date"] as! String
-                let categoryid = dict["categoryid"] as! String
-                
-                let tempDate = date.split(separator: "/")
-                let checkDate = tempDate[1] + "/" + tempDate[2]
-                
-                if self.date == checkDate {
-                    let ex = Transaction(amount: amount, categoryid: categoryid, date: date)
-                    self.sumIncome += amount
-                    self.category = categoryid
-                    self.incomeArray.append(ex)
-                }
-            }
-        }
-    }
-    
-    // Sum by Category
-    func dataForPieChart(dataArray: [Transaction], state: String) {
-        var sumByCategory = [SumByCate]()
-        for index in 0 ..< dataArray.count {
-            let sumIndex = checkExist(category: dataArray[index].categoryid!, array: sumByCategory)
-            if sumIndex != -1 {
-                sumByCategory[sumIndex].amount += dataArray[index].amount!
-            } else {
-                sumByCategory.append(SumByCate(category: dataArray[index].categoryid!, amount: dataArray[index].amount!))
-            }
-        }
-        sumByCategory.sort(by: { $0.amount > $1.amount })
-        if state == "income" {
-            sumByCategoryIncome = sumByCategory
-        } else {
-            sumByCategoryExpense = sumByCategory
-        }
-    }
-    
-    // Check if a Category exists
-    func checkExist(category: String, array: [SumByCate]) -> Int {
-        for index in 0 ..< array.count {
-            if category == array[index].category {
-                return index
-            }
-        }
-        return -1
+        self.presenter.delegate = self
+        self.presenter.requestIncome(dateInput: self.date)
+        self.presenter.requestExpense(dateInput: self.date)
+        self.presenter.requestCategories(nameNode: "income")
+        self.presenter.requestCategories(nameNode: "expense")
     }
     
     //MARK: - Setup Date
@@ -181,13 +67,15 @@ class ReportViewController: UIViewController {
     func showDatePicker() {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneDatePicker))
+        let doneButton = UIBarButtonItem(title: Constants.done, style: .plain, target: self, action: #selector(doneDatePicker))
         toolbar.setItems([doneButton], animated: true)
         toolbar.isUserInteractionEnabled = true
         txtDatePicker.inputAccessoryView = toolbar
     }
     
     @objc func doneDatePicker(){
+        self.presenter.handleDataForPieChart(dataArray: self.incomeArray, state: .income)
+        self.presenter.handleDataForPieChart(dataArray: self.expenseArray, state: .expense)
         self.tableView.reloadData()
         self.view.endEditing(true)
     }
@@ -210,8 +98,8 @@ class ReportViewController: UIViewController {
             txtDatePicker.text = "\(components.month!)/\(components.year!)"
             self.date = txtDatePicker.text ?? "\(currentMonth)/\(currentYear)"
         }
-        getIncome()
-        getExpense()
+        self.presenter.requestIncome(dateInput: self.date)
+        self.presenter.requestExpense(dateInput: self.date)
         self.tableView.reloadData()
     }
     
@@ -280,5 +168,36 @@ extension ReportViewController: CustomCollectionCellDelegate {
         }
         vc.categories = categories
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension ReportViewController: ReportPresenterDelegate {
+    func returnCategories(categories: [Category]) {
+        self.categories = categories
+        self.tableView.reloadData()
+    }
+    
+    func returnIncomeDataForPieChart(sum: [SumByCate]) {
+        self.sumByCategoryIncome = sum
+        self.tableView.reloadData()
+    }
+    
+    func returnExpenseDataForPieChart(sum: [SumByCate]) {
+        self.sumByCategoryExpense = sum
+        self.tableView.reloadData()
+    }
+    
+    func returnIncomeDataForView(incomeArray: [Transaction], sumIncome: Int) {
+        self.incomeArray = incomeArray
+        self.presenter.handleDataForPieChart(dataArray: self.incomeArray, state: .income)
+        self.sumIncome = sumIncome
+        self.tableView.reloadData()
+    }
+    
+    func returnExpenseDataForView(expenseArray: [Transaction], sumExpense: Int) {
+        self.expenseArray = expenseArray
+        self.presenter.handleDataForPieChart(dataArray: self.expenseArray, state: .expense)
+        self.sumExpense = sumExpense
+        self.tableView.reloadData()
     }
 }
