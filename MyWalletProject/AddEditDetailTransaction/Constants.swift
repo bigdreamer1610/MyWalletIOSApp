@@ -38,7 +38,6 @@ class Constants {
     let languageBlank = "Language can not be blank, please try again!"
     let languageNotMatchFormat = "Language does not match with our format, please try again!"
     
-    
     static let mode = "mode"
     static let balance = "balance"
     static let userid = "userid"
@@ -48,6 +47,13 @@ class Constants {
     static let currentMonth = "currentMonth"
     static let currentYear = "currentYear"
     static let currentDate = "currentDate"
+    
+    //report
+    static let income = "Income"
+    static let expense = "Expense"
+    static let done = "Done"
+    static let other = "Other"
+    
     //MARK: HEIGHT FOR CELL & HEADER
     static let transactionHeader: CGFloat = 60
     static let categoryHeader: CGFloat = 65

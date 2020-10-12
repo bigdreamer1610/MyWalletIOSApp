@@ -17,7 +17,10 @@ enum AddTransactionDataString: String {
     case note = "Note"
     case date = "Date"
     case addMoreDetails = "Add More Details"
-    case selectEvent = "Select Event"
+    case selectEvent = "Select event"
+    case notification = "Notification"
+    case alert = "Add a new transaction successfully"
+    case ok = "Ok"
 
 
 

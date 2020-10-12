@@ -336,6 +336,7 @@
                         <viewLayoutGuide key="safeArea" id="i7N-oo-hGg"/>
                     </view>
                     <connections>
+                        <outlet property="segmentedControl" destination="SCg-m4-Trc" id="9cl-Zs-1eY"/>
                         <outlet property="tableView" destination="vgb-ZN-Pf0" id="VHC-16-spr"/>
                     </connections>
                 </viewController>
@@ -595,6 +596,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="btnBack" destination="arO-N1-y1T" id="t7D-Cq-j1I"/>
                         <outlet property="btnDelete" destination="VST-gd-Xnb" id="qf4-oG-622"/>
                         <outlet property="eventView" destination="yvD-VO-kKh" id="nrd-45-Pdd"/>
                         <outlet property="iconImage" destination="Fpq-st-1nm" id="zNO-F7-KB0"/>
@@ -813,7 +815,7 @@
                                 <action selector="clickCancel:" destination="1Xm-Hf-Job" id="1L5-YU-UYK"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Rit-VP-p6v">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="Rit-VP-p6v">
                             <color key="tintColor" red="0.34188552950000001" green="0.33373176269999999" blue="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="clickSave:" destination="1Xm-Hf-Job" id="snf-XC-bHP"/>
@@ -823,7 +825,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="btnCancel" destination="FlJ-FO-PdS" id="1AM-T2-L5v"/>
-                        <outlet property="btnSave" destination="Rit-VP-p6v" id="NwV-Bg-g3z"/>
+                        <outlet property="btnSave" destination="Rit-VP-p6v" id="l4P-7L-gpl"/>
                         <outlet property="btnTrash" destination="XpF-C2-CGF" id="zBh-IQ-mug"/>
                         <outlet property="iconEvent" destination="alb-Nz-XE9" id="wYf-uF-lRM"/>
                         <outlet property="iconImage" destination="3bm-Po-Ne4" id="X3w-OR-o1V"/>
@@ -1043,10 +1045,9 @@
                                 <action selector="clickCancel:" destination="lqv-GL-MUS" id="fW5-6I-gTB"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="YVi-QS-eGd">
-                            <color key="tintColor" red="0.41195681229999997" green="0.40492864439999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="HsQ-bm-KKo">
                             <connections>
-                                <action selector="btnSave:" destination="lqv-GL-MUS" id="rkN-ns-GKF"/>
+                                <action selector="btnSave:" destination="lqv-GL-MUS" id="auZ-IU-qBV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1054,7 +1055,7 @@
                     <connections>
                         <outlet property="btnAddMore" destination="khd-TG-ewd" id="b1v-1i-FxE"/>
                         <outlet property="btnCancel" destination="oZX-TI-wdG" id="wTo-9u-ELJ"/>
-                        <outlet property="btnSave" destination="YVi-QS-eGd" id="iD3-Xh-g3D"/>
+                        <outlet property="btnSave" destination="HsQ-bm-KKo" id="RrL-q9-Z3E"/>
                         <outlet property="iconEvent" destination="bTd-ZB-tk5" id="mWd-HV-OdS"/>
                         <outlet property="iconImage" destination="jLc-sk-vGq" id="8Xs-mq-WWw"/>
                         <outlet property="lblAmount" destination="Qek-PV-U1D" id="PPX-jH-M4Y"/>
