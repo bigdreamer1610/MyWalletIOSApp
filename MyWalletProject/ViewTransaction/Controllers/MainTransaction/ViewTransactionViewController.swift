@@ -14,8 +14,8 @@ class ViewTransactionViewController: UIViewController {
     var bottomMenuView = UIView()
     var tableView = UITableView()
     var height: CGFloat = 190
-    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
-    var weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thurday","Friday","Saturday"]
+//    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+//    var weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thurday","Friday","Saturday"]
     
     var transactionBotMenu = [
         BottomMenu(icon: "adjustbalance", title: "Adjust balance"),
@@ -29,7 +29,6 @@ class ViewTransactionViewController: UIViewController {
     ]
     
     var monthTitles = [Date]()
-    //main class
     var transactionSections = [TransactionSection]()
     var categorySections = [CategorySection]()
     
@@ -108,7 +107,6 @@ class ViewTransactionViewController: UIViewController {
     func setUpCurrentDate(month: Int, year: Int){
         Defined.defaults.set(month, forKey: Constants.currentMonth)
         Defined.defaults.set(year, forKey: Constants.currentYear)
-        //Defined.defaults.set(Defined.dateFormatter.date(from: "02/\(month)/\(year)")!, forKey: Constants.currentDate)
     }
     
     func initData(month: Int, year: Int){
@@ -188,12 +186,10 @@ class ViewTransactionViewController: UIViewController {
 
 extension ViewTransactionViewController {
     fileprivate func jumpToDate(from date: Date){
-        print(date)
         let firstIndexPath = IndexPath(item: getIndexPathOfThisMonthCell(from: date), section: 0)
         print("Date indexpath: \(firstIndexPath)")
         monthCollectionView.selectItem(at: firstIndexPath, animated: true, scrollPosition: .centeredHorizontally)
-        
-        //transactionTableView.setContentOffset(.zero, animated: true)
+        setUpCurrentDate(month: date.dateComponents.month!, year: date.dateComponents.year!)
     }
 }
 
@@ -276,10 +272,8 @@ extension ViewTransactionViewController : UITableViewDataSource {
         case self.tableView:
             if indexPath.row == 0 {
                 let vc = RouterType.balance.getVc()
-                let navi = UINavigationController(rootViewController: vc)
-                navi.modalPresentationStyle = .fullScreen
-                self.present(navi, animated: true, completion: nil)
-                //AppRouter.routerTo(from: vc, options: .transitionCrossDissolve, duration: 0.3, isNaviHidden: false)
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true, completion: nil)
             } else if indexPath.row == 1 {
                 if mode == Mode.transaction.getValue() {
                     mode = Mode.category.getValue()
