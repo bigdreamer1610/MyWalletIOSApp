@@ -14,17 +14,30 @@ class PlanningCell: BaseTBCell{
     @IBOutlet var rightArrow1: UIImageView!
     @IBOutlet weak var eventView: UIView!
     @IBOutlet weak var budgetView: UIView!
+    @IBOutlet weak var lblBudgets: UILabel!
+    @IBOutlet weak var lblContent1: UILabel!
+    @IBOutlet weak var lblContent2: UILabel!
+    @IBOutlet weak var lblEvents: UILabel!
+    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         customizeLayout()
         addTapGestures()
-        
         // Initialization code
     }
+    
+    func setLanguage(language:String){
+        lblContent1.text = PlanningDataString.content1.rawValue.addLocalizableString(str: language)
+        lblContent2.text = PlanningDataString.content2.rawValue.addLocalizableString(str: language)
+        lblBudgets.text = PlanningDataString.budgets.rawValue.addLocalizableString(str: language)
+        lblEvents.text = PlanningDataString.events.rawValue.addLocalizableString(str: language)
 
+
+     }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     

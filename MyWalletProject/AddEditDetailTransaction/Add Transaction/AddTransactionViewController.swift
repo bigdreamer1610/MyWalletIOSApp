@@ -141,8 +141,11 @@ class AddTransactionViewController: UIViewController {
             let intAmount = Int(strAmount){
             amount = intAmount
             if amount! <= 0{
-                let alert = UIAlertController(title: "Notification", message: "Amount of money cannot be 0", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                let alert = UIAlertController(title: AddTransactionDataString.notification.rawValue.addLocalizableString(str: language),
+                                              message: AddTransactionDataString.alert.rawValue.addLocalizableString(str: language),
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: AddTransactionDataString.ok.rawValue.addLocalizableString(str: language),
+                                              style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
                 return
             }
@@ -151,8 +154,11 @@ class AddTransactionViewController: UIViewController {
         note = tfNote.text!
         let transaction = Transaction(transactionType: type!, amount: amount!, categoryid: categoryid, date: date, note: note, eventid: eventid ?? "")
         presenter?.add(trans: transaction)
-        let alert = UIAlertController(title: "Notification", message: "Add a new transaction successfully", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+        let alert = UIAlertController(title:AddTransactionDataString.notification.rawValue.addLocalizableString(str: language),
+                                      message: AddTransactionDataString.alert.rawValue.addLocalizableString(str: language),
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: AddTransactionDataString.ok.rawValue.addLocalizableString(str: language),
+                                      style: .default, handler: { (action) in
 //            let vc = RouterType.tabbar.getVc()
 //            AppRouter.routerTo(from: vc, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
             self.dismiss(animated: true, completion: nil)
@@ -180,6 +186,7 @@ class AddTransactionViewController: UIViewController {
         let checkAmount = Int(tfAmount.text!)
         if checkAmount == 0 || tfDate.text!.isEmpty || tfCategory.text!.isEmpty || tfAmount.text!.isEmpty{
             btnSave.isEnabled = false
+
         }else{
             btnSave.isEnabled = true
         }
