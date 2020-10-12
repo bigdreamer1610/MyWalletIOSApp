@@ -13,7 +13,8 @@ protocol EventTransactionPresenterDelegate: class {
     func reloadData()
     func getTransactionSection(section: [TransactionSection])
     func getTotal(total: Int)
-    func getAllTransactions(trans: [Transaction])
+    func startLoading()
+    func endLoading()
 }
 
 class EventTransactionPresenter {
@@ -49,12 +50,12 @@ class EventTransactionPresenter {
     }
     
     func fetchDataTransactions(eid: String){
+        delegate?.startLoading()
         eventUseCase?.getTransactionByEvent(eid: eid)
         
     }
     
-    func fetchData(trans: [Transaction]){
-        allTransactions = trans
+    func fetchData(){
         getTransactionByEvent()
         getTotalAmount()
         processTransactionSection(list: finalTransactions)
@@ -111,6 +112,7 @@ class EventTransactionPresenter {
             
         }
         transactionSections = sections
+        delegate?.endLoading()
         delegate?.getTransactionSection(section: transactionSections)
     }
     
@@ -155,6 +157,6 @@ extension EventTransactionPresenter : ViewTransactionUseCaseDelegate {
 extension EventTransactionPresenter : EventTransactionUseCaseDelegate {
     func responseDataTransactions(trans: [Transaction]) {
         self.allTransactions = trans
-        delegate?.getAllTransactions(trans: trans)
+        fetchData()
     }
 }

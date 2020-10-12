@@ -258,10 +258,13 @@
                 <outlet property="btnTransaction" destination="oJ1-s0-CfX" id="qb0-3t-Jf1"/>
                 <outlet property="imgCategory" destination="Et6-ji-bQf" id="qYN-ty-LY8"/>
                 <outlet property="lblAmount" destination="QYJ-bl-hXG" id="MZE-cw-Yqr"/>
+                <outlet property="lblAmountTitle" destination="b0b-QS-If5" id="9N0-ox-Bfv"/>
                 <outlet property="lblCalendar" destination="pSt-L1-kA3" id="70w-CG-c8m"/>
                 <outlet property="lblCategory" destination="KWn-dX-pmw" id="KyC-eo-AnJ"/>
                 <outlet property="lblRest" destination="dgr-Ww-cbS" id="nYh-QA-eTY"/>
+                <outlet property="lblRestTitle" destination="4kS-AT-d4M" id="9sR-sF-7d6"/>
                 <outlet property="lblSpend" destination="fFz-Ir-HAt" id="lFf-AE-xso"/>
+                <outlet property="lblSpendTitle" destination="U2U-mr-fmS" id="rOb-wt-jtq"/>
                 <outlet property="lblTotalAmount" destination="0hm-fV-IeH" id="BXH-lk-vot"/>
                 <outlet property="prgSpend" destination="8c8-EQ-lKM" id="sMi-E9-qDi"/>
             </connections>

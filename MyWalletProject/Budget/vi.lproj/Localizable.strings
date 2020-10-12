@@ -1,0 +1,67 @@
+/* 
+  Localizable.strings
+  MyWalletProject
+
+  Created by Hoang Tung Lam on 10/9/20.
+  Copyright © 2020 Vuong Vu Bac Son. All rights reserved.
+*/
+
+// budget list
+"Back" = "Quay lại";
+"Budgets" = "Ngân sách";
+"Currently applying" = "Đang áp dụng";
+"Finished" = "Hoàn thành";
+"Start" = "Bắt đầu";
+"End" = "Kết thúc";
+"Total" = "Tổng";
+"Refresh" = "Làm mới";
+
+// budget detail
+"Back" = "Quay lại";
+"Budget Detail" = "Chi tiết ngân sách";
+"Edit" = "Sửa";
+"Spend" = "Tiêu";
+"Left" = "Còn lại";
+"Amount" = "Số tiền";
+"List transactions" = "Danh sách giao dịch";
+"Delete" = "Xoá";
+"Do you want delete ?" = "Bạn có muốn xoá ?";
+"OK" = "Xác nhận";
+"Cancel" = "Huỷ";
+
+// budget add edit
+"Back" = "Quay lại";
+"Save" = "Lưu";
+"Add Budget" = "Thêm ngân sách";
+"Edit Budget" = "Sửa ngân sách";
+"Select category" = "Chọn thể loại";
+"Input Amount" = "Nhập số tiền";
+"Select Time" = "Chọn thời gian";
+"OK" = "Xác nhận";
+"Cancel" = "Huỷ";
+"Please Choose Enough Attributes" = "Hãy chọn đủ thuộc tính";
+"Amount less than 2.000.000.000" = "Số tiền nhỏ hơn 2.000.000.000";
+"Start date and End date is coexist" = "Ngày bắt đầu và ngày kết thúc đã cùng tồn tại";
+
+// Select category
+"Back" = "Quay lại";
+"Expense" = "Chi phí";
+"Income" = "Thu nhập";
+"Refresh" = "Làm mới";
+"Select category" = "Chọn thể loại";
+
+// time ranger
+"Back" = "Quay lại";
+"Time Ranger" = "Thời gian";
+"Done" = "Hoàn thành";
+"Start" = "Bắt đầu";
+"End" = "Kết thúc";
+"STARTING DATE" = "NGÀY BẮT ĐẦU";
+"END DATE" = "NGÀY KẾT THÚC";
+"Starting date" = "Ngày bắt đầu";
+"End date" = "Ngày kết thúc";
+"OK" = "Xác nhận";
+"Cancel" = "Huỷ";
+"Select full Start and End date" = "Hãy lựa chọn đủ ngày bắt đầu và kết thúc";
+"Start date is less than End date" = "Ngày bắt đầu nhỏ hơn ngày kết thúc";
+"Calendar" = "Lịch";

@@ -36,6 +36,8 @@ class ViewTransactionPresenter {
     var today = Date()
     var transactionSections = [TransactionSection]()
     var categorySections = [CategorySection]()
+    var month: Int = 0
+    var year: Int = 0
     
     var weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thurday","Friday","Saturday"]
     var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
@@ -55,6 +57,11 @@ class ViewTransactionPresenter {
         getMonthYearInRange(from: minDate, to: maxDate)
     }
     
+    func setUpMonthYear(month: Int, year: Int){
+        self.month = month
+        self.year = year
+    }
+    
     func getFirstTransaction(){
         delegate?.startLoading()
         viewTransUseCase?.getAllTransactions()
@@ -65,7 +72,6 @@ class ViewTransactionPresenter {
         print("Trans 2: \(allTransactions.count)")
         getTransactionbyMonth(month: month, year: year)
         loadDetailCell(month: month, year: year)
-        delegate?.scrollToTop()
         
     }
     
@@ -274,6 +280,7 @@ extension ViewTransactionPresenter : ViewTransactionUseCaseDelegate {
         DispatchQueue.main.async {
             self.delegate?.endLoading()
             self.allTransactions = trans
+            self.getDataTransaction(month: self.month, year: self.year)
             //self.delegate?.reloadTableView()
             print("Trans 1: \(self.allTransactions.count)")
         }
@@ -282,6 +289,8 @@ extension ViewTransactionPresenter : ViewTransactionUseCaseDelegate {
     func responseCategories(cate: [Category]) {
         DispatchQueue.main.async {
             self.categories = cate
+            self.getFirstTransaction()
+            
         }
     }
     

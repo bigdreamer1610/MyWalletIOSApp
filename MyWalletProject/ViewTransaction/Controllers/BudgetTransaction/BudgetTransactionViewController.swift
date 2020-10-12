@@ -14,7 +14,7 @@ class BudgetTransactionViewController: UIViewController {
 
     var presenter: BudgetTransactionPresenter?
     @IBOutlet var detailTableView: UITableView!
-    
+    @IBOutlet var indicatorView: UIActivityIndicatorView!
     @IBOutlet var lbNoTrans: UILabel!
     
     var transactionSections = [TransactionSection]()
@@ -23,13 +23,16 @@ class BudgetTransactionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        indicatorView.isHidden = true
         lbNoTrans.isHidden = true
-        detailTableView.isHidden = true
         initComponents()
-        initData()
-        // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        detailTableView.isHidden = true
+        initData()
+    }
     func setUp(presenter: BudgetTransactionPresenter){
         self.presenter = presenter
     }
@@ -49,9 +52,6 @@ class BudgetTransactionViewController: UIViewController {
     func initData(){
         presenter?.setUpBudget(budgetObject: budget)
         presenter?.fetchDataTransactions(cid: budget.categoryId!)
-    }
-    func fetchData(trans: [Transaction]){
-        presenter?.fetchData(trans: trans)
     }
 
 }
@@ -153,9 +153,14 @@ extension BudgetTransactionViewController : BudgetTransactionPresenterDelegate {
         self.detailTableView.reloadData()
     }
     
-    func getAllTransactions(trans: [Transaction]) {
-        fetchData(trans: trans)
-        
+    func startLoading() {
+        indicatorView.isHidden = false
+        indicatorView.startAnimating()
+    }
+    
+    func endLoading() {
+        indicatorView.stopAnimating()
+        indicatorView.isHidden = true
     }
     
     
