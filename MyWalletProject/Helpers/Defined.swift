@@ -66,7 +66,10 @@ class Defined {
         return sortedArray
     }
     
-    class func getDateModel(components: DateComponents, weekdays: [String], months: [String]) -> DateModel{
+    // Get date model from datecomponents
+    class func getDateModel(components: DateComponents) -> DateModel{
+        let months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+        let weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thurday","Friday","Saturday"]
         let weekDay = components.weekday!
         let month = components.month!
         let date = components.day!
@@ -75,6 +78,7 @@ class Defined {
         return model
     }
     
+    // get all transactions in specific time range
     class func getTransactionbyDate(dateArr: [TransactionDate],allTrans: [Transaction]) -> [Transaction]{
         var list = [Transaction]()
         for day in dateArr {
@@ -90,12 +94,12 @@ class Defined {
     class func getTransactionDates(dates: [Date]) -> [TransactionDate]{
         var list = [TransactionDate]()
         // sort descending
-        var mDates = dates.sorted { (first, second) -> Bool in
+        let mDates = dates.sorted { (first, second) -> Bool in
             first.compare(second) == ComparisonResult.orderedDescending        }
-        //Date style: 18/09/2020
         Defined.dateFormatter.dateStyle = .short
         for d in mDates {
             let t = TransactionDate(dateString: Defined.dateFormatter.string(from: d), date: d)
+            //add into TransactionDate list
             list.append(t)
         }
         return list
