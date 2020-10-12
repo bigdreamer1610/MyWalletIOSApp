@@ -43,7 +43,7 @@ class DetailPresenter {
 }
 extension DetailPresenter: DetailEventUseCaseDelegate{
     func marKedCompeleEvent(event: Event) {
-        print("vanthanh")
+        
     }
     
     
