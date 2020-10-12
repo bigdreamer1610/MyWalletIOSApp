@@ -107,7 +107,7 @@ class BudgetController: UIViewController {
             else if type == BudgetAddEditDataString.editBudget.rawValue {
                 var checkExist = true
                 
-                if let catename = UserDefaults.standard.string(forKey: "name"), let startdate = UserDefaults.standard.string(forKey: "startdate") , let endDate = UserDefaults.standard.string(forKey: "enddate") {
+                if let catename = UserDefaults.standard.string(forKey: Constants.budgetCateName), let startdate = UserDefaults.standard.string(forKey: Constants.budgetStartDate) , let endDate = UserDefaults.standard.string(forKey: Constants.budgetEndDate) {
                     listBudgetName = listBudgetName.filter({ $0.categoryName != catename || $0.startDate != startdate || $0.endDate != endDate })
                 }
                 
@@ -121,7 +121,7 @@ class BudgetController: UIViewController {
                 
                 if (checkExist == false){
                     self.dialogMess(title: "" , message: BudgetAddEditDataString.dialogWarningStartAndEndisCoexist.rawValue.addLocalizableString(str: language))
-                   
+                    
                 }else {
                     editBudget()
                 }
@@ -132,9 +132,9 @@ class BudgetController: UIViewController {
     // btn back click
     @IBAction func btnBackClick(_ sender: Any) {
         navigationController?.popViewController(animated: true)
-        UserDefaults.standard.removeObject(forKey: "name")
-        UserDefaults.standard.removeObject(forKey: "startdate")
-        UserDefaults.standard.removeObject(forKey: "enddate")
+        UserDefaults.standard.removeObject(forKey: Constants.budgetCateName)
+        UserDefaults.standard.removeObject(forKey: Constants.budgetStartDate)
+        UserDefaults.standard.removeObject(forKey: Constants.budgetEndDate)
     }
 }
 
@@ -251,10 +251,10 @@ extension BudgetController: AddEditBudgetControll {
         let confirmAction = UIAlertAction(title: BudgetAddEditDataString.dialogItemOK.rawValue.addLocalizableString(str: language), style: .default) { (_) in
             self.presenter?.editBudget(budget: self.budgetObject)
             self.presenter?.getAmountTrans(budget: self.budgetObject, listTransaction: self.listTransaction)
-            self.delegateBudgetController?.reloadDataDetailBudgetintoBudgetController(budget: self.budgetObject , spend: self.spend)
-            UserDefaults.standard.removeObject(forKey: "name")
-            UserDefaults.standard.removeObject(forKey: "startdate")
-            UserDefaults.standard.removeObject(forKey: "enddate")
+//            self.delegateBudgetController?.reloadDataDetailBudgetintoBudgetController(budget: self.budgetObject , spend: self.spend)
+            UserDefaults.standard.removeObject(forKey: Constants.budgetCateName)
+            UserDefaults.standard.removeObject(forKey: Constants.budgetStartDate)
+            UserDefaults.standard.removeObject(forKey: Constants.budgetEndDate)
             self.navigationController?.popViewController(animated:true)
         }
         let cancelAction = UIAlertAction(title: BudgetAddEditDataString.dialogItemCancel.rawValue.addLocalizableString(str: language), style: .cancel) { (_) in
@@ -266,14 +266,14 @@ extension BudgetController: AddEditBudgetControll {
     
 }
 
-//MARK: - Parse data cell Amount
+//MARK: - Get data cell Amount
 extension BudgetController: AmountCellDelegete {
     func amoutDidChange(value: String) {
         budgetObject.amount = Int(value)
     }
 }
 
-//MARK: - Parse data budget controller into TimeRanger and SelectCategory
+//MARK: - Reload data budget controller into TimeRanger and SelectCategory
 extension BudgetController : TimeRangerViewControllerDelegate , SelectCategoryViewControllerDelegate{
     
     func fetchDataCategory(budget: Budget, type: String) {
@@ -289,7 +289,7 @@ extension BudgetController : TimeRangerViewControllerDelegate , SelectCategoryVi
     }
 }
 
-//MARK: - BudgetPresenterDelegate
+//MARK: - Get data into BudgetPresenterDelegate
 extension BudgetController : BudgetPresenterDelegate {
     func getNewChildID(id: Int) {
         self.newChild = id

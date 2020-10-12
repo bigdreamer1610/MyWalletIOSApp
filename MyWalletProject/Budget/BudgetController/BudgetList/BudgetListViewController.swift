@@ -140,14 +140,16 @@ extension BudgetListViewController : UITableViewDataSource , UITableViewDelegate
         if let vc = RouterType.budgetDetail.getVc() as? BudgetDetailController {
             switch segmentIndex {
             case 0:
-                vc.budgetObject = listBudgetCurrent[indexPath.row]
-                presenter?.getAmountListTransaction(budget: listBudgetCurrent[indexPath.row], listTransaction: listTransaction)
-                vc.spent = amount
+//                vc.budgetObject = listBudgetCurrent[indexPath.row]
+//                presenter?.getAmountListTransaction(budget: listBudgetCurrent[indexPath.row], listTransaction: listTransaction)
+//                vc.spent = amount
+                vc.budgetID = listBudgetCurrent[indexPath.row].id!
                 vc.language = language
             default:
-                vc.budgetObject = listBudgetFinish[indexPath.row]
-                presenter?.getAmountListTransaction(budget: listBudgetFinish[indexPath.row], listTransaction: listTransaction)
-                vc.spent = amount
+//                vc.budgetObject = listBudgetFinish[indexPath.row]
+//                presenter?.getAmountListTransaction(budget: listBudgetFinish[indexPath.row], listTransaction: listTransaction)
+//                vc.spent = amount
+                vc.budgetID = listBudgetFinish[indexPath.row].id!
                 vc.language = language
             }
             vc.delegateBudgetDetail = self
