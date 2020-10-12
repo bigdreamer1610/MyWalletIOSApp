@@ -12,7 +12,8 @@ protocol BudgetTransactionPresenterDelegate: class {
     func reloadData()
     func getTransactionSection(section: [TransactionSection])
     func getTotal(total: Int)
-    func getAllTransactions(trans: [Transaction])
+    func startLoading()
+    func endLoading()
 }
 
 class BudgetTransactionPresenter {
@@ -40,11 +41,11 @@ class BudgetTransactionPresenter {
     }
     
     func fetchDataTransactions(cid: String){
+        delegate?.startLoading()
         usecase?.getTransactionsbyCategory(cid: cid)
     }
     
-    func fetchData(trans: [Transaction]){
-        allTransactions = trans
+    func fetchData(){
         getTransactionByCategoryInRange()
         getTotalAmount()
         processTransactionSection(list: finalTransactions)
@@ -89,7 +90,7 @@ class BudgetTransactionPresenter {
             
         }
         transactionSections = sections
-        print("transactionsections: \(sections)")
+        delegate?.endLoading()
         delegate?.getTransactionSection(section: transactionSections)
     }
     
@@ -134,7 +135,8 @@ extension BudgetTransactionPresenter {
 extension BudgetTransactionPresenter : BudgetTransactionUseCaseDelegate {
     func responseDataTransactions(trans: [Transaction]) {
         self.allTransactions = trans
-        delegate?.getAllTransactions(trans: trans)
+        fetchData()
+        //delegate?.getAllTransactions(trans: trans)
     }
     
     

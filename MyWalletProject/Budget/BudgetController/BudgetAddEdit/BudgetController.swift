@@ -22,6 +22,8 @@ protocol BudgetControllerDelegate {
 
 class BudgetController: UIViewController {
     @IBOutlet weak var tblAddBudget: UITableView!
+    @IBOutlet weak var btnBack: UIBarButtonItem!
+    @IBOutlet weak var btnSave: UIBarButtonItem!
     
     var presenter : BudgetPresenter?
     var budgetObject:Budget = Budget()
@@ -33,15 +35,17 @@ class BudgetController: UIViewController {
     var delegateBudgetController:BudgetControllerDelegate?
     var spend = 0
     
+    var language = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.getListBudgetName()
         presenter?.getlistTransaction()
-        if type == "Add Budget" {
+        if type == BudgetAddEditDataString.addBudget.rawValue {
             presenter?.getNewId()
-            navigationItem.title = type
-        } else if type == "Edit Budget" {
-            navigationItem.title = type
+            navigationItem.title = type.addLocalizableString(str: language)
+        } else if type == BudgetAddEditDataString.editBudget.rawValue {
+            navigationItem.title = type.addLocalizableString(str: language)
         }
         // table budget
         tblAddBudget.dataSource = self
@@ -51,11 +55,13 @@ class BudgetController: UIViewController {
         tblAddBudget.register(UINib(nibName: "TimeCell", bundle: nil), forCellReuseIdentifier: "TimeCell")
         tblAddBudget.reloadData()
         tblAddBudget.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tblAddBudget.bounds.width, height: 0))
-        
+        // hiden keyboard when tap background table
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        
         tapGestureRecognizer.cancelsTouchesInView = false
         tblAddBudget.addGestureRecognizer(tapGestureRecognizer)
+        // Change language btn back and save
+        btnBack.title = BudgetAddEditDataString.back.rawValue.addLocalizableString(str: language)
+        btnSave.title = BudgetAddEditDataString.save.rawValue.addLocalizableString(str: language)
     }
     
     // func hide keyboard when tap tableview 
@@ -70,13 +76,13 @@ class BudgetController: UIViewController {
     // btn save click
     @IBAction func btnSaveClick(_ sender: Any) {
         if(budgetObject.categoryName == "" || budgetObject.startDate == "" || budgetObject.amount == nil){
-            self.dialogMess(title: "" , message:"Please Choose Enough Attributes")
+            self.dialogMess(title: "" , message:BudgetAddEditDataString.dialogWarningChooseEnoughAttributes.rawValue.addLocalizableString(str: language))
             
         } else if let amount = budgetObject.amount , amount > 2000000000{
-            self.dialogMess(title: "" , message: "Amount less than 2.000.000.000")
+            self.dialogMess(title: "" , message: BudgetAddEditDataString.dialogWarningAmountLessThanTwoBillions.rawValue.addLocalizableString(str: language))
             
         } else {
-            if type == "Add Budget" {
+            if type == BudgetAddEditDataString.addBudget.rawValue {
                 if listBudgetName.count < 1 {
                     addBudget()
                     
@@ -91,14 +97,14 @@ class BudgetController: UIViewController {
                     }
                     
                     if (checkExist == false){
-                        self.dialogMess(title: "" , message: "Start date and End date is coexist")
+                        self.dialogMess(title: "" , message: BudgetAddEditDataString.dialogWarningStartAndEndisCoexist.rawValue.addLocalizableString(str: language))
                         
                     }else {
                         addBudget()
                     }
                 }
             }
-            else if type == "Edit Budget" {
+            else if type == BudgetAddEditDataString.editBudget.rawValue {
                 var checkExist = true
                 
                 if let catename = UserDefaults.standard.string(forKey: "name"), let startdate = UserDefaults.standard.string(forKey: "startdate") , let endDate = UserDefaults.standard.string(forKey: "enddate") {
@@ -114,7 +120,7 @@ class BudgetController: UIViewController {
                 }
                 
                 if (checkExist == false){
-                    self.dialogMess(title: "" , message: "Start date and End date is coexist")
+                    self.dialogMess(title: "" , message: BudgetAddEditDataString.dialogWarningStartAndEndisCoexist.rawValue.addLocalizableString(str: language))
                    
                 }else {
                     editBudget()
@@ -151,13 +157,14 @@ extension BudgetController: UITableViewDataSource , UITableViewDelegate {
                     cell.lblCateName.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                     
                 }else{
-                    cell.lblCateName.text = "Select category"
+                    cell.lblCateName.text = BudgetAddEditDataString.selectCategory.rawValue.addLocalizableString(str: language)
                     cell.lblCateName.textColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
                 }
                 return cell
             }
         case 1:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "AmountCell", for: indexPath) as? AmountCell {
+                cell.lblAmount.placeholder = BudgetAddEditDataString.inputAmount.rawValue.addLocalizableString(str: language)
                 if budgetObject.amount != nil {
                     cell.lblAmount.text = "\(budgetObject.amount!)"
                     
@@ -174,7 +181,7 @@ extension BudgetController: UITableViewDataSource , UITableViewDelegate {
                     cell.lblTime.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                     
                 }else{
-                    cell.lblTime.text = "Select time"
+                    cell.lblTime.text = BudgetAddEditDataString.selectTime.rawValue.addLocalizableString(str: language)
                     cell.lblTime.textColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
                 }
                 return cell
@@ -197,6 +204,7 @@ extension BudgetController: UITableViewDataSource , UITableViewDelegate {
             let vc = RouterType.selectCateBudget.getVc() as! SelectCategoryViewController
             vc.budgetObject = budgetObject
             vc.type = type
+            vc.language = language
             vc.delegateCategory = self
             self.navigationController?.pushViewController(vc, animated: true)
         }
@@ -204,6 +212,7 @@ extension BudgetController: UITableViewDataSource , UITableViewDelegate {
             let vc = UIStoryboard.init(name: "budget", bundle: nil).instantiateViewController(withIdentifier: "TimeRangerViewController") as! TimeRangerViewController
             vc.type = type
             vc.budgetObject = budgetObject
+            vc.language = language
             vc.delegateTimeRanger = self
             self.navigationController?.pushViewController(vc, animated: true)
         }
@@ -215,8 +224,7 @@ extension BudgetController: AddEditBudgetControll {
     
     func dialogMess(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "OK", style: .default) { (_) in
-            print("cancel")
+        let cancelAction = UIAlertAction(title: BudgetAddEditDataString.dialogItemOK.rawValue.addLocalizableString(str: language), style: .default) { (_) in
         }
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
@@ -224,14 +232,13 @@ extension BudgetController: AddEditBudgetControll {
     
     // func add budget
     func addBudget() {
-        let alertController = UIAlertController(title: "Add Budget ?", message: nil, preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: "OK", style: .default) { (_) in
+        let alertController = UIAlertController(title: "\(BudgetAddEditDataString.addBudget.rawValue.addLocalizableString(str: language)) ?", message: nil, preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: BudgetAddEditDataString.dialogItemOK.rawValue.addLocalizableString(str: language), style: .default) { (_) in
             self.presenter?.addBudget(budget: self.budgetObject, id: self.newChild)
             self.delegateBudgetController?.reloadDataListBudgetintoBudgetController()
             self.navigationController?.popViewController(animated:true)
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
-            print("cancel")
+        let cancelAction = UIAlertAction(title: BudgetAddEditDataString.dialogItemCancel.rawValue.addLocalizableString(str: language), style: .cancel) { (_) in
         }
         alertController.addAction(confirmAction)
         alertController.addAction(cancelAction)
@@ -240,8 +247,8 @@ extension BudgetController: AddEditBudgetControll {
     
     // func edit budget
     func editBudget() {
-        let alertController = UIAlertController(title: "Edit Budget ?", message: nil, preferredStyle: .alert)
-        let confirmAction = UIAlertAction(title: "OK", style: .default) { (_) in
+        let alertController = UIAlertController(title: "\(BudgetAddEditDataString.editBudget.rawValue.addLocalizableString(str: language)) ?", message: nil, preferredStyle: .alert)
+        let confirmAction = UIAlertAction(title: BudgetAddEditDataString.dialogItemOK.rawValue.addLocalizableString(str: language), style: .default) { (_) in
             self.presenter?.editBudget(budget: self.budgetObject)
             self.presenter?.getAmountTrans(budget: self.budgetObject, listTransaction: self.listTransaction)
             self.delegateBudgetController?.reloadDataDetailBudgetintoBudgetController(budget: self.budgetObject , spend: self.spend)
@@ -250,8 +257,7 @@ extension BudgetController: AddEditBudgetControll {
             UserDefaults.standard.removeObject(forKey: "enddate")
             self.navigationController?.popViewController(animated:true)
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
-            print("cancel")
+        let cancelAction = UIAlertAction(title: BudgetAddEditDataString.dialogItemCancel.rawValue.addLocalizableString(str: language), style: .cancel) { (_) in
         }
         alertController.addAction(confirmAction)
         alertController.addAction(cancelAction)

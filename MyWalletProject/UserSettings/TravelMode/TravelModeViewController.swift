@@ -142,8 +142,6 @@ class TravelModeViewController: UIViewController {
                 Defined.defaults.set(self.event.eventImage, forKey: "eventTravelImage")
                 Defined.defaults.set(self.event.name, forKey: "eventTravelName")
                 
-                print(travelModeState)
-                print(self.event)
                 self.navigationController?.popViewController(animated: true)
             }
         } else {

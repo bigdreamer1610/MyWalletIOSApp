@@ -15,6 +15,7 @@ enum RouterOption: Int {
 }
 
 enum RouterType {
+    case login
     case transactionDetail(item: TransactionItem, header: TransactionHeader)
     case categoryDetail(item: CategoryItem, header: CategoryHeader)
     case balance
@@ -30,7 +31,6 @@ enum RouterType {
     case viewTransaction
     case report
     case account
-    case planningNavi
     case barChartDetail
     case pieChartDetail
     case dayBarChartDetail
@@ -92,6 +92,11 @@ class AppRouter {
 extension RouterType{
     func getVc() -> UIViewController {
         switch self {
+        case .login:
+            let vc = UIStoryboard(name: "Signin", bundle: nil).instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+            let navigationController = UINavigationController(rootViewController: vc)
+            navigationController.isNavigationBarHidden = true
+            return navigationController
         case .transactionDetail(let item, let header):
             let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "detail") as! DetailTransactionViewController
             let presenter = DetailTransactionPresenter(delegate: vc, usecase: DetailTransactionUseCase())
@@ -118,7 +123,8 @@ extension RouterType{
             return vc
         case .planning:
             let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "planning_vc") as! PlanningViewController
-            return vc
+            let navi = UINavigationController(rootViewController: vc)
+            return navi
         case .budget:
             let vc = UIStoryboard(name: "budget", bundle: nil).instantiateViewController(withIdentifier: "BudgetListViewController") as! BudgetListViewController
             let presenter = BudgetListPresenter(delegate: vc, budgetlistUseCase: BudgetListUseCase())
@@ -163,9 +169,6 @@ extension RouterType{
             return vc
         case .report:
              let vc = UIStoryboard(name: "Report", bundle: nil).instantiateViewController(withIdentifier: "ReportViewController") as! ReportViewController
-            return vc
-        case .planningNavi:
-            let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "navi_second") as! SecondNavigationController
             return vc
         case .barChartDetail:
             let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailSBC") as! DetailStackedBarChartVC
