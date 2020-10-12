@@ -18,7 +18,6 @@ extension EditTransactionUseCase {
         let update = [
             "note":trans.note!,
             "date":trans.date!,
-            //TODO: data arrive late
             "categoryid": trans.categoryid!,
             "amount": trans.amount!,
             "eventid": trans.eventid!
@@ -33,7 +32,6 @@ extension EditTransactionUseCase {
                 print("Error: \(error!)")
             } else {
                 print(reference)
-                print("Remove successfully")
             }
         }
     }
