@@ -29,11 +29,7 @@ enum RouterType {
     case tabbar
     case test
     case viewTransaction
-    case report
     case account
-    case barChartDetail
-    case pieChartDetail
-    case dayBarChartDetail
     case budgetTransaction(budgetObject: Budget)
     case eventTransaction(event: Event)
     case selectEvent
@@ -47,6 +43,11 @@ enum RouterType {
     case currencies
     case travelMode
     case billScanner
+    
+    //report
+    case report
+    case barChartDetail
+    case pieChartDetail
 }
 
 class AppRouter {
@@ -150,19 +151,18 @@ extension RouterType{
             vc.setUp(presenter: presenter)
             return front
         case .account:
-             let vc = UIStoryboard(name: "UserSettings", bundle: nil).instantiateViewController(withIdentifier: "userSettingsNav") as! UINavigationController
+            let vc = UIStoryboard(name: "UserSettings", bundle: nil).instantiateViewController(withIdentifier: "userSettingsNav") as! UINavigationController
             return vc
+            
+        // MARK: - Report
         case .report:
-             let vc = UIStoryboard(name: "Report", bundle: nil).instantiateViewController(withIdentifier: "ReportViewController") as! ReportViewController
-            return vc
-        case .barChartDetail:
-            let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailSBC") as! DetailStackedBarChartVC
+            let vc = UIStoryboard(name: "Report", bundle: nil).instantiateViewController(withIdentifier: "ReportViewController") as! ReportViewController
             return vc
         case .pieChartDetail:
             let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailPC") as! DetailPieChartVC
             return vc
-        case .dayBarChartDetail:
-            let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "dayDetailSBC") as! DayDetailSBC
+        case .barChartDetail:
+            let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailSBC") as! DetailStackedBarChartVC
             return vc
         case .budgetTransaction(let budgetObject):
             let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "budgetTransaction_vc") as! BudgetTransactionViewController
@@ -176,7 +176,7 @@ extension RouterType{
             vc.setupDelegate(presenter: presenter)
             return vc
             
-            // MARK: - Settings and Tools
+        // MARK: - Settings and Tools
         case .categories:
             let vc = UIStoryboard.init(name: "Categories", bundle: Bundle.main).instantiateViewController(identifier: "settingsCategoryVC") as! ViewCategoryViewController
             let presenter = ViewCategoryPresenter(delegate: vc, usecase: ViewCategoryUseCase())
@@ -220,6 +220,6 @@ extension RouterType{
             let presenter = EditTransactionPresenter(usecase: EditTransactionUseCase())
             vc.setUp(presenter: presenter)
             return vc
+        }
     }
-}
 }
