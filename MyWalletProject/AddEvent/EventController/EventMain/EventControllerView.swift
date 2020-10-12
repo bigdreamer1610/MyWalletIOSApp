@@ -137,6 +137,14 @@ extension EventControllerView {
         loadViewIndicator.startAnimating()
         presenter?.fetchDataApplying()
     }
+    override var hidesBottomBarWhenPushed: Bool {
+        get{
+            return true
+        }
+        set {
+            super.hidesBottomBarWhenPushed = newValue
+        }
+    }
  
 }
 
