@@ -17,6 +17,7 @@ protocol DetailTransactionPresenterDelegate: class {
 class DetailTransactionPresenter {
     weak var delegate: DetailTransactionPresenterDelegate?
     fileprivate var usecase: DetailTransactionUseCase?
+    fileprivate var trans: Transaction?
     
     init(delegate: DetailTransactionPresenterDelegate, usecase: DetailTransactionUseCase) {
         self.delegate = delegate
@@ -48,9 +49,10 @@ extension DetailTransactionPresenter : DetailTransactionUseCaseDelegate{
     }
     
     func responseTrans(trans: Transaction) {
-        delegate?.getTransaction(transaction: trans)
         usecase?.getCategory(cid: trans.categoryid!)
         usecase?.getEventInfo(eventid: trans.eventid ?? "")
+        self.trans = trans
+        delegate?.getTransaction(transaction: trans)
     }
     
     func responseNoEvent() {

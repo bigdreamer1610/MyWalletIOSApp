@@ -51,6 +51,8 @@ class EditTransactionViewController: UIViewController {
         setLanguage()
     }
     
+    
+    
     func setLanguage(){
         btnCancel.title = EditTransactionDataString.back.rawValue.addLocalizableString(str: language)
         btnSave.title = EditTransactionDataString.save.rawValue.addLocalizableString(str: language)

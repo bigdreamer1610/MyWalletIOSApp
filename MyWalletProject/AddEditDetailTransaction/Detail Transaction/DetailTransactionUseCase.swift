@@ -20,38 +20,6 @@ class DetailTransactionUseCase{
 }
 
 extension DetailTransactionUseCase {
-//    func getEventInfo(eventid: String){
-//        var finalEvent: Event!
-//        if eventid != "" {
-//            Defined.ref.child("Account/userid1/transaction").observeSingleEvent(of: .value) {[weak self] (snapshot) in
-//                guard let `self` = self else {
-//                    return
-//                }
-//                if let snap = snapshot.children.allObjects as? [DataSnapshot]{
-//                    for mySnap in snap {
-//                        let id = mySnap.key
-//                        if id == eventid {
-//                            if let value = mySnap.value as? [String:Any]{
-//                                let name = value["name"] as? String
-//                                let date = value["date"] as? String
-//                                let image = value["eventImage"] as? String
-//                                let spent = value["spent"] as? Int
-//                                let event = Event(id: id, name: name, date: date, eventImage: image, spent: spent)
-//                                finalEvent = event
-//                                self.delegate?.responseEvent(event: finalEvent)
-//                                break
-//                            }
-//                        }
-//                    }
-//
-//                }
-//            }
-//        } else {
-//            delegate?.responseNoEvent()
-//        }
-//
-//    }
-    
     func getEventInfo(eventid: String){
         var finalEvent: Event!
         if eventid != "" {
@@ -68,14 +36,16 @@ extension DetailTransactionUseCase {
                             let spent = art?["spent"]
                             let event = Event(id: id, name: name as? String, date: date as? String, eventImage: image as? String, spent: spent as? Int)
                             finalEvent = event
-                            
+                            self.delegate?.responseEvent(event: finalEvent)
                             break
                         }
                     }
-                    self.delegate?.responseEvent(event: finalEvent)
+                    
                 }
                 
             }
+        } else {
+            delegate?.responseNoEvent()
         }
         
     }

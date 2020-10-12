@@ -11,7 +11,6 @@ import UIKit
 class DetailTransactionViewController: UIViewController {
 
     @IBOutlet var imageEvent: UIImageView!
-    @IBOutlet var lbEventName: UILabel!
     @IBOutlet var iconImage: UIImageView!
     @IBOutlet weak var lblCategory: UILabel!
     @IBOutlet weak var lblAmount: UILabel!
@@ -24,8 +23,6 @@ class DetailTransactionViewController: UIViewController {
     
     @IBOutlet var indicator: UIActivityIndicatorView!
     
-    
-    @IBOutlet var backView: UIView!
     
     var presenter: DetailTransactionPresenter?
     var transactions = [Transaction]()
@@ -72,26 +69,26 @@ class DetailTransactionViewController: UIViewController {
     }
     
     func initData(){
+        iconImage.image = UIImage(named: icon)
         lblDate.text = categoryDate
         lbNote.text = categoryNote
         lblCategory.text = categoryName
         lblEvent.text = eventName
         lblAmount.text = Defined.formatter.string(from: NSNumber(value: amount))!
-        iconImage.image = UIImage(named: icon)
+        
     }
 
     func fetchTransaction(id: String){
-        self.transactionid = id
         presenter?.fetchTransaction(id: id)
     }
     
     func setUpDataTransactionView(item: TransactionItem, header: TransactionHeader){
-        fetchTransaction(id: item.id)
+        self.transactionid = item.id
         
     }
     
     func setUpDataCategoryView(item: CategoryItem, header: CategoryHeader){
-        fetchTransaction(id: item.id)
+        self.transactionid = item.id
         
     }
     // mark: - event nil
@@ -127,7 +124,8 @@ extension DetailTransactionViewController : DetailTransactionPresenterDelegate {
         if self.event != nil {
             lbTitle.isHidden = false
             eventView.isHidden = false
-            lbEventName.text = event.name
+            eventName = event.name!
+            lblEvent.text = event.name!
             imageEvent.image = UIImage(named: event.eventImage!)
         }
         
@@ -148,7 +146,6 @@ extension DetailTransactionViewController : DetailTransactionPresenterDelegate {
         categoryDate = "\(dateModel.weekDay), \(dateModel.date) \(dateModel.month) \(dateModel.year)"
         indicator.stopAnimating()
         indicator.isHidden = true
-        
         //init data
         initData()
         

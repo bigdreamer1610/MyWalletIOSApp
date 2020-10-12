@@ -92,6 +92,7 @@ class ViewTransactionViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         DispatchQueue.main.async {
             self.current = Defined.dateFormatter.date(from: "02/\(Defined.defaults.integer(forKey: Constants.currentMonth))/\(Defined.defaults.integer(forKey: Constants.currentYear))")!
+            self.startLoading()
             self.initData(month: Defined.defaults.integer(forKey: Constants.currentMonth), year: Defined.defaults.integer(forKey: Constants.currentYear))
             self.jumpToDate(from: self.current)
         }

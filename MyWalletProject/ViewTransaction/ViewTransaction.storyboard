@@ -35,10 +35,10 @@
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Lg-6f-4Kz">
-                                <rect key="frame" x="67.5" y="269.5" width="240" height="128"/>
+                                <rect key="frame" x="137.5" y="308.5" width="100" height="50"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="YFX-lA-6wC">
-                                        <rect key="frame" x="95" y="39" width="50" height="50"/>
+                                        <rect key="frame" x="25" y="0.0" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="C8V-DI-SZZ"/>
                                             <constraint firstAttribute="width" constant="50" id="SLU-jM-v6p"/>
@@ -46,8 +46,8 @@
                                     </activityIndicatorView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="HTL-vK-hLe"/>
-                                    <constraint firstAttribute="width" constant="240" id="LYf-Xf-iET"/>
+                                    <constraint firstAttribute="height" constant="50" id="HTL-vK-hLe"/>
+                                    <constraint firstAttribute="width" constant="100" id="LYf-Xf-iET"/>
                                     <constraint firstItem="YFX-lA-6wC" firstAttribute="centerX" secondItem="5Lg-6f-4Kz" secondAttribute="centerX" id="SWH-Oj-Lt1"/>
                                     <constraint firstItem="YFX-lA-6wC" firstAttribute="centerY" secondItem="5Lg-6f-4Kz" secondAttribute="centerY" id="jtV-qN-1NC"/>
                                 </constraints>
@@ -600,7 +600,6 @@
                         <outlet property="iconImage" destination="Fpq-st-1nm" id="zNO-F7-KB0"/>
                         <outlet property="imageEvent" destination="pJv-uC-8aI" id="Wpr-L4-dc8"/>
                         <outlet property="indicator" destination="RYz-Tm-ioY" id="Pzs-nw-Ntp"/>
-                        <outlet property="lbEventName" destination="Jl5-pN-CKS" id="oEt-fF-hyd"/>
                         <outlet property="lbNote" destination="mqH-04-B20" id="EoV-Q9-4rT"/>
                         <outlet property="lbTitle" destination="RAy-3Y-V1p" id="YDd-MG-6n1"/>
                         <outlet property="lblAmount" destination="Vqv-Ot-tuT" id="gR7-1J-Duq"/>
