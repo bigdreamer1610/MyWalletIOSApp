@@ -124,12 +124,12 @@ extension DetailTransactionViewController : DetailTransactionPresenterDelegate {
     func getEvent(event: Event) {
         self.event = event
         print("this case myevent: \(event)")
-        if let myEvent = self.event {
+        if self.event != nil {
             lbTitle.isHidden = false
             eventView.isHidden = false
             lbEventName.text = event.name
             imageEvent.image = UIImage(named: event.eventImage!)
-        } 
+        }
         
     }
     
@@ -146,13 +146,10 @@ extension DetailTransactionViewController : DetailTransactionPresenterDelegate {
         let date = Defined.convertStringToDate(str: transaction.date!)
         dateModel = Defined.getDateModel(components: date.dateComponents)
         categoryDate = "\(dateModel.weekDay), \(dateModel.date) \(dateModel.month) \(dateModel.year)"
-        
-        //
         indicator.stopAnimating()
         indicator.isHidden = true
-        //backView.isHidden = true
-        //init data
         
+        //init data
         initData()
         
     }

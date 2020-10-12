@@ -14,9 +14,6 @@ class ViewTransactionViewController: UIViewController {
     var bottomMenuView = UIView()
     var tableView = UITableView()
     var height: CGFloat = 190
-//    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
-//    var weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thurday","Friday","Saturday"]
-    
     var transactionBotMenu = [
         BottomMenu(icon: "adjustbalance", title: "Adjust balance"),
         BottomMenu(icon: "viewbytransaction", title: "View by transaction"),
@@ -59,17 +56,18 @@ class ViewTransactionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initComponents()
+        
+        //set up date
         todayYear = Defined.calendar.component(.year, from: today)
         todayMonth = Defined.calendar.component(.month, from: today)
         currentMonth = todayMonth
         currentYear = todayYear
         current = today
+        Defined.defaults.set(current, forKey: Constants.currentDate)
         setUpCurrentDate(month: currentMonth, year: currentYear)
-        
+        //init data
         initData(month: Defined.defaults.integer(forKey: Constants.currentMonth), year: Defined.defaults.integer(forKey: Constants.currentYear))
         
-        
-        Defined.defaults.set(current, forKey: Constants.currentDate)
         setUpNoTransaction(status: true)
         Defined.dateFormatter.locale = Locale(identifier: "vi_VN")
         Defined.dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -95,7 +93,6 @@ class ViewTransactionViewController: UIViewController {
         DispatchQueue.main.async {
             self.current = Defined.dateFormatter.date(from: "02/\(Defined.defaults.integer(forKey: Constants.currentMonth))/\(Defined.defaults.integer(forKey: Constants.currentYear))")!
             self.initData(month: Defined.defaults.integer(forKey: Constants.currentMonth), year: Defined.defaults.integer(forKey: Constants.currentYear))
-            
             self.jumpToDate(from: self.current)
         }
     }

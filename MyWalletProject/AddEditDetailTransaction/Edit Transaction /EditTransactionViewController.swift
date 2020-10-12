@@ -32,7 +32,7 @@ class EditTransactionViewController: UIViewController {
     @IBOutlet var btnTrash: UIButton!
     @IBOutlet weak var lblEvent: UILabel!
     
-    var language = ChangeLanguage.vietnam.rawValue
+    var language = ChangeLanguage.english.rawValue
     
     var transaction: Transaction?
     var event: Event?
@@ -208,8 +208,5 @@ extension EditTransactionViewController : SelectCategory, SelectDate, SelectEven
         iconImage.image = UIImage(named: iconCategory)
         categoryId = id
         transactionType = type
-        
     }
-    
-    
 }
