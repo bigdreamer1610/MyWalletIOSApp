@@ -33,6 +33,7 @@ class BudgetTransactionViewController: UIViewController {
         detailTableView.isHidden = true
         initData()
     }
+    
     func setUp(presenter: BudgetTransactionPresenter){
         self.presenter = presenter
     }
