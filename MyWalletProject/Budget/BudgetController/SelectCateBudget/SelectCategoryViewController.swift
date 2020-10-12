@@ -92,7 +92,7 @@ extension SelectCategoryViewController : UITableViewDataSource , UITableViewDele
     }
 }
 
-//MARK: - SelectCategoryBudgetPresenterDelegate
+//MARK: - get and reload data table into SelectCategoryBudgetPresenterDelegate
 extension SelectCategoryViewController : SelectCategoryBudgetPresenterDelegate {
     func getDataCate(listCateExpense: [Category], listCateIncome: [Category]) {
         self.listCateExpense = listCateExpense

@@ -10,18 +10,21 @@ import UIKit
 
 class EventImgViewController: UIViewController {
     var completionHandler: ((String) -> Void)?
-    var number = 0
     @IBOutlet weak var collectionImgView: UICollectionView!
+    @IBOutlet weak var viewIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var viewNoImg: UIImageView!
+    
     var presenter: EventImgPresenter?
     var imgs = [String](){
         didSet {
+            viewIndicator.stopAnimating()
+            viewIndicator.alpha = 0     
             collectionImgView.reloadData()
         }
     }
     // Load view
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter?.fetchData1()
         let nib = UINib(nibName: "EventIconCell", bundle: nil)
         collectionImgView.register(nib, forCellWithReuseIdentifier: "EventIconCell")
         collectionImgView.delegate = self
@@ -29,6 +32,10 @@ class EventImgViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
+    override func viewWillAppear(_ animated: Bool) {
+        presenter?.fetchData1()
+    }
+    
     func setUp(presenter: EventImgPresenter) {
         self.presenter = presenter
     }
@@ -36,8 +43,10 @@ class EventImgViewController: UIViewController {
 }
 extension EventImgViewController: EventImgPresenterDelegate{
     func getNumberOfEventImg(imgs : [String]) {
+        if imgs.count == 0 {
+            self.viewNoImg.alpha = 1
+        }
         self.imgs = imgs
-        
     }
      
 }

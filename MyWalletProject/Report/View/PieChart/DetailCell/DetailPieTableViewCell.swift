@@ -38,14 +38,14 @@ class DetailPieTableViewCell: BaseTBCell, ChartViewDelegate {
     }
     
     // Set data chart
-    func setChart(_ sumByCategory: [SumByCate]){
+    func setChart(_ sumByCategory: [SumByCate]) {
         entries.removeAll()
         chartView.frame = CGRect(x: 0,
                                  y: 0,
                                  width: self.containerView.frame.size.width,
                                  height: self.containerView.frame.size.height)
         containerView.addSubview(chartView)
-
+        
         for index in 0 ..< sumByCategory.count {
             entries.append(PieChartDataEntry(value: Double(sumByCategory[index].amount), label: sumByCategory[index].category))
         }
