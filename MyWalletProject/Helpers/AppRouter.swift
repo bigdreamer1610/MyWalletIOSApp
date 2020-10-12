@@ -117,7 +117,7 @@ extension RouterType{
             return vc
         case .budgetDetail:
             let vc = UIStoryboard(name: "budget", bundle: nil).instantiateViewController(withIdentifier: "BudgetDetailController") as! BudgetDetailController
-            let presenter = BudgetDetailPresenter(usecase: BudgetDetailUseCase())
+            let presenter = BudgetDetailPresenter(delegate: vc, usecase: BudgetDetailUseCase())
             vc.setUp(presenter: presenter)
             return vc
         case .selectCateBudget:

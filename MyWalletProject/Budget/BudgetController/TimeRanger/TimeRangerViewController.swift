@@ -12,6 +12,7 @@ protocol TimeRangerViewControllerDelegate {
     func fetchDataTimeRanger(budget:Budget,type:String)
 }
 
+// Shared dialog box
 protocol Dialog {
     func dialogMess(title:String,message:String)
 }
@@ -48,11 +49,13 @@ class TimeRangerViewController: UIViewController {
         txtEndDate.placeholder = TimeRangerDataString.endDateLow.rawValue.addLocalizableString(str: language)
     }
     
+    // set image to right textField Start Date and End Date
     func customizeLayout(){
         txtStartDate.setRightImage2(imageName: "arrowright")
         txtEndDate.setRightImage2(imageName: "arrowright")
     }
     
+    // click textField Start Date
     @objc func pushCalendarStartClick() {
         let vc = UIStoryboard.init(name: "budget", bundle: nil).instantiateViewController(withIdentifier: "CalendarViewController") as! CalendarViewController
         // push data Start CalendarViewController
@@ -64,6 +67,7 @@ class TimeRangerViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    // click textField End Date
     @objc func pushCalendarEndClick() {
         let vc = UIStoryboard.init(name: "budget", bundle: nil).instantiateViewController(withIdentifier: "CalendarViewController") as! CalendarViewController
         // push data End CalendarViewController
@@ -75,10 +79,12 @@ class TimeRangerViewController: UIViewController {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    // Button Back click
     @IBAction func btnBackClick(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }
     
+    // Button Done click
     @IBAction func btnDoneClick(_ sender: Any) {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
@@ -97,6 +103,7 @@ class TimeRangerViewController: UIViewController {
     }
 }
 
+//MARK: - Get data into CalendarViewControllerDelegate
 extension TimeRangerViewController : CalendarViewControllerDelegate {
     func fetchDataCalendar(budget: Budget, type: String) {
         self.budgetObject = budget

@@ -13,10 +13,14 @@ class EventControllerView: UIViewController {
     @IBOutlet weak var eventTable: UITableView!
     @IBOutlet weak var sgm: UISegmentedControl!
     
+    @IBOutlet weak var imgNoEvent: UIImageView!
     @IBOutlet weak var loadViewIndicator: UIActivityIndicatorView!
     var presenter: EventPresenter?
     var arrNameEvent = [String]()
+    var currenScore: Int!
+    var currenKey: String!
     let navication = UINavigationController()
+    
     var arrEvent: [Event] = []{
         didSet{
             loadViewIndicator.stopAnimating()
@@ -60,8 +64,6 @@ class EventControllerView: UIViewController {
     // back
     @IBAction func cancel(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
-           //AppRouter.routerTo(from: RouterType.tabbar.getVc(), options: .transitionCrossDissolve, duration: 0.2, isNaviHidden: true)
-
       }
     
     // butt add Event
@@ -105,11 +107,23 @@ extension EventControllerView: UITableViewDelegate, UITableViewDataSource {
         
         
     }
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        let currenOfSet = scrollView.contentOffset.y
+        let maxOffSet = scrollView.contentSize.height - scrollView.frame.size.height
+        if maxOffSet - currenOfSet <= 40{
+            
+        }
+        
+    }
     
 }
 
 extension EventControllerView: EventPresenterDelegate{
     func getDataEvent(arrEvent: [Event], arrNameEvent: [String]) {
+        if arrEvent.count == 0 {
+            self.imgNoEvent.alpha = 1
+            loadViewIndicator.alpha = 0	
+        }
         self.arrEvent = arrEvent
         self.arrNameEvent = arrNameEvent
     }
@@ -123,13 +137,22 @@ extension EventControllerView {
         loadViewIndicator.startAnimating()
         presenter?.fetchDataApplying()
     }
+    override var hidesBottomBarWhenPushed: Bool {
+        get{
+            return true
+        }
+        set {
+            super.hidesBottomBarWhenPushed = newValue
+        }
+    }
  
 }
 
 extension EventControllerView{
     func acctivityIndicator()  {
        loadViewIndicator.startAnimating()
-        loadViewIndicator.alpha = 1      
+       loadViewIndicator.alpha = 1
+        imgNoEvent.alpha = 0
     }
 
 }
