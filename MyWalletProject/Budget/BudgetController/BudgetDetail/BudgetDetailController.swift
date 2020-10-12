@@ -14,28 +14,44 @@ protocol DetailBudgetTappedButton : class {
     func btnListTransactionTapped()
 }
 
-protocol BudgetDetailControllerDelegate {
-    func reloadDataListBudgetintoBudgetDetailController()
-}
-
 class BudgetDetailController: UIViewController {
     @IBOutlet weak var tblBudget: UITableView!
     @IBOutlet weak var btnBack: UIBarButtonItem!
     @IBOutlet weak var btnEdit: UIBarButtonItem!
     
+    var refreshControl = UIRefreshControl()
     var presenter:BudgetDetailPresenter?
     var budgetObject:Budget = Budget()
+    var budgetID = 0
     var spent:Int = 0
-    var delegateBudgetDetail:BudgetDetailControllerDelegate?
+    var listTransaction = [Transaction]()
     
     var language = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter?.getDataBudgetId(id: budgetID)
         localizableDetailBudget()
         tblBudget.dataSource = self
         tblBudget.delegate = self
         tblBudget.register(UINib(nibName: "DetailBudgetCell", bundle: nil), forCellReuseIdentifier: "DetailBudgetCell")
+        refreshControl.attributedTitle = NSAttributedString(string: BudgetListDataString.refresh.rawValue.addLocalizableString(str: language))
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        tblBudget.addSubview(refreshControl)
+        tblBudget.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.getDataBudgetId(id: budgetID)
+        tblBudget.reloadData()
+    }
+    
+    // func refresh table when pull down
+    @objc func refresh(_ sender: AnyObject){
+        presenter?.getDataBudgetId(id: budgetID)
+        tblBudget.reloadData()
+        refreshControl.endRefreshing()
     }
     
     // Localizable (change language)
@@ -51,7 +67,6 @@ class BudgetDetailController: UIViewController {
     
     // btn back click
     @IBAction func btnBackClick(_ sender: Any) {
-        self.delegateBudgetDetail?.reloadDataListBudgetintoBudgetDetailController()
         navigationController?.popViewController(animated: true)
     }
     
@@ -61,7 +76,6 @@ class BudgetDetailController: UIViewController {
         vc.type = BudgetAddEditDataString.editBudget.rawValue
         vc.budgetObject = budgetObject
         vc.language = language
-        vc.delegateBudgetController = self
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -77,10 +91,11 @@ extension BudgetDetailController: UITableViewDataSource , UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailBudgetCell", for: indexPath) as! DetailBudgetCell
         cell.prgSpend.layer.cornerRadius = cell.prgSpend.bounds.height / 2
         cell.prgSpend.layer.masksToBounds = true
-        cell.setDataBackground(cateImage: budgetObject.categoryImage!, cateName: budgetObject.categoryName!, amount: budgetObject.amount!, startdate: budgetObject.startDate!, endDate: budgetObject.endDate!, spend: spent , language: language)
-        UserDefaults.standard.set(budgetObject.categoryName!, forKey: "name")
-        UserDefaults.standard.set(budgetObject.startDate!, forKey: "startdate")
-        UserDefaults.standard.set(budgetObject.endDate!, forKey: "enddate")
+        presenter?.getAmountListTransaction(budget: budgetObject, listTransaction: listTransaction)
+        cell.setDataBackground(cateImage: budgetObject.categoryImage ?? "", cateName: budgetObject.categoryName ?? "", amount: budgetObject.amount ?? 0, startdate: budgetObject.startDate ?? "", endDate: budgetObject.endDate ?? "", spend: spent , language: language)
+        UserDefaults.standard.set(budgetObject.categoryName ?? "", forKey: Constants.budgetCateName)
+        UserDefaults.standard.set(budgetObject.startDate ?? "", forKey: Constants.budgetStartDate)
+        UserDefaults.standard.set(budgetObject.endDate ?? "", forKey: Constants.budgetEndDate)
         cell.btnDelete.addTarget(self, action: #selector(btnDeleteTapped), for: .touchUpInside)
         cell.btnTransaction.addTarget(self, action: #selector(btnListTransactionTapped), for: .touchUpInside)
         return cell
@@ -98,7 +113,6 @@ extension BudgetDetailController : DetailBudgetTappedButton {
         let alertController = UIAlertController(title: BudgetDetailDataString.dialogConfirmDelete.rawValue.addLocalizableString(str: language), message: nil, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: BudgetDetailDataString.dialogItemOK.rawValue.addLocalizableString(str: language), style: .default) { (_) in
             self.presenter?.deleteBudgetDB(id: self.budgetObject.id!)
-            self.delegateBudgetDetail?.reloadDataListBudgetintoBudgetDetailController()
             self.navigationController?.popViewController(animated: true)
         }
         let cancelAction = UIAlertAction(title: BudgetDetailDataString.dialogItemCancel.rawValue.addLocalizableString(str: language), style: .cancel) { (_) in
@@ -109,20 +123,24 @@ extension BudgetDetailController : DetailBudgetTappedButton {
     }
     
     @objc func btnListTransactionTapped() {
-        let vc = RouterType.budgetTransaction(budgetObject: budgetObject).getVc()
+        let vc = RouterType.budgetTransaction(budgetObject: budgetObject).getVc() as! BudgetTransactionViewController
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
-// MARK: parse data budget detail into budget controller
-extension BudgetDetailController : BudgetControllerDelegate {
-    func reloadDataDetailBudgetintoBudgetController(budget: Budget, spend: Int) {
-        self.spent = spend
+extension BudgetDetailController : BudgetDetailPresenterDelegate {
+    func getBudget(budget: Budget, listTransaction: [Transaction]) {
         self.budgetObject = budget
+        self.listTransaction = listTransaction
         tblBudget.reloadData()
     }
-    func reloadDataListBudgetintoBudgetController() {
+    
+    func getAmount(amount: Int) {
+        self.spent = amount
     }
+    
 }
+
+
 
 

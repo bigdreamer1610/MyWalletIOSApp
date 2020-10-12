@@ -57,4 +57,8 @@ class Constants {
     static let menuCell: CGFloat = 60
     static let overviewCell: CGFloat = 80
     
+    // MARK: Budget Detail
+    static let budgetCateName = "budgetCateName"
+    static let budgetStartDate = "budgetStartDate"
+    static let budgetEndDate = "budgetEndDate"
 }
