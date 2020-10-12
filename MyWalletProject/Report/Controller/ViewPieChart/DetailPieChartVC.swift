@@ -9,16 +9,22 @@
 import UIKit
 
 class DetailPieChartVC: UIViewController {
-    
+    @IBOutlet weak var segment: UISegmentedControl!
+    @IBOutlet weak var btnSearch: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     private var formatter = NumberFormatter()
     var sum = 0
     var state: State?
     var segmentIndex = 0
     var sumByCategory = [SumByCate]()
+    var categoriesIncome = [Category]()
+    var categoriesExpense = [Category]()
     var categories = [Category]()
     var transations = [Transaction]()
     var nameIconCategory = ""
+    var searchBar = UISearchBar()
+    var filterdata = [SumByCate]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         formatter.groupingSeparator = ","
@@ -36,6 +42,14 @@ class DetailPieChartVC: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 600
         tableView.showsVerticalScrollIndicator = false
+    }
+    
+    private func setupSearchBar() {
+        searchBar.delegate = self
+        self.navigationItem.rightBarButtonItem = nil
+        searchBar.placeholder = "Search Category"
+        searchBar.sizeToFit()
+        navigationItem.titleView = searchBar
     }
     
     func getData(info: SumArr) {
@@ -58,6 +72,10 @@ class DetailPieChartVC: UIViewController {
         }
         tableView.reloadData()
     }
+    
+    @IBAction func searchCategory(_ sender: Any) {
+        setupSearchBar()
+    }
 }
 
 extension DetailPieChartVC: UITableViewDelegate, UITableViewDataSource {
@@ -79,9 +97,9 @@ extension DetailPieChartVC: UITableViewDelegate, UITableViewDataSource {
             let cell = NameTableViewCell.loadCell(tableView)  as! NameTableViewCell
             cell.selectionStyle = .none
             if state == .income {
-                cell.setupIncome(sum)
+                cell.setupData(Constants.income, .blue, sum)
             } else {
-                cell.setupExpense(sum)
+                cell.setupData(Constants.expense, .red, sum)
             }
             return cell
         case 1:
@@ -93,30 +111,37 @@ extension DetailPieChartVC: UITableViewDelegate, UITableViewDataSource {
             let cell = DetailPCCell.loadCell(tableView) as! DetailPCCell
             cell.selectionStyle = .none
             if state == .income {
-                cell.lblMoney.textColor = .blue
+                cell.setupLabel(.blue)
             } else {
-                cell.lblMoney.textColor = .red
+                cell.setupLabel(.red)
             }
-            cell.lblTypeOfMoney.text = sumByCategory[indexPath.row].category
-            cell.lblMoney.text = String(formatter.string(from: NSNumber(value: sumByCategory[indexPath.row].amount))!)
+            let category = sumByCategory[indexPath.row].category
+            let money = sumByCategory[indexPath.row].amount
             let filtered = categories.filter { category in
                 return category.id! == sumByCategory[indexPath.row].category
             }
-            cell.categoryImage.image = UIImage(named: filtered[0].iconImage ?? "bill")
-            self.nameIconCategory = filtered[0].iconImage ?? "bill"
+            let imageName = filtered[0].iconImage ?? "bill"
+            
+            cell.setupView(imageName: imageName, category: category, money: money)
             return cell
         }
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //        if indexPath.section == 2 {
-        //            let vc = UIStoryboard.init(name: "Report", bundle: nil).instantiateViewController(withIdentifier: "dayDetailPC") as! DayDetailPC
-        //            vc.transactions = transations
-        //            vc.categoryImage = nameIconCategory
-        //            vc.sumByCategory = sumByCategory[indexPath.row].amount
-        //            vc.state = state
-        //            self.navigationController?.pushViewController(vc, animated: true)
-        //        }
+}
+
+extension DetailPieChartVC: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        //        searchBar.text = ""
+        navigationItem.titleView = segment
+        self.navigationItem.rightBarButtonItem?.isEnabled = true
+        searchBar.resignFirstResponder()
     }
     
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.searchBar.showsCancelButton = true
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+    }
 }
