@@ -14,9 +14,6 @@ class TravelModeViewController: UIViewController {
     @IBOutlet weak var eventView: UIView!
     @IBOutlet weak var labelEventView: UIView!
     
-    @IBOutlet weak var btnCancel: UIBarButtonItem!
-    @IBOutlet weak var btnDone: UIBarButtonItem!
-    
     @IBOutlet weak var `switch`: UISwitch!
     
     @IBOutlet weak var lblSelectEvent: UILabel!
@@ -24,6 +21,8 @@ class TravelModeViewController: UIViewController {
     
     var switchState = false
     var travelModeState = false
+    var delegate: SelectEvent?
+    var event: Event = Event()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +32,41 @@ class TravelModeViewController: UIViewController {
         addBorder([switchView, eventView])
         setupGestureForView([eventView])
         
-        labelEventView.alpha = 0
-        eventView.alpha = 0
+        initEventView()
+    }
+    
+    // MARK: - Get data from user defaults
+    func getDataFromUserDefaults() {
+        self.event.id = Defined.defaults.string(forKey: "eventTravelId")
+        self.event.eventImage = Defined.defaults.string(forKey: "eventTravelImage")
+        self.event.name = Defined.defaults.string(forKey: "eventTravelName")
+    }
+    
+    // MARK: - Init event view
+    func initEventView() {
+        self.travelModeState = Defined.defaults.bool(forKey: "travelMode")
+        self.switchState = self.travelModeState
+        
+        if !travelModeState {
+            labelEventView.alpha = 0
+            eventView.alpha = 0
+            `switch`.isOn = false
+        } else {
+            getDataFromUserDefaults()
+            
+            labelEventView.alpha = 1
+            eventView.alpha = 1
+            
+            if let imageName = self.event.eventImage {
+                imgEvent.image = UIImage(named: imageName)
+            }
+            if let eventName = self.event.name {
+                lblSelectEvent.text = eventName
+            }
+            lblSelectEvent.textColor = .systemGray2
+            
+            `switch`.isOn = true
+        }
     }
     
     // MARK: - Add bottom and top border for views
@@ -61,18 +93,20 @@ class TravelModeViewController: UIViewController {
         }
     }
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
-        print("Hello World")
+        let vc = RouterType.selectEvent.getVc() as! SelectEventController
+        vc.delegate = self
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     // MARK: - Hide tab bar
-    override var hidesBottomBarWhenPushed: Bool {
-        get {
-            return true
-        }
-        set {
-            super.hidesBottomBarWhenPushed = newValue
-        }
-    }
+//    override var hidesBottomBarWhenPushed: Bool {
+//        get {
+//            return true
+//        }
+//        set {
+//            super.hidesBottomBarWhenPushed = newValue
+//        }
+//    }
     
     func performAnimation(duration: Double, value: CGFloat) {
         UIView.animate(withDuration: duration, animations: {
@@ -84,6 +118,9 @@ class TravelModeViewController: UIViewController {
     @IBAction func switchOn(_ sender: Any) {
         if !switchState {
             performAnimation(duration: 0.5, value: 1)
+            imgEvent.image = UIImage(named: "s-defaultimage")
+            lblSelectEvent.text = "Select event"
+            lblSelectEvent.textColor = .systemGray2
             switchState = true
         } else {
             performAnimation(duration: 0.5, value: 0)
@@ -96,8 +133,35 @@ class TravelModeViewController: UIViewController {
     }
     
     @IBAction func btnDoneClick(_ sender: Any) {
-        if lblSelectEvent.text != "Select Event" {
-            print("Passed")
+        self.travelModeState = self.switchState
+        
+        if self.travelModeState {
+            if lblSelectEvent.text != "Select event" {
+                Defined.defaults.set(self.travelModeState, forKey: "travelMode")
+                Defined.defaults.set(self.event.id, forKey: "eventTravelId")
+                Defined.defaults.set(self.event.eventImage, forKey: "eventTravelImage")
+                Defined.defaults.set(self.event.name, forKey: "eventTravelName")
+                
+                self.navigationController?.popViewController(animated: true)
+            }
+        } else {
+            Defined.defaults.set(false, forKey: "travelMode")
+            Defined.defaults.removeObject(forKey: "eventTravelId")
+            Defined.defaults.removeObject(forKey: "eventTravelImage")
+            Defined.defaults.removeObject(forKey: "eventTravelName")
+            self.navigationController?.popViewController(animated: true)
         }
+    }
+}
+
+extension TravelModeViewController: SelectEvent {
+    func setEvent(nameEvent: String, imageEvent: String, eventid: String) {
+        self.imgEvent.image = UIImage(named: imageEvent)
+        self.lblSelectEvent.text = nameEvent
+        self.lblSelectEvent.textColor = .black
+        
+        self.event.eventImage = imageEvent
+        self.event.name = nameEvent
+        self.event.id = eventid
     }
 }

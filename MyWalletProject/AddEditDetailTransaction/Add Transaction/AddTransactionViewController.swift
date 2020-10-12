@@ -9,7 +9,7 @@
 import UIKit
 
 class AddTransactionViewController: UIViewController {
-
+    
     var presenter: AddTransactionPresenter?
     
     @IBOutlet weak var tfDate: UITextField!
@@ -23,6 +23,7 @@ class AddTransactionViewController: UIViewController {
     @IBOutlet var btnAddMore: UIButton!
     @IBOutlet var btnCancel: UIBarButtonItem!
     @IBOutlet var btnSave: UIBarButtonItem!
+    @IBOutlet weak var lblAmount: UILabel!
     
     var nameCategory: String? = ""
     var iconImages: String? = ""
@@ -33,23 +34,43 @@ class AddTransactionViewController: UIViewController {
     var type: String? = ""
     var eventid: String? = nil
     var thisDate = Date()
+    var timer = Timer()
     var budgets = [Budget]()
+    
+    var language = ChangeLanguage.vietnam.rawValue
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initComponents()
         addTextFieldTarget()
         customizeLayout()
-
-          let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-              
-              tapGestureRecognizer.cancelsTouchesInView = false
+        scheduledTimerWithTimeInterval()
+        setLanguage()
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        tapGestureRecognizer.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGestureRecognizer)
+        
+    }
+    
+    func setLanguage(){
+        btnSave.title = AddTransactionDataString.save.rawValue.addLocalizableString(str: language)
+        btnCancel.title = AddTransactionDataString.cancel.rawValue.addLocalizableString(str: language)
+        btnAddMore.setTitle(AddTransactionDataString.addMoreDetails.rawValue.addLocalizableString(str: language), for: .normal)
+        navigationItem.title = AddTransactionDataString.addTransaction.rawValue.addLocalizableString(str: language)
+        tfDate.placeholder =  AddTransactionDataString.date.rawValue.addLocalizableString(str: language)
+        tfCategory.placeholder =  AddTransactionDataString.category.rawValue.addLocalizableString(str: language)
+        tfAmount.placeholder =  AddTransactionDataString.amount.rawValue.addLocalizableString(str: language)
+        tfNote.placeholder =  AddTransactionDataString.note.rawValue.addLocalizableString(str: language)
+        tfEvent.placeholder =  AddTransactionDataString.selectEvent.rawValue.addLocalizableString(str: language)
+        lblAmount.text = AddTransactionDataString.amount.rawValue.addLocalizableString(str: language)
+
         
     }
     @objc func hideKeyboard(){
         self.view.endEditing(true)
-       }
+    }
     
     func setUp(presenter: AddTransactionPresenter){
         self.presenter = presenter
@@ -107,13 +128,15 @@ class AddTransactionViewController: UIViewController {
     }
     
     @IBAction func clickCancel(_ sender: Any) {
-        //self.dismiss(animated: true, completion: nil)
-        let vc = RouterType.tabbar.getVc()
-        AppRouter.routerTo(from: vc, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
+        timer.invalidate()
+        self.dismiss(animated: true, completion: nil)
+        //let vc = RouterType.tabbar.getVc()
+        //AppRouter.routerTo(from: vc, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
         
     }
     
     @IBAction func btnSave(_ sender: Any) {
+        timer.invalidate()
         if let strAmount = tfAmount.text,
             let intAmount = Int(strAmount){
             amount = intAmount
@@ -130,22 +153,37 @@ class AddTransactionViewController: UIViewController {
         presenter?.add(trans: transaction)
         let alert = UIAlertController(title: "Notification", message: "Add a new transaction successfully", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-            let vc = RouterType.tabbar.getVc()
-            AppRouter.routerTo(from: vc, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
+//            let vc = RouterType.tabbar.getVc()
+//            AppRouter.routerTo(from: vc, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
+            self.dismiss(animated: true, completion: nil)
         }))
         self.present(alert, animated: true, completion: nil)
     }
     @IBAction func btnAddMoreDetails(_ sender: Any) {
+        
         UIView.animate(withDuration: 0.7) {
             self.viewShowMore.isHidden = false
             self.btnAddMore.isHidden = true
         }
-
+        
     }
     @IBAction func btnDeleteMoreDetails(_ sender: Any) {
         eventid?.removeAll()
         tfEvent.text = ""
         iconEvent.image = UIImage(named: "others")
+    }
+    
+    func scheduledTimerWithTimeInterval(){
+        timer = Timer.scheduledTimer(timeInterval: 0, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
+    }
+    @objc func updateCounting(){
+        let checkAmount = Int(tfAmount.text!)
+        if checkAmount == 0 || tfDate.text!.isEmpty || tfCategory.text!.isEmpty || tfAmount.text!.isEmpty{
+            btnSave.isEnabled = false
+        }else{
+            btnSave.isEnabled = true
+        }
+        
     }
 }
 

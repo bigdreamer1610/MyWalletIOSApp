@@ -39,7 +39,10 @@ class MainTabViewController: UITabBarController {
     // Menu Button Touch Action
     @objc func menuButtonAction(sender: UIButton) {
         let vc = RouterType.add.getVc()
-        AppRouter.routerTo(from: vc, options: .transitionCrossDissolve, duration: 0.2, isNaviHidden: false)
+        let navi = UINavigationController(rootViewController: vc)
+        navi.modalPresentationStyle = .fullScreen
+        self.present(navi, animated: true, completion: nil)
+        //AppRouter.routerTo(from: vc, options: .transitionCrossDissolve, duration: 0.2, isNaviHidden: false)
     }
     
     class func createTabbar() -> MainTabViewController {
@@ -47,7 +50,7 @@ class MainTabViewController: UITabBarController {
         let transaction = RouterType.viewTransaction.getVc()
         let report = RouterType.report.getVc()
         let scan = UIViewController()
-        let planning = RouterType.planningNavi.getVc()
+        let planning = RouterType.planning.getVc()
         let account = RouterType.account.getVc()
         
         let homeItem = UITabBarItem(title: "Transactions", image: #imageLiteral(resourceName: "transaction"), tag: 0)

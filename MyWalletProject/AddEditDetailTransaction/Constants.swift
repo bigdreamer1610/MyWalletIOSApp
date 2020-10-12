@@ -38,6 +38,7 @@ class Constants {
     let languageBlank = "Language can not be blank, please try again!"
     let languageNotMatchFormat = "Language does not match with our format, please try again!"
     
+    
     static let mode = "mode"
     static let balance = "balance"
     static let userid = "userid"
@@ -56,4 +57,8 @@ class Constants {
     static let menuCell: CGFloat = 60
     static let overviewCell: CGFloat = 80
     
+    // MARK: Budget Detail
+    static let budgetCateName = "budgetCateName"
+    static let budgetStartDate = "budgetStartDate"
+    static let budgetEndDate = "budgetEndDate"
 }
