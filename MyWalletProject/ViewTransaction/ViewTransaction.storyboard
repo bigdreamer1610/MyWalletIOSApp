@@ -606,7 +606,7 @@
                         <outlet property="lblAmount" destination="Vqv-Ot-tuT" id="gR7-1J-Duq"/>
                         <outlet property="lblCategory" destination="61f-Jh-odg" id="W22-Op-o2f"/>
                         <outlet property="lblDate" destination="B0g-SH-lid" id="Ar6-5q-Jdf"/>
-                        <outlet property="lblEvent" destination="cXL-rH-qQH" id="ZRT-xC-qGU"/>
+                        <outlet property="lblEvent" destination="Jl5-pN-CKS" id="SgO-4Z-swM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U1v-dT-4n8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -828,6 +828,7 @@
                         <outlet property="btnTrash" destination="XpF-C2-CGF" id="zBh-IQ-mug"/>
                         <outlet property="iconEvent" destination="alb-Nz-XE9" id="wYf-uF-lRM"/>
                         <outlet property="iconImage" destination="3bm-Po-Ne4" id="X3w-OR-o1V"/>
+                        <outlet property="lblEvent" destination="QTi-b1-aae" id="fFb-XQ-2gc"/>
                         <outlet property="txtAmount" destination="ogq-js-IMD" id="dib-kg-ECR"/>
                         <outlet property="txtCategory" destination="mp1-xZ-gW6" id="Qy6-R7-Gt5"/>
                         <outlet property="txtDate" destination="ao0-f7-UaN" id="D0w-cb-NIj"/>
@@ -1057,6 +1058,7 @@
                         <outlet property="btnSave" destination="YVi-QS-eGd" id="iD3-Xh-g3D"/>
                         <outlet property="iconEvent" destination="bTd-ZB-tk5" id="mWd-HV-OdS"/>
                         <outlet property="iconImage" destination="jLc-sk-vGq" id="8Xs-mq-WWw"/>
+                        <outlet property="lblAmount" destination="Qek-PV-U1D" id="PPX-jH-M4Y"/>
                         <outlet property="tfAmount" destination="sPk-aU-DHi" id="ab5-0e-Inm"/>
                         <outlet property="tfCategory" destination="idK-ts-xT8" id="sST-3S-0w9"/>
                         <outlet property="tfDate" destination="fke-ih-37Q" id="fH9-me-Ma7"/>

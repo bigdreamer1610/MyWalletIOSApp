@@ -23,6 +23,7 @@ class AddTransactionViewController: UIViewController {
     @IBOutlet var btnAddMore: UIButton!
     @IBOutlet var btnCancel: UIBarButtonItem!
     @IBOutlet var btnSave: UIBarButtonItem!
+    @IBOutlet weak var lblAmount: UILabel!
     
     var nameCategory: String? = ""
     var iconImages: String? = ""
@@ -36,16 +37,35 @@ class AddTransactionViewController: UIViewController {
     var timer = Timer()
     var budgets = [Budget]()
     
+    var language = ChangeLanguage.vietnam.rawValue
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initComponents()
         addTextFieldTarget()
         customizeLayout()
         scheduledTimerWithTimeInterval()
+        setLanguage()
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         tapGestureRecognizer.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGestureRecognizer)
+        
+    }
+    
+    func setLanguage(){
+        btnSave.title = AddTransactionDataString.save.rawValue.addLocalizableString(str: language)
+        btnCancel.title = AddTransactionDataString.cancel.rawValue.addLocalizableString(str: language)
+        btnAddMore.setTitle(AddTransactionDataString.addMoreDetails.rawValue.addLocalizableString(str: language), for: .normal)
+        navigationItem.title = AddTransactionDataString.addTransaction.rawValue.addLocalizableString(str: language)
+        tfDate.placeholder =  AddTransactionDataString.date.rawValue.addLocalizableString(str: language)
+        tfCategory.placeholder =  AddTransactionDataString.category.rawValue.addLocalizableString(str: language)
+        tfAmount.placeholder =  AddTransactionDataString.amount.rawValue.addLocalizableString(str: language)
+        tfNote.placeholder =  AddTransactionDataString.note.rawValue.addLocalizableString(str: language)
+        tfEvent.placeholder =  AddTransactionDataString.selectEvent.rawValue.addLocalizableString(str: language)
+        lblAmount.text = AddTransactionDataString.amount.rawValue.addLocalizableString(str: language)
+
         
     }
     @objc func hideKeyboard(){
@@ -108,6 +128,7 @@ class AddTransactionViewController: UIViewController {
     }
     
     @IBAction func clickCancel(_ sender: Any) {
+        timer.invalidate()
         self.dismiss(animated: true, completion: nil)
         //let vc = RouterType.tabbar.getVc()
         //AppRouter.routerTo(from: vc, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)

@@ -191,6 +191,8 @@
 		9862A910252C178100F3FF5D /* SelectEventPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9862A90F252C178100F3FF5D /* SelectEventPresenter.swift */; };
 		9862A913252C17F100F3FF5D /* SelectEventUserCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9862A912252C17F100F3FF5D /* SelectEventUserCase.swift */; };
 		9862A917252C713A00F3FF5D /* AddTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9862A916252C713A00F3FF5D /* AddTransactionPresenter.swift */; };
+		98CF31D92533FBF400460708 /* AddTransactionDataString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CF31D82533FBF400460708 /* AddTransactionDataString.swift */; };
+		98CF31DB2534059D00460708 /* EditTransactionDataString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CF31DA2534059D00460708 /* EditTransactionDataString.swift */; };
 		999389F0252A2AB100E72A41 /* ViewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999389EA252A2AB000E72A41 /* ViewTransactionViewController.swift */; };
 		999389F1252A2AB100E72A41 /* ViewTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999389EB252A2AB000E72A41 /* ViewTransactionUseCase.swift */; };
 		999389F2252A2AB100E72A41 /* ViewTransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999389EF252A2AB100E72A41 /* ViewTransactionPresenter.swift */; };
@@ -432,6 +434,8 @@
 		9862A90F252C178100F3FF5D /* SelectEventPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectEventPresenter.swift; sourceTree = "<group>"; };
 		9862A912252C17F100F3FF5D /* SelectEventUserCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectEventUserCase.swift; sourceTree = "<group>"; };
 		9862A916252C713A00F3FF5D /* AddTransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionPresenter.swift; sourceTree = "<group>"; };
+		98CF31D82533FBF400460708 /* AddTransactionDataString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionDataString.swift; sourceTree = "<group>"; };
+		98CF31DA2534059D00460708 /* EditTransactionDataString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionDataString.swift; sourceTree = "<group>"; };
 		999389EA252A2AB000E72A41 /* ViewTransactionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTransactionViewController.swift; sourceTree = "<group>"; };
 		999389EB252A2AB000E72A41 /* ViewTransactionUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTransactionUseCase.swift; sourceTree = "<group>"; };
 		999389EF252A2AB100E72A41 /* ViewTransactionPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTransactionPresenter.swift; sourceTree = "<group>"; };
@@ -811,6 +815,7 @@
 				73E78DA2252441CC00D7B962 /* SelectEvent2 */,
 				7338860F25231F67002F126B /* Date */,
 				7338861125231F67002F126B /* SelectCategory */,
+				98CF31D82533FBF400460708 /* AddTransactionDataString.swift */,
 			);
 			path = "Add Transaction";
 			sourceTree = "<group>";
@@ -840,6 +845,7 @@
 				73204F2B252EBAB10067432B /* EditTransactionUseCase.swift */,
 				73204F2D252EBAC10067432B /* EditTransactionPresenter.swift */,
 				73204F2F252EBAD10067432B /* EditTransactionViewController.swift */,
+				98CF31DA2534059D00460708 /* EditTransactionDataString.swift */,
 			);
 			path = "Edit Transaction ";
 			sourceTree = "<group>";
@@ -1740,11 +1746,13 @@
 				73E0B18C2521E0EE0097D41F /* BaseCLCell.swift in Sources */,
 				73E0B1792521E0EE0097D41F /* Defined.swift in Sources */,
 				0A1D7B87253054DB00631E60 /* BudgetAddEditDataString.swift in Sources */,
+				98CF31DB2534059D00460708 /* EditTransactionDataString.swift in Sources */,
 				D22597E8252C716300B7AB3B /* EventPresenter.swift in Sources */,
 				D29A5AC6252DB7EA00BECA18 /* AddEventTableController.swift in Sources */,
 				72873D8725249ACB00313629 /* DetailSBCCell.swift in Sources */,
 				D22597D4252C5F5400B7AB3B /* EventConstant.swift in Sources */,
 				72873DA325249C5600313629 /* DayDetailCell.swift in Sources */,
+				98CF31D92533FBF400460708 /* AddTransactionDataString.swift in Sources */,
 				72154283252EA2C10023BD9B /* State.swift in Sources */,
 				735873EE2521780D00B8235D /* MainTabbar.swift in Sources */,
 				73D7D89E252C8BE40014F5A1 /* DetailTransactionPresenter.swift in Sources */,
