@@ -21,9 +21,9 @@ class DetailTransactionViewController: UIViewController {
     @IBOutlet var btnDelete: UIButton!
     @IBOutlet var lbNote: UILabel!
     @IBOutlet var eventView: UIView!
+    @IBOutlet weak var btnBack: UIBarButtonItem!
     
     @IBOutlet var indicator: UIActivityIndicatorView!
-    
     
     @IBOutlet var backView: UIView!
     
@@ -43,10 +43,14 @@ class DetailTransactionViewController: UIViewController {
     var transaction: Transaction!
     var eventid: String? = nil
     
+    var language = ChangeLanguage.vietnam.rawValue
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
         customizeLayout()
+        setLanguage()
         Defined.formatter.groupingSeparator = "."
         Defined.formatter.numberStyle = .decimal
         
@@ -58,7 +62,14 @@ class DetailTransactionViewController: UIViewController {
         if transactionid != "" {
             fetchTransaction(id: transactionid)
         }
-        
+    }
+
+    func setLanguage(){
+        btnDelete.setTitle(DetailTransactionDataString.delete.rawValue.addLocalizableString(str: language), for: .normal)
+        btnBack.title = DetailTransactionDataString.back.rawValue.addLocalizableString(str: language)
+        navigationItem.title = DetailTransactionDataString.detailTransaction.rawValue.addLocalizableString(str: language)
+        lbTitle.text = DetailTransactionDataString.event.rawValue.addLocalizableString(str: language)
+
     }
     
     func setUp(presenter: DetailTransactionPresenter){
@@ -105,11 +116,13 @@ class DetailTransactionViewController: UIViewController {
     }
     
     @IBAction func btnDelateTransaction(_ sender: Any) {
-        let alert = UIAlertController(title: "Delete transaction", message: "Are you sure to delete this transaction?", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: DetailTransactionDataString.delete.rawValue.addLocalizableString(str: language), message:DetailTransactionDataString.alertTitle.rawValue.addLocalizableString(str: language) , preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: DetailTransactionDataString.cancel.rawValue.addLocalizableString(str: language),
+                                      style: .cancel, handler: nil))
         
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+        alert.addAction(UIAlertAction(title: DetailTransactionDataString.yes.rawValue.addLocalizableString(str: language),
+                                      style: .default, handler: { action in
             self.presenter?.deleteTransaction(t: self.transaction)
             self.navigationController?.popViewController(animated: true)
         }))

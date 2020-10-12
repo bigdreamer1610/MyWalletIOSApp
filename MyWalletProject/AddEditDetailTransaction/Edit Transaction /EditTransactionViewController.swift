@@ -20,7 +20,7 @@ class EditTransactionViewController: UIViewController {
     var timer = Timer()
     private let dateFormatter = DateFormatter()
     
-    @IBOutlet var btnSave: UIBarButtonItem!
+    @IBOutlet weak var btnSave: UIBarButtonItem!
     @IBOutlet weak var iconEvent: UIImageView!
     @IBOutlet var btnCancel: UIBarButtonItem!
     @IBOutlet var iconImage: UIImageView!
