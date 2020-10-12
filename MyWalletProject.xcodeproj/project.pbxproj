@@ -210,6 +210,7 @@
 		D22597EB252C71B500B7AB3B /* EventImgViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22597EA252C71B500B7AB3B /* EventImgViewController.swift */; };
 		D22597EF252C721C00B7AB3B /* EventImgUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22597EE252C721C00B7AB3B /* EventImgUseCase.swift */; };
 		D22597F3252C7B2100B7AB3B /* EventImg.xib in Resources */ = {isa = PBXBuildFile; fileRef = D22597F1252C7B2000B7AB3B /* EventImg.xib */; };
+		D22AF8E22530594300609E25 /* EventDefined.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22597D1252C5F3200B7AB3B /* EventDefined.swift */; };
 		D270F4B0251B52E700CB274C /* AddEvent.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D270F4AF251B52E700CB274C /* AddEvent.storyboard */; };
 		D270F4BD251B54DF00CB274C /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D270F4BB251B54DF00CB274C /* EventCell.swift */; };
 		D270F4BE251B54DF00CB274C /* EventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D270F4BC251B54DF00CB274C /* EventCell.xib */; };
@@ -1644,6 +1645,7 @@
 				8A3BB426251AFE7C008113E9 /* SettingsItemViewCell.swift in Sources */,
 				8A523622252EAF6F00A87E9D /* DetailCategoryViewController.swift in Sources */,
 				56053C2C2525E88C00685FFC /* BudgetListViewController.swift in Sources */,
+				D22AF8E22530594300609E25 /* EventDefined.swift in Sources */,
 				D29A5AC7252DB80B00BECA18 /* EventImgPresenter.swift in Sources */,
 				73E0B17B2521E0EE0097D41F /* ViewTransactionController.swift in Sources */,
 				8A3D7DEB252C552B004F4FEA /* ViewCategoryViewController.swift in Sources */,

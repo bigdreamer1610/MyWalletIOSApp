@@ -15,7 +15,6 @@ protocol BudgetListUseCaseDelegate : class{
 
 class BudgetListUseCase {
     weak var delegate : BudgetListUseCaseDelegate?
-    
 }
 
 extension BudgetListUseCase {

@@ -26,6 +26,7 @@ class EventPresenter {
     
     // getdata
     func fetchDataApplying() {
+       // eventUseCase?.refresh()
         eventUseCase?.getCurrenlyApplying()
     }
     
