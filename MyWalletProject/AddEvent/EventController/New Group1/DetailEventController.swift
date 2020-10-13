@@ -28,6 +28,7 @@ class DetailEventController: UITableViewController {
     // Load view
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.3929189782, green: 0.4198221317, blue: 0.8705882353, alpha: 1)
         
     }
     

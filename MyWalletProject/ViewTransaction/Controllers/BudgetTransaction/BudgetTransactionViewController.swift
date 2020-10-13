@@ -26,6 +26,7 @@ class BudgetTransactionViewController: UIViewController {
         indicatorView.isHidden = true
         lbNoTrans.isHidden = true
         initComponents()
+        self.navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.3929189782, green: 0.4198221317, blue: 0.8705882353, alpha: 1)
     }
     
     override func viewWillAppear(_ animated: Bool) {

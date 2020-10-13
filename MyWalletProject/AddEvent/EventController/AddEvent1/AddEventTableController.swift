@@ -38,8 +38,7 @@ class AddEventTableController: UITableViewController {
         tapGestureRecognizer.cancelsTouchesInView = false
         setUpView()
         view.addGestureRecognizer(tapGestureRecognizer)
-        self.navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.6023845077, green: 0.6081735492, blue: 0.9969246984, alpha: 1)
-
+        self.navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.3929189782, green: 0.4198221317, blue: 0.8705882353, alpha: 1)
     }
     
     func setUp(presenter: AddEventPresenter)  {
@@ -101,7 +100,6 @@ extension AddEventTableController : AddEventPresenterDelegate, UITextFieldDelega
         if indexPath.row == 1 {
             let vc = UIStoryboard.init(name: "AddEvent", bundle: nil).instantiateViewController(identifier: "calendarView") as! CalendarController
             vc .completionHandler = {
-                print($0)
                 self.event.date = $0
                 self.tfDate.text = $0
             }
