@@ -29,6 +29,8 @@
 "Bạn có muốn xoá ?" = "Do you want delete ?";
 "Xác nhận" = "OK";
 "Huỷ" = "Cancel";
+"Cao hơn giới hạn chi tiêu" = "Higher than the spending limit";
+"Nhỏ hơn giới hạn chi tiêu" = "Smaller than the spending limit";
 
 // budget add edit
 "Quay lại" = "Back";
