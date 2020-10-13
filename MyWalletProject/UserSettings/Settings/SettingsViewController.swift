@@ -34,7 +34,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         setupTextFieldDelegate(textFields: [txtUsername, txtBalance, txtDate, txtPhoneNumber, txtGender, txtAddress, txtLanguage])
         presenter?.requestUserInfo("userid1")
         
-        self.title = "Information"
+        self.title = Constants.information
     }
     
     // MARK: - Hide tab bar

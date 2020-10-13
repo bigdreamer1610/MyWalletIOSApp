@@ -62,6 +62,15 @@ class Constants {
     static let alertButtonCancel = "Cancel"
     static let alertButtonDelete = "Delete"
     
+    // Screen title
+    static let information = "Information"
+    static let categories = "Categories"
+    static let addCategory = "Add category"
+    static let editCategory = "Edit category"
+    static let currencyExchange = "Currencies Exchange"
+    static let travelMode = "Travel Mode"
+    static let billScanner = "Bill Scanner"
+    
     static let mode = "mode"
     static let balance = "balance"
     static let userid = "userid"
