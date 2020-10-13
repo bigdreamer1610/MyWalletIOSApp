@@ -51,7 +51,6 @@ class AddEventTableUseCase  {
                     as [String : Any]
                 Defined.ref.child("Account").child(self.userID).child("event").child(String(newChild)).updateChildValues(event1,withCompletionBlock: { error , ref in
                     if error == nil {
-                        
                     }else{
                     }
                 })
