@@ -53,9 +53,11 @@ extension EventUseCase{
                 else {
                     
                 }
+                
             }
+            dispatchGroup.leave()
         })
-        dispatchGroup.leave()
+        
         dispatchGroup.notify(queue: .main) {
             Defined.ref.child("Account").child(self.idUser).child("transaction").observeSingleEvent(of: .value) { (snapshot1) in
                 if let snapshots = snapshot1.children.allObjects as?[DataSnapshot]
