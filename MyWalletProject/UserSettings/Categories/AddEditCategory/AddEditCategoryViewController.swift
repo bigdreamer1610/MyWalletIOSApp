@@ -47,11 +47,11 @@ class AddEditCategoryViewController: UIViewController {
     // MARK: - Setup view depends on which screen call this view
     func setupView() {
         if action == "add" {
-            self.title = "Add category"
+            self.title = Constants.addCategory
             self.categoryType = "income"
             self.segmentControl.selectedSegmentIndex = 0
         } else {
-            self.title = "Edit category"
+            self.title = Constants.editCategory
             
             if self.category.transactionType == "Income" {
                 self.segmentControl.selectedSegmentIndex = 0
