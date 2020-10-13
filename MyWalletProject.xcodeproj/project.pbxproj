@@ -99,6 +99,7 @@
 		73AABDAB2535B96B00E8A62B /* AlertUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AABDAA2535B96B00E8A62B /* AlertUtil.swift */; };
 		73AABDAE2535B9F200E8A62B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AABDAD2535B9F200E8A62B /* BaseViewController.swift */; };
 		73AABDB02535BA2A00E8A62B /* BaseUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AABDAF2535BA2A00E8A62B /* BaseUseCase.swift */; };
+		73AABDB22535BBC500E8A62B /* BaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AABDB12535BBC500E8A62B /* BaseProtocol.swift */; };
 		73AEA873253539FB00DC1EA7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AEA872253539FB00DC1EA7 /* Extensions.swift */; };
 		73D7D88B252C07570014F5A1 /* BudgetTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D7D88A252C07570014F5A1 /* BudgetTransactionViewController.swift */; };
 		73D7D88D252C076C0014F5A1 /* BudgetTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D7D88C252C076C0014F5A1 /* BudgetTransactionUseCase.swift */; };
@@ -337,6 +338,7 @@
 		73AABDAA2535B96B00E8A62B /* AlertUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertUtil.swift; sourceTree = "<group>"; };
 		73AABDAD2535B9F200E8A62B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		73AABDAF2535BA2A00E8A62B /* BaseUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUseCase.swift; sourceTree = "<group>"; };
+		73AABDB12535BBC500E8A62B /* BaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProtocol.swift; sourceTree = "<group>"; };
 		73AEA872253539FB00DC1EA7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		73D7D88A252C07570014F5A1 /* BudgetTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTransactionViewController.swift; sourceTree = "<group>"; };
 		73D7D88C252C076C0014F5A1 /* BudgetTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTransactionUseCase.swift; sourceTree = "<group>"; };
@@ -893,6 +895,7 @@
 			children = (
 				73AABDAD2535B9F200E8A62B /* BaseViewController.swift */,
 				73AABDAF2535BA2A00E8A62B /* BaseUseCase.swift */,
+				73AABDB12535BBC500E8A62B /* BaseProtocol.swift */,
 			);
 			path = BaseModule;
 			sourceTree = "<group>";
@@ -1756,6 +1759,7 @@
 				56522947252D8071006ED814 /* BudgetPresenter.swift in Sources */,
 				73FC0D382525DE6C0012676D /* TransactionPresenter.swift in Sources */,
 				735873EF2521780D00B8235D /* MainTabViewController.swift in Sources */,
+				73AABDB22535BBC500E8A62B /* BaseProtocol.swift in Sources */,
 				724F64EF252FF4AF0067DED9 /* ReportUseCase.swift in Sources */,
 				73AA67FA25258294001EAA1D /* PlanningCell.swift in Sources */,
 				73E0B17E2521E0EE0097D41F /* TransactionCell.swift in Sources */,
