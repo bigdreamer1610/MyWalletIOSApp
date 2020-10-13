@@ -36,25 +36,18 @@ class LoginFbPresenter {
     
     //MARK: - Get data data fb
     func getFBUserData() {
-        if ((AccessToken.current) != nil) {
-            
+        if (AccessToken.current != nil) {
             GraphRequest(graphPath: "me", parameters: ["fields": "id, name, picture.type(large), email, gender"]).start(completionHandler: { (connection, result, error) -> Void in
-                
                 // nếu không xảy ra lỗi
                 if (error == nil){
-                    
-                    
                     let dict = result as! [String : AnyObject]
-                    
                     let picutreDic = dict as NSDictionary
-                    
                     // id
                     let idOfUser = picutreDic.object(forKey: "id") as! String
                     // name
                     let nameOfUser = picutreDic.object(forKey: "name") as! String
                     // email
                     var tmpEmailAdd = ""
-                    
                     if let emailAddress = picutreDic.object(forKey: "email") {
                         tmpEmailAdd = emailAddress as! String
                         print(tmpEmailAdd)
