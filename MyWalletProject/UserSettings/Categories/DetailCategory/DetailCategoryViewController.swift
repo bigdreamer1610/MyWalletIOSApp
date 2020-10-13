@@ -88,10 +88,10 @@ class DetailCategoryViewController: UIViewController {
         }
     }
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
-        let deleteAlert = UIAlertController(title: "DO YOU REALLY WANT TO DELETE IT?", message: "You're about to delete this category, all of your transaction in this category will be lost!", preferredStyle: UIAlertController.Style.alert)
+        let deleteAlert = UIAlertController(title: Constants.alertDeleteWarning, message: Constants.alertDeleteMessage, preferredStyle: UIAlertController.Style.alert)
 
-        deleteAlert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { (action: UIAlertAction!) in self.finish()}))
-        deleteAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        deleteAlert.addAction(UIAlertAction(title: Constants.alertButtonDelete, style: .default, handler: { (action: UIAlertAction!) in self.finish()}))
+        deleteAlert.addAction(UIAlertAction(title: Constants.alertButtonCancel, style: .cancel, handler: nil))
 
         present(deleteAlert, animated: true, completion: nil)
     }

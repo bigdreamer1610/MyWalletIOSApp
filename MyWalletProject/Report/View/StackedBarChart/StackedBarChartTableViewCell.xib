@@ -78,6 +78,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="containerView" destination="97w-Em-YgM" id="F1k-fh-MEw"/>
+                <outlet property="lblNameNetIncome" destination="jgt-Af-t7s" id="ulH-sH-KYZ"/>
                 <outlet property="lblNetIncome" destination="O7W-ej-IdI" id="wD7-9u-4uz"/>
             </connections>
             <point key="canvasLocation" x="199.27536231884059" y="241.40625"/>
