@@ -17,15 +17,18 @@ extension LoginViewController: GIDSignInDelegate {
         let id = currentUser?.userID
         let username = currentUser?.profile.name
         let email = currentUser?.profile.email
-    
-        LoginUseCase().checkAccountExist(id: id!, name: username! , email: email!)
-        Defined.defaults.set(id, forKey: Constants.userid)
-        Defined.defaults.set(username, forKey: Constants.username)
-        Defined.defaults.set(email, forKey: Constants.email)
-        Defined.defaults.set(true, forKey: Constants.loginStatus)
         
-        nextCategory(viewController: self)
-        
+        if let id = id , let username = username , let email = email {
+            LoginUseCase().checkAccountExist(id: id, name: username , email: email)
+            Defined.defaults.set(id, forKey: Constants.userid)
+            Defined.defaults.set(username, forKey: Constants.username)
+            Defined.defaults.set(email, forKey: Constants.email)
+            Defined.defaults.set(true, forKey: Constants.loginStatus)
+            nextCategory(viewController: self)
+        }
+        else{
+            return
+        }
     }
 }
 

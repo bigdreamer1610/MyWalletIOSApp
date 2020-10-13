@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleSignIn
 
 class UserSettingsViewController: UIViewController {
     
@@ -119,8 +120,8 @@ extension UserSettingsViewController: UITableViewDelegate, UITableViewDataSource
             Defined.defaults.removeObject(forKey: Constants.userid)
             Defined.defaults.removeObject(forKey: Constants.username)
             Defined.defaults.removeObject(forKey: Constants.email)
-            Defined.defaults.set(false, forKey: Constants.loginStatus)
-            
+            Defined.defaults.removeObject(forKey: Constants.loginStatus)
+            GIDSignIn.sharedInstance()?.signOut()
             let signInController = UIStoryboard.init(name: "Signin", bundle: nil).instantiateViewController(identifier: "LoginViewController") as! LoginViewController
             AppRouter.routerTo(from: signInController, options: .curveEaseOut, duration: 2, isNaviHidden: true)
         default:
