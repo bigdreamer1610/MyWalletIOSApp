@@ -15,7 +15,7 @@ class FormatNumber: NSObject {
            numberFormatter.numberStyle = .decimal
            numberFormatter.maximumFractionDigits = 3
            var format = numberFormatter.string(from: so as! NSNumber)!
-           return format + " Đ"
+           return format + " VND"
        }
 
 

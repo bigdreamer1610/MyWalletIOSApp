@@ -27,14 +27,16 @@ class AddEventTableController: UITableViewController {
     @IBOutlet weak var tfDate: UITextField!
     @IBOutlet weak var viewCategory: UIView!
     @IBOutlet weak var cellEvent: UITableViewCell!
-
+    
     
     //Load view
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpView()
         let tapGestureRecognizer =  UITapGestureRecognizer(target: self, action: #selector(keyBoard))
         tapGestureRecognizer.cancelsTouchesInView = false
+        setUpView()
         view.addGestureRecognizer(tapGestureRecognizer)
     }
     
@@ -43,7 +45,6 @@ class AddEventTableController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        setUpView()
         setUpViewImg()
     }
     
@@ -66,7 +67,7 @@ class AddEventTableController: UITableViewController {
             eventImg = event.eventImage!
         } else {
         }
-
+        
     }
 }
 extension AddEventTableController : AddEventPresenterDelegate, UITextFieldDelegate{
@@ -111,7 +112,6 @@ extension AddEventTableController : AddEventPresenterDelegate, UITextFieldDelega
     func acctionImgEvent()  {
         let vc = UIStoryboard.init(name: "AddEvent", bundle: nil).instantiateViewController(identifier: "CategoryEvent") as! EventImgViewController
         vc .completionHandler = {
-            print($0)
             self.eventImg = $0
             self.imgCategory.image = UIImage(named: $0)
             self.viewImg.alpha = 0
@@ -120,7 +120,7 @@ extension AddEventTableController : AddEventPresenterDelegate, UITextFieldDelega
         vc.setUp(presenter: presenter)
         navigationController?.pushViewController(vc, animated: true)
     }
-  @objc  func keyBoard() {
+    @objc  func keyBoard() {
         view.endEditing(true)
     }
     func add()  {
@@ -129,17 +129,17 @@ extension AddEventTableController : AddEventPresenterDelegate, UITextFieldDelega
             if !nameEvents.contains(nameEvent) {
                 if tfDate.text!.isEmpty || nameEvent.isEmpty || eventImg.isEmpty {
                     let alert = defined.alert(state: state)
-                            self.present(alert, animated: true, completion: nil)
-                               
-                                  }else {
-                                      let event = Event(id: nil, name: nameEvent, date: tfDate.text!, eventImage: eventImg, spent: 0)
-                               self.presenter?.addDataEvent(event: event, state: state)
-                                  }
+                    self.present(alert, animated: true, completion: nil)
+                    
+                }else {
+                    let event = Event(id: nil, name: nameEvent, date: tfDate.text!, eventImage: eventImg, spent: 0)
+                    self.presenter?.addDataEvent(event: event, state: state)
+                }
             } else {
                 let alert = defined.alert(state: 4)
                 self.present(alert, animated: true, completion: nil)
             }
-   
+            
         }
         else {
             if tfDate.text!.isEmpty && tfNameEvent.text!.isEmpty && eventImg.isEmpty {
@@ -147,11 +147,25 @@ extension AddEventTableController : AddEventPresenterDelegate, UITextFieldDelega
                 let event = Event(id: self.event.id, name: tfNameEvent.text!, date: tfDate.text!, eventImage: eventImg, spent: self.event.spent, status: self.event.status)
                 competionHandler?(event)
                 self.presenter?.addDataEvent(event: event, state: state)
+            }
+            
         }
-       
+        
     }
     
-    }}
+    
+}
+extension AddEventTableController {
+    override var hidesBottomBarWhenPushed: Bool {
+        get{
+            return true
+        }
+        set {
+            super.hidesBottomBarWhenPushed = newValue
+        }
+    }
+}
+
 
 
 

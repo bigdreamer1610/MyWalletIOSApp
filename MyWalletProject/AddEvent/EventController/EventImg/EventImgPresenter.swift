@@ -25,9 +25,7 @@ class EventImgPresenter {
     func fetchData1()  {
         eventUseCase?.fetchData()
     }
-    
 }
-
 extension EventImgPresenter: EventImgUseCaseDelegate{
     func data( imgEvents: [String]) {
         
