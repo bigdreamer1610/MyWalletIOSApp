@@ -17,6 +17,7 @@
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dmd-ir-QRV">
                                 <rect key="frame" x="20" y="108" width="374" height="41"/>
+                                <color key="backgroundColor" red="0.39291897819999999" green="0.41982213169999999" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="e6Q-4B-vO6"/>
                                 </constraints>
@@ -185,6 +186,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Select Category" id="ZGm-MB-GbY">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="kte-Jd-kcS">
+                            <color key="tintColor" red="0.5260974169" green="0.53220194580000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="btnBackClick:" destination="A53-6w-pJ3" id="vO8-Jq-cj7"/>
                             </connections>
@@ -309,6 +311,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Calendar" id="tsZ-ZQ-VSd">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="rFM-cZ-VGD">
+                            <color key="tintColor" red="0.5260974169" green="0.53220194580000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="btnBackClick:" destination="JSd-My-Rnr" id="2db-7v-202"/>
                             </connections>
