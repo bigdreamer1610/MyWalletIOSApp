@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleSignIn
 
 class UserSettingsViewController: UIViewController {
     
@@ -58,7 +59,7 @@ class UserSettingsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let backItem = UIBarButtonItem()
         backItem.title = "Back"
-        backItem.tintColor = UIColor.init(displayP3Red: 52, green: 199, blue: 90, alpha: 1.0)
+        backItem.tintColor = UIColor.colorFromHexString(hex: "776d8a")
         navigationItem.backBarButtonItem = backItem
     }
 }
@@ -119,8 +120,8 @@ extension UserSettingsViewController: UITableViewDelegate, UITableViewDataSource
             Defined.defaults.removeObject(forKey: Constants.userid)
             Defined.defaults.removeObject(forKey: Constants.username)
             Defined.defaults.removeObject(forKey: Constants.email)
-            Defined.defaults.set(false, forKey: Constants.loginStatus)
-            
+            Defined.defaults.removeObject(forKey: Constants.loginStatus)
+            GIDSignIn.sharedInstance()?.signOut()
             let signInController = UIStoryboard.init(name: "Signin", bundle: nil).instantiateViewController(identifier: "LoginViewController") as! LoginViewController
             AppRouter.routerTo(from: signInController, options: .curveEaseOut, duration: 2, isNaviHidden: true)
         default:

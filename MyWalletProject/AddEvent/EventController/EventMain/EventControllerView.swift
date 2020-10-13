@@ -50,7 +50,7 @@ class EventControllerView: UIViewController {
         case 0:
             arrEvent.removeAll()
             arrNameEvent.removeAll()
-           acctivityIndicator()
+            acctivityIndicator()
             presenter?.fetchDataApplying()
         default:
             arrNameEvent.removeAll()

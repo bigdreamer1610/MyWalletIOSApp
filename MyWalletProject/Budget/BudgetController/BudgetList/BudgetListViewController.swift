@@ -43,6 +43,8 @@ class BudgetListViewController: UIViewController {
         tblBudget.addSubview(refreshControl)
         tblBudget.reloadData()
         tblBudget.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tblBudget.frame.width, height: 0))
+        segmentTime.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.3929189782, green: 0.4198221317, blue: 0.8705882353, alpha: 1)], for: UIControl.State.selected)
+        segmentTime.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: UIControl.State.normal)
     }
     
     override func viewWillAppear(_ animated: Bool) {
