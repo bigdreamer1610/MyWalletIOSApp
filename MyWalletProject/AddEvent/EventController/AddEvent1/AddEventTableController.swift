@@ -38,6 +38,8 @@ class AddEventTableController: UITableViewController {
         tapGestureRecognizer.cancelsTouchesInView = false
         setUpView()
         view.addGestureRecognizer(tapGestureRecognizer)
+        self.navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.6023845077, green: 0.6081735492, blue: 0.9969246984, alpha: 1)
+
     }
     
     func setUp(presenter: AddEventPresenter)  {
