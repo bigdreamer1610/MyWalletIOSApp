@@ -16,11 +16,10 @@ class ReportViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var txtDatePicker: UITextField!
-    private var dateFormatter = DateFormatter()
     var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
     let calendar = Calendar.current
-    var currentMonth = 9
-    var currentYear = 2020
+    var currentMonth = 0
+    var currentYear = 0
     var open = 0
     var date = ""
     var expenseArray: [Transaction] = []
@@ -39,7 +38,9 @@ class ReportViewController: UIViewController {
         setupTxtDate()
         showDatePicker()
         createDatePicker()
+        
         self.presenter.delegate = self
+        
         self.presenter.requestIncome(dateInput: self.date)
         self.presenter.requestExpense(dateInput: self.date)
         self.presenter.requestCategories(nameNode: "income")
@@ -51,8 +52,8 @@ class ReportViewController: UIViewController {
         txtDatePicker.tintColor = .clear
         currentYear = calendar.component(.year, from: Date())
         currentMonth = calendar.component(.month, from: Date())
-        dateFormatter.locale = Locale(identifier: "vi_VN")
-        dateFormatter.dateFormat = "dd/MM/yyyy"
+        Defined.dateFormatter.locale = Locale(identifier: "vi_VN")
+        Defined.dateFormatter.dateFormat = "dd/MM/yyyy"
         lblDate.text = "\(months[currentMonth - 1]) \(currentYear)"
         if currentMonth < 10 {
             txtDatePicker.text = "0\(currentMonth)/\(currentYear)"
@@ -130,7 +131,7 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 0:
             let cell = MoneyTableViewCell.loadCell(tableView) as! MoneyTableViewCell
-            cell.setUpData(opening: open, sumIncome: sumIncome, sumExpense: sumExpense)
+            cell.setupData(opening: open, sumIncome: sumIncome, sumExpense: sumExpense)
             cell.selectionStyle = .none
             return cell
         case 1:

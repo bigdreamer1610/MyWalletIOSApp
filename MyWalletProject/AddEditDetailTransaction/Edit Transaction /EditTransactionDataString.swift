@@ -14,7 +14,7 @@ enum EditTransactionDataString: String {
     case editTransaction = "Edit Transaction"
     case event = "Event"
     case delete = "Delete transaction"
-    case selectEvent = " Select event"
+    case selectEvent = "Select event"
     case amount = "Amount"
     case category = "Category"
     case note = "Note"

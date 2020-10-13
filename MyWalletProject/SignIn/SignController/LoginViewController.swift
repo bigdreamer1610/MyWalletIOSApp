@@ -32,15 +32,15 @@ class LoginViewController: UIViewController {
     
     func customizeLayout(buttons: [UIButton]){
         buttons.forEach { (button) in
-            button.layer.borderWidth = 1
-            button.layer.borderColor = UIColor.black.cgColor
-            button.layer.cornerRadius = 6
+            button.layer.borderWidth = 2
+            button.layer.borderColor = UIColor.colorFromHexString(hex: "776d8a").cgColor
+            button.layer.cornerRadius = 10
         }
     }
     //MARK: - viewDidload
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        view.backgroundColor = UIColor.colorFromHexString(hex: "f3e6e3")
         autoLogin()
         
         GIDSignIn.sharedInstance().presentingViewController = self
@@ -75,3 +75,4 @@ extension LoginViewController:LoginViewControllerDelegate{
         }
     }
 }
+

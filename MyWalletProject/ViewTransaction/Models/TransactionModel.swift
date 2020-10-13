@@ -76,3 +76,11 @@ struct DetailInfo {
     var ending: Int
 }
 
+enum TransactionType: String {
+    case expense = "expense"
+    case income = "income"
+    
+    func getValue() -> String {
+        return self.rawValue
+    }
+}

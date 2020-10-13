@@ -55,86 +55,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E8F154A8-B7AF-4384-82B7-4677CBDEA551"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyWalletProject/AddEvent/EventController/AddEvent1/AddEventTableUseCase.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "addData(event:state:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C82F4901-26DF-401F-AD8A-C512A294C7B8"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyWalletProject/AddEvent/EventController/AddEvent1/AddEventTableController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
-            landmarkName = "add()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C73F65FD-915F-479C-9174-B75A9842C673"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyWalletProject/AddEvent/EventController/AddEvent1/AddEventTableUseCase.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "addData(event:state:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "C73F65FD-915F-479C-9174-B75A9842C673 - 2ff3747247952cac"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 () -&gt; () in MyWalletProject.AddEventTableUseCase.addData(event: MyWalletProject.Event, state: Swift.Int) -&gt; ()"
-                  moduleName = "MyWalletProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/thanh.dinhvan/Desktop/money/MyWalletProject/MyWalletProject/AddEvent/EventController/AddEvent1/AddEventTableUseCase.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "52"
-                  endingLineNumber = "52"
-                  offsetFromSymbolStart = "1129">
-               </Location>
-               <Location
-                  uuid = "C73F65FD-915F-479C-9174-B75A9842C673 - c4082ab78ec6ee30"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;, __C.FIRDatabaseReference) -&gt; () in closure #2 () -&gt; () in MyWalletProject.AddEventTableUseCase.addData(event: MyWalletProject.Event, state: Swift.Int) -&gt; ()"
-                  moduleName = "MyWalletProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/thanh.dinhvan/Desktop/money/MyWalletProject/MyWalletProject/AddEvent/EventController/AddEvent1/AddEventTableUseCase.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "53"
-                  endingLineNumber = "53"
-                  offsetFromSymbolStart = "82">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "DEB86EA7-48D5-4970-9F5C-2E5C6201B7DB"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -174,8 +94,8 @@
             filePath = "MyWalletProject/AddEvent/EventController/New Group1/DetailEventController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "responData(number:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -190,8 +110,8 @@
             filePath = "MyWalletProject/AddEvent/EventController/New Group1/DetailEventController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
             landmarkName = "DetailEventController"
             landmarkType = "21">
          </BreakpointContent>
@@ -231,70 +151,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1416CA02-0C53-4594-96F1-BC1BB8BB001F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyWalletProject/AddEvent/EventController/AddEvent1/AddEventTableController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
-            landmarkName = "add()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "EFEB3874-3FC9-4766-B7CB-DC93D98C0866"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyWalletProject/AddEvent/EventController/AddEvent1/AddEventTableController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
-            landmarkName = "add()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "9D9BB045-1AC6-4D79-ACB2-6EA1892AD7F3"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyWalletProject/AddEvent/EventController/AddEvent1/AddEventTableController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "add()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "86F1E427-388A-4FC2-9A2B-D18A030F2D86"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyWalletProject/AddEvent/EventController/AddEvent1/AddEventTableController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "add()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "54E3CD2D-ECB4-41E1-932B-065C5D67C2D7"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -302,8 +158,8 @@
             filePath = "MyWalletProject/AddEvent/EventController/EventMain/EventControllerView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -318,8 +174,8 @@
             filePath = "MyWalletProject/AddEvent/EventController/EventMain/EventControllerView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -327,127 +183,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "AE226BEC-D129-497E-A861-1F8679411865"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyWalletProject/AddEvent/EventController/AddEvent1/AddEventTableController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
-            landmarkName = "acctionImgEvent()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "AE226BEC-D129-497E-A861-1F8679411865 - 6479fb39ff0d5446"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "MyWalletProject.AddEventTableController.acctionImgEvent() -&gt; ()"
-                  moduleName = "MyWalletProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/thanh.dinhvan/Desktop/money/MyWalletProject/MyWalletProject/AddEvent/EventController/AddEvent1/AddEventTableController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "113"
-                  endingLineNumber = "113"
-                  offsetFromSymbolStart = "402">
-               </Location>
-               <Location
-                  uuid = "AE226BEC-D129-497E-A861-1F8679411865 - dbea70a7396f2990"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.String) -&gt; () in MyWalletProject.AddEventTableController.acctionImgEvent() -&gt; ()"
-                  moduleName = "MyWalletProject"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/thanh.dinhvan/Desktop/money/MyWalletProject/MyWalletProject/AddEvent/EventController/AddEvent1/AddEventTableController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "114"
-                  endingLineNumber = "114"
-                  offsetFromSymbolStart = "114">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FDD3A124-5753-4176-A8B8-3BB59528E400"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyWalletProject/AddEvent/EventController/AddEvent1/AddEventTableController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "acctionImgEvent()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "EB28E2DE-8253-4965-884A-C6D4363C5FF6"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyWalletProject/AddEvent/EventController/AddEvent1/AddEventTableController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
-            landmarkName = "acctionImgEvent()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E1A191B6-1909-4A24-A258-ACDC9225620A"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyWalletProject/AddEvent/EventController/AddEvent1/AddEventTableController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
-            landmarkName = "acctionImgEvent()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8C60B1C9-9639-494F-A176-B2DC34F9A9DA"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyWalletProject/AddEvent/EventController/AddEvent1/AddEventTableController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
-            landmarkName = "acctionImgEvent()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "11A06ACF-62A1-4289-8DE0-9BC24CB6F79A"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyWalletProject/AddEvent/EventController/EventMain/EventUseCase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
             landmarkName = "refresh()"
             landmarkType = "7">
          </BreakpointContent>
@@ -456,14 +200,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "29432277-A60D-4A8C-8B70-A2A8442BA237"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyWalletProject/AddEvent/EventController/EventMain/EventUseCase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "162"
+            endingLineNumber = "162"
             landmarkName = "refresh()"
             landmarkType = "7">
          </BreakpointContent>
