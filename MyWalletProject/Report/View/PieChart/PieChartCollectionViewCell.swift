@@ -20,12 +20,9 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
     var state: State?
     var entries = [ChartDataEntry]()
     var sumByCate = [SumByCate]()
-    private var formatter = NumberFormatter()
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        formatter.groupingSeparator = ","
-        formatter.numberStyle = .decimal
         buildChart()
     }
     
@@ -70,7 +67,7 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
                                  height: self.containerView.frame.size.height)
         containerView.addSubview(chartView)
         
-        lblMoney.text = "\(formatter.string(from: NSNumber(value: sum))!)"
+        lblMoney.text = String(Defined.formatter.string(from: NSNumber(value: sum)) ?? "")
         
         // set label entry
         if sumBycate.count > 4 {

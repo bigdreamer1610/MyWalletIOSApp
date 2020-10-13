@@ -12,7 +12,6 @@ class DetailPieChartVC: UIViewController {
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var btnSearch: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
-    private var formatter = NumberFormatter()
     var sum = 0
     var state: State?
     var segmentIndex = 0
@@ -27,8 +26,6 @@ class DetailPieChartVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        formatter.groupingSeparator = ","
-        formatter.numberStyle = .decimal
         setupTableView()
     }
     

@@ -12,11 +12,8 @@ class NameTableViewCell: BaseTBCell {
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblMoney: UILabel!
     
-    private var formatter = NumberFormatter()
     override func awakeFromNib() {
         super.awakeFromNib()
-        formatter.groupingSeparator = ","
-        formatter.numberStyle = .decimal
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -28,6 +25,6 @@ class NameTableViewCell: BaseTBCell {
     func setupData(_ text: String, _ color: UIColor, _ sumIncome: Int) {
         lblName.text = text
         lblMoney.textColor = color
-        lblMoney.text = String(formatter.string(from: NSNumber(value: sumIncome))!)
+        lblMoney.text = String(Defined.formatter.string(from: NSNumber(value: sumIncome))!)
     }
 }
