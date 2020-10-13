@@ -33,7 +33,7 @@ class CurrencyViewController: UIViewController {
         
         presenter?.fetchData()
         
-        self.title = "Currencies Exchange"
+        self.title = Constants.currencyExchange
     }
     
     // MARK: - Hide tab bar

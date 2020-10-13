@@ -33,12 +33,9 @@ class DetailCategoryViewController: UIViewController {
         super.viewDidLoad()
         
         setupView()
-        
         addTopBorder([imgCategoryView, categoryNameView, deleteView])
         addBottomBorder([categoryNameView, typeIconView, categoryTypeView, deleteView])
-        
         setupGestureForView([deleteView])
-        
         txtCategoryName.isUserInteractionEnabled = false
     }
     

@@ -30,16 +30,11 @@ class ScanBillViewController: UIViewController {
         super.viewDidLoad()
 
         imagePicker.delegate = self
-        
         configureButton([btnCamera, btnGallery, btnScan, btnAddTransaction])
-        
         borderImageView(imageInput)
-        
         removeTextViewLeftPadding(txtNote)
         
-        self.title = "Bill Scanner"
-        
-        // Comment for testing git
+        self.title = Constants.billScanner
     }
     
     // MARK: - Hide tab bar
