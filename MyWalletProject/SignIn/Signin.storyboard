@@ -42,7 +42,7 @@
                                     <action selector="btnLoginGoogleClick:" destination="BF5-bb-jFC" eventType="touchUpInside" id="jtX-Gb-SkZ"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="59q-18-ywh">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo2" translatesAutoresizingMaskIntoConstraints="NO" id="59q-18-ywh">
                                 <rect key="frame" x="37.666666666666657" y="156" width="300" height="300"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="FTa-fe-he6"/>
@@ -151,10 +151,9 @@
         <!--Navigation Controller-->
         <scene sceneID="LBj-JL-c1u">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kal-j9-Mdk" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="kal-j9-Mdk" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="R87-A3-Y6g">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -168,7 +167,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo" width="2580" height="2580"/>
+        <image name="logo2" width="2580" height="2580"/>
         <image name="symbolFB" width="32" height="32"/>
         <image name="symbolGG-1" width="32" height="32"/>
     </resources>
