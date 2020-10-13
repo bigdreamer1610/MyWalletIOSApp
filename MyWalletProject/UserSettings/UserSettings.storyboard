@@ -447,7 +447,7 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tcP-KV-nEV">
                                 <rect key="frame" x="20" y="666" width="374" height="40"/>
-                                <color key="backgroundColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.46666666666666667" green="0.42745098039215684" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="YZQ-7h-1mD"/>
                                 </constraints>
@@ -507,6 +507,7 @@
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ABN-p1-2qO">
                                         <rect key="frame" x="345" y="5" width="51" height="35"/>
+                                        <color key="onTintColor" red="0.46666666670000001" green="0.42745098040000001" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="switchOn:" destination="Vpz-KK-ddV" eventType="valueChanged" id="md8-kY-L4j"/>
                                         </connections>
@@ -625,7 +626,7 @@
                                 <rect key="frame" x="20" y="7" width="92" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Cancel">
-                                    <color key="titleColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.46666666670000001" green="0.42745098040000001" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="btnCancelClick:" destination="Vpz-KK-ddV" eventType="touchUpInside" id="Hee-IY-3wm"/>
@@ -638,7 +639,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Done">
-                                    <color key="titleColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.46666666670000001" green="0.42745098040000001" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="btnDoneClick:" destination="Vpz-KK-ddV" eventType="touchUpInside" id="feR-Ek-5zu"/>
@@ -687,7 +688,7 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RTR-Mi-O4d">
                                 <rect key="frame" x="20" y="666" width="374" height="40"/>
-                                <color key="backgroundColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.46666666666666667" green="0.42745098039215684" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="2ft-2U-Sj5"/>
                                 </constraints>
@@ -710,7 +711,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="YtC-P1-cnM"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <color key="textColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="0.46666666666666667" green="0.42745098039215684" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date of Birth" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QoP-td-eRT">
@@ -719,7 +720,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="ZXD-bE-Kjb"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <color key="textColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="0.46666666666666667" green="0.42745098039215684" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNs-N0-88E">
@@ -728,7 +729,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="SIq-hw-PWu"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <color key="textColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="0.46666666666666667" green="0.42745098039215684" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVz-C6-z0B">
@@ -737,7 +738,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="Eff-dg-IKi"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <color key="textColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="0.46666666666666667" green="0.42745098039215684" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8V2-Ki-6Sz">
@@ -746,7 +747,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="XFK-ae-xJE"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <color key="textColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="0.46666666666666667" green="0.42745098039215684" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="R86-Xg-dfh">
@@ -795,7 +796,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="KzS-Fc-afJ"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <color key="textColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="0.46666666666666667" green="0.42745098039215684" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your phone number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iPk-Ey-NvV">
@@ -812,7 +813,7 @@
                                                     <constraint firstAttribute="height" constant="30" id="5gm-Q5-06Q"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <color key="textColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" red="0.46666666666666667" green="0.42745098039215684" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="English or Vietnamese" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3W1-D3-qLz">
@@ -926,7 +927,7 @@
             <point key="canvasLocation" x="840.57971014492762" y="-692.11956521739137"/>
         </scene>
     </scenes>
-    <color key="tintColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+    <color key="tintColor" red="0.46666666670000001" green="0.42745098040000001" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
     <resources>
         <image name="banker" width="170.66667175292969" height="170.66667175292969"/>
         <image name="flag-australia" width="128" height="128"/>
