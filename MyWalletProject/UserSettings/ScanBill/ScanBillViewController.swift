@@ -144,7 +144,13 @@ extension ScanBillViewController: ScanBillPresenterDelegate {
     // Set up views with processed data from presenter
     func setupForViews(_ transaction: Transaction) {
         self.lblDate.text = transaction.date ?? "Undefined"
-        self.lblTotal.text = "\(transaction.amount ?? 0) VND"
+        
+        if let value = transaction.amount {
+            if let total = Defined.formatter.string(from: NSNumber(value: value)) {
+                self.lblTotal.text = "\(String(describing: total)) VND"
+            }
+        }
+
         self.txtNote.text = transaction.note ?? "Undefined"
     }
 }
