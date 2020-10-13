@@ -379,20 +379,7 @@ extension ViewTransactionViewController : UITableViewDelegate {
     
     
 }
-extension UITextField {
-    func setRightImage2(imageName: String) {
-        let cRightImageView = UIImageView()
-        cRightImageView.image = UIImage(named: imageName)
-        cRightImageView.setImageColor(color: #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1))
-        cRightImageView.contentMode = .scaleToFill
-        let cRightView = UIView()
-        cRightView.addSubview(cRightImageView)
-        rightView?.frame = CGRect(x: 0, y: 0, width: 15, height: 15)
-        cRightImageView.frame = CGRect(x: -25, y: -7.5, width: 15, height: 15)
-        rightView = cRightView
-        rightViewMode = .always
-    }
-}
+
 //MARK: MENU CELL
 extension ViewTransactionViewController : UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
