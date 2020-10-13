@@ -38,6 +38,7 @@ class EventControllerView: UIViewController {
         eventTable.delegate = self
         eventTable.dataSource = self
         
+        
     }
     
     func setUp(presenter: EventPresenter)  {
@@ -76,8 +77,6 @@ class EventControllerView: UIViewController {
         
     }
     
-    
-    
 }
 extension EventControllerView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -107,14 +106,6 @@ extension EventControllerView: UITableViewDelegate, UITableViewDataSource {
         
         
     }
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        let currenOfSet = scrollView.contentOffset.y
-        let maxOffSet = scrollView.contentSize.height - scrollView.frame.size.height
-        if maxOffSet - currenOfSet <= 40{
-            
-        }
-        
-    }
     
 }
 
@@ -136,14 +127,6 @@ extension EventControllerView {
         acctivityIndicator()
         loadViewIndicator.startAnimating()
         presenter?.fetchDataApplying()
-    }
-    override var hidesBottomBarWhenPushed: Bool {
-        get{
-            return true
-        }
-        set {
-            super.hidesBottomBarWhenPushed = newValue
-        }
     }
  
 }

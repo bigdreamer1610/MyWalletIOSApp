@@ -240,7 +240,7 @@ extension ViewTransactionPresenter {
         let previousDates = getDateArray(arr: Defined.getAllDayArray(allTransactions: allTransactions), month: previousMonth, year: previousYear)
         let currentDates = getDateArray(arr: Defined.getAllDayArray(allTransactions: allTransactions), month: month, year: year)
         let open = calculateDetail(list: getTransactionbyDate(dateArr: previousDates))
-        let end = calculateDetail(list: getTransactionbyDate(dateArr: currentDates))
+        let end = open + calculateDetail(list: getTransactionbyDate(dateArr: currentDates))
         delegate?.getDetailCellInfo(info: DetailInfo(opening: open, ending: end))
     }
     
@@ -251,7 +251,7 @@ extension ViewTransactionPresenter {
             if a.transactionType == TransactionType.expense.getValue(){
                 number -= a.amount!
             } else {
-                number -= a.amount!
+                number += a.amount!
             }
         }
         return number

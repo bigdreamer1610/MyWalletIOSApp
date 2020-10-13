@@ -11,16 +11,14 @@ import Charts
 import FirebaseDatabase
 
 class StackedBarChartTableViewCell: BaseTBCell, ChartViewDelegate {
+    @IBOutlet weak var lblNameNetIncome: UILabel!
     @IBOutlet weak var lblNetIncome: UILabel!
     @IBOutlet weak var containerView: UIView!
     var chartView = BarChartView()
     let days = [""]
-    private var formatter = NumberFormatter()
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        formatter.groupingSeparator = ","
-        formatter.numberStyle = .decimal
         buildChart()
     }
     
@@ -39,7 +37,7 @@ class StackedBarChartTableViewCell: BaseTBCell, ChartViewDelegate {
         
         let leftAxis = chartView.leftAxis
         leftAxis.labelPosition = .outsideChart
-        leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: formatter)
+        leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: Defined.formatter)
         leftAxis.axisMinimum = 0
         leftAxis.labelFont = .systemFont(ofSize: 13)
         leftAxis.labelTextColor = UIColor.gray
@@ -65,7 +63,7 @@ class StackedBarChartTableViewCell: BaseTBCell, ChartViewDelegate {
                                  height: containerView.frame.size.height)
         containerView.addSubview(chartView)
         
-        lblNetIncome.text = "\(formatter.string(from: NSNumber(value: netIncome))!)"
+        lblNetIncome.text = "\(Defined.formatter.string(from: NSNumber(value: netIncome))!)"
         
         let val1 = Double(sumIncome)
         let val2 = Double(sumExpense)

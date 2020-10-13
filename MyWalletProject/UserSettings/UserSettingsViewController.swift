@@ -122,7 +122,7 @@ extension UserSettingsViewController: UITableViewDelegate, UITableViewDataSource
             Defined.defaults.set(false, forKey: Constants.loginStatus)
             
             let signInController = UIStoryboard.init(name: "Signin", bundle: nil).instantiateViewController(identifier: "LoginViewController") as! LoginViewController
-            AppRouter.routerTo(from: signInController, options: .curveEaseOut, duration: 0.5, isNaviHidden: true)
+            AppRouter.routerTo(from: signInController, options: .curveEaseOut, duration: 2, isNaviHidden: true)
         default:
             return
         }
