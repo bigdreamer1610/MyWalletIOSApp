@@ -16,8 +16,6 @@ class DetailPCCell: BaseTBCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        Defined.formatter.groupingSeparator = ","
-        Defined.formatter.numberStyle = .decimal
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

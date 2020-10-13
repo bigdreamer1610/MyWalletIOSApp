@@ -56,7 +56,8 @@ class ViewTransactionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initComponents()
-        
+        self.tabBarController?.tabBar.tintColor = UIColor.colorFromHexString(hex: "564f64")
+        //9d65cd
         //set up date
         todayYear = Defined.calendar.component(.year, from: today)
         todayMonth = Defined.calendar.component(.month, from: today)
@@ -137,6 +138,15 @@ class ViewTransactionViewController: UIViewController {
         layout.scrollDirection = .horizontal
         monthCollectionView.collectionViewLayout = layout
         monthCollectionView.isScrollEnabled = false
+        
+        //setup button show more
+        btnShowMore.tintColor = UIColor.colorFromHexString(hex: "776d8a")
+        let image = UIImage(named: "iconmore")?.withRenderingMode(.alwaysTemplate)
+        btnShowMore.setImage(image, for: .normal)
+        btnShowMore.tintColor = UIColor.colorFromHexString(hex: "776d8a")
+        
+        centerIcon.setImageColor(color: UIColor.colorFromHexString(hex: "776d8a"))
+        
     }
     
     
@@ -185,7 +195,6 @@ class ViewTransactionViewController: UIViewController {
 extension ViewTransactionViewController {
     fileprivate func jumpToDate(from date: Date){
         let firstIndexPath = IndexPath(item: getIndexPathOfThisMonthCell(from: date), section: 0)
-        print("Date indexpath: \(firstIndexPath)")
         monthCollectionView.selectItem(at: firstIndexPath, animated: true, scrollPosition: .centeredHorizontally)
         setUpCurrentDate(month: date.dateComponents.month!, year: date.dateComponents.year!)
     }

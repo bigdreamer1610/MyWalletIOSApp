@@ -14,6 +14,7 @@ class DetailPieTableViewCell: BaseTBCell, ChartViewDelegate {
     @IBOutlet weak var containerView: UIView!
     var chartView = PieChartView()
     var entries = [ChartDataEntry]()
+    var sumCate = 0
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -46,8 +47,18 @@ class DetailPieTableViewCell: BaseTBCell, ChartViewDelegate {
                                  height: self.containerView.frame.size.height)
         containerView.addSubview(chartView)
         
-        for index in 0 ..< sumByCategory.count {
-            entries.append(PieChartDataEntry(value: Double(sumByCategory[index].amount), label: sumByCategory[index].category))
+        if sumByCategory.count > 10 {
+            for index in 0 ..< 10 {
+                entries.append(PieChartDataEntry(value: Double(sumByCategory[index].amount), label: sumByCategory[index].category))
+            }
+            for index in 10 ..< sumByCategory.count {
+                self.sumCate += sumByCategory[index].amount
+            }
+            entries.append(PieChartDataEntry(value: Double(sumCate), label: Constants.other))
+        } else {
+            for index in 0 ..< sumByCategory.count {
+                entries.append(PieChartDataEntry(value: Double(sumByCategory[index].amount), label: sumByCategory[index].category))
+            }
         }
         
         let set = PieChartDataSet(entries: entries, label: "")

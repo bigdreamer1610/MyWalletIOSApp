@@ -107,6 +107,15 @@ extension DetailEventController{
         setUpView()
         presenter?.still(event: event)
     }
+    override var hidesBottomBarWhenPushed: Bool {
+        get{
+            return true
+        }
+        set {
+            super.hidesBottomBarWhenPushed = newValue
+        }
+    }
+    
 }
 
 extension DetailEventController : DetailPresenterDelegate{

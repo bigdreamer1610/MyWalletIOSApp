@@ -10,6 +10,7 @@ import UIKit
 
 class DetailCell: BaseTBCell {
 
+    @IBOutlet var seperator: UIView!
     @IBOutlet var lbTotal: UILabel!
     @IBOutlet var lbEnding: UILabel!
     @IBOutlet var lbOpening: UILabel!
@@ -19,6 +20,7 @@ class DetailCell: BaseTBCell {
         super.awakeFromNib()
         formatter.groupingSeparator = "."
         formatter.numberStyle = .decimal
+        customizeLayout()
         // Initialization code
     }
     
@@ -26,6 +28,10 @@ class DetailCell: BaseTBCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func customizeLayout(){
+        seperator.backgroundColor = UIColor.colorFromHexString(hex: "776d8a")
     }
     
     func setUpData(opening: Int, ending: Int){
