@@ -88,6 +88,7 @@
                 <outlet property="lbEnding" destination="9mj-sI-vh7" id="NQ6-1b-EEP"/>
                 <outlet property="lbOpening" destination="gmZ-an-BdQ" id="I2v-Zm-al8"/>
                 <outlet property="lbTotal" destination="ylY-fl-zhT" id="loi-ii-AkC"/>
+                <outlet property="seperator" destination="0oY-HM-uB7" id="ygQ-ip-p07"/>
             </connections>
             <point key="canvasLocation" x="168.84057971014494" y="181.47321428571428"/>
         </tableViewCell>
