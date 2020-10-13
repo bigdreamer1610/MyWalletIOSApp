@@ -15,7 +15,7 @@ protocol AddEventTableUseCaseDelegate: class {
 class AddEventTableUseCase  {
     var userID = "userid1"
     weak var delegate: AddEventTableUseCaseDelegate?
-    var int = 0
+    var int = 1
     
     //add data
     func addData(event: Event , state: Int)  {
@@ -29,8 +29,8 @@ class AddEventTableUseCase  {
                 snapshot in
                 for category in snapshot.children{
                     if  snapshot.childrenCount == 0   {
-                        self.int = 0
-                        newChild = 0
+                        self.int = 1
+                        newChild = 1
                     } else{
                         newChild = Int((category as AnyObject).key)! + 1
                         self.int = newChild
@@ -46,9 +46,8 @@ class AddEventTableUseCase  {
                                "date": event.date,
                                "eventImage": event.eventImage,
                                "spent": 0,
-                               "status": "true"
-                    ]
-                    as [String : Any]
+                               "status": "true"]
+                                as [String : Any]
                 Defined.ref.child("Account").child(self.userID).child("event").child(String(newChild)).updateChildValues(event1,withCompletionBlock: { error , ref in
                     if error == nil {
                         
@@ -62,11 +61,10 @@ class AddEventTableUseCase  {
                            "name": event.name ,
                            "date": event.date,
                            "eventImage": event.eventImage,
-                           "spent": event.spent,
-                           "status": event.status
-                ]
-                as [String : Any]
-            var eventEDit = Event(id: event.id, name: event.name , date: event.date, eventImage: event.eventImage, spent: event.spent, status: event.status)
+                           "spent": 0,
+                           "status": event.status]
+                            as [String : Any]
+            var eventEDit = Event(id: event.id, name: event.name , date: event.date, eventImage: event.eventImage, spent: 0, status: event.status)
             Defined.ref.child("Account").child(self.userID).child("event").child(event.id!).updateChildValues(event1,withCompletionBlock: { error , ref in
                 if error == nil {
                     self.delegate?.editEvent(event: eventEDit)

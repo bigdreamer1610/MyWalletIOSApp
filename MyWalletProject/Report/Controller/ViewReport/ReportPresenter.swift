@@ -40,7 +40,6 @@ extension ReportPresenter {
     
     func requestCategories(nameNode: String) {
         usecase.getCategoriesFromDB(nameNode: nameNode)
-        
     }
     
     func handleDataForPieChart(dataArray: [Transaction], state: State?) {
@@ -72,6 +71,7 @@ extension ReportPresenter {
         }
         return -1
     }
+    
 }
 
 extension ReportPresenter: ReportUseCaseDelegate {

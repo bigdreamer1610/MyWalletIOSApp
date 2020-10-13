@@ -62,11 +62,11 @@ extension DetailEventUseCase {
                        "name": event.name ,
                        "date": event.date,
                        "eventImage": event.eventImage,
-                       "spent": event.spent,
+                       "spent": 0,
                        "status": "false"
             ]
             as [String : Any]
-        var eventUpdate = Event(id: event.id, name: event.name , date: event.date, eventImage: event.eventImage, spent: event.spent, status: "false")
+        var eventUpdate = Event(id: event.id, name: event.name , date: event.date, eventImage: event.eventImage, spent: 0, status: "false")
         Defined.ref.child("Account").child(idUser).child("event").child(event.id!).updateChildValues(event1,withCompletionBlock: { error , ref in
             if error == nil {
                 self.delegate?.marKedCompeleEvent(event: eventUpdate)
@@ -81,11 +81,11 @@ extension DetailEventUseCase {
                        "name": event.name ,
                        "date": event.date,
                        "eventImage": event.eventImage,
-                       "spent": event.spent,
+                       "spent": 0,
                        "status": "true"
             ]
             as [String : Any]
-        var eventUpdate = Event(id: event.id, name: event.name , date: event.date, eventImage: event.eventImage, spent: event.spent, status: "true")
+        var eventUpdate = Event(id: event.id, name: event.name , date: event.date, eventImage: event.eventImage, spent: 0, status: "true")
         Defined.ref.child("Account").child(idUser).child("event").child(event.id!).updateChildValues(event1,withCompletionBlock: { error , ref in
             if error == nil {
             }else{

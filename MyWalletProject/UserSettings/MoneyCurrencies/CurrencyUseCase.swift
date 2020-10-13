@@ -21,21 +21,22 @@ class CurrencyUseCase {
 extension CurrencyUseCase {
     // MARK: - Get data from API with desired currencies, base is USA
     func fetchData() {
-        let url = URL(string: "https://api.currencyfreaks.com/latest?apikey=ae28c3231f23426b80da6acb5bc27c63&symbols=VND,EUR,JPY,KRW,CNY,SGD,AUD,CAD")!
-        URLSession.shared.dataTask(with: url) {(data, response, error) in
-            do {
-                if let rateData = data {
-                    let decodedData = try JSONDecoder().decode(CurrencyData.self, from: rateData)
-                    DispatchQueue.main.sync {
-                        self.rateData = decodedData
+        if let url = URL(string: Constants.apiUrl) {
+            URLSession.shared.dataTask(with: url) {(data, response, error) in
+                do {
+                    if let rateData = data {
+                        let decodedData = try JSONDecoder().decode(CurrencyData.self, from: rateData)
+                        DispatchQueue.main.sync {
+                            self.rateData = decodedData
+                        }
+                    } else {
+                        return
                     }
-                } else {
+                } catch {
                     return
                 }
-            } catch {
-                return
-            }
-        }.resume()
+            }.resume()
+        }
     }
      
     // MARK: - Perform logic to transfer base from USA back to VND, return result of other currencies
