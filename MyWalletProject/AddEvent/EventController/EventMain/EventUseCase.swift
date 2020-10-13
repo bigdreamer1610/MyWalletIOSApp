@@ -26,6 +26,7 @@ extension EventUseCase{
     
     // getdata firebase
     func getCurrenlyApplying1()  {
+        
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
         Defined.ref.child("Account").child(idUser).child("event").observe( .value, with: { snapshot in
@@ -56,7 +57,7 @@ extension EventUseCase{
         })
         dispatchGroup.leave()
         dispatchGroup.notify(queue: .main) {
-            Defined.ref.child("Account").child(self.idUser).child("transaction").observe(.value) { (snapshot1) in
+            Defined.ref.child("Account").child(self.idUser).child("transaction").observeSingleEvent(of: .value) { (snapshot1) in
                 if let snapshots = snapshot1.children.allObjects as?[DataSnapshot]
                 {
                     for mySnap in snapshots {
@@ -64,14 +65,17 @@ extension EventUseCase{
                         if let snaps = mySnap.children.allObjects as? [DataSnapshot] {
                             for snap in snaps {
                                 if let value = snap.value as? [String: Any]{
-                                    let eventid1 = value["eventid"] as! String
-                                    let amount = value["amount"] as! Int
-                                    //  self.even.append(test(amout: amount, id: eventid1))
-                                    for i in 0..<self.arrEvent.count{
-                                        if eventid1 == self.arrEvent[i].id! {
-                                            self.arrEvent[i].spent! += amount
+                                    if value["eventid"] != nil {
+                                        let eventid1 = value["eventid"] as! String
+                                        let amount = value["amount"] as! Int
+                                        //  self.even.append(test(amout: amount, id: eventid1))
+                                        for i in 0..<self.arrEvent.count{
+                                            if eventid1 == self.arrEvent[i].id! {
+                                                self.arrEvent[i].spent! += amount
+                                            }
                                         }
-                                    }
+                                    } else {}
+                                    
                                 }
                             }
                         }
@@ -122,15 +126,20 @@ extension EventUseCase{
                         if let snaps = mySnap.children.allObjects as? [DataSnapshot] {
                             for snap in snaps {
                                 if let value = snap.value as? [String: Any]{
-                                    let eventid1 = value["eventid"] as! String
-                                    let amount = value["amount"] as! Int
-                                    //  self.even.append(test(amout: amount, id: eventid1))
-                                    for i in 0..<self.arrEvent.count{
-                                        if eventid1 == self.arrEvent[i].id! {
-                                            self.arrEvent[i].spent! += amount
+                                    if value["eventid"] != nil {
+                                        let eventid1 = value["eventid"] as! String
+                                        let amount = value["amount"] as! Int
+                                        //  self.even.append(test(amout: amount, id: eventid1))
+                                        for i in 0..<self.arrEvent.count{
+                                            if eventid1 == self.arrEvent[i].id! {
+                                                self.arrEvent[i].spent! += amount
+                                            }
                                         }
+                                    } else {
+                                        
                                     }
-                                }
+                                    
+                                }//
                             }
                         }
                     }
@@ -138,7 +147,7 @@ extension EventUseCase{
                 }
             }
         }
-       
+        
     }
     func refresh()  {
         Defined.ref.child("Account").child(idUser).child("event").queryOrderedByKey().queryEqual(toValue: "true", childKey: "status").queryLimited(toFirst: 4).observeSingleEvent(of: .value) { (snapshot) in
