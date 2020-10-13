@@ -20,7 +20,7 @@ class EditTransactionViewController: UIViewController {
     var timer = Timer()
     private let dateFormatter = DateFormatter()
     
-    @IBOutlet var btnSave: UIBarButtonItem!
+    @IBOutlet weak var btnSave: UIBarButtonItem!
     @IBOutlet weak var iconEvent: UIImageView!
     @IBOutlet var btnCancel: UIBarButtonItem!
     @IBOutlet var iconImage: UIImageView!
@@ -32,7 +32,7 @@ class EditTransactionViewController: UIViewController {
     @IBOutlet var btnTrash: UIButton!
     @IBOutlet weak var lblEvent: UILabel!
     
-    var language = ChangeLanguage.vietnam.rawValue
+    var language = ChangeLanguage.english.rawValue
     
     var transaction: Transaction?
     var event: Event?
@@ -50,6 +50,8 @@ class EditTransactionViewController: UIViewController {
         scheduledTimerWithTimeInterval()
         setLanguage()
     }
+    
+    
     
     func setLanguage(){
         btnCancel.title = EditTransactionDataString.back.rawValue.addLocalizableString(str: language)
@@ -208,8 +210,5 @@ extension EditTransactionViewController : SelectCategory, SelectDate, SelectEven
         iconImage.image = UIImage(named: iconCategory)
         categoryId = id
         transactionType = type
-        
     }
-    
-    
 }

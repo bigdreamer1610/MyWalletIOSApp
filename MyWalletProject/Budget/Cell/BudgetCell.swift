@@ -29,7 +29,7 @@ class BudgetCell: UITableViewCell {
     
     func setLayout(budget:Budget, spend:Int , language:String) {
         imgCate.image = UIImage.init(named: budget.categoryImage ?? "")
-        lblCate.text = budget.categoryName ?? ""
+        lblCate.text = budget.categoryName?.addLocalizableString(str: language) ?? ""
         lblSpent.text = "\(budget.amount ?? 0)"
         lblStartDate.text = "\(BudgetListDataString.start.rawValue.addLocalizableString(str: language)): \(budget.startDate ?? "")"
         lblEndDate.text = "\(BudgetListDataString.end.rawValue.addLocalizableString(str: language)): \(budget.endDate ?? "")"

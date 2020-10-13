@@ -130,6 +130,7 @@ extension RouterType{
             let vc = UIStoryboard(name: "budget", bundle: nil).instantiateViewController(withIdentifier: "TestController") as! BudgetController
             let presenter = BudgetPresenter(delegate: vc, budgetUseCase: BudgetUseCase())
             vc.setUp(presenter: presenter)
+            vc.hidesBottomBarWhenPushed = true
             return vc
         case .event:
             let vc = UIStoryboard(name: "AddEvent", bundle: nil).instantiateViewController(withIdentifier: "EventController") as! EventControllerView
@@ -195,8 +196,6 @@ extension RouterType{
             let presenter = ScanBillPresenter(delegate: vc, usecase: ScanBillUseCase())
             vc.setupDelegate(presenter: presenter)
             return vc
-            
-            
         case .selectEvent:
             let vc = UIStoryboard.init(name: Constants.detailsTransaction, bundle: nil).instantiateViewController(withIdentifier: "selectEvent") as! SelectEventController
             let presenter = SelectEventPresenter(delegate: vc, usecase: SelectEventUserCase())
@@ -219,6 +218,7 @@ extension RouterType{
             vc.setUpData(trans: trans, event: event, categoryName: name, categoryImage: icon)
             let presenter = EditTransactionPresenter(usecase: EditTransactionUseCase())
             vc.setUp(presenter: presenter)
+            vc.hidesBottomBarWhenPushed = true
             return vc
         }
     }

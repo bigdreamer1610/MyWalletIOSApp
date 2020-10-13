@@ -69,10 +69,19 @@ class CurrencyViewController: UIViewController {
         button.layer.cornerRadius = 10
     }
     
+    // MARK: - Hide keyboard when tap on view or hit return key
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     @IBAction func btnChangeCurrencyClick(_ sender: Any) {
         if txtVND.text == "" {
-            let alert = UIAlertController(title: "INVALID ACTION", message: "You might haven't filled in the amount of money you want to exchange, please try again!", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            let alert = UIAlertController(title: Constants.alertInvalidActionTitle, message: Constants.moneyCurrencyBlank, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: Constants.alertButtonOk, style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         } else {
             let amount = Double(txtVND.text!) ?? 0
