@@ -33,9 +33,9 @@ extension AddEditCategoryPresenter {
         
         // MARK: - Handle invalid cases
         if let name = categoryName, name.isEmpty {
-            message = "Category name can not be blank, please try again!"
+            message = Constants.categoryNameBlank
         } else if let index = imageIndex, index == -1 {
-            message = "Please choose an image for your category"
+            message = Constants.imageBlank
         } else {
             state = true
         }

@@ -43,7 +43,6 @@ extension SettingsUseCase {
         
         Defined.ref.child("Account").child(userId).child("information").observeSingleEvent(of: .value, with: { snapshot in
             guard let dict = snapshot.value as? NSDictionary else {
-                print("error")
                 return
             }
             

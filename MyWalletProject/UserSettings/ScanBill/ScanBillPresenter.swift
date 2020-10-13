@@ -105,51 +105,51 @@ class ScanBillPresenter {
     
     // MARK: - Formatting date given from bill's image
     func formatDate() {
-        var formattedDate = self.transaction.date!
-        
-        formattedDate = formattedDate.replacingOccurrences(of: "Date: ", with: "")
-        formattedDate = formattedDate.replacingOccurrences(of: ",", with: "")
-        
-        var dateData = formattedDate.split(separator: " ")
-        switch dateData[0] {
-        case "Jan":
-            dateData[0] = "01/"
-        case "Feb":
-            dateData[0] = "02/"
-        case "Mar":
-            dateData[0] = "03/"
-        case "Apr":
-            dateData[0] = "04/"
-        case "May":
-            dateData[0] = "05/"
-        case "Jun":
-            dateData[0] = "06/"
-        case "Jul":
-            dateData[0] = "07/"
-        case "Aug":
-            dateData[0] = "08/"
-        case "Sep":
-            dateData[0] = "09/"
-        case "Oct":
-            dateData[0] = "10/"
-        case "Nov":
-            dateData[0] = "11/"
-        case "Dec":
-            dateData[0] = "12/"
-        default:
-            return
+        if var formattedDate = self.transaction.date {
+            formattedDate = formattedDate.replacingOccurrences(of: "Date: ", with: "")
+            formattedDate = formattedDate.replacingOccurrences(of: ",", with: "")
+            
+            var dateData = formattedDate.split(separator: " ")
+            switch dateData[0] {
+            case "Jan":
+                dateData[0] = "01/"
+            case "Feb":
+                dateData[0] = "02/"
+            case "Mar":
+                dateData[0] = "03/"
+            case "Apr":
+                dateData[0] = "04/"
+            case "May":
+                dateData[0] = "05/"
+            case "Jun":
+                dateData[0] = "06/"
+            case "Jul":
+                dateData[0] = "07/"
+            case "Aug":
+                dateData[0] = "08/"
+            case "Sep":
+                dateData[0] = "09/"
+            case "Oct":
+                dateData[0] = "10/"
+            case "Nov":
+                dateData[0] = "11/"
+            case "Dec":
+                dateData[0] = "12/"
+            default:
+                return
+            }
+            
+            formattedDate = ""
+            if dateData[1].count == 1 {
+                formattedDate += "0" + dateData[1] + "/"
+            } else {
+                formattedDate += dateData[1] + "/"
+            }
+            formattedDate += dateData[0]
+            formattedDate += dateData[2]
+            
+            self.transaction.date = formattedDate
         }
-        
-        formattedDate = ""
-        if dateData[1].count == 1 {
-            formattedDate += "0" + dateData[1] + "/"
-        } else {
-            formattedDate += dateData[1] + "/"
-        }
-        formattedDate += dateData[0]
-        formattedDate += dateData[2]
-        
-        self.transaction.date = formattedDate
     }
 }
 

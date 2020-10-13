@@ -43,7 +43,7 @@ class DetailBudgetCell: UITableViewCell {
         btnDelete.setTitle(BudgetDetailDataString.delete.rawValue.addLocalizableString(str: language), for: .normal)
         
         imgCategory.image = UIImage(named: cateImage)
-        lblCategory.text = cateName
+        lblCategory.text = cateName.addLocalizableString(str: language)
         lblAmount.text = "\(amount)"
         lblSpend.text = "\(spend)"
         lblRest.text = "\(amount - spend)"
