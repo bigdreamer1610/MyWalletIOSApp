@@ -131,12 +131,12 @@ extension ScanBillViewController: ScanBillPresenterDelegate {
     // Show alert to inform user depend on state (fail or success)
     func showAlertMessage(_ state: Bool) {
         if !state {
-            let alert = UIAlertController(title: "INVALID TRANSACTION", message: "You might haven't scanned your bill yet, please try again!", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            let alert = UIAlertController(title: Constants.alertInvalidTransactionTitle, message: Constants.billNotScan, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: Constants.alertButtonOk, style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         } else {
-            let alert = UIAlertController(title: "SUCCESS", message: "Your transaction has successfully been saved!", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            let alert = UIAlertController(title: Constants.alertSuccessTitle, message: Constants.alertSuccessSaveBill, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: Constants.alertButtonOk, style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
     }
