@@ -5,10 +5,8 @@
 //  Created by THUY Nguyen Duong Thu on 10/7/20.
 //  Copyright © 2020 Vuong Vu Bac Son. All rights reserved.
 //
-
 import UIKit
 import Foundation
-
 protocol EventTransactionPresenterDelegate: class {
     func reloadData()
     func getTransactionSection(section: [TransactionSection])
@@ -16,12 +14,9 @@ protocol EventTransactionPresenterDelegate: class {
     func startLoading()
     func endLoading()
 }
-
 class EventTransactionPresenter {
     weak var delegate: EventTransactionPresenterDelegate?
     fileprivate var eventUseCase: EventTransactionUseCase?
-    fileprivate var viewTransUseCase: ViewTransactionUseCase?
-    
     var transactionSections = [TransactionSection]()
     var allTransactions = [Transaction]()
     var finalTransactions = [Transaction]()
@@ -29,38 +24,27 @@ class EventTransactionPresenter {
     var event: Event!
     var categories: [Category]?
     
-//    var weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thurday","Friday","Saturday"]
-//    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
-//    
-    init(delegate: EventTransactionPresenterDelegate, eventUseCase: EventTransactionUseCase, viewTransUseCase: ViewTransactionUseCase) {
+    
+    init(delegate: EventTransactionPresenterDelegate, eventUseCase: EventTransactionUseCase) {
         self.delegate = delegate
         self.eventUseCase = eventUseCase
-        self.viewTransUseCase = viewTransUseCase
-        self.viewTransUseCase?.delegate = self
         self.eventUseCase?.delegate = self
     }
-    
     func setUpEvent(e: Event){
         self.event = e
     }
-    
     func fetchCategories(){
-        viewTransUseCase?.getListCategories()
+        eventUseCase?.getListCategories()
     }
-    
     func fetchDataTransactions(eid: String){
         delegate?.startLoading()
         eventUseCase?.getTransactionByEvent(eid: eid)
-        
     }
-    
     func fetchData(){
         getTransactionByEvent()
         getTotalAmount()
         processTransactionSection(list: finalTransactions)
-        
     }
-    
     func getTotalAmount(){
         var amount = 0
         for t in finalTransactions {
@@ -68,7 +52,6 @@ class EventTransactionPresenter {
         }
         delegate?.getTotal(total: amount)
     }
-    
     func processTransactionSection(list: [Transaction]){
         var sections = [TransactionSection]()
         for a in dates {
@@ -109,15 +92,12 @@ class EventTransactionPresenter {
             let dateModel = Defined.getDateModel(components: components)
             let th = TransactionHeader(dateModel: dateModel, amount: amount)
             sections.append(TransactionSection(header: th, items: items))
-            
         }
         transactionSections = sections
         delegate?.endLoading()
         delegate?.getTransactionSection(section: transactionSections)
     }
-    
 }
-
 extension EventTransactionPresenter {
     func getDateArray(arr: [String]) -> [TransactionDate]{
         var mDates = [Date]()
@@ -128,7 +108,6 @@ extension EventTransactionPresenter {
         }
         return Defined.getTransactionDates(dates: mDates)
     }
-    
     func getTransactionByEvent(){
         //date model of given month year
         dates = getDateArray(arr: Defined.getAllDayArray(allTransactions: allTransactions))
@@ -136,23 +115,11 @@ extension EventTransactionPresenter {
         finalTransactions = Defined.getTransactionbyDate(dateArr: dates, allTrans: allTransactions)
     }
 }
-
-extension EventTransactionPresenter : ViewTransactionUseCaseDelegate {
-    func responseBalance(balance: Int) {
-    }
-    
-    func responseAllTransactions(trans: [Transaction]) {
-    }
-    
-    func responseCategories(cate: [Category]) {
-        DispatchQueue.main.async {
-            self.categories = cate
-        }
-    }
-    
-}
-
 extension EventTransactionPresenter : EventTransactionUseCaseDelegate {
+    func responseDataCategory(cate: [Category]) {
+        self.categories = cate
+    }
+    
     func responseDataTransactions(trans: [Transaction]) {
         self.allTransactions = trans
         fetchData()
