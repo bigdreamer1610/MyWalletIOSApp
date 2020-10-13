@@ -26,8 +26,8 @@ class MainTabViewController: UITabBarController {
     
     // TabBarButton – Setup Middle Button
     func setupMiddleButton() {
-        let middleBtn = UIButton(frame: CGRect(x: (self.view.bounds.width / 2) - middleButtonRadius, y: -middleButtonRadius/2, width: middleButtonHeight, height: middleButtonHeight))
-        middleBtn.setImage(#imageLiteral(resourceName: "add120"), for: .normal)
+        let middleBtn = UIButton(frame: CGRect(x: (self.view.bounds.width / 2) - middleButtonRadius, y: -middleButtonRadius/2-5, width: middleButtonHeight, height: middleButtonHeight))
+        middleBtn.setImage(UIImage(named: "add55"), for: .normal)
         middleBtn.layer.cornerRadius = middleButtonRadius
         middleBtn.layer.masksToBounds = true
         //add to the tabbar and add click event

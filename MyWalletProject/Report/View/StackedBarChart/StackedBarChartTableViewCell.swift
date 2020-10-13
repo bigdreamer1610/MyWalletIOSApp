@@ -11,24 +11,21 @@ import Charts
 import FirebaseDatabase
 
 class StackedBarChartTableViewCell: BaseTBCell, ChartViewDelegate {
+    @IBOutlet weak var lblNameNetIncome: UILabel!
     @IBOutlet weak var lblNetIncome: UILabel!
     @IBOutlet weak var containerView: UIView!
     var chartView = BarChartView()
     let days = [""]
-    private var formatter = NumberFormatter()
-      
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        formatter.groupingSeparator = ","
-        formatter.numberStyle = .decimal
         buildChart()
     }
     
-//MARK: - Build Chart
+    //MARK: - Build Chart
     func buildChart() {
         chartView.delegate = self
         chartView.dragEnabled = false
-        chartView.noDataText = "Data will be loaded soon."
         chartView.dragEnabled = false
         chartView.chartDescription?.enabled = false
         chartView.maxVisibleCount = 40
@@ -40,7 +37,7 @@ class StackedBarChartTableViewCell: BaseTBCell, ChartViewDelegate {
         
         let leftAxis = chartView.leftAxis
         leftAxis.labelPosition = .outsideChart
-        leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: formatter)
+        leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: Defined.formatter)
         leftAxis.axisMinimum = 0
         leftAxis.labelFont = .systemFont(ofSize: 13)
         leftAxis.labelTextColor = UIColor.gray
@@ -66,8 +63,8 @@ class StackedBarChartTableViewCell: BaseTBCell, ChartViewDelegate {
                                  height: containerView.frame.size.height)
         containerView.addSubview(chartView)
         
-        lblNetIncome.text = "\(formatter.string(from: NSNumber(value: netIncome))!)"
-     
+        lblNetIncome.text = "\(Defined.formatter.string(from: NSNumber(value: netIncome))!)"
+        
         let val1 = Double(sumIncome)
         let val2 = Double(sumExpense)
         var yVals =  [BarChartDataEntry]()
@@ -75,7 +72,7 @@ class StackedBarChartTableViewCell: BaseTBCell, ChartViewDelegate {
         
         let set = BarChartDataSet(entries: yVals, label: "")
         set.colors = [#colorLiteral(red: 0, green: 0.3944762324, blue: 0.9803921569, alpha: 1), #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)]
-        set.stackLabels = ["Income", " Expense"]
+        set.stackLabels = [Constants.income, Constants.expense]
         
         let data = BarChartData(dataSet: set)
         set.drawValuesEnabled = false

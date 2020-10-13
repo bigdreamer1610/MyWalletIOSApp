@@ -27,11 +27,17 @@ class UserSettingsViewController: UIViewController {
     // MARK: - Deselected effect on cell after popping a view from view stack
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selectedIndexPath, animated: animated)
         }
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        super.viewWillDisappear(animated)
+    }
+    
     
     // MARK: - Setup username and user email on view
     func setupUserInfo() {

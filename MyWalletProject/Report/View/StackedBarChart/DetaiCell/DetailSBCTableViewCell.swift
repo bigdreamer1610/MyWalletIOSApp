@@ -13,13 +13,10 @@ class DetailSBCTableViewCell: BaseTBCell, ChartViewDelegate {
     
     @IBOutlet weak var containerView: UIView!
     var chartView = BarChartView()
-    private var formatter = NumberFormatter()
     let days = [""]
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        formatter.groupingSeparator = ","
-        formatter.numberStyle = .decimal
         buildChart()
     }
     
@@ -27,12 +24,11 @@ class DetailSBCTableViewCell: BaseTBCell, ChartViewDelegate {
         super.setSelected(selected, animated: animated)
     }
     
- 
+    
     //MARK: - Build Chart
     func buildChart() {
         chartView.delegate = self
         chartView.dragEnabled = false
-        chartView.noDataText = "Data will be loaded soon."
         chartView.dragEnabled = false
         
         chartView.chartDescription?.enabled = false
@@ -45,7 +41,7 @@ class DetailSBCTableViewCell: BaseTBCell, ChartViewDelegate {
         
         let leftAxis = chartView.leftAxis
         leftAxis.labelPosition = .outsideChart
-        leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: formatter)
+        leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: Defined.formatter)
         leftAxis.axisMinimum = 0
         leftAxis.labelFont = .systemFont(ofSize: 13)
         leftAxis.labelTextColor = UIColor.gray
@@ -62,7 +58,7 @@ class DetailSBCTableViewCell: BaseTBCell, ChartViewDelegate {
     }
     
     //MARK: - Setup data for Chart
-    func setChartData(_ sumIncome: Int, _ sumExpense: Int ){
+    func setChartData(_ sumIncome: Int, _ sumExpense: Int ) {
         chartView.frame = CGRect(x: -5,
                                  y: 0,
                                  width: containerView.frame.size.width - 30,
@@ -76,7 +72,7 @@ class DetailSBCTableViewCell: BaseTBCell, ChartViewDelegate {
         
         let set = BarChartDataSet(entries: yVals, label: "")
         set.colors = [#colorLiteral(red: 0, green: 0.3944762324, blue: 0.9803921569, alpha: 1), #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)]
-        set.stackLabels = ["Income", " Expense"]
+        set.stackLabels = [Constants.income, Constants.expense]
         
         let data = BarChartData(dataSet: set)
         set.drawValuesEnabled = false

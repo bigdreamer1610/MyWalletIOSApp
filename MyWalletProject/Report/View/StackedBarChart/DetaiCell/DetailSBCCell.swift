@@ -28,8 +28,8 @@ class DetailSBCCell: BaseTBCell {
     
     func setupData(info: SumInfo) {
         lblDay.text = info.date
-        lblIncome.text = String(info.sumIncome)
-        lblExpense.text = String(info.sumExpense)
-        lblNetIncome.text = String(info.netIncome)
+        lblIncome.text = String((Defined.formatter.string(from: NSNumber(value: info.sumIncome))!))
+        lblExpense.text = String((Defined.formatter.string(from: NSNumber(value: info.sumExpense))!))
+        lblNetIncome.text = String((Defined.formatter.string(from: NSNumber(value: info.netIncome))!))
     }
 }

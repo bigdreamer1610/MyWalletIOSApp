@@ -9,15 +9,11 @@
 import UIKit
 
 class NameTableViewCell: BaseTBCell {
-    
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblMoney: UILabel!
-    var state: State?
-    private var formatter = NumberFormatter()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        formatter.groupingSeparator = ","
-        formatter.numberStyle = .decimal
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -25,16 +21,10 @@ class NameTableViewCell: BaseTBCell {
         
     }
     
-    func setupIncome(_ sumIncome: Int) {
-        lblName.text = "Income"
-        lblMoney.textColor = .blue
-        lblMoney.text = String(formatter.string(from: NSNumber(value: sumIncome))!)
+    // Setup label
+    func setupData(_ text: String, _ color: UIColor, _ sumIncome: Int) {
+        lblName.text = text
+        lblMoney.textColor = color
+        lblMoney.text = String(Defined.formatter.string(from: NSNumber(value: sumIncome))!)
     }
-    
-    func setupExpense(_ sumExpense: Int){
-        lblName.text = "Expense"
-        lblMoney.textColor = .red
-        lblMoney.text = String(formatter.string(from: NSNumber(value: sumExpense))!)
-    }
-    
 }
