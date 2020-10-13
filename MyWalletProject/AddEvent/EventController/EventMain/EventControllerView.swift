@@ -38,6 +38,7 @@ class EventControllerView: UIViewController {
         eventTable.delegate = self
         eventTable.dataSource = self
         
+        
     }
     
     func setUp(presenter: EventPresenter)  {

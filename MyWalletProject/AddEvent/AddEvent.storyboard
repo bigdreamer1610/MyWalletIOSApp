@@ -62,6 +62,7 @@
                             </tableView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="GPT-Er-RIr">
                                 <rect key="frame" x="15" y="108" width="384" height="41"/>
+                                <color key="backgroundColor" red="0.39291897819999999" green="0.41982213169999999" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="CRa-4O-eTq"/>
                                 </constraints>
@@ -107,12 +108,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Events" id="B48-cG-ccX">
                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="7qG-hb-sl6">
+                            <color key="tintColor" red="0.5260974169" green="0.53220194580000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="cancel:" destination="hH6-Ub-noT" id="Dlf-U1-9Yc"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add" style="plain" id="yRn-Dj-8uS">
-                            <color key="tintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" red="0.5260974169" green="0.53220194580000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="addEvent:" destination="hH6-Ub-noT" id="hwg-lY-EiD"/>
                             </connections>
@@ -307,7 +309,9 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="tintColor" red="0.0" green="0.78039215689999997" blue="0.53171074910000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <state key="normal" title="Transactions"/>
+                                                            <state key="normal" title="Transactions">
+                                                                <color key="titleColor" red="0.5260974169" green="0.53220194580000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            </state>
                                                             <connections>
                                                                 <action selector="clickTransaction:" destination="uwy-PE-reJ" eventType="touchUpInside" id="cqr-3w-Rkz"/>
                                                             </connections>
@@ -363,7 +367,9 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="45"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="tintColor" red="0.0" green="0.78039215689999997" blue="0.53171074910000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <state key="normal" title="Mark as finished"/>
+                                                    <state key="normal" title="Mark as finished">
+                                                        <color key="titleColor" red="0.5260974169" green="0.53220194580000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
                                                     <connections>
                                                         <action selector="btnMarkedComplete:" destination="uwy-PE-reJ" eventType="touchUpInside" id="MZg-hN-Xox"/>
                                                     </connections>
@@ -461,6 +467,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Detail Event" id="Nru-xz-9DP">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="edit" id="Bdb-sh-aiF">
+                            <color key="tintColor" red="0.5260974169" green="0.53220194580000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="btnEdit:" destination="uwy-PE-reJ" id="mLn-Cn-IhR"/>
                             </connections>
@@ -666,6 +673,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Add Event" id="eqB-in-mr8">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="r86-sN-gv9">
+                            <color key="tintColor" red="0.5260974169" green="0.53220194580000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="btnSave:" destination="NEi-SP-tOD" id="gTQ-Gn-P60"/>
                             </connections>
@@ -752,6 +760,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ysS-9Y-dj7">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.5260974169" green="0.53220194580000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.5260974169" green="0.53220194580000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -770,6 +780,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bLA-NT-CQu">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textShadowColor" red="0.5260974169" green="0.53220194580000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -781,6 +794,7 @@
             <point key="canvasLocation" x="1060.8695652173915" y="-623.64130434782612"/>
         </scene>
     </scenes>
+    <color key="tintColor" red="0.5260974169" green="0.53220194580000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <image name="arrowright" width="10.5" height="10.5"/>
         <image name="calendar" width="170.5" height="170.5"/>
