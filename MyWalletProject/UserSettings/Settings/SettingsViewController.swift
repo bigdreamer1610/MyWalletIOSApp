@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var avaImage: UIImageView!
     
@@ -31,6 +31,7 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         
         configureButton([btnSave])
+        setupTextFieldDelegate(textFields: [txtUsername, txtBalance, txtDate, txtPhoneNumber, txtGender, txtAddress, txtLanguage])
         presenter?.requestUserInfo("userid1")
         
         self.title = "Information"
@@ -58,15 +59,47 @@ class SettingsViewController: UIViewController {
         self.presenter = presenter
     }
     
+    // MARK: - Setup textfield delegate
+    func setupTextFieldDelegate(textFields: [UITextField]) {
+        textFields.forEach { textField in
+            textField.delegate = self
+        }
+    }
+    
+    // MARK: - Hide keyboard when tap on view or hit return key
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     @IBAction func btnSaveClicked(_ sender: Any) {
-        user.name = txtUsername.text!
-        user.balance = Int(txtBalance.text!) ?? -1
+        if let name = txtUsername.text {
+            user.name = name
+        }
+        if let balance = Int(txtBalance.text ?? "")  {
+            user.balance = balance
+        }
+        
         user.email = "userid1@gmail.com"
-        user.dateOfBirth = txtDate.text!
-        user.phoneNumber = txtPhoneNumber.text!
-        user.gender = txtGender.text!
-        user.address = txtAddress.text!
-        user.language = txtLanguage.text!
+        
+        if let dateOfBirth = txtDate.text {
+            user.dateOfBirth = dateOfBirth
+        }
+        if let phoneNumber = txtPhoneNumber.text {
+            user.phoneNumber = phoneNumber
+        }
+        if let gender = txtGender.text {
+            user.gender = gender
+        }
+        if let address = txtAddress.text {
+            user.address = address
+        }
+        if let language = txtLanguage.text {
+            user.language = language
+        }
         
         presenter?.validateInput(user, "userid1")
     }
@@ -74,23 +107,36 @@ class SettingsViewController: UIViewController {
 
 extension SettingsViewController: SettingsPresenterDelegate {
     func setupForViews(_ user: Account) {
-        txtUsername.text = user.name!
         txtBalance.text = "\(user.balance ?? 0)"
-        txtDate.text = user.dateOfBirth!
-        txtPhoneNumber.text = user.phoneNumber!
-        txtGender.text = user.gender!
-        txtAddress.text = user.address!
-        txtLanguage.text = user.language!
+
+        if let name = user.name {
+            txtUsername.text = name
+        }
+        if let dateOfBirth = user.dateOfBirth {
+            txtDate.text = dateOfBirth
+        }
+        if let phoneNumber = user.phoneNumber {
+            txtPhoneNumber.text = phoneNumber
+        }
+        if let gender = user.gender {
+            txtGender.text = gender
+        }
+        if let address = user.address {
+            txtAddress.text = address
+        }
+        if let language = user.language {
+            txtLanguage.text = language
+        }
     }
     
     func showAlertMessage(_ message: String, _ state: Bool) {
         if !state {
-            let alert = UIAlertController(title: "INVALID TRANSACTION", message: message, preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            let alert = UIAlertController(title: Constants.alertInvalidInputTitle, message: message, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: Constants.alertButtonOk, style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         } else {
-            let alert = UIAlertController(title: "SUCCESS", message: "Your information has successfully been updated", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            let alert = UIAlertController(title: Constants.alertSuccessTitle, message: "Your information has successfully been updated", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: Constants.alertButtonOk, style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
     }

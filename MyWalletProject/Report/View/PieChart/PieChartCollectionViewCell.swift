@@ -15,27 +15,31 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
     @IBOutlet weak var lblMoney: UILabel!
     @IBOutlet weak var containerView: UIView!
     var chartView = PieChartView()
-    var sumExpense = 0
-    var sumIncome = 0
+    var sum = 0
+    var sumCate = 0
     var state: State?
     var entries = [ChartDataEntry]()
-    var sumByCategoryIncome = [SumByCate]()
-    var sumByCategoryExpense = [SumByCate]()
-    private var formatter = NumberFormatter()
+    var sumByCate = [SumByCate]()
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        formatter.groupingSeparator = ","
-        formatter.numberStyle = .decimal
         buildChart()
     }
     
     func setupDataCL(info: SumForPieChart) {
-        self.sumIncome = info.sumIncome
-        self.sumExpense = info.sumExpense
-        self.sumByCategoryIncome = info.sumByCateIncome
-        self.sumByCategoryExpense = info.sumByCateExpense
-        setChart()
+        if state == .income {
+            self.sum = info.sumIncome
+            self.sumByCate = info.sumByCateIncome
+        } else {
+            self.sum = info.sumExpense
+            self.sumByCate = info.sumByCateExpense
+        }
+        setChart(sumByCate, sum)
+    }
+    
+    func setupLabel(_ text: String, _ color: UIColor) {
+        lblTypeOfMoney.text = text
+        lblMoney.textColor = color
     }
     
     func buildChart() {
@@ -55,7 +59,7 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
     }
     
     // Set data chart
-    func setChart(){
+    func setChart(_ sumBycate: [SumByCate], _ sum: Int) {
         entries.removeAll()
         chartView.frame = CGRect(x: 0,
                                  y: 0,
@@ -63,21 +67,20 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
                                  height: self.containerView.frame.size.height)
         containerView.addSubview(chartView)
         
-        if state == .income {
-            lblMoney.text = "\(formatter.string(from: NSNumber(value: sumIncome))!)"
-            for index in 0 ..< sumByCategoryIncome.count {
-                entries.append(PieChartDataEntry(value: Double(sumByCategoryIncome[index].amount), label: sumByCategoryIncome[index].category))
+        lblMoney.text = String(Defined.formatter.string(from: NSNumber(value: sum)) ?? "")
+        
+        // set label entry
+        if sumBycate.count > 4 {
+            for index in 0 ..< 4 {
+                entries.append(PieChartDataEntry(value: Double(sumBycate[index].amount), label: sumBycate[index].category))
             }
+            for index in 4 ..< sumBycate.count {
+                self.sumCate += sumBycate[index].amount
+            }
+            entries.append(PieChartDataEntry(value: Double(sumCate), label: Constants.other))
         } else {
-            lblMoney.text = "\(formatter.string(from: NSNumber(value: sumExpense))!)"
-            if sumByCategoryExpense.count > 4{
-                for index in 0 ..< 4 {
-                    entries.append(PieChartDataEntry(value: Double(sumByCategoryExpense[index].amount), label: sumByCategoryExpense[index].category))
-                }
-            } else {
-                for index in 0 ..< sumByCategoryExpense.count {
-                    entries.append(PieChartDataEntry(value: Double(sumByCategoryExpense[index].amount), label: sumByCategoryExpense[index].category))
-                } 
+            for index in 0 ..< sumBycate.count {
+                entries.append(PieChartDataEntry(value: Double(sumBycate[index].amount), label: sumBycate[index].category))
             }
         }
         

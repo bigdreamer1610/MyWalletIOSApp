@@ -158,6 +158,8 @@
             <connections>
                 <outlet property="lblBeginBalance" destination="8QE-O3-NN5" id="Ywr-Xc-kcX"/>
                 <outlet property="lblEndBalance" destination="hdd-h3-Bzf" id="1qB-et-QBZ"/>
+                <outlet property="lblNameEnding" destination="U3B-nU-ga8" id="lXR-IW-h9S"/>
+                <outlet property="lblNameOpening" destination="MFe-th-CGI" id="G7w-h5-VM4"/>
             </connections>
             <point key="canvasLocation" x="209.42028985507247" y="197.20982142857142"/>
         </tableViewCell>

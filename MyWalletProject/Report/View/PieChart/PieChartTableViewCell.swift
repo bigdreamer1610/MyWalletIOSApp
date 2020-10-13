@@ -46,11 +46,9 @@ extension PieChartTableViewCell: UICollectionViewDataSource, UICollectionViewDel
         cell.setupDataCL(info: SumForPieChart(sumIncome: sumIncome, sumExpense: sumExpense, sumByCateIncome: sumByCategoryIncome, sumByCateExpense: sumByCategoryExpense))
         if indexPath.row == 0 {
             cell.state = .income
-            cell.lblTypeOfMoney.text = "Income"
-            cell.lblMoney.textColor = #colorLiteral(red: 0, green: 0.3944762324, blue: 0.9803921569, alpha: 1)
+            cell.setupLabel(Constants.income, .blue)
         } else {
-            cell.lblTypeOfMoney.text = "Expense"
-            cell.lblMoney.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+            cell.setupLabel(Constants.expense, .red)
         }
         return cell
     }

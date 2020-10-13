@@ -147,7 +147,7 @@ extension BudgetController: UITableViewDataSource , UITableViewDelegate {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "CateCell", for: indexPath) as? CateCell {
                 cell.imgCate.image = UIImage(named: budgetObject.categoryImage ?? "")
                 if budgetObject.categoryName != nil {
-                    cell.lblCateName.text = budgetObject.categoryName ?? ""
+                    cell.lblCateName.text = budgetObject.categoryName?.addLocalizableString(str: language) ?? ""
                     cell.lblCateName.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                     
                 }else{
