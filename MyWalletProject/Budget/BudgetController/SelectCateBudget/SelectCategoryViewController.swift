@@ -72,7 +72,7 @@ extension SelectCategoryViewController : UITableViewDataSource , UITableViewDele
         let cell = tblCategory.dequeueReusableCell(withIdentifier: "CategoryCell") as! CategoryCell
         let imgName = listCateExpense[indexPath.row].iconImage
         let categoryName = listCateExpense[indexPath.row].name
-        cell.loadContent(imgName: imgName!, categoryName: categoryName!)
+        cell.loadContent(imgName: imgName!, categoryName: categoryName! , language: language)
         return cell
     }
     
