@@ -14,6 +14,7 @@ let tabbarEndAngle : CGFloat = -30 // góc kết thúc của thanh tab
 let middleButtonHeight : CGFloat = (UIScreen.main.bounds.width - 20)/5 // Chiều cao nút giữa
 let middleButtonRadius : CGFloat = middleButtonHeight/2 // Bán kính nút giữa
 
+
 class MainTabbar: UITabBar {
     private var shapeLayer: CALayer? // lớp hình dạng
     var lastArcAngle = -CGFloat.pi // Góc vòng cung cuối cùng

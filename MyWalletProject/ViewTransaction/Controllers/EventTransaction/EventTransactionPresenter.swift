@@ -13,7 +13,8 @@ protocol EventTransactionPresenterDelegate: class {
     func reloadData()
     func getTransactionSection(section: [TransactionSection])
     func getTotal(total: Int)
-    func getAllTransactions(trans: [Transaction])
+    func startLoading()
+    func endLoading()
 }
 
 class EventTransactionPresenter {
@@ -25,13 +26,12 @@ class EventTransactionPresenter {
     var allTransactions = [Transaction]()
     var finalTransactions = [Transaction]()
     var dates = [TransactionDate]()
-    var amount: Int = 0
     var event: Event!
     var categories: [Category]?
     
-    var weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thurday","Friday","Saturday"]
-    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
-    
+//    var weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thurday","Friday","Saturday"]
+//    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+//    
     init(delegate: EventTransactionPresenterDelegate, eventUseCase: EventTransactionUseCase, viewTransUseCase: ViewTransactionUseCase) {
         self.delegate = delegate
         self.eventUseCase = eventUseCase
@@ -44,13 +44,17 @@ class EventTransactionPresenter {
         self.event = e
     }
     
-    func fetchDataTransactions(eid: String){
-        eventUseCase?.getTransactionByEvent(eid: eid)
+    func fetchCategories(){
         viewTransUseCase?.getListCategories()
     }
     
-    func fetchData(trans: [Transaction]){
-        allTransactions = trans
+    func fetchDataTransactions(eid: String){
+        delegate?.startLoading()
+        eventUseCase?.getTransactionByEvent(eid: eid)
+        
+    }
+    
+    func fetchData(){
         getTransactionByEvent()
         getTotalAmount()
         processTransactionSection(list: finalTransactions)
@@ -58,6 +62,7 @@ class EventTransactionPresenter {
     }
     
     func getTotalAmount(){
+        var amount = 0
         for t in finalTransactions {
             amount += t.amount!
         }
@@ -101,12 +106,13 @@ class EventTransactionPresenter {
                 }
             }
             let components = Defined.convertToDate(resultDate: a.dateString)
-            let dateModel = Defined.getDateModel(components: components, weekdays: weekdays, months: months)
+            let dateModel = Defined.getDateModel(components: components)
             let th = TransactionHeader(dateModel: dateModel, amount: amount)
             sections.append(TransactionSection(header: th, items: items))
             
         }
         transactionSections = sections
+        delegate?.endLoading()
         delegate?.getTransactionSection(section: transactionSections)
     }
     
@@ -133,11 +139,9 @@ extension EventTransactionPresenter {
 
 extension EventTransactionPresenter : ViewTransactionUseCaseDelegate {
     func responseBalance(balance: Int) {
-        print("something")
     }
     
     func responseAllTransactions(trans: [Transaction]) {
-        print("something")
     }
     
     func responseCategories(cate: [Category]) {
@@ -151,6 +155,6 @@ extension EventTransactionPresenter : ViewTransactionUseCaseDelegate {
 extension EventTransactionPresenter : EventTransactionUseCaseDelegate {
     func responseDataTransactions(trans: [Transaction]) {
         self.allTransactions = trans
-        delegate?.getAllTransactions(trans: trans)
+        fetchData()
     }
 }

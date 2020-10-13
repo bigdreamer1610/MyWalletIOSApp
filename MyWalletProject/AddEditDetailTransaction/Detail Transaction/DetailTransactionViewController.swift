@@ -11,7 +11,6 @@ import UIKit
 class DetailTransactionViewController: UIViewController {
 
     @IBOutlet var imageEvent: UIImageView!
-    @IBOutlet var lbEventName: UILabel!
     @IBOutlet var iconImage: UIImageView!
     @IBOutlet weak var lblCategory: UILabel!
     @IBOutlet weak var lblAmount: UILabel!
@@ -21,6 +20,10 @@ class DetailTransactionViewController: UIViewController {
     @IBOutlet var btnDelete: UIButton!
     @IBOutlet var lbNote: UILabel!
     @IBOutlet var eventView: UIView!
+    @IBOutlet weak var btnBack: UIBarButtonItem!
+    
+    @IBOutlet var indicator: UIActivityIndicatorView!
+    
     
     var presenter: DetailTransactionPresenter?
     var transactions = [Transaction]()
@@ -38,14 +41,33 @@ class DetailTransactionViewController: UIViewController {
     var transaction: Transaction!
     var eventid: String? = nil
     
+    var language = ChangeLanguage.vietnam.rawValue
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
         customizeLayout()
+        setLanguage()
         Defined.formatter.groupingSeparator = "."
         Defined.formatter.numberStyle = .decimal
-        initData()
-        // Do any additional setup after loading the view.
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        indicator.startAnimating()
+        if transactionid != "" {
+            fetchTransaction(id: transactionid)
+        }
+    }
+
+    func setLanguage(){
+        btnDelete.setTitle(DetailTransactionDataString.delete.rawValue.addLocalizableString(str: language), for: .normal)
+        btnBack.title = DetailTransactionDataString.back.rawValue.addLocalizableString(str: language)
+        navigationItem.title = DetailTransactionDataString.detailTransaction.rawValue.addLocalizableString(str: language)
+        lbTitle.text = DetailTransactionDataString.event.rawValue.addLocalizableString(str: language)
+
     }
     
     func setUp(presenter: DetailTransactionPresenter){
@@ -54,60 +76,32 @@ class DetailTransactionViewController: UIViewController {
     
     func customizeLayout(){
         btnDelete.layer.cornerRadius = 6
-        if eventid != nil && eventid != "" {
-            eventView.isHidden = false
-            lbTitle.isHidden = false
-        } else {
-            lbTitle.isHidden = true
-            eventView.isHidden = true
-        }
+        lbTitle.isHidden = true
+        eventView.isHidden = true
     }
     
     func initData(){
+        iconImage.image = UIImage(named: icon)
         lblDate.text = categoryDate
         lbNote.text = categoryNote
         lblCategory.text = categoryName
         lblEvent.text = eventName
         lblAmount.text = Defined.formatter.string(from: NSNumber(value: amount))!
-        iconImage.image = UIImage(named: icon)
-    }
-    
-    func initComponents(){
         
+    }
+
+    func fetchTransaction(id: String){
+        presenter?.fetchTransaction(id: id)
     }
     
     func setUpDataTransactionView(item: TransactionItem, header: TransactionHeader){
-        transactionid = item.id
-        type = item.type
-        categoryName = item.categoryName
-        categoryNote = item.note ?? ""
-        amount = item.amount
-        icon = item.iconImage
-        if let eventid = item.eventid {
-            self.eventid = eventid
-            print("a1: \(eventid)")
-            presenter?.getInfo(id: eventid)
-        }
-        dateModel = header.dateModel
-        categoryDate = "\(dateModel.weekDay), \(dateModel.date) \(dateModel.month) \(dateModel.year)"
-        presenter?.fetchTransaction(id: item.id)
+        self.transactionid = item.id
+        
     }
     
     func setUpDataCategoryView(item: CategoryItem, header: CategoryHeader){
-        transactionid = item.id
-        type = item.type
-        categoryName = header.categoryName
-        categoryNote = item.note ?? ""
-        amount = item.amount
-        icon = header.icon
-        dateModel = item.dateModel
-        if let eventid = item.eventid {
-            self.eventid = eventid
-            print("a2: \(eventid)")
-            presenter?.getInfo(id: eventid)
-        }
-        categoryDate = "\(dateModel.weekDay), \(dateModel.date) \(dateModel.month) \(dateModel.year)"
-        presenter?.fetchTransaction(id: item.id)
+        self.transactionid = item.id
+        
     }
     // mark: - event nil
     @IBAction func btnEditTransaction(_ sender: Any) {
@@ -120,11 +114,13 @@ class DetailTransactionViewController: UIViewController {
     }
     
     @IBAction func btnDelateTransaction(_ sender: Any) {
-        let alert = UIAlertController(title: "Delete transaction", message: "Are you sure to delete this transaction?", preferredStyle: .actionSheet)
+        let alert = UIAlertController(title: DetailTransactionDataString.delete.rawValue.addLocalizableString(str: language), message:DetailTransactionDataString.alertTitle.rawValue.addLocalizableString(str: language) , preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: DetailTransactionDataString.cancel.rawValue.addLocalizableString(str: language),
+                                      style: .cancel, handler: nil))
         
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
+        alert.addAction(UIAlertAction(title: DetailTransactionDataString.yes.rawValue.addLocalizableString(str: language),
+                                      style: .default, handler: { action in
             self.presenter?.deleteTransaction(t: self.transaction)
             self.navigationController?.popViewController(animated: true)
         }))
@@ -138,12 +134,40 @@ class DetailTransactionViewController: UIViewController {
 extension DetailTransactionViewController : DetailTransactionPresenterDelegate {
     func getEvent(event: Event) {
         self.event = event
-        lbEventName.text = event.name
-        imageEvent.image = UIImage(named: event.eventImage!)
+        print("this case myevent: \(event)")
+        if self.event != nil {
+            lbTitle.isHidden = false
+            eventView.isHidden = false
+            eventName = event.name!
+            lblEvent.text = event.name!
+            imageEvent.image = UIImage(named: event.eventImage!)
+        }
+        
     }
     
     func getTransaction(transaction: Transaction) {
         self.transaction = transaction
+    }
+    
+    func getCategory(cate: Category) {
+        type = transaction.transactionType!
+        categoryName = cate.name!
+        categoryNote = transaction.note!
+        amount = transaction.amount!
+        icon = cate.iconImage!
+        let date = Defined.convertStringToDate(str: transaction.date!)
+        dateModel = Defined.getDateModel(components: date.dateComponents)
+        categoryDate = "\(dateModel.weekDay), \(dateModel.date) \(dateModel.month) \(dateModel.year)"
+        indicator.stopAnimating()
+        indicator.isHidden = true
+        //init data
+        initData()
+        
+    }
+    
+    func noEvent() {
+        lbTitle.isHidden = true
+        eventView.isHidden = true
     }
     
 }

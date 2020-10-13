@@ -47,6 +47,13 @@ class Constants {
     static let currentMonth = "currentMonth"
     static let currentYear = "currentYear"
     static let currentDate = "currentDate"
+    
+    //report
+    static let income = "Income"
+    static let expense = "Expense"
+    static let done = "Done"
+    static let other = "Other"
+    
     //MARK: HEIGHT FOR CELL & HEADER
     static let transactionHeader: CGFloat = 60
     static let categoryHeader: CGFloat = 65
@@ -56,4 +63,8 @@ class Constants {
     static let menuCell: CGFloat = 60
     static let overviewCell: CGFloat = 80
     
+    // MARK: Budget Detail
+    static let budgetCateName = "budgetCateName"
+    static let budgetStartDate = "budgetStartDate"
+    static let budgetEndDate = "budgetEndDate"
 }

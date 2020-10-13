@@ -20,6 +20,9 @@ class DetailBudgetCell: UITableViewCell {
     @IBOutlet weak var lblCalendar: UILabel!
     @IBOutlet weak var btnTransaction: UIButton!
     @IBOutlet weak var btnDelete: UIButton!
+    @IBOutlet weak var lblSpendTitle: UILabel!
+    @IBOutlet weak var lblRestTitle: UILabel!
+    @IBOutlet weak var lblAmountTitle: UILabel!
     
     
     override func awakeFromNib() {
@@ -31,7 +34,13 @@ class DetailBudgetCell: UITableViewCell {
 
     }
     
-    func setDataBackground(cateImage:String , cateName:String , amount:Int , startdate:String , endDate:String , spend: Int) {
+    func setDataBackground(cateImage:String , cateName:String , amount:Int , startdate:String , endDate:String , spend: Int , language:String) {
+        
+        lblSpendTitle.text = BudgetDetailDataString.spend.rawValue.addLocalizableString(str: language)
+        lblRestTitle.text = BudgetDetailDataString.left.rawValue.addLocalizableString(str: language)
+        lblAmountTitle.text = BudgetDetailDataString.amount.rawValue.addLocalizableString(str: language)
+        btnTransaction.setTitle(BudgetDetailDataString.listTransactions.rawValue.addLocalizableString(str: language), for: .normal)
+        btnDelete.setTitle(BudgetDetailDataString.delete.rawValue.addLocalizableString(str: language), for: .normal)
         
         imgCategory.image = UIImage(named: cateImage)
         lblCategory.text = cateName

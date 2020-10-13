@@ -17,9 +17,11 @@ class DetailSBCCell: BaseTBCell {
     var date = ""
     var sumIncome = 0
     var sumExpense = 0
+    var netIncome = 0
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        Defined.formatter.groupingSeparator = ","
+        Defined.formatter.numberStyle = .decimal
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -27,16 +29,9 @@ class DetailSBCCell: BaseTBCell {
     }
     
     func setupData(info: SumInfo) {
-           lblDay.text = date
-           lblIncome.text = String(sumIncome)
-           lblExpense.text = String(sumExpense)
-           lblNetIncome.text = String(sumIncome - sumExpense)
-       }
-//    func setupData(sumIncome: Int, sumExpense: Int, date: String) {
-//        lblDay.text = date
-//        lblIncome.text = String(sumIncome)
-//        lblExpense.text = String(sumExpense)
-//        lblNetIncome.text = String(sumIncome - sumExpense)
-//    }
-    
+        lblDay.text = info.date
+        lblIncome.text = String((Defined.formatter.string(from: NSNumber(value: info.sumIncome))!))
+        lblExpense.text = String((Defined.formatter.string(from: NSNumber(value: info.sumExpense))!))
+        lblNetIncome.text = String((Defined.formatter.string(from: NSNumber(value: info.netIncome))!))
+    }
 }

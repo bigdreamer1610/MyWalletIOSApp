@@ -12,6 +12,8 @@ import Firebase
 protocol DetailTransactionUseCaseDelegate: class {
     func responseEvent(event: Event)
     func responseTrans(trans: Transaction)
+    func responseCategory(cate: Category)
+    func responseNoEvent()
 }
 class DetailTransactionUseCase{
     weak var delegate: DetailTransactionUseCaseDelegate?
@@ -34,14 +36,16 @@ extension DetailTransactionUseCase {
                             let spent = art?["spent"]
                             let event = Event(id: id, name: name as? String, date: date as? String, eventImage: image as? String, spent: spent as? Int)
                             finalEvent = event
-                            
+                            self.delegate?.responseEvent(event: finalEvent)
                             break
                         }
                     }
-                    self.delegate?.responseEvent(event: finalEvent)
+                    
                 }
                 
             }
+        } else {
+            delegate?.responseNoEvent()
         }
         
     }
@@ -80,6 +84,35 @@ extension DetailTransactionUseCase {
                                     self.delegate?.responseTrans(trans: transaction)
                                     break
                                     
+                                }
+                            }
+                            
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func getCategory(cid: String){
+        Defined.ref.child("Category").observeSingleEvent(of: .value) {[weak self] (snapshot) in
+            guard let `self` = self else {return}
+            if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
+                //expense/income
+                for mySnap in snapshots {
+                    let myKey = (mySnap as AnyObject).key as String
+                    //key inside expense/income
+                    if let mySnap = mySnap.children.allObjects as? [DataSnapshot]{
+                        for snap in mySnap {
+                            let id = snap.key
+                            if id == cid {
+                                if let value = snap.value as? [String: Any]{
+                                    let name = value["name"] as? String
+                                    let iconImage = value["iconImage"] as? String
+                                    let transactionType =  myKey
+                                    let category = Category(id: id, name: name, transactionType: transactionType, iconImage: iconImage)
+                                    self.delegate?.responseCategory(cate: category)
+                                    break
                                 }
                             }
                             

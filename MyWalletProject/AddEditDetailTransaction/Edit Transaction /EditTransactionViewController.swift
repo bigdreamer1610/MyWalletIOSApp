@@ -9,7 +9,7 @@
 import UIKit
 
 class EditTransactionViewController: UIViewController {
-
+    
     var presenter: EditTransactionPresenter?
     var eventid: String? = nil
     var categoryName: String = ""
@@ -17,9 +17,10 @@ class EditTransactionViewController: UIViewController {
     var categoryId: String? = nil
     var amount: Int = 0
     var icon: String = ""
+    var timer = Timer()
     private let dateFormatter = DateFormatter()
     
-    @IBOutlet var btnSave: UIBarButtonItem!
+    @IBOutlet weak var btnSave: UIBarButtonItem!
     @IBOutlet weak var iconEvent: UIImageView!
     @IBOutlet var btnCancel: UIBarButtonItem!
     @IBOutlet var iconImage: UIImageView!
@@ -28,8 +29,10 @@ class EditTransactionViewController: UIViewController {
     @IBOutlet weak var txtDate: UITextField!
     @IBOutlet var txtCategory: UITextField!
     @IBOutlet var txtAmount: UITextField!
-    
     @IBOutlet var btnTrash: UIButton!
+    @IBOutlet weak var lblEvent: UILabel!
+    
+    var language = ChangeLanguage.english.rawValue
     
     var transaction: Transaction?
     var event: Event?
@@ -44,6 +47,24 @@ class EditTransactionViewController: UIViewController {
         customizeLayout()
         txtAmount.delegate = self
         addTapTarget()
+        scheduledTimerWithTimeInterval()
+        setLanguage()
+    }
+    
+    
+    
+    func setLanguage(){
+        btnCancel.title = EditTransactionDataString.back.rawValue.addLocalizableString(str: language)
+        btnSave.title = EditTransactionDataString.save.rawValue.addLocalizableString(str: language)
+        navigationItem.title = EditTransactionDataString.editTransaction.rawValue.addLocalizableString(str: language)
+        btnTrash.setTitle(EditTransactionDataString.delete.rawValue.addLocalizableString(str: language), for: .normal)
+        lblEvent.text = EditTransactionDataString.event.rawValue.addLocalizableString(str: language)
+        txtDate.placeholder = EditTransactionDataString.date.rawValue.addLocalizableString(str: language)
+        txtNote.placeholder = EditTransactionDataString.note.rawValue.addLocalizableString(str: language)
+        txtAmount.placeholder = EditTransactionDataString.amount.rawValue.addLocalizableString(str: language)
+        txtEvent.placeholder = EditTransactionDataString.event.rawValue.addLocalizableString(str: language)
+
+
     }
     
     func setUp(presenter: EditTransactionPresenter){
@@ -110,6 +131,7 @@ class EditTransactionViewController: UIViewController {
     }
     
     @IBAction func clickCancel(_ sender: Any) {
+        timer.invalidate()
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -124,6 +146,7 @@ class EditTransactionViewController: UIViewController {
     }
     
     @IBAction func clickSave(_ sender: Any) {
+        timer.invalidate()
         if let strAmount = txtAmount.text,
             let intAmount = Int(strAmount){
             amount = intAmount
@@ -137,8 +160,23 @@ class EditTransactionViewController: UIViewController {
         
         let trans = Transaction(id: transaction?.id ?? "", transactionType: transactionType, amount: amount, categoryid: categoryId , date: txtDate.text!, note: txtNote.text!, eventid: eventid ?? "")
         presenter?.update(t: trans, oldType: transaction?.transactionType! ?? "")
-        self.navigationController?.popToRootViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
     }
+    
+    func scheduledTimerWithTimeInterval(){
+        timer = Timer.scheduledTimer(timeInterval: 0, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
+    }
+    @objc func updateCounting(){
+        var checkAmount = Int(txtAmount.text!)
+        
+        if checkAmount == 0 || txtCategory.text!.isEmpty || txtDate.text!.isEmpty || txtAmount.text!.isEmpty{
+            btnSave.isEnabled = false
+        }else{
+            btnSave.isEnabled = true
+        }
+        
+    }
+    
     
 }
 
@@ -172,8 +210,5 @@ extension EditTransactionViewController : SelectCategory, SelectDate, SelectEven
         iconImage.image = UIImage(named: iconCategory)
         categoryId = id
         transactionType = type
-        
     }
-    
-    
 }
