@@ -134,7 +134,6 @@ class DetailTransactionViewController: UIViewController {
 extension DetailTransactionViewController : DetailTransactionPresenterDelegate {
     func getEvent(event: Event) {
         self.event = event
-        print("this case myevent: \(event)")
         if self.event != nil {
             lbTitle.isHidden = false
             eventView.isHidden = false
@@ -155,7 +154,8 @@ extension DetailTransactionViewController : DetailTransactionPresenterDelegate {
         categoryNote = transaction.note!
         amount = transaction.amount!
         icon = cate.iconImage!
-        let date = Defined.convertStringToDate(str: transaction.date!)
+        var date = Defined.convertStringToDate(str: transaction.date!)
+        date = Defined.calendar.date(byAdding: .day, value: 1, to: date)!
         dateModel = Defined.getDateModel(components: date.dateComponents)
         categoryDate = "\(dateModel.weekDay), \(dateModel.date) \(dateModel.month) \(dateModel.year)"
         indicator.stopAnimating()
