@@ -24,9 +24,9 @@ class CategoryCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func loadContent(imgName:String , categoryName:String){
+    func loadContent(imgName:String , categoryName:String , language:String){
         imgCate.image = UIImage.init(named: imgName)
-        lblCate.text = categoryName
+        lblCate.text = categoryName.addLocalizableString(str: language)
     }
     
 }
