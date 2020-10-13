@@ -25,7 +25,7 @@ class BudgetListViewController: UIViewController {
     var amount = 0
     var time = Date()
     
-    var language = ChangeLanguage.vietnam.rawValue
+    var language = ChangeLanguage.english.rawValue
     
     var presenter : BudgetListPresenter?
     

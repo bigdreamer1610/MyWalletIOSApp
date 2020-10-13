@@ -41,7 +41,7 @@ class DetailTransactionViewController: UIViewController {
     var transaction: Transaction!
     var eventid: String? = nil
     
-    var language = ChangeLanguage.vietnam.rawValue
+    var language = ChangeLanguage.english.rawValue
 
     
     override func viewDidLoad() {

@@ -29,7 +29,6 @@ extension DetailTransactionUseCase {
                         let art = artist.value as? [String:AnyObject]
                         let id = artist.key
                         if id == eventid {
-                            print("my eventid: \(id)")
                             let name = art?["name"]
                             let date = art?["date"]
                             let image = art?["eventImage"]

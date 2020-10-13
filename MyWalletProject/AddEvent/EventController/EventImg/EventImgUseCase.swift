@@ -23,8 +23,6 @@ class EventImgUseCase {
     func fetchData()  {
         Defined.ref.child("ImageLibrary").observe( .value) { (snapshot) in
             for case let child as DataSnapshot in snapshot.children {
-
-                print(snapshot)
                 guard let dict = child.value as? [String : Any] else {
                     print("error")
                     return
