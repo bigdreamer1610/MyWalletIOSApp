@@ -13,13 +13,10 @@ class DetailSBCTableViewCell: BaseTBCell, ChartViewDelegate {
     
     @IBOutlet weak var containerView: UIView!
     var chartView = BarChartView()
-    private var formatter = NumberFormatter()
     let days = [""]
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        formatter.groupingSeparator = ","
-        formatter.numberStyle = .decimal
         buildChart()
     }
     
@@ -44,7 +41,7 @@ class DetailSBCTableViewCell: BaseTBCell, ChartViewDelegate {
         
         let leftAxis = chartView.leftAxis
         leftAxis.labelPosition = .outsideChart
-        leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: formatter)
+        leftAxis.valueFormatter = DefaultAxisValueFormatter(formatter: Defined.formatter)
         leftAxis.axisMinimum = 0
         leftAxis.labelFont = .systemFont(ofSize: 13)
         leftAxis.labelTextColor = UIColor.gray
