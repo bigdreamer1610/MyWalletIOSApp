@@ -17,14 +17,30 @@ protocol SelectCategory {
 }
 
 class SelectCategoryController: UIViewController {
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    var categories = [Category]()
     var cellId = "SelectCategoryCell"
     var delegate: SelectCategory?
-    @IBOutlet weak var tableView: UITableView!
-    var categories = [Category]()
+    
+    var language = ChangeLanguage.vietnam.rawValue
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UINib(nibName: cellId, bundle: nil), forCellReuseIdentifier: cellId)
         GetListCategoryExpense()
+        setLanguage()
+    }
+    
+    func setLanguage(){
+        segmentedControl.setTitle(SelectCategoryDataString.expense.rawValue.addLocalizableString(str: language), forSegmentAt: 0)
+        segmentedControl.setTitle(SelectCategoryDataString.income.rawValue.addLocalizableString(str: language), forSegmentAt: 1)
+        navigationItem.title = DetailTransactionDataString.detailTransaction.rawValue.addLocalizableString(str: language)
+
+        
+
+
     }
     
     @IBAction func btnSelectCategory(_ sender: UISegmentedControl) {

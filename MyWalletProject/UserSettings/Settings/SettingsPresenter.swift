@@ -43,46 +43,45 @@ class SettingsPresenter {
         var message = ""
         var state = false
         
-        let constant = Constants()
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = constant.dateFormat
+        dateFormatter.dateFormat = Constants.dateFormat
         
         // MARK: - Handle invalid cases
         // Username field
         if let name = user.name, name == "" {
-            message = constant.usernameBlank
+            message = Constants.usernameBlank
         }
         // Balance field
-        else if let balance =  user.balance, balance == -1 {
-            message = constant.balanceBlank
+        else if user.balance == nil {
+            message = Constants.balanceBlank
         }
         // Date of birth field
         else if let dob = user.dateOfBirth, dob == "" {
-            message = constant.dobBlank
+            message = Constants.dobBlank
         } else if let dob = user.dateOfBirth, dateFormatter.date(from: dob) == nil {
-            message = constant.dobNotMatchFormat
+            message = Constants.dobNotMatchFormat
         }
         // Phone number field
         else if let phone = user.phoneNumber, phone == "" {
-            message = constant.phoneNumberBlank
+            message = Constants.phoneNumberBlank
         } else if let phone = user.phoneNumber, !CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: phone)) {
-            message = constant.phoneNumberContainNumber
+            message = Constants.phoneNumberContainNumber
         }
         // Gender field
         else if let gender = user.gender, gender == "" {
-            message = constant.genderBlank
+            message = Constants.genderBlank
         } else if let gender = user.gender, gender != Gender.male.rawValue, gender != Gender.female.rawValue, gender != Gender.others.rawValue {
-            message = constant.genderNotMatchFormat
+            message = Constants.genderNotMatchFormat
         }
         // Address field
         else if let address = user.address, address == "" {
-            message = constant.addressBlank
+            message = Constants.addressBlank
         }
         // Language field
         else if let language = user.language, language == "" {
-            message = constant.languageBlank
+            message = Constants.languageBlank
         } else if let language = user.language, language != Language.english.rawValue, language != Language.vietnamese.rawValue {
-            message = constant.languageNotMatchFormat
+            message = Constants.languageNotMatchFormat
         }
         else {
             // Input passes all validation

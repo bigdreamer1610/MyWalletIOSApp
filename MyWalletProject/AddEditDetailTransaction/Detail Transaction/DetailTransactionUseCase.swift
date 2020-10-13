@@ -36,11 +36,11 @@ extension DetailTransactionUseCase {
                             let spent = art?["spent"]
                             let event = Event(id: id, name: name as? String, date: date as? String, eventImage: image as? String, spent: spent as? Int)
                             finalEvent = event
-                            
+                            self.delegate?.responseEvent(event: finalEvent)
                             break
                         }
                     }
-                    self.delegate?.responseEvent(event: finalEvent)
+                    
                 }
                 
             }

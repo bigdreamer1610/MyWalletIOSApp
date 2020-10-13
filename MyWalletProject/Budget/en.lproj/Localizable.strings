@@ -15,6 +15,7 @@
 "Kết thúc" = "End";
 "Tổng" = "Total";
 "Làm mới" = "Refresh";
+"Lưu" = "Save";
 
 // budget detail
 "Quay lại" = "Back";
@@ -80,7 +81,11 @@
 // detail transaction
 "Quay lại" = "Back";
 "Chi tiết giao dịch" = "Detail Transaction";
-"Xoá giao dịch" = "Delete transaction";
+"Xoá giao dịch" = "Delete Transaction";
+"Bạn có muốn xoá giao dịch này không? " = "Are you sure to delete this transaction?";
+"Không" = "Cancel";
+"Có" = "Yes";
+
 
 // Edit transaction
 "Quay lại" = "Cancel";
@@ -93,8 +98,53 @@
 "Ngày giao dịch" = "Date";
 "Chọn sự kiện " = "Select event";
 
+// Category
+"Thể loại" = "Category";
+"Chi phí" = "Expense";
+"Thu nhập" = "Income";
+
+// Planning
+
+"Lập kế hoạch" = "Planning";
+"Ngân sách" = "Budgets";
+"Sự Kiện" = "Events";
+"Đặt ngân sách cho danh mục riêng lẻ hoặc cho tất cả danh mục trong ví" = "Set budget for individual category, or for all categories in a wallet";
+"Tạo sự kiện để theo dõi chi tiêu của bạn trong một sự kiện thực tế, chẳng hạn như đi du lịch vào cuối tuần" = "Create an event to track on your spending during an actual event, like travelling at weekend";
 
 
+// Category
+"Lương" = "Salary";
+"Phụ kiện" = "Accessories";
+"Hoá đơn" = "Bill";
+"Sách" = "Book";
+"Cà phê" = "Cafe";
+"Quần áo" = "Clothing";
+"Bác sĩ" = "Doctor";
+"Giáo dục" = "Education";
+"Điện" = "Electricity";
+"Thiết bị điện tử" = "Electronics";
+"Giải trí" = "Entertainment";
+"Môi trường" = "Enviroment";
+"Gia đình" = "Family";
+"Thực phẩm" = "Food";
+"Bạn bè" = "Friends";
+"Khí đốt" = "Gas";
+"Sức khoẻ" = "Health";
+"Người yêu" = "Lover";
+"Thuốc" = "Medicine";
+"Phim" = "Movie";
+"Âm nhạc" = "Music";
+"Tiệc" = "Party";
+"Thú cưng" = "Pets";
+"Tiệm thuốc" = "Pharmacy";
+"Điện thoại" = "Phone";
+"Nhà hàng" = "Restaurant";
+"Mua sắm" = "Shopping";
+"Thể thao" = "Sports";
+"Xe tắc xi" = "Taxi";
+"Vận chuyển" = "Transport";
+"Du lịch" = "Travel";
+"Nước" = "Water";
 
 
 

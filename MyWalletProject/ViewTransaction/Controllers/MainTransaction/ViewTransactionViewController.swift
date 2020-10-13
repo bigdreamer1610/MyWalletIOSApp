@@ -14,9 +14,6 @@ class ViewTransactionViewController: UIViewController {
     var bottomMenuView = UIView()
     var tableView = UITableView()
     var height: CGFloat = 190
-//    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
-//    var weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thurday","Friday","Saturday"]
-    
     var transactionBotMenu = [
         BottomMenu(icon: "adjustbalance", title: "Adjust balance"),
         BottomMenu(icon: "viewbytransaction", title: "View by transaction"),
@@ -59,17 +56,18 @@ class ViewTransactionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initComponents()
+        
+        //set up date
         todayYear = Defined.calendar.component(.year, from: today)
         todayMonth = Defined.calendar.component(.month, from: today)
         currentMonth = todayMonth
         currentYear = todayYear
         current = today
+        Defined.defaults.set(current, forKey: Constants.currentDate)
         setUpCurrentDate(month: currentMonth, year: currentYear)
-        
+        //init data
         initData(month: Defined.defaults.integer(forKey: Constants.currentMonth), year: Defined.defaults.integer(forKey: Constants.currentYear))
         
-        
-        Defined.defaults.set(current, forKey: Constants.currentDate)
         setUpNoTransaction(status: true)
         Defined.dateFormatter.locale = Locale(identifier: "vi_VN")
         Defined.dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -94,8 +92,8 @@ class ViewTransactionViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         DispatchQueue.main.async {
             self.current = Defined.dateFormatter.date(from: "02/\(Defined.defaults.integer(forKey: Constants.currentMonth))/\(Defined.defaults.integer(forKey: Constants.currentYear))")!
+            self.startLoading()
             self.initData(month: Defined.defaults.integer(forKey: Constants.currentMonth), year: Defined.defaults.integer(forKey: Constants.currentYear))
-            
             self.jumpToDate(from: self.current)
         }
     }
@@ -381,20 +379,7 @@ extension ViewTransactionViewController : UITableViewDelegate {
     
     
 }
-extension UITextField {
-    func setRightImage2(imageName: String) {
-        let cRightImageView = UIImageView()
-        cRightImageView.image = UIImage(named: imageName)
-        cRightImageView.setImageColor(color: #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1))
-        cRightImageView.contentMode = .scaleToFill
-        let cRightView = UIView()
-        cRightView.addSubview(cRightImageView)
-        rightView?.frame = CGRect(x: 0, y: 0, width: 15, height: 15)
-        cRightImageView.frame = CGRect(x: -25, y: -7.5, width: 15, height: 15)
-        rightView = cRightView
-        rightViewMode = .always
-    }
-}
+
 //MARK: MENU CELL
 extension ViewTransactionViewController : UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
