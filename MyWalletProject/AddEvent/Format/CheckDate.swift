@@ -29,7 +29,7 @@ class CheckDate: NSObject {
         let endDate = dateFormatter.date(from: dateEnd)
         
         guard let startDate1 = startDate, let endDate2 = endDate else {
-            fatalError("Date Format does not match ⚠️")
+            fatalError("Date format does not match! ⚠️")
         }
         
         if startDate1 <= endDate2 {
@@ -52,9 +52,13 @@ class CheckDate: NSObject {
         let date2 = format.date(from: endDate)
         let estimateDay = Calendar.current.dateComponents([.day], from: dateNowFormater ?? now, to: date2! ).day ?? 0
         if estimateDay >= 0 {
-             return "Still date " + String(estimateDay) + " day"
+            if estimateDay == 1 {
+                return String(estimateDay) + " day left"
+            } else {
+                return String(estimateDay) + " days left"
+            }
         } else {
-            return " finished "
+            return "Finished"
         }
        
     }

@@ -52,13 +52,11 @@ class EventControllerView: UIViewController {
             arrNameEvent.removeAll()
             acctivityIndicator()
             presenter?.fetchDataApplying()
-        case 1:
+        default:
             arrNameEvent.removeAll()
             arrEvent.removeAll()
             acctivityIndicator()
             presenter?.fetchDataFinished()
-        default:
-            print("chonlai")
         }
             
     }

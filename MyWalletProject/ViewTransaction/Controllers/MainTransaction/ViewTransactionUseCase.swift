@@ -22,9 +22,9 @@ class ViewTransactionUseCase {
 
 extension ViewTransactionUseCase {
     func getListCategories(){
-        var categories = [Category]()
         Defined.ref.child("Category").observe(.value) {[weak self] (snapshot) in
             guard let `self` = self else {return}
+            var categories = [Category]()
             if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
                 //expense/income
                 for mySnap in snapshots {
@@ -57,11 +57,11 @@ extension ViewTransactionUseCase {
     }
     
     func getAllTransactions(){
-        var allTransactions = [Transaction]()
         Defined.ref.child("Account/userid1/transaction").observe(.value) {[weak self] (snapshot) in
             guard let `self` = self else {
                 return
             }
+            var allTransactions = [Transaction]()
             if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
                 for mySnap in snapshots {
                     let transactionType = (mySnap as AnyObject).key as String
