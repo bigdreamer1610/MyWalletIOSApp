@@ -19,6 +19,7 @@ protocol ViewTransactionPresenterDelegate: class {
     func getCategorySections(section: [CategorySection])
     func reloadTableView()
     func getMonthYearMenu(dates: [Date])
+    func scrollToTop()
 }
 
 class ViewTransactionPresenter {
@@ -45,7 +46,6 @@ class ViewTransactionPresenter {
         self.viewTransUseCase = usecase
         self.viewTransUseCase?.delegate = self
     }
-    
     //Get data balance and category
     func fetchData(){
         minDate = Defined.calendar.date(byAdding: .year, value: -2, to: today)!
@@ -62,6 +62,8 @@ class ViewTransactionPresenter {
         print("Trans 2: \(allTransactions.count)")
         getTransactionbyMonth(month: month, year: year)
         loadDetailCell(month: month, year: year)
+        delegate?.scrollToTop()
+        
     }
     
     //MARK: - Get all sections in transaction view mode

@@ -34,11 +34,13 @@ class DetailTransactionViewController: UIViewController {
     var icon: String = ""
     var dateModel: DateModel!
     
-    var event: Event!
+    var event: Event?
+    var transaction: Transaction!
     var eventid: String? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.hidesBackButton = true
         customizeLayout()
         Defined.formatter.groupingSeparator = "."
         Defined.formatter.numberStyle = .decimal
@@ -62,7 +64,6 @@ class DetailTransactionViewController: UIViewController {
     }
     
     func initData(){
-        
         lblDate.text = categoryDate
         lbNote.text = categoryNote
         lblCategory.text = categoryName
@@ -87,13 +88,9 @@ class DetailTransactionViewController: UIViewController {
             print("a1: \(eventid)")
             presenter?.getInfo(id: eventid)
         }
-//        if let event = event {
-//            lbEventName.text = event.name
-//            imageEvent.image = UIImage(named: event.eventImage!)
-//        }
         dateModel = header.dateModel
-        //eventName = item.ev
         categoryDate = "\(dateModel.weekDay), \(dateModel.date) \(dateModel.month) \(dateModel.year)"
+        presenter?.fetchTransaction(id: item.id)
     }
     
     func setUpDataCategoryView(item: CategoryItem, header: CategoryHeader){
@@ -109,20 +106,18 @@ class DetailTransactionViewController: UIViewController {
             print("a2: \(eventid)")
             presenter?.getInfo(id: eventid)
         }
-//        if let event = event {
-//            lbEventName.text = event.name
-//            imageEvent.image = UIImage(named: event.eventImage!)
-//        }
         categoryDate = "\(dateModel.weekDay), \(dateModel.date) \(dateModel.month) \(dateModel.year)"
+        presenter?.fetchTransaction(id: item.id)
     }
-    
+    // mark: - event nil
     @IBAction func btnEditTransaction(_ sender: Any) {
-        let vc = UIStoryboard.init(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "edit") as? EditTransactionController
-        vc?.setUpData(type: type, transactionId: transactionid, name: categoryName, note: categoryNote, amount: amount, icon: icon, dateModel: dateModel)
-        
-        self.navigationController?.pushViewController(vc!, animated: true)
+        AppRouter.routerTo(from: self, router: .edit(trans: self.transaction, event: self.event ?? Event(), cateName: self.categoryName, cateImage: self.icon), options: .push)
     }
     
+    
+    @IBAction func clickBack(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     @IBAction func btnDelateTransaction(_ sender: Any) {
         let alert = UIAlertController(title: "Delete transaction", message: "Are you sure to delete this transaction?", preferredStyle: .actionSheet)
@@ -130,15 +125,8 @@ class DetailTransactionViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { action in
-            Defined.ref.child("Account/userid1/transaction/\(self.type)/\(self.transactionid)").removeValue { (error, reference) in
-                if error != nil {
-                    print("Error: \(error!)")
-                } else {
-                    print(reference)
-                    print("Remove successfully")
-                    self.navigationController?.popViewController(animated: true)
-                }
-            }
+            self.presenter?.deleteTransaction(t: self.transaction)
+            self.navigationController?.popViewController(animated: true)
         }))
         self.present(alert, animated: true)
         
@@ -150,11 +138,12 @@ class DetailTransactionViewController: UIViewController {
 extension DetailTransactionViewController : DetailTransactionPresenterDelegate {
     func getEvent(event: Event) {
         self.event = event
-        //eventid = event.id
-        print("my event: \(event)")
         lbEventName.text = event.name
         imageEvent.image = UIImage(named: event.eventImage!)
     }
     
+    func getTransaction(transaction: Transaction) {
+        self.transaction = transaction
+    }
     
 }

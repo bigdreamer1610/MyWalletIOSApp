@@ -39,12 +39,11 @@ enum RouterType {
     case selectEvent
     case selectCategory
     case selectDate
+    case edit(trans: Transaction, event: Event, cateName: String,cateImage: String)
     
     // Settings and Tools
     case settings
     case categories
-    case addCategories
-    case selectIcon
     case currencies
     case travelMode
     case billScanner
@@ -139,7 +138,9 @@ extension RouterType{
             vc.setUp(presenter: presenter)
             return vc
         case .event:
-            let vc = UIStoryboard(name: "AddEvent", bundle: nil).instantiateViewController(withIdentifier: "EventController") as! EventController
+            let vc = UIStoryboard(name: "AddEvent", bundle: nil).instantiateViewController(withIdentifier: "EventController") as! EventControllerView
+            let presenter = EventPresenter(delegate: vc, usecase: EventUseCase())
+            vc.setUp(presenter: presenter)
             return vc
         case .tabbar:
             let vc = MainTabViewController.createTabbar()
@@ -190,12 +191,6 @@ extension RouterType{
             let presenter = ViewCategoryPresenter(delegate: vc, usecase: ViewCategoryUseCase())
             vc.setupDelegate(presenter: presenter)
             return vc
-        case .addCategories:
-            let vc = UIStoryboard.init(name: "Categories", bundle: Bundle.main).instantiateViewController(identifier: "settingsAddCategoryVC") as! AddEditCategoryViewController
-            return vc
-        case .selectIcon:
-            let vc = UIStoryboard.init(name: "Categories", bundle: Bundle.main).instantiateViewController(identifier: "selectIconVC") as! SelectIconViewController
-            return vc
         case .currencies:
             let vc = UIStoryboard.init(name: "UserSettings", bundle: Bundle.main).instantiateViewController(identifier: "currencyVC") as! CurrencyViewController
             let presenter = CurrencyPresenter(delegate: vc, usecase: CurrencyUseCase())
@@ -228,7 +223,12 @@ extension RouterType{
             vc.setUpData(event: event)
             vc.setUp(presenter: presenter)
             return vc
-        }
-        
+        case .edit(let trans, let event, let name, let icon):
+            let vc = UIStoryboard.init(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "edit") as! EditTransactionViewController
+            vc.setUpData(trans: trans, event: event, categoryName: name, categoryImage: icon)
+            let presenter = EditTransactionPresenter(usecase: EditTransactionUseCase())
+            vc.setUp(presenter: presenter)
+            return vc
     }
+}
 }
