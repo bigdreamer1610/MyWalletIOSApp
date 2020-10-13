@@ -131,12 +131,12 @@ extension ScanBillViewController: ScanBillPresenterDelegate {
     // Show alert to inform user depend on state (fail or success)
     func showAlertMessage(_ state: Bool) {
         if !state {
-            let alert = UIAlertController(title: "INVALID TRANSACTION", message: "You might haven't scanned your bill yet, please try again!", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            let alert = UIAlertController(title: Constants.alertInvalidTransactionTitle, message: Constants.billNotScan, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: Constants.alertButtonOk, style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         } else {
-            let alert = UIAlertController(title: "SUCCESS", message: "Your transaction has successfully been saved!", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            let alert = UIAlertController(title: Constants.alertSuccessTitle, message: Constants.alertSuccessSaveBill, preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: Constants.alertButtonOk, style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
     }
@@ -144,7 +144,13 @@ extension ScanBillViewController: ScanBillPresenterDelegate {
     // Set up views with processed data from presenter
     func setupForViews(_ transaction: Transaction) {
         self.lblDate.text = transaction.date ?? "Undefined"
-        self.lblTotal.text = "\(transaction.amount ?? 0) VND"
+        
+        if let value = transaction.amount {
+            if let total = Defined.formatter.string(from: NSNumber(value: value)) {
+                self.lblTotal.text = "\(String(describing: total)) VND"
+            }
+        }
+
         self.txtNote.text = transaction.note ?? "Undefined"
     }
 }

@@ -23,17 +23,5 @@ extension AddEditCategoryUseCase {
             if error == nil {}
             else {}
         })
-
-//        } else {
-//            let userCategory = [
-//                "iconImage": category.iconImage!,
-//                "name": category.name!] as [String : Any]
-//
-//            Defined.ref.child("Category").child(categoryType).child(category.id!).setValue(userCategory, withCompletionBlock: {
-//                error, ref in
-//                if error == nil {}
-//                else {}
-//            })
-//        }
     }
 }

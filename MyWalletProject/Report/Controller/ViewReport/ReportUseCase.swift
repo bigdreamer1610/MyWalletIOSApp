@@ -52,6 +52,7 @@ extension ReportUseCase {
         }
     }
     
+    
     func getExpenseFromDB(dateInput: String) {
         Defined.ref.child("Account/userid1/transaction/expense").observe( .value) {
             snapshot in

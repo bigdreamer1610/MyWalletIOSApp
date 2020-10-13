@@ -38,6 +38,7 @@ class EventControllerView: UIViewController {
         eventTable.delegate = self
         eventTable.dataSource = self
         
+        
     }
     
     func setUp(presenter: EventPresenter)  {
@@ -49,7 +50,7 @@ class EventControllerView: UIViewController {
         case 0:
             arrEvent.removeAll()
             arrNameEvent.removeAll()
-           acctivityIndicator()
+            acctivityIndicator()
             presenter?.fetchDataApplying()
         case 1:
             arrNameEvent.removeAll()
@@ -75,8 +76,6 @@ class EventControllerView: UIViewController {
         self.navigationController?.pushViewController(add, animated: true)
         
     }
-    
-    
     
 }
 extension EventControllerView: UITableViewDelegate, UITableViewDataSource {
@@ -107,14 +106,6 @@ extension EventControllerView: UITableViewDelegate, UITableViewDataSource {
         
         
     }
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        let currenOfSet = scrollView.contentOffset.y
-        let maxOffSet = scrollView.contentSize.height - scrollView.frame.size.height
-        if maxOffSet - currenOfSet <= 40{
-            
-        }
-        
-    }
     
 }
 
@@ -136,14 +127,6 @@ extension EventControllerView {
         acctivityIndicator()
         loadViewIndicator.startAnimating()
         presenter?.fetchDataApplying()
-    }
-    override var hidesBottomBarWhenPushed: Bool {
-        get{
-            return true
-        }
-        set {
-            super.hidesBottomBarWhenPushed = newValue
-        }
     }
  
 }
