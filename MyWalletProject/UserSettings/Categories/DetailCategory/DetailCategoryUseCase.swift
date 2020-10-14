@@ -24,6 +24,6 @@ extension DetailCategoryUseCase {
             categoryTypeDB = categoryType
         }
         
-        Defined.ref.child("Category").child(categoryTypeDB).child(categoryIdDB).removeValue()
+        Defined.ref.child(FirebasePath.category).child(categoryTypeDB).child(categoryIdDB).removeValue()
     }
 }
