@@ -31,9 +31,3 @@ extension BaseViewController {
         view.endEditing(true)
     }
 }
-
-//extension BaseViewController : BaseProtocol {
-//    func showError(message: String) {
-//        AlertUtil.showAlert(from: self, with: Constants.titleError, message: message)
-//    }
-//}

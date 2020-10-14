@@ -25,24 +25,20 @@ protocol ViewTransactionPresenterDelegate: class {
 class ViewTransactionPresenter {
     weak var delegate: ViewTransactionPresenterDelegate?
     fileprivate var viewTransUseCase: ViewTransactionUseCase?
-    var categories: [Category]?
-    var finalTransactions = [Transaction]()
-    var allTransactions = [Transaction]()
-    var dates = [TransactionDate]()
-    var minDate = Date()
-    var maxDate = Date()
-    var currentMonth = 8
-    var currentYear = 2020
-    var today = Date()
-    var transactionSections = [TransactionSection]()
-    var categorySections = [CategorySection]()
-    var month: Int = 0
-    var year: Int = 0
-//
-//    var weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thurday","Friday","Saturday"]
-//    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
-//
-//
+    fileprivate var categories: [Category]?
+    fileprivate var finalTransactions = [Transaction]()
+    fileprivate var allTransactions = [Transaction]()
+    fileprivate var dates = [TransactionDate]()
+    fileprivate var minDate = Date()
+    fileprivate var maxDate = Date()
+    fileprivate var currentMonth = 8
+    fileprivate var currentYear = 2020
+    fileprivate var today = Date()
+    fileprivate var transactionSections = [TransactionSection]()
+    fileprivate var categorySections = [CategorySection]()
+    fileprivate var month: Int = 0
+    fileprivate var year: Int = 0
+
     init(delegate: ViewTransactionPresenterDelegate, usecase: ViewTransactionUseCase) {
         self.delegate = delegate
         self.viewTransUseCase = usecase
