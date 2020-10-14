@@ -13,7 +13,7 @@ class BalanceUseCase {
 
 extension BalanceUseCase {
     func saveBalanceToDB(balance: Int){
-        Defined.ref.child("Account/userid1/information").updateChildValues(["balance": balance]){ (error,reference) in
+        Defined.ref.child(FirebasePath.information).updateChildValues(["balance": balance]){ (error,reference) in
             
         }
         Defined.defaults.set(balance, forKey: Constants.balance)
