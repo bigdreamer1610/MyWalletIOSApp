@@ -153,7 +153,7 @@ class EditTransactionViewController: UIViewController {
         }
         
         let trans = Transaction(id: transaction?.id ?? "", transactionType: transactionType, amount: amount, categoryid: categoryId , date: txtDate.text!, note: txtNote.text!, eventid: eventid ?? "")
-        presenter?.update(t: trans, oldType: transaction?.transactionType! ?? "")
+        presenter?.update(t: trans, oldTrans: transaction!)
         self.navigationController?.popViewController(animated: true)
     }
     
