@@ -80,9 +80,7 @@ class CurrencyViewController: UIViewController {
     
     @IBAction func btnChangeCurrencyClick(_ sender: Any) {
         if txtVND.text == "" {
-            let alert = UIAlertController(title: Constants.alertInvalidActionTitle, message: Constants.moneyCurrencyBlank, preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: Constants.alertButtonOk, style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            AlertUtil.showAlert(from: self, with: Constants.alertInvalidActionTitle, message: Constants.moneyCurrencyBlank)
         } else {
             let amount = Double(txtVND.text!) ?? 0
             presenter?.exchangeCurrency(amount: amount)

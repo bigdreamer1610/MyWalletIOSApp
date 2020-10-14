@@ -21,14 +21,14 @@ extension SettingsUseCase {
     // MARK: - Save user info to DB
     func saveUserInfoToDB(_ user: Account, _ userId: String) {
         let userInfo = [
-            "name": user.name!,
-            "email": user.email!,
-            "balance": user.balance!,
-            "dateOfBirth": user.dateOfBirth!,
-            "phoneNumber": user.phoneNumber!,
-            "address": user.address!,
-            "gender": user.gender!,
-            "language": user.language!] as [String : Any]
+            "name": user.name ?? "",
+            "email": user.email ?? "",
+            "balance": user.balance ?? 0,
+            "dateOfBirth": user.dateOfBirth ?? "",
+            "phoneNumber": user.phoneNumber ?? "",
+            "address": user.address ?? "",
+            "gender": user.gender ?? "",
+            "language": user.language ?? ""] as [String : Any]
 
         Defined.ref.child("Account").child(userId).child("information").setValue(userInfo, withCompletionBlock: {
             error, ref in

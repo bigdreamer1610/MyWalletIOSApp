@@ -15,10 +15,10 @@ class AddEditCategoryUseCase {
 extension AddEditCategoryUseCase {
     func saveUserCategoryToDB(_ category: Category, _ categoryType: String) {
         let userCategory = [
-            "iconImage": category.iconImage!,
-            "name": category.name!] as [String : Any]
+            "iconImage": category.iconImage ?? "",
+            "name": category.name ?? ""] as [String : Any]
         
-        Defined.ref.child("Category").child(categoryType).child(category.id!).setValue(userCategory, withCompletionBlock: {
+        Defined.ref.child("Category").child(categoryType).child(category.id ?? "").setValue(userCategory, withCompletionBlock: {
             error, ref in
             if error == nil {}
             else {}
