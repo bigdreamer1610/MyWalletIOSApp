@@ -51,6 +51,9 @@
 		72154283252EA2C10023BD9B /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72154282252EA2C10023BD9B /* State.swift */; };
 		724F64ED252FF4710067DED9 /* ReportPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724F64EC252FF4710067DED9 /* ReportPresenter.swift */; };
 		724F64EF252FF4AF0067DED9 /* ReportUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724F64EE252FF4AF0067DED9 /* ReportUseCase.swift */; };
+		7268ACE42536A0BC00208A8B /* DayDetailPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7268ACE32536A0BC00208A8B /* DayDetailPC.swift */; };
+		7268ACE82536A1D000208A8B /* DayDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7268ACE62536A1D000208A8B /* DayDetailCell.swift */; };
+		7268ACE92536A1D000208A8B /* DayDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7268ACE72536A1D000208A8B /* DayDetailCell.xib */; };
 		72873D7A25249A2900313629 /* DetailStackedBarChartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72873D7925249A2900313629 /* DetailStackedBarChartVC.swift */; };
 		72873D7C25249A3F00313629 /* DetailPieChartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72873D7B25249A3F00313629 /* DetailPieChartVC.swift */; };
 		72873D8725249ACB00313629 /* DetailSBCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72873D8525249ACB00313629 /* DetailSBCCell.swift */; };
@@ -290,6 +293,9 @@
 		7217ED81FA2304CDEDF74146 /* Pods-MyWalletProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWalletProject.debug.xcconfig"; path = "Target Support Files/Pods-MyWalletProject/Pods-MyWalletProject.debug.xcconfig"; sourceTree = "<group>"; };
 		724F64EC252FF4710067DED9 /* ReportPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPresenter.swift; sourceTree = "<group>"; };
 		724F64EE252FF4AF0067DED9 /* ReportUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportUseCase.swift; sourceTree = "<group>"; };
+		7268ACE32536A0BC00208A8B /* DayDetailPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailPC.swift; sourceTree = "<group>"; };
+		7268ACE62536A1D000208A8B /* DayDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailCell.swift; sourceTree = "<group>"; };
+		7268ACE72536A1D000208A8B /* DayDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DayDetailCell.xib; sourceTree = "<group>"; };
 		72873D7925249A2900313629 /* DetailStackedBarChartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailStackedBarChartVC.swift; sourceTree = "<group>"; };
 		72873D7B25249A3F00313629 /* DetailPieChartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPieChartVC.swift; sourceTree = "<group>"; };
 		72873D8525249ACB00313629 /* DetailSBCCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSBCCell.swift; sourceTree = "<group>"; };
@@ -687,9 +693,27 @@
 			path = ViewReport;
 			sourceTree = "<group>";
 		};
+		7268ACE22536A05600208A8B /* ViewDetailPieChart */ = {
+			isa = PBXGroup;
+			children = (
+				7268ACE32536A0BC00208A8B /* DayDetailPC.swift */,
+			);
+			path = ViewDetailPieChart;
+			sourceTree = "<group>";
+		};
+		7268ACE52536A16800208A8B /* DayDetailPC */ = {
+			isa = PBXGroup;
+			children = (
+				7268ACE62536A1D000208A8B /* DayDetailCell.swift */,
+				7268ACE72536A1D000208A8B /* DayDetailCell.xib */,
+			);
+			path = DayDetailPC;
+			sourceTree = "<group>";
+		};
 		72873D8125249A7A00313629 /* DetailCell */ = {
 			isa = PBXGroup;
 			children = (
+				7268ACE52536A16800208A8B /* DayDetailPC */,
 				72873D9125249B6100313629 /* DetailPCCell.swift */,
 				72873D9225249B6100313629 /* DetailPCCell.xib */,
 				72873D9925249C0800313629 /* DetailPieTableViewCell.swift */,
@@ -717,6 +741,7 @@
 				7215427E252EA24A0023BD9B /* Model */,
 				72A71910251DDDBD003ED157 /* View */,
 				72A71911251DDDC8003ED157 /* Controller */,
+				7268ACE22536A05600208A8B /* ViewDetailPieChart */,
 				72A7190E251DDD43003ED157 /* Report.storyboard */,
 			);
 			path = Report;
@@ -1516,6 +1541,7 @@
 				73E0B1872521E0EE0097D41F /* BottomMenuCell.xib in Resources */,
 				D29A104E251C4D15009EF2DC /* GoogleService-Info.plist in Resources */,
 				72873D8825249ACB00313629 /* DetailSBCCell.xib in Resources */,
+				7268ACE92536A1D000208A8B /* DayDetailCell.xib in Resources */,
 				7338862725231F68002F126B /* SelectCategoryCell.xib in Resources */,
 				72A71924251DDEEE003ED157 /* PieChartCollectionViewCell.xib in Resources */,
 				73E78DAB2524427B00D7B962 /* SelectEventCell.xib in Resources */,
@@ -1643,6 +1669,7 @@
 				72873D8B25249AFC00313629 /* DetailSBCTableViewCell.swift in Sources */,
 				D22597E4252C710D00B7AB3B /* EventControllerView.swift in Sources */,
 				0A1D7B78253053E900631E60 /* String+Localized.swift in Sources */,
+				7268ACE42536A0BC00208A8B /* DayDetailPC.swift in Sources */,
 				73204F33252EFFA10067432B /* ItemPlanningCell.swift in Sources */,
 				73AABDAE2535B9F200E8A62B /* BaseViewController.swift in Sources */,
 				8A3BB418251ADF9E008113E9 /* ScanBillViewController.swift in Sources */,
@@ -1781,6 +1808,7 @@
 				73D7D8A0252C8BF60014F5A1 /* DetailTransactionViewController.swift in Sources */,
 				56B8A7F2252484E700B8E8F0 /* LoginViewController.swift in Sources */,
 				56053C2E2525E88C00685FFC /* CalendarViewController.swift in Sources */,
+				7268ACE82536A1D000208A8B /* DayDetailCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

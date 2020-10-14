@@ -87,6 +87,7 @@ class Constants {
     static let expense = "Expense"
     static let done = "Done"
     static let other = "Other"
+    static let netIncome = "Net Income"
     
     //MARK: HEIGHT FOR CELL & HEADER
     static let transactionHeader: CGFloat = 60
@@ -96,6 +97,7 @@ class Constants {
     static let detailCell: CGFloat = 135
     static let menuCell: CGFloat = 60
     static let overviewCell: CGFloat = 80
+    static let detailPCCell: CGFloat = 80
     
     // MARK: Budget Detail
     static let budgetCateName = "budgetCateName"

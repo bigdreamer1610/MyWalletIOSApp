@@ -11,12 +11,14 @@ import Firebase
 
 protocol DetailEventUseCaseDelegate: class {
     func marKedCompeleEvent(event: Event)
+    func resultEvent(event: Event)
 }
 
 class DetailEventUseCase {
     weak var delegate: DetailEventUseCaseDelegate?
     var idUser = "userid1"
     var transactions = [Transaction]()
+    var detailEvent = Event()
     
 }
 // remove
@@ -92,6 +94,33 @@ extension DetailEventUseCase {
             }
         })
     }
-    
+    // Get data firebase
+    func getData(event: Event)  {
+        detailEvent = event
+        detailEvent.spent! = 0
+        Defined.ref.child("Account").child(self.idUser).child("transaction").observeSingleEvent(of: .value) { (snapshot1) in
+            if let snapshots = snapshot1.children.allObjects as?[DataSnapshot]
+            {
+                for mySnap in snapshots {
+                    let transactionType = (mySnap as AnyObject).key as String
+                    if let snaps = mySnap.children.allObjects as? [DataSnapshot] {
+                        for snap in snaps {
+                            if let value = snap.value as? [String: Any]{
+                                if value["eventid"] != nil {
+                                    let eventid1 = value["eventid"] as! String
+                                    let amount = value["amount"] as! Int
+                                    if eventid1 == event.id! {
+                                        self.detailEvent.spent! += amount
+                                    }
+                                } else {}
+                            }
+                        }
+                    }
+                }
+                self.delegate?.resultEvent(event: self.detailEvent)
+            }
+            
+        }
+    }
     
 }
