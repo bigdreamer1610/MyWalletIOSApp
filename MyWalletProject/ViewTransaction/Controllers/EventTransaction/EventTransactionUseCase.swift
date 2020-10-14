@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import CodableFirebase
 
 protocol EventTransactionUseCaseDelegate: class {
     func responseDataTransactions(trans: [Transaction])
@@ -29,12 +30,14 @@ extension EventTransactionUseCase {
                     guard let dict = snapshot.value as? [String:Any] else {
                         return
                     }
-                    let id = snapshot.key
-                    let name = dict["name"] as? String
-                    let iconImage = dict["iconImage"] as? String
-                    let transactionType =  snapshots.key
-                    let category = Category(id: id, name: name, transactionType: transactionType, iconImage: iconImage)
-                    categories.append(category)
+                    do {
+                        var model = try FirebaseDecoder().decode(Category.self, from: dict)
+                        model.transactionType = snapshots.key
+                        model.id = snapshot.key
+                        categories.append(model)
+                    } catch let error {
+                        print(error)
+                    }
                 }
             }
             self.delegate?.responseDataCategory(cate: categories)
@@ -50,20 +53,17 @@ extension EventTransactionUseCase {
             for case let snapshots as DataSnapshot in snapshot.children {
                 for case let snapshot as DataSnapshot in snapshots.children {
                     guard let dict = snapshot.value as? [String: Any] else {return}
-                    let id = snapshot.key
-                    let amount = dict["amount"] as? Int
-                    let categoryid = dict["categoryid"] as? String
-                    let date = dict["date"] as? String
-                    let transactionType = snapshots.key
-                    var transaction = Transaction(id: id, transactionType: transactionType, amount: amount, categoryid: categoryid, date: date)
-                    if let note = dict["note"] as? String {
-                        transaction.note = note
-                    }
-                    if let eventid = dict["eventid"] as? String {
-                        transaction.eventid = eventid
-                        if eventid == eid {
-                            allTransactions.append(transaction)
+                    
+                    do {
+                        var model = try FirebaseDecoder().decode(Transaction.self, from: dict)
+                        model.id = snapshot.key
+                        model.transactionType = snapshots.key
+                        if model.eventid == eid {
+                            allTransactions.append(model)
+                            print("event: \(model)")
                         }
+                    } catch let error {
+                        print(error)
                     }
                 }
             }
