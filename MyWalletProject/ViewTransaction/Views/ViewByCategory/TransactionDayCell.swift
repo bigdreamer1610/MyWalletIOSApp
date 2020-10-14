@@ -9,12 +9,11 @@
 import UIKit
 
 class TransactionDayCell: BaseTBCell {
-
-    
     @IBOutlet var lbNote: UILabel!
     @IBOutlet var lbAmount: UILabel!
     @IBOutlet var lbDate: UILabel!
     @IBOutlet var lbDay: UILabel!
+    var state: State?
     override func awakeFromNib() {
         super.awakeFromNib()
         Defined.formatter.groupingSeparator = "."
@@ -23,10 +22,10 @@ class TransactionDayCell: BaseTBCell {
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
     func setUpData(with data: CategoryItem){
         lbNote.text = data.note
         lbAmount.text = "\(Defined.formatter.string(from: NSNumber(value: data.amount))!)"
@@ -37,5 +36,13 @@ class TransactionDayCell: BaseTBCell {
         } else {
             lbAmount.textColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
         }
+    }
+    
+    // setup data for view report
+    func setupData(data: DetailDayPCByCate){
+        lbDate.text = data.date
+        lbNote.text = data.note
+        lbAmount.text = "\(Defined.formatter.string(from: NSNumber(value: data.amount))!)"
+        lbDay.text = String(data.day)
     }
 }
