@@ -8,12 +8,12 @@
 
 import UIKit
 
-class ScanBillViewController: UIViewController {
+class ScanBillViewController: UIViewController, UITextFieldDelegate {
     
     var presenter: ScanBillPresenter?
 
     @IBOutlet weak var lblDate: UILabel!
-    @IBOutlet weak var txtNote: UITextView!
+    @IBOutlet weak var txtNote: UITextField!
     @IBOutlet weak var lblTotal: UILabel!
     
     @IBOutlet weak var imageInput: UIImageView!
@@ -30,16 +30,11 @@ class ScanBillViewController: UIViewController {
         super.viewDidLoad()
 
         imagePicker.delegate = self
-        
         configureButton([btnCamera, btnGallery, btnScan, btnAddTransaction])
-        
         borderImageView(imageInput)
+        setupTextFieldDelegate(textFields: [txtNote])
         
-        removeTextViewLeftPadding(txtNote)
-        
-        self.title = "Bill Scanner"
-        
-        // Comment for testing git
+        self.title = Constants.billScanner
     }
     
     // MARK: - Hide tab bar
@@ -59,11 +54,6 @@ class ScanBillViewController: UIViewController {
         }
     }
     
-    // MARK: - Remove left padding of text view
-    func removeTextViewLeftPadding(_ textView: UITextView) {
-        textView.textContainer.lineFragmentPadding = 0
-    }
-    
     // MARK: - Border image view
     func borderImageView(_ imageView: UIImageView) {
         imageView.layer.cornerRadius = 10
@@ -74,6 +64,22 @@ class ScanBillViewController: UIViewController {
     // MARK: - Setup delegate
     func setupDelegate(presenter: ScanBillPresenter) {
         self.presenter = presenter
+    }
+    
+    // MARK: - Setup textfield delegate
+    func setupTextFieldDelegate(textFields: [UITextField]) {
+        textFields.forEach { textField in
+            textField.delegate = self
+        }
+    }
+    
+    // MARK: - Hide keyboard when tap on view or hit return key
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     // MARK: - Get bill's image from user with photo library
@@ -131,20 +137,22 @@ extension ScanBillViewController: ScanBillPresenterDelegate {
     // Show alert to inform user depend on state (fail or success)
     func showAlertMessage(_ state: Bool) {
         if !state {
-            let alert = UIAlertController(title: Constants.alertInvalidTransactionTitle, message: Constants.billNotScan, preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: Constants.alertButtonOk, style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            AlertUtil.showAlert(from: self, with: Constants.alertInvalidTransactionTitle, message: Constants.billNotScan)
         } else {
-            let alert = UIAlertController(title: Constants.alertSuccessTitle, message: Constants.alertSuccessSaveBill, preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: Constants.alertButtonOk, style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            AlertUtil.showAlert(from: self, with: Constants.alertSuccessTitle, message: Constants.alertSuccessSaveBill)
         }
     }
     
     // Set up views with processed data from presenter
     func setupForViews(_ transaction: Transaction) {
         self.lblDate.text = transaction.date ?? "Undefined"
-        self.lblTotal.text = "\(transaction.amount ?? 0) VND"
+        
+        if let value = transaction.amount {
+            if let total = Defined.formatter.string(from: NSNumber(value: value)) {
+                self.lblTotal.text = "\(String(describing: total)) VND"
+            }
+        }
+
         self.txtNote.text = transaction.note ?? "Undefined"
     }
 }

@@ -37,7 +37,7 @@ class AddTransactionViewController: UIViewController {
     var timer = Timer()
     var budgets = [Budget]()
     
-    var language = ChangeLanguage.vietnam.rawValue
+    var language = ChangeLanguage.english.rawValue
 
     
     override func viewDidLoad() {

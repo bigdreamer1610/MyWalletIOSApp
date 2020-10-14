@@ -23,7 +23,7 @@ class DetailEventUseCase {
 extension DetailEventUseCase {
     // Xoa event
     func deleteData(event : Event)  {
-        Defined.ref.child("Account/userid1/transaction").observeSingleEvent(of: .value) {[weak self] (snapshot) in
+        Defined.ref.child(FirebasePath.transaction).observeSingleEvent(of: .value) {[weak self] (snapshot) in
                  guard let `self` = self else {
                      return
                  }
@@ -54,7 +54,7 @@ extension DetailEventUseCase {
                  }
              }
              
-        Defined.ref.child("Account").child(idUser).child("event").child(event.id!).removeValue()
+        Defined.ref.child(FirebasePath.event).child(event.id!).removeValue()
     }
     // Danh dau da hoan tat
     func marKedCompele(event: Event)  {
@@ -62,12 +62,12 @@ extension DetailEventUseCase {
                        "name": event.name ,
                        "date": event.date,
                        "eventImage": event.eventImage,
-                       "spent": event.spent,
+                       "spent": 0,
                        "status": "false"
             ]
             as [String : Any]
-        var eventUpdate = Event(id: event.id, name: event.name , date: event.date, eventImage: event.eventImage, spent: event.spent, status: "false")
-        Defined.ref.child("Account").child(idUser).child("event").child(event.id!).updateChildValues(event1,withCompletionBlock: { error , ref in
+        var eventUpdate = Event(id: event.id, name: event.name , date: event.date, eventImage: event.eventImage, spent: 0, status: "false")
+        Defined.ref.child(FirebasePath.event).child(event.id!).updateChildValues(event1,withCompletionBlock: { error , ref in
             if error == nil {
                 self.delegate?.marKedCompeleEvent(event: eventUpdate)
             }else{
@@ -81,12 +81,12 @@ extension DetailEventUseCase {
                        "name": event.name ,
                        "date": event.date,
                        "eventImage": event.eventImage,
-                       "spent": event.spent,
+                       "spent": 0,
                        "status": "true"
             ]
             as [String : Any]
-        var eventUpdate = Event(id: event.id, name: event.name , date: event.date, eventImage: event.eventImage, spent: event.spent, status: "true")
-        Defined.ref.child("Account").child(idUser).child("event").child(event.id!).updateChildValues(event1,withCompletionBlock: { error , ref in
+        var eventUpdate = Event(id: event.id, name: event.name , date: event.date, eventImage: event.eventImage, spent: 0, status: "true")
+        Defined.ref.child(FirebasePath.event).child(event.id!).updateChildValues(event1,withCompletionBlock: { error , ref in
             if error == nil {
             }else{
             }

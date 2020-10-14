@@ -37,14 +37,19 @@ class MonthCell: BaseCLCell {
         }
     }
     
-    func configure(data: Date){
+    func configure(data: Date?){
         var text = ""
-        if data.dateComponents.month! == date.dateComponents.month! && data.dateComponents.year! == date.dateComponents.year! {
-            text = "THIS MONTH"
-        } else if data.dateComponents.month! + 1 == date.dateComponents.month! && date.dateComponents.year! == data.dateComponents.year! {
-            text = "LAST MONTH"
-        } else {
-            text = "\(data.dateComponents.month!)/\(data.dateComponents.year!)"
+        if let data = data {
+            if data.dateComponents.month! == date.dateComponents.month! && data.dateComponents.year! == date.dateComponents.year! {
+                text = "THIS MONTH"
+            } else if data.dateComponents.month! + 1 == date.dateComponents.month! && date.dateComponents.year! == data.dateComponents.year! {
+                text = "LAST MONTH"
+            } else if data.dateComponents.month! - 1 == date.dateComponents.month! && date.dateComponents.year! == data.dateComponents.year!{
+                text = "FUTURE"
+            }
+            else {
+                text = "\(data.dateComponents.month!)/\(data.dateComponents.year!)"
+            }
         }
         lbMonth.text = text
         

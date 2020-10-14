@@ -27,4 +27,12 @@ extension DetailCategoryPresenter {
         usecase?.deleteCategoryInDB(category)
         delegate?.finishDeleteCategory()
     }
+    
+    func deleteAllTransactionOfCategory(_ category: Category) {
+        usecase?.deleteAllTransactionOfCategoryInDB(category)
+    }
+    
+    func deleteAllBudgetOfCategory(_ category: Category) {
+        usecase?.deleteAllBudgetOfCategoryInDB(category)
+    }
 }

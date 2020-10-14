@@ -20,7 +20,7 @@ class EventDefined {
              alert = UIAlertController(title: "Error", message: "The event cannot be a date in the past", preferredStyle: UIAlertController.Style.actionSheet)
         } else if state == 4 {
            alert = UIAlertController(title: "Error", message: "This event already exists", preferredStyle: UIAlertController.Style.actionSheet)
-                          alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
+                         
         }
         alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
         return alert
