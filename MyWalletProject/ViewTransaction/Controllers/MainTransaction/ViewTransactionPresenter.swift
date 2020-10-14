@@ -25,24 +25,20 @@ protocol ViewTransactionPresenterDelegate: class {
 class ViewTransactionPresenter {
     weak var delegate: ViewTransactionPresenterDelegate?
     fileprivate var viewTransUseCase: ViewTransactionUseCase?
-    var categories: [Category]?
-    var finalTransactions = [Transaction]()
-    var allTransactions = [Transaction]()
-    var dates = [TransactionDate]()
-    var minDate = Date()
-    var maxDate = Date()
-    var currentMonth = 8
-    var currentYear = 2020
-    var today = Date()
-    var transactionSections = [TransactionSection]()
-    var categorySections = [CategorySection]()
-    var month: Int = 0
-    var year: Int = 0
-//
-//    var weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thurday","Friday","Saturday"]
-//    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
-//
-//
+    fileprivate var categories: [Category]?
+    fileprivate var finalTransactions = [Transaction]()
+    fileprivate var allTransactions = [Transaction]()
+    fileprivate var dates = [TransactionDate]()
+    fileprivate var minDate = Date()
+    fileprivate var maxDate = Date()
+    fileprivate var currentMonth = 8
+    fileprivate var currentYear = 2020
+    fileprivate var today = Date()
+    fileprivate var transactionSections = [TransactionSection]()
+    fileprivate var categorySections = [CategorySection]()
+    fileprivate var month: Int = 0
+    fileprivate var year: Int = 0
+
     init(delegate: ViewTransactionPresenterDelegate, usecase: ViewTransactionUseCase) {
         self.delegate = delegate
         self.viewTransUseCase = usecase
@@ -97,10 +93,12 @@ class ViewTransactionPresenter {
                     var type = ""
                     for c in categories! {
                         if b.categoryid == c.id {
-                            categoryName = c.name!
-                            icon = c.iconImage!
-                            type = c.transactionType!
-                            break
+                            if b.transactionType == c.transactionType {
+                                categoryName = c.name!
+                                icon = c.iconImage!
+                                type = c.transactionType!
+                                break
+                            }
                         }
                     }
                     var item = TransactionItem(id: "\(b.id!)", categoryName: categoryName,amount: b.amount!, iconImage: icon, type: type)
@@ -240,8 +238,12 @@ extension ViewTransactionPresenter {
         let previousDates = getDateArray(arr: Defined.getAllDayArray(allTransactions: allTransactions), month: previousMonth, year: previousYear)
         let currentDates = getDateArray(arr: Defined.getAllDayArray(allTransactions: allTransactions), month: month, year: year)
         let open = calculateDetail(list: getTransactionbyDate(dateArr: previousDates))
-        let end = open + calculateDetail(list: getTransactionbyDate(dateArr: currentDates))
+        var end = open + calculateDetail(list: getTransactionbyDate(dateArr: currentDates))
+        if month == today.dateComponents.month && year == today.dateComponents.year {
+            end = Defined.defaults.integer(forKey: Constants.balance)
+        }
         delegate?.getDetailCellInfo(info: DetailInfo(opening: open, ending: end))
+        
     }
     
     // calculate sum amount of given list in a months

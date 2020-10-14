@@ -59,7 +59,7 @@ class UserSettingsViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let backItem = UIBarButtonItem()
         backItem.title = "Back"
-        backItem.tintColor = UIColor.colorFromHexString(hex: "776d8a")
+        backItem.tintColor = UIColor.colorFromHexString(hex: "646BDE")
         navigationItem.backBarButtonItem = backItem
     }
 }
@@ -117,13 +117,16 @@ extension UserSettingsViewController: UITableViewDelegate, UITableViewDataSource
         case 4:
             AppRouter.routerTo(from: self, router: .billScanner, options: .push)
         case 5:
-            Defined.defaults.removeObject(forKey: Constants.userid)
-            Defined.defaults.removeObject(forKey: Constants.username)
-            Defined.defaults.removeObject(forKey: Constants.email)
-            Defined.defaults.removeObject(forKey: Constants.loginStatus)
-            GIDSignIn.sharedInstance()?.signOut()
-            let signInController = UIStoryboard.init(name: "Signin", bundle: nil).instantiateViewController(identifier: "LoginViewController") as! LoginViewController
-            AppRouter.routerTo(from: signInController, options: .curveEaseOut, duration: 2, isNaviHidden: true)
+            DispatchQueue.main.async {
+                Defined.defaults.removeObject(forKey: Constants.userid)
+                Defined.defaults.removeObject(forKey: Constants.username)
+                Defined.defaults.removeObject(forKey: Constants.email)
+                Defined.defaults.removeObject(forKey: Constants.loginStatus)
+                GIDSignIn.sharedInstance()?.signOut()
+                let signInController = UIStoryboard.init(name: "Signin", bundle: nil).instantiateViewController(identifier: "LoginViewController") as! LoginViewController
+                AppRouter.routerTo(from: signInController, options: .curveEaseOut, duration: 2, isNaviHidden: true)
+            }
+            
         default:
             return
         }

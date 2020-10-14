@@ -409,17 +409,17 @@ extension ViewTransactionViewController : UICollectionViewDelegateFlowLayout, UI
         return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let month = monthTitles[indexPath.row].dateComponents.month,
-            let year = monthTitles[indexPath.row].dateComponents.year{
-            setUpCurrentDate(month: month, year: year)
-            current = Defined.dateFormatter.date(from: "02/\(month)/\(year)")!
-            presenter?.getDataTransaction(month: Defined.defaults.integer(forKey: Constants.currentMonth), year: Defined.defaults.integer(forKey: Constants.currentYear))
-            
-            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
-            scrollToTop()
-        }
-        
+            if let month = monthTitles[indexPath.row].dateComponents.month,
+                let year = monthTitles[indexPath.row].dateComponents.year{
+                setUpCurrentDate(month: month, year: year)
+                current = Defined.dateFormatter.date(from: "02/\(month)/\(year)")!
+                presenter?.getDataTransaction(month: Defined.defaults.integer(forKey: Constants.currentMonth), year: Defined.defaults.integer(forKey: Constants.currentYear))
+                
+                collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
+                scrollToTop()
+            }
     }
+
     
     
 }

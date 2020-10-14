@@ -26,23 +26,26 @@ extension EventUseCase{
     // getdata firebase
     func getCurrenlyApplying1()  {
         dispatchGroup.enter()
-        Defined.ref.child("Account").child(idUser).child("event").observe( .value, with: { snapshot in
+        Defined.ref.child(FirebasePath.event).observe( .value, with: { snapshot in
             self.arrNameEvent.removeAll()
             self.arrEvent.removeAll()
             for case let child as DataSnapshot in snapshot.children {
                 guard let dict = child.value as? [String: Any] else {
                     return
                 }
-                let dateEnd = dict["date"] as! String
-                let status = dict["status"] as! String
-                var check = self.checkDay.checkDate(dateEnd: dateEnd)
+                let dateEnd = dict["date"] as? String
+                let status = dict["status"] as? String
+                var check = self.checkDay.checkDate(dateEnd: dateEnd!)
                 if check && status == "true" {
-                    let id = dict["id"] as! String
-                    let img = dict["eventImage"] as! String
-                    let nameEvent = dict["name"] as! String
-                    let spent = dict["spent"] as! Int
-                    var event1 = Event(id: id, name: nameEvent, date: dateEnd, eventImage: img, spent: spent, status: status)
-                    self.arrNameEvent.append(nameEvent)
+
+                    let id = dict["id"] as? String
+                    let img = dict["eventImage"] as? String
+                    let nameEvent = dict["name"] as? String
+                    let spent = dict["spent"] as? Int
+                    let event1 = Event(id: id, name: nameEvent, date: dateEnd, eventImage: img, spent: spent, status: status)
+          
+                    self.arrNameEvent.append(nameEvent!)
+
                     self.arrEvent.append(event1)
                 }
                 else {
@@ -51,7 +54,7 @@ extension EventUseCase{
         })
         dispatchGroup.leave()
         dispatchGroup.notify(queue: .main) {
-            Defined.ref.child("Account").child(self.idUser).child("transaction").observeSingleEvent(of: .value) { (snapshot1) in
+            Defined.ref.child(FirebasePath.transaction).observeSingleEvent(of: .value) { (snapshot1) in
                 if let snapshots = snapshot1.children.allObjects as?[DataSnapshot]
                 {
                     for mySnap in snapshots {
@@ -81,7 +84,7 @@ extension EventUseCase{
     // get data Finished
     func getEventFinished()  {
         dispatchGroup.enter()
-        Defined.ref.child("Account").child(idUser).child("event").observe( .value, with: { snapshot in
+        Defined.ref.child(FirebasePath.event).observe( .value, with: { snapshot in
             self.arrNameEvent.removeAll()
             self.arrEvent.removeAll()
             for case let child as DataSnapshot in snapshot.children {
@@ -97,8 +100,6 @@ extension EventUseCase{
                     let nameEvent = dict["name"] as! String
                     let spent = dict["spent"] as! Int
                     var event1 = Event(id: id, name: nameEvent, date: dateEnd, eventImage: img, spent: spent, status: status)
-                    //eventest = Event(id: id, name: nameEvent, date: dateEnd, eventImage: img, spent: spent, status: status)
-                    // check id transaction
                     self.arrNameEvent.append(nameEvent)
                     self.arrEvent.append(event1)
                 }
@@ -109,7 +110,7 @@ extension EventUseCase{
         })
         dispatchGroup.leave()
         dispatchGroup.notify(queue: .main) {
-            Defined.ref.child("Account").child(self.idUser).child("transaction").observe(.value) { (snapshot1) in
+            Defined.ref.child(FirebasePath.transaction).observe(.value) { (snapshot1) in
                 if let snapshots = snapshot1.children.allObjects as?[DataSnapshot]
                 {
                     for mySnap in snapshots {
@@ -120,7 +121,6 @@ extension EventUseCase{
                                     if value["eventid"] != nil {
                                         let eventid1 = value["eventid"] as! String
                                         let amount = value["amount"] as! Int
-                                        //  self.even.append(test(amout: amount, id: eventid1))
                                         for i in 0..<self.arrEvent.count{
                                             if eventid1 == self.arrEvent[i].id! {
                                                 self.arrEvent[i].spent! += amount
@@ -130,7 +130,7 @@ extension EventUseCase{
                                         
                                     }
                                     
-                                }//
+                                }
                             }
                         }
                     }
@@ -141,7 +141,7 @@ extension EventUseCase{
         
     }
     func refresh()  {
-        Defined.ref.child("Account").child(idUser).child("event").queryOrderedByKey().queryEqual(toValue: "true", childKey: "status").queryLimited(toFirst: 4).observeSingleEvent(of: .value) { (snapshot) in
+        Defined.ref.child(FirebasePath.event).queryOrderedByKey().queryEqual(toValue: "true", childKey: "status").queryLimited(toFirst: 4).observeSingleEvent(of: .value) { (snapshot) in
             guard let children = snapshot.children.allObjects.first as? DataSnapshot else {return}
             if snapshot.childrenCount > 0 {
                 for child in snapshot.children.allObjects as! [DataSnapshot] {
