@@ -31,4 +31,3 @@ extension BaseViewController {
         view.endEditing(true)
     }
 }
-
