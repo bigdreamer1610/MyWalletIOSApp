@@ -20,12 +20,10 @@ class ViewCategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.title = "Categories"
+        self.title = Constants.categories
         
         setupTableView()
-        
         requestData()
-        
         tableView.reloadData()
     }
     

@@ -20,12 +20,12 @@ class ScanBillUseCase {
 extension ScanBillUseCase: ScanBillUseCaseDelegate {
     func saveTransactionToDB(_ transaction: Transaction) {
         let userTransaction = [
-            "amount": transaction.amount!,
+            "amount": transaction.amount ?? 0,
             "categoryid": "Bill",
-            "date": transaction.date!,
-            "note": transaction.note!] as [String : Any]
+            "date": transaction.date ?? "",
+            "note": transaction.note ?? ""] as [String : Any]
         
-        Defined.ref.child("Account").child("userid1").child("transaction").child("expense").childByAutoId().setValue(userTransaction, withCompletionBlock: {
+        Defined.ref.child(FirebasePath.expense).childByAutoId().setValue(userTransaction, withCompletionBlock: {
             error, ref in
             if error == nil {}
             else {}

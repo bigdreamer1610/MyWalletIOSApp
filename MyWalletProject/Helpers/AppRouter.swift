@@ -218,7 +218,7 @@ extension RouterType{
             return vc
         case .eventTransaction(let event):
             let vc = UIStoryboard.init(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "eventTransaction_vc") as! EventTransactionViewController
-            let presenter = EventTransactionPresenter(delegate: vc, eventUseCase: EventTransactionUseCase(), viewTransUseCase: ViewTransactionUseCase())
+            let presenter = EventTransactionPresenter(delegate: vc, eventUseCase: EventTransactionUseCase())
             vc.setUpData(event: event)
             vc.setUp(presenter: presenter)
             return vc

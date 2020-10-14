@@ -19,4 +19,5 @@ target 'MyWalletProject' do
   	pod 'SwiftDate'
   	pod 'MonthYearPicker', '~> 4.0.2'
 	pod ‘FloatingButtonPOP-swift’
+	pod 'CodableFirebase'
 end

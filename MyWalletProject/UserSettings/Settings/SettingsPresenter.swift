@@ -35,11 +35,11 @@ class SettingsPresenter {
         self.usecase?.delegate = self
     }
     
-    func requestUserInfo(_ userId: String) {
-        usecase?.getUserInfoFromDB(userId)
+    func requestUserInfo() {
+        usecase?.getUserInfoFromDB()
     }
     
-    func validateInput(_ user: Account, _ userId: String) {
+    func validateInput(_ user: Account) {
         var message = ""
         var state = false
         
@@ -86,7 +86,7 @@ class SettingsPresenter {
         else {
             // Input passes all validation
             state = true
-            usecase?.saveUserInfoToDB(user, userId)
+            usecase?.saveUserInfoToDB(user)
         }
 
         delegate?.showAlertMessage(message, state)

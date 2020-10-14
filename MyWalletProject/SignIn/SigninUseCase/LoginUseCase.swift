@@ -33,11 +33,9 @@ class LoginUseCase {
     //MARK: - Check account exist
     func checkAccountExist(id : String , name :String , email : String){
         ref.child("profile").observeSingleEvent(of: .value, with: { (snapshot) in
-            
             if snapshot.hasChild(id){
-                print("account exist")
-                
-            }else{
+                return
+            } else{
                 self.createProfileAccountFirebase(id: id, name: name ,email: email)
                 print("do create exist")
             }

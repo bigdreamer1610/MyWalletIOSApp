@@ -17,6 +17,7 @@
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="dmd-ir-QRV">
                                 <rect key="frame" x="20" y="108" width="374" height="41"/>
+                                <color key="backgroundColor" red="0.39291897819999999" green="0.41982213169999999" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="e6Q-4B-vO6"/>
                                 </constraints>
@@ -169,22 +170,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="y1b-N5-eju">
-                                <rect key="frame" x="10" y="98" width="394" height="754"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="2vb-ol-1gl" firstAttribute="bottom" secondItem="y1b-N5-eju" secondAttribute="bottom" constant="10" id="55i-zY-p5M"/>
+                            <constraint firstItem="2vb-ol-1gl" firstAttribute="bottom" secondItem="y1b-N5-eju" secondAttribute="bottom" id="55i-zY-p5M"/>
                             <constraint firstItem="y1b-N5-eju" firstAttribute="centerX" secondItem="2vb-ol-1gl" secondAttribute="centerX" id="hm8-al-3ZJ"/>
-                            <constraint firstItem="y1b-N5-eju" firstAttribute="width" secondItem="wP4-Rh-05h" secondAttribute="width" constant="-20" id="vJl-a5-sl6"/>
-                            <constraint firstItem="y1b-N5-eju" firstAttribute="top" secondItem="2vb-ol-1gl" secondAttribute="top" constant="10" id="zZ9-wr-S6F"/>
+                            <constraint firstItem="y1b-N5-eju" firstAttribute="width" secondItem="wP4-Rh-05h" secondAttribute="width" id="vJl-a5-sl6"/>
+                            <constraint firstItem="y1b-N5-eju" firstAttribute="top" secondItem="2vb-ol-1gl" secondAttribute="top" id="zZ9-wr-S6F"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2vb-ol-1gl"/>
                     </view>
                     <navigationItem key="navigationItem" title="Select Category" id="ZGm-MB-GbY">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="kte-Jd-kcS">
+                            <color key="tintColor" red="0.5260974169" green="0.53220194580000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="btnBackClick:" destination="A53-6w-pJ3" id="vO8-Jq-cj7"/>
                             </connections>
@@ -309,6 +311,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Calendar" id="tsZ-ZQ-VSd">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="rFM-cZ-VGD">
+                            <color key="tintColor" red="0.5260974169" green="0.53220194580000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="btnBackClick:" destination="JSd-My-Rnr" id="2db-7v-202"/>
                             </connections>
