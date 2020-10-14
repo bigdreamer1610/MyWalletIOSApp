@@ -32,8 +32,3 @@ extension BaseViewController {
     }
 }
 
-extension BaseViewController : BaseProtocol {
-    func showError(message: String) {
-        AlertUtil.showAlert(from: self, with: Constants.titleError, message: message)
-    }
-}
