@@ -51,6 +51,7 @@ class Constants {
     static let alertSuccessAddCategory = "Your category has been successfully added!"
     static let alertSuccessEditCategory = "Your category has been successfully edited!"
     static let alertSuccessSaveBill = "Your transaction has successfully been saved!"
+    static let alertSuccessInfomationUpdate = "Your information has successfully been updated"
     
     // alert titles and buttons name
     static let alertInvalidInputTitle = "INVALID INPUT"
