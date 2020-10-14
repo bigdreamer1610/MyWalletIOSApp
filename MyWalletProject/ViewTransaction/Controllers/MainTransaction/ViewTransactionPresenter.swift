@@ -93,10 +93,12 @@ class ViewTransactionPresenter {
                     var type = ""
                     for c in categories! {
                         if b.categoryid == c.id {
-                            categoryName = c.name!
-                            icon = c.iconImage!
-                            type = c.transactionType!
-                            break
+                            if b.transactionType == c.transactionType {
+                                categoryName = c.name!
+                                icon = c.iconImage!
+                                type = c.transactionType!
+                                break
+                            }
                         }
                     }
                     var item = TransactionItem(id: "\(b.id!)", categoryName: categoryName,amount: b.amount!, iconImage: icon, type: type)
@@ -236,8 +238,12 @@ extension ViewTransactionPresenter {
         let previousDates = getDateArray(arr: Defined.getAllDayArray(allTransactions: allTransactions), month: previousMonth, year: previousYear)
         let currentDates = getDateArray(arr: Defined.getAllDayArray(allTransactions: allTransactions), month: month, year: year)
         let open = calculateDetail(list: getTransactionbyDate(dateArr: previousDates))
-        let end = open + calculateDetail(list: getTransactionbyDate(dateArr: currentDates))
+        var end = open + calculateDetail(list: getTransactionbyDate(dateArr: currentDates))
+        if month == today.dateComponents.month && year == today.dateComponents.year {
+            end = Defined.defaults.integer(forKey: Constants.balance)
+        }
         delegate?.getDetailCellInfo(info: DetailInfo(opening: open, ending: end))
+        
     }
     
     // calculate sum amount of given list in a months

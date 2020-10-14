@@ -17,6 +17,7 @@ class DetailStackedBarChartVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        self.title = Constants.netIncome
     }
     
     private func setupTableView() {
@@ -29,7 +30,7 @@ class DetailStackedBarChartVC: UIViewController {
         tableView.estimatedRowHeight = 400
     }
     
-    func getData(info: SumInfo) {
+    func setupData(info: SumInfo) {
         self.sumIncome = info.sumIncome
         self.sumExpense = info.sumExpense
         self.date = info.date

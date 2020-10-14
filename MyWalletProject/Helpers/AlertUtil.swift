@@ -13,7 +13,7 @@ class AlertUtil {
     class func showAlert(from viewController: UIViewController, with title: String, message: String) {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            let doneAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            let doneAction = UIAlertAction(title: Constants.alertButtonOk, style: .default, handler: nil)
             alert.addAction(doneAction)
             viewController.present(alert, animated: true, completion: nil)
         }
@@ -22,7 +22,7 @@ class AlertUtil {
     class func showAlert(from viewController: UIViewController, with title: String, message: String,  completion : (@escaping (UIAlertAction) -> ())) {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            let doneAction = UIAlertAction(title: "OK", style: .cancel, handler: completion)
+            let doneAction = UIAlertAction(title: Constants.alertButtonOk, style: .default, handler: completion)
             alert.addAction(doneAction)
             viewController.present(alert, animated: true, completion: nil)
         }

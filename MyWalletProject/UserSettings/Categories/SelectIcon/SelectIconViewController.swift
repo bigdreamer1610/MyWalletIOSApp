@@ -25,6 +25,7 @@ class SelectIconViewController: UIViewController {
         super.viewDidLoad()
 
         setupCollectionView()
+        setupSegmentTextColor()
     }
     
     // MARK: - Setup for table view
@@ -32,6 +33,12 @@ class SelectIconViewController: UIViewController {
         ImageCollectionViewCell.registerCellByNib(collectionView)
         collectionView.delegate = self
         collectionView.dataSource = self
+    }
+    
+    // MARK: - Setup color for segment text
+    func setupSegmentTextColor() {
+        segmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.colorFromHexString(hex: "646BDE")], for: UIControl.State.selected)
+        segmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: UIControl.State.normal)
     }
     
     @IBAction func segmentControlClick(_ sender: Any) {
