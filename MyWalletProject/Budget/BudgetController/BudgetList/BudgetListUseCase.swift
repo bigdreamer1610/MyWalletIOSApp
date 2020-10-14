@@ -58,7 +58,7 @@ extension BudgetListUseCase {
         
         // Load api Transaction expense
         dispatchGroup.enter()
-        Defined.ref.child(FirebasePath.transaction).child("expense").observeSingleEvent(of: .value) { (data) in
+        Defined.ref.child(FirebasePath.expense).observeSingleEvent(of: .value) { (data) in
             for case let child as DataSnapshot in data.children{
                 guard let dict = child.value as? [String:Any] else {
                     print("Error")
@@ -75,7 +75,7 @@ extension BudgetListUseCase {
         
         // load api transaction income
         dispatchGroup.enter()
-        Defined.ref.child(FirebasePath.transaction).child("income").observeSingleEvent(of: .value) { (data) in
+        Defined.ref.child(FirebasePath.income).observeSingleEvent(of: .value) { (data) in
             for case let child as DataSnapshot in data.children{
                 guard let dict = child.value as? [String:Any] else {
                     print("Error")

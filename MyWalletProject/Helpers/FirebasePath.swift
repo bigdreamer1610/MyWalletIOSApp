@@ -17,5 +17,7 @@ struct FirebasePath {
     static let budget = "Account/\(Defined.defaults.string(forKey: Constants.userid)!)/budget"
     static let event = "Account/\(Defined.defaults.string(forKey: Constants.userid)!)/event"
     static let category = "Category"
+    static let cateExpense = "Category/expense"
+    static let cateIncome = "Category/income"
     static let imagelibrary = "ImageLibrary"
 }
