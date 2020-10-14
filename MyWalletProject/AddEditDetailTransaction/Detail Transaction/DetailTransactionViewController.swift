@@ -151,7 +151,7 @@ extension DetailTransactionViewController : DetailTransactionPresenterDelegate {
     func getCategory(cate: Category) {
         type = transaction.transactionType!
         categoryName = cate.name!
-        categoryNote = transaction.note!
+        categoryNote = transaction.note ?? ""
         amount = transaction.amount!
         icon = cate.iconImage!
         var date = Defined.convertStringToDate(str: transaction.date!)

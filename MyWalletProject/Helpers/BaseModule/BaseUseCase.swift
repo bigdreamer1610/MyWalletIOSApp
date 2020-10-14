@@ -12,4 +12,5 @@ import Firebase
 
 class BaseUseCase {
     //category?
+    
 }
