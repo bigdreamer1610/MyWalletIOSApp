@@ -20,14 +20,11 @@ class EventUseCase {
     var dayThis = CheckDate().setDate()
     var arrEvent = [Event]()
     var arrNameEvent = [String]()
-    
+    let dispatchGroup = DispatchGroup()
 }
 extension EventUseCase{
-    
     // getdata firebase
     func getCurrenlyApplying1()  {
-        
-        let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
         Defined.ref.child("Account").child(idUser).child("event").observe( .value, with: { snapshot in
             self.arrNameEvent.removeAll()
@@ -45,19 +42,14 @@ extension EventUseCase{
                     let nameEvent = dict["name"] as! String
                     let spent = dict["spent"] as! Int
                     var event1 = Event(id: id, name: nameEvent, date: dateEnd, eventImage: img, spent: spent, status: status)
-                    //eventest = Event(id: id, name: nameEvent, date: dateEnd, eventImage: img, spent: spent, status: status)
-                    // check id transaction
                     self.arrNameEvent.append(nameEvent)
                     self.arrEvent.append(event1)
                 }
                 else {
-                    
                 }
-                
             }
-            dispatchGroup.leave()
         })
-        
+        dispatchGroup.leave()
         dispatchGroup.notify(queue: .main) {
             Defined.ref.child("Account").child(self.idUser).child("transaction").observeSingleEvent(of: .value) { (snapshot1) in
                 if let snapshots = snapshot1.children.allObjects as?[DataSnapshot]
@@ -70,14 +62,12 @@ extension EventUseCase{
                                     if value["eventid"] != nil {
                                         let eventid1 = value["eventid"] as! String
                                         let amount = value["amount"] as! Int
-                                        //  self.even.append(test(amout: amount, id: eventid1))
                                         for i in 0..<self.arrEvent.count{
                                             if eventid1 == self.arrEvent[i].id! {
                                                 self.arrEvent[i].spent! += amount
                                             }
                                         }
                                     } else {}
-                                    
                                 }
                             }
                         }
@@ -87,10 +77,9 @@ extension EventUseCase{
             }
         }
     }
+    
     // get data Finished
     func getEventFinished()  {
-        
-        let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
         Defined.ref.child("Account").child(idUser).child("event").observe( .value, with: { snapshot in
             self.arrNameEvent.removeAll()

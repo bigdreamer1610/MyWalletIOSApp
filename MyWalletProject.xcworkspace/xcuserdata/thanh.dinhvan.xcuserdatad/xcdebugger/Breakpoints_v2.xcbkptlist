@@ -78,25 +78,9 @@
             filePath = "MyWalletProject/AddEvent/EventController/New Group1/DetailEventController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "btnMarkedComplete(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "54E3CD2D-ECB4-41E1-932B-065C5D67C2D7"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyWalletProject/AddEvent/EventController/EventMain/EventControllerView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -110,8 +94,8 @@
             filePath = "MyWalletProject/AddEvent/EventController/EventMain/EventControllerView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -126,8 +110,8 @@
             filePath = "MyWalletProject/AddEvent/EventController/EventMain/EventUseCase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
             landmarkName = "refresh()"
             landmarkType = "7">
          </BreakpointContent>
@@ -142,10 +126,184 @@
             filePath = "MyWalletProject/AddEvent/EventController/EventMain/EventUseCase.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
             landmarkName = "refresh()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F8C18A59-E631-4810-9C70-F32708E593F7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyWalletProject/AddEvent/EventController/EventMain/EventUseCase.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "getCurrenlyApplying1()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1784F444-66F8-4942-A843-E485B23DE4D4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyWalletProject/AddEvent/EventController/EventMain/EventUseCase.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "getCurrenlyApplying1()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D8A6286A-55FF-4005-B998-6B5E50B8362A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyWalletProject/AddEvent/EventController/EventMain/EventUseCase.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "getCurrenlyApplying1()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6864C662-127C-4061-8036-6E86DB5236FA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyWalletProject/AddEvent/EventController/EventMain/EventUseCase.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "getCurrenlyApplying1()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6864C662-127C-4061-8036-6E86DB5236FA - b3b07937278f9ff1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyWalletProject.EventUseCase.getCurrenlyApplying1() -&gt; ()"
+                  moduleName = "MyWalletProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thanh.dinhvan/Desktop/money/MyWalletProject/MyWalletProject/AddEvent/EventController/EventMain/EventUseCase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "244">
+               </Location>
+               <Location
+                  uuid = "6864C662-127C-4061-8036-6E86DB5236FA - 6f24448699b1b858"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.FIRDataSnapshot) -&gt; () in MyWalletProject.EventUseCase.getCurrenlyApplying1() -&gt; ()"
+                  moduleName = "MyWalletProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thanh.dinhvan/Desktop/money/MyWalletProject/MyWalletProject/AddEvent/EventController/EventMain/EventUseCase.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "31"
+                  endingLineNumber = "31"
+                  offsetFromSymbolStart = "268">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "97FA510E-DE57-4CDA-BA81-AA53DDF14A20"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyWalletProject/Helpers/AlertUtil.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "AlertUtil"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "97FA510E-DE57-4CDA-BA81-AA53DDF14A20 - af6be91f1276a514"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyWalletProject.AlertUtil.deinit"
+                  moduleName = "MyWalletProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thanh.dinhvan/Desktop/money/MyWalletProject/MyWalletProject/Helpers/AlertUtil.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  uuid = "97FA510E-DE57-4CDA-BA81-AA53DDF14A20 - 9c0bb1bd31213c96"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyWalletProject.AlertUtil.__deallocating_deinit"
+                  moduleName = "MyWalletProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thanh.dinhvan/Desktop/money/MyWalletProject/MyWalletProject/Helpers/AlertUtil.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "97FA510E-DE57-4CDA-BA81-AA53DDF14A20 - 1d4a028f1f07ebc9"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyWalletProject.AlertUtil.__allocating_init() -&gt; MyWalletProject.AlertUtil"
+                  moduleName = "MyWalletProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thanh.dinhvan/Desktop/money/MyWalletProject/MyWalletProject/Helpers/AlertUtil.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "17">
+               </Location>
+               <Location
+                  uuid = "97FA510E-DE57-4CDA-BA81-AA53DDF14A20 - c53c48466c76591"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MyWalletProject.AlertUtil.init() -&gt; MyWalletProject.AlertUtil"
+                  moduleName = "MyWalletProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thanh.dinhvan/Desktop/money/MyWalletProject/MyWalletProject/Helpers/AlertUtil.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
