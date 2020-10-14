@@ -93,10 +93,12 @@ class ViewTransactionPresenter {
                     var type = ""
                     for c in categories! {
                         if b.categoryid == c.id {
-                            categoryName = c.name!
-                            icon = c.iconImage!
-                            type = c.transactionType!
-                            break
+                            if b.transactionType == c.transactionType {
+                                categoryName = c.name!
+                                icon = c.iconImage!
+                                type = c.transactionType!
+                                break
+                            }
                         }
                     }
                     var item = TransactionItem(id: "\(b.id!)", categoryName: categoryName,amount: b.amount!, iconImage: icon, type: type)

@@ -17,7 +17,7 @@ class EditTransactionPresenter {
         self.usecase = usecase
     }
     
-    func update(t: Transaction, oldType: String){
-        usecase?.editTransaction(trans: t, oldType: oldType)
+    func update(t: Transaction, oldTrans: Transaction){
+        usecase?.editTransaction(trans: t, oldTrans: oldTrans)
     }
 }

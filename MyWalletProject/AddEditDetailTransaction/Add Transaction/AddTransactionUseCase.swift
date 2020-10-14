@@ -33,5 +33,6 @@ extension AddTransactionUseCase{
         Defined.ref.child(FirebasePath.information).updateChildValues(["balance": balance]){ (error,reference) in
             
         }
+        Defined.defaults.set(balance, forKey: Constants.balance)
     }
 }
