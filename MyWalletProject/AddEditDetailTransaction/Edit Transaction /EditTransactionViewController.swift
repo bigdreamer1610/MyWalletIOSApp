@@ -87,7 +87,7 @@ class EditTransactionViewController: UIViewController {
     
     func initComponents(){
         txtCategory.text = categoryName
-        txtNote.text = transaction?.note!
+        txtNote.text = transaction?.note ?? ""
         txtAmount.text = "\(transaction?.amount ?? 0)"
         iconImage.image = UIImage(named: icon)
         txtDate.text = transaction?.date!

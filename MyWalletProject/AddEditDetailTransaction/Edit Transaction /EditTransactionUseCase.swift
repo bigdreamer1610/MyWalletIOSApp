@@ -23,11 +23,11 @@ extension EditTransactionUseCase {
             "eventid": trans.eventid!
             ] as [String : Any]
         if trans.transactionType != oldType {
-            Defined.ref.child("Account/userid1/transaction/\(oldType)/\(trans.id!)").removeValue { (error, reference) in
+            Defined.ref.child(FirebasePath.transaction).child("/\(oldType)/\(trans.id!)").removeValue { (error, reference) in
                 //remove old position
             }
         }
-        Defined.ref.child("Account/userid1/transaction/\(trans.transactionType!)/\(trans.id ?? "")").updateChildValues(update) { (error, reference) in
+        Defined.ref.child(FirebasePath.transaction).child("/\(trans.transactionType!)/\(trans.id ?? "")").updateChildValues(update) { (error, reference) in
             if error != nil {
                 print("Error: \(error!)")
             } else {
