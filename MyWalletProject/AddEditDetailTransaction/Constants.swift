@@ -47,7 +47,7 @@ class Constants {
     
     // alert message
     static let alertDeleteWarning = "DO YOU REALLY WANT TO DELETE IT?"
-    static let alertDeleteMessage = "You're about to delete this category, all of your transaction in this category will be lost!"
+    static let alertDeleteMessage = "You're about to delete this category, all of your transaction, budget in this category will be lost!"
     static let alertSuccessAddCategory = "Your category has been successfully added!"
     static let alertSuccessEditCategory = "Your category has been successfully edited!"
     static let alertSuccessSaveBill = "Your transaction has successfully been saved!"

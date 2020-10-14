@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FirebaseDatabase
 
 class DetailCategoryUseCase {
     
@@ -26,4 +27,43 @@ extension DetailCategoryUseCase {
         
         Defined.ref.child(FirebasePath.category).child(categoryTypeDB).child(categoryIdDB).removeValue()
     }
+    
+    func deleteAllTransactionOfCategoryInDB(_ category: Category) {
+        Defined.ref.child("Account/userid1/transaction/\(category.transactionType ?? "")").observeSingleEvent(of: .value) {[weak self] (snapshot) in
+            guard self != nil else {
+                return
+            }
+            if let dataSnapshots = snapshot.children.allObjects as? [DataSnapshot] {
+                for dataSnap in dataSnapshots {
+                    let id = dataSnap.key
+                    if let value = dataSnap.value as? [String:Any] {
+                        let categoryId = value["categoryid"] as? String
+                        if (categoryId ?? "") == (category.id ?? "") {
+                            Defined.ref.child("Account/userid1/transaction/\(category.transactionType ?? "")/\(id)").removeValue {(error, ref) in}
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func deleteAllBudgetOfCategoryInDB(_ category: Category) {
+        Defined.ref.child("Account/userid1/budget").observeSingleEvent(of: .value) {[weak self] (snapshot) in
+            guard self != nil else {
+                return
+            }
+            if let dataSnapshots = snapshot.children.allObjects as? [DataSnapshot] {
+                for dataSnap in dataSnapshots {
+                    let id = dataSnap.key
+                    if let value = dataSnap.value as? [String:Any] {
+                        let categoryId = value["categoryId"] as? String
+                        if (categoryId ?? "") == (category.id ?? "") {
+                            Defined.ref.child("Account/userid1/budget/\(id)").removeValue {(error, ref) in}
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
+
