@@ -118,7 +118,6 @@ extension DetailPieChartVC: UITableViewDelegate, UITableViewDataSource {
                 return category.id! == sumByCategory[indexPath.row].category
             }
             let imageName = filtered[0].iconImage ?? "bill"
-            
             cell.setupView(imageName: imageName, category: category, money: money)
             return cell
         }
