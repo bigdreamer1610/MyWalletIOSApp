@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Budget {
+struct Budget : Codable {
     var id: Int? = nil
     var categoryId:String? = nil
     var categoryName: String? = nil
