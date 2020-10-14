@@ -99,7 +99,6 @@
 		73AABDAB2535B96B00E8A62B /* AlertUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AABDAA2535B96B00E8A62B /* AlertUtil.swift */; };
 		73AABDAE2535B9F200E8A62B /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AABDAD2535B9F200E8A62B /* BaseViewController.swift */; };
 		73AABDB02535BA2A00E8A62B /* BaseUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AABDAF2535BA2A00E8A62B /* BaseUseCase.swift */; };
-		73AABDB22535BBC500E8A62B /* BaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AABDB12535BBC500E8A62B /* BaseProtocol.swift */; };
 		73AEA873253539FB00DC1EA7 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73AEA872253539FB00DC1EA7 /* Extensions.swift */; };
 		73D7D88B252C07570014F5A1 /* BudgetTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D7D88A252C07570014F5A1 /* BudgetTransactionViewController.swift */; };
 		73D7D88D252C076C0014F5A1 /* BudgetTransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D7D88C252C076C0014F5A1 /* BudgetTransactionUseCase.swift */; };
@@ -137,6 +136,7 @@
 		73E78DA62524422700D7B962 /* SelectEventController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E78DA52524422700D7B962 /* SelectEventController.swift */; };
 		73E78DAA2524427B00D7B962 /* SelectEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73E78DA82524427B00D7B962 /* SelectEventCell.swift */; };
 		73E78DAB2524427B00D7B962 /* SelectEventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73E78DA92524427B00D7B962 /* SelectEventCell.xib */; };
+		73F0946525370C57001F81AA /* BaseUseCaseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F0946425370C57001F81AA /* BaseUseCaseDelegate.swift */; };
 		73FC0D342525DE4C0012676D /* TransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FC0D332525DE4C0012676D /* TransactionViewController.swift */; };
 		73FC0D362525DE5E0012676D /* TransactionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FC0D352525DE5E0012676D /* TransactionUseCase.swift */; };
 		73FC0D382525DE6C0012676D /* TransactionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FC0D372525DE6C0012676D /* TransactionPresenter.swift */; };
@@ -338,7 +338,6 @@
 		73AABDAA2535B96B00E8A62B /* AlertUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertUtil.swift; sourceTree = "<group>"; };
 		73AABDAD2535B9F200E8A62B /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		73AABDAF2535BA2A00E8A62B /* BaseUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUseCase.swift; sourceTree = "<group>"; };
-		73AABDB12535BBC500E8A62B /* BaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProtocol.swift; sourceTree = "<group>"; };
 		73AEA872253539FB00DC1EA7 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		73D7D88A252C07570014F5A1 /* BudgetTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTransactionViewController.swift; sourceTree = "<group>"; };
 		73D7D88C252C076C0014F5A1 /* BudgetTransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTransactionUseCase.swift; sourceTree = "<group>"; };
@@ -376,6 +375,7 @@
 		73E78DA52524422700D7B962 /* SelectEventController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectEventController.swift; sourceTree = "<group>"; };
 		73E78DA82524427B00D7B962 /* SelectEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectEventCell.swift; sourceTree = "<group>"; };
 		73E78DA92524427B00D7B962 /* SelectEventCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectEventCell.xib; sourceTree = "<group>"; };
+		73F0946425370C57001F81AA /* BaseUseCaseDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUseCaseDelegate.swift; sourceTree = "<group>"; };
 		73FC0D332525DE4C0012676D /* TransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionViewController.swift; sourceTree = "<group>"; };
 		73FC0D352525DE5E0012676D /* TransactionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionUseCase.swift; sourceTree = "<group>"; };
 		73FC0D372525DE6C0012676D /* TransactionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionPresenter.swift; sourceTree = "<group>"; };
@@ -895,7 +895,7 @@
 			children = (
 				73AABDAD2535B9F200E8A62B /* BaseViewController.swift */,
 				73AABDAF2535BA2A00E8A62B /* BaseUseCase.swift */,
-				73AABDB12535BBC500E8A62B /* BaseProtocol.swift */,
+				73F0946425370C57001F81AA /* BaseUseCaseDelegate.swift */,
 			);
 			path = BaseModule;
 			sourceTree = "<group>";
@@ -1757,9 +1757,9 @@
 				8A6DABF82525BA800033FE07 /* TravelModeViewController.swift in Sources */,
 				72A71923251DDEEE003ED157 /* PieChartCollectionViewCell.swift in Sources */,
 				56522947252D8071006ED814 /* BudgetPresenter.swift in Sources */,
+				73F0946525370C57001F81AA /* BaseUseCaseDelegate.swift in Sources */,
 				73FC0D382525DE6C0012676D /* TransactionPresenter.swift in Sources */,
 				735873EF2521780D00B8235D /* MainTabViewController.swift in Sources */,
-				73AABDB22535BBC500E8A62B /* BaseProtocol.swift in Sources */,
 				724F64EF252FF4AF0067DED9 /* ReportUseCase.swift in Sources */,
 				73AA67FA25258294001EAA1D /* PlanningCell.swift in Sources */,
 				73E0B17E2521E0EE0097D41F /* TransactionCell.swift in Sources */,

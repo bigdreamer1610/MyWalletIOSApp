@@ -57,7 +57,6 @@ class LoginFbPresenter {
                     
                     if let emailAddress = picutreDic.object(forKey: "email") {
                         tmpEmailAdd = emailAddress as! String
-                        print(tmpEmailAdd)
                     }
                     else {
                         var usrName = nameOfUser
@@ -75,8 +74,6 @@ class LoginFbPresenter {
                         
                     }
                 }
-                
-                print(error?.localizedDescription as Any)
             })
         }
     }

@@ -37,7 +37,6 @@ class LoginUseCase {
                 return
             } else{
                 self.createProfileAccountFirebase(id: id, name: name ,email: email)
-                print("do create exist")
             }
             
         })
