@@ -94,6 +94,8 @@ class DetailCategoryViewController: UIViewController {
     }
     func finish() {
         self.presenter?.deleteCategory(self.category)
+        self.presenter?.deleteAllTransactionOfCategory(self.category)
+        self.presenter?.deleteAllBudgetOfCategory(self.category)
     }
     
     // MARK: - Handle buttons click
