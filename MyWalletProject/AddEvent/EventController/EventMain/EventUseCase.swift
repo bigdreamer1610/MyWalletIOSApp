@@ -20,14 +20,11 @@ class EventUseCase {
     var dayThis = CheckDate().setDate()
     var arrEvent = [Event]()
     var arrNameEvent = [String]()
-    
+    let dispatchGroup = DispatchGroup()
 }
 extension EventUseCase{
-    
     // getdata firebase
     func getCurrenlyApplying1()  {
-        
-        let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
         Defined.ref.child(FirebasePath.event).observe( .value, with: { snapshot in
             self.arrNameEvent.removeAll()
@@ -40,24 +37,22 @@ extension EventUseCase{
                 let status = dict["status"] as? String
                 var check = self.checkDay.checkDate(dateEnd: dateEnd!)
                 if check && status == "true" {
+
                     let id = dict["id"] as? String
                     let img = dict["eventImage"] as? String
                     let nameEvent = dict["name"] as? String
                     let spent = dict["spent"] as? Int
                     let event1 = Event(id: id, name: nameEvent, date: dateEnd, eventImage: img, spent: spent, status: status)
-                    //eventest = Event(id: id, name: nameEvent, date: dateEnd, eventImage: img, spent: spent, status: status)
-                    // check id transaction
+          
                     self.arrNameEvent.append(nameEvent!)
+
                     self.arrEvent.append(event1)
                 }
                 else {
-                    
                 }
-                
             }
-            dispatchGroup.leave()
         })
-        
+        dispatchGroup.leave()
         dispatchGroup.notify(queue: .main) {
             Defined.ref.child(FirebasePath.transaction).observeSingleEvent(of: .value) { (snapshot1) in
                 if let snapshots = snapshot1.children.allObjects as?[DataSnapshot]
@@ -70,14 +65,12 @@ extension EventUseCase{
                                     if value["eventid"] != nil {
                                         let eventid1 = value["eventid"] as! String
                                         let amount = value["amount"] as! Int
-                                        //  self.even.append(test(amout: amount, id: eventid1))
                                         for i in 0..<self.arrEvent.count{
                                             if eventid1 == self.arrEvent[i].id! {
                                                 self.arrEvent[i].spent! += amount
                                             }
                                         }
                                     } else {}
-                                    
                                 }
                             }
                         }
@@ -87,10 +80,9 @@ extension EventUseCase{
             }
         }
     }
+    
     // get data Finished
     func getEventFinished()  {
-        
-        let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
         Defined.ref.child(FirebasePath.event).observe( .value, with: { snapshot in
             self.arrNameEvent.removeAll()
