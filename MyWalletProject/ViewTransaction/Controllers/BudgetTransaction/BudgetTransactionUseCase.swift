@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import CodableFirebase
 
 protocol BudgetTransactionUseCaseDelegate: class {
     func responseDataTransactions(trans: [Transaction])
@@ -27,21 +28,18 @@ extension BudgetTransactionUseCase {
             for case let snapshots as DataSnapshot in snapshot.children {
                 for case let snapshot as DataSnapshot in snapshots.children {
                     guard let dict = snapshot.value as? [String: Any] else {return}
-                    let id = snapshot.key
-                    let amount = dict["amount"] as? Int
-                    let categoryid = dict["categoryid"] as? String
-                    if categoryid == cid {
-                        let date = dict["date"] as? String
-                        let transactionType = snapshots.key
-                        var transaction = Transaction(id: id, transactionType: transactionType, amount: amount, categoryid: categoryid, date: date)
-                        if let note = dict["note"] as? String {
-                            transaction.note = note
+                    do {
+                        var model = try FirebaseDecoder().decode(Transaction.self, from: dict)
+                        model.id = snapshot.key
+                        model.transactionType = snapshots.key
+                        if model.categoryid == cid {
+                            allTransactions.append(model)
                         }
-                        if let eventid = dict["eventid"] as? String {
-                            transaction.eventid = eventid
-                        }
-                        allTransactions.append(transaction)
+                        
+                    } catch let error {
+                        print(error)
                     }
+                    
                 }
             }
             self.delegate?.responseDataTransactions(trans: allTransactions)
