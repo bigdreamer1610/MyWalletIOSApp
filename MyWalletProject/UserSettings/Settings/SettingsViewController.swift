@@ -33,7 +33,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         
         configureButton([btnSave])
         setupTextFieldDelegate(textFields: [txtUsername, txtBalance, txtDate, txtPhoneNumber, txtGender, txtAddress, txtLanguage])
-        presenter?.requestUserInfo("userid1")
+        presenter?.requestUserInfo()
         
         self.title = Constants.information
     }
@@ -125,7 +125,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
             user.balance = balance
         }
         
-        user.email = "userid1@gmail.com"
+        user.email = Defined.defaults.string(forKey: Constants.email)
         
         if let dateOfBirth = txtDate.text {
             user.dateOfBirth = dateOfBirth
@@ -143,7 +143,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
             user.language = language
         }
         
-        presenter?.validateInput(user, "userid1")
+        presenter?.validateInput(user)
     }
 }
 
