@@ -17,7 +17,6 @@ class EditTransactionViewController: UIViewController {
     var categoryId: String? = nil
     var amount: Int = 0
     var icon: String = ""
-    var timer = Timer()
     private let dateFormatter = DateFormatter()
     
     @IBOutlet weak var btnSave: UIBarButtonItem!
@@ -47,7 +46,6 @@ class EditTransactionViewController: UIViewController {
         customizeLayout()
         txtAmount.delegate = self
         addTapTarget()
-        scheduledTimerWithTimeInterval()
         setLanguage()
     }
     
@@ -63,8 +61,6 @@ class EditTransactionViewController: UIViewController {
         txtNote.placeholder = EditTransactionDataString.note.rawValue.addLocalizableString(str: language)
         txtAmount.placeholder = EditTransactionDataString.amount.rawValue.addLocalizableString(str: language)
         txtEvent.placeholder = EditTransactionDataString.event.rawValue.addLocalizableString(str: language)
-
-
     }
     
     func setUp(presenter: EditTransactionPresenter){
@@ -87,7 +83,7 @@ class EditTransactionViewController: UIViewController {
     
     func initComponents(){
         txtCategory.text = categoryName
-        txtNote.text = transaction?.note!
+        txtNote.text = transaction?.note ?? ""
         txtAmount.text = "\(transaction?.amount ?? 0)"
         iconImage.image = UIImage(named: icon)
         txtDate.text = transaction?.date!
@@ -131,7 +127,6 @@ class EditTransactionViewController: UIViewController {
     }
     
     @IBAction func clickCancel(_ sender: Any) {
-        timer.invalidate()
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -146,7 +141,6 @@ class EditTransactionViewController: UIViewController {
     }
     
     @IBAction func clickSave(_ sender: Any) {
-        timer.invalidate()
         if let strAmount = txtAmount.text,
             let intAmount = Int(strAmount){
             amount = intAmount
@@ -159,22 +153,8 @@ class EditTransactionViewController: UIViewController {
         }
         
         let trans = Transaction(id: transaction?.id ?? "", transactionType: transactionType, amount: amount, categoryid: categoryId , date: txtDate.text!, note: txtNote.text!, eventid: eventid ?? "")
-        presenter?.update(t: trans, oldType: transaction?.transactionType! ?? "")
+        presenter?.update(t: trans, oldTrans: transaction!)
         self.navigationController?.popViewController(animated: true)
-    }
-    
-    func scheduledTimerWithTimeInterval(){
-        timer = Timer.scheduledTimer(timeInterval: 0, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
-    }
-    @objc func updateCounting(){
-        var checkAmount = Int(txtAmount.text!)
-        
-        if checkAmount == 0 || txtCategory.text!.isEmpty || txtDate.text!.isEmpty || txtAmount.text!.isEmpty{
-            btnSave.isEnabled = false
-        }else{
-            btnSave.isEnabled = true
-        }
-        
     }
     
     

@@ -41,7 +41,7 @@ class DetailTransactionViewController: UIViewController {
     var transaction: Transaction!
     var eventid: String? = nil
     
-    var language = ChangeLanguage.vietnam.rawValue
+    var language = ChangeLanguage.english.rawValue
 
     
     override func viewDidLoad() {
@@ -151,7 +151,7 @@ extension DetailTransactionViewController : DetailTransactionPresenterDelegate {
     func getCategory(cate: Category) {
         type = transaction.transactionType!
         categoryName = cate.name!
-        categoryNote = transaction.note!
+        categoryNote = transaction.note ?? ""
         amount = transaction.amount!
         icon = cate.iconImage!
         var date = Defined.convertStringToDate(str: transaction.date!)

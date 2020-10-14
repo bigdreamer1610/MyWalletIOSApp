@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Category {
+struct Category: Codable {
     var id: String? = nil
     var name: String? = nil
     var transactionType: String? = nil

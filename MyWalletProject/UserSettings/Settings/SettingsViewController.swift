@@ -26,15 +26,16 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
 
     var user = Account()
     var presenter: SettingsPresenter?
+    var activeTextField: UITextField?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureButton([btnSave])
         setupTextFieldDelegate(textFields: [txtUsername, txtBalance, txtDate, txtPhoneNumber, txtGender, txtAddress, txtLanguage])
-        presenter?.requestUserInfo("userid1")
+        presenter?.requestUserInfo()
         
-        self.title = "Information"
+        self.title = Constants.information
     }
     
     // MARK: - Hide tab bar
@@ -68,6 +69,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Hide keyboard when tap on view or hit return key
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.scrollView.endEditing(true)
         self.view.endEditing(true)
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -75,6 +77,46 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    // MARK: - Get active textfield
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.activeTextField = textField
+        setupKeyboardNotification()
+    }
+    
+    // MARK: - Setup notification for keypad show up and hide
+    func setupKeyboardNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    @objc func keyboardWillShow(notification: NSNotification) {
+        //Need to calculate keyboard exact size due to Apple suggestions
+        let info = notification.userInfo!
+        let keyboardSize = (info[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        let contentInsets : UIEdgeInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: keyboardSize!.height, right: 0.0)
+
+        self.scrollView.contentInset = contentInsets
+        self.scrollView.scrollIndicatorInsets = contentInsets
+
+        var aRect : CGRect = self.view.frame
+        aRect.size.height -= keyboardSize!.height
+        if let activeTextField = self.activeTextField {
+            if (!aRect.contains(activeTextField.frame.origin)){
+                self.scrollView.scrollRectToVisible(activeTextField.frame, animated: true)
+            }
+        }
+    }
+    @objc func keyboardWillHide(notification: NSNotification) {
+        //Once keyboard disappears, restore original positions
+        let info = notification.userInfo!
+        let keyboardSize = (info[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size
+        let contentInsets : UIEdgeInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: -keyboardSize!.height, right: 0.0)
+        self.scrollView.contentInset = contentInsets
+        self.scrollView.scrollIndicatorInsets = contentInsets
+        self.view.endEditing(true)
+        self.scrollView.isScrollEnabled = false
+    }
+    
+    // MARK: - Buttons click handler
     @IBAction func btnSaveClicked(_ sender: Any) {
         if let name = txtUsername.text {
             user.name = name
@@ -83,7 +125,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
             user.balance = balance
         }
         
-        user.email = "userid1@gmail.com"
+        user.email = Defined.defaults.string(forKey: Constants.email)
         
         if let dateOfBirth = txtDate.text {
             user.dateOfBirth = dateOfBirth
@@ -101,7 +143,7 @@ class SettingsViewController: UIViewController, UITextFieldDelegate {
             user.language = language
         }
         
-        presenter?.validateInput(user, "userid1")
+        presenter?.validateInput(user)
     }
 }
 
@@ -131,14 +173,9 @@ extension SettingsViewController: SettingsPresenterDelegate {
     
     func showAlertMessage(_ message: String, _ state: Bool) {
         if !state {
-            let alert = UIAlertController(title: Constants.alertInvalidInputTitle, message: message, preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: Constants.alertButtonOk, style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            AlertUtil.showAlert(from: self, with: Constants.alertInvalidInputTitle, message: message)
         } else {
-            let alert = UIAlertController(title: Constants.alertSuccessTitle, message: "Your information has successfully been updated", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: Constants.alertButtonOk, style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            AlertUtil.showAlert(from: self, with: Constants.alertSuccessTitle, message: Constants.alertSuccessInfomationUpdate)
         }
     }
 }
-

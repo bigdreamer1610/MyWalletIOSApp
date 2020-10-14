@@ -23,11 +23,12 @@ class SelectCategoryController: UIViewController {
     var cellId = "SelectCategoryCell"
     var delegate: SelectCategory?
     
-    var language = ChangeLanguage.vietnam.rawValue
+    var language = ChangeLanguage.english.rawValue
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.3929189782, green: 0.4198221317, blue: 0.8705882353, alpha: 1)
         tableView.register(UINib(nibName: cellId, bundle: nil), forCellReuseIdentifier: cellId)
         GetListCategoryExpense()
         setLanguage()
@@ -54,7 +55,7 @@ class SelectCategoryController: UIViewController {
     
     func GetListCategoryExpense(){
         categories.removeAll()
-        Defined.ref.child("Category/expense").observe(DataEventType.value) { (snapshot) in
+        Defined.ref.child(FirebasePath.category).child("/\(TransactionType.expense.getValue())").observe(DataEventType.value) { (snapshot) in
             if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
                 for snap in snapshots {
                     let id = snap.key
@@ -74,7 +75,7 @@ class SelectCategoryController: UIViewController {
     
     func GetListCategoryIncome(){
         categories.removeAll()
-        Defined.ref.child("Category/income").observe(DataEventType.value) { (snapshot) in
+        Defined.ref.child(FirebasePath.category).child("/\(TransactionType.income.getValue())").observe(DataEventType.value) { (snapshot) in
             if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
                 for snap in snapshots {
                     let id = snap.key
@@ -113,6 +114,10 @@ extension SelectCategoryController: UITableViewDataSource, UITableViewDelegate{
         delegate?.setCategory(nameCategory: ex.name ?? "", iconCategory: ex.iconImage ?? "", type: ex.transactionType ?? "", id: ex.id ?? "")
         self.navigationController?.popViewController(animated: true)
         
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
     }
     
 }

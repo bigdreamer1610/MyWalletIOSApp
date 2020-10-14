@@ -10,6 +10,9 @@ class PieChartTableViewCell: BaseTBCell {
     var sumExpense = 0
     var sumByCategoryIncome = [SumByCate]()
     var sumByCategoryExpense = [SumByCate]()
+    var expenseArray: [Transaction] = []
+    var incomeArray: [Transaction] = []
+    
     weak var delegate: CustomCollectionCellDelegate?
     
     override func awakeFromNib() {

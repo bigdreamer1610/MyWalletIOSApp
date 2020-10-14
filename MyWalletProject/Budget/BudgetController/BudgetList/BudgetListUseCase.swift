@@ -29,7 +29,7 @@ extension BudgetListUseCase {
         let dispatchGroup = DispatchGroup() // tạo luồng load cùng 1 nhóm
         // load api Budget
         dispatchGroup.enter()
-        Defined.ref.child("Account").child("userid1").child("budget").observeSingleEvent(of: .value) { (data) in
+        Defined.ref.child(FirebasePath.budget).observeSingleEvent(of: .value) { (data) in
             for case let child as DataSnapshot in data.children{
                 guard let dict = child.value as? [String:Any] else{
                     print("Error")
@@ -58,7 +58,7 @@ extension BudgetListUseCase {
         
         // Load api Transaction expense
         dispatchGroup.enter()
-        Defined.ref.child("Account").child("userid1").child("transaction").child("expense").observeSingleEvent(of: .value) { (data) in
+        Defined.ref.child(FirebasePath.expense).observeSingleEvent(of: .value) { (data) in
             for case let child as DataSnapshot in data.children{
                 guard let dict = child.value as? [String:Any] else {
                     print("Error")
@@ -75,7 +75,7 @@ extension BudgetListUseCase {
         
         // load api transaction income
         dispatchGroup.enter()
-        Defined.ref.child("Account").child("userid1").child("transaction").child("income").observeSingleEvent(of: .value) { (data) in
+        Defined.ref.child(FirebasePath.income).observeSingleEvent(of: .value) { (data) in
             for case let child as DataSnapshot in data.children{
                 guard let dict = child.value as? [String:Any] else {
                     print("Error")

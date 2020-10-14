@@ -42,16 +42,17 @@ class AddEditCategoryViewController: UIViewController {
         addRightBorder([selectImageView])
         
         setupView()
+        setupSegmentTextColor()
     }
     
     // MARK: - Setup view depends on which screen call this view
     func setupView() {
         if action == "add" {
-            self.title = "Add category"
+            self.title = Constants.addCategory
             self.categoryType = "income"
             self.segmentControl.selectedSegmentIndex = 0
         } else {
-            self.title = "Edit category"
+            self.title = Constants.editCategory
             
             if self.category.transactionType == "Income" {
                 self.segmentControl.selectedSegmentIndex = 0
@@ -68,6 +69,12 @@ class AddEditCategoryViewController: UIViewController {
             
             segmentControl.isEnabled = false
         }
+    }
+    
+    // MARK: - Setup color for segment text
+    func setupSegmentTextColor() {
+        segmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.colorFromHexString(hex: "646BDE")], for: UIControl.State.selected)
+        segmentControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: UIControl.State.normal)
     }
     
     // MARK: - Setup delegate
@@ -126,9 +133,7 @@ class AddEditCategoryViewController: UIViewController {
     
     // MARK: - Show success alert depends on activity: Add or Edit
     func showSuccessAlert(_ message: String) {
-        let alert = UIAlertController(title: Constants.alertSuccessTitle, message: message, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: Constants.alertButtonOk, style: UIAlertAction.Style.default, handler: { action in self.finish()}))
-        self.present(alert, animated: true, completion: nil)
+        AlertUtil.showAlert(from: self, with: Constants.alertSuccessTitle, message: message, completion: { action in self.finish() })
     }
     func finish() {
         self.delegate?.finishManagingCategory(self.category)
@@ -182,9 +187,7 @@ extension AddEditCategoryViewController: SelectIconViewControllerDelegate {
 extension AddEditCategoryViewController: AddEditCategoryPresenterDelegate {
     func showAlertMessage(_ message: String, _ state: Bool) {
         if !state {
-            let alert = UIAlertController(title: Constants.alertInvalidCategoryTitle, message: message, preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: Constants.alertButtonOk, style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            AlertUtil.showAlert(from: self, with: Constants.alertInvalidCategoryTitle, message: message)
         } else {
             var userCategory = Category()
             userCategory.iconImage = listImageName[imageIndex]
@@ -196,15 +199,5 @@ extension AddEditCategoryViewController: AddEditCategoryPresenterDelegate {
             
             showSuccessAlert(Constants.alertSuccessAddCategory)
         }
-    }
-}
-
-extension String {
-    func capitalizingFirstLetter() -> String {
-        return prefix(1).capitalized + dropFirst()
-    }
-
-    mutating func capitalizeFirstLetter() {
-        self = self.capitalizingFirstLetter()
     }
 }
