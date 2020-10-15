@@ -31,11 +31,19 @@ class HeaderTransactionCell: BaseTBCell {
         lbLongDate.text = "\(data.dateModel.year), \(data.dateModel.month)"
         lbTotal.text = "\(Defined.formatter.string(from: NSNumber(value: data.amount))!)"
     }
+
+    func setupData(data: DetailDaySBCCell){
+        lbDate.text = String(data.date)
+        lbDay.text = String(data.day)
+        lbLongDate.text = String(data.longDate)
+        lbTotal.text = "\(Defined.formatter.string(from: NSNumber(value: data.amount))!)"
+    }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
     }
+
     
 }

@@ -25,6 +25,7 @@ class DetailPresenter {
     //Xoa Event
     func responseDataEvent(event: Event) {
         detailEventUseCase?.deleteData(event: event)
+        detailEventUseCase?.deleteEventInTransaction(event: event)
     }
     
     // Danh dau hoan tat

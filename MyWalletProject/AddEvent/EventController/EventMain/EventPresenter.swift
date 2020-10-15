@@ -16,6 +16,7 @@ class EventPresenter {
     
     weak var delegate: EventPresenterDelegate?
     fileprivate var eventUseCase: EventUseCase?
+    let dispatchGroup = DispatchGroup()
     
     
     init(delegate: EventPresenterDelegate, usecase: EventUseCase) {
@@ -26,8 +27,7 @@ class EventPresenter {
     
     // getdata
     func fetchDataApplying() {
-       // eventUseCase?.refresh()
-        eventUseCase?.getCurrenlyApplying1()
+        eventUseCase?.getCurrenlyApplying()
     }
     
     func fetchDataFinished()  {

@@ -21,7 +21,7 @@ enum Mode: String {
 
 
 
-class Defined {
+ class Defined {
     static let defaults = UserDefaults.standard
     static let ref = Database.database().reference()
     static let formatter = NumberFormatter()
