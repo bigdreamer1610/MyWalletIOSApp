@@ -79,7 +79,6 @@ class DetailEventController: UITableViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
         }
         alertController.addAction(confirmAction)
-        alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil )
     }
     
@@ -104,14 +103,6 @@ extension DetailEventController{
     override func viewWillAppear(_ animated: Bool) {
         presenter?.getEvent(event: event)
         presenter?.still(event: event)
-    }
-    override var hidesBottomBarWhenPushed: Bool {
-        get{
-            return true
-        }
-        set {
-            super.hidesBottomBarWhenPushed = newValue
-        }
     }
 }
 
