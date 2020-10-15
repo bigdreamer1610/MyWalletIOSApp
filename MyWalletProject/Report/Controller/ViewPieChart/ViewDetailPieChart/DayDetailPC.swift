@@ -76,18 +76,16 @@ extension DayDetailPC: UITableViewDataSource {
             return cell
         } else {
             let cell = TransactionDayCell.loadCell(tableView) as! TransactionDayCell
-            let sum = transactions[indexPath.row].amount ?? 0
-            let currentDay = transactions[indexPath.row].date
-            let dateNumber = currentDay?.split(separator: "/")[0] ?? ""
-            
-            let myNote = transactions[indexPath.row].note ?? ""
-    
-            cell.setupData(data: DetailDayPCByCate(day: String(dateNumber), date: self.date, amount: sum, note: myNote))
             if state == .income {
                 cell.lbAmount.textColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
             } else {
                 cell.lbAmount.textColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
             }
+            let sum = transactions[indexPath.row].amount ?? 0
+            let currentDay = transactions[indexPath.row].date
+            let dateNumber = currentDay?.split(separator: "/")[0] ?? ""
+            let myNote = transactions[indexPath.row].note ?? ""
+            cell.setupData(data: DetailDayPCByCate(day: String(dateNumber), date: self.date, amount: sum, note: myNote))
             return cell
         }
     }

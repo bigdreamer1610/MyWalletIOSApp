@@ -11,7 +11,7 @@ import Firebase
 
 
 
-class EditTransactionUseCase {}
+class EditTransactionUseCase : BaseUseCase {}
 
 extension EditTransactionUseCase {
     func editTransaction(trans: Transaction, oldTrans: Transaction){
@@ -38,21 +38,12 @@ extension EditTransactionUseCase {
             balance += trans.amount!
         }
         
-        // update balance in firebase
-        Defined.ref.child(Path.information.getPath()).updateChildValues(["balance": balance]){ (error,reference) in
-            
-        }
-        
-        //set userdefaults balance
-        Defined.defaults.set(balance, forKey: Constants.balance)
+        // update balance
+        updateBalance(balance: balance)
         
         //update transaction
         Defined.ref.child(Path.transaction.getPath()).child("/\(trans.transactionType!)/\(trans.id ?? "")").updateChildValues(update) { (error, reference) in
-            if error != nil {
-                
-            } else {
-                print(reference)
-            }
+
         }
     }
 }

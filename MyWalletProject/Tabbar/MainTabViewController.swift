@@ -42,7 +42,6 @@ class MainTabViewController: UITabBarController {
         let navi = UINavigationController(rootViewController: vc)
         navi.modalPresentationStyle = .fullScreen
         self.present(navi, animated: true, completion: nil)
-        //AppRouter.routerTo(from: vc, options: .transitionCrossDissolve, duration: 0.2, isNaviHidden: false)
     }
     
     class func createTabbar() -> MainTabViewController {
