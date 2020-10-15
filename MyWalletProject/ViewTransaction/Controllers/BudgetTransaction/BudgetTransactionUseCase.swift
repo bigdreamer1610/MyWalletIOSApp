@@ -20,7 +20,7 @@ class BudgetTransactionUseCase {
 
 extension BudgetTransactionUseCase {
     func getTransactionsbyCategory(cid: String){
-        Defined.ref.child(FirebasePath.transaction).observe(.value) {[weak self] (snapshot) in
+        Defined.ref.child(Path.transaction.getPath()).observe(.value) {[weak self] (snapshot) in
             guard let `self` = self else {
                 return
             }

@@ -27,7 +27,7 @@ extension ViewCategoryUseCase {
     func getListImage() {
         listImage.removeAll()
         
-        Defined.ref.child(FirebasePath.imagelibrary).observeSingleEvent(of: .value) { snapshot in
+        Defined.ref.child(Path.imageLibrary.getPath()).observeSingleEvent(of: .value) { snapshot in
             for case let child as DataSnapshot in snapshot.children {
                 guard let dict = child.value as? [String:Any] else {
                     return
@@ -47,7 +47,7 @@ extension ViewCategoryUseCase {
     func getExpenseCategories() {
         categoriesExpense.removeAll()
         
-        Defined.ref.child(FirebasePath.cateExpense).observeSingleEvent(of: .value) { snapshot in
+        Defined.ref.child(Path.cateExpense.getPath()).observeSingleEvent(of: .value) { snapshot in
             for case let child as DataSnapshot in snapshot.children{
                 let categoryId = child.key
                 guard let dict = child.value as? [String:Any] else{
@@ -67,7 +67,7 @@ extension ViewCategoryUseCase {
     func getIncomeCategories() {
         categoriesIncome.removeAll()
         
-        Defined.ref.child(FirebasePath.cateIncome).observeSingleEvent(of: .value) { snapshot in
+        Defined.ref.child(Path.cateIncome.getPath()).observeSingleEvent(of: .value) { snapshot in
             for case let child as DataSnapshot in snapshot.children{
                 let categoryId = child.key
                 guard let dict = child.value as? [String:Any] else{

@@ -29,7 +29,7 @@ class SelectEventUserCase {
 
 extension SelectEventUserCase{
     func getDataFromFirebase() {
-        Defined.ref.child(FirebasePath.event).observe(DataEventType.value) { [weak self](snapshot) in
+        Defined.ref.child(Path.event.getPath()).observe(DataEventType.value) { [weak self](snapshot) in
             guard let `self` = self else {return}
             var events = [Event]()
             for case let snapshots as DataSnapshot in snapshot.children {

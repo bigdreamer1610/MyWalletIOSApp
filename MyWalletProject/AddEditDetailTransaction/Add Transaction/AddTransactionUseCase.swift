@@ -21,7 +21,7 @@ extension AddTransactionUseCase{
             "amount" : t.amount!,
             "categoryid": t.categoryid!,
             "eventid":t.eventid!]
-        Defined.ref.child(FirebasePath.transaction).child("/\(t.transactionType!)").childByAutoId().setValue(writeData)
+        Defined.ref.child(Path.transaction.getPath()).child("/\(t.transactionType!)").childByAutoId().setValue(writeData)
         
         // adjust balance
         var balance = Defined.defaults.integer(forKey: Constants.balance)
@@ -30,7 +30,7 @@ extension AddTransactionUseCase{
         } else {
             balance += t.amount!
         }
-        Defined.ref.child(FirebasePath.information).updateChildValues(["balance": balance]){ (error,reference) in
+        Defined.ref.child(Path.information.getPath()).updateChildValues(["balance": balance]){ (error,reference) in
             
         }
         Defined.defaults.set(balance, forKey: Constants.balance)

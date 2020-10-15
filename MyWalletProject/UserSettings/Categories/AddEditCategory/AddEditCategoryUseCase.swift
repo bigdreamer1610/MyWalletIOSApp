@@ -18,7 +18,7 @@ extension AddEditCategoryUseCase {
             "iconImage": category.iconImage ?? "",
             "name": category.name ?? ""] as [String : Any]
         
-        Defined.ref.child(FirebasePath.category).child(categoryType).child(category.id ?? "").setValue(userCategory, withCompletionBlock: {
+        Defined.ref.child(Path.category.getPath()).child(categoryType).child(category.id ?? "").setValue(userCategory, withCompletionBlock: {
             error, ref in
             if error == nil {}
             else {}

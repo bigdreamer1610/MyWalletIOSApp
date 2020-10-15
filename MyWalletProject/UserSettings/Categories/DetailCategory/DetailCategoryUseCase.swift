@@ -25,11 +25,11 @@ extension DetailCategoryUseCase {
             categoryTypeDB = categoryType
         }
         
-        Defined.ref.child(FirebasePath.category).child(categoryTypeDB).child(categoryIdDB).removeValue()
+        Defined.ref.child(Path.category.getPath()).child(categoryTypeDB).child(categoryIdDB).removeValue()
     }
     
     func deleteAllTransactionOfCategoryInDB(_ category: Category) {
-        Defined.ref.child("Account/userid1/transaction/\(category.transactionType ?? "")").observeSingleEvent(of: .value) {[weak self] (snapshot) in
+        Defined.ref.child(Path.transaction.getPath()).child("\(category.transactionType ?? "")").observeSingleEvent(of: .value) {[weak self] (snapshot) in
             guard self != nil else {
                 return
             }
@@ -48,7 +48,7 @@ extension DetailCategoryUseCase {
     }
     
     func deleteAllBudgetOfCategoryInDB(_ category: Category) {
-        Defined.ref.child("Account/userid1/budget").observeSingleEvent(of: .value) {[weak self] (snapshot) in
+        Defined.ref.child(Path.budget.getPath()).observeSingleEvent(of: .value) {[weak self] (snapshot) in
             guard self != nil else {
                 return
             }
