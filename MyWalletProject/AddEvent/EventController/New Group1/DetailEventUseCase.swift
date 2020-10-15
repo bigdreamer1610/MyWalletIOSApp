@@ -16,7 +16,6 @@ protocol DetailEventUseCaseDelegate: class {
 
 class DetailEventUseCase {
     weak var delegate: DetailEventUseCaseDelegate?
-    var idUser = "userid1"
     var transactions = [Transaction]()
     var detailEvent = Event()
     

@@ -47,8 +47,9 @@ extension EventUseCase{
                 else {
                 }
             }
+            
         })
-        dispatchGroup.leave()
+    self.dispatchGroup.leave()
         dispatchGroup.notify(queue: .main) {
             Defined.ref.child(Path.transaction.getPath()).observe( .value) { (snapshot1) in
                 if let snapshots = snapshot1.children.allObjects as?[DataSnapshot]
