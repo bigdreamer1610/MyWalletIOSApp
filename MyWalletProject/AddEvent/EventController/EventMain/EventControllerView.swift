@@ -39,8 +39,14 @@ class EventControllerView: UIViewController {
         self.navigationItem.largeTitleDisplayMode = .never
         let nib = UINib(nibName: "EventCell", bundle: nil)
         eventTable.register(nib, forCellReuseIdentifier: "EventCell")
+        setupSegmentTextColor()
         eventTable.delegate = self
         eventTable.dataSource = self
+    }
+    
+    func setupSegmentTextColor() {
+        sgm.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.colorFromHexString(hex: "646BDE")], for: UIControl.State.selected)
+        sgm.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: UIControl.State.normal)
     }
     
     func setUp(presenter: EventPresenter)  {
