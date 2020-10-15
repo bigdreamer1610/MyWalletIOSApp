@@ -30,7 +30,7 @@ extension ViewTransactionUseCase {
     }
     
     func getBalance(){
-        Defined.ref.child(FirebasePath.balance).observe(.value) { (snapshot) in
+        Defined.ref.child(Path.balance.getPath()).observe(.value) { (snapshot) in
             if let value = snapshot.value as? Int {
                 self.delegate?.responseBalance(balance: value)
             }

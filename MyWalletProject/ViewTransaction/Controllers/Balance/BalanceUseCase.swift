@@ -21,8 +21,8 @@ extension BalanceUseCase {
                 "amount" : abs(balance - old),
                 "categoryid": "Others"]
             let type = (old > balance) ? TransactionType.expense.getValue() : TransactionType.income.getValue()
-            Defined.ref.child(FirebasePath.transaction).child("\(type)").childByAutoId().setValue(writeData)
-            Defined.ref.child(FirebasePath.information).updateChildValues(["balance": balance]){ (error,reference) in
+            Defined.ref.child(Path.transaction.getPath()).child("\(type)").childByAutoId().setValue(writeData)
+            Defined.ref.child(Path.information.getPath()).updateChildValues(["balance": balance]){ (error,reference) in
                 
             }
             Defined.defaults.set(balance, forKey: Constants.balance)
