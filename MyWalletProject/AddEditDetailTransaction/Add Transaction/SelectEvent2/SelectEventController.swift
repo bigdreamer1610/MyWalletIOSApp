@@ -33,6 +33,11 @@ class SelectEventController: UIViewController {
         noEvent(status: true)
     }
     
+    @IBAction func btnCancel(_ sender: Any) {
+         self.navigationController?.popViewController(animated: true)
+    }
+    
+    
     func setLanguage(){
         navigationItem.title = SelectEventDataString.event.rawValue.addLocalizableString(str: language)
         

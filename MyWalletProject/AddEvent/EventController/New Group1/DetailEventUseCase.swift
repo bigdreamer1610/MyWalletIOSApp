@@ -25,38 +25,67 @@ class DetailEventUseCase {
 extension DetailEventUseCase {
     // Xoa event
     func deleteData(event : Event)  {
+
         Defined.ref.child(Path.transaction.getPath()).observeSingleEvent(of: .value) {[weak self] (snapshot) in
-                 guard let `self` = self else {
-                     return
-                 }
-                 if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
-                     for mySnap in snapshots {
-                         let transactionType = (mySnap as AnyObject).key as String
-                         if let snaps = mySnap.children.allObjects as? [DataSnapshot]{
-                             for snap in snaps {
-                                 let id = snap.key
-                                 if let value = snap.value as? [String: Any]{
-                                     let amount = value["amount"] as! Int
-                                     let categoryid = value["categoryid"] as! String
-                                     let date = value["date"] as! String
-                                     var transaction = Transaction(id: id, transactionType: transactionType, amount: amount, categoryid: categoryid, date: date)
-                                     if let eventid1 = value["eventid"] as? String {
-                                         transaction.eventid = eventid1
-                                        if eventid1 == event.id {
-                                            Defined.ref.child("Account/userid1/transaction/\(transactionType)/\(id)/eventid").removeValue { (error, ref) in
-                                                
-                                            }
-                        
+            guard let `self` = self else {
+                return
+            }
+            if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
+                for mySnap in snapshots {
+                    let transactionType = (mySnap as AnyObject).key as String
+                    if let snaps = mySnap.children.allObjects as? [DataSnapshot]{
+                        for snap in snaps {
+                            let id = snap.key
+                            if let value = snap.value as? [String: Any]{
+                                let amount = value["amount"] as! Int
+                                let categoryid = value["categoryid"] as! String
+                                let date = value["date"] as! String
+                                var transaction = Transaction(id: id, transactionType: transactionType, amount: amount, categoryid: categoryid, date: date)
+                                if let eventid1 = value["eventid"] as? String {
+                                    transaction.eventid = eventid1
+                                    if eventid1 == event.id {
+                                        Defined.ref.child("Account/userid1/transaction/\(transactionType)/\(id)/eventid").removeValue { (error, ref) in
+                                            
                                         }
-                                     }
-                                 }
-                             }
-                         }
-                     }
-                 }
-             }
-             
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
         Defined.ref.child(Path.event.getPath()).child(event.id!).removeValue()
+        Defined.defaults.set(false, forKey: "travelMode")
+        Defined.defaults.removeObject(forKey: "eventTravelId")
+        Defined.defaults.removeObject(forKey: "eventTravelImage")
+        Defined.defaults.removeObject(forKey: "eventTravelName")
+        
+    }
+    //xoa event in transsaction
+    func deleteEventInTransaction(event: Event) {
+        Defined.ref.child(Path.transaction.getPath()).observeSingleEvent(of: .value) { (snapshot1) in
+            if let snapshots = snapshot1.children.allObjects as? [DataSnapshot]{
+                for mySnap in snapshots {
+                    let transactionType = (mySnap as AnyObject).key as String
+                    if let snaps = mySnap.children.allObjects as? [DataSnapshot] {
+                        for snap in snaps {
+                            let id = snap.key
+                            if let value = snap.value as? [String: Any] {
+                                let eventid = value["eventid"] as? String
+                                if eventid == event.id {
+                                    Defined.ref.child(Path.transaction.getPath()).child(transactionType).child(id).child("eventid").removeValue(){ (error, ref) in
+                                        
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     // Danh dau da hoan tat
     func marKedCompele(event: Event)  {
@@ -98,7 +127,7 @@ extension DetailEventUseCase {
     func getData(event: Event)  {
         detailEvent = event
         detailEvent.spent! = 0
-        Defined.ref.child("Account").child(self.idUser).child("transaction").observeSingleEvent(of: .value) { (snapshot1) in
+        Defined.ref.child(Path.transaction.getPath()).observeSingleEvent(of: .value) { (snapshot1) in
             if let snapshots = snapshot1.children.allObjects as?[DataSnapshot]
             {
                 for mySnap in snapshots {
