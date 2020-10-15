@@ -16,7 +16,8 @@ protocol SelectEvent {
 class SelectEventController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet var centerLabel: UILabel!
+    @IBOutlet var centerIcon: UIImageView!
     var events = [Event]()
     var delegate:SelectEvent?
     var presenter: SelectEventPresenter?
@@ -29,7 +30,13 @@ class SelectEventController: UIViewController {
         initComponents()
         initData()
         setLanguage()
+        noEvent(status: true)
     }
+    
+    @IBAction func btnCancel(_ sender: Any) {
+         self.navigationController?.popViewController(animated: true)
+    }
+    
     
     func setLanguage(){
         navigationItem.title = SelectEventDataString.event.rawValue.addLocalizableString(str: language)
@@ -51,10 +58,20 @@ class SelectEventController: UIViewController {
         self.presenter = presenter
     }
     
+    func noEvent(status: Bool){
+        centerIcon.isHidden = status
+        centerLabel.isHidden = status
+    }
+    
 }
 extension SelectEventController: SelectEventPresenterDelegate{
     func getDataOfEvent(data: [Event]) {
         self.events = data
+        if self.events.count == 0 {
+            noEvent(status: false)
+        } else {
+            noEvent(status: true)
+        }
         self.tableView.reloadData()
     }
     
