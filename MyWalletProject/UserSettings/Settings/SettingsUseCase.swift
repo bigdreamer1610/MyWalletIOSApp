@@ -30,7 +30,7 @@ extension SettingsUseCase {
             "gender": user.gender ?? "",
             "language": user.language ?? ""] as [String : Any]
 
-        Defined.ref.child(FirebasePath.information).setValue(userInfo, withCompletionBlock: {
+        Defined.ref.child(Path.information.getPath()).setValue(userInfo, withCompletionBlock: {
             error, ref in
             if error == nil {}
             else {}
@@ -41,7 +41,7 @@ extension SettingsUseCase {
     func getUserInfoFromDB() {
         var userInfo: Account = Account()
         
-        Defined.ref.child(FirebasePath.information).observeSingleEvent(of: .value, with: { snapshot in
+        Defined.ref.child(Path.information.getPath()).observeSingleEvent(of: .value, with: { snapshot in
             guard let dict = snapshot.value as? NSDictionary else {
                 return
             }

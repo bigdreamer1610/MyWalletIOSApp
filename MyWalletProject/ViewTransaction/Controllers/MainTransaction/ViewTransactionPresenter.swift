@@ -276,19 +276,19 @@ extension ViewTransactionPresenter {
 }
 
 extension ViewTransactionPresenter : ViewTransactionUseCaseDelegate {
+    func responseDataCategories(cate: [Category]) {
+        DispatchQueue.main.async {
+            self.categories = cate
+            self.getFirstTransaction()
+            
+        }
+    }
+    
     func responseAllTransactions(trans: [Transaction]) {
         DispatchQueue.main.async {
             self.delegate?.endLoading()
             self.allTransactions = trans
             self.getDataTransaction(month: self.month, year: self.year)
-        }
-    }
-    
-    func responseCategories(cate: [Category]) {
-        DispatchQueue.main.async {
-            self.categories = cate
-            self.getFirstTransaction()
-            
         }
     }
     

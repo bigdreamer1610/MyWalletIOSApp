@@ -55,7 +55,7 @@ class SelectCategoryController: UIViewController {
     
     func GetListCategoryExpense(){
         categories.removeAll()
-        Defined.ref.child(FirebasePath.category).child("/\(TransactionType.expense.getValue())").observe(DataEventType.value) { (snapshot) in
+        Defined.ref.child(Path.cateExpense.getPath()).observe(DataEventType.value) { (snapshot) in
             if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
                 for snap in snapshots {
                     let id = snap.key
@@ -75,7 +75,7 @@ class SelectCategoryController: UIViewController {
     
     func GetListCategoryIncome(){
         categories.removeAll()
-        Defined.ref.child(FirebasePath.category).child("/\(TransactionType.income.getValue())").observe(DataEventType.value) { (snapshot) in
+        Defined.ref.child(Path.cateIncome.getPath()).observe(DataEventType.value) { (snapshot) in
             if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
                 for snap in snapshots {
                     let id = snap.key
