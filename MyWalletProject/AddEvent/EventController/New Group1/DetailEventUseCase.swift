@@ -25,7 +25,7 @@ class DetailEventUseCase {
 extension DetailEventUseCase {
     // Xoa event
     func deleteData(event : Event)  {
-
+        
         Defined.ref.child(Path.transaction.getPath()).observeSingleEvent(of: .value) {[weak self] (snapshot) in
             guard let `self` = self else {
                 return
@@ -47,7 +47,12 @@ extension DetailEventUseCase {
                                         Defined.ref.child("Account/userid1/transaction/\(transactionType)/\(id)/eventid").removeValue { (error, ref) in
                                             
                                         }
-                                        
+                                    }
+                                    if Defined.defaults.string(forKey: "eventTravelId") == event.id{
+                                        Defined.defaults.set(false, forKey: "travelMode")
+                                        Defined.defaults.removeObject(forKey: "eventTravelId")
+                                        Defined.defaults.removeObject(forKey: "eventTravelImage")
+                                        Defined.defaults.removeObject(forKey: "eventTravelName")
                                     }
                                 }
                             }
@@ -58,10 +63,7 @@ extension DetailEventUseCase {
         }
         
         Defined.ref.child(Path.event.getPath()).child(event.id!).removeValue()
-        Defined.defaults.set(false, forKey: "travelMode")
-        Defined.defaults.removeObject(forKey: "eventTravelId")
-        Defined.defaults.removeObject(forKey: "eventTravelImage")
-        Defined.defaults.removeObject(forKey: "eventTravelName")
+        
         
     }
     //xoa event in transsaction
