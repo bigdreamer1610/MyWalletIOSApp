@@ -14,36 +14,25 @@ protocol BudgetTransactionUseCaseDelegate: class {
     func responseDataTransactions(trans: [Transaction])
 }
 
-class BudgetTransactionUseCase {
+class BudgetTransactionUseCase : BaseUseCase {
     weak var delegate: BudgetTransactionUseCaseDelegate?
 }
 
 extension BudgetTransactionUseCase {
     func getTransactionsbyCategory(cid: String){
-        Defined.ref.child(Path.transaction.getPath()).observe(.value) {[weak self] (snapshot) in
+        getListAllTransactions { [weak self](transactions) in
+            var allTransactions = [Transaction]()
             guard let `self` = self else {
                 return
             }
-            var allTransactions = [Transaction]()
-            for case let snapshots as DataSnapshot in snapshot.children {
-                for case let snapshot as DataSnapshot in snapshots.children {
-                    guard let dict = snapshot.value as? [String: Any] else {return}
-                    do {
-                        var model = try FirebaseDecoder().decode(Transaction.self, from: dict)
-                        model.id = snapshot.key
-                        model.transactionType = snapshots.key
-                        if model.categoryid == cid {
-                            allTransactions.append(model)
-                        }
-                        
-                    } catch let error {
-                        print(error)
-                    }
-                    
+            for trans in transactions {
+                if trans.categoryid == cid {
+                    allTransactions.append(trans)
                 }
             }
             self.delegate?.responseDataTransactions(trans: allTransactions)
         }
+        
     }
 }
 

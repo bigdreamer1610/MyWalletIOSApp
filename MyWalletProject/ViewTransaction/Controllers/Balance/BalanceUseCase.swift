@@ -8,7 +8,7 @@
 
 import Foundation
 
-class BalanceUseCase {
+class BalanceUseCase: BaseUseCase {
 }
 
 extension BalanceUseCase {
@@ -22,10 +22,9 @@ extension BalanceUseCase {
                 "categoryid": "Others"]
             let type = (old > balance) ? TransactionType.expense.getValue() : TransactionType.income.getValue()
             Defined.ref.child(Path.transaction.getPath()).child("\(type)").childByAutoId().setValue(writeData)
-            Defined.ref.child(Path.information.getPath()).updateChildValues(["balance": balance]){ (error,reference) in
-                
-            }
-            Defined.defaults.set(balance, forKey: Constants.balance)
+            
+            //update balance
+            updateBalance(balance: balance)
         }
         
     }

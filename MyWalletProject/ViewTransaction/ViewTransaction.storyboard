@@ -208,7 +208,7 @@
                                     <constraint firstAttribute="height" constant="50" id="Ur1-At-q8q"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -245,7 +245,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="660-D1-3KE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2916" y="937.78110944527748"/>
+            <point key="canvasLocation" x="1977" y="938"/>
         </scene>
         <!--Planning-->
         <scene sceneID="atu-rB-Gp7">
@@ -278,7 +278,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VWv-pZ-JZ0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1836" y="938.68065967016503"/>
+            <point key="canvasLocation" x="1142" y="938"/>
         </scene>
         <!--Calendar-->
         <scene sceneID="KJM-re-74n">
@@ -1123,7 +1123,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3o3-Wz-Ou3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="896.79999999999995" y="1627.8325123152711"/>
+            <point key="canvasLocation" x="312" y="938"/>
         </scene>
         <!--Budget Transaction View Controller-->
         <scene sceneID="w4s-HT-KZB">
@@ -1174,7 +1174,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cvK-wG-IGF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="160.80000000000001" y="1627.8325123152711"/>
+            <point key="canvasLocation" x="-425" y="938"/>
         </scene>
     </scenes>
     <resources>

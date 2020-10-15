@@ -165,7 +165,6 @@ extension EventTransactionViewController : EventTransactionPresenterDelegate {
     func getTotal(total: Int) {
         self.amount = total
         self.detailTableView.reloadData()
-        print(total)
     }
     
     

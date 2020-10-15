@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class AddTransactionUseCase{
+class AddTransactionUseCase : BaseUseCase{
     
 }
 extension AddTransactionUseCase{
@@ -30,9 +30,7 @@ extension AddTransactionUseCase{
         } else {
             balance += t.amount!
         }
-        Defined.ref.child(Path.information.getPath()).updateChildValues(["balance": balance]){ (error,reference) in
-            
-        }
-        Defined.defaults.set(balance, forKey: Constants.balance)
+        //update balance
+        updateBalance(balance: balance)
     }
 }
