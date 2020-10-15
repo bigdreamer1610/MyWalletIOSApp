@@ -47,7 +47,7 @@ class AddEventTableUseCase  {
                                "eventImage": event.eventImage,
                                "spent": 0,
                                "status": "true"]
-                                as [String : Any]
+                    as [String : Any]
                 Defined.ref.child(Path.event.getPath()).child(String(newChild)).updateChildValues(event1,withCompletionBlock: { error , ref in
                     if error == nil {
                     }else{
@@ -62,13 +62,14 @@ class AddEventTableUseCase  {
                            "eventImage": event.eventImage,
                            "spent": 0,
                            "status": event.status]
-                            as [String : Any]
+                as [String : Any]
             var eventEDit = Event(id: event.id, name: event.name , date: event.date, eventImage: event.eventImage, spent: 0, status: event.status)
             Defined.ref.child(Path.event.getPath()).child(event.id!).updateChildValues(event1,withCompletionBlock: { error , ref in
-                if error == nil {
-                    self.delegate?.editEvent(event: eventEDit)
-                }else{
-                }
+                self.delegate?.editEvent(event: eventEDit)
+//                if error == nil {
+////                    self.delegate?.editEvent(event: eventEDit)
+//                }else{
+//                }
             })
             
         }

@@ -107,12 +107,12 @@ extension EventControllerView: UITableViewDelegate, UITableViewDataSource {
 
 extension EventControllerView: EventPresenterDelegate{
     func getDataEvent(arrEvent: [Event], arrNameEvent: [String]) {
+        self.arrEvent = arrEvent
+        self.arrNameEvent = arrNameEvent
         if arrEvent.count == 0 {
             self.imgNoEvent.alpha = 1
             loadViewIndicator.alpha = 0	
         }
-        self.arrEvent = arrEvent
-        self.arrNameEvent = arrNameEvent
     }
 }
 extension EventControllerView {

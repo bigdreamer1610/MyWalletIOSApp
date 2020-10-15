@@ -16,11 +16,11 @@ extension AddTransactionUseCase{
     func addTransactionToDB(t: Transaction){
         // add a new transaction
         let writeData: [String: Any] = [
-            "date": t.date!,
-            "note": t.note!,
-            "amount" : t.amount!,
-            "categoryid": t.categoryid!,
-            "eventid":t.eventid!]
+            "date": t.date ?? "",
+            "note": t.note ?? "",
+            "amount" : t.amount ?? 0,
+            "categoryid": t.categoryid ?? "",
+            "eventid":t.eventid ?? ""]
         Defined.ref.child(Path.transaction.getPath()).child("/\(t.transactionType!)").childByAutoId().setValue(writeData)
         
         // adjust balance
