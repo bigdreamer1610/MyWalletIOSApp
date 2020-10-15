@@ -77,6 +77,7 @@ extension EventUseCase{
         }
     }
     
+    
     // get data Finished
     func getEventFinished()  {
         dispatchGroup.enter()
@@ -161,3 +162,4 @@ extension EventUseCase{
         }
     }
 }
+
