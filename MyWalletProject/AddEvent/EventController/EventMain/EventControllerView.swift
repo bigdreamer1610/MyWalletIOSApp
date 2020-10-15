@@ -9,22 +9,17 @@
 import UIKit
 
 class EventControllerView: UIViewController {
-    deinit {
-        print("vanthanhEventmain")
-    }
-
     
     @IBOutlet weak var eventTable: UITableView!
     @IBOutlet weak var sgm: UISegmentedControl!
-    
     @IBOutlet weak var imgNoEvent: UIImageView!
     @IBOutlet weak var loadViewIndicator: UIActivityIndicatorView!
+    
     var presenter: EventPresenter?
     var arrNameEvent = [String]()
     var currenScore: Int!
     var currenKey: String!
-    let navication = UINavigationController()
-    
+   // let navication = UINavigationController()
     var arrEvent: [Event] = []{
         didSet{
             loadViewIndicator.stopAnimating()
@@ -32,7 +27,7 @@ class EventControllerView: UIViewController {
             eventTable.reloadData()
         }
     }
-
+    
     //load view
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +36,9 @@ class EventControllerView: UIViewController {
         eventTable.register(nib, forCellReuseIdentifier: "EventCell")
         eventTable.delegate = self
         eventTable.dataSource = self
+    }
+    deinit {
+        print("vanthanhEventmain")
     }
     
     func setUp(presenter: EventPresenter)  {
@@ -65,7 +63,7 @@ class EventControllerView: UIViewController {
     // back
     @IBAction func cancel(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
-      }
+    }
     
     // butt add Event
     @IBAction func addEvent(_ sender: Any) {
@@ -110,7 +108,6 @@ extension EventControllerView: EventPresenterDelegate{
         self.arrEvent = arrEvent
         self.arrNameEvent = arrNameEvent
     }
-    
 }
 extension EventControllerView {
     override func viewWillAppear(_ animated: Bool) {
@@ -123,8 +120,8 @@ extension EventControllerView {
 
 extension EventControllerView{
     func acctivityIndicator()  {
-       loadViewIndicator.startAnimating()
-       loadViewIndicator.alpha = 1
+        loadViewIndicator.startAnimating()
+        loadViewIndicator.alpha = 1
         imgNoEvent.alpha = 0
     }
 }
