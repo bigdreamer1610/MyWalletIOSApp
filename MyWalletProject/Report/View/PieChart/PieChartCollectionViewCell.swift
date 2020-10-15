@@ -14,6 +14,7 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
     @IBOutlet weak var lblTypeOfMoney: UILabel!
     @IBOutlet weak var lblMoney: UILabel!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var imageNoData: UIImageView!
     var chartView = PieChartView()
     var sum = 0
     var sumCate = 0
@@ -33,6 +34,11 @@ class PieChartCollectionViewCell: BaseCLCell, ChartViewDelegate {
         } else {
             self.sum = info.sumExpense
             self.sumByCate = info.sumByCateExpense
+        }
+        if sum == 0 {
+            imageNoData.isHidden = false
+        } else {
+            imageNoData.isHidden = true
         }
         setChart(sumByCate, sum)
     }

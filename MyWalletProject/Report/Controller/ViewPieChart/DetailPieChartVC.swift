@@ -24,6 +24,7 @@ class DetailPieChartVC: UIViewController{
     var trans = [Transaction]()
     var imageName = ""
     var date = ""
+    var convertedArray: [Date] = []
     var filterData = [SumByCate]()
     
     override func viewDidLoad() {
@@ -105,7 +106,13 @@ extension DetailPieChartVC: UITableViewDelegate, UITableViewDataSource {
         case 1:
             let cell = DetailPieTableViewCell.loadCell(tableView) as! DetailPieTableViewCell
             cell.selectionStyle = .none
-            cell.setChart(sumByCategory)
+            if sum == 0 {
+                cell.imageNoData.isHidden = false
+            } else {
+                cell.imageNoData.isHidden = true
+                cell.setChart(sumByCategory)
+            }
+            
             return cell
         default:
             let cell = DetailPCCell.loadCell(tableView) as! DetailPCCell
@@ -145,6 +152,7 @@ extension DetailPieChartVC: UITableViewDelegate, UITableViewDataSource {
                     trans.append(transactions[index])
                 }
             }
+            
             // setup data for DayDetailPC
             vc.setupData(info: DetailPC(state: state, transactions: trans, categoryImage: imageName, sumByCategory: sum, category: cate, date: date))
             self.navigationController?.pushViewController(vc, animated: true)
