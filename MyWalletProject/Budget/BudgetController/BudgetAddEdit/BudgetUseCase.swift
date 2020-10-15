@@ -36,7 +36,6 @@ extension BudgetUseCase {
         Defined.ref.child(Path.budget.getPath()).observeSingleEvent(of: .value) { (data) in
             for case let child as DataSnapshot in data.children{
                 guard let dict = child.value as? [String:Any] else{
-                    print("Error")
                     return
                 }
                 let cateName = dict["categoryName"] as? String
@@ -60,7 +59,6 @@ extension BudgetUseCase {
         Defined.ref.child(Path.expense.getPath()).observeSingleEvent(of: .value) { (data) in
             for case let child as DataSnapshot in data.children{
                 guard let dict = child.value as? [String:Any] else {
-                    print("Error")
                     return
                 }
                 let cateName = dict["categoryid"] as? String

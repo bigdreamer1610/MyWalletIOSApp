@@ -55,7 +55,6 @@ class ScanBillPresenter {
         do {
             try requestHandler.perform([self.ocrRequest])
         } catch let error {
-            print(error)
         }
     }
     

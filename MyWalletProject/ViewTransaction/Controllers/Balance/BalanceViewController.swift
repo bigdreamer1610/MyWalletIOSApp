@@ -18,9 +18,9 @@ class BalanceViewController: UIViewController {
     private var formatter = NumberFormatter()
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         formatter.groupingSeparator = "."
         formatter.numberStyle = .decimal
-        super.viewDidLoad()
         txtAmount.delegate = self
         initData()
         
@@ -30,8 +30,8 @@ class BalanceViewController: UIViewController {
         self.presenter = presenter
     }
     
-    func initData(){
-        txtAmount.text = "\(formatter.string(from: NSNumber(value: balance))!)"
+    fileprivate func initData(){
+        txtAmount.text = "\(balance)"
     }
     
     @IBAction func clickSave(_ sender: Any) {
@@ -55,3 +55,4 @@ extension BalanceViewController : UITextFieldDelegate {
         return allowCharacterSet.isSuperset(of: typeCharacterSet)
     }
 }
+

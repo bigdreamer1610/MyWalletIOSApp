@@ -11,7 +11,9 @@ import Charts
 
 class DetailPieTableViewCell: BaseTBCell, ChartViewDelegate {
     
+    @IBOutlet weak var imageNoData: UIImageView!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var lineView: UIView!
     var chartView = PieChartView()
     var entries = [ChartDataEntry]()
     var sumCate = 0
