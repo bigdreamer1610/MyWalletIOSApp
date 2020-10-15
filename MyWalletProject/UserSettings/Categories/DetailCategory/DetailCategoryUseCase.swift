@@ -39,7 +39,7 @@ extension DetailCategoryUseCase {
                     if let value = dataSnap.value as? [String:Any] {
                         let categoryId = value["categoryid"] as? String
                         if (categoryId ?? "") == (category.id ?? "") {
-                            Defined.ref.child("Account/userid1/transaction/\(category.transactionType ?? "")/\(id)").removeValue {(error, ref) in}
+                            Defined.ref.child("\(Path.transaction.getPath())/\(category.transactionType ?? "")/\(id)").removeValue {(error, ref) in}
                         }
                     }
                 }
@@ -58,7 +58,7 @@ extension DetailCategoryUseCase {
                     if let value = dataSnap.value as? [String:Any] {
                         let categoryId = value["categoryId"] as? String
                         if (categoryId ?? "") == (category.id ?? "") {
-                            Defined.ref.child("Account/userid1/budget/\(id)").removeValue {(error, ref) in}
+                            Defined.ref.child("\(Path.budget.getPath())/\(id)").removeValue {(error, ref) in}
                         }
                     }
                 }
