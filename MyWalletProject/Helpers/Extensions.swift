@@ -40,7 +40,6 @@ extension UIImageView {
   }
 }
 
-
 extension UIColor {
     public class func colorFromHexString(hex: String) -> UIColor {
         var cString: String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
