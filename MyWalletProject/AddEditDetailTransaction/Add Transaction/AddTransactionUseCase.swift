@@ -9,18 +9,18 @@
 import UIKit
 import Firebase
 
-class AddTransactionUseCase{
+class AddTransactionUseCase : BaseUseCase{
     
 }
 extension AddTransactionUseCase{
     func addTransactionToDB(t: Transaction){
         // add a new transaction
         let writeData: [String: Any] = [
-            "date": t.date!,
-            "note": t.note!,
-            "amount" : t.amount!,
-            "categoryid": t.categoryid!,
-            "eventid":t.eventid!]
+            "date": t.date ?? "",
+            "note": t.note ?? "",
+            "amount" : t.amount ?? 0,
+            "categoryid": t.categoryid ?? "",
+            "eventid":t.eventid ?? ""]
         Defined.ref.child(Path.transaction.getPath()).child("/\(t.transactionType!)").childByAutoId().setValue(writeData)
         
         // adjust balance
@@ -30,9 +30,7 @@ extension AddTransactionUseCase{
         } else {
             balance += t.amount!
         }
-        Defined.ref.child(Path.information.getPath()).updateChildValues(["balance": balance]){ (error,reference) in
-            
-        }
-        Defined.defaults.set(balance, forKey: Constants.balance)
+        //update balance
+        updateBalance(balance: balance)
     }
 }

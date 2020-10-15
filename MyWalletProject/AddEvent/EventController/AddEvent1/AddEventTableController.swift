@@ -124,7 +124,7 @@ extension AddEventTableController : AddEventPresenterDelegate, UITextFieldDelega
             if !nameEvents.contains(nameEvent) {
                 if tfDate.text!.isEmpty || nameEvent.isEmpty || eventImg.isEmpty {
                     let alert = defined.alert(state: state)
-                    self.present(alert, animated: true, completion: nil)
+                    let alert2 = AlertUtil.showAlert(from: self, with: "Message", message: "Please enter fully")
                 }else {
                     let event = Event(id: nil, name: nameEvent, date: tfDate.text!, eventImage: eventImg, spent: 0)
                     self.presenter?.addDataEvent(event: event, state: state)
@@ -136,7 +136,9 @@ extension AddEventTableController : AddEventPresenterDelegate, UITextFieldDelega
             }
         }
         else {
-            if tfDate.text!.isEmpty && tfNameEvent.text!.isEmpty && eventImg.isEmpty {
+            nameEvent = tfNameEvent.text?.trimmingCharacters(in: .whitespaces) as! String
+            if tfDate.text!.isEmpty || nameEvent.isEmpty || eventImg.isEmpty {
+                let alert2 = AlertUtil.showAlert(from: self, with: "Message", message: "Please enter fully")
             }else {
                 let event = Event(id: self.event.id, name: tfNameEvent.text!, date: tfDate.text!, eventImage: eventImg, spent: self.event.spent, status: self.event.status)
                 competionHandler?(event)
