@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Transaction {
+struct Transaction: Codable {
     var id: String? = nil
     var transactionType: String? = nil
     var amount: Int? = nil
@@ -16,6 +16,4 @@ struct Transaction {
     var date: String? = nil
     var note: String? = nil
     var eventid: String? = nil
-    //MARK: Bỏ budgetid
-    //var budgetid: String? = nil
 }

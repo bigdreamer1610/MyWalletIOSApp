@@ -18,9 +18,9 @@ class BalanceViewController: UIViewController {
     private var formatter = NumberFormatter()
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         formatter.groupingSeparator = "."
         formatter.numberStyle = .decimal
-        super.viewDidLoad()
         txtAmount.delegate = self
         initData()
         
@@ -30,8 +30,8 @@ class BalanceViewController: UIViewController {
         self.presenter = presenter
     }
     
-    func initData(){
-        txtAmount.text = "\(formatter.string(from: NSNumber(value: balance))!)"
+    fileprivate func initData(){
+        txtAmount.text = "\(balance)"
     }
     
     @IBAction func clickSave(_ sender: Any) {
@@ -39,22 +39,20 @@ class BalanceViewController: UIViewController {
             let balanceInt = Int(balanceStr){
             presenter?.updateBalance(with: balanceInt)
             self.dismiss(animated: true, completion: nil)
-            //AppRouter.routerTo(from: RouterType.tabbar.getVc(), options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
         }
         
     }
     @IBAction func clickCancel(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
-        //AppRouter.routerTo(from: RouterType.tabbar.getVc(), options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
     }
 }
 
 extension BalanceViewController : UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        //only text num
         let allowCharacters = "0123456789"
         let allowCharacterSet = CharacterSet(charactersIn: allowCharacters)
         let typeCharacterSet = CharacterSet(charactersIn: string)
         return allowCharacterSet.isSuperset(of: typeCharacterSet)
     }
 }
+

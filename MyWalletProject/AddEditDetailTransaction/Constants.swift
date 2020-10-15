@@ -47,10 +47,11 @@ class Constants {
     
     // alert message
     static let alertDeleteWarning = "DO YOU REALLY WANT TO DELETE IT?"
-    static let alertDeleteMessage = "You're about to delete this category, all of your transaction in this category will be lost!"
+    static let alertDeleteMessage = "You're about to delete this category, all of your transaction, budget in this category will be lost!"
     static let alertSuccessAddCategory = "Your category has been successfully added!"
     static let alertSuccessEditCategory = "Your category has been successfully edited!"
     static let alertSuccessSaveBill = "Your transaction has successfully been saved!"
+    static let alertSuccessInfomationUpdate = "Your information has successfully been updated"
     
     // alert titles and buttons name
     static let alertInvalidInputTitle = "INVALID INPUT"
@@ -61,6 +62,15 @@ class Constants {
     static let alertButtonOk = "OK"
     static let alertButtonCancel = "Cancel"
     static let alertButtonDelete = "Delete"
+    
+    // Screen title
+    static let information = "Information"
+    static let categories = "Categories"
+    static let addCategory = "Add category"
+    static let editCategory = "Edit category"
+    static let currencyExchange = "Currencies Exchange"
+    static let travelMode = "Travel Mode"
+    static let billScanner = "Bill Scanner"
     
     static let mode = "mode"
     static let balance = "balance"
@@ -77,6 +87,7 @@ class Constants {
     static let expense = "Expense"
     static let done = "Done"
     static let other = "Other"
+    static let netIncome = "Net Income"
     
     //MARK: HEIGHT FOR CELL & HEADER
     static let transactionHeader: CGFloat = 60
@@ -86,6 +97,7 @@ class Constants {
     static let detailCell: CGFloat = 135
     static let menuCell: CGFloat = 60
     static let overviewCell: CGFloat = 80
+    static let detailPCCell: CGFloat = 80
     
     // MARK: Budget Detail
     static let budgetCateName = "budgetCateName"

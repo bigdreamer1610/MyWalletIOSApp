@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import CodableFirebase
 
 enum EventStatus: String {
     case applying = "true"
@@ -28,25 +29,22 @@ class SelectEventUserCase {
 
 extension SelectEventUserCase{
     func getDataFromFirebase() {
-        Defined.ref.child("Account").child("userid1").child("event").observe(DataEventType.value) { (snapshot) in
-            if snapshot.childrenCount > 0 {
-                self.events.removeAll()
-                for artist in snapshot.children.allObjects as! [DataSnapshot] {
-                    let art = artist.value as? [String:AnyObject]
-                    let id = artist.key
-                    let artName = art?["name"]
-                    let artDate = art?["date"]
-                    let eventImage = art?["eventImage"]
-                    let artSpent = art?["spent"]
-                    let status = art?["status"] as? String
-                    if status == EventStatus.applying.getValue() {
-                        let arts = Event(id: id, name: artName as? String, date: artDate as? String, eventImage: eventImage as? String, spent: artSpent as? Int, status: status)
-                        self.events.append(arts)
+        Defined.ref.child(Path.event.getPath()).observe(DataEventType.value) { [weak self](snapshot) in
+            guard let `self` = self else {return}
+            var events = [Event]()
+            for case let snapshots as DataSnapshot in snapshot.children {
+                guard let dict = snapshots.value as? [String:Any] else {
+                    return
+                }
+                do {
+                    let model = try FirebaseDecoder().decode(Event.self, from: dict)
+                    if model.status == EventStatus.applying.getValue() {
+                        events.append(model)
                     }
-                    
+                } catch let error {
                 }
             }
-            self.delegate?.responseData(data: self.events)
+            self.delegate?.responseData(data: events)
         }
     }
 }

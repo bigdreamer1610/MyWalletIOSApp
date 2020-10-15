@@ -233,14 +233,8 @@
                                 <action selector="segmentInAndDe:" destination="vgu-wV-lrK" eventType="valueChanged" id="FSG-aJ-01p"/>
                             </connections>
                         </segmentedControl>
-                        <barButtonItem key="rightBarButtonItem" image="magnifyingglass" catalog="system" id="JGd-yP-YZ1">
-                            <connections>
-                                <action selector="searchCategory:" destination="vgu-wV-lrK" id="C4d-hS-XQR"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="btnSearch" destination="JGd-yP-YZ1" id="9Jm-gC-GJV"/>
                         <outlet property="segment" destination="h5Q-PR-2Ut" id="ewc-JG-Ynx"/>
                         <outlet property="tableView" destination="8WX-wd-ph5" id="Vma-DW-OWs"/>
                         <segue destination="BOo-0B-8TX" kind="push" id="6iT-2l-ZdC"/>
@@ -258,7 +252,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xOZ-bR-fzc">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xOZ-bR-fzc">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="sectionIndexBackgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -343,6 +337,5 @@
         <image name="arrow.down" catalog="system" width="120" height="128"/>
         <image name="arrow.up" catalog="system" width="120" height="128"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
-        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
     </resources>
 </document>

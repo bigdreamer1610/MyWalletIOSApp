@@ -8,50 +8,37 @@
 
 import UIKit
 import Firebase
+import CodableFirebase
 
-protocol EventTransactionUseCaseDelegate: class {
+protocol EventTransactionUseCaseDelegate: BaseUseCaseDelegate {
     func responseDataTransactions(trans: [Transaction])
 }
 
-class EventTransactionUseCase {
+class EventTransactionUseCase: BaseUseCase {
     weak var delegate: EventTransactionUseCaseDelegate?
 }
 
 extension EventTransactionUseCase {
+    
+    func getListCategories(){
+        getListAllCategories { [weak self](categories) in
+            guard let `self` = self else {return}
+            self.delegate?.responseDataCategories(cate: categories)
+        }
+    }
+    
     func getTransactionByEvent(eid: String){
-        var allTransactions = [Transaction]()
-        Defined.ref.child("Account/userid1/transaction").observeSingleEvent(of: .value) {[weak self] (snapshot) in
+        var transactions = [Transaction]()
+        getListAllTransactions { [weak self](allTransactions) in
             guard let `self` = self else {
                 return
             }
-            if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
-                for mySnap in snapshots {
-                    let transactionType = (mySnap as AnyObject).key as String
-                    if let snaps = mySnap.children.allObjects as? [DataSnapshot]{
-                        for snap in snaps {
-                            let id = snap.key
-                            if let value = snap.value as? [String: Any]{
-                                let amount = value["amount"] as! Int
-                                let categoryid = value["categoryid"] as! String
-                                let date = value["date"] as! String
-                                var transaction = Transaction(id: id, transactionType: transactionType, amount: amount, categoryid: categoryid, date: date)
-                                if let note = value["note"] as? String {
-                                    transaction.note = note
-                                }
-                                if let eventid = value["eventid"] as? String {
-                                    transaction.eventid = eventid
-                                    if eventid == eid {
-                                        allTransactions.append(transaction)
-                                    }
-                                }
-                                
-                            }
-                        }
-                    }
+            for trans in allTransactions {
+                if trans.eventid == eid {
+                    transactions.append(trans)
                 }
-                self.delegate?.responseDataTransactions(trans: allTransactions)
-                
             }
+            self.delegate?.responseDataTransactions(trans: transactions)
         }
     }
 }

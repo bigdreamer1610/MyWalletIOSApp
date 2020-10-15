@@ -20,7 +20,6 @@ class AddEventTableController: UITableViewController {
     var defined = EventDefined()
     
     // OutLet
-    
     @IBOutlet weak var tfNameEvent: UITextField!
     @IBOutlet weak var viewImg: UIView!
     @IBOutlet weak var imgCategory: UIImageView!
@@ -28,9 +27,7 @@ class AddEventTableController: UITableViewController {
     @IBOutlet weak var viewCategory: UIView!
     @IBOutlet weak var cellEvent: UITableViewCell!
     
-    
     //Load view
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
@@ -38,8 +35,7 @@ class AddEventTableController: UITableViewController {
         tapGestureRecognizer.cancelsTouchesInView = false
         setUpView()
         view.addGestureRecognizer(tapGestureRecognizer)
-        self.navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.6023845077, green: 0.6081735492, blue: 0.9969246984, alpha: 1)
-
+        self.navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.3929189782, green: 0.4198221317, blue: 0.8705882353, alpha: 1)
     }
     
     func setUp(presenter: AddEventPresenter)  {
@@ -52,7 +48,9 @@ class AddEventTableController: UITableViewController {
     
     @IBAction func btnSave(_ sender: Any) {        
         add()
-        navigationController?.popViewController(animated: true)
+        let alert1 = AlertUtil.showAlert(from: self, with: "Message", message: "Success") { (_) in
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @IBAction func btCategory(_ sender: Any) {
@@ -60,7 +58,6 @@ class AddEventTableController: UITableViewController {
     }
     
     func setUpView()  {
-        
         if event.name != nil {
             viewImg.alpha = 0
             tfNameEvent.text = event.name!
@@ -78,14 +75,13 @@ extension AddEventTableController : AddEventPresenterDelegate, UITextFieldDelega
     }
     
     func setUpViewImg() {
-        
         viewCategory.layer.cornerRadius = viewCategory.frame.width / 2
         viewCategory.layer.cornerRadius = viewCategory.frame.height / 2
         viewImg.layer.cornerRadius = viewImg.frame.width / 2
         viewImg.layer.cornerRadius = viewImg.frame.height / 2
     }
-    // gioi han ky tu nhap vao name event
     
+    // gioi han ky tu nhap vao name event
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let maxLength = 50
         let currentString: NSString = textField.text as! NSString
@@ -95,13 +91,11 @@ extension AddEventTableController : AddEventPresenterDelegate, UITextFieldDelega
     }
     
     // bat su kien click vào cell
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 1 {
             let vc = UIStoryboard.init(name: "AddEvent", bundle: nil).instantiateViewController(identifier: "calendarView") as! CalendarController
             vc .completionHandler = {
-                print($0)
                 self.event.date = $0
                 self.tfDate.text = $0
             }
@@ -110,7 +104,6 @@ extension AddEventTableController : AddEventPresenterDelegate, UITextFieldDelega
     }
     
     // chon anh event
-    
     func acctionImgEvent()  {
         let vc = UIStoryboard.init(name: "AddEvent", bundle: nil).instantiateViewController(identifier: "CategoryEvent") as! EventImgViewController
         vc .completionHandler = {
@@ -132,16 +125,15 @@ extension AddEventTableController : AddEventPresenterDelegate, UITextFieldDelega
                 if tfDate.text!.isEmpty || nameEvent.isEmpty || eventImg.isEmpty {
                     let alert = defined.alert(state: state)
                     self.present(alert, animated: true, completion: nil)
-                    
                 }else {
                     let event = Event(id: nil, name: nameEvent, date: tfDate.text!, eventImage: eventImg, spent: 0)
                     self.presenter?.addDataEvent(event: event, state: state)
+                    
                 }
             } else {
                 let alert = defined.alert(state: 4)
                 self.present(alert, animated: true, completion: nil)
             }
-            
         }
         else {
             if tfDate.text!.isEmpty && tfNameEvent.text!.isEmpty && eventImg.isEmpty {
@@ -150,12 +142,8 @@ extension AddEventTableController : AddEventPresenterDelegate, UITextFieldDelega
                 competionHandler?(event)
                 self.presenter?.addDataEvent(event: event, state: state)
             }
-            
         }
-        
     }
-    
-    
 }
 extension AddEventTableController {
     override var hidesBottomBarWhenPushed: Bool {

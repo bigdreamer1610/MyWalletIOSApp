@@ -19,7 +19,7 @@ class CustomDateController: UIViewController {
     var formatter = DateFormatter()
     var customDate = Date()
     
-    var language = ChangeLanguage.vietnam.rawValue
+    var language = ChangeLanguage.english.rawValue
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ class CustomDateController: UIViewController {
     }
     
     func CreactCalendar() {
-        calendar = FSCalendar(frame: CGRect(x: 0, y: 50, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        calendar = FSCalendar(frame: CGRect(x: 0, y: 80, width: self.view.frame.size.width, height: self.view.frame.size.height))
         calendar.scrollDirection = .horizontal
         calendar.scope = .month
         //calendar.select(calendar)

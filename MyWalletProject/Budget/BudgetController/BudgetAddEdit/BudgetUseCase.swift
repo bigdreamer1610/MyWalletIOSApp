@@ -33,10 +33,9 @@ extension BudgetUseCase {
     
     func getListBudget() {
         var listBudgetName = [Budget]()
-        Defined.ref.child("Account").child("userid1").child("budget").observeSingleEvent(of: .value) { (data) in
+        Defined.ref.child(Path.budget.getPath()).observeSingleEvent(of: .value) { (data) in
             for case let child as DataSnapshot in data.children{
                 guard let dict = child.value as? [String:Any] else{
-                    print("Error")
                     return
                 }
                 let cateName = dict["categoryName"] as? String
@@ -57,10 +56,9 @@ extension BudgetUseCase {
         let dispatchGroup = DispatchGroup()
         // Load api Transaction expense
         dispatchGroup.enter()
-        Defined.ref.child("Account").child("userid1").child("transaction").child("expense").observeSingleEvent(of: .value) { (data) in
+        Defined.ref.child(Path.expense.getPath()).observeSingleEvent(of: .value) { (data) in
             for case let child as DataSnapshot in data.children{
                 guard let dict = child.value as? [String:Any] else {
-                    print("Error")
                     return
                 }
                 let cateName = dict["categoryid"] as? String
@@ -74,7 +72,7 @@ extension BudgetUseCase {
         
         // load api transaction income
         dispatchGroup.enter()
-        Defined.ref.child("Account").child("userid1").child("transaction").child("income").observeSingleEvent(of: .value) { (data) in
+        Defined.ref.child(Path.income.getPath()).observeSingleEvent(of: .value) { (data) in
             for case let child as DataSnapshot in data.children{
                 guard let dict = child.value as? [String:Any] else {
                     print("Error")
@@ -100,7 +98,7 @@ extension BudgetUseCase : BudgetAdd{
     // get new child id
     func getnewChild(){
         var newChild = 0
-        Defined.ref.child("Account").child("userid1").child("budget").observeSingleEvent(of: .value) {[weak self] (snapshot) in
+        Defined.ref.child(Path.budget.getPath()).observeSingleEvent(of: .value) {[weak self] (snapshot) in
             guard let self = self else {
                 return
             }
@@ -135,7 +133,7 @@ extension BudgetUseCase : BudgetAdd{
             "endDate" : budget.endDate!
             ] as [String : Any]
         
-        Defined.ref.child("Account").child("userid1").child("budget").child("\(id)").updateChildValues(budget,withCompletionBlock: { error , ref in
+        Defined.ref.child(Path.budget.getPath()).child("\(id)").updateChildValues(budget,withCompletionBlock: { error , ref in
             if error == nil {
             }else{
             }
@@ -156,7 +154,7 @@ extension BudgetUseCase : BudgetEdit {
             "endDate" : budget.endDate!,
         ] as [String : Any]
         
-        Defined.ref.child("Account").child("userid1").child("budget").child("\(budget.id!)").updateChildValues(budget1,withCompletionBlock: { error , ref in
+        Defined.ref.child(Path.budget.getPath()).child("\(budget.id!)").updateChildValues(budget1,withCompletionBlock: { error , ref in
             if error == nil {
             }else{
             }

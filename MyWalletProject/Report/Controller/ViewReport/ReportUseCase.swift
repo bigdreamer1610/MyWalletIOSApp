@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 import FirebaseDatabase
+import CodableFirebase
 
 protocol ReportUseCaseDelegate {
     func responseIncomeData(incomeArray: [Transaction], sumIncome: Int)
     func responseExpenseData(expenseArray: [Transaction], sumExpense: Int)
-    
     func responseCategories(categories: [Category])
 }
 
@@ -28,7 +28,7 @@ class ReportUseCase {
 
 extension ReportUseCase {
     func getIncomeFromDB(dateInput: String) {
-        Defined.ref.child("Account/userid1/transaction/income").observe(.value) {
+        Defined.ref.child(Path.income.getPath()).observe(.value) {
             snapshot in
             self.incomeArray.removeAll()
             self.sumIncome = 0
@@ -39,11 +39,12 @@ extension ReportUseCase {
                 let amount = dict["amount"] as! Int
                 let date = dict["date"] as! String
                 let categoryid = dict["categoryid"] as! String
+                let note = dict["note"] as! String
+
                 let tempDate = date.split(separator: "/")
                 let checkDate = tempDate[1] + "/" + tempDate[2]
-                
                 if dateInput == checkDate {
-                    let ex = Transaction(amount: amount, categoryid: categoryid, date: date)
+                    let ex = Transaction(amount: amount, categoryid: categoryid, date: date, note: note)
                     self.sumIncome += amount
                     self.incomeArray.append(ex)
                 }
@@ -54,7 +55,7 @@ extension ReportUseCase {
     
     
     func getExpenseFromDB(dateInput: String) {
-        Defined.ref.child("Account/userid1/transaction/expense").observe( .value) {
+        Defined.ref.child(Path.expense.getPath()).observe( .value) {
             snapshot in
             self.expenseArray.removeAll()
             self.sumExpense = 0
@@ -65,11 +66,12 @@ extension ReportUseCase {
                 let amount = dict["amount"] as! Int
                 let date = dict["date"] as! String
                 let categoryid = dict["categoryid"] as! String
+                let note = dict["note"] as! String
+                
                 let tempDate = date.split(separator: "/")
                 let checkDate = tempDate[1] + "/" + tempDate[2]
-                
                 if dateInput == checkDate {
-                    let ex = Transaction(amount: amount, categoryid: categoryid, date: date)
+                    let ex = Transaction(amount: amount, categoryid: categoryid, date: date, note: note)
                     self.sumExpense += amount
                     self.expenseArray.append(ex)
                 }
@@ -79,7 +81,7 @@ extension ReportUseCase {
     }
     
     func getCategoriesFromDB(nameNode: String) {
-        Defined.ref.child("Category").child(nameNode).observe(.value) {
+        Defined.ref.child(Path.category.getPath()).child(nameNode).observe(.value) {
             snapshot in
             for case let child as DataSnapshot in snapshot.children {
                 guard let dict = child.value as? [String:Any] else {

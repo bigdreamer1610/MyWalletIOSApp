@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import CodableFirebase
 
 protocol DetailTransactionUseCaseDelegate: class {
     func responseEvent(event: Event)
@@ -15,34 +16,23 @@ protocol DetailTransactionUseCaseDelegate: class {
     func responseCategory(cate: Category)
     func responseNoEvent()
 }
-class DetailTransactionUseCase{
+class DetailTransactionUseCase : BaseUseCase{
     weak var delegate: DetailTransactionUseCaseDelegate?
 }
 
 extension DetailTransactionUseCase {
     func getEventInfo(eventid: String){
-        var finalEvent: Event!
         if eventid != "" {
-            Defined.ref.child("Account").child("userid1").child("event").observe(DataEventType.value) { (snapshot) in
-                if snapshot.childrenCount > 0 {
-                    for artist in snapshot.children.allObjects as! [DataSnapshot] {
-                        let art = artist.value as? [String:AnyObject]
-                        let id = artist.key
-                        if id == eventid {
-                            print("my eventid: \(id)")
-                            let name = art?["name"]
-                            let date = art?["date"]
-                            let image = art?["eventImage"]
-                            let spent = art?["spent"]
-                            let event = Event(id: id, name: name as? String, date: date as? String, eventImage: image as? String, spent: spent as? Int)
-                            finalEvent = event
-                            self.delegate?.responseEvent(event: finalEvent)
-                            break
-                        }
-                    }
-                    
+            getListAllEvents { [weak self](events) in
+                guard let `self` = self else {
+                    return
                 }
-                
+                for event in events {
+                    if event.id == eventid {
+                        self.delegate?.responseEvent(event: event)
+                        break
+                    }
+                }
             }
         } else {
             delegate?.responseNoEvent()
@@ -51,73 +41,39 @@ extension DetailTransactionUseCase {
     }
     
     func deleteTransaction(t: Transaction){
-        Defined.ref.child("Account/userid1/transaction/\(t.transactionType!)/\(t.id!)").removeValue { (error, reference) in
+        Defined.ref.child(Path.transaction.getPath()).child("/\(t.transactionType!)/\(t.id!)").removeValue { (error, reference) in
             //remove old position
         }
+        var balance = Defined.defaults.integer(forKey: Constants.balance) + t.amount!
+        if t.transactionType == TransactionType.income.getValue() {
+            balance -= 2 * t.amount!
+        }
+        
+        // update balance
+        updateBalance(balance: balance)
     }
     
     func getTransaction(transid: String){
-        Defined.ref.child("Account/userid1/transaction").observeSingleEvent(of: .value) {[weak self] (snapshot) in
+        getListAllTransactions { [weak self](transactions) in
             guard let `self` = self else {
                 return
             }
-            if let snapshots = snapshot.children.allObjects as? [DataSnapshot] {
-                for mySnap in snapshots {
-                    let transactionType = (mySnap as AnyObject).key as String
-                    if let snaps = mySnap.children.allObjects as? [DataSnapshot]{
-                        for snap in snaps {
-                            let id = snap.key
-                            //if id match
-                            if id == transid {
-                                if let value = snap.value as? [String: Any]{
-                                    let amount = value["amount"] as! Int
-                                    let categoryid = value["categoryid"] as! String
-                                    let date = value["date"] as! String
-                                    var transaction = Transaction(id: id, transactionType: transactionType, amount: amount, categoryid: categoryid, date: date)
-                                    if let note = value["note"] as? String {
-                                        transaction.note = note
-                                    }
-                                    if let eventid = value["eventid"] as? String {
-                                        transaction.eventid = eventid
-                                    }
-                                    
-                                    self.delegate?.responseTrans(trans: transaction)
-                                    break
-                                    
-                                }
-                            }
-                            
-                        }
-                    }
+            for trans in transactions {
+                if trans.id == transid {
+                    self.delegate?.responseTrans(trans: trans)
+                    break
                 }
             }
         }
     }
     
     func getCategory(cid: String){
-        Defined.ref.child("Category").observeSingleEvent(of: .value) {[weak self] (snapshot) in
+        getListAllCategories {[weak self] (categories) in
             guard let `self` = self else {return}
-            if let snapshots = snapshot.children.allObjects as? [DataSnapshot]{
-                //expense/income
-                for mySnap in snapshots {
-                    let myKey = (mySnap as AnyObject).key as String
-                    //key inside expense/income
-                    if let mySnap = mySnap.children.allObjects as? [DataSnapshot]{
-                        for snap in mySnap {
-                            let id = snap.key
-                            if id == cid {
-                                if let value = snap.value as? [String: Any]{
-                                    let name = value["name"] as? String
-                                    let iconImage = value["iconImage"] as? String
-                                    let transactionType =  myKey
-                                    let category = Category(id: id, name: name, transactionType: transactionType, iconImage: iconImage)
-                                    self.delegate?.responseCategory(cate: category)
-                                    break
-                                }
-                            }
-                            
-                        }
-                    }
+            for cate in categories {
+                if cate.id == cid {
+                    self.delegate?.responseCategory(cate: cate)
+                    break
                 }
             }
         }

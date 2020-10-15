@@ -12,11 +12,15 @@ class DetailStackedBarChartVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var sumExpense = 0
     var sumIncome = 0
+    var netIncome = 0
     var date = ""
+    var incomeArray = [Transaction]()
+    var expenseArray = [Transaction]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        self.title = Constants.netIncome
     }
     
     private func setupTableView() {
@@ -29,10 +33,13 @@ class DetailStackedBarChartVC: UIViewController {
         tableView.estimatedRowHeight = 400
     }
     
-    func getData(info: SumInfo) {
+    func setupData(info: SumInfo) {
         self.sumIncome = info.sumIncome
         self.sumExpense = info.sumExpense
         self.date = info.date
+        self.incomeArray = info.incomeArray
+        self.expenseArray = info.expenseArray
+        self.netIncome = info.netIncome
     }
     
     @IBAction func popReportVC(_ sender: Any) {
@@ -57,9 +64,16 @@ extension DetailStackedBarChartVC: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else {
             let cell = DetailSBCCell.loadCell(tableView) as! DetailSBCCell
-            cell.setupData(info: SumInfo(sumIncome: sumIncome, sumExpense: sumExpense, netIncome: sumIncome - sumExpense, date: date))
+            cell.setupData(info: SumInfo(sumIncome: sumIncome, sumExpense: sumExpense, netIncome: sumIncome - sumExpense, date: date, incomeArray: incomeArray, expenseArray: expenseArray))
             cell.selectionStyle = .none
             return cell
+        }
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section != 0 {
+            let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "dayDetailSBC") as! DayDetailSBC
+            vc.setupData(info: DetailDaySBC(sumIncome: sumIncome, sumExpense: sumExpense, incomeArray: incomeArray, expenseArray: expenseArray, date: date))
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

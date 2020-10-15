@@ -17,10 +17,10 @@ class ReportViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var txtDatePicker: UITextField!
     var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
-    let calendar = Calendar.current
     var currentMonth = 0
     var currentYear = 0
     var open = 0
+    var end = 0
     var date = ""
     var expenseArray: [Transaction] = []
     var incomeArray: [Transaction] = []
@@ -30,7 +30,7 @@ class ReportViewController: UIViewController {
     var sumByCategoryIncome = [SumByCate]()
     var sumByCategoryExpense = [SumByCate]()
     
-    var presenter: ReportPresenter = ReportPresenter()
+    var presenter: ReportPresenter?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,19 +39,20 @@ class ReportViewController: UIViewController {
         showDatePicker()
         createDatePicker()
         
-        self.presenter.delegate = self
-        
-        self.presenter.requestIncome(dateInput: self.date)
-        self.presenter.requestExpense(dateInput: self.date)
-        self.presenter.requestCategories(nameNode: "income")
-        self.presenter.requestCategories(nameNode: "expense")
+        self.presenter?.requestIncome(dateInput: self.date)
+        self.presenter?.requestExpense(dateInput: self.date)
+        self.presenter?.requestCategories(nameNode: "income")
+        self.presenter?.requestCategories(nameNode: "expense")
     }
     
+    func setupDelegate(presenter: ReportPresenter) {
+        self.presenter = presenter
+    }
     //MARK: - Setup Date
     func setupTxtDate() {
         txtDatePicker.tintColor = .clear
-        currentYear = calendar.component(.year, from: Date())
-        currentMonth = calendar.component(.month, from: Date())
+        currentYear = Defined.calendar.component(.year, from: Date())
+        currentMonth = Defined.calendar.component(.month, from: Date())
         Defined.dateFormatter.locale = Locale(identifier: "vi_VN")
         Defined.dateFormatter.dateFormat = "dd/MM/yyyy"
         lblDate.text = "\(months[currentMonth - 1]) \(currentYear)"
@@ -75,8 +76,8 @@ class ReportViewController: UIViewController {
     }
     
     @objc func doneDatePicker(){
-        self.presenter.handleDataForPieChart(dataArray: self.incomeArray, state: .income)
-        self.presenter.handleDataForPieChart(dataArray: self.expenseArray, state: .expense)
+        self.presenter?.handleDataForPieChart(dataArray: self.incomeArray, state: .income)
+        self.presenter?.handleDataForPieChart(dataArray: self.expenseArray, state: .expense)
         self.tableView.reloadData()
         self.view.endEditing(true)
     }
@@ -90,7 +91,7 @@ class ReportViewController: UIViewController {
     }
     
     @objc func dateChanged(_ picker: MonthYearPickerView) {
-        let components = calendar.dateComponents([.month, .year], from: picker.date)
+        let components = Defined.calendar.dateComponents([.month, .year], from: picker.date)
         lblDate.text = "\(months[components.month! - 1]) \(components.year!)"
         if components.month! < 10 {
             txtDatePicker.text = "0\(components.month!)/\(components.year!)"
@@ -99,8 +100,8 @@ class ReportViewController: UIViewController {
             txtDatePicker.text = "\(components.month!)/\(components.year!)"
             self.date = txtDatePicker.text ?? "\(currentMonth)/\(currentYear)"
         }
-        self.presenter.requestIncome(dateInput: self.date)
-        self.presenter.requestExpense(dateInput: self.date)
+        self.presenter?.requestIncome(dateInput: self.date)
+        self.presenter?.requestExpense(dateInput: self.date)
         self.tableView.reloadData()
     }
     
@@ -131,7 +132,7 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 0:
             let cell = MoneyTableViewCell.loadCell(tableView) as! MoneyTableViewCell
-            cell.setupData(opening: open, sumIncome: sumIncome, sumExpense: sumExpense)
+            cell.setupData(opening: open, ending: end)
             cell.selectionStyle = .none
             return cell
         case 1:
@@ -150,7 +151,7 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailSBC") as! DetailStackedBarChartVC
-            vc.getData(info: SumInfo(sumIncome: sumIncome, sumExpense: sumExpense, netIncome: sumIncome - sumExpense, date: lblDate.text!))
+            vc.setupData(info: SumInfo(sumIncome: sumIncome, sumExpense: sumExpense, netIncome: sumIncome - sumExpense, date: lblDate.text!, incomeArray: incomeArray, expenseArray: expenseArray))
             navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -162,10 +163,12 @@ extension ReportViewController: CustomCollectionCellDelegate {
         let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailPC") as! DetailPieChartVC
         if indexPath.row == 0 {
             vc.state = .income
-            vc.getData(info: SumArr(sum: sumIncome, sumByCategory: sumByCategoryIncome, transations: incomeArray))
+            vc.setupData(info: SumArr(sum: sumIncome, sumByCategory: sumByCategoryIncome, transations: incomeArray, date: lblDate.text!))
+            print(incomeArray)
         } else {
             vc.state = .expense
-            vc.getData(info: SumArr(sum: sumExpense, sumByCategory: sumByCategoryExpense, transations: expenseArray))
+            vc.setupData(info: SumArr(sum: sumExpense, sumByCategory: sumByCategoryExpense, transations: expenseArray, date: lblDate.text!))
+            print(expenseArray)
         }
         vc.categories = categories
         navigationController?.pushViewController(vc, animated: true)
@@ -190,14 +193,14 @@ extension ReportViewController: ReportPresenterDelegate {
     
     func returnIncomeDataForView(incomeArray: [Transaction], sumIncome: Int) {
         self.incomeArray = incomeArray
-        self.presenter.handleDataForPieChart(dataArray: self.incomeArray, state: .income)
+        self.presenter?.handleDataForPieChart(dataArray: self.incomeArray, state: .income)
         self.sumIncome = sumIncome
         self.tableView.reloadData()
     }
     
     func returnExpenseDataForView(expenseArray: [Transaction], sumExpense: Int) {
         self.expenseArray = expenseArray
-        self.presenter.handleDataForPieChart(dataArray: self.expenseArray, state: .expense)
+        self.presenter?.handleDataForPieChart(dataArray: self.expenseArray, state: .expense)
         self.sumExpense = sumExpense
         self.tableView.reloadData()
     }

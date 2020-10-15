@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var btnLoginFacebook: UIButton!
     @IBOutlet weak var btnLoginGoogle: UIButton!
     
-    var isLogined:Bool = UserDefaults.standard.bool(forKey: Constants.loginStatus)
+    var isLogined:Bool = UserDefaults.standard.bool(forKey: Constants.loginStatus) ?? false
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -69,7 +69,6 @@ extension LoginViewController:LoginViewControllerDelegate{
     }
     
     func autoLogin(){
-        print(isLogined)
         if isLogined == true {
             nextCategory(viewController: self)
         }

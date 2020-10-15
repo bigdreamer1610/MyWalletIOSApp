@@ -48,6 +48,7 @@ enum RouterType {
     case report
     case barChartDetail
     case pieChartDetail
+    case detailPC
 }
 
 class AppRouter {
@@ -158,6 +159,8 @@ extension RouterType{
         // MARK: - Report
         case .report:
             let vc = UIStoryboard(name: "Report", bundle: nil).instantiateViewController(withIdentifier: "ReportViewController") as! ReportViewController
+            let presenter = ReportPresenter(delegate: vc, usecase: ReportUseCase())
+            vc.setupDelegate(presenter: presenter)
             return vc
         case .pieChartDetail:
             let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailPC") as! DetailPieChartVC
@@ -165,6 +168,11 @@ extension RouterType{
         case .barChartDetail:
             let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailSBC") as! DetailStackedBarChartVC
             return vc
+
+        case .detailPC:
+            let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "dayDetailPC") as! DayDetailPC
+            return vc
+            
         case .budgetTransaction(let budgetObject):
             let vc = UIStoryboard(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "budgetTransaction_vc") as! BudgetTransactionViewController
             vc.setUpBudget(budget: budgetObject)
@@ -176,6 +184,7 @@ extension RouterType{
             let presenter = SettingsPresenter(delegate: vc, usecase: SettingsUseCase())
             vc.setupDelegate(presenter: presenter)
             return vc
+            
             
         // MARK: - Settings and Tools
         case .categories:
@@ -209,7 +218,7 @@ extension RouterType{
             return vc
         case .eventTransaction(let event):
             let vc = UIStoryboard.init(name: "ViewTransaction", bundle: nil).instantiateViewController(withIdentifier: "eventTransaction_vc") as! EventTransactionViewController
-            let presenter = EventTransactionPresenter(delegate: vc, eventUseCase: EventTransactionUseCase(), viewTransUseCase: ViewTransactionUseCase())
+            let presenter = EventTransactionPresenter(delegate: vc, eventUseCase: EventTransactionUseCase())
             vc.setUpData(event: event)
             vc.setUp(presenter: presenter)
             return vc

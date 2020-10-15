@@ -8,10 +8,11 @@
 
 import UIKit
 
-class DetailPieChartVC: UIViewController {
+class DetailPieChartVC: UIViewController{
     @IBOutlet weak var segment: UISegmentedControl!
     @IBOutlet weak var btnSearch: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
+    fileprivate let searchBar = UISearchBar()
     var sum = 0
     var state: State?
     var segmentIndex = 0
@@ -19,10 +20,12 @@ class DetailPieChartVC: UIViewController {
     var categoriesIncome = [Category]()
     var categoriesExpense = [Category]()
     var categories = [Category]()
-    var transations = [Transaction]()
-    var nameIconCategory = ""
-    var searchBar = UISearchBar()
-    var filterdata = [SumByCate]()
+    var transactions = [Transaction]()
+    var trans = [Transaction]()
+    var imageName = ""
+    var date = ""
+    var convertedArray: [Date] = []
+    var filterData = [SumByCate]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,10 +52,11 @@ class DetailPieChartVC: UIViewController {
         navigationItem.titleView = searchBar
     }
     
-    func getData(info: SumArr) {
+    func setupData(info: SumArr) {
         sum = info.sum
         sumByCategory = info.sumByCategory
-        transations = info.transations
+        transactions = info.transations
+        date = info.date
     }
     
     @IBAction func popToView(_ sender: Any) {
@@ -102,7 +106,13 @@ extension DetailPieChartVC: UITableViewDelegate, UITableViewDataSource {
         case 1:
             let cell = DetailPieTableViewCell.loadCell(tableView) as! DetailPieTableViewCell
             cell.selectionStyle = .none
-            cell.setChart(sumByCategory)
+            if sum == 0 {
+                cell.imageNoData.isHidden = false
+            } else {
+                cell.imageNoData.isHidden = true
+                cell.setChart(sumByCategory)
+            }
+            
             return cell
         default:
             let cell = DetailPCCell.loadCell(tableView) as! DetailPCCell
@@ -117,10 +127,35 @@ extension DetailPieChartVC: UITableViewDelegate, UITableViewDataSource {
             let filtered = categories.filter { category in
                 return category.id! == sumByCategory[indexPath.row].category
             }
-            let imageName = filtered[0].iconImage ?? "bill"
-            
-            cell.setupView(imageName: imageName, category: category, money: money)
+            imageName = filtered[0].iconImage ?? "bill"
+            cell.setupView(info: DetailDayPC(imageName: imageName, category: category, money: money, date: date))
             return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 2 {
+            self.trans.removeAll()
+            let vc = RouterType.detailPC.getVc() as! DayDetailPC
+            let cate = sumByCategory[indexPath.row].category
+            let sum = sumByCategory[indexPath.row].amount
+            
+            // set icon fo DayDetailPC
+            let filtered = categories.filter { category in
+                return category.id! == sumByCategory[indexPath.row].category
+            }
+            imageName = filtered[0].iconImage ?? "bill"
+            
+            // check category
+            for index in 0 ..< transactions.count {
+                if cate == transactions[index].categoryid {
+                    trans.append(transactions[index])
+                }
+            }
+            
+            // setup data for DayDetailPC
+            vc.setupData(info: DetailPC(state: state, transactions: trans, categoryImage: imageName, sumByCategory: sum, category: cate, date: date))
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }
@@ -133,12 +168,24 @@ extension DetailPieChartVC: UISearchBarDelegate {
         self.navigationItem.rightBarButtonItem?.isEnabled = true
         searchBar.resignFirstResponder()
     }
-    
+
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.searchBar.showsCancelButton = true
     }
-    
+
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
+        if searchText.isEmpty {
+            filterData = sumByCategory
+            self.tableView.reloadData()
+        } else {
+            filterTableView(text: searchText)
+            self.tableView.reloadData()
+        }
+    }
+    
+    func filterTableView(text:String) {
+        filterData = sumByCategory.filter({ (category) -> Bool in
+            return category.category.lowercased().contains(text.lowercased())
+        })
     }
 }

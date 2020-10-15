@@ -33,12 +33,9 @@ class DetailCategoryViewController: UIViewController {
         super.viewDidLoad()
         
         setupView()
-        
         addTopBorder([imgCategoryView, categoryNameView, deleteView])
         addBottomBorder([categoryNameView, typeIconView, categoryTypeView, deleteView])
-        
         setupGestureForView([deleteView])
-        
         txtCategoryName.isUserInteractionEnabled = false
     }
     
@@ -97,6 +94,8 @@ class DetailCategoryViewController: UIViewController {
     }
     func finish() {
         self.presenter?.deleteCategory(self.category)
+        self.presenter?.deleteAllTransactionOfCategory(self.category)
+        self.presenter?.deleteAllBudgetOfCategory(self.category)
     }
     
     // MARK: - Handle buttons click
