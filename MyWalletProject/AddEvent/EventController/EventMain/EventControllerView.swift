@@ -9,6 +9,10 @@
 import UIKit
 
 class EventControllerView: UIViewController {
+    deinit {
+        print("vanthanhEventmain")
+    }
+
     
     @IBOutlet weak var eventTable: UITableView!
     @IBOutlet weak var sgm: UISegmentedControl!
@@ -37,7 +41,6 @@ class EventControllerView: UIViewController {
         eventTable.register(nib, forCellReuseIdentifier: "EventCell")
         eventTable.delegate = self
         eventTable.dataSource = self
-        
     }
     
     func setUp(presenter: EventPresenter)  {
@@ -49,18 +52,16 @@ class EventControllerView: UIViewController {
         case 0:
             arrEvent.removeAll()
             arrNameEvent.removeAll()
-           acctivityIndicator()
+            acctivityIndicator()
             presenter?.fetchDataApplying()
-        case 1:
+        default:
             arrNameEvent.removeAll()
             arrEvent.removeAll()
             acctivityIndicator()
             presenter?.fetchDataFinished()
-        default:
-            print("chonlai")
         }
-            
     }
+    
     // back
     @IBAction func cancel(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -73,26 +74,19 @@ class EventControllerView: UIViewController {
         add.setUp(presenter: presenter)
         add.nameEvents = arrNameEvent
         self.navigationController?.pushViewController(add, animated: true)
-        
     }
-    
-    
-    
 }
 extension EventControllerView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrEvent.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as! EventCell
         cell.load(event: arrEvent[indexPath.row])
         return cell
-        
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
-        
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10
@@ -100,22 +94,11 @@ extension EventControllerView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detail = UIStoryboard.init(name: "AddEvent", bundle: nil).instantiateViewController(identifier: "DetailEvent")
             as! DetailEventController
-        detail.event = arrEvent[indexPath.row]
         let presenter = DetailPresenter(delegate: detail, useCase: DetailEventUseCase())
         detail.setUp(presenter: presenter)
+        detail.event = arrEvent[indexPath.row]
         self.navigationController?.pushViewController(detail, animated: true)
-        
-        
     }
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        let currenOfSet = scrollView.contentOffset.y
-        let maxOffSet = scrollView.contentSize.height - scrollView.frame.size.height
-        if maxOffSet - currenOfSet <= 40{
-            
-        }
-        
-    }
-    
 }
 
 extension EventControllerView: EventPresenterDelegate{
@@ -128,7 +111,6 @@ extension EventControllerView: EventPresenterDelegate{
         self.arrNameEvent = arrNameEvent
     }
     
-    
 }
 extension EventControllerView {
     override func viewWillAppear(_ animated: Bool) {
@@ -137,15 +119,6 @@ extension EventControllerView {
         loadViewIndicator.startAnimating()
         presenter?.fetchDataApplying()
     }
-    override var hidesBottomBarWhenPushed: Bool {
-        get{
-            return true
-        }
-        set {
-            super.hidesBottomBarWhenPushed = newValue
-        }
-    }
- 
 }
 
 extension EventControllerView{
@@ -154,5 +127,4 @@ extension EventControllerView{
        loadViewIndicator.alpha = 1
         imgNoEvent.alpha = 0
     }
-
 }

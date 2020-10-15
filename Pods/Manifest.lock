@@ -226,6 +226,7 @@ PODS:
   - Charts (3.6.0):
     - Charts/Core (= 3.6.0)
   - Charts/Core (3.6.0)
+  - CodableFirebase (0.2.1)
   - FBSDKCoreKit (7.1.1):
     - FBSDKCoreKit/Basics (= 7.1.1)
     - FBSDKCoreKit/Core (= 7.1.1)
@@ -378,6 +379,7 @@ PODS:
 
 DEPENDENCIES:
   - Charts
+  - CodableFirebase
   - FBSDKLoginKit
   - Firebase/Auth
   - Firebase/Core
@@ -397,6 +399,7 @@ SPEC REPOS:
     - AppAuth
     - BoringSSL-GRPC
     - Charts
+    - CodableFirebase
     - FBSDKCoreKit
     - FBSDKLoginKit
     - Firebase
@@ -430,6 +433,7 @@ SPEC CHECKSUMS:
   AppAuth: 31bcec809a638d7bd2f86ea8a52bd45f6e81e7c7
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
+  CodableFirebase: 0bf201991eeec35eb9fcd987d271ea463cf34a80
   FBSDKCoreKit: b46507dc8b8cefed31d644e74d7cc30e2a715ef8
   FBSDKLoginKit: 1a61d79e2b25e2fc0d03dccab1e34b38bbdf2546
   Firebase: 658370fa0181826a74b7cfca8d68c5856ca749ae
@@ -458,6 +462,6 @@ SPEC CHECKSUMS:
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
   SwiftDate: d117c3eb6beed72e47d3f4d1e3bc63fa1e66d7c3
 
-PODFILE CHECKSUM: eec657c3f983f65e25420a4aaa2e71a085d8b464
+PODFILE CHECKSUM: 39e6b6e5700ad5ed98f5428ccc860e02fbf6adfa
 
 COCOAPODS: 1.9.3

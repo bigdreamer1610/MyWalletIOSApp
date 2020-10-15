@@ -29,6 +29,8 @@
 "Do you want delete ?" = "Bạn có muốn xoá ?";
 "OK" = "Xác nhận";
 "Cancel" = "Huỷ";
+"Higher than the spending limit" = "Cao hơn giới hạn chi tiêu";
+"Smaller than the spending limit" = "Nhỏ hơn giới hạn chi tiêu";
 
 // budget add edit
 "Back" = "Quay lại";
@@ -114,4 +116,39 @@
 "Events" = "Sự Kiện";
 "Set budget for individual category, or for all categories in a wallet" = "Đặt ngân sách cho danh mục riêng lẻ hoặc cho tất cả danh mục trong ví";
 "Create an event to track on your spending during an actual event, like travelling at weekend" = "Tạo sự kiện để theo dõi chi tiêu của bạn trong một sự kiện thực tế, chẳng hạn như đi du lịch vào cuối tuần";
+
+// Category
+"Salary" = "Lương";
+"Accessories" = "Phụ kiện";
+"Bill" = "Hoá đơn";
+"Book" = "Sách";
+"Cafe" = "Cà phê";
+"Clothing" = "Quần áo";
+"Doctor" = "Bác sĩ";
+"Education" = "Giáo dục";
+"Electricity" = "Điện";
+"Electronics" = "Thiết bị điện tử";
+"Entertainment" = "Giải trí";
+"Enviroment" = "Môi trường";
+"Family" = "Gia đình";
+"Food" = "Thực phẩm";
+"Friends" = "Bạn bè";
+"Gas" = "Khí đốt";
+"Health" = "Sức khoẻ";
+"Lover" = "Người yêu";
+"Medicine" = "Thuốc";
+"Movie" = "Phim";
+"Music" = "Âm nhạc";
+"Party" = "Tiệc";
+"Pets" = "Thú cưng";
+"Pharmacy" = "Tiệm thuốc";
+"Phone" = "Điện thoại";
+"Restaurant" = "Nhà hàng";
+"Shopping" = "Mua sắm";
+"Sports" = "Thể thao";
+"Taxi" = "Xe tắc xi";
+"Transport" = "Vận chuyển";
+"Travel" = "Du lịch";
+"Water" = "Nước";
+
 

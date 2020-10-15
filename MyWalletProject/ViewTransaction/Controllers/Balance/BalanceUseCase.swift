@@ -13,10 +13,21 @@ class BalanceUseCase {
 
 extension BalanceUseCase {
     func saveBalanceToDB(balance: Int){
-        Defined.ref.child("Account/userid1/information").updateChildValues(["balance": balance]){ (error,reference) in
-            
+        let old = Defined.defaults.integer(forKey: Constants.balance)
+        if old != balance {
+            let writeData: [String: Any] = [
+                "date": Defined.dateFormatter.string(from: Date()),
+                "note": "Adjust balance",
+                "amount" : abs(balance - old),
+                "categoryid": "Others"]
+            let type = (old > balance) ? TransactionType.expense.getValue() : TransactionType.income.getValue()
+            Defined.ref.child(Path.transaction.getPath()).child("\(type)").childByAutoId().setValue(writeData)
+            Defined.ref.child(Path.information.getPath()).updateChildValues(["balance": balance]){ (error,reference) in
+                
+            }
+            Defined.defaults.set(balance, forKey: Constants.balance)
         }
-        Defined.defaults.set(balance, forKey: Constants.balance)
+        
     }
 }
 

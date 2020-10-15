@@ -33,7 +33,7 @@ class CurrencyViewController: UIViewController {
         
         presenter?.fetchData()
         
-        self.title = "Currencies Exchange"
+        self.title = Constants.currencyExchange
     }
     
     // MARK: - Hide tab bar
@@ -69,11 +69,18 @@ class CurrencyViewController: UIViewController {
         button.layer.cornerRadius = 10
     }
     
+    // MARK: - Hide keyboard when tap on view or hit return key
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     @IBAction func btnChangeCurrencyClick(_ sender: Any) {
         if txtVND.text == "" {
-            let alert = UIAlertController(title: "INVALID ACTION", message: "You might haven't filled in the amount of money you want to exchange, please try again!", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
+            AlertUtil.showAlert(from: self, with: Constants.alertInvalidActionTitle, message: Constants.moneyCurrencyBlank)
         } else {
             let amount = Double(txtVND.text!) ?? 0
             presenter?.exchangeCurrency(amount: amount)

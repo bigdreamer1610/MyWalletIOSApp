@@ -72,12 +72,12 @@ extension SelectCategoryViewController : UITableViewDataSource , UITableViewDele
         let cell = tblCategory.dequeueReusableCell(withIdentifier: "CategoryCell") as! CategoryCell
         let imgName = listCateExpense[indexPath.row].iconImage
         let categoryName = listCateExpense[indexPath.row].name
-        cell.loadContent(imgName: imgName!, categoryName: categoryName!)
+        cell.loadContent(imgName: imgName!, categoryName: categoryName! , language: language)
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 60
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

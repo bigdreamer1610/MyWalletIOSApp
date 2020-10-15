@@ -29,6 +29,8 @@
 "Bạn có muốn xoá ?" = "Do you want delete ?";
 "Xác nhận" = "OK";
 "Huỷ" = "Cancel";
+"Cao hơn giới hạn chi tiêu" = "Higher than the spending limit";
+"Nhỏ hơn giới hạn chi tiêu" = "Smaller than the spending limit";
 
 // budget add edit
 "Quay lại" = "Back";
@@ -112,7 +114,39 @@
 "Tạo sự kiện để theo dõi chi tiêu của bạn trong một sự kiện thực tế, chẳng hạn như đi du lịch vào cuối tuần" = "Create an event to track on your spending during an actual event, like travelling at weekend";
 
 
-
+// Category
+"Lương" = "Salary";
+"Phụ kiện" = "Accessories";
+"Hoá đơn" = "Bill";
+"Sách" = "Book";
+"Cà phê" = "Cafe";
+"Quần áo" = "Clothing";
+"Bác sĩ" = "Doctor";
+"Giáo dục" = "Education";
+"Điện" = "Electricity";
+"Thiết bị điện tử" = "Electronics";
+"Giải trí" = "Entertainment";
+"Môi trường" = "Enviroment";
+"Gia đình" = "Family";
+"Thực phẩm" = "Food";
+"Bạn bè" = "Friends";
+"Khí đốt" = "Gas";
+"Sức khoẻ" = "Health";
+"Người yêu" = "Lover";
+"Thuốc" = "Medicine";
+"Phim" = "Movie";
+"Âm nhạc" = "Music";
+"Tiệc" = "Party";
+"Thú cưng" = "Pets";
+"Tiệm thuốc" = "Pharmacy";
+"Điện thoại" = "Phone";
+"Nhà hàng" = "Restaurant";
+"Mua sắm" = "Shopping";
+"Thể thao" = "Sports";
+"Xe tắc xi" = "Taxi";
+"Vận chuyển" = "Transport";
+"Du lịch" = "Travel";
+"Nước" = "Water";
 
 
 

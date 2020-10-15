@@ -19,18 +19,18 @@ class SettingsUseCase {
 
 extension SettingsUseCase {
     // MARK: - Save user info to DB
-    func saveUserInfoToDB(_ user: Account, _ userId: String) {
+    func saveUserInfoToDB(_ user: Account) {
         let userInfo = [
-            "name": user.name!,
-            "email": user.email!,
-            "balance": user.balance!,
-            "dateOfBirth": user.dateOfBirth!,
-            "phoneNumber": user.phoneNumber!,
-            "address": user.address!,
-            "gender": user.gender!,
-            "language": user.language!] as [String : Any]
+            "name": user.name ?? "",
+            "email": user.email ?? "",
+            "balance": user.balance ?? 0,
+            "dateOfBirth": user.dateOfBirth ?? "",
+            "phoneNumber": user.phoneNumber ?? "",
+            "address": user.address ?? "",
+            "gender": user.gender ?? "",
+            "language": user.language ?? ""] as [String : Any]
 
-        Defined.ref.child("Account").child(userId).child("information").setValue(userInfo, withCompletionBlock: {
+        Defined.ref.child(Path.information.getPath()).setValue(userInfo, withCompletionBlock: {
             error, ref in
             if error == nil {}
             else {}
@@ -38,12 +38,11 @@ extension SettingsUseCase {
     }
     
     // MARK: - Get user info from DB to display in view
-    func getUserInfoFromDB(_ userId: String) {
+    func getUserInfoFromDB() {
         var userInfo: Account = Account()
         
-        Defined.ref.child("Account").child(userId).child("information").observeSingleEvent(of: .value, with: { snapshot in
+        Defined.ref.child(Path.information.getPath()).observeSingleEvent(of: .value, with: { snapshot in
             guard let dict = snapshot.value as? NSDictionary else {
-                print("error")
                 return
             }
             

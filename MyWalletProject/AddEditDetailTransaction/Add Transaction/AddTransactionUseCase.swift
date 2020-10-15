@@ -14,12 +14,25 @@ class AddTransactionUseCase{
 }
 extension AddTransactionUseCase{
     func addTransactionToDB(t: Transaction){
+        // add a new transaction
         let writeData: [String: Any] = [
             "date": t.date!,
             "note": t.note!,
             "amount" : t.amount!,
             "categoryid": t.categoryid!,
             "eventid":t.eventid!]
-        Defined.ref.child("Account/userid1/transaction/\(t.transactionType!)").childByAutoId().setValue(writeData)
+        Defined.ref.child(Path.transaction.getPath()).child("/\(t.transactionType!)").childByAutoId().setValue(writeData)
+        
+        // adjust balance
+        var balance = Defined.defaults.integer(forKey: Constants.balance)
+        if t.transactionType == TransactionType.expense.getValue() {
+            balance -= t.amount!
+        } else {
+            balance += t.amount!
+        }
+        Defined.ref.child(Path.information.getPath()).updateChildValues(["balance": balance]){ (error,reference) in
+            
+        }
+        Defined.defaults.set(balance, forKey: Constants.balance)
     }
 }

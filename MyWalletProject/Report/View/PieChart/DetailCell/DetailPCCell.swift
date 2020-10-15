@@ -16,8 +16,6 @@ class DetailPCCell: BaseTBCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        Defined.formatter.groupingSeparator = ","
-        Defined.formatter.numberStyle = .decimal
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -29,10 +27,10 @@ class DetailPCCell: BaseTBCell {
         lblMoney.textColor = color
     }
     
-    func setupView(imageName: String, category: String, money: Int) {
-        lblMoney.text = String((Defined.formatter.string(from: NSNumber(value: money))!))
-        lblCategory.text = category
-        categoryImage.image = UIImage(named: imageName)
+    func setupView(info: DetailDayPC) {
+        lblMoney.text = String((Defined.formatter.string(from: NSNumber(value: info.money))!))
+        lblCategory.text = info.category
+        categoryImage.image = UIImage(named: info.imageName)
     }
     
 }

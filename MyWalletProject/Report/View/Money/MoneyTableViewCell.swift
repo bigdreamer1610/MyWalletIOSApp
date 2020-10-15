@@ -10,23 +10,23 @@ import UIKit
 
 class MoneyTableViewCell: BaseTBCell {
     
+    @IBOutlet weak var lblNameOpening: UILabel!
+    @IBOutlet weak var lblNameEnding: UILabel!
     @IBOutlet weak var lblBeginBalance: UILabel!
     @IBOutlet weak var lblEndBalance: UILabel!
     var sumIncome = 0
     var sumExpense = 0
     override func awakeFromNib() {
         super.awakeFromNib()
-        Defined.formatter.groupingSeparator = ","
-        Defined.formatter.numberStyle = .decimal
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
-    func setUpData(opening: Int, sumIncome: Int, sumExpense: Int) {
+    func setupData(opening: Int, ending: Int) {
         lblBeginBalance.text = String((Defined.formatter.string(from: NSNumber(value: opening))!))
-        lblEndBalance.text = String((Defined.formatter.string(from: NSNumber(value: opening + sumIncome - sumExpense))!))
+        lblEndBalance.text = String((Defined.formatter.string(from: NSNumber(value: ending))!))
     }
     
 }

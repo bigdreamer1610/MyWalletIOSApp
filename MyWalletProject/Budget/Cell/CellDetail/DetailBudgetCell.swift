@@ -23,6 +23,10 @@ class DetailBudgetCell: UITableViewCell {
     @IBOutlet weak var lblSpendTitle: UILabel!
     @IBOutlet weak var lblRestTitle: UILabel!
     @IBOutlet weak var lblAmountTitle: UILabel!
+    @IBOutlet weak var viewWarningGreen: UIView!
+    @IBOutlet weak var viewWarningRed: UIView!
+    @IBOutlet weak var lblWarningGreen: UILabel!
+    @IBOutlet weak var lblWarningRed: UILabel!
     
     
     override func awakeFromNib() {
@@ -43,7 +47,7 @@ class DetailBudgetCell: UITableViewCell {
         btnDelete.setTitle(BudgetDetailDataString.delete.rawValue.addLocalizableString(str: language), for: .normal)
         
         imgCategory.image = UIImage(named: cateImage)
-        lblCategory.text = cateName
+        lblCategory.text = cateName.addLocalizableString(str: language)
         lblAmount.text = "\(amount)"
         lblSpend.text = "\(spend)"
         lblRest.text = "\(amount - spend)"
@@ -58,6 +62,18 @@ class DetailBudgetCell: UITableViewCell {
         else{
             prgSpend.progressTintColor = UIColor(displayP3Red: 0.0/255.0, green: 127.0/255.0, blue: 84.0/255.0, alpha: 1)
         }
+        
+        viewWarningGreen.backgroundColor = UIColor(displayP3Red: 0.0/255.0, green: 127.0/255.0, blue: 84.0/255.0, alpha: 1)
+        viewWarningGreen.layer.cornerRadius = viewWarningRed.frame.height / 2
+        viewWarningGreen.layer.masksToBounds = true
+        viewWarningRed.backgroundColor = UIColor.red
+        viewWarningRed.layer.cornerRadius = viewWarningRed.frame.height / 2
+        viewWarningRed.layer.masksToBounds = true
+        
+        lblWarningGreen.text = "Smaller than the spending limit".addLocalizableString(str: language)
+        lblWarningGreen.textColor = UIColor(displayP3Red: 0.0/255.0, green: 127.0/255.0, blue: 84.0/255.0, alpha: 1)
+        lblWarningRed.text = "Higher than the spending limit".addLocalizableString(str: language)
+        lblWarningRed.textColor = UIColor.red
     }
     
 }

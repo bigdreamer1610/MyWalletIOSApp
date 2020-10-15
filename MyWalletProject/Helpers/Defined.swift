@@ -78,6 +78,21 @@ class Defined {
         return model
     }
     
+    //MARK: - GET Transaction date in descending order from date string array
+    class func getDateArray(arr: [String], month: Int, year: Int) -> [TransactionDate]{
+        var mDates = [Date]()
+        arr.forEach { (a) in
+            let myDate = a
+            let date = Defined.dateFormatter.date(from: myDate)
+            let components = Defined.calendar.dateComponents([.day, .month, .year, .weekday], from: date!)
+            //if year & month = given
+            if components.month == month && components.year == year {
+                mDates.append(date!)
+            }
+        }
+        return Defined.getTransactionDates(dates: mDates)
+    }
+    
     // get all transactions in specific time range
     class func getTransactionbyDate(dateArr: [TransactionDate],allTrans: [Transaction]) -> [Transaction]{
         var list = [Transaction]()
@@ -89,6 +104,19 @@ class Defined {
             }
         }
         return list
+    }
+    
+    // calculate sum amount of given list in a months
+    class func calculateDetail(list: [Transaction]) -> Int {
+        var number = 0
+        list.forEach { (a) in
+            if a.transactionType == TransactionType.expense.getValue(){
+                number -= a.amount!
+            } else {
+                number -= a.amount!
+            }
+        }
+        return number
     }
     
     class func getTransactionDates(dates: [Date]) -> [TransactionDate]{

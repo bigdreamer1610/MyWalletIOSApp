@@ -17,8 +17,8 @@ class DetailEventController: UITableViewController {
     var checkDate = CheckDate()
     var status = "false"
     var stillDate = 0
-    // OUt let
     
+    // OUt let
     @IBOutlet weak var btnStatus: UIButton!
     @IBOutlet weak var imgEvent: UIImageView!
     @IBOutlet weak var tfNameEvent: UILabel!
@@ -28,7 +28,7 @@ class DetailEventController: UITableViewController {
     // Load view
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.3929189782, green: 0.4198221317, blue: 0.8705882353, alpha: 1)
     }
     
     func setUp(presenter: DetailPresenter) {
@@ -66,7 +66,6 @@ class DetailEventController: UITableViewController {
             self.event = $0
         }
         self.navigationController?.pushViewController(vc, animated: true)
-        
     }
     
     // Xoa 1 Event
@@ -88,9 +87,8 @@ class DetailEventController: UITableViewController {
         let vc = RouterType.eventTransaction(event: self.event).getVc()
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-    
 }
+
 // TableView
 extension DetailEventController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -104,16 +102,27 @@ extension DetailEventController {
 // View
 extension DetailEventController{
     override func viewWillAppear(_ animated: Bool) {
-        setUpView()
+        presenter?.getEvent(event: event)
         presenter?.still(event: event)
+    }
+    override var hidesBottomBarWhenPushed: Bool {
+        get{
+            return true
+        }
+        set {
+            super.hidesBottomBarWhenPushed = newValue
+        }
     }
 }
 
 extension DetailEventController : DetailPresenterDelegate{
+    func responEvent(event: Event) {
+        self.event = event
+        setUpView()
+    }
     func responData(number: String) {
         lblStillDate.text = number
     }
-    
     
     // setup view
     func setUpView()  {
@@ -121,11 +130,9 @@ extension DetailEventController : DetailPresenterDelegate{
             btnStatus.setTitle("incomplete markup" , for: .normal)
             status = event.status!
             btnStatus.isEnabled = false
-            
         } else if  event.status == "false"{
             btnStatus.setTitle("incomplete markup" , for: .normal)
             status = event.status!
-            
         }
         else {
             status = "true"

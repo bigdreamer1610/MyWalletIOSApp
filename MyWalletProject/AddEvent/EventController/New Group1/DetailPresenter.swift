@@ -9,6 +9,7 @@
 import UIKit
 protocol DetailPresenterDelegate: class {
     func responData(number: String)
+    func responEvent(event: Event)
 }
 
 class DetailPresenter {
@@ -40,8 +41,16 @@ class DetailPresenter {
            delegate?.responData(number: checkDate.stillDate(endDate: event.date!))
     }
     
+    //Gêtvent
+    func getEvent(event: Event)  {
+        detailEventUseCase?.getData(event: event)
+    }
 }
 extension DetailPresenter: DetailEventUseCaseDelegate{
+    func resultEvent(event: Event) {
+        delegate?.responEvent(event: event)
+    }
+    
     func marKedCompeleEvent(event: Event) {
         
     }

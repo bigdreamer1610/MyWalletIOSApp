@@ -24,6 +24,7 @@ struct SumArr {
     var sum: Int
     var sumByCategory: [SumByCate]
     var transations: [Transaction]
+    var date: String
 }
 
 struct SumForPieChart {
@@ -31,5 +32,27 @@ struct SumForPieChart {
     var sumExpense: Int
     var sumByCateIncome: [SumByCate]
     var sumByCateExpense: [SumByCate]
-    
+}
+
+struct DetailPC {
+    var state: State?
+    var transactions: [Transaction]
+    var categoryImage: String
+    var sumByCategory: Int
+    var category: String
+    var date: String
+}
+
+struct DetailDayPC {
+    var imageName: String
+    var category: String
+    var money: Int
+    var date: String
+}
+
+struct DetailDayPCByCate {
+    var day: String
+    var date: String
+    var amount: Int
+    var note: String
 }

@@ -19,28 +19,29 @@ protocol ReportPresenterDelegate: class {
 
 class ReportPresenter {
     var delegate: ReportPresenterDelegate?
-    var usecase: ReportUseCase = ReportUseCase()
+    var usecase: ReportUseCase?
     
     var sumByCategoryIncome = [SumByCate]()
     var sumByCategoryExpense = [SumByCate]()
     
-    init() {
-        self.usecase.delegate = self
+    init(delegate: ReportPresenterDelegate, usecase: ReportUseCase) {
+        self.delegate = delegate
+        self.usecase = usecase
+        self.usecase?.delegate = self
     }
 }
 
 extension ReportPresenter {
     func requestIncome(dateInput: String) {
-        usecase.getIncomeFromDB(dateInput: dateInput)
+        usecase?.getIncomeFromDB(dateInput: dateInput)
     }
     
     func requestExpense(dateInput: String) {
-        usecase.getExpenseFromDB(dateInput: dateInput)
+        usecase?.getExpenseFromDB(dateInput: dateInput)
     }
     
     func requestCategories(nameNode: String) {
-        usecase.getCategoriesFromDB(nameNode: nameNode)
-        
+        usecase?.getCategoriesFromDB(nameNode: nameNode)
     }
     
     func handleDataForPieChart(dataArray: [Transaction], state: State?) {
@@ -72,6 +73,7 @@ extension ReportPresenter {
         }
         return -1
     }
+    
 }
 
 extension ReportPresenter: ReportUseCaseDelegate {
