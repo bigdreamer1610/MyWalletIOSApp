@@ -13,7 +13,7 @@ import CodableFirebase
 
 class BaseUseCase {
     func getListAllCategories(completion: @escaping (([Category]) -> ())){
-        Defined.ref.child(FirebasePath.category).observe(.value) { (snapshot) in
+        Defined.ref.child(Path.category.getPath()).observe(.value) { (snapshot) in
             var categories = [Category]()
             for case let snapshots as DataSnapshot in snapshot.children {
                 for case let snapshot as DataSnapshot in snapshots.children {
@@ -35,7 +35,7 @@ class BaseUseCase {
     }
     
     func getListAllTransactions(completion: @escaping (([Transaction]) -> ())){
-        Defined.ref.child(FirebasePath.transaction).observe(.value) { (snapshot) in
+        Defined.ref.child(Path.transaction.getPath()).observe(.value) { (snapshot) in
             var allTransactions = [Transaction]()
             for case let snapshots as DataSnapshot in snapshot.children {
                 for case let snapshot as DataSnapshot in snapshots.children {

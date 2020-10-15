@@ -21,7 +21,7 @@ class EventImgUseCase {
     
     // Get data Firebase
     func fetchData()  {
-        Defined.ref.child(FirebasePath.imagelibrary).observe( .value) { (snapshot) in
+        Defined.ref.child(Path.imageLibrary.getPath()).observe( .value) { (snapshot) in
             for case let child as DataSnapshot in snapshot.children {
                 guard let dict = child.value as? [String : Any] else {
                     print("error")

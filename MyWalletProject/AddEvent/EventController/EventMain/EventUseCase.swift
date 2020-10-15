@@ -26,7 +26,7 @@ extension EventUseCase{
     // getdata firebase
     func getCurrenlyApplying1()  {
         dispatchGroup.enter()
-        Defined.ref.child(FirebasePath.event).observe( .value, with: { snapshot in
+        Defined.ref.child(Path.event.getPath()).observe( .value, with: { snapshot in
             self.arrNameEvent.removeAll()
             self.arrEvent.removeAll()
             for case let child as DataSnapshot in snapshot.children {
@@ -54,7 +54,7 @@ extension EventUseCase{
         })
         dispatchGroup.leave()
         dispatchGroup.notify(queue: .main) {
-            Defined.ref.child(FirebasePath.transaction).observeSingleEvent(of: .value) { (snapshot1) in
+            Defined.ref.child(Path.transaction.getPath()).observeSingleEvent(of: .value) { (snapshot1) in
                 if let snapshots = snapshot1.children.allObjects as?[DataSnapshot]
                 {
                     for mySnap in snapshots {
@@ -84,7 +84,7 @@ extension EventUseCase{
     // get data Finished
     func getEventFinished()  {
         dispatchGroup.enter()
-        Defined.ref.child(FirebasePath.event).observe( .value, with: { snapshot in
+        Defined.ref.child(Path.event.getPath()).observe( .value, with: { snapshot in
             self.arrNameEvent.removeAll()
             self.arrEvent.removeAll()
             for case let child as DataSnapshot in snapshot.children {
@@ -110,7 +110,7 @@ extension EventUseCase{
         })
         dispatchGroup.leave()
         dispatchGroup.notify(queue: .main) {
-            Defined.ref.child(FirebasePath.transaction).observe(.value) { (snapshot1) in
+            Defined.ref.child(Path.transaction.getPath()).observe(.value) { (snapshot1) in
                 if let snapshots = snapshot1.children.allObjects as?[DataSnapshot]
                 {
                     for mySnap in snapshots {
@@ -141,7 +141,7 @@ extension EventUseCase{
         
     }
     func refresh()  {
-        Defined.ref.child(FirebasePath.event).queryOrderedByKey().queryEqual(toValue: "true", childKey: "status").queryLimited(toFirst: 4).observeSingleEvent(of: .value) { (snapshot) in
+        Defined.ref.child(Path.event.getPath()).queryOrderedByKey().queryEqual(toValue: "true", childKey: "status").queryLimited(toFirst: 4).observeSingleEvent(of: .value) { (snapshot) in
             guard let children = snapshot.children.allObjects.first as? DataSnapshot else {return}
             if snapshot.childrenCount > 0 {
                 for child in snapshot.children.allObjects as! [DataSnapshot] {

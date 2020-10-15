@@ -23,7 +23,7 @@ class DetailTransactionUseCase : BaseUseCase{
 extension DetailTransactionUseCase {
     func getEventInfo(eventid: String){
         if eventid != "" {
-            Defined.ref.child(FirebasePath.event).observe(DataEventType.value) { [weak self](snapshot) in
+            Defined.ref.child(Path.event.getPath()).observe(DataEventType.value) { [weak self](snapshot) in
                 guard let `self` = self else {return}
                 for case let snapshots as DataSnapshot in snapshot.children {
                     guard let dict = snapshots.value as? [String:Any] else {
@@ -48,12 +48,12 @@ extension DetailTransactionUseCase {
     }
     
     func deleteTransaction(t: Transaction){
-        Defined.ref.child(FirebasePath.transaction).child("/\(t.transactionType!)/\(t.id!)").removeValue { (error, reference) in
+        Defined.ref.child(Path.transaction.getPath()).child("/\(t.transactionType!)/\(t.id!)").removeValue { (error, reference) in
             //remove old position
         }
     }
     
-    func getTransaction(transid: String){Defined.ref.child(FirebasePath.transaction).observe(.value) {[weak self] (snapshot) in
+    func getTransaction(transid: String){Defined.ref.child(Path.transaction.getPath()).observe(.value) {[weak self] (snapshot) in
             guard let `self` = self else {
                 return
             }
