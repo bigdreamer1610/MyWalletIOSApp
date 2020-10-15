@@ -26,7 +26,7 @@ extension SelectCategoryBudgetUseCase {
         
         // load api Category Expense
         dispatchGroup.enter()
-        Defined.ref.child(FirebasePath.category).child("expense").observeSingleEvent(of: .value) { (data) in
+        Defined.ref.child(Path.category.getPath()).child("expense").observeSingleEvent(of: .value) { (data) in
             for case let child as DataSnapshot in data.children{
                 let categoryId = child.key
                 guard let dict = child.value as? [String:Any] else{
@@ -43,7 +43,7 @@ extension SelectCategoryBudgetUseCase {
         
         // Load api Category Income
         dispatchGroup.enter()
-        Defined.ref.child(FirebasePath.category).child("income").observeSingleEvent(of: .value) { (data) in
+        Defined.ref.child(Path.category.getPath()).child("income").observeSingleEvent(of: .value) { (data) in
             for case let child as DataSnapshot in data.children{
                 let categoryId = child.key
                 guard let dict = child.value as? [String:Any] else{
