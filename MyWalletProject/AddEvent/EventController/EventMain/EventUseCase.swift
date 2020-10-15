@@ -25,7 +25,7 @@ extension EventUseCase{
     // getdata firebase
     func getCurrenlyApplying()  {
         dispatchGroup.enter()
-        Defined.ref.child(Path.event.getPath()).observe( .value, with: { snapshot in
+        Defined.ref.child(Path.event.getPath()).observeSingleEvent(of: .value, with: { snapshot in
             self.arrNameEvent.removeAll()
             self.arrEvent.removeAll()
             for case let child as DataSnapshot in snapshot.children {
@@ -47,11 +47,10 @@ extension EventUseCase{
                 else {
                 }
             }
-            
+            self.dispatchGroup.leave()
         })
-    self.dispatchGroup.leave()
         dispatchGroup.notify(queue: .main) {
-            Defined.ref.child(Path.transaction.getPath()).observe( .value) { (snapshot1) in
+            Defined.ref.child(Path.transaction.getPath()).observeSingleEvent( of: .value) { (snapshot1) in
                 if let snapshots = snapshot1.children.allObjects as?[DataSnapshot]
                 {
                     for mySnap in snapshots {
@@ -78,10 +77,11 @@ extension EventUseCase{
         }
     }
     
+    
     // get data Finished
     func getEventFinished()  {
         dispatchGroup.enter()
-        Defined.ref.child(Path.event.getPath()).observe( .value, with: { snapshot in
+        Defined.ref.child(Path.event.getPath()).observeSingleEvent( of: .value, with: { snapshot in
             self.arrNameEvent.removeAll()
             self.arrEvent.removeAll()
             for case let child as DataSnapshot in snapshot.children {
@@ -103,10 +103,11 @@ extension EventUseCase{
                 else {
                 }
             }
+            self.dispatchGroup.leave()
         })
-        dispatchGroup.leave()
+        
         dispatchGroup.notify(queue: .main) {
-            Defined.ref.child(Path.transaction.getPath()).observe(.value) { (snapshot1) in
+            Defined.ref.child(Path.transaction.getPath()).observeSingleEvent(of: .value) { (snapshot1) in
                 if let snapshots = snapshot1.children.allObjects as?[DataSnapshot]
                 {
                     for mySnap in snapshots {
@@ -161,3 +162,4 @@ extension EventUseCase{
         }
     }
 }
+
