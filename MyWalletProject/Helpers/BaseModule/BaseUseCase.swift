@@ -46,12 +46,38 @@ class BaseUseCase {
                         model.transactionType = snapshots.key
                         allTransactions.append(model)
                     } catch let error {
-                        print(error)
                     }
                 }
             }
             completion(allTransactions)
         }
+    }
+    
+    func getListAllEvents(completion: @escaping (([Event]) -> ())){
+        Defined.ref.child(Path.event.getPath()).observe(DataEventType.value) {(snapshot) in
+            var events = [Event]()
+            for case let snapshots as DataSnapshot in snapshot.children {
+                guard let dict = snapshots.value as? [String:Any] else {
+                    return
+                }
+                do {
+                    let model = try FirebaseDecoder().decode(Event.self, from: dict)
+                    events.append(model)
+                } catch _ {
+                }
+            }
+            completion(events)
+        }
+    }
+    
+    func updateBalance(balance: Int){
+        // update balance in firebase
+        Defined.ref.child(Path.information.getPath()).updateChildValues(["balance": balance]){ (error,reference) in
+            
+        }
+        //set userdefaults balance
+        Defined.defaults.set(balance, forKey: Constants.balance)
+        
     }
     
 }
