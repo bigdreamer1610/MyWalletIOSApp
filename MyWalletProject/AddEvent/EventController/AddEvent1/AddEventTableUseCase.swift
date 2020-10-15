@@ -25,7 +25,7 @@ class AddEventTableUseCase  {
             dispatchGroup.enter()
             // get child moi
             var  newChild = 1
-            Defined.ref.child(FirebasePath.event).queryLimited(toLast: 1).observeSingleEvent(of: .value, with: {
+            Defined.ref.child(Path.event.getPath()).queryLimited(toLast: 1).observeSingleEvent(of: .value, with: {
                 snapshot in
                 for category in snapshot.children{
                     if  snapshot.childrenCount == 0   {
@@ -48,7 +48,7 @@ class AddEventTableUseCase  {
                                "spent": 0,
                                "status": "true"]
                                 as [String : Any]
-                Defined.ref.child(FirebasePath.event).child(String(newChild)).updateChildValues(event1,withCompletionBlock: { error , ref in
+                Defined.ref.child(Path.event.getPath()).child(String(newChild)).updateChildValues(event1,withCompletionBlock: { error , ref in
                     if error == nil {
                     }else{
                     }
@@ -64,7 +64,7 @@ class AddEventTableUseCase  {
                            "status": event.status]
                             as [String : Any]
             var eventEDit = Event(id: event.id, name: event.name , date: event.date, eventImage: event.eventImage, spent: 0, status: event.status)
-            Defined.ref.child(FirebasePath.event).child(event.id!).updateChildValues(event1,withCompletionBlock: { error , ref in
+            Defined.ref.child(Path.event.getPath()).child(event.id!).updateChildValues(event1,withCompletionBlock: { error , ref in
                 if error == nil {
                     self.delegate?.editEvent(event: eventEDit)
                 }else{

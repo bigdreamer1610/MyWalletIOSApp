@@ -25,7 +25,7 @@ extension ScanBillUseCase: ScanBillUseCaseDelegate {
             "date": transaction.date ?? "",
             "note": transaction.note ?? ""] as [String : Any]
         
-        Defined.ref.child(FirebasePath.expense).childByAutoId().setValue(userTransaction, withCompletionBlock: {
+        Defined.ref.child(Path.expense.getPath()).childByAutoId().setValue(userTransaction, withCompletionBlock: {
             error, ref in
             if error == nil {}
             else {}

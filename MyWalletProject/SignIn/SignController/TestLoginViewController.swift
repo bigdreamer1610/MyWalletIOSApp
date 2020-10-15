@@ -40,7 +40,6 @@ class TestLoginViewController: UIViewController {
          }
         
          let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
-            print("cancel")
         }
         
         alertController.addAction(confirmAction)

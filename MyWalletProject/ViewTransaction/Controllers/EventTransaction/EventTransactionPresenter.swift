@@ -116,10 +116,9 @@ extension EventTransactionPresenter {
     }
 }
 extension EventTransactionPresenter : EventTransactionUseCaseDelegate {
-    func responseDataCategory(cate: [Category]) {
+    func responseDataCategories(cate: [Category]) {
         self.categories = cate
     }
-    
     func responseDataTransactions(trans: [Transaction]) {
         self.allTransactions = trans
         fetchData()

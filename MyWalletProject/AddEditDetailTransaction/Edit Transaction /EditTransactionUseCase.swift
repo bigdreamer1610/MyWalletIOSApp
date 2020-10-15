@@ -29,7 +29,7 @@ extension EditTransactionUseCase {
         }
         //transactiontype changes
         if trans.transactionType != oldTrans.transactionType {
-            Defined.ref.child(FirebasePath.transaction).child(oldTrans.transactionType ?? "").child("\(trans.id ?? "")").removeValue()
+            Defined.ref.child(Path.transaction.getPath()).child(oldTrans.transactionType ?? "").child("\(trans.id ?? "")").removeValue()
         }
         // adjust balance
         if trans.transactionType == TransactionType.expense.getValue() {
@@ -39,7 +39,7 @@ extension EditTransactionUseCase {
         }
         
         // update balance in firebase
-        Defined.ref.child(FirebasePath.information).updateChildValues(["balance": balance]){ (error,reference) in
+        Defined.ref.child(Path.information.getPath()).updateChildValues(["balance": balance]){ (error,reference) in
             
         }
         
@@ -47,7 +47,7 @@ extension EditTransactionUseCase {
         Defined.defaults.set(balance, forKey: Constants.balance)
         
         //update transaction
-        Defined.ref.child(FirebasePath.transaction).child("/\(trans.transactionType!)/\(trans.id ?? "")").updateChildValues(update) { (error, reference) in
+        Defined.ref.child(Path.transaction.getPath()).child("/\(trans.transactionType!)/\(trans.id ?? "")").updateChildValues(update) { (error, reference) in
             if error != nil {
                 
             } else {
