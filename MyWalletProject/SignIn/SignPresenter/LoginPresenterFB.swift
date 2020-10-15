@@ -42,33 +42,30 @@ class LoginFbPresenter {
                 if (error == nil){
                     let dict = result as! [String : AnyObject]
                     let picutreDic = dict as NSDictionary
-                    // id
-                    let idOfUser = picutreDic.object(forKey: "id") as! String
-                    // name
-                    let nameOfUser = picutreDic.object(forKey: "name") as! String
-                    // email
-                    var tmpEmailAdd = ""
-                    if let emailAddress = picutreDic.object(forKey: "email") {
-                        tmpEmailAdd = emailAddress as! String
-                    }
-                    else {
-                        var usrName = nameOfUser
-                        usrName = usrName.lowercased().replacingOccurrences(of: " ", with: "")
-                        tmpEmailAdd = usrName+"@facebook.com"
-                    }
-                    LoginUseCase().checkAccountExist(id: idOfUser, name: nameOfUser, email: tmpEmailAdd)
-                    
-                    Defined.defaults.set(idOfUser, forKey: Constants.userid)
-                    Defined.defaults.set(nameOfUser, forKey: Constants.username)
-                    Defined.defaults.set(tmpEmailAdd, forKey: Constants.email)
-                    Defined.defaults.set(true, forKey: Constants.loginStatus)
-                    if let controller = self.parentViewController as? LoginViewController {
-                        controller.nextCategory(viewController: controller)
+
+                    if let idOfUser = picutreDic.object(forKey: "id") as? String,let nameOfUser = picutreDic.object(forKey: "name") as? String {
+                        var tmpEmailAdd = ""
+                        if let emailAddress = picutreDic.object(forKey: "email") {
+                            tmpEmailAdd = emailAddress as! String
+                        }
+                        else {
+                            var usrName = nameOfUser
+                            usrName = usrName.lowercased().replacingOccurrences(of: " ", with: "")
+                            tmpEmailAdd = usrName+"@facebook.com"
+                        }
+                        LoginUseCase().checkAccountExist(id: idOfUser, name: nameOfUser, email: tmpEmailAdd)
                         
+                        Defined.defaults.set(idOfUser, forKey: Constants.userid)
+                        Defined.defaults.set(nameOfUser, forKey: Constants.username)
+                        Defined.defaults.set(tmpEmailAdd, forKey: Constants.email)
+                        Defined.defaults.set(true, forKey: Constants.loginStatus)
+                        if let controller = self.parentViewController as? LoginViewController {
+                            controller.nextCategory(viewController: controller)
+                        }
                     }
+         
                 }
             })
         }
     }
 }
-
