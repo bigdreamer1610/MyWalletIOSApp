@@ -31,9 +31,11 @@ class EventCell: UITableViewCell {
     }
 
     func load(event: Event )  {
+        var so = event.spent!
         imgCategory.image = UIImage(named: event.eventImage!)
         nameEvent.text = event.name
-        lbSpent.text = format.formatInt(so: event.spent!)
+        lbSpent.text = format.formatInt(so: so)
+        so = 0
         lblDate.text = checkDate.stillDate(endDate: event.date!)
     }
     

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import FirebaseDatabase
+import CodableFirebase
 
 protocol ReportUseCaseDelegate {
     func responseIncomeData(incomeArray: [Transaction], sumIncome: Int)
@@ -39,7 +40,7 @@ extension ReportUseCase {
                 let date = dict["date"] as! String
                 let categoryid = dict["categoryid"] as! String
                 let note = dict["note"] as! String
-                
+
                 let tempDate = date.split(separator: "/")
                 let checkDate = tempDate[1] + "/" + tempDate[2]
                 if dateInput == checkDate {

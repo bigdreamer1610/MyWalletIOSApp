@@ -216,7 +216,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CeU-Ro-fjw">
-                                <rect key="frame" x="0.0" y="324" width="414" height="40"/>
+                                <rect key="frame" x="0.0" y="234" width="414" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kin-vc-I57">
                                         <rect key="frame" x="185" y="5" width="44.333333333333343" height="30"/>
@@ -239,7 +239,7 @@
                         <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="YTi-71-1Cc" firstAttribute="trailing" secondItem="mvW-hB-EZF" secondAttribute="trailing" id="7Ni-LP-9WP"/>
-                            <constraint firstItem="CeU-Ro-fjw" firstAttribute="top" secondItem="YTi-71-1Cc" secondAttribute="bottom" constant="150" id="IsN-E0-TUU"/>
+                            <constraint firstItem="CeU-Ro-fjw" firstAttribute="top" secondItem="YTi-71-1Cc" secondAttribute="bottom" constant="60" id="IsN-E0-TUU"/>
                             <constraint firstItem="YTi-71-1Cc" firstAttribute="top" secondItem="5MJ-Nt-ZRB" secondAttribute="bottom" id="PCo-Wa-BC2"/>
                             <constraint firstItem="CeU-Ro-fjw" firstAttribute="leading" secondItem="mvW-hB-EZF" secondAttribute="leading" id="UYH-2m-fNT"/>
                             <constraint firstItem="5MJ-Nt-ZRB" firstAttribute="top" secondItem="mvW-hB-EZF" secondAttribute="top" constant="30" id="YUZ-Af-mar"/>

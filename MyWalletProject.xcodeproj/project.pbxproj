@@ -51,6 +51,9 @@
 		72154283252EA2C10023BD9B /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72154282252EA2C10023BD9B /* State.swift */; };
 		724F64ED252FF4710067DED9 /* ReportPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724F64EC252FF4710067DED9 /* ReportPresenter.swift */; };
 		724F64EF252FF4AF0067DED9 /* ReportUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724F64EE252FF4AF0067DED9 /* ReportUseCase.swift */; };
+		725E08AD2537E0CE00DB9241 /* DayDetailSBC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725E08AC2537E0CE00DB9241 /* DayDetailSBC.swift */; };
+		725E08B12537E16A00DB9241 /* DayDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 725E08AF2537E16A00DB9241 /* DayDetail.swift */; };
+		725E08B22537E16A00DB9241 /* DayDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = 725E08B02537E16A00DB9241 /* DayDetail.xib */; };
 		7268ACE42536A0BC00208A8B /* DayDetailPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7268ACE32536A0BC00208A8B /* DayDetailPC.swift */; };
 		7268ACE82536A1D000208A8B /* DayDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7268ACE62536A1D000208A8B /* DayDetailCell.swift */; };
 		7268ACE92536A1D000208A8B /* DayDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7268ACE72536A1D000208A8B /* DayDetailCell.xib */; };
@@ -84,8 +87,6 @@
 		73204F37252F00F60067432B /* FooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73204F35252F00F60067432B /* FooterCell.swift */; };
 		73204F38252F00F60067432B /* FooterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73204F36252F00F60067432B /* FooterCell.xib */; };
 		7338861D25231F67002F126B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7338860325231F67002F126B /* Constants.swift */; };
-		7338861E25231F68002F126B /* BacNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7338860425231F67002F126B /* BacNavigationController.swift */; };
-		7338861F25231F68002F126B /* DetailTransaction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7338860525231F67002F126B /* DetailTransaction.storyboard */; };
 		7338862625231F68002F126B /* CustomDateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7338861025231F67002F126B /* CustomDateController.swift */; };
 		7338862725231F68002F126B /* SelectCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7338861225231F67002F126B /* SelectCategoryCell.xib */; };
 		7338862825231F68002F126B /* SelectCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7338861325231F67002F126B /* SelectCategoryCell.swift */; };
@@ -293,6 +294,9 @@
 		7217ED81FA2304CDEDF74146 /* Pods-MyWalletProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyWalletProject.debug.xcconfig"; path = "Target Support Files/Pods-MyWalletProject/Pods-MyWalletProject.debug.xcconfig"; sourceTree = "<group>"; };
 		724F64EC252FF4710067DED9 /* ReportPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportPresenter.swift; sourceTree = "<group>"; };
 		724F64EE252FF4AF0067DED9 /* ReportUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportUseCase.swift; sourceTree = "<group>"; };
+		725E08AC2537E0CE00DB9241 /* DayDetailSBC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailSBC.swift; sourceTree = "<group>"; };
+		725E08AF2537E16A00DB9241 /* DayDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetail.swift; sourceTree = "<group>"; };
+		725E08B02537E16A00DB9241 /* DayDetail.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DayDetail.xib; sourceTree = "<group>"; };
 		7268ACE32536A0BC00208A8B /* DayDetailPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailPC.swift; sourceTree = "<group>"; };
 		7268ACE62536A1D000208A8B /* DayDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailCell.swift; sourceTree = "<group>"; };
 		7268ACE72536A1D000208A8B /* DayDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DayDetailCell.xib; sourceTree = "<group>"; };
@@ -326,8 +330,6 @@
 		73204F35252F00F60067432B /* FooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterCell.swift; sourceTree = "<group>"; };
 		73204F36252F00F60067432B /* FooterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterCell.xib; sourceTree = "<group>"; };
 		7338860325231F67002F126B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../AddEditDetailTransaction/Constants.swift; sourceTree = "<group>"; };
-		7338860425231F67002F126B /* BacNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BacNavigationController.swift; sourceTree = "<group>"; };
-		7338860525231F67002F126B /* DetailTransaction.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DetailTransaction.storyboard; sourceTree = "<group>"; };
 		7338861025231F67002F126B /* CustomDateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDateController.swift; sourceTree = "<group>"; };
 		7338861225231F67002F126B /* SelectCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectCategoryCell.xib; sourceTree = "<group>"; };
 		7338861325231F67002F126B /* SelectCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCategoryCell.swift; sourceTree = "<group>"; };
@@ -670,6 +672,7 @@
 		7222A9492525AA2700146CD1 /* ViewPieChart */ = {
 			isa = PBXGroup;
 			children = (
+				7268ACE22536A05600208A8B /* ViewDetailPieChart */,
 				72873D7B25249A3F00313629 /* DetailPieChartVC.swift */,
 			);
 			path = ViewPieChart;
@@ -678,6 +681,7 @@
 		7222A94B2525AA5500146CD1 /* ViewSatckedBarChart */ = {
 			isa = PBXGroup;
 			children = (
+				725E08AB2537E07800DB9241 /* ViewDetailStackedBarChart */,
 				72873D7925249A2900313629 /* DetailStackedBarChartVC.swift */,
 			);
 			path = ViewSatckedBarChart;
@@ -691,6 +695,23 @@
 				724F64EE252FF4AF0067DED9 /* ReportUseCase.swift */,
 			);
 			path = ViewReport;
+			sourceTree = "<group>";
+		};
+		725E08AB2537E07800DB9241 /* ViewDetailStackedBarChart */ = {
+			isa = PBXGroup;
+			children = (
+				725E08AC2537E0CE00DB9241 /* DayDetailSBC.swift */,
+			);
+			path = ViewDetailStackedBarChart;
+			sourceTree = "<group>";
+		};
+		725E08AE2537E0FE00DB9241 /* DayDetailSBC */ = {
+			isa = PBXGroup;
+			children = (
+				725E08AF2537E16A00DB9241 /* DayDetail.swift */,
+				725E08B02537E16A00DB9241 /* DayDetail.xib */,
+			);
+			path = DayDetailSBC;
 			sourceTree = "<group>";
 		};
 		7268ACE22536A05600208A8B /* ViewDetailPieChart */ = {
@@ -727,6 +748,7 @@
 		72873D8225249A8100313629 /* DetaiCell */ = {
 			isa = PBXGroup;
 			children = (
+				725E08AE2537E0FE00DB9241 /* DayDetailSBC */,
 				72873D8525249ACB00313629 /* DetailSBCCell.swift */,
 				72873D8625249ACB00313629 /* DetailSBCCell.xib */,
 				72873D8925249AFC00313629 /* DetailSBCTableViewCell.swift */,
@@ -741,7 +763,6 @@
 				7215427E252EA24A0023BD9B /* Model */,
 				72A71910251DDDBD003ED157 /* View */,
 				72A71911251DDDC8003ED157 /* Controller */,
-				7268ACE22536A05600208A8B /* ViewDetailPieChart */,
 				72A7190E251DDD43003ED157 /* Report.storyboard */,
 			);
 			path = Report;
@@ -801,8 +822,6 @@
 		7338860225231F67002F126B /* AddEditDetailTransaction */ = {
 			isa = PBXGroup;
 			children = (
-				7338860425231F67002F126B /* BacNavigationController.swift */,
-				7338860525231F67002F126B /* DetailTransaction.storyboard */,
 				7338860625231F67002F126B /* Add Transaction */,
 				7338861925231F67002F126B /* Edit Transaction  */,
 				7338861B25231F67002F126B /* Detail Transaction */,
@@ -1541,6 +1560,7 @@
 				73E0B1872521E0EE0097D41F /* BottomMenuCell.xib in Resources */,
 				D29A104E251C4D15009EF2DC /* GoogleService-Info.plist in Resources */,
 				72873D8825249ACB00313629 /* DetailSBCCell.xib in Resources */,
+				725E08B22537E16A00DB9241 /* DayDetail.xib in Resources */,
 				7268ACE92536A1D000208A8B /* DayDetailCell.xib in Resources */,
 				7338862725231F68002F126B /* SelectCategoryCell.xib in Resources */,
 				72A71924251DDEEE003ED157 /* PieChartCollectionViewCell.xib in Resources */,
@@ -1553,7 +1573,6 @@
 				73E0B1842521E0EE0097D41F /* TransactionDayCell.xib in Resources */,
 				73E0B1782521E0EE0097D41F /* ViewTransaction.storyboard in Resources */,
 				56053C442525E8F500685FFC /* DetailBudgetCell.xib in Resources */,
-				7338861F25231F68002F126B /* DetailTransaction.storyboard in Resources */,
 				56B8A8032524898400B8E8F0 /* BudgetCell.xib in Resources */,
 				73E0B17D2521E0EE0097D41F /* TransactionCell.xib in Resources */,
 				73E0B18A2521E0EE0097D41F /* MonthCell.xib in Resources */,
@@ -1652,6 +1671,7 @@
 				D22597E6252C714300B7AB3B /* EventUseCase.swift in Sources */,
 				56B8A7EC2524841400B8E8F0 /* LoginUseCase.swift in Sources */,
 				8ACA624C251A07980031E6DF /* ViewController.swift in Sources */,
+				725E08AD2537E0CE00DB9241 /* DayDetailSBC.swift in Sources */,
 				73E0B1852521E0EE0097D41F /* HeaderCategoryCell.swift in Sources */,
 				56B8A7F42524857E00B8E8F0 /* TestLoginViewController.swift in Sources */,
 				73E0B17F2521E0EE0097D41F /* HeaderTransactionCell.swift in Sources */,
@@ -1715,7 +1735,6 @@
 				73AEA873253539FB00DC1EA7 /* Extensions.swift in Sources */,
 				72873D9F25249C3200313629 /* NameTableViewCell.swift in Sources */,
 				8A3BB40B251ADE6E008113E9 /* Transaction.swift in Sources */,
-				7338861E25231F68002F126B /* BacNavigationController.swift in Sources */,
 				73E0B18B2521E0EE0097D41F /* MonthCell.swift in Sources */,
 				8A3BB42D251B21A2008113E9 /* SettingsViewController.swift in Sources */,
 				73E0B1812521E0EE0097D41F /* DetailCell.swift in Sources */,
@@ -1751,6 +1770,7 @@
 				72873D9B25249C0800313629 /* DetailPieTableViewCell.swift in Sources */,
 				56B8A7F02524849300B8E8F0 /* LoginPresenterFB.swift in Sources */,
 				8A3D7DF6252C6865004F4FEA /* AddEditCategoryUseCase.swift in Sources */,
+				725E08B12537E16A00DB9241 /* DayDetail.swift in Sources */,
 				73D7D893252C07B50014F5A1 /* OverviewCell.swift in Sources */,
 				D22597EF252C721C00B7AB3B /* EventImgUseCase.swift in Sources */,
 				7338862825231F68002F126B /* SelectCategoryCell.swift in Sources */,

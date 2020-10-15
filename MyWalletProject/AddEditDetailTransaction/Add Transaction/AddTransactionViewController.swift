@@ -37,8 +37,10 @@ class AddTransactionViewController: UIViewController {
     var timer = Timer()
     var budgets = [Budget]()
     
+    var selectTravelMode:TravelModeViewController?
+    
     var language = ChangeLanguage.english.rawValue
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +49,7 @@ class AddTransactionViewController: UIViewController {
         customizeLayout()
         scheduledTimerWithTimeInterval()
         setLanguage()
-        
+        checkTravelMode()
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         tapGestureRecognizer.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGestureRecognizer)
@@ -65,8 +67,17 @@ class AddTransactionViewController: UIViewController {
         tfNote.placeholder =  AddTransactionDataString.note.rawValue.addLocalizableString(str: language)
         tfEvent.placeholder =  AddTransactionDataString.selectEvent.rawValue.addLocalizableString(str: language)
         lblAmount.text = AddTransactionDataString.amount.rawValue.addLocalizableString(str: language)
-
         
+        
+    }
+    
+    func checkTravelMode() {
+        let status = Defined.defaults.bool(forKey: "travelMode")
+        if status {
+            iconEvent.image = UIImage(named: Defined.defaults.string(forKey: "eventTravelImage")!)
+            tfEvent.text = Defined.defaults.string(forKey: "eventTravelName")
+            eventid = Defined.defaults.string(forKey: "eventTravelId")
+        }
     }
     @objc func hideKeyboard(){
         self.view.endEditing(true)
@@ -130,8 +141,7 @@ class AddTransactionViewController: UIViewController {
     @IBAction func clickCancel(_ sender: Any) {
         timer.invalidate()
         self.dismiss(animated: true, completion: nil)
-        //let vc = RouterType.tabbar.getVc()
-        //AppRouter.routerTo(from: vc, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
+      
         
     }
     
@@ -147,6 +157,7 @@ class AddTransactionViewController: UIViewController {
                 alert.addAction(UIAlertAction(title: AddTransactionDataString.ok.rawValue.addLocalizableString(str: language),
                                               style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
+                
                 return
             }
         }
@@ -159,9 +170,9 @@ class AddTransactionViewController: UIViewController {
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: AddTransactionDataString.ok.rawValue.addLocalizableString(str: language),
                                       style: .default, handler: { (action) in
-//            let vc = RouterType.tabbar.getVc()
-//            AppRouter.routerTo(from: vc, options: .curveEaseOut, duration: 0.2, isNaviHidden: true)
-            self.dismiss(animated: true, completion: nil)
+
+                                        self.dismiss(animated: true, completion: nil)
+
         }))
         self.present(alert, animated: true, completion: nil)
     }
@@ -171,8 +182,9 @@ class AddTransactionViewController: UIViewController {
             self.viewShowMore.isHidden = false
             self.btnAddMore.isHidden = true
         }
-        
+
     }
+    
     @IBAction func btnDeleteMoreDetails(_ sender: Any) {
         eventid?.removeAll()
         tfEvent.text = ""
@@ -182,15 +194,15 @@ class AddTransactionViewController: UIViewController {
     func scheduledTimerWithTimeInterval(){
         timer = Timer.scheduledTimer(timeInterval: 0, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
     }
+    
     @objc func updateCounting(){
         let checkAmount = Int(tfAmount.text!)
         if checkAmount == 0 || tfDate.text!.isEmpty || tfCategory.text!.isEmpty || tfAmount.text!.isEmpty{
             btnSave.isEnabled = false
-
+            
         }else{
             btnSave.isEnabled = true
         }
-        
     }
 }
 
@@ -208,6 +220,7 @@ extension AddTransactionViewController : UITextFieldDelegate {
     }
 }
 extension AddTransactionViewController : SelectDate, SelectCategory,SelectEvent {
+    
     func setDate(date: String) {
         tfDate.text = date
     }

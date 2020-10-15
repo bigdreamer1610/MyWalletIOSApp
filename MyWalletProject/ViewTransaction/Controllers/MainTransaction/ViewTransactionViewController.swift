@@ -40,7 +40,6 @@ class ViewTransactionViewController: UIViewController {
     var currentMonth = 9
     var currentYear = 2020
     var mode = UserDefaults.standard.string(forKey: "viewmode")
-    var userid = Defined.defaults.string(forKey: Constants.userid)
     
     @IBOutlet var monthCollectionView: UICollectionView!
     @IBOutlet var btnShowMore: UIButton!
@@ -57,7 +56,6 @@ class ViewTransactionViewController: UIViewController {
         super.viewDidLoad()
         initComponents()
         self.tabBarController?.tabBar.tintColor = UIColor.colorFromHexString(hex: "564f64")
-        //9d65cd
         //set up date
         todayYear = Defined.calendar.component(.year, from: today)
         todayMonth = Defined.calendar.component(.month, from: today)
@@ -72,12 +70,7 @@ class ViewTransactionViewController: UIViewController {
         setUpNoTransaction(status: true)
         Defined.dateFormatter.locale = Locale(identifier: "vi_VN")
         Defined.dateFormatter.dateFormat = "dd/MM/yyyy"
-        
-        if userid == nil {
-            userid = "userid1"
-            Defined.defaults.set(userid, forKey: Constants.userid)
-        }
-        
+
         if mode == nil {
             UserDefaults.standard.set(Mode.transaction.getValue(), forKey: Constants.mode)
             mode = Mode.transaction.getValue()
@@ -108,13 +101,13 @@ class ViewTransactionViewController: UIViewController {
         Defined.defaults.set(year, forKey: Constants.currentYear)
     }
     
-    func initData(month: Int, year: Int){
+    fileprivate func initData(month: Int, year: Int){
         transactionTableView.isHidden  = true
         presenter?.setUpMonthYear(month: month, year: year)
         presenter?.fetchData()
     }
     
-    func initComponents(){
+    fileprivate func initComponents(){
         DetailCell.registerCellByNib(transactionTableView)
         HeaderTransactionCell.registerCellByNib(transactionTableView)
         TransactionCell.registerCellByNib(transactionTableView)
@@ -278,9 +271,7 @@ extension ViewTransactionViewController : UITableViewDataSource {
         switch tableView {
         case self.tableView:
             if indexPath.row == 0 {
-                let vc = RouterType.balance.getVc()
-                vc.modalPresentationStyle = .fullScreen
-                self.present(vc, animated: true, completion: nil)
+                AppRouter.routerTo(from: self, router: .balance, options: .present)
             } else if indexPath.row == 1 {
                 if mode == Mode.transaction.getValue() {
                     mode = Mode.category.getValue()
@@ -411,11 +402,15 @@ extension ViewTransactionViewController : UICollectionViewDelegateFlowLayout, UI
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
             if let month = monthTitles[indexPath.row].dateComponents.month,
                 let year = monthTitles[indexPath.row].dateComponents.year{
+                //reset default current month, year
                 setUpCurrentDate(month: month, year: year)
+                // reset current date
                 current = Defined.dateFormatter.date(from: "02/\(month)/\(year)")!
+                // reload data transaction
                 presenter?.getDataTransaction(month: Defined.defaults.integer(forKey: Constants.currentMonth), year: Defined.defaults.integer(forKey: Constants.currentYear))
-                
+                //mark selected cell
                 collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
+                //scroll tableview to top
                 scrollToTop()
             }
     }
