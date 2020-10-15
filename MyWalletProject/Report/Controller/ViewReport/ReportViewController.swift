@@ -45,6 +45,15 @@ class ReportViewController: UIViewController {
         self.presenter?.requestCategories(nameNode: "expense")
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        super.viewWillDisappear(animated)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
     func setupDelegate(presenter: ReportPresenter) {
         self.presenter = presenter
     }
