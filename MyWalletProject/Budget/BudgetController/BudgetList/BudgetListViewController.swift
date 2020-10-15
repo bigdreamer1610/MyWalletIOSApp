@@ -13,13 +13,14 @@ class BudgetListViewController: UIViewController {
     @IBOutlet weak var lblTotalMoney: UILabel!
     @IBOutlet weak var segmentTime: UISegmentedControl!
     @IBOutlet weak var btnBack: UIBarButtonItem!
+    @IBOutlet weak var imgNoneData: UIImageView!
     
     var refreshControl = UIRefreshControl()
     var budget: Budget?
     var listBudgetCurrent:[Budget] = []
     var listBudgetFinish:[Budget] = []
     var listTransaction:[Transaction] = []
-    var totalMoneyCurrent = 0
+    var totalMoneyCurrent = 0 
     var totalMoneyFinish = 0
     var segmentIndex = 0
     var amount = 0
@@ -100,19 +101,33 @@ extension BudgetListViewController : UITableViewDataSource , UITableViewDelegate
         self.totalMoneyCurrent = 0
         self.totalMoneyFinish = 0
         if segmentIndex == 0{
-            totalMoneyFinish = 0
+            self.totalMoneyFinish = 0
             for budget in self.listBudgetCurrent {
                 self.totalMoneyCurrent += budget.amount ?? 0
-                self.lblTotalMoney.text = "\(BudgetListDataString.total.rawValue.addLocalizableString(str: language)): \(self.totalMoneyCurrent)"
             }
+            if (self.listBudgetCurrent.count < 1){
+                self.imgNoneData.isHidden = false
+                self.lblTotalMoney.isHidden = true
+            } else {
+                self.imgNoneData.isHidden = true
+                self.lblTotalMoney.isHidden = false
+            }
+            self.lblTotalMoney.text = "\(BudgetListDataString.total.rawValue.addLocalizableString(str: language)): \(self.totalMoneyCurrent)"
             return listBudgetCurrent.count
         }
         else{
-            totalMoneyCurrent = 0
+            self.totalMoneyCurrent = 0
             for budget in self.listBudgetFinish {
                 self.totalMoneyFinish += budget.amount ?? 0
-                self.lblTotalMoney.text = "\(BudgetListDataString.total.rawValue.addLocalizableString(str: language)): \(self.totalMoneyFinish)"
             }
+            if (self.listBudgetFinish.count < 1){
+                self.imgNoneData.isHidden = false
+                self.lblTotalMoney.isHidden = true
+            } else {
+                self.imgNoneData.isHidden = true
+                self.lblTotalMoney.isHidden = false
+            }
+            self.lblTotalMoney.text = "\(BudgetListDataString.total.rawValue.addLocalizableString(str: language)): \(self.totalMoneyFinish)"
             return listBudgetFinish.count
         }
     }
@@ -152,7 +167,6 @@ extension BudgetListViewController : UITableViewDataSource , UITableViewDelegate
                 vc.budgetID = listBudgetFinish[indexPath.row].id!
                 vc.language = language
             }
-//            vc.delegateBudgetDetail = self
             navigationController?.pushViewController(vc, animated: true)
         }
     }
