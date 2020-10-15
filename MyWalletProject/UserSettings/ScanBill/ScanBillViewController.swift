@@ -56,6 +56,7 @@ class ScanBillViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Border image view
     func borderImageView(_ imageView: UIImageView) {
+        imageView.setImageColor(color: #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1))
         imageView.layer.cornerRadius = 10
         imageView.layer.borderWidth = 1
         imageView.layer.borderColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0).cgColor
