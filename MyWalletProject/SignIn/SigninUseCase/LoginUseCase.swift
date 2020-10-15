@@ -10,33 +10,27 @@ import Foundation
 import Firebase
 
 class LoginUseCase {
-    var ref = Database.database().reference()
+//    var ref = Database.database().reference()
     
     var loginController:LoginViewController = LoginViewController()
-    
-    //MARK: - Create Account
-    func createProfileAccountFirebase(id : String , name : String , email : String){
-        let profile = [
-            "name" : name,
-            "email" : email,
-            "balance" : 0
-            ] as [String : Any]
-        
-        ref.child("Account").child(String(id)).child("information").setValue(profile,withCompletionBlock: { error , ref in
-            if error == nil {
-            }else{
-            }
-        } )
-        
-    }
-    
+
     //MARK: - Check account exist
     func checkAccountExist(id : String , name :String , email : String){
-        ref.child("Account").observeSingleEvent(of: .value, with: { (snapshot) in
+        Defined.ref.child("Account").observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.hasChild(id){
-                
+                return
             } else{
-                self.createProfileAccountFirebase(id: id, name: name ,email: email)
+                let profile = [
+                    "name" : name,
+                    "email" : email,
+                    "balance" : 0
+                    ] as [String : Any]
+                
+                Defined.ref.child("Account").child(String(id)).child("information").setValue(profile,withCompletionBlock: { error , ref in
+                    if error == nil {
+                    }else{
+                    }
+                } )
             }
         })
     }
