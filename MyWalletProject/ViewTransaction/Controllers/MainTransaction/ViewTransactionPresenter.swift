@@ -238,10 +238,7 @@ extension ViewTransactionPresenter {
         let previousDates = getDateArray(arr: Defined.getAllDayArray(allTransactions: allTransactions), month: previousMonth, year: previousYear)
         let currentDates = getDateArray(arr: Defined.getAllDayArray(allTransactions: allTransactions), month: month, year: year)
         let open = calculateDetail(list: getTransactionbyDate(dateArr: previousDates))
-        var end = open + calculateDetail(list: getTransactionbyDate(dateArr: currentDates))
-        if month == today.dateComponents.month && year == today.dateComponents.year {
-            end = Defined.defaults.integer(forKey: Constants.balance)
-        }
+        let end = open + calculateDetail(list: getTransactionbyDate(dateArr: currentDates))
         delegate?.getDetailCellInfo(info: DetailInfo(opening: open, ending: end))
         
     }

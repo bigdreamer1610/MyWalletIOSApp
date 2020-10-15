@@ -28,21 +28,24 @@ class SelectCategoryController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.navigationController?.navigationBar.tintColor = #colorLiteral(red: 0.3929189782, green: 0.4198221317, blue: 0.8705882353, alpha: 1)
         tableView.register(UINib(nibName: cellId, bundle: nil), forCellReuseIdentifier: cellId)
         GetListCategoryExpense()
         setLanguage()
+        setupSegmentTextColor()
     }
     
     func setLanguage(){
         segmentedControl.setTitle(SelectCategoryDataString.expense.rawValue.addLocalizableString(str: language), forSegmentAt: 0)
         segmentedControl.setTitle(SelectCategoryDataString.income.rawValue.addLocalizableString(str: language), forSegmentAt: 1)
         navigationItem.title = DetailTransactionDataString.detailTransaction.rawValue.addLocalizableString(str: language)
-
-        
-
-
     }
+    
+    func setupSegmentTextColor() {
+           segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.colorFromHexString(hex: "646BDE")], for: UIControl.State.selected)
+           segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: UIControl.State.normal)
+       }
     
     @IBAction func btnSelectCategory(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {

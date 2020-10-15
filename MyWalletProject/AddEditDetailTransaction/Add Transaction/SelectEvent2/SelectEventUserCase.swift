@@ -42,7 +42,6 @@ extension SelectEventUserCase{
                         events.append(model)
                     }
                 } catch let error {
-                    print(error)
                 }
             }
             self.delegate?.responseData(data: events)

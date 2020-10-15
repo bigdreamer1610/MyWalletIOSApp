@@ -26,6 +26,10 @@ extension BudgetListUseCase {
         var listBudgetFinish = [Budget]()
         var listTransaction = [Transaction]()
         
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        let timeString = formatter.string(from: time)
+        
         let dispatchGroup = DispatchGroup() // tạo luồng load cùng 1 nhóm
         // load api Budget
         dispatchGroup.enter()
@@ -44,13 +48,16 @@ extension BudgetListUseCase {
                 let startDate = dict["startDate"] as? String
                 let endDate = dict["endDate"] as? String
                 let budget = Budget(id: id, categoryId: cateId, categoryName: cateName, categoryImage: cateImage, transactionType: transType, amount: amount, startDate: startDate, endDate: endDate)
-                let formatter = DateFormatter()
-                formatter.dateFormat = "dd/MM/yyyy"
                 let end = formatter.date(from: endDate ?? "")
-                if let end = end , end < time {
-                    listBudgetFinish.append(budget)
-                } else {
+                
+                if endDate == timeString {
                     listBudgetCurrent.append(budget)
+                } else {
+                    if let end = end , end <= time {
+                        listBudgetFinish.append(budget)
+                    } else {
+                        listBudgetCurrent.append(budget)
+                    }
                 }
             }
             dispatchGroup.leave()

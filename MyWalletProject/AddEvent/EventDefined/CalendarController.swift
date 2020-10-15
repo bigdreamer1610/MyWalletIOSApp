@@ -17,17 +17,12 @@ class CalendarController: UIViewController, FSCalendarDelegate {
     var textFomat: String?
     var dateLich: String?
     var checkDate = CheckDate()
-    var defined = EventDefined()
-    var state = 3
-    
-    
+
     @IBOutlet weak var vCalendar: FSCalendar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         vCalendar.delegate = self
-      
-        
         // Do any additional setup after loading the view.
     }
     
@@ -41,8 +36,7 @@ class CalendarController: UIViewController, FSCalendarDelegate {
             completionHandler?(formatDate)
             self.navigationController?.popViewController(animated: true)
         } else {
-           var alert = defined.alert(state: state)
-            self.present(alert, animated: true, completion: nil)
+          let alert2 = AlertUtil.showAlert(from: self, with: "Message", message: "The event cannot be a date in the past")
         }
         
     }

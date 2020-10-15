@@ -127,7 +127,6 @@ extension BudgetTransactionPresenter {
         dates = getDateArray(arr: Defined.getAllDayArray(allTransactions: allTransactions), startDate: budget.startDate!, endDate: budget.endDate!)
         //get transaction by month
         finalTransactions = Defined.getTransactionbyDate(dateArr: dates, allTrans: allTransactions)
-        print("final transactions: \(finalTransactions.count)")
     }
     
 }
@@ -136,7 +135,6 @@ extension BudgetTransactionPresenter : BudgetTransactionUseCaseDelegate {
     func responseDataTransactions(trans: [Transaction]) {
         self.allTransactions = trans
         fetchData()
-        //delegate?.getAllTransactions(trans: trans)
     }
     
     
