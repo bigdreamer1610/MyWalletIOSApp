@@ -313,7 +313,7 @@
                             </tableView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="SCg-m4-Trc">
                                 <rect key="frame" x="20" y="54" width="374" height="41"/>
-                                <color key="backgroundColor" red="0.39291897819999999" green="0.41982213169999999" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.4679908156" green="0.50627368689999996" blue="0.8453090191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="WlN-Ai-t7j"/>
                                 </constraints>
@@ -321,6 +321,7 @@
                                     <segment title="Expense"/>
                                     <segment title="Income"/>
                                 </segments>
+                                <color key="tintColor" red="0.073296807709999995" green="0.77996617560000003" blue="0.53346502780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="btnSelectCategory:" destination="Keu-qg-oES" eventType="valueChanged" id="2hE-e5-Gtw"/>
                                 </connections>
@@ -356,7 +357,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rkY-i2-zWe">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <connections>
@@ -374,13 +375,20 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6zr-oT-RGv"/>
                     </view>
+                    <navigationItem key="navigationItem" id="UET-Rd-BwL">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="tNt-fO-haE">
+                            <connections>
+                                <action selector="btnCancel:" destination="nf0-f8-BQ5" id="LMH-wM-sPt"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="rkY-i2-zWe" id="337-NZ-2KC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e5R-sH-2dQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4425" y="146"/>
+            <point key="canvasLocation" x="5800" y="153.34821428571428"/>
         </scene>
         <!--Detail Transaction-->
         <scene sceneID="Lwo-HI-qtn">
@@ -1175,6 +1183,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cvK-wG-IGF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-425" y="938"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="LbP-JE-s2g">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dqj-pF-5zC" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fEB-W7-AV2">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="nf0-f8-BQ5" kind="relationship" relationship="rootViewController" id="PBB-CH-Lmf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yr2-Sc-kTB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4889.8550724637689" y="153.34821428571428"/>
         </scene>
     </scenes>
     <resources>
