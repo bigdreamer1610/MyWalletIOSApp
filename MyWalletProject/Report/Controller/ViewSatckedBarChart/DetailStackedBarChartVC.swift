@@ -16,6 +16,7 @@ class DetailStackedBarChartVC: UIViewController {
     var date = ""
     var incomeArray = [Transaction]()
     var expenseArray = [Transaction]()
+    var categories = [Category]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +41,7 @@ class DetailStackedBarChartVC: UIViewController {
         self.incomeArray = info.incomeArray
         self.expenseArray = info.expenseArray
         self.netIncome = info.netIncome
+        self.categories = info.categories
     }
     
     @IBAction func popReportVC(_ sender: Any) {
@@ -64,7 +66,7 @@ extension DetailStackedBarChartVC: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else {
             let cell = DetailSBCCell.loadCell(tableView) as! DetailSBCCell
-            cell.setupData(info: SumInfo(sumIncome: sumIncome, sumExpense: sumExpense, netIncome: sumIncome - sumExpense, date: date, incomeArray: incomeArray, expenseArray: expenseArray))
+            cell.setupData(info: SumInfo(sumIncome: sumIncome, sumExpense: sumExpense, netIncome: sumIncome - sumExpense, date: date, incomeArray: incomeArray, expenseArray: expenseArray, categories: categories))
             cell.selectionStyle = .none
             return cell
         }
@@ -72,7 +74,7 @@ extension DetailStackedBarChartVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section != 0 {
             let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "dayDetailSBC") as! DayDetailSBC
-            vc.setupData(info: DetailDaySBC(sumIncome: sumIncome, sumExpense: sumExpense, incomeArray: incomeArray, expenseArray: expenseArray, date: date))
+            vc.setupData(info: DetailDaySBC(sumIncome: sumIncome, sumExpense: sumExpense, incomeArray: incomeArray, expenseArray: expenseArray, date: date, categories: categories))
             navigationController?.pushViewController(vc, animated: true)
         }
     }

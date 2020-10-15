@@ -24,6 +24,7 @@ class DayDetail: BaseTBCell {
 
         
     }
+    
     func setUpData(expense: Int, income: Int) {
         lblExpense.text = String((Defined.formatter.string(from: NSNumber(value: expense))!))
         lblIncome.text = String((Defined.formatter.string(from: NSNumber(value: income))!))

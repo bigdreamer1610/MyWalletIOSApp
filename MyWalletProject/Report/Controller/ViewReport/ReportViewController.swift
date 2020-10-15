@@ -45,6 +45,15 @@ class ReportViewController: UIViewController {
         self.presenter?.requestCategories(nameNode: "expense")
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        super.viewWillDisappear(animated)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
     func setupDelegate(presenter: ReportPresenter) {
         self.presenter = presenter
     }
@@ -132,7 +141,7 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 0:
             let cell = MoneyTableViewCell.loadCell(tableView) as! MoneyTableViewCell
-            cell.setupData(opening: open, ending: end)
+            cell.setupData(opening: open, sumIncome: sumIncome, sumExpense: sumExpense)
             cell.selectionStyle = .none
             return cell
         case 1:
@@ -151,7 +160,7 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailSBC") as! DetailStackedBarChartVC
-            vc.setupData(info: SumInfo(sumIncome: sumIncome, sumExpense: sumExpense, netIncome: sumIncome - sumExpense, date: lblDate.text!, incomeArray: incomeArray, expenseArray: expenseArray))
+            vc.setupData(info: SumInfo(sumIncome: sumIncome, sumExpense: sumExpense, netIncome: sumIncome - sumExpense, date: lblDate.text!, incomeArray: incomeArray, expenseArray: expenseArray, categories: categories))
             navigationController?.pushViewController(vc, animated: true)
         }
     }
