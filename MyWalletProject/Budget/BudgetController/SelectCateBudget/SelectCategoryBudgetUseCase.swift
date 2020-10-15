@@ -30,7 +30,6 @@ extension SelectCategoryBudgetUseCase {
             for case let child as DataSnapshot in data.children{
                 let categoryId = child.key
                 guard let dict = child.value as? [String:Any] else{
-                    print("Error")
                     return
                 }
                 let imgName = dict["iconImage"] as? String

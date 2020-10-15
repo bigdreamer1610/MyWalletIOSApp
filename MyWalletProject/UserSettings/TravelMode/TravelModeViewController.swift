@@ -131,8 +131,8 @@ class TravelModeViewController: UIViewController {
                 Defined.defaults.set(self.event.id, forKey: "eventTravelId")
                 Defined.defaults.set(self.event.eventImage, forKey: "eventTravelImage")
                 Defined.defaults.set(self.event.name, forKey: "eventTravelName")
-                
                 self.navigationController?.popViewController(animated: true)
+                
             }
         } else {
             Defined.defaults.set(false, forKey: "travelMode")
@@ -140,6 +140,7 @@ class TravelModeViewController: UIViewController {
             Defined.defaults.removeObject(forKey: "eventTravelImage")
             Defined.defaults.removeObject(forKey: "eventTravelName")
             self.navigationController?.popViewController(animated: true)
+            
         }
     }
 }

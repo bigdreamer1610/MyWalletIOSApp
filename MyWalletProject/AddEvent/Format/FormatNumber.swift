@@ -10,11 +10,11 @@ import UIKit
 
 class FormatNumber: NSObject {
     public func formatInt(so: Int)  -> String{
-           
+           var money = so
            let numberFormatter = NumberFormatter()
            numberFormatter.numberStyle = .decimal
            numberFormatter.maximumFractionDigits = 3
-           var format = numberFormatter.string(from: so as! NSNumber)!
+           var format = numberFormatter.string(from: money as! NSNumber)!
            return format + " VND"
        }
 
