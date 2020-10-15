@@ -15,7 +15,6 @@ protocol EventUseCaseDelegate: class {
 
 class EventUseCase {
     weak var delegate: EventUseCaseDelegate?
-    var idUser = "userid1"
     var checkDay = CheckDate()
     var dayThis = CheckDate().setDate()
     var arrEvent = [Event]()
@@ -24,7 +23,7 @@ class EventUseCase {
 }
 extension EventUseCase{
     // getdata firebase
-    func getCurrenlyApplying1()  {
+    func getCurrenlyApplying()  {
         dispatchGroup.enter()
         Defined.ref.child(Path.event.getPath()).observe( .value, with: { snapshot in
             self.arrNameEvent.removeAll()
@@ -37,15 +36,12 @@ extension EventUseCase{
                 let status = dict["status"] as? String
                 var check = self.checkDay.checkDate(dateEnd: dateEnd!)
                 if check && status == "true" {
-
                     let id = dict["id"] as? String
                     let img = dict["eventImage"] as? String
                     let nameEvent = dict["name"] as? String
                     let spent = dict["spent"] as? Int
                     let event1 = Event(id: id, name: nameEvent, date: dateEnd, eventImage: img, spent: spent, status: status)
-          
                     self.arrNameEvent.append(nameEvent!)
-
                     self.arrEvent.append(event1)
                 }
                 else {
@@ -54,7 +50,7 @@ extension EventUseCase{
         })
         dispatchGroup.leave()
         dispatchGroup.notify(queue: .main) {
-            Defined.ref.child(Path.transaction.getPath()).observeSingleEvent(of: .value) { (snapshot1) in
+            Defined.ref.child(Path.transaction.getPath()).observe( .value) { (snapshot1) in
                 if let snapshots = snapshot1.children.allObjects as?[DataSnapshot]
                 {
                     for mySnap in snapshots {
@@ -104,7 +100,6 @@ extension EventUseCase{
                     self.arrEvent.append(event1)
                 }
                 else {
-                    
                 }
             }
         })
@@ -129,7 +124,6 @@ extension EventUseCase{
                                     } else {
                                         
                                     }
-                                    
                                 }
                             }
                         }
@@ -138,7 +132,6 @@ extension EventUseCase{
                 }
             }
         }
-        
     }
     func refresh()  {
         Defined.ref.child(Path.event.getPath()).queryOrderedByKey().queryEqual(toValue: "true", childKey: "status").queryLimited(toFirst: 4).observeSingleEvent(of: .value) { (snapshot) in
@@ -156,22 +149,14 @@ extension EventUseCase{
                         let img = dict["eventImage"] as! String
                         let nameEvent = dict["name"] as! String
                         let spent = dict["spent"] as! Int
-                        
                         var event1 = Event(id: id, name: nameEvent, date: dateEnd, eventImage: img, spent: spent, status: status)
                         print(event1)
                         self.arrNameEvent.append(nameEvent)
                         self.arrEvent.append(event1)
-                        
                     }
                 }
-            }
-                
-            else
-            {
-                
+            } else{
             }
         }
-        
     }
-    
 }
