@@ -16,14 +16,14 @@ protocol DetailTransactionUseCaseDelegate: class {
     func responseCategory(cate: Category)
     func responseNoEvent()
 }
-class DetailTransactionUseCase{
+class DetailTransactionUseCase : BaseUseCase{
     weak var delegate: DetailTransactionUseCaseDelegate?
 }
 
 extension DetailTransactionUseCase {
     func getEventInfo(eventid: String){
         if eventid != "" {
-            Defined.ref.child(FirebasePath.event).observe(DataEventType.value) { [weak self](snapshot) in
+            Defined.ref.child(Path.event.getPath()).observe(DataEventType.value) { [weak self](snapshot) in
                 guard let `self` = self else {return}
                 for case let snapshots as DataSnapshot in snapshot.children {
                     guard let dict = snapshots.value as? [String:Any] else {
@@ -48,12 +48,12 @@ extension DetailTransactionUseCase {
     }
     
     func deleteTransaction(t: Transaction){
-        Defined.ref.child(FirebasePath.transaction).child("/\(t.transactionType!)/\(t.id!)").removeValue { (error, reference) in
+        Defined.ref.child(Path.transaction.getPath()).child("/\(t.transactionType!)/\(t.id!)").removeValue { (error, reference) in
             //remove old position
         }
     }
     
-    func getTransaction(transid: String){Defined.ref.child(FirebasePath.transaction).observe(.value) {[weak self] (snapshot) in
+    func getTransaction(transid: String){Defined.ref.child(Path.transaction.getPath()).observe(.value) {[weak self] (snapshot) in
             guard let `self` = self else {
                 return
             }
@@ -78,24 +78,12 @@ extension DetailTransactionUseCase {
     }
     
     func getCategory(cid: String){
-        Defined.ref.child(FirebasePath.category).observe(.value) {[weak self] (snapshot) in
+        getListAllCategories {[weak self] (categories) in
             guard let `self` = self else {return}
-            for case let snapshots as DataSnapshot in snapshot.children {
-                for case let snapshot as DataSnapshot in snapshots.children {
-                    guard let dict = snapshot.value as? [String:Any] else {
-                        return
-                    }
-                    do {
-                        var model = try FirebaseDecoder().decode(Category.self, from: dict)
-                        model.transactionType = snapshots.key
-                        model.id = snapshot.key
-                        if model.id == cid {
-                            self.delegate?.responseCategory(cate: model)
-                            break
-                        }
-                    } catch let error {
-                        print(error)
-                    }
+            for cate in categories {
+                if cate.id == cid {
+                    self.delegate?.responseCategory(cate: cate)
+                    break
                 }
             }
         }

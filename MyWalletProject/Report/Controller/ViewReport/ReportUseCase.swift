@@ -28,7 +28,7 @@ class ReportUseCase {
 
 extension ReportUseCase {
     func getIncomeFromDB(dateInput: String) {
-        Defined.ref.child(FirebasePath.income).observe(.value) {
+        Defined.ref.child(Path.income.getPath()).observe(.value) {
             snapshot in
             self.incomeArray.removeAll()
             self.sumIncome = 0
@@ -55,7 +55,7 @@ extension ReportUseCase {
     
     
     func getExpenseFromDB(dateInput: String) {
-        Defined.ref.child(FirebasePath.expense).observe( .value) {
+        Defined.ref.child(Path.expense.getPath()).observe( .value) {
             snapshot in
             self.expenseArray.removeAll()
             self.sumExpense = 0
@@ -81,7 +81,7 @@ extension ReportUseCase {
     }
     
     func getCategoriesFromDB(nameNode: String) {
-        Defined.ref.child(FirebasePath.category).child(nameNode).observe(.value) {
+        Defined.ref.child(Path.category.getPath()).child(nameNode).observe(.value) {
             snapshot in
             for case let child as DataSnapshot in snapshot.children {
                 guard let dict = child.value as? [String:Any] else {

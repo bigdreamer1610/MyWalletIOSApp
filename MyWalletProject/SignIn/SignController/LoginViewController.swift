@@ -69,7 +69,6 @@ extension LoginViewController:LoginViewControllerDelegate{
     }
     
     func autoLogin(){
-        print(isLogined)
         if isLogined == true {
             nextCategory(viewController: self)
         }
