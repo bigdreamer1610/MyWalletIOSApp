@@ -159,9 +159,10 @@ extension RouterType{
         // MARK: - Report
         case .report:
             let vc = UIStoryboard(name: "Report", bundle: nil).instantiateViewController(withIdentifier: "ReportViewController") as! ReportViewController
+            let navi = UINavigationController(rootViewController: vc)
             let presenter = ReportPresenter(delegate: vc, usecase: ReportUseCase())
             vc.setupDelegate(presenter: presenter)
-            return vc
+            return navi
         case .pieChartDetail:
             let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailPC") as! DetailPieChartVC
             return vc

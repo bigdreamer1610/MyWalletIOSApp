@@ -87,8 +87,6 @@
 		73204F37252F00F60067432B /* FooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73204F35252F00F60067432B /* FooterCell.swift */; };
 		73204F38252F00F60067432B /* FooterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 73204F36252F00F60067432B /* FooterCell.xib */; };
 		7338861D25231F67002F126B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7338860325231F67002F126B /* Constants.swift */; };
-		7338861E25231F68002F126B /* BacNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7338860425231F67002F126B /* BacNavigationController.swift */; };
-		7338861F25231F68002F126B /* DetailTransaction.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7338860525231F67002F126B /* DetailTransaction.storyboard */; };
 		7338862625231F68002F126B /* CustomDateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7338861025231F67002F126B /* CustomDateController.swift */; };
 		7338862725231F68002F126B /* SelectCategoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7338861225231F67002F126B /* SelectCategoryCell.xib */; };
 		7338862825231F68002F126B /* SelectCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7338861325231F67002F126B /* SelectCategoryCell.swift */; };
@@ -332,8 +330,6 @@
 		73204F35252F00F60067432B /* FooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterCell.swift; sourceTree = "<group>"; };
 		73204F36252F00F60067432B /* FooterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterCell.xib; sourceTree = "<group>"; };
 		7338860325231F67002F126B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../AddEditDetailTransaction/Constants.swift; sourceTree = "<group>"; };
-		7338860425231F67002F126B /* BacNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BacNavigationController.swift; sourceTree = "<group>"; };
-		7338860525231F67002F126B /* DetailTransaction.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DetailTransaction.storyboard; sourceTree = "<group>"; };
 		7338861025231F67002F126B /* CustomDateController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomDateController.swift; sourceTree = "<group>"; };
 		7338861225231F67002F126B /* SelectCategoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectCategoryCell.xib; sourceTree = "<group>"; };
 		7338861325231F67002F126B /* SelectCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCategoryCell.swift; sourceTree = "<group>"; };
@@ -826,8 +822,6 @@
 		7338860225231F67002F126B /* AddEditDetailTransaction */ = {
 			isa = PBXGroup;
 			children = (
-				7338860425231F67002F126B /* BacNavigationController.swift */,
-				7338860525231F67002F126B /* DetailTransaction.storyboard */,
 				7338860625231F67002F126B /* Add Transaction */,
 				7338861925231F67002F126B /* Edit Transaction  */,
 				7338861B25231F67002F126B /* Detail Transaction */,
@@ -1579,7 +1573,6 @@
 				73E0B1842521E0EE0097D41F /* TransactionDayCell.xib in Resources */,
 				73E0B1782521E0EE0097D41F /* ViewTransaction.storyboard in Resources */,
 				56053C442525E8F500685FFC /* DetailBudgetCell.xib in Resources */,
-				7338861F25231F68002F126B /* DetailTransaction.storyboard in Resources */,
 				56B8A8032524898400B8E8F0 /* BudgetCell.xib in Resources */,
 				73E0B17D2521E0EE0097D41F /* TransactionCell.xib in Resources */,
 				73E0B18A2521E0EE0097D41F /* MonthCell.xib in Resources */,
@@ -1742,7 +1735,6 @@
 				73AEA873253539FB00DC1EA7 /* Extensions.swift in Sources */,
 				72873D9F25249C3200313629 /* NameTableViewCell.swift in Sources */,
 				8A3BB40B251ADE6E008113E9 /* Transaction.swift in Sources */,
-				7338861E25231F68002F126B /* BacNavigationController.swift in Sources */,
 				73E0B18B2521E0EE0097D41F /* MonthCell.swift in Sources */,
 				8A3BB42D251B21A2008113E9 /* SettingsViewController.swift in Sources */,
 				73E0B1812521E0EE0097D41F /* DetailCell.swift in Sources */,
