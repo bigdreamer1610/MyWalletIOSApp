@@ -82,3 +82,9 @@ struct DetailSBCByDate {
     var note: String
     var imageName: String
 }
+
+struct DataForHeader {
+    var date: Int
+    var sum: Int
+    var transactions: [Transaction]
+}

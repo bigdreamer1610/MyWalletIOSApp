@@ -8,26 +8,15 @@
 
 import UIKit
 
-struct DataForHeader {
-    var date: Int
-    var sum: Int
-    var transactions: [Transaction]
-}
-
 class DayDetailSBC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    let transactionHeader: CGFloat = 60
-    let transactionRow: CGFloat = 65
-    let detailCell: CGFloat = 135
     var date = ""
     var incomeArray = [Transaction]()
     var expenseArray = [Transaction]()
     var trans = [[Transaction]](repeating: [Transaction](), count: 32)
     var sumIncome = 0
     var sumExpense = 0
-    var sumIncomeByDate = 0
-    var sumExpenseByDate = 0
     var imageName = ""
     var count = 0
     var dataArray = [DataForHeader]()
@@ -35,7 +24,6 @@ class DayDetailSBC: UIViewController {
     var dateForHeader = 0
     var currentHeaderIndex = 0
     var index = 0
-    var state: State?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,6 +80,8 @@ class DayDetailSBC: UIViewController {
                         extractData.sum -= tran.amount ?? 0
                     }
                 }
+                //                extractData[index].transactions.sort(by: $0.amount > $1.amount)
+                print(extractData)
                 dataArray.append(extractData)
             }
         }
@@ -119,9 +109,9 @@ extension DayDetailSBC: UITableViewDataSource {
             return cell
         } else {
             let cell = TransactionCell.loadCell(tableView) as! TransactionCell
+            cell.selectionStyle = .none
             
             var data = Transaction()
-            
             data = dataArray[indexPath.section - 1].transactions[indexPath.row]
             
             let filtered = categories.filter { category in
@@ -139,10 +129,16 @@ extension DayDetailSBC: UITableViewDataSource {
 extension DayDetailSBC : UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = HeaderTransactionCell.loadCell(tableView) as! HeaderTransactionCell
-        
-            cell.setupData(data: DetailDaySBCCell(date: String(dataArray[section - 1].date), day: "", amount: dataArray[section - 1].sum, longDate: date))
+        let data = dataArray[section - 1]
+        cell.setupData(data: DetailDaySBCCell(date: String(data.date), day: "", amount: data.sum, longDate: date))
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let myView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 20))
+        myView.backgroundColor = UIColor.groupTableViewBackground
+        return myView
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
