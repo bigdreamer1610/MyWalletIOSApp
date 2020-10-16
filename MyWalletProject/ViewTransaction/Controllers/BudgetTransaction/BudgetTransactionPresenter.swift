@@ -135,7 +135,6 @@ extension BudgetTransactionPresenter : BudgetTransactionUseCaseDelegate {
     func responseDataTransactions(trans: [Transaction]) {
         self.allTransactions = trans
         fetchData()
-        //delegate?.getAllTransactions(trans: trans)
     }
     
     

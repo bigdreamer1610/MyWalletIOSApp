@@ -76,6 +76,7 @@ extension DayDetailPC: UITableViewDataSource {
             return cell
         } else {
             let cell = TransactionDayCell.loadCell(tableView) as! TransactionDayCell
+            cell.selectionStyle = .none
             if state == .income {
                 cell.lbAmount.textColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
             } else {
@@ -97,6 +98,12 @@ extension DayDetailPC : UITableViewDelegate {
         let cell = HeaderCategoryCell.loadCell(tableView) as! HeaderCategoryCell
         cell.setupData(data: CategoryHeader(categoryName: categoryName, noOfTransactions: transactions.count, amount: sumByCategory, icon: categoryImage))
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let myView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 20))
+        myView.backgroundColor = UIColor.groupTableViewBackground
+        return myView
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

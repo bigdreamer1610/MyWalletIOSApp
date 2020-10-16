@@ -89,6 +89,11 @@ class Constants {
     static let other = "Other"
     static let netIncome = "Net Income"
     
+    //travel mode
+    static let travelState = "travelMode"
+    static let eventTravelId = "eventTravelId"
+    static let eventTravelImage = "eventTravelImage"
+    static let eventTravelName = "eventTravelName"
     //MARK: HEIGHT FOR CELL & HEADER
     static let transactionHeader: CGFloat = 60
     static let categoryHeader: CGFloat = 65

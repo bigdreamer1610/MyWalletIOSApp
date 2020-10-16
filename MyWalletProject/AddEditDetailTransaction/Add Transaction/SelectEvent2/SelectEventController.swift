@@ -22,7 +22,7 @@ class SelectEventController: UIViewController {
     var delegate:SelectEvent?
     var presenter: SelectEventPresenter?
     
-    var language = ChangeLanguage.vietnam.rawValue
+    var language = ChangeLanguage.english.rawValue
     
     
     override func viewDidLoad() {

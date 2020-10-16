@@ -37,14 +37,14 @@ class TravelModeViewController: UIViewController {
     
     // MARK: - Get data from user defaults
     func getDataFromUserDefaults() {
-        self.event.id = Defined.defaults.string(forKey: "eventTravelId")
-        self.event.eventImage = Defined.defaults.string(forKey: "eventTravelImage")
-        self.event.name = Defined.defaults.string(forKey: "eventTravelName")
+        self.event.id = Defined.defaults.string(forKey: Constants.eventTravelId)
+        self.event.eventImage = Defined.defaults.string(forKey: Constants.eventTravelImage)
+        self.event.name = Defined.defaults.string(forKey: Constants.eventTravelName)
     }
     
     // MARK: - Init event view
     func initEventView() {
-        self.travelModeState = Defined.defaults.bool(forKey: "travelMode")
+        self.travelModeState = Defined.defaults.bool(forKey: Constants.travelState)
         self.switchState = self.travelModeState
         
         if !travelModeState {
@@ -127,18 +127,18 @@ class TravelModeViewController: UIViewController {
         
         if self.travelModeState {
             if lblSelectEvent.text != "Select event" {
-                Defined.defaults.set(self.travelModeState, forKey: "travelMode")
-                Defined.defaults.set(self.event.id, forKey: "eventTravelId")
-                Defined.defaults.set(self.event.eventImage, forKey: "eventTravelImage")
-                Defined.defaults.set(self.event.name, forKey: "eventTravelName")
+                Defined.defaults.set(self.travelModeState, forKey: Constants.travelState)
+                Defined.defaults.set(self.event.id, forKey: Constants.eventTravelId)
+                Defined.defaults.set(self.event.eventImage, forKey: Constants.eventTravelImage)
+                Defined.defaults.set(self.event.name, forKey: Constants.eventTravelName)
                 self.navigationController?.popViewController(animated: true)
                 
             }
         } else {
-            Defined.defaults.set(false, forKey: "travelMode")
-            Defined.defaults.removeObject(forKey: "eventTravelId")
-            Defined.defaults.removeObject(forKey: "eventTravelImage")
-            Defined.defaults.removeObject(forKey: "eventTravelName")
+            Defined.defaults.set(false, forKey: Constants.travelState)
+            Defined.defaults.removeObject(forKey: Constants.eventTravelId)
+            Defined.defaults.removeObject(forKey: Constants.eventTravelImage)
+            Defined.defaults.removeObject(forKey: Constants.eventTravelName)
             self.navigationController?.popViewController(animated: true)
             
         }

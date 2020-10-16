@@ -11,25 +11,24 @@ import UIKit
 class DayDetailSBC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    let transactionHeader: CGFloat = 60
-    let transactionRow: CGFloat = 65
-    let detailCell: CGFloat = 135
     var date = ""
     var incomeArray = [Transaction]()
     var expenseArray = [Transaction]()
     var trans = [[Transaction]](repeating: [Transaction](), count: 32)
     var sumIncome = 0
     var sumExpense = 0
-    var sumIncomeByDate = 0
-    var sumExpenseByDate = 0
     var imageName = ""
     var count = 0
+    var dataArray = [DataForHeader]()
+    var categories = [Category]()
+    var dateForHeader = 0
+    var currentHeaderIndex = 0
+    var index = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initTableViews()
         self.title = date
-        
         rearrangeData()
     }
     
@@ -38,11 +37,12 @@ class DayDetailSBC: UIViewController {
     }
     
     func setupData(info: DetailDaySBC) {
-        sumIncome = info.sumIncome
-        sumExpense = info.sumExpense
-        incomeArray = info.incomeArray
-        expenseArray = info.expenseArray
-        date = info.date
+        self.sumIncome = info.sumIncome
+        self.sumExpense = info.sumExpense
+        self.incomeArray = info.incomeArray
+        self.expenseArray = info.expenseArray
+        self.date = info.date
+        self.categories = info.categories
     }
     
     func initTableViews(){
@@ -57,50 +57,70 @@ class DayDetailSBC: UIViewController {
         for expense in expenseArray {
             let currentDay = expense.date
             let dateNumber = Int(currentDay?.split(separator: "/")[0] ?? "")
-            
             trans[dateNumber ?? -1].append(expense)
-            sumExpenseByDate += expense.amount ?? 0
-            
         }
         
         for income in incomeArray {
             let currentDay = income.date
             let dateNumber = Int(currentDay?.split(separator: "/")[0] ?? "")
-            
             trans[dateNumber ?? -1].append(income)
-            sumIncomeByDate += income.amount ?? 0
         }
         
-        for tran in trans {
-            if !tran.isEmpty {
+        for index in 0 ..< trans.count {
+            var extractData: DataForHeader = DataForHeader(date: 0, sum: 0, transactions: [Transaction]())
+            
+            if !trans[index].isEmpty {
                 count += 1
+                extractData.date = index
+                for tran in trans[index] {
+                    extractData.transactions.append(tran)
+                    if tran.transactionType == "income" {
+                        extractData.sum += tran.amount ?? 0
+                    } else {
+                        extractData.sum -= tran.amount ?? 0
+                    }
+                }
+                //                extractData[index].transactions.sort(by: $0.amount > $1.amount)
+                print(extractData)
+                dataArray.append(extractData)
             }
         }
-        print(count)
     }
 }
 
 extension DayDetailSBC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return count + 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{
             return 1
         } else {
-            return count
+            return dataArray[section - 1].transactions.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = DayDetail.loadCell(tableView) as! DayDetail
-            cell.setUpData(expense: sumIncome, income: sumExpense)
+            cell.setUpData(expense: sumExpense, income: sumIncome)
             cell.selectionStyle = .none
             return cell
         } else {
             let cell = TransactionCell.loadCell(tableView) as! TransactionCell
+            cell.selectionStyle = .none
+            
+            var data = Transaction()
+            data = dataArray[indexPath.section - 1].transactions[indexPath.row]
+            
+            let filtered = categories.filter { category in
+                return category.id ?? "" == data.categoryid
+            }
+            imageName = filtered[0].iconImage ?? "salary"
+            
+            cell.setupData(data: DetailSBCByDate(category: data.categoryid ?? "", amount: data.amount ?? 0, note: data.note ?? "", imageName: imageName), state: data.transactionType ?? "")
+            
             return cell
         }
     }
@@ -109,14 +129,16 @@ extension DayDetailSBC: UITableViewDataSource {
 extension DayDetailSBC : UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = HeaderTransactionCell.loadCell(tableView) as! HeaderTransactionCell
-//            let currentDay = incomeArray[indexPath].date
-//            let dateNumber = currentDay?.split(separator: "/")[0] ?? ""
+        let data = dataArray[section - 1]
+        cell.setupData(data: DetailDaySBCCell(date: String(data.date), day: "", amount: data.sum, longDate: date))
         
-        
-        
-//        if index in 0
-//        cell.setupData(data: DetailDaySBCCell(date: <#String#>, day: <#String#>, amount: , longDate: date))
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let myView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 20))
+        myView.backgroundColor = UIColor.groupTableViewBackground
+        return myView
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

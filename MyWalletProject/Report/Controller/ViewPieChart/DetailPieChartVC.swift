@@ -30,6 +30,7 @@ class DetailPieChartVC: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        
     }
     
     private func setupTableView() {
@@ -57,6 +58,7 @@ class DetailPieChartVC: UIViewController{
         sumByCategory = info.sumByCategory
         transactions = info.transations
         date = info.date
+        tableView?.reloadData()
     }
     
     @IBAction func popToView(_ sender: Any) {
@@ -168,11 +170,11 @@ extension DetailPieChartVC: UISearchBarDelegate {
         self.navigationItem.rightBarButtonItem?.isEnabled = true
         searchBar.resignFirstResponder()
     }
-
+    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.searchBar.showsCancelButton = true
     }
-
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
             filterData = sumByCategory
