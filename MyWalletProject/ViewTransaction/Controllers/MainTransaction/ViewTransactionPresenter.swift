@@ -60,7 +60,6 @@ class ViewTransactionPresenter {
     
     // load transaction to set up sections
     func getFirstTransaction(){
-        //delegate?.startLoading()
         viewTransUseCase?.getAllTransactions()
     }
     
