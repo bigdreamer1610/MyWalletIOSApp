@@ -282,6 +282,7 @@ extension ViewTransactionViewController : UITableViewDataSource {
                     Defined.defaults.set(mode, forKey: Constants.mode)
                 }
                 self.transactionTableView.reloadData()
+                self.tableView.reloadData()
             } else if indexPath.row == 2 {
                 presenter?.getDataTransaction(month: todayMonth, year: todayYear)
                 jumpToDate(from: today)
@@ -293,6 +294,7 @@ extension ViewTransactionViewController : UITableViewDataSource {
                 switch mode {
                 case Mode.transaction.getValue():
                     AppRouter.routerTo(from: self, router: .transactionDetail(item: transactionSections[indexPath.section - 1].items[indexPath.row], header: transactionSections[indexPath.section - 1].header), options: .push)
+                    
                 default:
                     AppRouter.routerTo(from: self, router: .categoryDetail(item: categorySections[indexPath.section-1].items[indexPath.row], header: categorySections[indexPath.section-1].header), options: .push)
                 }
