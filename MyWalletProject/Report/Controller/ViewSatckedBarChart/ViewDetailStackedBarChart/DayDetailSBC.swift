@@ -80,8 +80,7 @@ class DayDetailSBC: UIViewController {
                         extractData.sum -= tran.amount ?? 0
                     }
                 }
-                //                extractData[index].transactions.sort(by: $0.amount > $1.amount)
-                print(extractData)
+                extractData.transactions.sort(by: { $0.amount ?? 0 > $1.amount ?? 0 })
                 dataArray.append(extractData)
             }
         }

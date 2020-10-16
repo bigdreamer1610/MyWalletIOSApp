@@ -12,10 +12,10 @@ protocol TimeRangerViewControllerDelegate {
     func fetchDataTimeRanger(budget:Budget,type:String)
 }
 
-// Shared dialog box
-protocol Dialog {
-    func dialogMess(title:String,message:String)
-}
+//// Shared dialog box
+//protocol Dialog {
+//    func dialogMess(title:String,message:String)
+//}
 
 class TimeRangerViewController: UIViewController {
     @IBOutlet weak var txtStartDate: UITextField!
@@ -91,10 +91,10 @@ class TimeRangerViewController: UIViewController {
         let startDate = formatter.date(from: budgetObject.startDate ?? "")
         let endDate = formatter.date(from: budgetObject.endDate ?? "")
         if startDate == nil || endDate == nil{
-            self.dialogMess(title: "" , message: TimeRangerDataString.dialogWarningSelectFullStartandEnd.rawValue.addLocalizableString(str: language))
+            AlertUtil.showAlert(from: self, with: "", message: TimeRangerDataString.dialogWarningSelectFullStartandEnd.rawValue.addLocalizableString(str: language))
            
         } else if let start = startDate , let end = endDate , start >= end {
-            self.dialogMess(title: "" , message: TimeRangerDataString.dialogWarningStartLessThanEnd.rawValue.addLocalizableString(str: language))
+            AlertUtil.showAlert(from: self, with: "", message: TimeRangerDataString.dialogWarningStartLessThanEnd.rawValue.addLocalizableString(str: language))
             
         } else{
             delegateTimeRanger?.fetchDataTimeRanger(budget: budgetObject, type: type)
@@ -113,12 +113,12 @@ extension TimeRangerViewController : CalendarViewControllerDelegate {
     }
 }
 
-extension TimeRangerViewController : Dialog {
-    func dialogMess(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: TimeRangerDataString.dialogItemOK.rawValue.addLocalizableString(str: language), style: .default) { (_) in
-        }
-        alertController.addAction(cancelAction)
-        self.present(alertController, animated: true, completion: nil)
-    }
-}
+//extension TimeRangerViewController : Dialog {
+//    func dialogMess(title: String, message: String) {
+//        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+//        let cancelAction = UIAlertAction(title: TimeRangerDataString.dialogItemOK.rawValue.addLocalizableString(str: language), style: .default) { (_) in
+//        }
+//        alertController.addAction(cancelAction)
+//        self.present(alertController, animated: true, completion: nil)
+//    }
+//}
