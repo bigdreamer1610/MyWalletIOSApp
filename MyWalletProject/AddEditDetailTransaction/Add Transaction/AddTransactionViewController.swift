@@ -34,6 +34,7 @@ class AddTransactionViewController: UIViewController {
     var type: String? = ""
     var eventid: String? = nil
     var thisDate = Date()
+    var timer = Timer()
     
     var language = ChangeLanguage.english.rawValue
     
@@ -45,6 +46,7 @@ class AddTransactionViewController: UIViewController {
         customizeLayout()
         setLanguage()
         checkTravelMode()
+        scheduledTimerWithTimeInterval()
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         tapGestureRecognizer.cancelsTouchesInView = false
         self.view.addGestureRecognizer(tapGestureRecognizer)
@@ -165,6 +167,20 @@ class AddTransactionViewController: UIViewController {
         //reset event
         tfEvent.text = ""
         iconEvent.image = UIImage(named: "others")
+    }
+    
+    func scheduledTimerWithTimeInterval(){
+        timer = Timer.scheduledTimer(timeInterval: 0, target: self, selector: #selector(self.updateCounting), userInfo: nil, repeats: true)
+    }
+    @objc func updateCounting(){
+        let checkAmount = Int(tfAmount.text!)
+        if checkAmount == 0 || tfDate.text!.isEmpty || tfCategory.text!.isEmpty || tfAmount.text!.isEmpty{
+            btnSave.isEnabled = false
+
+        }else{
+            btnSave.isEnabled = true
+        }
+        
     }
 }
 
