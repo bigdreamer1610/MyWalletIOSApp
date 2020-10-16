@@ -38,10 +38,9 @@ class HeaderCategoryCell: BaseTBCell {
     
     // setup data for view report
     func setupData(data: CategoryHeader){
-        lbTotal.text = "\(Defined.formatter.string(from: NSNumber(value: data.amount))!)"
-        lbCategory.text = "\(data.categoryName)"
+        lbTotal.text = String(Defined.formatter.string(from: NSNumber(value: data.amount))!)
+        lbCategory.text = String(data.categoryName)
         iconImage.image = UIImage(named: data.icon)
-        
         lbNumberOfTransactions.text = (data.noOfTransactions <= 1) ? "\(data.noOfTransactions) transaction" : "\(data.noOfTransactions) transactions"
     }
 }

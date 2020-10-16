@@ -395,6 +395,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="UET-Rd-BwL">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="tNt-fO-haE">
+                            <color key="tintColor" red="0.39291897819999999" green="0.41982213169999999" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="btnCancel:" destination="nf0-f8-BQ5" id="LMH-wM-sPt"/>
                             </connections>

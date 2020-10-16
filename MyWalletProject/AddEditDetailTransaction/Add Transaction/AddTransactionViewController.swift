@@ -67,11 +67,11 @@ class AddTransactionViewController: UIViewController {
     }
     
     func checkTravelMode() {
-        let status = Defined.defaults.bool(forKey: "travelMode")
+        let status = Defined.defaults.bool(forKey: Constants.travelState)
         if status {
-            iconEvent.image = UIImage(named: Defined.defaults.string(forKey: "eventTravelImage")!)
-            tfEvent.text = Defined.defaults.string(forKey: "eventTravelName")
-            eventid = Defined.defaults.string(forKey: "eventTravelId")
+            iconEvent.image = UIImage(named: Defined.defaults.string(forKey: Constants.eventTravelImage)!)
+            tfEvent.text = Defined.defaults.string(forKey: Constants.eventTravelName)
+            eventid = Defined.defaults.string(forKey: Constants.eventTravelId)
         }
     }
     @objc func hideKeyboard(){

@@ -36,7 +36,7 @@ class HeaderTransactionCell: BaseTBCell {
         lbDate.text = String(data.date)
         lbDay.text = String(data.day)
         lbLongDate.text = String(data.longDate)
-        lbTotal.text = "\(Defined.formatter.string(from: NSNumber(value: data.amount))!)"
+        lbTotal.text = (data.amount <= 0) ? "\(Defined.formatter.string(from: NSNumber(value: data.amount))!)" : "+\(Defined.formatter.string(from: NSNumber(value: data.amount))!)"
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
