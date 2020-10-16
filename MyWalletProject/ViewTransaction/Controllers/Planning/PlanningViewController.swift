@@ -47,7 +47,6 @@ extension PlanningViewController : UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            //return PlanningCell.loadCell(tableView) as! PlanningCell
         let cell = ItemPlanningCell.loadCell(tableView) as! ItemPlanningCell
         cell.setUpData(item: list[indexPath.section])
         return cell
