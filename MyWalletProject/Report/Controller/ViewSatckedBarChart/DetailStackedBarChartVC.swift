@@ -60,7 +60,7 @@ extension DetailStackedBarChartVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let cell = DetailSBCTableViewCell.loadCell(tableView)  as! DetailSBCTableViewCell
+            let cell = DetailSBCTableViewCell.loadCell(tableView) as! DetailSBCTableViewCell
             cell.setChartData(sumIncome, sumExpense)
             cell.selectionStyle = .none
             return cell
@@ -73,7 +73,7 @@ extension DetailStackedBarChartVC: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section != 0 {
-            let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "dayDetailSBC") as! DayDetailSBC
+            let vc = RouterType.detailSBC.getVc() as! DayDetailSBC
             vc.setupData(info: DetailDaySBC(sumIncome: sumIncome, sumExpense: sumExpense, incomeArray: incomeArray, expenseArray: expenseArray, date: date, categories: categories))
             navigationController?.pushViewController(vc, animated: true)
         }

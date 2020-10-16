@@ -170,11 +170,11 @@ extension DetailPieChartVC: UISearchBarDelegate {
         self.navigationItem.rightBarButtonItem?.isEnabled = true
         searchBar.resignFirstResponder()
     }
-
+    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.searchBar.showsCancelButton = true
     }
-
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
             filterData = sumByCategory

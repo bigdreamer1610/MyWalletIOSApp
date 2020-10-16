@@ -41,7 +41,7 @@ extension ReportUseCase {
                 let categoryid = dict["categoryid"] as! String
                 let note = dict["note"] as! String
                 let transactionType = "income"
-
+                
                 let tempDate = date.split(separator: "/")
                 let checkDate = tempDate[1] + "/" + tempDate[2]
                 if dateInput == checkDate {
