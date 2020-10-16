@@ -20,6 +20,7 @@ struct SumInfo {
     var date: String
     var incomeArray: [Transaction]
     var expenseArray: [Transaction]
+    var categories: [Category]
 }
 
 struct SumArr {
@@ -65,6 +66,7 @@ struct DetailDaySBC {
     var incomeArray: [Transaction]
     var expenseArray: [Transaction]
     var date: String
+    var categories: [Category]
 }
 
 struct DetailDaySBCCell {
@@ -72,4 +74,11 @@ struct DetailDaySBCCell {
     var day: String
     var amount: Int
     var longDate: String
+}
+
+struct DetailSBCByDate {
+    var category: String
+    var amount: Int
+    var note: String
+    var imageName: String
 }

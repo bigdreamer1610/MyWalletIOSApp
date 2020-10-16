@@ -161,8 +161,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="lblExpense" destination="nTP-MZ-JgY" id="hCH-2e-f8X"/>
-                <outlet property="lblIncome" destination="8av-5y-hAU" id="ive-Lu-yoq"/>
+                <outlet property="lblExpense" destination="8av-5y-hAU" id="eQ6-TS-Ys0"/>
+                <outlet property="lblIncome" destination="nTP-MZ-JgY" id="Qsb-zZ-cBH"/>
                 <outlet property="lblNetIncome" destination="jkV-oe-sB5" id="8UY-QQ-mDN"/>
             </connections>
             <point key="canvasLocation" x="242.0289855072464" y="164.73214285714286"/>

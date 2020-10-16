@@ -24,9 +24,9 @@ class MoneyTableViewCell: BaseTBCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func setupData(opening: Int, ending: Int) {
+    func setupData(opening: Int, sumIncome: Int, sumExpense: Int) {
         lblBeginBalance.text = String((Defined.formatter.string(from: NSNumber(value: opening))!))
-        lblEndBalance.text = String((Defined.formatter.string(from: NSNumber(value: ending))!))
+        lblEndBalance.text = String((Defined.formatter.string(from: NSNumber(value: opening + sumIncome - sumExpense))!))
     }
     
 }
