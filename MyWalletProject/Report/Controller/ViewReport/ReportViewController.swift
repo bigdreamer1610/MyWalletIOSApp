@@ -49,12 +49,12 @@ class ReportViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
         super.viewWillDisappear(animated)
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
-
+    
     func setupDelegate(presenter: ReportPresenter) {
         self.presenter = presenter
     }
@@ -160,7 +160,7 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
-            let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailSBC") as! DetailStackedBarChartVC
+            let vc = RouterType.barChartDetail.getVc() as!  DetailStackedBarChartVC
             vc.setupData(info: SumInfo(sumIncome: sumIncome, sumExpense: sumExpense, netIncome: sumIncome - sumExpense, date: lblDate.text!, incomeArray: incomeArray, expenseArray: expenseArray, categories: categories))
             navigationController?.pushViewController(vc, animated: true)
         }
@@ -170,15 +170,13 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
 //MARK: - Go to DetailPieChartVC
 extension ReportViewController: CustomCollectionCellDelegate {
     func collectionView(collectioncell: PieChartCollectionViewCell?, didTappedInTableview TableCell: PieChartTableViewCell, indexPath: IndexPath) {
-        let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "detailPC") as! DetailPieChartVC
+        let vc = RouterType.pieChartDetail.getVc() as! DetailPieChartVC
         if indexPath.row == 0 {
             vc.state = .income
             vc.setupData(info: SumArr(sum: sumIncome, sumByCategory: sumByCategoryIncome, transations: incomeArray, date: lblDate.text!))
-            print(incomeArray)
         } else {
             vc.state = .expense
             vc.setupData(info: SumArr(sum: sumExpense, sumByCategory: sumByCategoryExpense, transations: expenseArray, date: lblDate.text!))
-            print(expenseArray)
         }
         vc.categories = categories
         navigationController?.pushViewController(vc, animated: true)

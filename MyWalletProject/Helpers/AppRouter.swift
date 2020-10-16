@@ -49,6 +49,7 @@ enum RouterType {
     case barChartDetail
     case pieChartDetail
     case detailPC
+    case detailSBC
 }
 
 class AppRouter {
@@ -172,6 +173,9 @@ extension RouterType{
 
         case .detailPC:
             let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "dayDetailPC") as! DayDetailPC
+            return vc
+        case .detailSBC:
+            let vc = UIStoryboard.init(name: "Report", bundle: Bundle.main).instantiateViewController(identifier: "dayDetailSBC") as! DayDetailSBC
             return vc
             
         case .budgetTransaction(let budgetObject):

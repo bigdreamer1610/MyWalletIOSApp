@@ -33,6 +33,7 @@ class TransactionCell: BaseTBCell {
         }
     }
     
+    // setup data for report
     func setupData(data: DetailSBCByDate, state: String){
         lbAmount.text = String((Defined.formatter.string(from: NSNumber(value: data.amount))!))
         lbNote.text = data.note
