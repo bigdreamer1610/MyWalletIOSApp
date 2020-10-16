@@ -40,11 +40,12 @@ extension ReportUseCase {
                 let date = dict["date"] as! String
                 let categoryid = dict["categoryid"] as! String
                 let note = dict["note"] as! String
+                let transactionType = "income"
 
                 let tempDate = date.split(separator: "/")
                 let checkDate = tempDate[1] + "/" + tempDate[2]
                 if dateInput == checkDate {
-                    let ex = Transaction(amount: amount, categoryid: categoryid, date: date, note: note)
+                    let ex = Transaction(transactionType: transactionType, amount: amount, categoryid: categoryid, date: date, note: note)
                     self.sumIncome += amount
                     self.incomeArray.append(ex)
                 }
@@ -67,11 +68,12 @@ extension ReportUseCase {
                 let date = dict["date"] as! String
                 let categoryid = dict["categoryid"] as! String
                 let note = dict["note"] as! String
+                let transactionType = "expense"
                 
                 let tempDate = date.split(separator: "/")
                 let checkDate = tempDate[1] + "/" + tempDate[2]
                 if dateInput == checkDate {
-                    let ex = Transaction(amount: amount, categoryid: categoryid, date: date, note: note)
+                    let ex = Transaction(transactionType: transactionType, amount: amount, categoryid: categoryid, date: date, note: note)
                     self.sumExpense += amount
                     self.expenseArray.append(ex)
                 }
@@ -95,7 +97,6 @@ extension ReportUseCase {
             }
             self.delegate?.responseCategories(categories: self.categories)
         }
-        
     }
 }
 
