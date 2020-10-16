@@ -109,7 +109,10 @@ class ScanBillViewController: UIViewController, UITextFieldDelegate {
     @IBAction func btnAddTransactionClicked(_ sender: Any) {
         var userTransaction = Transaction()
         
-        userTransaction.amount = Int(lblTotal.text!.replacingOccurrences(of: " VND", with: ""))
+        var amount = lblTotal.text!.replacingOccurrences(of: " VND", with: "")
+        amount = amount.replacingOccurrences(of: ".", with: "")
+        
+        userTransaction.amount = Int(amount)
         userTransaction.categoryid = "Bill"
         userTransaction.note = txtNote.text
         userTransaction.date = lblDate.text
