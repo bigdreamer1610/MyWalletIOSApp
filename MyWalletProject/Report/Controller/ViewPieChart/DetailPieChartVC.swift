@@ -154,6 +154,7 @@ extension DetailPieChartVC: UITableViewDelegate, UITableViewDataSource {
                     trans.append(transactions[index])
                 }
             }
+            trans.sort(by: { getIntegerDate(date: $0.date ?? "") < getIntegerDate(date: $1.date ?? "") })
             
             // setup data for DayDetailPC
             vc.setupData(info: DetailPC(state: state, transactions: trans, categoryImage: imageName, sumByCategory: sum, category: cate, date: date))
@@ -189,5 +190,13 @@ extension DetailPieChartVC: UISearchBarDelegate {
         filterData = sumByCategory.filter({ (category) -> Bool in
             return category.category.lowercased().contains(text.lowercased())
         })
+    }
+}
+
+extension DetailPieChartVC {
+    func getIntegerDate(date: String) -> Int {
+        let tempDate = date.split(separator: "/")
+        let returnDate = String(tempDate[0])
+        return Int(returnDate) ?? 0
     }
 }
