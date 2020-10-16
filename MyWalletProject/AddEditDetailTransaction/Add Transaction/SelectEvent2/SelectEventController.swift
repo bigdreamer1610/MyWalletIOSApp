@@ -52,6 +52,8 @@ class SelectEventController: UIViewController {
         SelectEventCell.registerCellByNib(tableView)
         tableView.dataSource = self
         tableView.delegate = self
+        
+        centerIcon.setImageColor(color: UIColor.colorFromHexString(hex: "776d8a"))
     }
     
     func setUp(presenter: SelectEventPresenter) {

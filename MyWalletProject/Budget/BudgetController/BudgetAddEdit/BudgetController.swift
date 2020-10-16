@@ -12,7 +12,6 @@ import Firebase
 protocol AddEditBudgetControll {
     func addBudget()
     func editBudget()
-    func dialogMess(title:String,message:String)
 }
 
 class BudgetController: UIViewController {
@@ -70,10 +69,10 @@ class BudgetController: UIViewController {
     // btn save click
     @IBAction func btnSaveClick(_ sender: Any) {
         if(budgetObject.categoryName == "" || budgetObject.startDate == "" || budgetObject.amount == nil){
-            self.dialogMess(title: "" , message:BudgetAddEditDataString.dialogWarningChooseEnoughAttributes.rawValue.addLocalizableString(str: language))
+            AlertUtil.showAlert(from: self, with: "", message: BudgetAddEditDataString.dialogWarningChooseEnoughAttributes.rawValue.addLocalizableString(str: language))
             
         } else if let amount = budgetObject.amount , amount > 2000000000{
-            self.dialogMess(title: "" , message: BudgetAddEditDataString.dialogWarningAmountLessThanTwoBillions.rawValue.addLocalizableString(str: language))
+            AlertUtil.showAlert(from: self, with: "", message: BudgetAddEditDataString.dialogWarningAmountLessThanTwoBillions.rawValue.addLocalizableString(str: language))
             
         } else {
             if type == BudgetAddEditDataString.addBudget.rawValue {
@@ -91,7 +90,7 @@ class BudgetController: UIViewController {
                     }
                     
                     if (checkExist == false){
-                        self.dialogMess(title: "" , message: BudgetAddEditDataString.dialogWarningStartAndEndisCoexist.rawValue.addLocalizableString(str: language))
+                        AlertUtil.showAlert(from: self, with: "", message: BudgetAddEditDataString.dialogWarningStartAndEndisCoexist.rawValue.addLocalizableString(str: language))
                         
                     }else {
                         addBudget()
@@ -114,7 +113,7 @@ class BudgetController: UIViewController {
                 }
                 
                 if (checkExist == false){
-                    self.dialogMess(title: "" , message: BudgetAddEditDataString.dialogWarningStartAndEndisCoexist.rawValue.addLocalizableString(str: language))
+                    AlertUtil.showAlert(from: self, with: "", message: BudgetAddEditDataString.dialogWarningStartAndEndisCoexist.rawValue.addLocalizableString(str: language))
                     
                 }else {
                     editBudget()
@@ -215,14 +214,6 @@ extension BudgetController: UITableViewDataSource , UITableViewDelegate {
 
 //MARK: - add , edit budget , dialogMes
 extension BudgetController: AddEditBudgetControll {
-    
-    func dialogMess(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: BudgetAddEditDataString.dialogItemOK.rawValue.addLocalizableString(str: language), style: .default) { (_) in
-        }
-        alertController.addAction(cancelAction)
-        self.present(alertController, animated: true, completion: nil)
-    }
     
     // func add budget
     func addBudget() {

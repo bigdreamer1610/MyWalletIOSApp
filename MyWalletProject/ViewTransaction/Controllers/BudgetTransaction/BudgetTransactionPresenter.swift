@@ -26,9 +26,6 @@ class BudgetTransactionPresenter {
     var dates = [TransactionDate]()
     var budget: Budget!
     
-//    var weekdays = ["Sunday","Monday","Tuesday","Wednesday","Thurday","Friday","Saturday"]
-//    var months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
-    
     init(delegate: BudgetTransactionPresenterDelegate, usecase: BudgetTransactionUseCase) {
         self.delegate = delegate
         self.usecase = usecase

@@ -37,6 +37,7 @@ class EventControllerView: UIViewController {
         setupSegmentTextColor()
         eventTable.delegate = self
         eventTable.dataSource = self
+        imgNoEvent.setImageColor(color: UIColor.colorFromHexString(hex: "776d8a"))
     }
     deinit {
         print("vanthanhEventmain")
