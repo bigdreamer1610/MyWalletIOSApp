@@ -39,10 +39,6 @@ class ReportViewController: UIViewController {
         showDatePicker()
         createDatePicker()
         
-        self.presenter?.requestIncome(dateInput: self.date)
-        self.presenter?.requestExpense(dateInput: self.date)
-        self.presenter?.requestCategories(nameNode: "income")
-        self.presenter?.requestCategories(nameNode: "expense")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -52,6 +48,11 @@ class ReportViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.presenter?.requestIncome(dateInput: self.date)
+        self.presenter?.requestExpense(dateInput: self.date)
+        self.presenter?.requestCategories(nameNode: "income")
+        self.presenter?.requestCategories(nameNode: "expense")
+        self.presenter?.requestAllTransaction(dateInput: self.date)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
@@ -112,6 +113,7 @@ class ReportViewController: UIViewController {
         }
         self.presenter?.requestIncome(dateInput: self.date)
         self.presenter?.requestExpense(dateInput: self.date)
+        self.presenter?.requestAllTransaction(dateInput: self.date)
         self.tableView.reloadData()
     }
     
@@ -158,6 +160,21 @@ extension ReportViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        var myHeight: CGFloat = 0
+        
+        switch indexPath.section {
+        case 0:
+            myHeight = 0.13 * UIScreen.main.bounds.height
+        case 1:
+            myHeight = 0.4 * UIScreen.main.bounds.height
+        default:
+            myHeight = 0.32 * UIScreen.main.bounds.height
+        }
+        
+        return myHeight
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             let vc = RouterType.barChartDetail.getVc() as!  DetailStackedBarChartVC
@@ -184,6 +201,11 @@ extension ReportViewController: CustomCollectionCellDelegate {
 }
 
 extension ReportViewController: ReportPresenterDelegate {
+    func returnDetailCell(open: Int) {
+        self.open = open
+        self.tableView.reloadData()
+    }
+    
     func returnCategories(categories: [Category]) {
         self.categories = categories
         self.tableView.reloadData()
