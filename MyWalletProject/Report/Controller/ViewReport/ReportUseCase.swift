@@ -15,9 +15,10 @@ protocol ReportUseCaseDelegate {
     func responseIncomeData(incomeArray: [Transaction], sumIncome: Int)
     func responseExpenseData(expenseArray: [Transaction], sumExpense: Int)
     func responseCategories(categories: [Category])
+    func responseAllTransactions(trans: [Transaction])
 }
 
-class ReportUseCase {
+class ReportUseCase: BaseUseCase {
     var expenseArray: [Transaction] = []
     var incomeArray: [Transaction] = []
     var sumIncome = 0
@@ -96,6 +97,13 @@ extension ReportUseCase {
                 self.categories.append(ex)
             }
             self.delegate?.responseCategories(categories: self.categories)
+        }
+    }
+    
+    func getAllTransactions(){
+        getListAllTransactions { [weak self](allTransactions) in
+            guard let `self` = self else {return}
+            self.delegate?.responseAllTransactions(trans: allTransactions)
         }
     }
 }
