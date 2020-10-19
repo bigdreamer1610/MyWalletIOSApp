@@ -54,7 +54,7 @@ class ScanBillPresenter {
         let requestHandler = VNImageRequestHandler(cgImage: cgImage, options: [:])
         do {
             try requestHandler.perform([self.ocrRequest])
-        } catch let error {
+        } catch let _ {
         }
     }
     
