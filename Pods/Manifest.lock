@@ -375,6 +375,12 @@ PODS:
   - nanopb/decode (1.30906.0)
   - nanopb/encode (1.30906.0)
   - PromisesObjC (1.2.10)
+  - RxCocoa (6.0.0-rc.1):
+    - RxRelay (= 6.0.0-rc.1)
+    - RxSwift (= 6.0.0-rc.1)
+  - RxRelay (6.0.0-rc.1):
+    - RxSwift (= 6.0.0-rc.1)
+  - RxSwift (6.0.0-rc.1)
   - SwiftDate (6.2.0)
 
 DEPENDENCIES:
@@ -391,6 +397,8 @@ DEPENDENCIES:
   - FSCalendar
   - GoogleSignIn
   - MonthYearPicker (~> 4.0.2)
+  - RxCocoa (= 6.0.0-rc.1)
+  - RxSwift (= 6.0.0-rc.1)
   - SwiftDate
 
 SPEC REPOS:
@@ -426,6 +434,9 @@ SPEC REPOS:
     - MonthYearPicker
     - nanopb
     - PromisesObjC
+    - RxCocoa
+    - RxRelay
+    - RxSwift
     - SwiftDate
 
 SPEC CHECKSUMS:
@@ -460,8 +471,11 @@ SPEC CHECKSUMS:
   MonthYearPicker: 91f77106e6806d8c93c69e943ab0795fd420657f
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
+  RxCocoa: a28d75145c07b7547b85faf1e1ad8b25af88a752
+  RxRelay: 56abad6d32f73567858506d08735fdb341935b9a
+  RxSwift: dae1a32c48148897494b9e2a6b00a68b40694236
   SwiftDate: d117c3eb6beed72e47d3f4d1e3bc63fa1e66d7c3
 
-PODFILE CHECKSUM: 39e6b6e5700ad5ed98f5428ccc860e02fbf6adfa
+PODFILE CHECKSUM: 5003a8377387f943af3d1554c852dc80ac7404d9
 
 COCOAPODS: 1.9.3

@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class ViewTransactionViewController: UIViewController {
     
@@ -41,6 +43,8 @@ class ViewTransactionViewController: UIViewController {
     var currentYear = 2020
     var mode = UserDefaults.standard.string(forKey: "viewmode")
     
+    var disposeBag = DisposeBag()
+    
     @IBOutlet var monthCollectionView: UICollectionView!
     @IBOutlet var btnShowMore: UIButton!
     @IBOutlet var transactionTableView: UITableView!
@@ -55,6 +59,7 @@ class ViewTransactionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initComponents()
+        setUpBinding()
         self.tabBarController?.tabBar.tintColor = UIColor.colorFromHexString(hex: "564f64")
         //set up date
         todayYear = Defined.calendar.component(.year, from: today)
@@ -142,6 +147,26 @@ class ViewTransactionViewController: UIViewController {
         
     }
     
+    func setUpBinding(){
+        presenter?.rxDetailInfo.subscribe({ (detail) in
+            guard let detail = detail.element else {return}
+            self.opening = detail.opening
+            self.ending = detail.ending
+            self.reloadTableView()
+        }).disposed(by: disposeBag)
+        
+        presenter?.rxTransactionSections.subscribe({ (section) in
+            guard let section = section.element else {return}
+            self.transactionSections = section
+            self.reloadTableView()
+        }).disposed(by: disposeBag)
+        
+        presenter?.rxCateSections.subscribe({ (section) in
+            guard let section = section.element else {return}
+            self.categorySections = section
+            self.reloadTableView()
+        }).disposed(by: disposeBag)
+    }
     
     @IBAction func clickMore(_ sender: Any) {
         let window = UIApplication.shared.keyWindow

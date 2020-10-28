@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 import CodableFirebase
+import RxSwift
 
 protocol ViewTransactionUseCaseDelegate: BaseUseCaseDelegate {
     func responseBalance(balance: Int)

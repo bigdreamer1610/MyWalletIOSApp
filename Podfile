@@ -20,4 +20,7 @@ target 'MyWalletProject' do
   	pod 'MonthYearPicker', '~> 4.0.2'
 	pod ‘FloatingButtonPOP-swift’
 	pod 'CodableFirebase'
+	pod 'RxSwift', '6.0.0-rc.1'
+	pod 'RxCocoa', '6.0.0-rc.1'
+pod 'RxDataSources', '~> 3.0'
 end

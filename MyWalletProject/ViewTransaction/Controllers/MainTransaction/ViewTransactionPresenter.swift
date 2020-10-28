@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 protocol ViewTransactionPresenterDelegate: class {
     func getBalance(balance: Int)
@@ -38,6 +40,11 @@ class ViewTransactionPresenter {
     fileprivate var categorySections = [CategorySection]()
     fileprivate var month: Int = 0
     fileprivate var year: Int = 0
+    
+    //Rx
+    public let rxTransactionSections: PublishSubject<[TransactionSection]> = PublishSubject()
+    public let rxCateSections: PublishSubject<[CategorySection]> = PublishSubject()
+    public let rxDetailInfo: PublishSubject<DetailInfo> = PublishSubject()
 
     init(delegate: ViewTransactionPresenterDelegate, usecase: ViewTransactionUseCase) {
         self.delegate = delegate
@@ -118,7 +125,10 @@ class ViewTransactionPresenter {
         }
         transactionSections = sections
         //return sections
-        delegate?.getTransactionSections(section: sections)
+        //delegate?.getTransactionSections(section: sections)
+        
+        //rx
+        rxTransactionSections.onNext(sections)
     }
     
     //MARK: - Get all sections in category view mode
@@ -162,7 +172,8 @@ class ViewTransactionPresenter {
             sections.append(CategorySection(header: ch, items: items))
         }
         categorySections = sections
-        delegate?.getCategorySections(section: sections)
+        //delegate?.getCategorySections(section: sections)
+        rxCateSections.onNext(sections)
     }
 }
 
@@ -238,7 +249,9 @@ extension ViewTransactionPresenter {
         let currentDates = getDateArray(arr: Defined.getAllDayArray(allTransactions: allTransactions), month: month, year: year)
         let open = calculateDetail(list: getTransactionbyDate(dateArr: previousDates))
         let end = open + calculateDetail(list: getTransactionbyDate(dateArr: currentDates))
-        delegate?.getDetailCellInfo(info: DetailInfo(opening: open, ending: end))
+        //delegate?.getDetailCellInfo(info: DetailInfo(opening: open, ending: end))
+        //rx
+        rxDetailInfo.onNext(DetailInfo(opening: open, ending: end))
         
     }
     
