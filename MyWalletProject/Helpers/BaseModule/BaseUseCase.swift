@@ -10,8 +10,12 @@
 import UIKit
 import Firebase
 import CodableFirebase
+import RxSwift
+
 
 class BaseUseCase {
+    //.observe(.value)
+    //.observeSingleEvent(of: .value)
     func getListAllCategories(completion: @escaping (([Category]) -> ())){
         Defined.ref.child(Path.category.getPath()).observe(.value) { (snapshot) in
             var categories = [Category]()
@@ -33,7 +37,52 @@ class BaseUseCase {
             completion(categories)
         }
     }
+    func getListCateSingle(completion: @escaping ((Bool,[Category]?,String?) -> ())){
+        Defined.ref.child(Path.category.getPath()).observe(.value) { (snapshot) in
+            var categories = [Category]()
+            for case let snapshots as DataSnapshot in snapshot.children {
+                for case let snapshot as DataSnapshot in snapshots.children {
+                    guard let dict = snapshot.value as? [String:Any] else {
+                        return
+                    }
+                    do {
+                        var model = try FirebaseDecoder().decode(Category.self, from: dict)
+                        model.transactionType = snapshots.key
+                        model.id = snapshot.key
+                        categories.append(model)
+                    } catch let error {
+                        completion(false,nil,error.localizedDescription)
+                    }
+                }
+            }
+            completion(true,categories, nil)
+        } withCancel: { (error) in
+            completion(false,nil, error.localizedDescription)
+        }
+    }
     
+    func getListTransSingle(completion: @escaping ((Bool,[Transaction]?,String?) -> ())){
+        Defined.ref.child(Path.transaction.getPath()).observe(.value) { (snapshot) in
+            var allTransactions = [Transaction]()
+            for case let snapshots as DataSnapshot in snapshot.children {
+                for case let snapshot as DataSnapshot in snapshots.children {
+                    guard let dict = snapshot.value as? [String: Any] else {return}
+                    do {
+                        var model = try FirebaseDecoder().decode(Transaction.self, from: dict)
+                        model.id = snapshot.key
+                        model.transactionType = snapshots.key
+                        allTransactions.append(model)
+                    } catch let error {
+                        completion(false,nil,error.localizedDescription)
+                    }
+                }
+            }
+            
+            completion(true,allTransactions, nil)
+        } withCancel: { (error) in
+            completion(false,nil, error.localizedDescription)
+        }
+    }
     func getListAllTransactions(completion: @escaping (([Transaction]) -> ())){
         Defined.ref.child(Path.transaction.getPath()).observe(.value) { (snapshot) in
             var allTransactions = [Transaction]()
@@ -54,7 +103,7 @@ class BaseUseCase {
     }
     
     func getListAllEvents(completion: @escaping (([Event]) -> ())){
-        Defined.ref.child(Path.event.getPath()).observe(DataEventType.value) {(snapshot) in
+        Defined.ref.child(Path.event.getPath()).observe(.value) {(snapshot) in
             var events = [Event]()
             for case let snapshots as DataSnapshot in snapshot.children {
                 guard let dict = snapshots.value as? [String:Any] else {

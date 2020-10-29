@@ -60,6 +60,7 @@ class ViewTransactionViewController: UIViewController {
         super.viewDidLoad()
         initComponents()
         setUpBinding()
+        presenter?.subscribe()
         self.tabBarController?.tabBar.tintColor = UIColor.colorFromHexString(hex: "564f64")
         //set up date
         todayYear = Defined.calendar.component(.year, from: today)
@@ -434,6 +435,7 @@ extension ViewTransactionViewController : UICollectionViewDelegateFlowLayout, UI
                 // reset current date
                 current = Defined.dateFormatter.date(from: "02/\(month)/\(year)")!
                 // reload data transaction
+                //presenter?.getFinalData(month: Defined.defaults.integer(forKey: Constants.currentMonth), year: Defined.defaults.integer(forKey: Constants.currentYear))
                 presenter?.getDataTransaction(month: Defined.defaults.integer(forKey: Constants.currentMonth), year: Defined.defaults.integer(forKey: Constants.currentYear))
                 //mark selected cell
                 collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)

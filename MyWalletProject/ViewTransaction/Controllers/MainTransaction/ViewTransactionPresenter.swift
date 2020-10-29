@@ -41,6 +41,9 @@ class ViewTransactionPresenter {
     fileprivate var month: Int = 0
     fileprivate var year: Int = 0
     
+    fileprivate var transSubject = PublishSubject<[Transaction]>()
+    fileprivate var cateSubject = PublishSubject<[Category]>()
+    let disposeBag = DisposeBag()
     //Rx
     public let rxTransactionSections: PublishSubject<[TransactionSection]> = PublishSubject()
     public let rxCateSections: PublishSubject<[CategorySection]> = PublishSubject()
@@ -51,14 +54,69 @@ class ViewTransactionPresenter {
         self.viewTransUseCase = usecase
         self.viewTransUseCase?.delegate = self
     }
+
+    func subscribe(){
+        guard let usecase = self.viewTransUseCase else {return}
+        usecase.cateSubject.subscribe(onNext: { (cates) in
+            self.categories = cates
+        }).disposed(by: disposeBag)
+
+        usecase.tranSubject.subscribe(onNext: { (trans) in
+            self.allTransactions = trans
+        }).disposed(by: disposeBag)
+
+        usecase.balanceSubject.asObservable().subscribe { (value) in
+            self.delegate?.getBalance(balance: value)
+        }.disposed(by: disposeBag)
+
+        Observable.combineLatest(usecase.cateSubject.asObservable(), usecase.tranSubject.asObservable())
+            .subscribe { (cate,trans) in
+                self.delegate?.endLoading()
+                self.getDataTransaction(month: self.month, year: self.year)
+            }.disposed(by: disposeBag)
+    }
+ 
     //Get data balance and category
     func fetchData(){
+        //guard let usecase = viewTransUseCase else {return}
         minDate = Defined.calendar.date(byAdding: .year, value: -2, to: today)!
         maxDate = Defined.calendar.date(byAdding: .month, value: 1, to: today)!
         viewTransUseCase?.getBalance()
-        viewTransUseCase?.getListCategories()
         getMonthYearInRange(from: minDate, to: maxDate)
+        viewTransUseCase?.getListCategories()
+        viewTransUseCase?.getAllTransactions()
+        
+        /*
+//        //get data categories
+        viewTransUseCase?.getCategorySingle().subscribe({ (single) in
+            switch single {
+            case .success(let data):
+                self.categories = data
+            case .failure:
+                self.categories = []
+            }
+        }).disposed(by: disposeBag)
+        //get data transactions
+        viewTransUseCase?.getTransactionsSingle().subscribe({ (single) in
+            switch single {
+            case .success(let data):
+                self.allTransactions = data
+            case .failure:
+                self.allTransactions = []
+            }
+        }).disposed(by: disposeBag)
+
+        //combine 2 api
+        Observable.combineLatest(usecase.getCategorySingle().asObservable(), usecase.getTransactionsSingle().asObservable())
+            .subscribe { (cate,trans) in
+                self.getDataTransaction(month: self.month, year: self.year)
+            } onCompleted: {
+                self.delegate?.endLoading()
+            }.disposed(by: disposeBag)
+ */
+        
     }
+    
     // set up month year when change time
     func setUpMonthYear(month: Int, year: Int){
         self.month = month
@@ -285,27 +343,10 @@ extension ViewTransactionPresenter {
 }
 
 extension ViewTransactionPresenter : ViewTransactionUseCaseDelegate {
-    func responseDataCategories(cate: [Category]) {
-        DispatchQueue.main.async {
-            self.categories = cate
-            self.getFirstTransaction()
-            
-        }
-    }
-    
-    func responseAllTransactions(trans: [Transaction]) {
-        DispatchQueue.main.async {
-            self.delegate?.endLoading()
-            self.allTransactions = trans
-            self.getDataTransaction(month: self.month, year: self.year)
-        }
-    }
-    
     func responseBalance(balance: Int) {
         DispatchQueue.main.async {
             self.delegate?.getBalance(balance: balance)
         }
         
     }
-    
 }
